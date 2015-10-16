@@ -17,8 +17,6 @@ angular.module(
   'avRegistration',
   'avTest',
   'avCrypto',
-  'avAdmin',
-  'avElection',
   'angularFileUpload',
   'dndLists',
   'angularLoad',
@@ -63,105 +61,6 @@ angular.module('agora-core-view').config(
     $locationProvider.html5Mode(ConfigServiceProvider.locationHtml5mode);
 
     /* App states and urls are defined here */
-    // Admin interface
-    $stateProvider
-      .state('admin', {
-        abstract: true,
-        url: '/admin',
-        template: '<div ui-view autoscroll></div>'
-      })
-      .state('admin.login', {
-        url: '/login',
-        templateUrl: 'avAdmin/admin-login-controller/admin-login-controller.html',
-        controller: "AdminLoginController"
-      })
-      .state('admin.signup', {
-        url: '/signup',
-        templateUrl: 'avAdmin/admin-signup-controller/admin-signup-controller.html',
-        controller: "AdminSignUpController"
-      })
-      .state('admin.logout', {
-        url: '/logout',
-        controller: "LogoutController"
-      })
-      // admin directives using the admin controller
-      .state('admin.new', {
-        url: '/new',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.elections', {
-        url: '/elections',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.import', {
-        url: '/import',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.basic', {
-        url: '/basic/:id',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.questions', {
-        url: '/questions/:id',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.census', {
-        url: '/census/:id',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.censusConfig', {
-        url: '/census-config/:id',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.successAction', {
-        url: '/success-action/:id',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.auth', {
-        url: '/auth/:id',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.tally', {
-        url: '/tally/:id',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.dashboard', {
-        url: '/dashboard/:id',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.account', {
-        url: '/account',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.billinfo', {
-        url: '/billinfo',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.billhistory', {
-        url: '/billhistory',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      })
-      .state('admin.create', {
-        url: '/create',
-        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
-        controller: 'AdminController'
-      });
-
-    // END of Admin interface
     $stateProvider
       .state('election', {
         abstract: true,
@@ -178,45 +77,8 @@ angular.module('agora-core-view').config(
         templateUrl: 'avBooth/booth.html',
         controller: "BoothController"
       })
-      .state('election.public', {
-        url: '/:id/public',
-        templateUrl: 'avElection/public-controller/public-controller.html',
-        controller: "PublicController"
-      })
-      .state('election.public.loading', {
-        templateUrl: 'avElection/public-controller/loading.html'
-      })
-      .state('election.public.error', {
-        templateUrl: 'avElection/public-controller/error.html'
-      })
-      .state('election.public.show', {
-        templateUrl: 'avElection/public-controller/show.html'
-      })
-      .state('election.public.show.home', {
-        url: '/home',
-        templateUrl: 'avElection/public-controller/home.html'
-      })
-      .state('election.public.show.view', {
-        url: '/view/:name',
-        templateUrl: 'avElection/public-controller/view_page.html'
-      })
-      .state('election.public.show.auths', {
-        url: '/authorities',
-        templateUrl: 'avElection/public-controller/authorities.html'
-      })
-      .state('election.public.show.verify-results', {
-        url: '/verify-results',
-        templateUrl: 'avElection/public-controller/verify_results.html'
-      })
-      .state('election.public.show.ballot-locator', {
-        url: '/ballot-locator',
-        templateUrl: 'avElection/public-controller/ballot_locator.html'
-      })
       .state('election.public.show.home.simple', {
         template: '<div ave-simple-question></div>'
-      })
-      .state('election.public.show.home.unknown', {
-        templateUrl: 'avElection/question-results-directive/unknown.html'
       })
       .state('election.public.show.home.plurality-at-large', {
         template: '<div av-plurality-at-large-results></div>',
@@ -247,24 +109,6 @@ angular.module('agora-core-view').config(
       .state('election.public.show.logout', {
         url: '/logout',
         controller: "LogoutController"
-      })
-
-      .state('election.results', {
-        url: '/:id/results',
-        templateUrl: 'avElection/results-controller/results-controller.html',
-        controller: "ResultsController"
-      })
-      .state('election.results.loading', {
-        templateUrl: 'avElection/results-controller/loading.html'
-      })
-      .state('election.results.error', {
-        templateUrl: 'avElection/results-controller/error.html'
-      })
-      .state('election.results.show', {
-        templateUrl: 'avElection/results-controller/show.html'
-      })
-      .state('election.results.show.unknown', {
-        templateUrl: 'avElection/question-results-directive/unknown.html'
       })
       .state('election.results.show.home.borda', {
         template: '<div av-borda-results></div>',
