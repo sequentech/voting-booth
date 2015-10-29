@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <base href="/">
     <meta charset="utf-8" />
-    <link href="/themes/default/app.less" type="text/css" rel="stylesheet/less" id="themes" />
+    <link href="bower_components/avCommon/themes/default/app.less" type="text/css" rel="stylesheet/less" id="themes" />
   </head>
 <body>
   <!-- Livereload script for development only (stripped during dist build) -->
@@ -61,34 +61,13 @@
   <!-- Add New Vendor Component JS Above -->
 
   <!-- Configuration file JS -->
-  <script src="/avConfig.js"></script>
+  <script src="bower_components/avCommon/dist/avConfig-v3.0.1.js"></script>
 
   <!-- Themes JS -->
-  <script src="/avThemes.js"></script>
+  <script src="bower_components/avCommon/dist/avTheme-v3.0.1.js"></script>
 
-  <!-- Main App JS -->
-  <script src="avUi/avUi.js" class="app"></script>
-  <script src="avUi/jquery.flash.js" class="app"></script>
-  <script src="avUi/simple-error-directive/simple-error-directive.js" class="app"></script>
-  <script src="avUi/change-lang-directive/change-lang-directive.js" class="app"></script>
-  <script src="avUi/affix-bottom-directive.js" class="app"></script>
-  <script src="avUi/auto-height-directive.js" class="app"></script>
-  <script src="avUi/affix-top-offset-directive.js" class="app"></script>
-  <script src="avUi/affix-top-directive.js" class="app"></script>
-  <script src="avUi/collapsing-directive.js" class="app"></script>
-  <script src="avUi/recompile-directive.js" class="app"></script>
-  <script src="avUi/debounce-directive.js" class="app"></script>
-  <script src="avUi/inside-iframe-service.js" class="app"></script>
-  <script src="avUi/percent-votes-service.js" class="app"></script>
-  <script src="avUi/checker-service.js" class="app"></script>
-  <script src="avUi/add-dots-to-int-service.js" class="app"></script>
-  <script src="avUi/endswith-service.js" class="app"></script>
-  <script src="avUi/state-data-service.js" class="app"></script>
-  <script src="avUi/autoscroll-down-directive.js" class="app"></script>
-  <script src="avUi/add-target-blank-filter.js" class="app"></script>
-  <script src="avUi/html-to-text-filter.js" class="app"></script>
-  <script src="avUi/custom-delegates.js" class="app"></script>
-  <script src="avUi/learn-more-directive.js" class="app"></script>
+  <!-- avCommon -->
+  <script src="bower_components/avCommon/dist/appCommon-v3.0.1.js" class="lib"></script>
 
   <script src="crypto/crypto.js" class="app"></script>
   <script src="crypto/random-service.js" class="app"></script>
