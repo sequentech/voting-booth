@@ -144,6 +144,7 @@ module.exports = function (grunt) {
         options: {
           read:[
             {selector:'script[class="libnocompat"]',attribute:'src',writeto:'libnocompatjs'},
+            {selector:'script[class="libcompat"]',attribute:'src',writeto:'libcompatjs'},
             {selector:'script[class="lib"]',attribute:'src',writeto:'libjs'},
             {selector:'script[class="app"]',attribute:'src',writeto:'appjs'},
             {selector:'link[rel="stylesheet"][data-concat!="false"]',attribute:'href',writeto:'appcss'}
@@ -185,11 +186,13 @@ module.exports = function (grunt) {
       main: {
         files: {
           'temp/libcompat.js': [
-            'vendor/jquery.compat/jquery-1.11.1.js',
-            'vendor/json3/json-v3.3.2.js',
-            'vendor/crypto/unsupportedBrowser.js'
+            'bower_components/avCommon/dist/libcompat-v3.0.1.js',
+            '<%= dom_munger.data.libcompatjs %>'
           ],
-          'temp/libnocompat.js': ['<%= dom_munger.data.libnocompatjs %>'],
+          'temp/libnocompat.js': [
+            'bower_components/avCommon/dist/libnocompat-v3.0.1.js',
+            '<%= dom_munger.data.libnocompatjs %>'
+          ],
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>'],
           'dist/avConfig-v3.0.1.js': ['avConfig.js'],
