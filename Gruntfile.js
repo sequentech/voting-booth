@@ -192,7 +192,7 @@ module.exports = function (grunt) {
           'temp/libnocompat.js': ['<%= dom_munger.data.libnocompatjs %>'],
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>'],
-          'dist/avConfig-v3.0.1.js': ['bower_components/avCommon/dist/avConfig-v3.0.1.js'],
+          'dist/avConfig-v3.0.1.js': ['avConfig.js'],
           'dist/avThemes-v3.0.1.js': ['bower_components/avCommon/dist/avThemes-v3.0.1.js'],
           'dist/avPlugins-v3.0.1.js': ['plugins/**/*.js']
         }
