@@ -19,10 +19,12 @@
   },
   "avCommon": {
     "cancel": "Cancel",
-    "shareLink": "¡Twittea aquesta votació!"
+    "poweredBy": "Funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
+    "shareLink": "¡Twittea aquesta votació!",
+    "votingSystem": "Voting System",
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
   "avBooth": {
-    "poweredBy": "Funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
     "loadingElectionTitle": "Carregant la votació, un moment sisplau..",
     "stepNumber": "paso %s de %s &nbsp; &nbsp; funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
     "stepAndQuestionNumber": "pas %s de %s, pregunta %s de %s",
