@@ -36,7 +36,7 @@ angular.module('jm.i18next').config(function ($i18nextProvider, ConfigServicePro
       cookieName: 'lang',
       detectLngQS: 'lang',
       lngWhitelist: ['en', 'es', 'gl', 'ca'],
-      resGetPath: '/locales/__lng__.json',
+      resGetPath: '/booth/locales/__lng__.json',
       defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
     },
     ConfigServiceProvider.i18nextInitOptions);
@@ -63,7 +63,7 @@ angular.module('agora-core-view').config(
     $stateProvider
       .state('election', {
         abstract: true,
-        url: '/election',
+        url: '/booth',
         template: '<div ui-view></div>'
       })
       .state('election.booth', {

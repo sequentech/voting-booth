@@ -7,7 +7,8 @@ angular.module('avBooth')
       // calls to it, at most one per 100ms
       var timeoutWidth;
       var w = angular.element($window);
-      $("#theme").attr("href", "themes/" + ConfigService.theme + "/app.min.css");
+      $("#theme").attr("href", "booth/themes/" + ConfigService.theme + "/app.min.css");
+      //window.avThemes.change(ConfigService.theme);
 
       // when we are not inside an iframe and voter id is not set, this is a
       // demo booth
