@@ -1,3 +1,5 @@
+window.avConfigData.base = '/booth';
+
 angular.module(
   'agora-core-view',
   ['ui.bootstrap',
