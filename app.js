@@ -1,5 +1,5 @@
 angular.module(
-  'agora-core-view',
+  'agora-gui-booth',
   ['ui.bootstrap',
   'ui.utils',
   'ui.router',
@@ -20,7 +20,8 @@ angular.module(
   'dndLists',
   'angularLoad',
   'angular-date-picker-polyfill',
-  'ng-autofocus'
+  'ng-autofocus',
+  'agora-gui-common'
 ]);
 
 angular.module('jm.i18next').config(function ($i18nextProvider, ConfigServiceProvider) {
@@ -42,11 +43,11 @@ angular.module('jm.i18next').config(function ($i18nextProvider, ConfigServicePro
     ConfigServiceProvider.i18nextInitOptions);
 });
 
-angular.module('agora-core-view').config(function($sceDelegateProvider, ConfigServiceProvider) {
+angular.module('agora-gui-booth').config(function($sceDelegateProvider, ConfigServiceProvider) {
   $sceDelegateProvider.resourceUrlWhitelist(ConfigServiceProvider.resourceUrlWhitelist);
 });
 
-angular.module('agora-core-view').config(
+angular.module('agora-gui-booth').config(
   function(
     $stateProvider,
     $urlRouterProvider,
@@ -107,7 +108,7 @@ angular.module('agora-core-view').config(
       });
 });
 
-angular.module('agora-core-view').run(function($http, $rootScope) {
+angular.module('agora-gui-booth').run(function($http, $rootScope) {
 
   $rootScope.safeApply = function(fn) {
     var phase = $rootScope.$$phase;
@@ -136,7 +137,7 @@ angular.module('agora-core-view').run(function($http, $rootScope) {
 /*
 This directive allows us to pass a function in on an enter key to do what we want.
  */
-angular.module('agora-core-view').directive('ngEnter', function () {
+angular.module('agora-gui-booth').directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
             if(event.which === 13) {
@@ -157,7 +158,7 @@ angular.module('agora-core-view').directive('ngEnter', function () {
  * @Param end, default is "..."
  * @return string
  */
-angular.module('agora-core-view').filter('truncate', function () {
+angular.module('agora-gui-booth').filter('truncate', function () {
         return function (text, length, end) {
             if (isNaN(length)) {
                 length = 10;
