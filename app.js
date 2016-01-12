@@ -1,3 +1,5 @@
+window.avConfigData.base = '/booth';
+
 angular.module(
   'agora-gui-booth',
   ['ui.bootstrap',
