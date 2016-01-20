@@ -2,7 +2,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '3.1.0';
+var AV_CONFIG_VERSION = '3.1.2';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -262,6 +262,7 @@ module.exports = function (grunt) {
           'dist/libcompat-v3.0.1.min.js': 'temp/libcompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
+          "dist/locales/moment/en.js": "bower_components/moment/lang/en-gb.js",
           "dist/locales/moment/es.js": "bower_components/moment/lang/es.js",
           "dist/locales/moment/gl.js": "bower_components/moment/lang/gl.js",
           "dist/locales/moment/ca.js": "bower_components/moment/lang/ca.js"
@@ -282,15 +283,6 @@ module.exports = function (grunt) {
         files: {
           'dist/index.html': 'dist/index.html'
         }
-      }
-    },
-    imagemin: {
-      main:{
-        files: [{
-          expand: true, cwd:'dist/',
-          src:['**/{*.png,*.jpg}'],
-          dest: 'dist/'
-        }]
       }
     },
     karma: {
@@ -339,7 +331,7 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('build',['check_config', 'jshint','clean:before','less','autoprefixer','dom_munger','ngtemplates','cssmin','concat','merge-json','ngAnnotate','uglify','copy','htmlmin','imagemin','clean:after']);
+  grunt.registerTask('build',['check_config', 'jshint','clean:before','less','autoprefixer','dom_munger','ngtemplates','cssmin','concat','merge-json','ngAnnotate','uglify','copy','htmlmin','clean:after']);
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
 
