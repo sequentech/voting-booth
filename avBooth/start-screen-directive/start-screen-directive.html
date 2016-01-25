@@ -78,11 +78,11 @@
         <div class="tos-text" ng-bind-html="tosText"></div>
 
         <!-- Legal terms -->
-        <h3 ng-i18next="avBooth.foot.legal"></h3>
+        <h3 ng-i18next="avBooth.legal.title"></h3>
         <span ng-if="extra_data.name" ng-i18next>{{extra_data.name}}, </span>
         <span ng-if="extra_data.org" ng-i18next>{{extra_data.org}} </span>
         <span ng-if="extra_data.nif" ng-i18next>({{extra_data.nif}}). </span>
-        <a ng-if="extra_data.contact" href="extra_data.contact" ng-i18next="avBooth.foot.contact"></a>
+        <a ng-if="extra_data.contact" href="mailto:{{extra_data.contact}}" ng-i18next="avBooth.legal.contact"></a>
         <!-- End legal terms -->
 
       </div>
