@@ -26,7 +26,7 @@
   },
   "avBooth": {
     "foot": {
-        "legal": "legal",
+        "legal": "Términos legales",
         "name": "nombre",
         "org": "empresa",
         "nif": "nif",

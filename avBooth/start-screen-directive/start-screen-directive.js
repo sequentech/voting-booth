@@ -9,6 +9,10 @@ angular.module('avBooth')
     function link(scope, element, attrs) {
         scope.tosTitle = ConfigService.tos.title;
         scope.tosText = ConfigService.tos.text;
+        scope.extra_data = {};
+        if (attrs.extra !== undefined) {
+            scope.extra_data = JSON.parse(attrs.extra);
+        }
     }
 
     return {

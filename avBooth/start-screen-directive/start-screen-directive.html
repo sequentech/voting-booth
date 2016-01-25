@@ -76,6 +76,15 @@
       <div class="padded col-xs-12">
         <h4>{{tosTitle}}</h4>
         <div class="tos-text" ng-bind-html="tosText"></div>
+
+        <!-- Legal terms -->
+        <h3 ng-i18next="avBooth.foot.legal"></h3>
+        <span ng-if="extra_data.name" ng-i18next>{{extra_data.name}}, </span>
+        <span ng-if="extra_data.org" ng-i18next>{{extra_data.org}} </span>
+        <span ng-if="extra_data.nif" ng-i18next>({{extra_data.nif}}). </span>
+        <a ng-if="extra_data.contact" href="extra_data.contact" ng-i18next="avBooth.foot.contact"></a>
+        <!-- End legal terms -->
+
       </div>
     </div>
     <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
