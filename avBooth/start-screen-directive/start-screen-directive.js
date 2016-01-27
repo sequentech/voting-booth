@@ -11,7 +11,7 @@ angular.module('avBooth')
         scope.tosText = ConfigService.tos.text;
         scope.extra_data = {};
         scope.legal = false;
-        if (attrs.extra !== undefined) {
+        if (attrs.extra && typeof attrs.extra === 'string') {
             scope.extra_data = JSON.parse(attrs.extra);
             var d = scope.extra_data;
             if (d.name && d.org && d.nif && d.contact) {
