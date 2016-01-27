@@ -72,20 +72,24 @@
         <p ng-i18next="avBooth.emitBallotText"></p>
       </div>
     </div>
-    <div class="row" ng-if="tosTitle.length > 0">
+    <div class="row" ng-if="tosTitle">
       <div class="padded col-xs-12">
         <h4>{{tosTitle}}</h4>
         <div class="tos-text" ng-bind-html="tosText"></div>
+      </div>
+    </div>
 
+    <div class="row" ng-if="legal">
+      <div class="padded col-xs-12">
         <!-- Legal terms -->
-        <h3 ng-i18next="avBooth.legal.title"></h3>
+        <h4 ng-i18next="avBooth.legal.title"></h4>
         <span ng-if="extra_data.name" ng-i18next>{{extra_data.name}}, </span>
         <span ng-if="extra_data.org" ng-i18next>{{extra_data.org}} </span>
         <span ng-if="extra_data.nif" ng-i18next>({{extra_data.nif}}). </span>
-        <a ng-if="extra_data.contact" href="mailto:{{extra_data.contact}}" ng-i18next="avBooth.legal.contact"></a>
+        <a ng-if="extra_data.contact" href="mailto:{{extra_data.contact}}"><span ng-i18next>avBooth.legal.contact</span>: {{ extra_data.contact }}</a>
         <!-- End legal terms -->
-
       </div>
+
     </div>
     <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
       <button
