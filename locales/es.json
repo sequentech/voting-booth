@@ -27,6 +27,10 @@
     "votings": {"plurality-at-large": "Voto en bloque o Escrutinio Mayoritario Plurinominal", "borda-nauru": "Borda de Nauru o Borda Dowdall (1/n)", "borda": "Borda Count (tradicional)", "pairwise-beta": "Comparación de pares (distribución beta)"}
   },
   "avBooth": {
+    "legal": {
+        "title": "Términos legales",
+        "contact": "contacto"
+    },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Esto es una votación de PRUEBA",
     "loadingElectionTitle": "Cargando votación, un momento por favor..",
     "stepNumber": "paso %s de %s &nbsp; &nbsp; funciona con <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",

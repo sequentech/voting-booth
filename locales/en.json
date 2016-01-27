@@ -27,6 +27,10 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
   "avBooth": {
+    "legal": {
+        "title": "Legal terms",
+        "contact": "contact"
+    },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election",
     "loadingElectionTitle": "Loading election, please wait..",
     "stepNumber": "step %s of %s &nbsp; &nbsp; powered by <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
