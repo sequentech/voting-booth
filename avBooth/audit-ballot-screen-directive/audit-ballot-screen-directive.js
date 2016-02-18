@@ -4,10 +4,11 @@
  * Shows the auditable ballot to the user and explains how to audit it.
  */
 angular.module('avBooth')
-  .directive('avbAuditBallotScreen', function(DeterministicJsonStringifyService) {
+  .directive('avbAuditBallotScreen', function(DeterministicJsonStringifyService, ConfigService) {
     var link = function(scope, element, attrs) {
       scope.auditableBallotStr = DeterministicJsonStringifyService(
         scope.stateData.auditableBallot);
+      scope.organization = ConfigService.organization;
 
       scope.selectDiv = function (event) {
         // copied from https://code.google.com/p/marinemap/source/browse/media/common/js/jquery/jquery.selText.js?spec=svn1ba72406afc078e007c701b29923a962b5867cc1&r=bf89d8ebf3d34b7185dac20e7064886a8021edf5

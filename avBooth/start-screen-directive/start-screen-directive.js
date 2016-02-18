@@ -10,6 +10,7 @@ angular.module('avBooth')
         scope.tosTitle = ConfigService.tos.title;
         scope.tosText = ConfigService.tos.text;
         scope.extra_data = {};
+        scope.organization = ConfigService.organization;
         scope.legal = false;
         if (attrs.extra && typeof attrs.extra === 'string') {
             scope.extra_data = JSON.parse(attrs.extra);
