@@ -5,9 +5,10 @@
  * some unique details.
  */
 angular.module('avBooth')
-  .directive('avb2questionsConditionalScreen', function($i18next, $filter, $interpolate, $timeout, $window) {
+  .directive('avb2questionsConditionalScreen', function($i18next, $filter, $interpolate, $timeout, $window, ConfigService) {
 
     var link = function(scope, element, attrs) {
+      scope.organization = ConfigService.organization;
       _.each(scope.election.questions, function(question) {
         _.each(question.answers, function (answer) {
           if (answer.selected === undefined) {

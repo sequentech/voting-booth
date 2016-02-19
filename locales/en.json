@@ -21,7 +21,7 @@
   },
   "avCommon": {
     "cancel": "Cancel",
-    "poweredBy": "Powered by <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
+    "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Tweet this election!",
     "votingSystem": "Voting System",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
@@ -33,8 +33,8 @@
     },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election",
     "loadingElectionTitle": "Loading election, please wait..",
-    "stepNumber": "step %s of %s &nbsp; &nbsp; powered by <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
-    "stepAndQuestionNumber": "step %s of %s, question %s of %s",
+    "stepNumber": "step __num__ of __total__ &nbsp; &nbsp; powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "stepAndQuestionNumber": "step __num__ of __total__, question __qnum__ of __qtotal__",
     "continueButton": "Continue",
     "startVoting": "Start Voting",
     "stepsToVote": "You need to follow these steps to cast your ballot:",
@@ -145,7 +145,7 @@
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
-    "successBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>You can use your ballot tracker to <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verify that your ballot has been correctly cast</a>. When the election voting period is still active, you can still vote again, overriding and invalidating any previously ballot that you may have previously cast in this election.",
+    "successBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>You can use your ballot tracker to <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verify that your ballot has been correctly cast</a>. When the election voting period is still active, you can still vote again, overriding and invalidating any previously ballot that you may have previously cast in this election.",
     "relatedLinksText": "For more information about this election:",
 
     "circleOptionExternalLink": "View details",
