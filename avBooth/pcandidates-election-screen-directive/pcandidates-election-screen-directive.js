@@ -5,7 +5,7 @@
  * some unique details.
  */
 angular.module('avBooth')
-  .directive('avbPcandidatesElectionScreen', function($i18next, $filter, $interpolate, $timeout, $window, $modal) {
+  .directive('avbPcandidatesElectionScreen', function($i18next, $filter, $interpolate, $timeout, $window, $modal, ConfigService) {
 
     var link = function(scope, element, attrs) {
       scope.warningEnum = {
@@ -13,6 +13,7 @@ angular.module('avBooth')
         maxSelectedLimitReached: "maxSelectedLimitReached",
         cannotSelectAll: "cannotSelectAll"
       };
+      scope.organization = ConfigService.organization;
 
       scope.stateData.affixIsSet = false;
       scope.stateData.affixDropDownShown = false;

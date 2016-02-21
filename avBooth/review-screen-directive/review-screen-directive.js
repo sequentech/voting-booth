@@ -4,9 +4,10 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbReviewScreen', function() {
+  .directive('avbReviewScreen', function(ConfigService) {
 
     var link = function(scope, element, attrs) {
+      scope.organization = ConfigService.organization;
       // used to display pairwise comparison in a different manner
       _.each(scope.election.questions, function (q) {
         q.isPairWise = _.contains(['pairwise-beta'], q.tally_type);

@@ -9,6 +9,16 @@ angular.module('avBooth')
     function link(scope, element, attrs) {
         scope.tosTitle = ConfigService.tos.title;
         scope.tosText = ConfigService.tos.text;
+        scope.extra_data = {};
+        scope.organization = ConfigService.organization;
+        scope.legal = false;
+        if (attrs.extra && typeof attrs.extra === 'string') {
+            scope.extra_data = JSON.parse(attrs.extra);
+            var d = scope.extra_data;
+            if (d.name && d.org && d.nif && d.contact) {
+                scope.legal = true;
+            }
+        }
     }
 
     return {

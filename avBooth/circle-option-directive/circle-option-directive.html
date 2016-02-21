@@ -11,7 +11,8 @@
 <a
   class="external-link text-center"
   target="_blank"
-  href="{{urls.URL}}"
-  ng-i18next>
-  avBooth.circleOptionExternalLink
+  href="{{urls.URL}}">
+  <span ng-if="urls.URL" ng-i18next>
+    avBooth.circleOptionExternalLink
+  </span>
 </a>
