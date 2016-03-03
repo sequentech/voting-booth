@@ -110,8 +110,9 @@ angular.module('agora-gui-booth').config(
       });
 });
 
-angular.module('agora-gui-booth').run(function($http, $rootScope) {
+angular.module('agora-gui-booth').run(function($http, $rootScope, ConfigService) {
 
+  $rootScope.boothTitle = ConfigService.webTitle;
   $rootScope.safeApply = function(fn) {
     var phase = $rootScope.$$phase;
     if (phase === '$apply' || phase === '$digest') {
