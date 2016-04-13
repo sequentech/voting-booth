@@ -12,6 +12,7 @@ angular.module('avBooth')
       $filter,
       $interpolate,
       $timeout,
+      $modal,
       $window,
       ConfigService)
     {
