@@ -116,30 +116,27 @@ angular.module('avBooth')
         // proceeding.
         scope.questionNext = function()
         {
-          // we will go
-          var goNext = true;
-
-          _.each(
+          var hasAnyBlankVote = _.each(
             groupQuestions,
-            function(question)
+            function(hasAnyBlankVote, question)
             {
-              // show null vote warning
-              if (scope.numSelectedOptions(question) === 0)
-              {
-                goNext = false;
-                $modal.open({
-                  templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
-                  controller: "ConfirmNullVoteController",
-                  size: 'md'
-                }).result.then(scope.next);
-              }
-            }
+              return hasAnyBlankVote || (scope.numSelectedOptions(question) === 0);
+            },
+            false
           );
 
-          if (goNext)
+          // if there any question with a blank vote, show the confirm dialog
+          if (hasAnyBlankVote)
           {
-            scope.next();
+            $modal.open({
+              templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
+              controller: "ConfirmNullVoteController",
+              size: 'md'
+            }).result.then(scope.next);
+            return;
           }
+
+          scope.next();
         };
 
       };

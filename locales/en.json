@@ -174,8 +174,8 @@
 
     "confirmNullVote": {
       "header": "Blank vote",
-      "body": "You have not selected any option, which is equivalent to vote in blank to this question.",
-      "confirm": "Yes, I want to vote in blank in this question"
+      "body": "You have not selected any option in some question, which is equivalent to vote in blank.",
+      "confirm": "Yes, I want to vote in blank when not selecting any option"
     }
   }
 }
