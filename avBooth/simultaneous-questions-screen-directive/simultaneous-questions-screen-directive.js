@@ -116,7 +116,7 @@ angular.module('avBooth')
         // proceeding.
         scope.questionNext = function()
         {
-          var hasAnyBlankVote = _.each(
+          var hasAnyBlankVote = _.reduce(
             groupQuestions,
             function(hasAnyBlankVote, question)
             {
