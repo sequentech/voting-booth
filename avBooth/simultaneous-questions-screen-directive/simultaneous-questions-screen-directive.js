@@ -73,7 +73,7 @@ angular.module('avBooth')
           {
             // if max options selectable is 1, deselect any other and select
             // this
-            if (scope.max === 1) {
+            if (question.max === 1) {
               _.each(question.answers, function (element) {
                 if (element.selected > option.selected) {
                   element.selected -= 1;
