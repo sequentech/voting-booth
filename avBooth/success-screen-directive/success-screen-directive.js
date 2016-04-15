@@ -8,7 +8,7 @@ angular.module('avBooth')
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
 
-      scope.election.presentation.share_text = "Ya he votado en la consulta para el Gobierno de España porque en Podemos #TuDecidesElGobierno , vota en https://participa.podemos.info";
+      scope.election.presentation.share_text = "Ya he votado en la consulta para el Gobierno de España porque en Podemos #TúDecidesElGobiernoDía2, vota en https://participa.podemos.info";
       scope.tweetLink = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(scope.election.presentation.share_text) + '&source=webclient';
       scope.successText = text({electionId: scope.election.id});
     }
