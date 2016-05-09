@@ -163,8 +163,8 @@
 
     "confirmNullVote": {
       "header": "Voto en blanco",
-      "body": "No has seleccionado ninguna opción, lo que equivale a votar en blanco en esta pregunta.",
-      "confirm": "Sí, quiero votar en blanco en esta pregunta"
+      "body": "No has seleccionado ninguna opción en alguna pregunta, lo que equivale a votar en blanco.",
+      "confirm": "Sí, quiero votar en blanco cuando no seleciono ninguna opción"
     }
   },
   "avElection": {

@@ -39,6 +39,7 @@ angular.module('avBooth')
         auditBallotScreen: 'auditBallotScreen',
         pcandidatesElectionScreen: 'pcandidatesElectionScreen',
         "2questionsConditionalScreen": '2questionsConditionalScreen',
+        simultaneousQuestionsScreen: 'simultaneousQuestionsScreen',
         conditionalAccordionScreen: 'conditionalAccordionScreen',
         encryptingBallotScreen: 'encryptingBallotScreen',
         castOrCancelScreen: 'castOrCancelScreen',
@@ -65,6 +66,12 @@ angular.module('avBooth')
         } else if  (question.layout === "pcandidates-election") {
           return {
             state: stateEnum.pcandidatesElectionScreen,
+            sorted: true,
+            ordered: true
+          };
+        } else if  (question.layout === "simultaneous-questions") {
+          return {
+            state: stateEnum.simultaneousQuestionsScreen,
             sorted: true,
             ordered: true
           };
@@ -131,7 +138,8 @@ angular.module('avBooth')
       function next() {
         var questionStates = [
           stateEnum.multiQuestion,
-          stateEnum.pcandidatesElectionScreen
+          stateEnum.pcandidatesElectionScreen,
+          stateEnum.simultaneousQuestionsScreen,
         ];
         if (scope.state === stateEnum.startScreen)
         {
