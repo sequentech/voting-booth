@@ -32,13 +32,42 @@ angular.module('avBooth')
 
         var lastGroupQuestionArrayIndex = groupQuestions[groupQuestions.length-1];
         var lastGroupQuestionIndex = lastGroupQuestionArrayIndex.num;
+
         // update if it's last question and set questionNum to the last in the
         // group
-
         scope.stateData.isLastQuestion = (
           scope.stateData.isLastQuestion ||
           scope.election.questions.length === lastGroupQuestionIndex + 1);
         scope.stateData.questionNum = lastGroupQuestionIndex;
+
+        // from each question of our group, get the extra_data, and then fusion
+        // all the extra_datas of our question group into one
+        var groupExtraData = _.extend.apply(_,
+          _.union(
+            [{}],
+            _.map(groupQuestions, function (q) { return q.extra_options; })));
+
+        // set next button text by default if it has not been specified
+        if (!!groupExtraData.next_button && !scope.stateData.isLastQuestion) {
+          scope.nextButtonText = groupExtraData.next_button;
+        } else {
+          scope.nextButtonText = $i18next('avBooth.continueButton');
+        }
+
+        // stablish the number of rows
+        scope.answerColumnsSize = 6;
+        if (!!groupExtraData.answerColumnsSize) {
+          scope.answerColumnsSize = groupExtraData.answerColumnsSize;
+        }
+
+        // group pairs together? only makes sense if there's a pair number of
+        // columns per row
+        scope.groupPairs = false;
+        if (((12 / scope.answerColumnsSize) % 2) === 0 &&
+          !!groupExtraData.groupPairs)
+        {
+          scope.groupPairs = groupExtraData.groupPairs;
+        }
 
         // FIXME: Why this is needed?
         scope.organization = ConfigService.organization;
