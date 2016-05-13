@@ -48,7 +48,9 @@ angular.module('avBooth')
             _.map(groupQuestions, function (q) { return q.extra_options; })));
 
         // set next button text by default if it has not been specified
-        if (!!groupExtraData.next_button && !scope.stateData.isLastQuestion) {
+        if (angular.isDefined(groupExtraData.next_button) &&
+          !scope.stateData.isLastQuestion)
+        {
           scope.nextButtonText = groupExtraData.next_button;
         } else {
           scope.nextButtonText = $i18next('avBooth.continueButton');
@@ -56,17 +58,17 @@ angular.module('avBooth')
 
         // stablish the number of rows
         scope.answerColumnsSize = 6;
-        if (!!groupExtraData.answerColumnsSize) {
-          scope.answerColumnsSize = groupExtraData.answerColumnsSize;
+        if (angular.isDefined(groupExtraData.answer_columns_size)) {
+          scope.answerColumnsSize = parseInt(groupExtraData.answer_columns_size, 10);
         }
 
         // group pairs together? only makes sense if there's a pair number of
         // columns per row
         scope.groupPairs = false;
         if (((12 / scope.answerColumnsSize) % 2) === 0 &&
-          !!groupExtraData.groupPairs)
+          angular.isDefined(groupExtraData.group_answer_pairs))
         {
-          scope.groupPairs = groupExtraData.groupPairs;
+          scope.groupPairs = (groupExtraData.group_answer_pairs === 'TRUE');
         }
 
         // FIXME: Why this is needed?
