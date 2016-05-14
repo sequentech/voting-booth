@@ -3,7 +3,7 @@
  * questions" and the list of questions
  */
 angular.module('avBooth')
-  .controller('ConfirmNullVoteController',
+  .controller('TooFewAnswersController',
     function($scope, $modalInstance, questions, numSelectedOptions)
     {
       $scope.ok = function ()

@@ -161,7 +161,7 @@ angular.module('avBooth')
           if (tooFewAnswersQuestions.length > 0)
           {
             $modal.open({
-              templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
+              templateUrl: "avBooth/too-few-answers-controller/too-few-answers-controller.html",
               controller: "ConfirmNullVoteController",
               size: 'md',
               resolve: {
