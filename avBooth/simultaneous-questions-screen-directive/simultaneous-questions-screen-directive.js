@@ -166,7 +166,7 @@ angular.module('avBooth')
               size: 'md',
               resolve: {
                 questions: function() { return tooFewAnswersQuestions; },
-                numSelectedOptions: function() { return numSelectedOptions; }
+                numSelectedOptions: function() { return scope.numSelectedOptions; }
               }
             });
             return;
