@@ -144,9 +144,35 @@ angular.module('avBooth')
 
         // questionNext calls to scope.next() if user selected enough options.
         // Shows a warning to confirm blank vote in any of the questions before
-        // proceeding.
+        // proceeding, or to inform if it's needed to select an option.
         scope.questionNext = function()
         {
+          // show notification to select options if needs to select more
+          // options
+          var tooFewAnswersQuestions = _.filter(
+            groupQuestions,
+            function(question)
+            {
+              return scope.numSelectedOptions(question) < question.min;
+            }
+          );
+
+          // if there any question with a blank vote, show the confirm dialog
+          if (tooFewAnswersQuestions.length > 0)
+          {
+            $modal.open({
+              templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
+              controller: "ConfirmNullVoteController",
+              size: 'md',
+              resolve: {
+                questions: function() { return tooFewAnswersQuestions; },
+                numSelectedOptions: function() { return numSelectedOptions; }
+              }
+            });
+            return;
+          }
+
+          // show has any blank vote confirmation screen if allowed
           var hasAnyBlankVote = _.reduce(
             groupQuestions,
             function(hasAnyBlankVote, question)

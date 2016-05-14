@@ -177,6 +177,12 @@
       "header": "Voto en blanco",
       "body": "No has seleccionado ninguna opción en alguna pregunta, lo que equivale a votar en blanco.",
       "confirm": "Sí, quiero votar en blanco cuando no seleciono ninguna opción"
+    },
+
+    "tooFewAnswers": {
+      "header": "Selecciona más opciones",
+      "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
+      "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
     }
   },
   "avElection": {

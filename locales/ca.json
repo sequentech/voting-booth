@@ -140,7 +140,40 @@
     "successBallotHash": "Enhorabona! Has emès el teu vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del teu vot és:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Pots fer servir el localitzador per <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que el teu vot ha quedat registrat</a>. Mentre la votació estigui en curs, pots votar un altre cop, sobreescrivint i invalidant qualsevol vot que hagis emès anteriorment en aquesta votació.",
     "relatedLinksText": "Per a més informació sobre la votació:",
     "circleOptionExternalLink": "Mostra'n els detalls",
-    "voteInBlank": "Vota en blanc"
+    "voteInBlank": "Vota en blanc",
+    "openOptionLink": "Abrir enlace en nueva pestaña",
+
+    "ahoramPrimaries": {
+      "selectAll": "Seleccionar todo el equipo",
+      "deselectAll": "Deseleccionar todo el equipo",
+      "selectedOptions": "Opciones seleccionadas (en orden, pincha y arrastra para cambiarlo)",
+      "mayoral": "Alcaldía (__count__)",
+      "mayoral_plural": "Alcaldía (__count__)",
+      "councils": "Concejalías (__count__)",
+      "councils_plural": "Concejalías (__count__)"
+    },
+
+    "reviewScreen": {
+      "pair": "__one__ > __two__"
+    },
+
+    "pairwiseBeta": {
+      "web": "Web",
+      "warning": "Clic para seleccionar. __count__ de __max__ comparaciones realizadas.",
+      "warning_plural": "Clic para seleccionar. __count__ de __max__ comparaciones realizadas"
+    },
+
+    "confirmNullVote": {
+      "header": "Voto en blanco",
+      "body": "No has seleccionado ninguna opción en alguna pregunta, lo que equivale a votar en blanco.",
+      "confirm": "Sí, quiero votar en blanco cuando no seleciono ninguna opción"
+    },
+
+    "tooFewAnswers": {
+      "header": "Selecciona más opciones",
+      "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
+      "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
+    }
   },
   "avElection": {
     "resultsLoadingText": "Cargando resultados",
