@@ -162,7 +162,7 @@ angular.module('avBooth')
           {
             $modal.open({
               templateUrl: "avBooth/too-few-answers-controller/too-few-answers-controller.html",
-              controller: "ConfirmNullVoteController",
+              controller: "TooFewAnswersController",
               size: 'md',
               resolve: {
                 questions: function() { return tooFewAnswersQuestions; },
