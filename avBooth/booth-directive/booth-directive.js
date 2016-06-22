@@ -1,3 +1,20 @@
+/**
+ * This file is part of agora-gui-booth.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 angular.module('avBooth')
   .directive('avBooth', function($http, $location, $i18next, $window, $timeout, HmacService, ConfigService, InsideIframeService) {
 
@@ -39,6 +56,7 @@ angular.module('avBooth')
         auditBallotScreen: 'auditBallotScreen',
         pcandidatesElectionScreen: 'pcandidatesElectionScreen',
         "2questionsConditionalScreen": '2questionsConditionalScreen',
+        simultaneousQuestionsScreen: 'simultaneousQuestionsScreen',
         conditionalAccordionScreen: 'conditionalAccordionScreen',
         encryptingBallotScreen: 'encryptingBallotScreen',
         castOrCancelScreen: 'castOrCancelScreen',
@@ -65,6 +83,12 @@ angular.module('avBooth')
         } else if  (question.layout === "pcandidates-election") {
           return {
             state: stateEnum.pcandidatesElectionScreen,
+            sorted: true,
+            ordered: true
+          };
+        } else if  (question.layout === "simultaneous-questions") {
+          return {
+            state: stateEnum.simultaneousQuestionsScreen,
             sorted: true,
             ordered: true
           };
@@ -131,7 +155,8 @@ angular.module('avBooth')
       function next() {
         var questionStates = [
           stateEnum.multiQuestion,
-          stateEnum.pcandidatesElectionScreen
+          stateEnum.pcandidatesElectionScreen,
+          stateEnum.simultaneousQuestionsScreen,
         ];
         if (scope.state === stateEnum.startScreen)
         {
@@ -211,6 +236,11 @@ angular.module('avBooth')
         if (scope.state !== stateEnum.helpScreen) {
           console.log("error, calling to backFromHelp in another state");
           return;
+        }
+
+        if (angular.isDefined(scope.stateData.oldState.data.questionNum)) {
+          var n = scope.stateData.oldState.data.questionNum;
+          scope.stateData.oldState.data.question = scope.election.questions[n];
         }
 
         scope.setState(

@@ -10,16 +10,22 @@
     {{option.category}}
   </span>
 
+  <div
+    ng-if="!!isYoutube(option)"
+    class="videoWrapper">
+    <iframe
+      width="560"
+      height="315"
+      src="{{isYoutube(option)}}"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
   <div class="vertilize">
     <div class="vertilize-col vert-align-top">
       <img
-        av-auto-height
-        additional-height="-5"
-        parent-selector=".vertilize"
-        sibling-selector=".text-sibling"
-
         parent
-        ng-if="!!urls['Image URL']"
+        ng-if="!isYoutube(option) && !!urls['Image URL']"
         ng-src="{{urls['Image URL']}}"
         alt="{{option.text}}" />
     </div>
@@ -31,7 +37,6 @@
           <span ng-if="ordered && showSelectedPos && option.selected > -1">
             {{option.selected + 1}}.
           </span>
-          <span ng-if="option.tag">{{option.tag}}:</span>
           <span>{{option.text}}</span>
         </strong>
         <p class="details" ng-if="option.details && option.details.length > 1" ng-bind-html="option.details">

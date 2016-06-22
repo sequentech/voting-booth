@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="pull-left" ng-i18next="[html:i18next]({sprintf:['2','3']})avBooth.stepNumber">
+      <div class="pull-left" ng-i18next="[html:i18next]({num:'2', total:'3', url: organization.orgUrl, name: organization.orgName})avBooth.stepNumber">
       </div>
       <div class="pull-right">
         <span
@@ -28,6 +28,16 @@
 
 <div id="avb-toggle" class="text-center item-block hidden">
   <span class="glyphicon glyphicon-play"></span>
+</div>
+
+<div class="container-fluid warning-demo" ng-if="!election.real">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p ng-i18next="[html]avBooth.thisisATest"></p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container-fluid warning-demo" ng-if="isDemo">

@@ -6,7 +6,7 @@
   </div>
   <div avb-help-screen ng-if="state == stateEnum.helpScreen">
   </div>
-  <div avb-start-screen ng-if="state == stateEnum.startScreen">
+  <div avb-start-screen ng-if="state == stateEnum.startScreen" extra="{{ election.extra_data }}">
   </div>
   <div avb-multi-question ng-if="state == stateEnum.multiQuestion">
   </div>
@@ -15,6 +15,8 @@
   <div avb-drafts-election-screen ng-if="state == stateEnum.draftsElectionScreen">
   </div>
   <div avb-pcandidates-election-screen ng-if="state == stateEnum.pcandidatesElectionScreen">
+  </div>
+  <div avb-simultaneous-questions-screen ng-if="state == stateEnum.simultaneousQuestionsScreen">
   </div>
   <div avb-conditional-accordion-screen ng-if="state == stateEnum.conditionalAccordionScreen">
   </div>

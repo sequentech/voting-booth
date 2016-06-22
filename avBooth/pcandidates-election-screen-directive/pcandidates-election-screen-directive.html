@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row avb-top-navbar">
       <div class="pull-left"
-        ng-i18next="[html:i18next]({sprintf:['1','3']})avBooth.stepNumber">
+        ng-i18next="[html:i18next]({num:'1', total: '3', url: organization.orgUrl, name: organization.orgName})avBooth.stepNumber">
       </div>
       <div class="pull-right">
         <span
@@ -86,7 +86,7 @@
         ng-class="{titleSelected: stateData.selectionDropDown}">
         <span ng-i18next="avBooth.candidatesTitle"></span>
         <div class="title-help important" ng-i18next="avBooth.helpTextViewSingleCandidates"></div>
-        <div class="title-help" ng-i18next="avBooth.helpTextViewCell"></div>
+        <div class="title-help hidden" ng-i18next="avBooth.helpTextViewCell"></div>
       </div>
       <div class="hidden-xs col-xs-{{6 / groupQuestions.length}} affix-docs-header"
         ng-class="{titleSelected: stateData.selectionDropDown}"
@@ -97,7 +97,7 @@
           ng-i18next="[i18next]({selected: numSelectedByQuestionIndex($index), count: numTotalByQuestionIndex($index)})avBooth.totalsQuestionColumn">
         </div>-->
         <div
-          class="randomize-column"
+          class="randomize-column hidden"
           ng-class="{hidden: stateData.selectionDropDown}"
           ng-click="randomizeByColumn($index)">
            <span class="glyphicon glyphicon-sort-by-attributes"></span>

@@ -1,0 +1,56 @@
+<!-- top navbar with question title -->
+<nav class="navbar navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
+  <div class="container">
+    <div class="row avb-top-navbar">
+      <div class="pull-left"
+        ng-i18next="[html:i18next]({num:'1', total: '3', url: organization.orgUrl, name: organization.orgName})avBooth.stepNumber">
+      </div>
+      <div class="pull-right">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          ng-click="launchHelp()">
+        </span>
+        <span ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
+        <span class="dropdown left-padding" av-change-lang>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<div class="wrapper-unfixed">
+  <div class="navbar-unfixed-top text-center">
+    <div class="container">
+      <div class="hidden unfixed-top-height"></div>
+      <h1>{{election.title}}</h1>
+    </div>
+  </div>
+</div>
+
+<div class="content avb-content">
+  <div class="container">
+    <div class="row options-row" ng-repeat="question in groupQuestions">
+      <div class="col-xs-12">
+        <h3>{{question.title}}</h3>
+      </div>
+      <div class="col-xs-6" ng-repeat="answer in question.answers">
+        <div class="opt" ng-click="toggleSelectItem(question, answer)">
+          <span class="glyphicon"
+            ng-class="{'glyphicon-unchecked': answer.selected === -1,
+                       'glyphicon-check': answer.selected > -1}">
+          </span>
+          {{answer.text}}
+        </div>
+      </div>
+    </div>
+
+    <!-- next button -->
+    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+      <button
+        class="btn btn-block btn-lg btn-success btn-plain"
+        ng-i18next="avBooth.continueButton"
+        ng-click="questionNext()">
+      </button>
+    </div>
+  </div>
+</div>

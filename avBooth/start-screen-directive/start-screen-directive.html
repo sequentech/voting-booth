@@ -1,7 +1,7 @@
 <nav class="navbar start-screen navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="pull-left" ng-i18next="[html]avCommon.poweredBy">
+      <div class="pull-left" ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
       </div>
       <div class="pull-right">
         <span
@@ -23,6 +23,16 @@
       <div class="hidden unfixed-top-height"></div>
       <h1>{{election.title}}</h1>
       <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid warning-demo" ng-if="!election.real">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p ng-i18next="[html]avBooth.thisisATest"></p>
+      </div>
     </div>
   </div>
 </div>
@@ -62,11 +72,24 @@
         <p ng-i18next="avBooth.emitBallotText"></p>
       </div>
     </div>
-    <div class="row" ng-if="tosTitle.length > 0">
+    <div class="row" ng-if="tosTitle">
       <div class="padded col-xs-12">
         <h4>{{tosTitle}}</h4>
         <div class="tos-text" ng-bind-html="tosText"></div>
       </div>
+    </div>
+
+    <div class="row" ng-if="legal">
+      <div class="padded col-xs-12">
+        <!-- Legal terms -->
+        <h4 ng-i18next="avBooth.legal.title"></h4>
+        <span ng-if="extra_data.name" ng-i18next>{{extra_data.name}}, </span>
+        <span ng-if="extra_data.org" ng-i18next>{{extra_data.org}} </span>
+        <span ng-if="extra_data.nif" ng-i18next>({{extra_data.nif}}). </span>
+        <a ng-if="extra_data.contact" href="mailto:{{extra_data.contact}}"><span ng-i18next>avBooth.legal.contact</span>: {{ extra_data.contact }}</a>
+        <!-- End legal terms -->
+      </div>
+
     </div>
     <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
       <button

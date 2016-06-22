@@ -23,6 +23,16 @@
   <span class="glyphicon glyphicon-play"></span>
 </div>
 
+<div class="container-fluid warning-demo" ng-if="!election.real">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p ng-i18next="[html]avBooth.thisisATest"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid warning-demo" ng-if="isDemo">
   <div class="container">
     <div class="row">
@@ -37,7 +47,7 @@
   <div class="container">
     <div class="padded">
       <p ng-i18next>
-        [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "#/election/" +election.id + "/public/ballot-locator"})avBooth.successBallotHash
+        [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator", url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
       </p>
 <!--      <p ng-i18next>avBooth.relatedLinksText</p>
       <ul>
@@ -54,8 +64,6 @@
           <a href="/election/{{election.id}}/public/view/tech_overview.pdf" target="_blank" ng-i18next>avElection.public.technicalOverviewLink</a>
         </li>-->
       </ul>
-      <div ng-bind-html="successText">
-      </div>
       <h2 class="text-center" ng-if="!!election.presentation.share_text">
         <a
           ng-i18next
@@ -64,6 +72,8 @@
           avCommon.shareLink
         </a>
       </h2>
+      <div ng-bind-html="successText">
+      </div>
     </div>
   </div>
 </div>
