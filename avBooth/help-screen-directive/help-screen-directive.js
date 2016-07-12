@@ -15,6 +15,12 @@
  * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+angular.module('avBooth')
+  .component('documentationDetail', (
+     templateUrl: 'avDocumentation/documentation-controller.html',
+     controller: 'DocumentationController'
+  );
+
 /*
  * Help screen directive.
  */
