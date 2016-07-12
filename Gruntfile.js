@@ -394,6 +394,7 @@ module.exports = function (grunt) {
         files.push('avWidgets.js');
         files.concat(grunt.config('dom_munger.data.appjs'));
         files.concat(grunt.config('ngtemplates.main.dest'));
+        files.concat(grunt.config('ngtemplates.common.dest'));
         files.push(spec);
         grunt.config('karma.options.files', files);
         tasksToRun.push('karma:during_watch');
