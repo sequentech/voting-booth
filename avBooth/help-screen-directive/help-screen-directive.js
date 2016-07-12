@@ -16,10 +16,10 @@
 **/
 
 angular.module('avBooth')
-  .component('documentationDetail', (
+  .component('documentationDetail', {
      templateUrl: 'avDocumentation/documentation-controller.html',
      controller: 'DocumentationController'
-  );
+  });
 
 /*
  * Help screen directive.
