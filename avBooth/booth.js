@@ -20,7 +20,8 @@ angular.module(
  ['ui.bootstrap',
  'ui.utils',
  'ui.router',
- 'ngAnimate'
+ 'ngAnimate',
+ 'avUi'
 ]);
 
 angular.module('avBooth').config(function($stateProvider) {
