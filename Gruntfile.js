@@ -146,15 +146,6 @@ module.exports = function (grunt) {
         },
         src: [createFolderGlobs('*.html'),'!index.html','!_SpecRunner.html'],
         dest: 'temp/templates.js'
-      },
-      common: {
-        options: {
-            module: pkg.name,
-            htmlmin:'<%= htmlmin.main.options %>'
-        },
-        cwd: 'bower_components/avCommon',
-        src: ["avDocumentation/**/*.html"],
-        dest: 'temp/templates-common.js'
       }
     },
     copy: {
