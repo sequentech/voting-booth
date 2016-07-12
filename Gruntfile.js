@@ -326,6 +326,7 @@ module.exports = function (grunt) {
           'avWidgets.js',
           '<%= dom_munger.data.appjs %>',
           '<%= ngtemplates.main.dest %>',
+          '<%= ngtemplates.common.dest %>',
           'bower_components/angular-mocks/angular-mocks.js',
           createFolderGlobs('*-spec.js')
         ],
