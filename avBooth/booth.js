@@ -15,7 +15,14 @@
  * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-angular.module('avBooth', ['ui.bootstrap','ui.utils','ui.router','ngAnimate']);
+angular.module(
+ 'avBooth', 
+ ['ui.bootstrap',
+ 'ui.utils',
+ 'ui.router',
+ 'ngAnimate',
+ 'avUi'
+]);
 
 angular.module('avBooth').config(function($stateProvider) {
     /* Add New States Above */
