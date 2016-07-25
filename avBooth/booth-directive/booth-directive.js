@@ -202,7 +202,7 @@ angular.module('avBooth')
               scope.election.conditional_questions,
               function (cond_question)
               {
-                return cond_question.question_id === index
+                return cond_question.question_id === index;
               }
             );
 
