@@ -16,7 +16,16 @@
 **/
 
 angular.module('avBooth')
-  .directive('avBooth', function($http, $location, $i18next, $window, $timeout, HmacService, ConfigService, InsideIframeService) {
+  .directive('avBooth', function(
+    $http,
+    $location,
+    $i18next,
+    $window,
+    $timeout,
+    HmacService,
+    ConfigService,
+    InsideIframeService)
+{
 
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
@@ -134,13 +143,22 @@ angular.module('avBooth')
           return;
         }
 
-        var question = scope.election.questions[n];
+        // what should be the next question?
+        var nextQuestion = processConditionalQuestions(n);
+
+        var isLastQuestion = (scope.election.questions.length === nextQuestion);
+        if (isLastQuestion) {
+          scope.setState(stateEnum.encryptingBallotScreen, {});
+          return;
+        }
+
+        var question = scope.election.questions[nextQuestion];
         var mapped = scope.mapQuestion(question);
 
         scope.setState(mapped.state, {
-          question: scope.election.questions[n],
-          questionNum: n,
-          isLastQuestion: (scope.election.questions.length === n + 1),
+          question: scope.election.questions[nextQuestion],
+          questionNum: nextQuestion,
+          isLastQuestion: (scope.election.questions.length === nextQuestion + 1),
           reviewMode: reviewMode,
           filter: "",
           sorted: mapped.sorted,
@@ -148,6 +166,79 @@ angular.module('avBooth')
           affixIsSet: false,
           pairNum: 0 // only used for pairwise comparison
         });
+      }
+
+      // Set the vote in a question as blank (no option selected)
+      function blankVoteQuestion(question)
+      {
+        _.each(
+          question.answers,
+          function (element)
+          {
+            element.selected = -1;
+          }
+        );
+      }
+
+      // taking into account the choices in previous questions, check if
+      // questions [n, max] are enabled or not, reset to blank vote disabled
+      // questions and return the first enabled question between [n, max+1]
+      function processConditionalQuestions(n)
+      {
+        // if there are no conditional question, then continue
+        if (!scope.election.conditional_questions ||
+          angular.isArray(scope.election.conditional_questions))
+        {
+          return n;
+        }
+
+        // review all questions, disabling conditional questions as needed
+        // and resetting their answers
+        _.each(
+          scope.election.questions,
+          function (question, index)
+          {
+            var conditional_questions = _.filter(
+              scope.election.conditional_questions,
+              function (cond_question)
+              {
+                return cond_question.question_id === index
+              }
+            );
+
+            // if it's not a conditional question, then we are finished
+            if (conditional_questions.length === 0) {
+              question.disabled = false;
+              return;
+            }
+
+            var cond_question = conditional_questions[0];
+            var conditions = _.filter(
+              cond_question.when_any,
+              // check if the options is selected
+              function (condition)
+              {
+                return (scope.election.questions[condition.question_id].answers[condition.answer_id].selected > -1);
+              }
+            );
+
+            question.disabled = (conditions.length === 0);
+            if (question.disabled) {
+              blankVoteQuestion(question);
+            }
+          }
+        );
+
+        // return the next enabled question index including or after n
+        var nextEnabledQuestion = scope.election.questions.length + 1;
+        for (var i = n; i < scope.election.questions.length; i++)
+        {
+          if (!scope.election.questions[i].disabled) {
+            return i;
+          }
+        }
+
+        return scope.election.questions.length + 1;
       }
 
       // changes state to the next one, calculating it and setting some scope

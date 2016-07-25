@@ -1,6 +1,7 @@
 <div
   class="question padded"
   ng-repeat="question in election.questions"
+  ng-if="!question.disabled && question.disabled !== true"
   ng-click="goToQuestion($index, true)">
 
   <!-- title -->
