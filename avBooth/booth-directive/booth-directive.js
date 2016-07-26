@@ -334,7 +334,6 @@ angular.module('avBooth')
         }
       }
 
-
       // count the number of selected options in a question
       function numSelectedOptions(question)
       {

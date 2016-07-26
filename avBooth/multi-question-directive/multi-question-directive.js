@@ -184,6 +184,29 @@ angular.module('avBooth')
           scope.stateData.question.answers = answers;
       }
 
+      // check if there is a default list of options that need to be selected
+      if (!question.selectedDefaultSet
+        && question.extra_options.default_selected_option_ids
+        && angular.isArray(question.extra_options.default_selected_option_ids)
+        && question.extra_options.default_selected_option_ids.length > 0)
+      {
+        _.each(
+          question.answers,
+          function (answer)
+          {
+            if (_.contains(
+              question.extra_options.default_selected_option_ids,
+              answer.id))
+            {
+              answer.selected = answer.id;
+            } else {
+              answer.selected = -1;
+            }
+          }
+        );
+        question.selectedDefaultSet = true;
+      }
+
       scope.selectPresets = function () {
         scope.unselectPresets();
         scope.stateData.question.presetSelected = true;
