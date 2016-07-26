@@ -343,7 +343,7 @@ angular.module('avBooth')
           function (element) {
             return element.selected > -1 || element.isSelected === true;
           }).length;
-      };
+      }
 
       // shows the error string
       function showError(error) {
