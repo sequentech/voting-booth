@@ -218,7 +218,14 @@ angular.module('avBooth')
               // check if the options is selected
               function (condition)
               {
-                return (scope.election.questions[condition.question_id].answers[condition.answer_id].selected > -1);
+                return _.find(
+                  scope.election.questions[condition.question_id].answers,
+                  function (answer)
+                  {
+                    return (answer.id === condition.answer_id &&
+                      answer.selected > -1);
+                  }
+                ) !== undefined;
               }
             );
 
