@@ -186,6 +186,7 @@ angular.module('avBooth')
 
       // check if there is a default list of options that need to be selected
       if (!question.selectedDefaultSet &&
+        question.extra_options &&
         question.extra_options.default_selected_option_ids &&
         angular.isArray(question.extra_options.default_selected_option_ids) &&
         question.extra_options.default_selected_option_ids.length > 0)
