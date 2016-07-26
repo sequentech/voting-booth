@@ -19,7 +19,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '3.2.0';
+var AV_CONFIG_VERSION = '3.3.0';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -81,6 +81,9 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    variables: {
+      booth_html_body_include: ''
+    },
     connect: {
       main: {
         options: {
@@ -200,6 +203,7 @@ module.exports = function (grunt) {
         options: {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
+            {selector:'body',html:'<%= variables.booth_html_body_include %>'},
             {selector:'body',html:'<!--[if lte IE 8]><script src="/booth/libcompat-v3.0.1.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/booth/libnocompat-v3.0.1.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/booth/libnocompat-v3.0.1.min.js"></script><!--<![endif]-->'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-core-view/blob/master/README.md -->'},
             {selector:'body',html:'<script src="/booth/lib-v3.0.1.min.js"></script>'},
@@ -248,10 +252,10 @@ module.exports = function (grunt) {
     "merge-json": {
       main: {
         files: {
-            "dist/locales/en.json": ["locales/en.json", "plugins/**/locales/en.json"],
-            "dist/locales/es.json": ["locales/es.json", "plugins/**/locales/es.json"],
-            "dist/locales/gl.json": ["locales/gl.json", "plugins/**/locales/gl.json"],
-            "dist/locales/ca.json": ["locales/ca.json", "plugins/**/locales/ca.json"]
+            "dist/locales/en.json": ["locales/en.json", "plugins/**/locales/en.json", "bower_components/avCommon/locales/en.json"],
+            "dist/locales/es.json": ["locales/es.json", "plugins/**/locales/es.json", "bower_components/avCommon/locales/es.json"],
+            "dist/locales/gl.json": ["locales/gl.json", "plugins/**/locales/gl.json", "bower_components/avCommon/locales/gl.json"],
+            "dist/locales/ca.json": ["locales/ca.json", "plugins/**/locales/ca.json", "bower_components/avCommon/locales/ca.json"]
         }
       }
     },
