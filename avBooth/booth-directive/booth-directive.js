@@ -306,7 +306,26 @@ angular.module('avBooth')
         {
           // process again conditional questions
           processConditionalQuestions(0);
-          scope.setState(stateEnum.encryptingBallotScreen, {});
+
+          // before going back to the review screen, we check if there is any
+          // empty question that cannot be empty in selected answers, and go
+          // back to it if that happens
+          var inconsistentQuestion = -1;
+          for (var i = 0; i < scope.election.questions.length; i++)
+          {
+            var question = scope.election.questions[i];
+            if (!question.disabled && question.min > numSelectedOptions(question))
+            {
+              inconsistentQuestion = i;
+              break;
+            }
+          }
+          if (inconsistentQuestion > -1)
+          {
+            goToQuestion(i, true);
+          } else {
+            scope.setState(stateEnum.encryptingBallotScreen, {});
+          }
 
         } else if (_.contains(questionStates, scope.state) &&
                    !scope.stateData.isLastQuestion)
@@ -314,6 +333,17 @@ angular.module('avBooth')
           goToQuestion(scope.stateData.questionNum + 1, false);
         }
       }
+
+
+      // count the number of selected options in a question
+      function numSelectedOptions(question)
+      {
+        return _.filter(
+          question.answers,
+          function (element) {
+            return element.selected > -1 || element.isSelected === true;
+          }).length;
+      };
 
       // shows the error string
       function showError(error) {
