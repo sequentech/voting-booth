@@ -187,7 +187,7 @@ angular.module('avBooth')
       {
         // if there are no conditional question, then continue
         if (!scope.election.presentation.conditional_questions ||
-          angular.isArray(scope.election.presentation.conditional_questions))
+          !angular.isArray(scope.election.presentation.conditional_questions))
         {
           return n;
         }
