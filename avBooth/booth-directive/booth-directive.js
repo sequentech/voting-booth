@@ -186,8 +186,8 @@ angular.module('avBooth')
       function processConditionalQuestions(n)
       {
         // if there are no conditional question, then continue
-        if (!scope.election.conditional_questions ||
-          angular.isArray(scope.election.conditional_questions))
+        if (!scope.election.presentation.conditional_questions ||
+          angular.isArray(scope.election.presentation.conditional_questions))
         {
           return n;
         }
@@ -199,7 +199,7 @@ angular.module('avBooth')
           function (question, index)
           {
             var conditional_questions = _.filter(
-              scope.election.conditional_questions,
+              scope.election.presentation.conditional_questions,
               function (cond_question)
               {
                 return cond_question.question_id === index;
@@ -297,6 +297,8 @@ angular.module('avBooth')
 
         } else if (scope.stateData.isLastQuestion || scope.stateData.reviewMode)
         {
+          // process again conditional questions
+          processConditionalQuestions(0);
           scope.setState(stateEnum.encryptingBallotScreen, {});
 
         } else if (_.contains(questionStates, scope.state) &&
