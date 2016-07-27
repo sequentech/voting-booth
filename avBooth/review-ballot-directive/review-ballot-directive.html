@@ -36,8 +36,8 @@
   <ul ng-if="!question.isPairWise && !mapQuestion(question).ordered">
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
-      class="animate-repeat selected-answer">
-      {{answer.text}}
+      class="animate-repeat selected-answer"
+      ng-bind-html="answer.text">
     </li>
     <li
       class="empty-answer"
@@ -48,8 +48,8 @@
   <ol ng-if="!question.isPairWise && mapQuestion(question).ordered">
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
-      class="animate-repeat selected-answer">
-      {{answer.text}}
+      class="animate-repeat selected-answer"
+      ng-bind-html="answer.text">
     </li>
     <li
       class="empty-answer"
