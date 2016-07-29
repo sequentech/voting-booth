@@ -39,7 +39,7 @@ angular.module('avBooth')
         var i = -1;
         var title = pair[0];
         var answers = pair[1];
-        if (scope.question.extra_options.shuffled_categories == title) {
+        if (scope.question.extra_options.shuffled_categories === title) {
           answers = _.shuffle(answers);
         }
 
