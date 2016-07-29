@@ -26,7 +26,7 @@ angular.module('avBooth')
 
     var link = function(scope, element, attrs) {
       // group by category
-      var categories = _.shuffle(_.groupBy(scope.options, "category"));
+      var categories = _.groupBy(scope.options, "category");
       scope.folding_policy = undefined;
       if (angular.isDefined(scope.question.extra_options)) {
         scope.folding_policy = scope.question.extra_options.accordion_folding_policy;
@@ -34,7 +34,8 @@ angular.module('avBooth')
 
       // convert this associative array to a list of objects with title and
       // options attributes
-      scope.categories = _.map(_.pairs(categories), function(pair) {
+      // TODO FIXME HACK Enable category level shuffling as requested for election #75
+      scope.categories = _.shuffle(_.map(_.pairs(categories), function(pair) {
         var i = -1;
         var title = pair[0];
         var answers = pair[1];
@@ -44,7 +45,7 @@ angular.module('avBooth')
           options: answers,
           isOpen: (scope.folding_policy === "unfold-all")
         };
-      });
+      }));
 
       scope.nonEmptyCategories = _.filter(scope.categories, function (cat) {
         return !!cat.title && cat.title.length > 0;
