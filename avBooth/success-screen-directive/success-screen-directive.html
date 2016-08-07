@@ -65,7 +65,7 @@
         </li>-->
       </ul>
 
-      <h2 class="text-center" ng-each="tweet in election.presentation.tweetLinks">
+      <h2 class="text-center" ng-repeat="tweet in election.presentation.tweetLinks">
         <a
           href="{{tweetLinks(tweet.share_text)}}"
           target="_blank">
