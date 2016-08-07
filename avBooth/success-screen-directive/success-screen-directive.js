@@ -43,8 +43,7 @@ angular.module('avBooth')
           ];
         } else
         {
-          scope.election.presentation.tweetLinks =
-          [
+          scope.election.presentation.tweetLinks = [
             {
               share_text: scope.election.presentation.share_text,
               link_text: $i18next("avCommon.shareLink")
@@ -62,8 +61,7 @@ angular.module('avBooth')
         scope.successText = text({electionId: scope.election.id});
       }
 
-      return
-      {
+      return {
         restrict: 'AE',
         link: link,
         templateUrl: 'avBooth/success-screen-directive/success-screen-directive.html'
