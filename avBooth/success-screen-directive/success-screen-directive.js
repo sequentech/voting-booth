@@ -34,11 +34,11 @@ angular.module('avBooth')
           [
             {
               share_text: "Eusko Legebiltzarrerako hauuteskundeetarako konfluentziei buruzko botaketan parte hartu dut! #PodemosEuskadiDecide",
-              link_text: '¡Twitea hauteskunde honetan!'
+              link_text: 'Bozketa hau txiokatu'
             },
             {
               share_text: "¡He participado en la votación para decidir sobre las confluencias en las elecciones al Parlamento Vasco 2016! #PodemosEuskadiDecide",
-              link_text: $i18next("avCommon.shareLink")
+              link_text: 'Twittea esta votación'
             }
           ];
         } else
