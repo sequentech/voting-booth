@@ -19,21 +19,54 @@
  * Error indicator directive.
  */
 angular.module('avBooth')
-  .directive('avbSuccessScreen', function(ConfigService, $interpolate) {
+  .directive(
+    'avbSuccessScreen',
+    function(ConfigService, $interpolate, $i18next)
+    {
 
-    function link(scope, element, attrs) {
-      var text = $interpolate(ConfigService.success.text);
-      scope.organization = ConfigService.organization;
-      if (scope.election.id === 146101) {
-         scope.election.presentation.share_text = "Acabo de votar na consulta cidadá de @Podemos_Galicia para decidir como concorremos nas eleccións autonómicas. #TiDecidesGalicia";
+      function link(scope, element, attrs)
+      {
+        var text = $interpolate(ConfigService.success.text);
+        scope.organization = ConfigService.organization;
+        if (scope.election.id === 147140)
+        {
+          scope.election.presentation.tweetLinks =
+          [
+            {
+              share_text: "Eusko Legebiltzarrerako hauuteskundeetarako konfluentziei buruzko botaketan parte hartu dut! #PodemosEuskadiDecide",
+              link_text: '¡Twitea hauteskunde honetan!'
+            },
+            {
+              share_text: "¡He participado en la votación para decidir sobre las confluencias en las elecciones al Parlamento Vasco 2016! #PodemosEuskadiDecide",
+              link_text: $i18next("avCommon.shareLink")
+            }
+          ];
+        } else
+        {
+          scope.election.presentation.tweetLinks =
+          [
+            {
+              share_text: scope.election.presentation.share_text,
+              link_text: $i18next("avCommon.shareLink")
+            }
+          ];
+        }
+
+        scope.tweetLinkGenerator = function (share_text)
+        {
+          return 'https://twitter.com/intent/tweet?text=' +
+            encodeURIComponent(share_text) +
+            '&source=webclient';
+        };
+
+        scope.successText = text({electionId: scope.election.id});
       }
-      scope.tweetLink = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(scope.election.presentation.share_text) + '&source=webclient';
-      scope.successText = text({electionId: scope.election.id});
-    }
 
-    return {
-      restrict: 'AE',
-      link: link,
-      templateUrl: 'avBooth/success-screen-directive/success-screen-directive.html'
-    };
-  });
+      return
+      {
+        restrict: 'AE',
+        link: link,
+        templateUrl: 'avBooth/success-screen-directive/success-screen-directive.html'
+      };
+    }
+  );

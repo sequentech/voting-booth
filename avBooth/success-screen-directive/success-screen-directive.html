@@ -64,14 +64,15 @@
           <a href="/election/{{election.id}}/public/view/tech_overview.pdf" target="_blank" ng-i18next>avElection.public.technicalOverviewLink</a>
         </li>-->
       </ul>
-      <h2 class="text-center" ng-if="!!election.presentation.share_text">
+
+      <h2 class="text-center" ng-each="tweet in election.presentation.tweetLinks">
         <a
-          ng-i18next
-          href="{{tweetLink}}"
+          href="{{tweetLinks(tweet.share_text)}}"
           target="_blank">
-          avCommon.shareLink
+          {{tweet.link_text}}
         </a>
       </h2>
+
       <div ng-bind-html="successText">
       </div>
     </div>
