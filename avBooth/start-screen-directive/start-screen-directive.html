@@ -28,12 +28,20 @@
         </div>
         <div class="padded col-xs-12 col-sm-4">
           <h1>{{election.title}}</h1>
-          <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
+          <p
+            ng-if="election.description"
+            class="description"
+            ng-bind-html="election.description | addTargetBlank">
+          </p>
         </div>
       </div>
       <div ng-if="!election.logo_url">
         <h1>{{election.title}}</h1>
-        <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
+        <p
+          ng-if="election.description"
+          class="description"
+          ng-bind-html="election.description | addTargetBlank">
+        </p>
       </div>
     </div>
   </div>
