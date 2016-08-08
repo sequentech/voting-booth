@@ -21,12 +21,16 @@
   <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-start-screen] #avb-toggle">
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
-      <div class="img-wrap">
-        <img class="alignleft" src="https://nvotes.com/wp-content/uploads/697px-Escudo_de_Lugo_3.svg_.png" height="auto" width="120">
-        </img>
+      <div class="row">
+        <div class="padded col-xs-12 col-sm-4" ng-if="election.logo_url">
+          <img class="alignleft" src="{{election.logo_url}}" style="max-height: 120px; max-width: 120px; width: auto;">
+          </img>
+        </div>
+        <div class="padded col-xs-12 col-sm-4">
+          <h1>{{election.title}}</h1>
+          <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
+        </div>
       </div>
-      <h1>{{election.title}}</h1>
-      <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
     </div>
   </div>
 </div>
