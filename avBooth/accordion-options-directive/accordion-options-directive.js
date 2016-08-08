@@ -28,7 +28,8 @@ angular.module('avBooth')
       // group by category
       var categories = _.groupBy(scope.options, "category");
       scope.folding_policy = undefined;
-      if (angular.isDefined(scope.question.extra_options)) {
+      if (angular.isDefined(scope.question.extra_options))
+      {
         scope.folding_policy = scope.question.extra_options.accordion_folding_policy;
       }
 
@@ -45,6 +46,14 @@ angular.module('avBooth')
           isOpen: (scope.folding_policy === "unfold-all")
         };
       });
+
+      // apply shuffling policy
+      if (angular.isDefined(scope.question.extra_options) &&
+        angular.isDefined(scope.question.extra_options.shuffling_policy) &&
+        scope.question.extra_options.shuffling_policy === "shuffle-categories-only")
+      {
+        scope.categories = _.shuffle(scope.categories);
+      }
 
       scope.nonEmptyCategories = _.filter(scope.categories, function (cat) {
         return !!cat.title && cat.title.length > 0;
