@@ -21,8 +21,8 @@
   <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-start-screen] #avb-toggle">
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
-      <div class="row">
-        <div class="padded col-xs-12 col-sm-4" ng-if="election.logo_url">
+      <div class="row" ng-if="election.logo_url">
+        <div class="padded col-xs-12 col-sm-4">
           <img class="alignleft" src="{{election.logo_url}}" style="max-height: 120px; max-width: 120px; width: auto;">
           </img>
         </div>
@@ -30,6 +30,10 @@
           <h1>{{election.title}}</h1>
           <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
         </div>
+      </div>
+      <div ng-else>
+        <h1>{{election.title}}</h1>
+        <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
       </div>
     </div>
   </div>
