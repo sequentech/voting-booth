@@ -352,7 +352,7 @@ angular.module('avBooth')
       function checkBallorParity(pipe)
       {
         if (isExtraDefined('ballot_parity_criteria') &&
-          scope.stateData.question.extra_options.ballot_parity_criteria == 'zip' &&
+          scope.stateData.question.extra_options.ballot_parity_criteria === 'zip' &&
           !hasZipBallotParity())
         {
           $modal.open({
@@ -402,11 +402,11 @@ angular.module('avBooth')
           return;
         }
 
-        var el = pipes[i];
+        var el = pipeline[i];
         var data = {
           "continue": function()
           {
-            runPipeline(pipeline, i + 1, extra)
+            runPipeline(pipeline, i + 1, extra);
           }
         };
         el(data, extra);
