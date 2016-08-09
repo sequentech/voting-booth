@@ -297,7 +297,7 @@ angular.module('avBooth')
       function hasZipBallotParity()
       {
         // sorted selection
-        var selection = _.sort(
+        var selection = _.sortBy(
           _.filter(
             scope.stateData.question.answers,
             function (element)
@@ -317,7 +317,7 @@ angular.module('avBooth')
 
           // Reducer function. If previous calls found a parity mismatch, then
           // memo.success will be false, and we will directy return it.
-          // Otherwise we first find this element parity (H for Male, M for
+          // Otherwise we first find this element gender (H for Male, M for
           // Female), set in the memo that we will return, then check if it is
           // consistent with previous element and if not, change memo.success to
           // false and return.
@@ -328,9 +328,9 @@ angular.module('avBooth')
               return memo;
             }
 
-            var prevParity = memo.parity;
-            memo.parity = scope.getParity(element);
-            if (memo.parity === prevParity)
+            var prevGender = memo.gender;
+            memo.gender = scope.getGender(element);
+            if (memo.gender === prevGender)
             {
               memo.success = false;
             }
@@ -338,7 +338,7 @@ angular.module('avBooth')
             return memo;
           },
           {
-            parity: null,
+            gender: null,
             success: true
           }
         );
