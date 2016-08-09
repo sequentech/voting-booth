@@ -31,6 +31,11 @@
         "title": "Términos legales",
         "contact": "contacto"
     },
+    "warnBallotParity": {
+      "header": "Papeleta no paritaria",
+      "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
+      "continue": "Revisar mi papeleta"
+    },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Esto es una votación de PRUEBA",
     "loadingElectionTitle": "Cargando votación, un momento por favor..",
     "stepNumber": "paso __num__ de __total__ &nbsp; &nbsp; funciona con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
