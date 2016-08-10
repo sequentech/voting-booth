@@ -21,28 +21,13 @@
 <div class="wrapper-unfixed">
   <div class="navbar-unfixed-top text-center">
     <div class="container">
-      <div class="row top-title-row" ng-if="election.logo_url">
-        <div class="padded col-xs-12 col-sm-4">
-          <img class="alignleft logo-img" src="{{election.logo_url}}">
-          </img>
-        </div>
-        <div class="padded col-xs-12 col-sm-4">
-          <h1 class="election-title">{{election.title}}</h1>
-          <p
-            ng-if="election.description"
-            class="description"
-            ng-bind-html="election.description | addTargetBlank">
-          </p>
-        </div>
-      </div>
-      <div ng-if="!election.logo_url">
-        <h1>{{election.title}}</h1>
-        <p
-          ng-if="election.description"
-          class="description"
-          ng-bind-html="election.description | addTargetBlank">
-        </p>
-      </div>
+      <div class="hidden unfixed-top-height"></div>
+      <h1>{{election.title}}</h1>
+      <p
+        ng-if="election.description"
+        class="description"
+        ng-bind-html="election.description | addTargetBlank">
+      </p>
     </div>
   </div>
 </div>

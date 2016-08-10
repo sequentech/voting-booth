@@ -1,47 +1,57 @@
-<nav class="navbar start-screen navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
+<nav 
+  class="navbar start-screen navbar-default navbar-fixed-top"
+  av-affix-top=".navbar-unfixed-top"
+  role="navigation"
+>
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="pull-left" ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
+      <div class="pull-left">
+        <span ng-if="election.logo_url">
+          <img 
+            class="logo-img" 
+            src="{{election.logo_url}}"
+          >
+          </img>
+        </span>
+        <span 
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+          ng-if="!election.logo_url"
+        >
+        </span>
       </div>
       <div class="pull-right">
         <span
           class="glyphicon glyphicon-question-sign"
           ng-click="launchHelp()">
         </span>
-        <span ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
-        <span class="dropdown left-padding" av-change-lang>
+        <span 
+          ng-click="launchHelp()" 
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          av-change-lang
+        >
+        </span>
+      </div>
+      <div
+        class="text-center"
+        ng-if="election.logo_url"
+      >
+        <span ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
         </span>
       </div>
     </div>
-
   </div>
 </nav>
 
 <div class="wrapper-unfixed">
-  <div class="navbar-unfixed-top text-center">
+  <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-start-screen] #avb-toggle">
     <div class="container">
-      <div class="row top-title-row" ng-if="election.logo_url">
-        <div class="padded col-xs-12 col-sm-4">
-          <img class="alignleft logo-img" src="{{election.logo_url}}">
-          </img>
-        </div>
-        <div class="padded col-xs-12 col-sm-4">
-          <h1 class="election-title">{{election.title}}</h1>
-          <p
-            ng-if="election.description"
-            class="description"
-            ng-bind-html="election.description | addTargetBlank">
-          </p>
-        </div>
-      </div>
-      <div ng-if="!election.logo_url">
-        <h1>{{election.title}}</h1>
-        <p
-          ng-if="election.description"
-          class="description"
-          ng-bind-html="election.description | addTargetBlank">
-        </p>
-      </div>
+      <div class="hidden unfixed-top-height"></div>
+      <h1>{{election.title}}</h1>
+      <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
     </div>
   </div>
 </div>
