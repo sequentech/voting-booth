@@ -33,7 +33,7 @@
     },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election",
     "loadingElectionTitle": "Loading election, please wait..",
-    "stepNumber": "step __num__ of __total__ &nbsp; &nbsp; powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "stepNumber": "step __num__ of __total__",
     "stepAndQuestionNumber": "step __num__ of __total__, question __qnum__ of __qtotal__",
     "continueButton": "Continue",
     "startVoting": "Start Voting",

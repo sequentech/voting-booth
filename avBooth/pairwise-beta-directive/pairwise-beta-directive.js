@@ -22,11 +22,12 @@
  * ordered pairs, where the first element of each pair is the preferred.
  */
 angular.module('avBooth')
-  .directive('avbPairwiseBeta', function(RandomHelper, $location, $sce) {
+  .directive('avbPairwiseBeta', function(RandomHelper, $location, $sce, ConfigService) {
 
     var link = function(scope, element, attrs) {
       // handy reference
       var question = scope.stateData.question;
+      scope.organization = ConfigService.organization;
 
       /*
        * Sets the pair to be shown. As the answers list is repeatably shuffled,
