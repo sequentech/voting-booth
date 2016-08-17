@@ -25,6 +25,15 @@ angular.module('avBooth')
   .directive('avbAccordionOptions', function() {
 
     var link = function(scope, element, attrs) {
+      // HACK: As requested by @Hoki in issue #1, do a hot replace on category
+      _.each(
+          scope.options,
+          function (option) {
+            if (option.category === "En Movemento Pola Creba Traballadora") {
+              option.category = "En Movemento-Pola Creba democratica";
+            }
+          });
+
       // group by category
       var categories = _.groupBy(scope.options, "category");
       scope.folding_policy = undefined;
