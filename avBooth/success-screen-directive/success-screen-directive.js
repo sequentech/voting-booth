@@ -40,7 +40,7 @@ angular.module('avBooth')
         if('Facebook' === network) {
           ret = '/booth/img/facebook_logo_50.png';
         } else if('booth' === network) {
-          ret = '/admin/img/twitter_logo_48.png';
+          ret = '/booth/img/twitter_logo_48.png';
         }
         return ret;
       };
