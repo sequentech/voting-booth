@@ -100,6 +100,19 @@
           <a href="/election/{{election.id}}/public/view/tech_overview.pdf" target="_blank" ng-i18next>avElection.public.technicalOverviewLink</a>
         </li>-->
       </ul>
+      <div class="text-center" ng-if="!!election.presentation.share_text">
+        <span ng-repeat="q in election.presentation.share_text">
+          <a
+            href="{{ getSocialLink(q.network, q.social_message) }}"
+            target="_blank">
+            <img
+              class="social-net-img"
+              src="{{ getSocialImg(q.network) }}"
+            />
+            q.button_text
+          </a>
+        </span>
+      </div>
 
       <h2 class="text-center" ng-if="!!election.presentation.share_text">
         <a

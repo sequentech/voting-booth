@@ -25,6 +25,26 @@ angular.module('avBooth')
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
 
+      scope.getSocialLink = function (network, message) {
+        var ret ='';
+        if('Facebook' === network) {
+          ret = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(message);
+        } else if('Facebook' === network) {
+          ret = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(message) + '&source=webclient';
+        }
+        return ret;
+      };
+
+      scope.getSocialImg = function (network) {
+        var ret ='';
+        if('Facebook' === network) {
+          ret = '/booth/img/facebook_logo_50.png';
+        } else if('booth' === network) {
+          ret = '/admin/img/twitter_logo_48.png';
+        }
+        return ret;
+      };
+
       scope.tweetLink = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(scope.election.presentation.share_text) + '&source=webclient';
       scope.successText = text({electionId: scope.election.id});
     }
