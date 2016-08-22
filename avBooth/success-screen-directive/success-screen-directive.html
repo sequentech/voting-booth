@@ -109,19 +109,11 @@
               class="social-net-img"
               src="{{ getSocialImg(q.network) }}"
             />
-            q.button_text
+            {{ q.button_text }}
           </a>
         </span>
       </div>
 
-      <h2 class="text-center" ng-if="!!election.presentation.share_text">
-        <a
-          ng-i18next
-          href="{{tweetLink}}"
-          target="_blank">
-          avCommon.shareLink
-        </a>
-      </h2>
       <div ng-bind-html="successText">
       </div>
     </div>

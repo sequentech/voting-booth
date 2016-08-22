@@ -29,7 +29,7 @@ angular.module('avBooth')
         var ret ='';
         if('Facebook' === network) {
           ret = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(message);
-        } else if('Facebook' === network) {
+        } else if('Twitter' === network) {
           ret = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(message) + '&source=webclient';
         }
         return ret;
@@ -39,13 +39,12 @@ angular.module('avBooth')
         var ret ='';
         if('Facebook' === network) {
           ret = '/booth/img/facebook_logo_50.png';
-        } else if('booth' === network) {
+        } else if('Twitter' === network) {
           ret = '/booth/img/twitter_logo_48.png';
         }
         return ret;
       };
 
-      scope.tweetLink = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(scope.election.presentation.share_text) + '&source=webclient';
       scope.successText = text({electionId: scope.election.id});
     }
 
