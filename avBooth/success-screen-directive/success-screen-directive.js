@@ -25,7 +25,6 @@ angular.module('avBooth')
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
 
-      
       function generateButtonsInfo() {
         scope.buttonsInfo = [];
 
@@ -52,6 +51,8 @@ angular.module('avBooth')
           scope.buttonsInfo.push(buttonInfo);
         }
       }
+
+      generateButtonsInfo();
 
       scope.successText = text({electionId: scope.election.id});
     }
