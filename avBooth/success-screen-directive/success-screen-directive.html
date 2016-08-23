@@ -114,7 +114,7 @@
               class="logo-img"
               src="{{ q.img }}"
             />
-            {{ q.button_text }}
+            {{ q.button_text|truncate:25 }}
           </a>
         </span>
       </div>
