@@ -101,13 +101,18 @@
         </li>-->
       </ul>
       <div class="text-center" ng-if="!!election.presentation.share_text">
-        <span ng-repeat="q in election.presentation.share_text">
+        <span 
+          ng-if="!!buttonsInfo"
+          ng-repeat="q in buttonsInfo"
+        >
           <a
-            href="{{ getSocialLink(q.network, q.social_message) }}"
-            target="_blank">
+            href="{{ q.link }}"
+            target="_blank"
+            class="{{ q.class }}"
+          >
             <img
-              class="social-net-img"
-              src="{{ getSocialImg(q.network) }}"
+              class="logo-img"
+              src="{{ q.img }}"
             />
             {{ q.button_text }}
           </a>

@@ -25,25 +25,33 @@ angular.module('avBooth')
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
 
-      scope.getSocialLink = function (network, message) {
-        var ret ='';
-        if('Facebook' === network) {
-          ret = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(message);
-        } else if('Twitter' === network) {
-          ret = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(message) + '&source=webclient';
-        }
-        return ret;
-      };
+      
+      function generateButtonsInfo() {
+        scope.buttonsInfo = [];
 
-      scope.getSocialImg = function (network) {
-        var ret ='';
-        if('Facebook' === network) {
-          ret = '/booth/img/facebook_logo_50.png';
-        } else if('Twitter' === network) {
-          ret = '/booth/img/twitter_logo_48.png';
+        var data = scope.election.presentation.share_text;
+        for(var i = 0, length = data.length; i < length; i++) {
+          var p = data[i];
+          var buttonInfo = {
+            link: '',
+            img: '',
+            button_text: p.button_text,
+            class: 'btn btn-primary'
+          };
+
+          if('Facebook' === p.network) {
+            buttonInfo.link = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(p.social_message);
+            buttonInfo.img = '/booth/img/facebook_logo_50.png';
+            buttonInfo.class = buttonInfo.class + ' btn-facebook';
+          } else if('Twitter' === p.network) {
+            buttonInfo.link = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(p.social_message) + '&source=webclient';
+            buttonInfo.img = '/booth/img/twitter_logo_48.png';
+            buttonInfo.class = buttonInfo.class + ' btn-twitter';
+          }
+
+          scope.buttonsInfo.push(buttonInfo);
         }
-        return ret;
-      };
+      }
 
       scope.successText = text({electionId: scope.election.id});
     }
