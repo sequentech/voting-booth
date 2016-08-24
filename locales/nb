@@ -1,0 +1,181 @@
+{
+  "yes": "ja",
+  "no": "nei",
+  "eg": "f.eks",
+  "next": "Neste",
+  "done": "Ferdig",
+  "loading": "Laster...",
+  "nomore": "Ikke flere elementer",
+  "registered": "registrert",
+  "created": "laget",
+  "started": "startet",
+  "stopped": "stoppet",
+  "tally_ok": "opptelling fullført",
+  "results_ok": "resultat klart",
+  "results_pub": "resultat publisert",
+  "doing_tally": "gjør opptellingen",
+  "tally_error": "feil i opptellingen",
+
+  "app": {
+    "name": "Agora Voting"
+  },
+  "avCommon": {
+    "cancel": "Avbryt",
+    "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "shareLink": "Tweet dette valget!",
+    "votingSystem": "Valgsystem",
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
+  },
+  "avBooth": {
+    "legal": {
+        "title": "Juridisk",
+        "contact": "kontakt"
+    },
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Advarsel!</strong> Dette er et TESTvalg",
+    "loadingElectionTitle": "Laster valg, vennligst vent..",
+    "stepNumber": "trinn __num__ of __total__ &nbsp; &nbsp; powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "stepAndQuestionNumber": "trinn __num__ of __total__, question __qnum__ of __qtotal__",
+    "continueButton": "Fortsett",
+    "startVoting": "Start stemmegiving",
+    "stepsToVote": "Du må følge disse trinnene for å avgi din stemme:",
+    "selectOptionsTitle": "1. Velg alternativer",
+    "selectOptionsText": "Svar på spørsmålene et og et som de blir vist. Resultatet vil bli vist på stemmeseddelen din.",
+    "reviewOptionsTitle": "2. Se gjennom stemmeseddelen din",
+    "reviewOptionsText": "Når du har valgt alternativene dine krypterer vi stemmeseddelen og du vil bli gitt en ID som kan brukes for å kontrollere at din stemme er en bit av det endelige resultatet. Du vil også få se en oppsummering av stemmen din.",
+    "emitBallotTitle": "3. Avgi din stemme",
+    "emitBallotText": "Du kan avlegge stemmen din, alternativt kan du sjekke at den er korrekt kryptert.",
+    "errorTitle": "Oops. Noe uventet skjedde",
+    "errorHtml": "<p>De følgende problemet oppstod (identifier __errorId__): </p><p>__error__</p><p> Hvis du trenger å kontakte oss kan du sende en e-post til <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingElection": "Kunne ikke laste valget. Dette kan ha skjedd av flere grunner: Linken kan være ugyldig, du kan ha tastet den feil eller noen har sendt deg feil link. Vennligst prøf igjen. Skulle dette ikke fungere kan det være at det er noe galt mer serveren. I så fall, vennligst vent og prøv igjen senere. Dersom problemet ikke løser seg ta kontakt med oss.",
+    "errorLoadingElectionPubKeys": "Kunne ikke laste de offentlige nøklene. TDette kan ha skjedd av flere grunner: Linken kan være ugyldig, du kan ha tastet den feil eller noen har sendt deg feil link. Vennligst prøf igjen. Skulle dette ikke fungere kan det være at det er noe galt mer serveren. I så fall, vennligst vent og prøv igjen senere. Dersom problemet ikke løser seg ta kontakt med oss.",
+    "errorSendingBallot": "Kunne ikke sende stemmeseddelen. Den ble ikke avgitt korrekt. Vennligst prøv igjen i en annen og mer oppdatert nettleser. Hvis problemet ikke løser seg, ta kontakt med oss. Vi beklager ulempene..",
+    "errorCastingBallotUnknown": "Ukategorisert feil under stemmeavgiving. Vennligst prøv igjen i en annen og mer oppdatert nettleser. Hvis problemet ikke løser seg, ta kontakt med oss. Vi beklager ulempene.",
+    "errorEncryptingBallotUnknown": "Ukategorisert feil under krypteringen. Vennligst prøv igjen i en annen og mer oppdatert nettleser. Hvis problemet ikke løser seg, ta kontakt med oss. Vi beklager ulempene.",
+    "errorElectionIsNotOpen": "Valget er ikke åpent, så du kan ikke stemme. Beklager ulempene.",
+    "errorSendingBallotElectionNotOpen": "Stemmeseddelen kunne ikke bli levert fordi valget ikke er åpent. Beklager ulempene.",
+    "couldntSendBallotUnauthorized": "Stemmen kunne ikke bli avgitt fordi autentiseringskoden knyttet til denne linken er ugyldig. Beklager ulempene. Dersom problemet fortsetter, vennlig ta kontakt med oss.",
+    "errorEncrypting": "Det var et problem med krypteringen av stemmeseddelen og den kunne ikke bli avgitt. Dette skyldes antagelig at du bruker en gammel nettleser som ikke støttes av oss. Vennligst forsøk igjen i en annen og mer oppdatert nettleser. Hvis dette ikke løser problemet, ta kontakt med oss. Beklager ulempene.",
+    "errorEncoding": "Det oppstod et problem med enkodingen av stemmeseddelen din og den ble derfor ikke registrert. Dette skyldes antagelig at du bruker en gammel nettleser som ikke støttes av oss. Vennligst forsøk igjen i en annen og mer oppdatert nettleser. Hvis dette ikke løser problemet, ta kontakt med oss. Beklager ulempene.",
+    "sanityChecksFailed": "Det oppstod et problem med den automatiske enkodingskontrollen før stemmeseddelen ble registrert. Dette skuødes antagelig at du bruker en eldre nettleser som vi ikke støtter. Vennligst forsøk igjen i en annen og mer oppdatert nettleser. Hvis dette ikke løser problemet, ta kontakt med oss. Beklager ulempene.",
+    "couldntSendBallotNotFound":  "Kunne ikke avgi stemmen. Det kan være et problem med tilkoblingene eller servere er kanskje midlertidig utilgjengelig. Vennligst forsøk igjen litt senere og dersom problemet ikke har løst seg, ta kontakt med oss.",
+
+
+    "questionSelectedOptionsTitle": "valgte alternativer (__count__)",
+    "questionSelectedOptionsTitle_plural": "valgte alternativer (__count__)",
+    "questionSelectedOptionsTitleOrdered": "valgte alternativer (__count__) i rekkefølge, drag and drop for å endre rekkefølge",
+    "questionSelectedOptionsTitleOrdered_plural": "valgte alternativer (__count__) i rekkefølge, drag and drop for å endre rekkefølge",
+    "questionAvailableOptionsTitle": "tilgjengelige alternativer",
+    "numOptionsSelected": "__count__ alternativer valgt.",
+    "numOptionsSelected_plural": "__count__ alternativer valgt.",
+    "numOptionsSelected_plural_2": "__count__ alternativer valgt.",
+    "noOptionsSelected": "Ingen alternativer valgt.",
+    "numOptionsLimits": "Velg mellom __min__ and __max__ alternativer.",
+    "filterOptionsPlaceholder": "filter..",
+    "noResults": "ingen resultater funner..",
+    "numSelectedOptionsSmall": "__count__ valgt",
+    "numSelectedOptionsSmall_plural": "__count__ valgt",
+    "selectMoreOpts": "Velg minst __min__ alternativer.",
+    "selectMoreOpts_plural": "Velg minst __min__ alternativer.",
+    "maxSelectedLimitReached": "Maks antall alternativer valg (__max__). For å velge et alternativ, velg vekk et annet først.",
+    "maxSelectedLimitTagReached": "Du kan ikke velge flere alternativer av typen __tagName__ (máximo __max__). For å velge et alternativ, velg vekk et annet først.",
+    "maxSelectedLimitNoTagReached": "Du kan ikke velge flere alternativer som ikke er __tagName__ (máximo __max__). For å velge et alternativ, velg vekk et annet først.",
+    "alreadySelectedDocumentType": "Du kan ikke velge to dokumenter av samme type - velg det vekk først.",
+    "alreadySelectedPack": "Du har valgt et alternativ knyttet til et annet dokument. Det er ikke mulig å velge disse uavhengig av hverandre.",
+    "cantSelectPack": "Du har forsøkt å velge et alternativ som ikke kan bli valgt isolert og du har allerede valgt et annet alternativ.",
+    "tooManyUserUpdates": "Din stemme kunne ikke bli avgitt fordi du har endret den for mange ganger i dette valget. Din siste godkjente stemme vil bli gjeldene.",
+
+    "removeSelectedItem": "velg vekk",
+
+    "helpTitle": "Hjelp",
+    "helpText": "",
+    "goBack": "Gå tilbake til stemmebås",
+    "selectedOptionsFollow": "Mengden __num__ alternativer du velger er:",
+    "selectedOptionFollow": "Alternativet du velger er:",
+
+    "errorElectionUrl": "Adressen har et feilaktig format",
+    "reviewYourBallotTitle": "Stemmeseddel ikke levert, vennligst kontroller den først",
+    "reviewYourBallotText": "Før du avgir stemmen din, vennligst kontroller innholdet",
+    "castTheBallot": "Avgi stemme",
+
+    "statusExecutingSanityChecks": "Kontrollerer at nettleseren kan enkode stemmeseddelen, vennligst vent (__percentage__% completed)",
+    "statusEncryptingQuestion": "Krypterer svaret til spørsmåk __questionNum__, vennligst vent (__percentage__% completed)",
+    "statusVerifyingQuestion": "Kontrollerer det krypterte svaret til spørsmål __questionNum__, vennligst vent (__percentage__% completed)",
+    "sendingBallot": "Sender stemmeseddelen til servere, vennligst vent (__percentage__% completed)",
+    "emptyAnswer": "<blank vote>",
+
+    "successTitle": "Stemme avgitt",
+    "successSubheader": "Gratulerer du har avgitt din stemme og den er nå oppbevart i vår elektroniske stemmeurne.",
+
+    "completePacksTitle": "Komplette pakker",
+    "listOfDraftDocuments": "Dokumenter (klikk for å åpne)",
+    "selectedDocuments": "Dokumenter (klikk for å velge)",
+    "alreadySelectedAPack": "Du har allerede valgt en pakke. Vennligst fjern valget for å velge en annen",
+    "optionInCategoryAlreadySelected": "For å kunne velge en pakke, vennligst velg vekk et annet object",
+    "cantSelectNormalOptionPackAlreadySelected": "For å kunne velge et alternativ, vennligst velg vekk pakken du valgte",
+    "cantSelectPackNormalOptionAlreadySelected": "For å kubbe velge en pakke, vennligst velg vekk alternativet du valgte",
+    "packLabel": "stem alle",
+    "accordionCategoryTitle": "Kategori:",
+
+    "proposalsTitleClickToSelect": "Alternativer (klikk for å velge):",
+    "proposalsTitleClickToDeselect": "Alternativer (klikk for å velge vekk):",
+    "notSelectableCell": "ikke inkludert",
+    "clickToSelectCell": "klikk for å velge",
+    "clickToDeselectCell": "velg vekk x",
+    "draftIncludesList": "Inkluderer __includeList__",
+    "dropdownOptionView": "Vis",
+
+    "filterOptionsPlaceholder2": "Søk navn eller kandidat..",
+    "candidatesTitle": "Kandidater",
+    "helpTextViewSingleCandidates": "Klikk i Vis for å velge enkeltkandidater",
+    "helpTextViewCell": "Klikk i en celle for å velge hele",
+    "randomizeColumn": "Sorter tilfeldig",
+    "firstCandidateOfMany": "__name__ og andre",
+    "numCandidatesSelected": "__name__ og andre",
+    "numCandidatesSelected": "(__selected__ of __total__ selected)",
+    "cannotSelectAll": "For å velge alle de alternativene må du velge vekk noen først",
+    "totalsQuestionColumn": "(__selected__ of __count__ selected)",
+
+    "reviewBallotHashText": "SporingsID for din stemmeseddel er: <strong>__ballotHash__</strong>",
+    "auditTheBallot": "Kontroller stemmeseddel",
+
+    "auditBallotTitle": "Kontroller din stemmeseddel",
+    "auditBallotSubtitle": "",
+    "auditBallotText": "<p>Stemmeseddelens sporingsID er: <code>__ballotHash__</code></p><p><strong>Å kontrollere stemmesddelen krever noe teknisk kunnskap. Hvis du ikke har dette kan du enkelt starte prosessen med å avgi din stemme ved å klikke på knappen under.</strong></p><p>For å kontrollere din stemmeseddel må du:</p><ol><li>Kopiere og lagre stemmeseddelen som en fil (klikk for å velge):<br/><div class=\"code\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Følg trinnene i <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">denne forklaringen for å kontrollere at stemmeseddelen ble kryptert korrekt</a>.</li></ol><p>Av sikkerhetsmessige årsaker må stemmeseddelen forkastes dersom du kontrollerer den. For å fortsette prosessen med å avgi stemme må du begynne på nytt fra starten.</p>",
+    "auditStartAgain": "Start stemmeavgiving på nytt",
+
+
+    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Avarsel!</strong> Demo stemmebås, stemmer avgitt fra denne båsen vil ikke være tellende.",
+    "successBallotHash": "Gratulerer! Du har avgitt stemme med <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. SporingsIDen til din stemmeseddel er:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Du kan bruke din sporingsID for å <a href=\"__ballotLocatorUrl__\" target=\"_blank\">bekrefte at din stemmeseddel har blitt avgitt riktig</a>. Så lenge votering pågår kan du stemme på nytt og overstyre og ugyldiggjøre alle tidligere stemmesedler.",
+    "relatedLinksText": "For mer informasjon om dette valget:",
+
+    "circleOptionExternalLink": "Vis detaljer",
+    "voteInBlank": "Blank stemme",
+    "openOptionLink": "Åpne lenke i ny fane",
+
+    "ahoramPrimaries": {
+      "selectAll": "Velg hele gruppen",
+      "deselectAll": "Velg vekk hele gruppen",
+      "selectedOptions": "Valgte alternativer (i rekkefølge, drag and drop for å endre den)",
+      "mayoral": "Mayoral (__count__)",
+      "mayoral_plural": "Mayoral (__count__)",
+      "councils": "Councils (__count__)",
+      "councils_plural": "Councils (__count__)"
+    },
+
+    "reviewScreen": {
+      "pair": "__one__ > __two__"
+    },
+
+    "pairwiseBeta": {
+      "web": "Web",
+      "warning": "Klikk for å velge. __count__ of __max__ comparison done.",
+      "warning_plural": "Klikk for å velge. __count__ of __max__ comparisons done."
+    },
+
+    "confirmNullVote": {
+      "header": "Blank stemme",
+      "body": "Du har ikke valgt alternativer på enkelte spørsmål, det vil bli telt som å en blank stemme.",
+      "confirm": "Ja, jeg vil stemme blankt når jeg ikke velger et alternativ"
+    }
+  }
+}
