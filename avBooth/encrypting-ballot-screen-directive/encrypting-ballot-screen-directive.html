@@ -1,3 +1,32 @@
-<div class="avb-busy-percent" style="width: {{percentCompleted}}%"></div>
-<div class="avb-busy-title"></div>
-<div class="avb-busy-loading"></div>
+<div class="busy-gui" ng-if="imagesPreloaded">
+  <img class="busy-img-central" src="{{ scope.stepList[scope.fakeStepIndex].centralImgSrc }}">
+  </img>
+  <div class="busy-text">
+    <h1 ng-i18next="avBooth.busy.title">
+    </h1>
+    <div
+      class="busy-step" 
+      ng-repeat="step in stepList.slice(0, -1)"
+    >
+      <span class="col-sm2">
+        <img
+          class="step-img"
+          src="{{ step.state.imgSrc }}"
+        >
+        </img>
+      </span>
+      <p
+        class="step-title col-sm2"
+        ng-i18next="avBooth.busy.{{ step.title }}"
+      >
+      </p>
+      <p
+        class="step-description col-sm6"
+        ng-i18next=" avBooth.busy.{{ step.description }}"
+      >
+      </p>
+      <span>
+      </span>
+    </div>
+  </div>
+</div>

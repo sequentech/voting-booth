@@ -21,48 +21,113 @@
  * Shown while the ballot is being encrypted and sent.
  */
 angular.module('avBooth')
-  .directive('avbEncryptingBallotScreen', function($i18next, EncryptBallotService, $timeout, $window) {
+  .directive(
+     'avbEncryptingBallotScreen', 
+     function(
+       $i18next,
+       EncryptBallotService,
+       $timeout,
+       $window,
+       ConfigService,
+       preloader
+  ) {
+  function link(scope, element, attrs) {
 
-    function link(scope, element, attrs) {
-      // moves the title on top of the busy indicator
-      scope.updateTitle = function(title) {
-        var titleEl = element.find(".avb-busy-title").html(title);
+    var busyStateEnum = [
+      {
+        name: 'waiting',
+        bulletImgSrc: 'img/waiting.png',
+      },
+      {
+        name: 'working',
+        imgSrc: 'img/working.png',
+      },
+      {
+        name: 'finished',
+        imgSrc: 'img/finished.png',
+      }
+    ];
 
-        // set margin-top
-        var marginTop = - titleEl.height() - 45;
-        var marginLeft = - titleEl.width()/2;
-        titleEl.attr("style", "margin-top: " + marginTop + "px; margin-left: " + marginLeft + "px");
-      };
+    scope.stepList = [
+      {
+        state: busyStateEnum[1],
+        title: 'encryptedTitle',
+        description: 'encryptedDescription',
+        centralImgSrc: 'img/options.png'
+      },
+      {
+        state: busyStateEnum[0],
+        title: 'castTitle',
+        description: 'castDescription',
+        centralImgSrc: 'img/encrypted.png'
+      },
+      {
+        state: busyStateEnum[0],
+        title: 'anonymizedTitle',
+        description: 'anonymizedDescription',
+        centralImgSrc: 'img/anonymized1.png'
+      },
+      {
+        state: busyStateEnum[0],
+        title: 'anonymizedTitle',
+        description: 'anonymizedDescription',
+        centralImgSrc: 'img/anonymized2.png'
+      }
+    ];
+
+    var updateTimespan = 
+      ConfigService.minLoadingTime / (scope.stepList.length + 1);
+
+    // The fake step we are currently working on
+    scope.fakeStepIndex = 0;
+    var finishedRealEncryption = false;
+    var finishedFakeEncryption = false;
+
+    var busyImageSrc = [
+       'img/loading.gif',
+       'img/waiting.png',
+       'img/finished.png',
+       'img/options.png',
+       'img/encrypted.png',
+       'img/anonymized1.png',
+       'img/anonymized2.png'
+    ];
+
+    scope.imagesPreloaded = false;
+
+    function fakeStateUpdate() {
+      scope.stepList[scope.fakeStepIndex].state.name = busyStateEnum[2];
+      scope.fakeStepIndex = scope.fakeStepIndex + 1;
+
+      if(scope.fakeStepIndex < scope.stepList.length) {
+        scope.stepList[scope.fakeStepIndex].state.name = busyStateEnum[1];
+        scope.$apply();
+        $timeout(fakeStateUpdate, updateTimespan);
+      } else {
+        scope.$apply();
+        if(finishedRealEncryption) {
+          scope.next();
+        } else {
+          finishedFakeEncryption = true;
+        }
+      }
+    }
+
+    preloader.preloadImages( busyImageSrc )
+    .then(
+      function() {
+        // Loading was successful
+        scope.imagesPreloaded = true;
+      },
+      function() {
+        // Loading failed on at least one image
+        scope.showError(
+          $i18next("avBooth.errorLoadingImages",{}));
+      });
 
       // function that receives updates from the cast ballot service and shows
       // them to the user
       function statusUpdateFunc(status, options) {
-        if (status === "sanityChecks") {
-          scope.updateTitle($i18next(
-            "avBooth.statusExecutingSanityChecks",
-            {
-              percentage: options.percentageCompleted
-            }));
-          scope.percentCompleted = options.percentageCompleted;
-
-        } else if (status === "encryptingQuestion") {
-          scope.updateTitle($i18next(
-            "avBooth.statusEncryptingQuestion",
-            {
-              questionNum: options.questionNum + 1,
-              percentage: options.percentageCompleted
-            }));
-          scope.percentCompleted = options.percentageCompleted;
-
-        } else if (status === "verifyingQuestion") {
-          scope.updateTitle($i18next(
-            "avBooth.statusVerifyingQuestion",
-            {
-              questionNum: options.questionNum + 1,
-              percentage: options.percentageCompleted
-            }));
-          scope.percentCompleted = options.percentageCompleted;
-        }
       }
       // delay in millisecs
       var delay = 500;
@@ -77,11 +142,11 @@ angular.module('avBooth')
           // on success, we first then try to submit, then once submitted we
           // show the next screen (which is the success-screen directive)
           success: function(encryptedBallot, auditableBallot) {
-            scope.updateTitle($i18next("avBooth.sendingBallot", {percentage: 80}));
-            scope.percentCompleted = 80;
-            scope.stateData.auditableBallot = auditableBallot;
-            scope.stateData.encryptedBallot = encryptedBallot;
-            scope.next();
+            if(finishedFakeEncryption) {
+              scope.next();
+            } else {
+             finishedRealEncryption = true;
+            }
           },
 
           // on error, try to deal with it
@@ -106,9 +171,8 @@ angular.module('avBooth')
         EncryptBallotService(encryptionInfo);
       }
 
-      $timeout(function () {
-        encryptBallot();
-      }, delay);
+      $timeout(encryptBallot, delay);
+      $timeout(fakeStateUpdate, updateTimespan);
     }
 
     return {
