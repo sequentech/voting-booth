@@ -34,49 +34,44 @@ angular.module('avBooth')
   function link(scope, element, attrs) {
 
     var busyStateEnum = [
-      {
-        name: 'waiting',
-        bulletImgSrc: 'img/waiting.png',
-      },
-      {
-        name: 'working',
-        imgSrc: 'img/working.png',
-      },
-      {
-        name: 'finished',
-        imgSrc: 'img/finished.png',
-      }
+      'waiting',
+      'working',
+      'finished'
     ];
 
     scope.stepList = [
       {
         state: busyStateEnum[1],
+        centralImgSrc: 'booth/img/options.png'
+      },
+      {
+        state: busyStateEnum[0],
         title: 'encryptedTitle',
         description: 'encryptedDescription',
-        centralImgSrc: 'img/options.png'
+        centralImgSrc: 'booth/img/cast.png'
       },
       {
         state: busyStateEnum[0],
         title: 'castTitle',
         description: 'castDescription',
-        centralImgSrc: 'img/encrypted.png'
+        centralImgSrc: 'booth/img/encrypted.png'
       },
       {
         state: busyStateEnum[0],
         title: 'anonymizedTitle',
         description: 'anonymizedDescription',
-        centralImgSrc: 'img/anonymized1.png'
+        centralImgSrc: 'booth/img/anonymized1.png'
       },
       {
         state: busyStateEnum[0],
-        title: 'anonymizedTitle',
-        description: 'anonymizedDescription',
-        centralImgSrc: 'img/anonymized2.png'
+        centralImgSrc: 'booth/img/anonymized2.png'
       }
     ];
 
+    scope.bulletList = scope.stepList.slice(1,-1);
+
     var updateTimespan = 
-      ConfigService.minLoadingTime / (scope.stepList.length + 1);
+      ConfigService.minLoadingTime / (scope.stepList.length);
 
     // The fake step we are currently working on
     scope.fakeStepIndex = 0;
@@ -84,23 +79,22 @@ angular.module('avBooth')
     var finishedFakeEncryption = false;
 
     var busyImageSrc = [
-       'img/loading.gif',
-       'img/waiting.png',
-       'img/finished.png',
-       'img/options.png',
-       'img/encrypted.png',
-       'img/anonymized1.png',
-       'img/anonymized2.png'
+       'booth/img/loading.gif',
+       'booth/img/options.png',
+       'booth/img/cast.png',
+       'booth/img/encrypted.png',
+       'booth/img/anonymized1.png',
+       'booth/img/anonymized2.png'
     ];
 
     scope.imagesPreloaded = false;
 
     function fakeStateUpdate() {
-      scope.stepList[scope.fakeStepIndex].state.name = busyStateEnum[2];
+      scope.stepList[scope.fakeStepIndex].state = busyStateEnum[2];
       scope.fakeStepIndex = scope.fakeStepIndex + 1;
 
       if(scope.fakeStepIndex < scope.stepList.length) {
-        scope.stepList[scope.fakeStepIndex].state.name = busyStateEnum[1];
+        scope.stepList[scope.fakeStepIndex].state = busyStateEnum[1];
         scope.$apply();
         $timeout(fakeStateUpdate, updateTimespan);
       } else {

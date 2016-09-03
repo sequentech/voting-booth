@@ -1,19 +1,30 @@
 <div class="busy-gui" ng-if="imagesPreloaded">
-  <img class="busy-img-central" src="{{ scope.stepList[scope.fakeStepIndex].centralImgSrc }}">
+  <img class="busy-img-central" ng-src="{{ scope.stepList[scope.fakeStepIndex].centralImgSrc }}">
   </img>
   <div class="busy-text">
     <h1 ng-i18next="avBooth.busy.title">
     </h1>
     <div
       class="busy-step" 
-      ng-repeat="step in stepList.slice(0, -1)"
+      ng-repeat="step in bulletList"
     >
       <span class="col-sm2">
+        <i 
+          class="fa fa-times"
+          ng-if="'waiting' === step.state"
+        >
+        </i>
         <img
           class="step-img"
-          src="{{ step.state.imgSrc }}"
+          src="booth/img/loading.gif"
+          ng-if="'working' === step.state"
         >
         </img>
+        <i 
+          class="fa fa-check"
+          ng-if="'finished' === step.state"
+        >
+        </i>
       </span>
       <p
         class="step-title col-sm2"

@@ -9,6 +9,6 @@
   ],
   "dependencies": {
     "avCommon": "https://github.com/agoravoting/agora-gui-common.git#next",
-    "angular-easy-image-preloader": "https://github.com/dabit3/angular-easy-image-preloader.git#master"
+    "angular-easy-image-preloader": "https://github.com/Findeton/angular-easy-image-preloader.git#master"
   }
 }
