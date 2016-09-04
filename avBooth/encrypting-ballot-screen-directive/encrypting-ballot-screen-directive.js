@@ -136,6 +136,8 @@ angular.module('avBooth')
           // on success, we first then try to submit, then once submitted we
           // show the next screen (which is the success-screen directive)
           success: function(encryptedBallot, auditableBallot) {
+            scope.stateData.auditableBallot = auditableBallot;
+            scope.stateData.encryptedBallot = encryptedBallot;
             if(finishedFakeEncryption) {
               scope.next();
             } else {

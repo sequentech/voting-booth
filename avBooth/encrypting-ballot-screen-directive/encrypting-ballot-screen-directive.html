@@ -1,43 +1,47 @@
-<div class="busy-gui" ng-if="imagesPreloaded">
-  <img class="busy-img-central" ng-src="{{ scope.stepList[scope.fakeStepIndex].centralImgSrc }}">
+<div class="busy-gui container" ng-if="imagesPreloaded">
+  <img class="busy-img-central text-center" ng-src="{{ stepList[fakeStepIndex].centralImgSrc }}">
   </img>
   <div class="busy-text">
-    <h1 ng-i18next="avBooth.busy.title">
-    </h1>
+    <div class="text-center">
+      <h1 ng-i18next="avBooth.busy.title">
+      </h1>
+    </div>
     <div
-      class="busy-step" 
+      class="busy-step row" 
       ng-repeat="step in bulletList"
     >
-      <span class="col-sm2">
-        <i 
-          class="fa fa-times"
-          ng-if="'waiting' === step.state"
+      <div class="col-sm-offset-3 col-sm-2">
+          <i
+            class="fa fa-times"
+            ng-if="'waiting' === step.state"
+          >
+          </i>
+          <img
+            class="step-img"
+            src="booth/img/loading.gif"
+            ng-if="'working' === step.state"
+          >
+          </img>
+          <i 
+            class="fa fa-check"
+            ng-if="'finished' === step.state"
+          >
+          </i>
+          <span>
+            <b
+              class="step-title"
+              ng-i18next="avBooth.busy.{{ step.title }}"
+            >
+            </b>
+          </span> 
+      </div>
+      <div class="col-sm-3">
+        <p
+          class="step-description"
+          ng-i18next=" avBooth.busy.{{ step.description }}"
         >
-        </i>
-        <img
-          class="step-img"
-          src="booth/img/loading.gif"
-          ng-if="'working' === step.state"
-        >
-        </img>
-        <i 
-          class="fa fa-check"
-          ng-if="'finished' === step.state"
-        >
-        </i>
-      </span>
-      <p
-        class="step-title col-sm2"
-        ng-i18next="avBooth.busy.{{ step.title }}"
-      >
-      </p>
-      <p
-        class="step-description col-sm6"
-        ng-i18next=" avBooth.busy.{{ step.description }}"
-      >
-      </p>
-      <span>
-      </span>
+        </p>
+      </div>
     </div>
   </div>
 </div>
