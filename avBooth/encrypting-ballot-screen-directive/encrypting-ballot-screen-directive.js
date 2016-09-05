@@ -39,6 +39,8 @@ angular.module('avBooth')
       'finished'
     ];
 
+    scope.organization = ConfigService.organization;
+
     scope.stepList = [
       {
         state: busyStateEnum[1],
