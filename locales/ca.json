@@ -45,6 +45,7 @@
 
     "errorTitle": "Ups. Ha passat alguna cosa inesperada",
     "errorHtml": "<p>Hi ha hagut el problema següent (identificador __errorId__): </p><p>__error__</p><p>En cas que creguis que has de contactar amb nosaltres, pots fer-ho enviant-nos un correu electrònic a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingImages": "Error en cabina de vot. Imatges a mig carregar.",
     "errorLoadingElection": "Error carregant la votació. Això pot passar per diferents motius: pot ser que aquest enllaç sigui incorrecte, pot ser que l'hagis introduït o que s'hagi generat malament. Finalment, pot ser que el servidor no estigui disponible temporalment. Si fos aquest el cas, prova un altre cop més tard i si el problema persisteix posa't en contacte amb nosaltres.",
     "errorLoadingElectionPubKeys": "Error carregant les claus públiques de la votació. Això pot passar per diversos motius: pot ser que aquest enllaç sigui incorrecte, pot ser que l'hagis introduït o que s'hagi generat malament. Per això, comprova-ho generant-lo un altre cop. Finalment, pot ser que el servidor no estigui disponible temporalment. Si fos aquest el cas, prova un altre cop més tard i si el problema persisteix posa't en contacte amb nosaltres.",
     "errorSendingBallot": "Error enviant el vot, fet que ha impedit que es registri el vot correctament. Sisplau, torna-ho a provar amb un altre navegador web i més actualitzat, i si el problema persisteix posa't contacte amb nosaltres. Disculpa les molèsties.",
@@ -156,6 +157,16 @@
       "header": "Vot en blanc",
       "body": "No has seleccionat cap candidatura; per tant es comptabilitzarà com a vot en blanc.",
       "confirm": "Sí, vull votar en blanc"
+    },
+
+    "busy": {
+      "title": "El teu vot serà",
+      "encryptedTitle": "xifrat",
+      "encryptedDescription": "para que nadie pueda saber qué opciones escogiste",
+      "castTitle": "emitido",
+      "castDescription": "perquè ningú pugui saber quines opcions vas escollir",
+      "anonymizedTitle": "anonimitzat",
+      "anonymizedDescription": "perquè el recompte no revela el sentit del teu vot"
     }
   },
   "avElection": {
