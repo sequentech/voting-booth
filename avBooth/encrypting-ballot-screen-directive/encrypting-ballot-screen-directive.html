@@ -46,9 +46,6 @@
   </div>
 </nav>
 
-<!--div class="wrapper-unfixed">
-</div-->
-
 <div class="wrapper-unfixed" ng-if="imagesPreloaded">
   <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-encrypting-ballot-screen] #avb-toggle">
     <div class="container">
@@ -63,13 +60,29 @@
 
 
 <div class="busy-gui container" ng-if="imagesPreloaded">
-  <div class="col-sm-offset-2 col-sm-6">
-    <img class="busy-img-central text-center" ng-src="{{ stepList[fakeStepIndex].centralImgSrc }}">
-    </img>
+  <div class="col-sm-offset-2 col-sm-6 margin-tb-15">
+    <div class="busy-img-central text-center">
+        <img
+          class="busy-img-one"
+          ng-src="{{ getBusyImg(!isImgOneTop) }}"
+          ng-style="{
+                      opacity: (isImgOneTop? 0 : 1)
+                    }"
+        >
+        </img>
+        <img
+          class="busy-img-one"
+          ng-src="{{ getBusyImg(isImgOneTop) }}"
+          ng-style="{
+                      opacity: (isImgOneTop? 1 : 0)
+                    }"
+        >
+        </img>
+    </div>
   </div>
   <div class="busy-text">
     <div
-      class="busy-step row" 
+      class="busy-step row has-transitions" 
       ng-repeat="step in bulletList"
       ng-class="{
                   'step-waiting': 'waiting' === step.state,

@@ -80,6 +80,20 @@ angular.module('avBooth')
     var finishedRealEncryption = false;
     var finishedFakeEncryption = false;
 
+    scope.checkIsImgOneTop = function() {
+      return 0 === (scope.fakeStepIndex % 2);
+    };
+
+    scope.isImgOneTop = scope.checkIsImgOneTop();
+
+    scope.getBusyImg = function(isTop) {
+      if(0 === scope.fakeStepIndex || isTop ) {
+        return scope.stepList[scope.fakeStepIndex].centralImgSrc;
+      } else {
+        return scope.stepList[scope.fakeStepIndex - 1].centralImgSrc;
+      }
+    };
+
     var busyImageSrc = [
        'booth/img/loading.gif',
        'booth/img/options.png',
@@ -93,9 +107,10 @@ angular.module('avBooth')
 
     function fakeStateUpdate() {
       scope.stepList[scope.fakeStepIndex].state = busyStateEnum[2];
-      scope.fakeStepIndex = scope.fakeStepIndex + 1;
 
-      if(scope.fakeStepIndex < scope.stepList.length) {
+      if(scope.fakeStepIndex + 1 < scope.stepList.length) {
+        scope.fakeStepIndex = scope.fakeStepIndex + 1;
+        scope.isImgOneTop = scope.checkIsImgOneTop();
         scope.stepList[scope.fakeStepIndex].state = busyStateEnum[1];
         scope.$apply();
         $timeout(fakeStateUpdate, updateTimespan);
