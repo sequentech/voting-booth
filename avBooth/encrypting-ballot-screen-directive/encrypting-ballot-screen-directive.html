@@ -60,7 +60,7 @@
 
 
 <div class="busy-gui container" ng-if="imagesPreloaded">
-  <div class="col-sm-offset-2 col-sm-6 margin-tb-15">
+  <div class="col-sm-offset-2 col-sm-6 margin-tb-15 hidden-xs">
     <div class="busy-img-central text-center">
         <img
           class="busy-img-one"
@@ -91,7 +91,7 @@
                 }"
     >
       <div 
-        class="col-sm-offset-2 col-sm-3 bullet-title"
+        class="col-sm-offset-2 col-sm-3 col-xs-12 bullet-title"
       >
           <i
             class="fa fa-times"
@@ -117,7 +117,7 @@
             </b>
           </span> 
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-3 col-xs-12">
         <p
           class="step-description"
           ng-i18next=" avBooth.busy.{{ step.description }}"
