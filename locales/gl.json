@@ -169,7 +169,7 @@
     },
 
     "busy": {
-      "title": "O seu voto será",
+      "title": "O seu voto será...",
       "encryptedTitle": "cifrado",
       "encryptedDescription": "de xeito que ninguén pode saber que as opcións que escolla",
       "castTitle": "emitido",

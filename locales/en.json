@@ -180,7 +180,7 @@
     },
 
     "busy": {
-      "title": "Your ballot will be",
+      "title": "Your ballot will be...",
       "encryptedTitle": "encrypted",
       "encryptedDescription": "so that nobody can know what options you chose",
       "castTitle": "cast",

@@ -160,7 +160,7 @@
     },
 
     "busy": {
-      "title": "El teu vot serà",
+      "title": "El teu vot serà...",
       "encryptedTitle": "xifrat",
       "encryptedDescription": "para que nadie pueda saber qué opciones escogiste",
       "castTitle": "emitido",

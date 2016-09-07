@@ -181,7 +181,7 @@
     },
 
     "busy": {
-      "title": "Tu voto será",
+      "title": "Tu voto será...",
       "encryptedTitle": "cifrado",
       "encryptedDescription": "para que nadie pueda saber qué opciones escogiste",
       "castTitle": "emitido",

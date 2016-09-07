@@ -49,10 +49,7 @@
 <div class="wrapper-unfixed" ng-if="imagesPreloaded">
   <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-encrypting-ballot-screen] #avb-toggle">
     <div class="container">
-      <div class="hidden unfixed-top-height"></div>
-      <div class="col-sm-offset-2 col-sm-6">
-        <h1 class="text-center" ng-i18next="avBooth.busy.title">
-        </h1>
+      <div class="hidden unfixed-top-height">
       </div>
     </div>
   </div>
@@ -81,6 +78,10 @@
     </div>
   </div>
   <div class="busy-text">
+    <div class="col-sm-offset-2 col-sm-6 col-xs-12">
+      <h1 class="text-center" ng-i18next="avBooth.busy.title">
+      </h1>
+    </div>
     <div
       class="busy-step row has-transitions" 
       ng-repeat="step in bulletList"
@@ -90,7 +91,7 @@
                   'step-finished': 'finished' === step.state
                 }"
     >
-      <div 
+      <div
         class="col-sm-offset-2 col-sm-3 col-xs-12 bullet-title"
       >
           <i
