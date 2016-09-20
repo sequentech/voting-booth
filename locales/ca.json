@@ -19,7 +19,7 @@
   },
   "avCommon": {
     "cancel": "Cancela",
-    "poweredBy": "Funciona amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "poweredBy": "Funciona amb <strong>__name__</strong>",
     "shareLink": "¡Tuitgeu aquesta votació!",
     "votingSystem": "Sistema de votació",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
@@ -87,7 +87,7 @@
     "helpText": "",
     "goBack": "Torna a la cabina",
     "selectedOptionsFollow": "Les __num__ opcions que heu seleccionat són:",
-    "selectedOptionFollow": "L'opció que heu seleccionat és (clic per canviar):",
+    "selectedOptionFollow": "L'opció que heu seleccionat és (Clica aquí per a canviar):",
 
     "errorElectionUrl": "L'adreça introduïda té un format erroni",
     "reviewYourBallotTitle": "Encara no s'ha enviat el vot: reviseu-lo abans",
