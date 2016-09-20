@@ -38,7 +38,7 @@
     },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Esto es una votación de PRUEBA",
     "loadingElectionTitle": "Cargando votación, un momento por favor..",
-    "stepNumber": "paso __num__ de __total__ &nbsp; &nbsp; funciona con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "stepNumber": "paso __num__ de __total__",
     "stepAndQuestionNumber": "paso __num__ de __total__, pregunta __qnum__ de __qtotal__",
     "startVoting": "Empezar a votar",
     "continueButton": "Continuar",

@@ -1,9 +1,45 @@
-<nav class="navbar navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
+<nav 
+  class="navbar navbar-default navbar-fixed-top"
+  av-affix-top=".navbar-unfixed-top"
+  role="navigation"
+>
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="pull-right">
-        <span class="dropdown left-padding" av-change-lang>
+      <div class="pull-left">
+        <span ng-if="election.logo_url">
+          <img 
+            class="logo-img" 
+            src="{{election.logo_url}}"
+          >
+          </img>
         </span>
+        <span 
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+          ng-if="!election.logo_url"
+        >
+        </span>
+      </div>
+      <div class="pull-right">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          ng-click="launchHelp()">
+        </span>
+        <span
+          ng-click="launchHelp()"
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          av-change-lang
+        >
+        </span>
+      </div>
+      <div
+        class="text-center hidden-xs"
+        ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+        ng-if="election.logo_url"
+      >
       </div>
     </div>
   </div>

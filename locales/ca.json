@@ -31,7 +31,7 @@
     },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Aquesta és una votació de PROVA",
     "loadingElectionTitle": "Carregant la votació, un moment sisplau..",
-    "stepNumber": "pas __num__ de __total__ &nbsp; &nbsp; funciona amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "stepNumber": "pas __num__ de __total__ &nbsp; &nbsp; funciona amb <strong>__name__</strong>",
     "stepAndQuestionNumber": "pas __num__ de __total__, pregunta __qnum__ de __qtotal__",
     "startVoting": "Comenci a votar",
     "continueButton": "Continua",

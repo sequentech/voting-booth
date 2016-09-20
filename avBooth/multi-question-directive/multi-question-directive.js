@@ -21,12 +21,13 @@
  * Shows a question and its possible answers to the user.
  */
 angular.module('avBooth')
-  .directive('avbMultiQuestion', function($modal) {
+  .directive('avbMultiQuestion', function($modal, ConfigService) {
 
     var link = function(scope, element, attrs) {
       scope.stateData.affixIsSet = false;
       scope.stateData.affixDropDownShown = false;
       scope.hideSelection = false;
+      scope.organization = ConfigService.organization;
 
       scope.getUrl = function(option, title) {
         return _.filter(option.urls, function (url) {
