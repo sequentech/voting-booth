@@ -31,7 +31,7 @@
     },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Aquesta és una votació de PROVA",
     "loadingElectionTitle": "Carregant la votació, un moment sisplau..",
-    "stepNumber": "pas __num__ de __total__ &nbsp; &nbsp; funciona amb <strong>__name__</strong>",
+    "stepNumber": "pas __num__ de __total__",
     "stepAndQuestionNumber": "pas __num__ de __total__, pregunta __qnum__ de __qtotal__",
     "startVoting": "Comenci a votar",
     "continueButton": "Continua",
@@ -87,7 +87,7 @@
     "helpText": "",
     "goBack": "Torna a la cabina",
     "selectedOptionsFollow": "Les __num__ opcions que heu seleccionat són:",
-    "selectedOptionFollow": "L'opció que heu seleccionat és (Clica aquí per a canviar):",
+    "selectedOptionFollow": "L'opció que heu seleccionat és (Clica aquí per a canviar l'opció):",
 
     "errorElectionUrl": "L'adreça introduïda té un format erroni",
     "reviewYourBallotTitle": "Encara no s'ha enviat el vot: reviseu-lo abans",
@@ -136,8 +136,15 @@
     "castOrCancelSubtitle": "El seu vot està xifrat, ja podeu enviar-lo a l'urna electrònica perquè sigui degudamet registrat. Alternativament, podeu auditar que hagi estat xifrat correctament.",
     "reviewBallotHashText": "El localitzador del seu vot és: <strong>__ballotHash__</strong>",
     "auditTheBallot": "Auditi el vot",
+
+    "auditBallotTitle": "Auditi el vot",
+    "auditBallotSubtitle": "",
+    "auditBallotText": "<p>El localizador de tu voto es: <code>__ballotHash__</code></p><p><strong>La auditoría de la papeleta requiere ciertos conocimientos técnicos. Si no los tienes, puedes simplemente comenzar de nuevo el proceso de voto haciendo clic abajo</strong>.</p><p>Para verificar tu voto, necesitas:</p><ol><li>Copiar y guardar en un fichero la papeleta (clic para seleccionar):<br/><div class=\"code\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir los pasos de <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que la papeleta fue cifrada correctamente</a>.</li></ol><p>Por razones de seguridad, al auditar el voto, el ha de ser desechado. Para continuar el proceso de voto, debes comenzar el proceso de nuevo.</p>",
+    "auditStartAgain": "Comenzar el proceso de voto de nuevo",
+
+
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Atenció!</strong> Cabina de votació de prova, els vots emesos aquí no compten.",
-    "successBallotHash": "Enhorabona! Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podeu fer servir el localitzador per <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que el vostre vot ha quedat registrat</a>.",
+    "successBallotHash": "Enhorabona! Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podeu fer servir el localitzador per <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar <strong>><u>AQUÍ</u></strong> que el vostre vot ha quedat registrat</a>.",
     "relatedLinksText": "Per a més informació sobre la votació:",
     "circleOptionExternalLink": "Mostra'n els detalls",
     "voteInBlank": "Voti en blanc",
