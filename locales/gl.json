@@ -45,6 +45,7 @@
 
     "errorTitle": "Oops. Ocorreu algo inesperado",
     "errorHtml": "<p>Ocorreu o seguinte problema (identificador __errorId__): </p><p>__error__</p><p>No caso de que creas que debes contactar connosco, podes facelo enviándonos un email a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingImages": "Erro Cabina de Voto. Imaxes non cargadas.",
     "errorLoadingElection": "Erro cargando a votación. Isto pode ocorrer por múltiples motivos: poida que esta ligazón sexa incorreto, poida que o introduciras o se teña xerado mal. Para elo, proba a xeneralo de novo. Finalmente, pode ocorrer que o servidor non estea dispoñible temporalmente. Se se trata deste caso, proba de novo máis tarde e se o problema persiste, ponte en contato connosco.",
     "errorLoadingElectionPubKeys": "Erro cargando as claves públicas da votación. Isto pode ocorrer por múltiples motivos: poida que esta ligazón sexa incorrecta, poida que a introduxeras ou xerárase mal. Para iso comproba a xeralo de novo. Finalmente, pode ocorrer que o servidor non estea dispoñible temporalmente. Se se trata deste caso, proba de novo máis tarde e se o problema persiste, ponte en contacto connosco.",
     "errorSendingBallot": "Erro enviando o voto, polo que non puido ser rexistrado correctamente. Por favor, téntao de novo noutro navegador web diferente e máis actualizado, e se o problema persiste ponte en contacto connosco. Desculpa as molestias.",
@@ -165,6 +166,16 @@
       "header": "Voto en blanco",
       "body": "No has seleccionado ninguna opción en alguna pregunta, lo que equivale a votar en blanco.",
       "confirm": "Sí, quiero votar en blanco cuando no seleciono ninguna opción"
+    },
+
+    "busy": {
+      "title": "O seu voto será...",
+      "encryptedTitle": "cifrado",
+      "encryptedDescription": "de xeito que ninguén pode saber que as opcións que escolla",
+      "castTitle": "emitido",
+      "castDescription": "usando unha canle segura e comprobar a súa identidade",
+      "anonymizedTitle": "anonimizado",
+      "anonymizedDescription": "para que a conta non revela o significado do seu voto"
     }
   },
   "avElection": {
