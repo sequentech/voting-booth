@@ -25,19 +25,22 @@ angular.module('avBooth')
   {
     var link = function(scope, element, attrs)
     {
-      scope.showPoints = {
-        "plurality-at-large": true,
-        "borda": true,
-        "borda-nauru": true,
-        "pairwise-beta": false
-      }[scope.question.tally_type];
+      scope.showPoints = function (question)
+      {
+        return {
+          "plurality-at-large": true,
+          "borda": true,
+          "borda-nauru": true,
+          "pairwise-beta": false
+        }[question.tally_type];
+      };
 
       /**
        * @returns number of points this ballot is giving to this option
        */
-      scope.getPoints = function (answer)
+      scope.getPoints = function (question, answer)
       {
-        if (!scope.showPoints) {
+        if (!scope.showPoints(question)) {
           return 0;
         }
         if (answer.selected < 0) {
@@ -50,7 +53,7 @@ angular.module('avBooth')
           },
           "borda": function()
           {
-            return scope.question.max - answer.selected;
+            return question.max - answer.selected;
           },
           "borda-nauru": function()
           {
@@ -60,7 +63,7 @@ angular.module('avBooth')
           {
             return;
           }
-        }[scope.question.tally_type]();
+        }[question.tally_type]();
       };
     };
 

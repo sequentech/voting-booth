@@ -40,8 +40,8 @@
       class="animate-repeat selected-answer">
         <span ng-bind-html="answer.text"></span>
         <span
-          ng-if="showPoints"
-          ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
+          ng-if="showPoints(question)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
         </span>
     </li>
     <li
@@ -56,8 +56,8 @@
       class="animate-repeat selected-answer">
         <span ng-bind-html="answer.text"></span>
         <span
-          ng-if="showPoints"
-          ng-i18next="[i18next]({points: getPoints(answer)})avBooth.showSelectedOptionPoints">
+          ng-if="showPoints(question)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
         </span>
     </li>
     <li
