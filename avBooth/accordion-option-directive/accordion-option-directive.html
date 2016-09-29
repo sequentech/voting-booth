@@ -39,7 +39,10 @@
           </span>
           <span>
             <span ng-bind-html="option.text"></span>
-            <span ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints"></span>
+            <span
+              ng-if="showSelectedPos && option.selected > -1"
+              ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
+            </span>
           </span>
         </strong>
         <p class="details" ng-if="option.details && option.details.length > 1" ng-bind-html="option.details">

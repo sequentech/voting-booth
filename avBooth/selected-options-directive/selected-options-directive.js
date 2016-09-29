@@ -28,6 +28,10 @@ angular.module('avBooth')
         if (!angular.isDefined(scope.presetSelectedSize)) {
           scope.presetSelectedSize = 0;
         }
+
+        if (!angular.isDefined(scope.question)) {
+          scope.question = { tally_type: scope.tally_type };
+        }
         /*
          * Toggles selection, if possible.
          */
@@ -242,6 +246,7 @@ angular.module('avBooth')
         max: '=',
         min: '=',
         options: '=',
+        tally_type: '=',
         presetSelectedSize: '=',
         layout: '=',
         sorted: "=",

@@ -86,6 +86,9 @@ angular.module('avBooth')
         if (!scope.showPoints) {
           return 0;
         }
+        if (scope.option.selected < 0) {
+          return 0;
+        }
         return {
           "plurality-at-large": function ()
           {
