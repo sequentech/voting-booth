@@ -31,7 +31,7 @@ angular.module('avBooth')
 
         if (!angular.isDefined(scope.question)) {
           scope.question = {
-            tally_type: scope.tally_type
+            tally_type: scope.tally_type,
             max: scope.max
           };
         }
