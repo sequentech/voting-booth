@@ -29,6 +29,8 @@
         "title": "Términos legales",
         "contact": "contacto"
     },
+    "showSelectedOptionPoints": "(1 punto)",
+    "showSelectedOptionPoints_plural": "(__points__ puntos)",
     "warnBallotParity": {
       "header": "Papeleta non paritaria",
       "body": "Non podes continuar porque o teu voto non é paritario nin en cremalleira. Por favor, comproba que a túa selección alterne xéneros de xeito que despois dunha muller apareza un home e así sucesivamente.",

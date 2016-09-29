@@ -29,6 +29,8 @@
         "title": "Termes legals",
         "contact": "contacte"
     },
+    "showSelectedOptionPoints": "(1 punto)",
+    "showSelectedOptionPoints_plural": "(__points__ puntos)",
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Aquesta és una votació de PROVA",
     "loadingElectionTitle": "Carregant la votació, un moment sisplau..",
     "stepNumber": "pas __num__ de __total__",

@@ -37,7 +37,10 @@
           <span ng-if="ordered && showSelectedPos && option.selected > -1">
             {{option.selected + 1}}.
           </span>
-          <span ng-bind-html="option.text"></span>
+          <span>
+            <span ng-bind-html="option.text"></span>
+            <span ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints"></span>
+          </span>
         </strong>
         <p class="details" ng-if="option.details && option.details.length > 1" ng-bind-html="option.details">
         </p>
