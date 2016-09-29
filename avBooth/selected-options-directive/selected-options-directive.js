@@ -249,7 +249,7 @@ angular.module('avBooth')
         max: '=',
         min: '=',
         options: '=',
-        tally_type: '=',
+        tallyType: '=',
         presetSelectedSize: '=',
         layout: '=',
         sorted: "=",
