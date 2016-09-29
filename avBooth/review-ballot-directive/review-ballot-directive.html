@@ -37,8 +37,12 @@
   <ul ng-if="!question.isPairWise && !mapQuestion(question).ordered">
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
-      class="animate-repeat selected-answer"
-      ng-bind-html="answer.text">
+      class="animate-repeat selected-answer">
+        <span ng-bind-html="answer.text"></span>
+        <span
+          ng-if="showPoints"
+          ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
+        </span>
     </li>
     <li
       class="empty-answer"
@@ -50,7 +54,11 @@
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
       class="animate-repeat selected-answer">
-      {{answer.text}}
+        <span ng-bind-html="answer.text"></span>
+        <span
+          ng-if="showPoints"
+          ng-i18next="[i18next]({points: getPoints(answer)})avBooth.showSelectedOptionPoints">
+        </span>
     </li>
     <li
       class="empty-answer"

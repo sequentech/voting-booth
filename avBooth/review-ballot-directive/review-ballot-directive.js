@@ -21,9 +21,52 @@
  * Shows a list with question and user answers.
  */
 angular.module('avBooth')
-  .directive('avbReviewBallot', function() {
+  .directive('avbReviewBallot', function()
+  {
+    var link = function(scope, element, attrs)
+    {
+      scope.showPoints = {
+        "plurality-at-large": true,
+        "borda": true,
+        "borda-nauru": true,
+        "pairwise-beta": false
+      }[scope.question.tally_type];
+
+      /**
+       * @returns number of points this ballot is giving to this option
+       */
+      scope.getPoints = function (answer)
+      {
+        if (!scope.showPoints) {
+          return 0;
+        }
+        if (answer.selected < 0) {
+          return 0;
+        }
+        return {
+          "plurality-at-large": function ()
+          {
+            return 1;
+          },
+          "borda": function()
+          {
+            return scope.question.max - answer.selected;
+          },
+          "borda-nauru": function()
+          {
+            return "1/" + (1 + answer.selected);
+          },
+          "pairwise-beta": function()
+          {
+            return;
+          }
+        }[scope.question.tally_type]();
+      };
+    };
+
     return {
       restrict: 'AE',
+      link: link,
       templateUrl: 'avBooth/review-ballot-directive/review-ballot-directive.html'
     };
   });
