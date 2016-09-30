@@ -31,6 +31,11 @@
         "title": "Términos legales",
         "contact": "contacto"
     },
+    "confirmAuditBallot": {
+      "header": "Realment vols auditar la teva papereta?",
+      "body": "L'auditoria de la papereta l'invalidarà i hauràs d'iniciar el procés de votació de nou si desitges emetre el teu vot. El procés d'auditoria de la papereta permet verificar que està codificada correctament. Fer aquest procés requereix que uns coneixements tècnics importants, pel que no es recomana si no saps el que estàs fent. <br/> <br/> <strong> Si el que desitja és emetre el seu vot, en <u>Cancel·la</u> per tornar a la pantalla de revisió de votació. </strong>",
+      "confirm": "Sí, vull INVALIDAR meu papereta per AUDITAR"
+    },
     "showSelectedOptionPoints": "(__points__ puntos)",
     "warnBallotParity": {
       "header": "Papeleta no paritaria",

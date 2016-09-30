@@ -30,6 +30,15 @@ angular.module('avBooth')
         q.isPairWise = _.contains(['pairwise-beta'], q.tally_type);
       });
 
+      scope.confirmAudit = function()
+      {
+        $modal.open({
+          templateUrl: "avBooth/confirm-audit-controller/confirm-audit-controller.html",
+          controller: "ConfirmAuditController",
+          size: 'md'
+        }).result.then(scope.audit);
+      };
+
       scope.audit = function() {
         scope.stateData.auditClicked = true;
         scope.next();

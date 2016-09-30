@@ -29,7 +29,12 @@
         "title": "Termes legals",
         "contact": "contacte"
     },
-    "showSelectedOptionPoints": "(__points__ puntos)",
+    "confirmAuditBallot": {
+      "header": "Do you want to Audit the ballot?",
+      "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/>If you just want to cast your ballot, click cancel to go back to the review ballot screen.",
+      "confirm": "Yes, I want to DISCARD my ballot to audit it"
+    },
+    "showSelectedOptionPoints": "(__points__ punts)",
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Aquesta és una votació de PROVA",
     "loadingElectionTitle": "Carregant la votació, un moment sisplau..",
     "stepNumber": "pas __num__ de __total__",
