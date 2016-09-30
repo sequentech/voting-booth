@@ -32,9 +32,9 @@
         "contact": "contacto"
     },
     "confirmAuditBallot": {
-      "header": "Realment vols auditar la teva papereta?",
-      "body": "L'auditoria de la papereta l'invalidarà i hauràs d'iniciar el procés de votació de nou si desitges emetre el teu vot. El procés d'auditoria de la papereta permet verificar que està codificada correctament. Fer aquest procés requereix que uns coneixements tècnics importants, pel que no es recomana si no saps el que estàs fent. <br/> <br/> <strong> Si el que desitja és emetre el seu vot, en <u>Cancel·la</u> per tornar a la pantalla de revisió de votació. </strong>",
-      "confirm": "Sí, vull INVALIDAR meu papereta per AUDITAR"
+      "header": "¿Realmente quieres auditar tu papeleta?",
+      "body": "La auditoría de la papeleta lo invalidará y tendrás que iniciar el proceso de votación de nuevo si deseas emitir tu voto. El proceso de auditoría de la papeleta permite verificar que está codificada correctamente. Hacer este proceso requiere que unos conocimientos técnicos importantes, por lo que no se recomienda si no sabes lo que estás haciendo. <br/> <br/><strong>Si lo que desea es emitir su voto, en <u>Cancelar</u> para volver a la pantalla de revisión de votación.</strong>",
+      "confirm": "Sí, quiero INVALIDAR mi papeleta para AUDITARLA"
     },
     "showSelectedOptionPoints": "(__points__ puntos)",
     "warnBallotParity": {

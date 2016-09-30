@@ -30,9 +30,9 @@
         "contact": "contacte"
     },
     "confirmAuditBallot": {
-      "header": "Do you want to Audit the ballot?",
-      "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/>If you just want to cast your ballot, click cancel to go back to the review ballot screen.",
-      "confirm": "Yes, I want to DISCARD my ballot to audit it"
+      "header": "Realment vols auditar la teva papereta?",
+      "body": "L'auditoria de la papereta l'invalidarà i hauràs d'iniciar el procés de votació de nou si desitges emetre el teu vot. El procés d'auditoria de la papereta permet verificar que està codificada correctament. Fer aquest procés requereix que uns coneixements tècnics importants, pel que no es recomana si no saps el que estàs fent. <br/> <br/> <strong> Si el que desitja és emetre el seu vot, en <u>Cancel·la</u> per tornar a la pantalla de revisió de votació. </strong>",
+      "confirm": "Sí, vull INVALIDAR meu papereta per AUDITAR"
     },
     "showSelectedOptionPoints": "(__points__ punts)",
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Aquesta és una votació de PROVA",
