@@ -21,7 +21,7 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbReviewScreen', function(ConfigService) {
+  .directive('avbReviewScreen', function(ConfigService, $modal) {
 
     var link = function(scope, element, attrs) {
       scope.organization = ConfigService.organization;
