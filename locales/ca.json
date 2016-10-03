@@ -43,7 +43,7 @@
     "continueButton": "Continueu",
     "stepsToVote": "Seguiu aquests passos quan emeteu el vostre vot:",
     "selectOptionsTitle": "1. Escolliu la vostra resposta",
-    "selectOptionsText": "Respongueu a la pregunta de la votació. Podeu respondre amb un Sí, un No o una Abstenció.",
+    "selectOptionsText": "Respongueu a la pregunta de la votació. Tria un màxim de tres propostes entre la llista de votació.",
     "reviewOptionsTitle": "2. Reviseu el vostre vot",
     "reviewOptionsText": "Un cop hàgiu escollit la vostra resposta la xifrarem i obtindreu un localitzador. Us mostrarem el contingut de la vostra  votació perquè la pugueu revisar.",
     "emitBallotTitle": "3. Envieu el vostre vot",
