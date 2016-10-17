@@ -171,7 +171,8 @@ angular.module('avBooth')
       }
 
       // TODO FIXME HACK Disable answer level shuffling as requested for election #75
-      question.randomize_answer_order = false;
+      // NOPE: DISABLED this feature, but we need to make it available in the future
+      // question.randomize_answer_order = false;
       if (question.randomize_answer_order) {
           // we can't just sample the groupedOptions list because we need to
           // 1. use the same list object
