@@ -350,7 +350,7 @@ angular.module('avBooth')
        * If parity needs to be applied in the question in the ballot, it is
        * checked here. Will only continue if the check is successful.
        */
-      function checkBallorParity(pipe)
+      function checkBallotParity(pipe)
       {
         if (isExtraDefined('ballot_parity_criteria') &&
           scope.stateData.question.extra_options.ballot_parity_criteria === 'zip' &&
@@ -420,7 +420,7 @@ angular.module('avBooth')
       {
         var pipes = [
           checkNumOptions,
-          checkBallorParity,
+          checkBallotParity,
           checkNullVote,
           scope.next
         ];
