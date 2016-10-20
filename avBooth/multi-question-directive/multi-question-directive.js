@@ -420,7 +420,7 @@ angular.module('avBooth')
       {
         var pipes = [
           checkNumOptions,
-          checkBallotParity,
+       // checkBallotParity, // ballot parity check not allowed by default
           checkNullVote,
           scope.next
         ];

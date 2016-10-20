@@ -24,6 +24,7 @@ angular.module('avBooth')
     function link(scope, element, attrs) {
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
+      scope.showDocOnVoteCast = ConfigService.showDocOnVoteCast;
 
       function generateButtonsInfo() {
         scope.buttonsInfo = [];
