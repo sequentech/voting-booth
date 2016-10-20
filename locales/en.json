@@ -76,6 +76,7 @@
     "numSelectedOptionsSmall_plural": "__count__ selected",
     "selectMoreOpts": "Select at least __min__ options.",
     "selectMoreOpts_plural": "Select at least __min__ options.",
+    "maxSelectedLimitReached_singular": "Remember that you can only choose one option",
     "maxSelectedLimitReached": "Maximum number of selected options reached (__max__). To select an option, deselect another first.",
     "maxSelectedLimitTagReached": "You cannot select more options of type __tagName__ (máximo __max__). To select one, please deselect another first.",
     "maxSelectedLimitNoTagReached": "You cannot select more options not of type __tagName__ (máximo __max__). To select one, please deselect another first.",

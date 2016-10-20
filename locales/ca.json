@@ -74,6 +74,7 @@
     "numSelectedOptionsSmall_plural": "__count__ candidatures seleccionades",
     "selectMoreOpts": "Has de seleccionar almenys __min__ candidatures.",
     "selectMoreOpts_plural": "Has de seleccionar almenys __min__ candidatures.",
+    "maxSelectedLimitReached_singular": "Recuerda que sólo puedes elegir 1 opción.",
     "maxSelectedLimitReached": "No pots seleccionar més candidatures (màxim __max__). Per seleccionar una opció, desselecciona'n una altra primer.",
     "maxSelectedTagLimitReached": "No pots seleccionar més candidatures de tipo __tagName__ (màxim __max__). Per seleccionar una, desselecciona'n una altra primer.",
     "maxSelectedTagLimitReached": "No pots seleccionar més candidatures que no sean __tagName__ (màxim __max__). Per seleccionar una, desselecciona'n una altra primer",

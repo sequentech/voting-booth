@@ -170,7 +170,7 @@ angular.module('avBooth')
         scope.hideSelection = true;
       }
 
-      // TODO FIXME HACK Disable answer level shuffling as requested for election #75
+a      // TODO FIXME HACK Disable answer level shuffling as requested for election #75
       // NOPE: DISABLED this feature, but we need to make it available in the future
       // question.randomize_answer_order = false;
       if (question.randomize_answer_order) {
