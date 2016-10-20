@@ -57,6 +57,7 @@
     "emitBallotText": "You can cast it so that it's properly registered. Alternatively, you can audit that your ballot was correctly encrypted.",
     "errorTitle": "Oops. Something unexpected happened",
     "errorHtml": "<p>The following problem arised (identifier __errorId__): </p><p>__error__</p><p>If you think that you need to contact us, you can do so sending an email to <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingImages": "Error on voting booth. Images not loaded.",
     "errorLoadingElection": "Error loading the election. This could be happenning for multiple reasons: the link might be invalid, you might have typed it incorrectly or the link might have been incorrectly crafted. Please, try to produce the link again. Finally, the server might be temporarily unavailable. If that's the case, try again later and if the issue persists please contact us.",
     "errorLoadingElectionPubKeys": "Error loading the election public keys. This could be happenning for multiple reasons: the link might be invalid, you might have typed it incorrectly or the link might have been incorrectly crafted. Please, try to produce the link again. Finally, the server might be temporarily unavailable. If that's the case, try again later and if the issue persists please contact us.",
     "errorSendingBallot": "Error sending the ballot. It was not correctly cast. Please, try again in another and more updated web browser, and if the problem persists try to contact us. Sorry for the inconvenience.",
@@ -187,6 +188,16 @@
       "header": "Blank vote",
       "body": "You have not selected any option in some question, which is equivalent to vote in blank.",
       "confirm": "Yes, I want to vote in blank when not selecting any option"
+    },
+
+    "busy": {
+      "title": "Your ballot will be...",
+      "encryptedTitle": "encrypted",
+      "encryptedDescription": "so that nobody can know what options you chose",
+      "castTitle": "cast",
+      "castDescription": "using a secure channel and verifying your identity",
+      "anonymizedTitle": "anonymized",
+      "anonymizedDescription": "so that the tally does not reveal which way you voted"
     }
   }
 }

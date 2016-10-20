@@ -9,7 +9,7 @@
         <span ng-if="election.logo_url">
           <img 
             class="logo-img" 
-            src="{{election.logo_url}}"
+            ng-src="{{election.logo_url}}"
           >
           </img>
         </span>
@@ -86,9 +86,28 @@
       <p ng-i18next>
         [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator", url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
       </p>
-      <div documentation-directive></div>
+      <div class="text-center" ng-if="!!election.presentation.share_text">
+        <span 
+          ng-if="!!buttonsInfo"
+          ng-repeat="q in buttonsInfo"
+        >
+          <a
+            href="{{ q.link }}"
+            target="_blank"
+            class="{{ q.class }}"
+          >
+            <img
+              class="logo-img"
+              src="{{ q.img }}"
+            />
+            {{ q.button_text|truncate:25 }}
+          </a>
+        </span>
+      </div>
 
       <div ng-bind-html="successText">
+      </div>
+      <div documentation-directive>
       </div>
     </div>
   </div>

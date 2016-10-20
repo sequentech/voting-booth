@@ -50,6 +50,7 @@
     "emitBallotText": "Ja podeu enviar el vostre vot a l’urna electrònica  perquè sigui registrat. Tanmateix podeu auditar que el vostre vot ha estat xifrat correctament.",
 
     "errorTitle": "Ups. Ha passat alguna cosa inesperada",
+<<<<<<< HEAD
     "errorHtml": "<p>Hi ha hagut el problema següent (identificador __errorId__): </p><p>__error__</p><p>En cas que cregueu que heu de contactar amb nosaltres, pode fer-ho enviant-nos un correu electrònic a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
     "errorLoadingElection": "Error carregant la votació. Això pot passar per diferents motius: pot ser que aquest enllaç sigui incorrecte, pot ser que l'hagueu introduït o que s'hagi generat malament. Finalment, pot ser que el servidor no estigui disponible temporalment. Si fos aquest el cas, proveu un altre cop més tard i si el problema persisteix poseu-vos en contacte amb nosaltres.",
     "errorLoadingElectionPubKeys": "Error carregant les claus públiques de la votació. Això pot passar per diversos motius: pot ser que aquest enllaç sigui incorrecte, pot ser que l'hagueu introduït o que s'hagi generat malament. Per això, comproveu-ho generant-lo un altre cop. Finalment, pot ser que el servidor no estigui disponible temporalment. Si fos aquest el cas, proveu un altre cop més tard i si el problema persisteix poseu-vos en contacte amb nosaltres.",
@@ -72,6 +73,31 @@
     "questionAvailableOptionsTitle": "opcions disponibles",
     "numOptionsSelected": "__count__ opcions seleccionades.",
     "numOptionsSelected_plural": "__count__ opcions seleccionades.",
+=======
+    "errorHtml": "<p>Hi ha hagut el problema següent (identificador __errorId__): </p><p>__error__</p><p>En cas que creguis que has de contactar amb nosaltres, pots fer-ho enviant-nos un correu electrònic a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingImages": "Error en cabina de vot. Imatges a mig carregar.",
+    "errorLoadingElection": "Error carregant la votació. Això pot passar per diferents motius: pot ser que aquest enllaç sigui incorrecte, pot ser que l'hagis introduït o que s'hagi generat malament. Finalment, pot ser que el servidor no estigui disponible temporalment. Si fos aquest el cas, prova un altre cop més tard i si el problema persisteix posa't en contacte amb nosaltres.",
+    "errorLoadingElectionPubKeys": "Error carregant les claus públiques de la votació. Això pot passar per diversos motius: pot ser que aquest enllaç sigui incorrecte, pot ser que l'hagis introduït o que s'hagi generat malament. Per això, comprova-ho generant-lo un altre cop. Finalment, pot ser que el servidor no estigui disponible temporalment. Si fos aquest el cas, prova un altre cop més tard i si el problema persisteix posa't en contacte amb nosaltres.",
+    "errorSendingBallot": "Error enviant el vot, fet que ha impedit que es registri el vot correctament. Sisplau, torna-ho a provar amb un altre navegador web i més actualitzat, i si el problema persisteix posa't contacte amb nosaltres. Disculpa les molèsties.",
+    "errorSendingBallotUnknown": "Error no catalogat enviant el vot. Sisplau, prova-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix posa't contacte amb nosaltres. Disculpa les molèsties",
+    "errorEncryptingBallotUnknown": "Error no catalogat xifrant el vot. Segurament això és perquè fas servir un navegador web no admès pel nostre programari. Sisplau, prova-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix posa't contacte amb nosaltres. Disculpa les molèsties.",
+    "errorElectionIsNotOpen": "La votació no està oberta, per la qual cosa no es pot. Disculpa les molèsties.",
+    "errorSendingBallotElectionNotOpen": "No s'ha pogut enviar el vot perquè la votació ja no està oberta. Disculpa les molèsties.",
+    "couldntSendBallotUnauthorized": "No s'ha pogut enviar el vot perquè el token d'autenticació associat a aquest enllaç és incorrecte. Sentim les molèsties. En cas que el problema persisteixi, sisplau posa't en contacte amb nosaltres.",
+    "errorEncrypting": "Hi ha hagut un problema mentre xifràvem el teu vot, cosa que ha impedit que s'emetés. Segurament això és perquè fas servir un navegador web no admès pel nostre programari. Sisplau, prova-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix posa't contacte amb nosaltres.Disculpa les molèsties",
+    "errorEncoding": "Hi ha hagut un problema mentre xifràvem el teu cosa que ha impedit que s'emetés. Segurament això és perquè fas servir un navegador web no admès pel nostre programari. Sisplau, prova-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix posa't contacte amb nosaltres.Disculpa les molèsties",
+    "sanityChecksFailed": "Hi ha hagut un problema fent comprovacions automàtiques de codificació prèvies a la tramesa del vot, cosa que ha impedit emetre el teu vot. Segurament això és perquè fas servir un navegador web no admès pel nostre programari. Sisplau, prova-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix posa't contacte amb nosaltres.Disculpa les molèsties.",
+    "couldntSendBallotNotFound":  "No s'ha pogut enviar el vot. Pot ser que hi hagi problemes de connexió, o que el servidor no estigui disponible temporalment. Si fos aquest el cas, prova-ho un altre cop més tard i si el problema persisteix posa't en contacte amb nosaltres.",
+    "tooManyUserUpdates": "No s'ha pogut registrar el vot, perquè l'has canviat massa vegades en aquesta votació. Per tant, l'últim vot que hagis emès és el que queda registrat.",
+
+    "questionSelectedOptionsTitle": "candidatures seleccionades (__count__)",
+    "questionSelectedOptionsTitle_plural": "candidatures seleccionades (__count__)",
+    "questionSelectedOptionsTitleOrdered": "candidatures seleccionades (__count__) per ordre, clica i arrossega-les per ordenar-les",
+    "questionSelectedOptionsTitleOrdered_plural": "candidatures seleccionades (__count__) per ordre, clica i arrossega-les per ordenar-les",
+    "questionAvailableOptionsTitle": "candidatures disponibles",
+    "numOptionsSelected": "__count__ candidatures seleccionades.",
+    "numOptionsSelected_plural": "__count__ candidatures seleccionades.",
+>>>>>>> next
     "noOptionsSelected": "Cap opció seleccionada.",
     "numOptionsLimits": "Seleccioneu entre __min__ i __max__ opcions.",
     "filterOptionsPlaceholder": "filtra..",
@@ -169,6 +195,16 @@
       "header": "Vot en blanc",
       "body": "No heu seleccionat cap opció; per tant es comptabilitzarà com a vot en blanc.",
       "confirm": "Sí, vull votar en blanc"
+    },
+
+    "busy": {
+      "title": "El teu vot serà...",
+      "encryptedTitle": "xifrat",
+      "encryptedDescription": "para que nadie pueda saber qué opciones escogiste",
+      "castTitle": "emitido",
+      "castDescription": "perquè ningú pugui saber quines opcions vas escollir",
+      "anonymizedTitle": "anonimitzat",
+      "anonymizedDescription": "perquè el recompte no revela el sentit del teu vot"
     }
   },
   "avElection": {

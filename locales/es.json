@@ -58,6 +58,7 @@
 
     "errorTitle": "Oops. Ocurrió algo inesperado",
     "errorHtml": "<p>Ocurrió el siguiente problema (identificador __errorId__): </p><p>__error__</p><p>En caso de que creas que debes contactar con nosotros, puedes hacerlo enviándonos un email a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingImages": "Error en cabina de voto. Imágenes no cargadas.",
     "errorLoadingElection": "Error cargando la votación. Esto puede ocurrir por múltiples motivos: puede que este enlace sea incorrecto, puede que lo hayas introducido o se haya generado mal. Para ello comprueba a generarlo de nuevo. Finalmente, puede ocurrir que el servidor no esté disponible temporalmente. Si se trata de este caso, prueba de nuevo más tarde y si el problema persiste ponte en contacto con nosotros.",
     "errorLoadingElectionPubKeys": "Error cargando las claves públicas de la votación. Esto puede ocurrir por múltiples motivos: puede que este enlace sea incorrecto, puede que lo hayas introducido o se haya generado mal. Para ello comprueba a generarlo de nuevo. Finalmente, puede ocurrir que el servidor no esté disponible temporalmente. Si se trata de este caso, prueba de nuevo más tarde y si el problema persiste ponte en contacto con nosotros.",
     "errorSendingBallot": "Error enviando el voto, por lo que no ha podido ser registrado correctamente. Por favor, inténtalo de nuevo en otro navegador web diferente y más actualizado, y si el problema persiste ponte en contacto con nosotros. Disculpa las molestias.",
@@ -188,6 +189,16 @@
       "header": "Voto en blanco",
       "body": "No has seleccionado ninguna opción en alguna pregunta, lo que equivale a votar en blanco.",
       "confirm": "Sí, quiero votar en blanco cuando no seleciono ninguna opción"
+    },
+
+    "busy": {
+      "title": "Tu voto será...",
+      "encryptedTitle": "cifrado",
+      "encryptedDescription": "para que nadie pueda saber qué opciones escogiste",
+      "castTitle": "emitido",
+      "castDescription": "usando un canal seguro y verificando tu identidad",
+      "anonymizedTitle": "anonimizado",
+      "anonymizedDescription": "para que el recuento no revele el sentido de tu voto"
     }
   },
   "avElection": {
