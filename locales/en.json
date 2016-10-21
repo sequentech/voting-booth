@@ -31,6 +31,17 @@
         "title": "Legal terms",
         "contact": "contact"
     },
+    "confirmAuditBallot": {
+      "header": "Do you want to Audit the ballot?",
+      "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/><strong>If you just want to cast your ballot, click <u>Cancel</u> to go back to the review ballot screen.</strong>",
+      "confirm": "Yes, I want to DISCARD my ballot to audit it"
+    },
+    "showSelectedOptionPoints": "(__points__ points)",
+    "warnBallotParity": {
+      "header": "Papeleta no paritaria",
+      "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
+      "continue": "Revisar mi papeleta"
+    },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election",
     "loadingElectionTitle": "Loading election, please wait..",
     "stepNumber": "step __num__ of __total__",

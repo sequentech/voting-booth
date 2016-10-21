@@ -38,7 +38,11 @@
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
       class="animate-repeat selected-answer">
-      {{answer.text}}
+        <span ng-bind-html="answer.text"></span>
+        <span
+          ng-if="showPoints(question)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
+        </span>
     </li>
     <li
       class="empty-answer"
@@ -50,7 +54,11 @@
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
       class="animate-repeat selected-answer">
-      {{answer.text}}
+        <span ng-bind-html="answer.text"></span>
+        <span
+          ng-if="showPoints(question)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
+        </span>
     </li>
     <li
       class="empty-answer"

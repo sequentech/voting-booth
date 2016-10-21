@@ -31,6 +31,17 @@
         "title": "Términos legales",
         "contact": "contacto"
     },
+    "confirmAuditBallot": {
+      "header": "¿Realmente quieres auditar tu papeleta?",
+      "body": "La auditoría de la papeleta lo invalidará y tendrás que iniciar el proceso de votación de nuevo si deseas emitir tu voto. El proceso de auditoría de la papeleta permite verificar que está codificada correctamente. Hacer este proceso requiere que unos conocimientos técnicos importantes, por lo que no se recomienda si no sabes lo que estás haciendo. <br/> <br/><strong>Si lo que desea es emitir su voto, en <u>Cancelar</u> para volver a la pantalla de revisión de votación.</strong>",
+      "confirm": "Sí, quiero INVALIDAR mi papeleta para AUDITARLA"
+    },
+    "showSelectedOptionPoints": "(__points__ puntos)",
+    "warnBallotParity": {
+      "header": "Papeleta no paritaria",
+      "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
+      "continue": "Revisar mi papeleta"
+    },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Esto es una votación de PRUEBA",
     "loadingElectionTitle": "Cargando votación, un momento por favor..",
     "stepNumber": "paso __num__ de __total__",

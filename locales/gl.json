@@ -20,7 +20,7 @@
   "avCommon": {
     "cancel": "Cancel",
     "poweredBy": "Funciona amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
-    "shareLink": "¡Twittea aquesta votació!",
+    "shareLink": "Comparte en Twitter que xa votaches nas primarias de En Marea",
     "votingSystem": "Voting System",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
@@ -28,6 +28,17 @@
     "legal": {
         "title": "Términos legales",
         "contact": "contacto"
+    },
+    "confirmAuditBallot": {
+      "header": "¿Realmente quieres auditar tu papeleta?",
+      "body": "La auditoría de la papeleta lo invalidará y tendrás que iniciar el proceso de votación de nuevo si deseas emitir tu voto. El proceso de auditoría de la papeleta permite verificar que está codificada correctamente. Hacer este proceso requiere que unos conocimientos técnicos importantes, por lo que no se recomienda si no sabes lo que estás haciendo. <br/> <br/><strong>Si lo que desea es emitir su voto, en <u>Cancelar</u> para volver a la pantalla de revisión de votación.</strong>",
+      "confirm": "Sí, quiero INVALIDAR mi papeleta para AUDITARLA"
+    },
+    "showSelectedOptionPoints": "(__points__ puntos)",
+    "warnBallotParity": {
+      "header": "Papeleta non paritaria",
+      "body": "Non podes continuar porque o teu voto non é paritario nin en cremalleira. Por favor, comproba que a túa selección alterne xéneros de xeito que despois dunha muller apareza un home e así sucesivamente.",
+      "continue": "Revisar a miña papeleta"
     },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election",
     "loadingElectionTitle": "Cargando votación, un momento por favor..",

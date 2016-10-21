@@ -14,6 +14,7 @@
           </img>
         </span>
         <span 
+          class="powered-by"
           ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
           ng-if="!election.logo_url"
         >
@@ -36,7 +37,7 @@
         </span>
       </div>
       <div
-        class="text-center hidden-xs"
+        class="text-center hidden-xs powered-by"
         ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
         ng-if="election.logo_url"
       >
@@ -85,21 +86,6 @@
       <p ng-i18next>
         [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator", url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
       </p>
-<!--      <p ng-i18next>avBooth.relatedLinksText</p>
-      <ul>
-        <li>
-          <a href="#/election/{{election.id}}/public/view/faqs.html" target="_blank" ng-i18next>avElection.public.faqsLink</a>
-        </li>
-        <li>
-          <a href="#/election/{{election.id}}/public/authorities" target="_blank" ng-i18next>avElection.public.authoritiesLink</a>
-        </li>
-        <li>
-          <a href="#/election/{{election.id}}/public/view/overview.html" target="_blank" ng-i18next>avElection.public.overviewLink</a>
-        </li>
-        <li>
-          <a href="/election/{{election.id}}/public/view/tech_overview.pdf" target="_blank" ng-i18next>avElection.public.technicalOverviewLink</a>
-        </li>-->
-      </ul>
       <div class="text-center" ng-if="!!election.presentation.share_text">
         <span 
           ng-if="!!buttonsInfo"
@@ -120,6 +106,8 @@
       </div>
 
       <div ng-bind-html="successText">
+      </div>
+      <div documentation-directive ng-if="showDocOnVoteCast">
       </div>
     </div>
   </div>

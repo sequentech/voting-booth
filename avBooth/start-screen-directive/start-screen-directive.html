@@ -14,6 +14,7 @@
           </img>
         </span>
         <span 
+          class="powered-by"
           ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
           ng-if="!election.logo_url"
         >
@@ -39,7 +40,9 @@
         class="text-center hidden-xs"
         ng-if="election.logo_url"
       >
-        <span ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
+        <span
+          class="powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
         </span>
       </div>
     </div>
