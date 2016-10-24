@@ -28,28 +28,12 @@ angular.module('avBooth')
       {
         var text = $interpolate(ConfigService.success.text);
         scope.organization = ConfigService.organization;
-        if (scope.election.id === 147140)
-        {
-          scope.election.presentation.tweetLinks =
-          [
-            {
-              share_text: "Eusko Legebiltzarrerako hauuteskundeetarako konfluentziei buruzko botaketan parte hartu dut! #PodemosEuskadiDecide",
-              link_text: 'Bozketa hau txiokatu'
-            },
-            {
-              share_text: "¡He participado en la votación para decidir sobre las confluencias en las elecciones al Parlamento Vasco 2016! #PodemosEuskadiDecide",
-              link_text: 'Twittea esta votación'
-            }
-          ];
-        } else
-        {
-          scope.election.presentation.tweetLinks = [
-            {
-              share_text: scope.election.presentation.share_text,
-              link_text: $i18next("avCommon.shareLink")
-            }
-          ];
-        }
+        scope.election.presentation.tweetLinks = [
+          {
+            share_text: "Acabo de votar qué @PodemosCMadrid quiero. Tú también puedes hacerlo en https://participa.podemos.info #AsambleaCiudadanaCM",
+            link_text: $i18next("avCommon.shareLink")
+          }
+        ];
 
         scope.tweetLinkGenerator = function (share_text)
         {
