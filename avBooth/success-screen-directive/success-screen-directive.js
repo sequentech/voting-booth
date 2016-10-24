@@ -19,7 +19,10 @@
  * Error indicator directive.
  */
 angular.module('avBooth')
-  .directive('avbSuccessScreen', function(ConfigService, $interpolate) {
+  .directive(
+    'avbSuccessScreen',
+    function(ConfigService, $interpolate)
+    {
 
     function link(scope, element, attrs) {
       var text = $interpolate(ConfigService.success.text);
@@ -63,9 +66,10 @@ angular.module('avBooth')
       scope.successText = text({electionId: scope.election.id});
     }
 
-    return {
-      restrict: 'AE',
-      link: link,
-      templateUrl: 'avBooth/success-screen-directive/success-screen-directive.html'
-    };
-  });
+      return {
+        restrict: 'AE',
+        link: link,
+        templateUrl: 'avBooth/success-screen-directive/success-screen-directive.html'
+      };
+    }
+  );
