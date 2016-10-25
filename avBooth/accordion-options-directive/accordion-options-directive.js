@@ -48,27 +48,21 @@ angular.module('avBooth')
       });
 
       // apply shuffling policy
-      if (angular.isDefined(scope.question.extra_options) &&
-        angular.isDefined(scope.question.extra_options.shuffling_policy))
-      {
-        if("shuffle-categories-only" === scope.question.extra_options.shuffling_policy)
-        {
+      if (angular.isDefined(scope.question.extra_options)) {
+        if(true === scope.question.extra_options.shuffle_categories) {
           scope.categories = _.shuffle(scope.categories);
         }
-        else if ("shuffle-all-options" === scope.question.extra_options.shuffling_policy)
-        {
+
+        if (true === scope.question.extra_options.shuffle_all_options) {
           scope.categories = _.each( scope.categories, function(category) {
-            category.options = _.shuffle(category.options)
+            category.options = _.shuffle(category.options);
           });
-        }
-        else if ("shuffle-options-on-some-categories" === scope.question.extra_options.shuffling_policy &&
-                 angular.isArray(scope.question.extra_options.shuffle_category_list)
-        )
-        {
+        } else if (false === scope.question.extra_options.shuffle_all_options &&
+                 angular.isArray(scope.question.extra_options.shuffle_category_list) &&
+                 scope.question.extra_options.shuffle_category_list.length > 0) {
           scope.categories = _.each( scope.categories, function(category) {
-            if (-1 != scope.question.extra_options.shuffle_category_list.indexOf(category.title))
-            {
-              category.options = _.shuffle(category.options)
+            if (-1 != scope.question.extra_options.shuffle_category_list.indexOf(category.title)) {
+              category.options = _.shuffle(category.options);
             }
           });
         }
