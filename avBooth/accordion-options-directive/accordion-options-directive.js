@@ -49,10 +49,29 @@ angular.module('avBooth')
 
       // apply shuffling policy
       if (angular.isDefined(scope.question.extra_options) &&
-        angular.isDefined(scope.question.extra_options.shuffling_policy) &&
-        scope.question.extra_options.shuffling_policy === "shuffle-categories-only")
+        angular.isDefined(scope.question.extra_options.shuffling_policy))
       {
-        scope.categories = _.shuffle(scope.categories);
+        if("shuffle-categories-only" === scope.question.extra_options.shuffling_policy)
+        {
+          scope.categories = _.shuffle(scope.categories);
+        }
+        else if ("shuffle-all-options" === scope.question.extra_options.shuffling_policy)
+        {
+          scope.categories = _.each( scope.categories, function(category) {
+            category.options = _.shuffle(category.options)
+          });
+        }
+        else if ("shuffle-options-on-some-categories" === scope.question.extra_options.shuffling_policy &&
+                 angular.isArray(scope.question.extra_options.shuffle_category_list)
+        )
+        {
+          scope.categories = _.each( scope.categories, function(category) {
+            if (-1 != scope.question.extra_options.shuffle_category_list.indexOf(category.title))
+            {
+              category.options = _.shuffle(category.options)
+            }
+          });
+        }
       }
 
       scope.nonEmptyCategories = _.filter(scope.categories, function (cat) {
