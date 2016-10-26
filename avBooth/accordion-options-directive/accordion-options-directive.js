@@ -61,7 +61,7 @@ angular.module('avBooth')
                  angular.isArray(scope.question.extra_options.shuffle_category_list) &&
                  scope.question.extra_options.shuffle_category_list.length > 0) {
           scope.categories = _.each( scope.categories, function(category) {
-            if (-1 != scope.question.extra_options.shuffle_category_list.indexOf(category.title)) {
+            if (-1 !== scope.question.extra_options.shuffle_category_list.indexOf(category.title)) {
               category.options = _.shuffle(category.options);
             }
           });
