@@ -71,12 +71,12 @@ angular.module('avBooth')
         scope.showSelectedPos = true;
       }
 
-      scope.showPoints = {
-        "plurality-at-large": true,
-        "borda": true,
-        "borda-nauru": true,
-        "pairwise-beta": false
-      }[scope.question.tally_type];
+      scope.showPoints = false;
+
+      if (angular.isDefined(scope.question.extra_options) && 
+          !!scope.question.extra_options.show_points) {
+        scope.showPoints = true;
+      }
 
       /**
        * @returns number of points this ballot is giving to this option
