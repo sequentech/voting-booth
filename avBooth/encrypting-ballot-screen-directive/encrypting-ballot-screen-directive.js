@@ -83,9 +83,10 @@ angular.module('avBooth')
       return 0 === (scope.fakeStepIndex % 2);
     };
 
+    scope.stepImg = new Image();
     scope.isImgOneTop = scope.checkIsImgOneTop();
     var busyImageObj = {
-       'booth/img/loading.gif': new Image(),
+       'booth/img/loading.gif': scope.stepImg,
        'booth/img/options.png': new Image(),
        'booth/img/cast.png': new Image(),
        'booth/img/encrypted.png': new Image(),

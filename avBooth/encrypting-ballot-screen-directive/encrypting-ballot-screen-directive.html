@@ -1,4 +1,4 @@
-<nav 
+<nav
   class="navbar encrypting-ballot-screen navbar-default navbar-fixed-top"
   av-affix-top=".navbar-unfixed-top"
   role="navigation"
@@ -87,12 +87,10 @@
             ng-if="'waiting' === step.state"
           >
           </i>
-          <img
-            class="step-img"
-            src="booth/img/loading.gif"
+          <span avb-step-img
             ng-if="'working' === step.state"
           >
-          </img>
+          </span>
           <i 
             class="fa fa-check"
             ng-if="'finished' === step.state"
