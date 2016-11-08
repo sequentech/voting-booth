@@ -95,9 +95,12 @@ angular.module('avBooth')
     var busyImageKeys = Object.keys(busyImageObj);
 
     function getBusyImg(isTop) {
-      if(0 === scope.fakeStepIndex || isTop ) {
+      if ( isTop ) {
         return scope.stepList[scope.fakeStepIndex].centralImgSrc;
       } else {
+        if (0 === scope.fakeStepIndex) {
+          return scope.stepList[1].centralImgSrc;
+        }
         return scope.stepList[scope.fakeStepIndex - 1].centralImgSrc;
       }
     }
@@ -111,7 +114,6 @@ angular.module('avBooth')
         }
         if (backCount <= 0) {
           scope.imagesPreloaded = true;
-          scope.$apply();
           updateDomImages();
         }
     }
