@@ -8,7 +8,6 @@
     "bower_components"
   ],
   "dependencies": {
-    "avCommon": "https://github.com/agoravoting/agora-gui-common.git#next",
-    "angular-easy-image-preloader": "https://github.com/Findeton/angular-easy-image-preloader.git#master"
+    "avCommon": "https://github.com/agoravoting/agora-gui-common.git#next"
   }
 }

@@ -40,8 +40,7 @@ angular.module(
   'angularLoad',
   'angular-date-picker-polyfill',
   'ng-autofocus',
-  'agora-gui-common',
-  'image-preloader'
+  'agora-gui-common'
 ]);
 
 angular.module('jm.i18next').config(function ($i18nextProvider, ConfigServiceProvider) {

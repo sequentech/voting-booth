@@ -26,6 +26,6 @@ angular.module('avBooth')
     return {
       restrict: 'AE',
       link: link,
-      templateUrl: 'avBooth/encrypting-ballot-screen-directive/step-img-directive.html'
+      template: ''
     };
   });
