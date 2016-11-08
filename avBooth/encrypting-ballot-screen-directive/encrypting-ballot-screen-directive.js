@@ -100,7 +100,7 @@ angular.module('avBooth')
       } else {
         return scope.stepList[scope.fakeStepIndex - 1].centralImgSrc;
       }
-    };
+    }
 
     scope.imagesPreloaded = false;
     var imagesArray = [];
@@ -110,9 +110,9 @@ angular.module('avBooth')
           backCount = backCount - 1;
         }
         if (backCount <= 0) {
-          updateDomImages();
           scope.imagesPreloaded = true;
           scope.$apply();
+          updateDomImages();
         }
     }
 
@@ -129,25 +129,32 @@ angular.module('avBooth')
 
     function updateDomImages() {
       var oneDiv = document.getElementById('div-id-one');
-      var oneSrc = getBusyImg(!scope.isImgOneTop);
-      if (oneDiv.firstChild) {
-        if (busyImageObj[oneSrc] !== oneDiv.firstChild) {
-          removeAllChilds(oneDiv);
+      var twoDiv = document.getElementById('div-id-two');
+      if(oneDiv && twoDiv) {
+        var oneSrc = getBusyImg(!scope.isImgOneTop);
+        busyImageObj[oneSrc].style.opacity = (scope.isImgOneTop? 0 : 1);
+        if (oneDiv.firstChild) {
+          if (busyImageObj[oneSrc] !== oneDiv.firstChild) {
+            removeAllChilds(oneDiv);
+            oneDiv.appendChild(busyImageObj[oneSrc]);
+          }
+        } else {
           oneDiv.appendChild(busyImageObj[oneSrc]);
         }
-      } else {
-        oneDiv.appendChild(busyImageObj[oneSrc]);
-      }
+        oneDiv.firstChild.style.opacity = (scope.isImgOneTop? 0 : 1);
 
-      var twoDiv = document.getElementById('div-id-two');
-      var twoSrc = getBusyImg(scope.isImgOneTop);
-      if (twoDiv.firstChild) {
-        if (busyImageObj[twoSrc] !== twoDiv.firstChild) {
-          removeAllChilds(twoDiv);
+        var twoSrc = getBusyImg(scope.isImgOneTop);
+        if (twoDiv.firstChild) {
+          if (busyImageObj[twoSrc] !== twoDiv.firstChild) {
+            removeAllChilds(twoDiv);
+            twoDiv.appendChild(busyImageObj[twoSrc]);
+          }
+        } else {
           twoDiv.appendChild(busyImageObj[twoSrc]);
         }
+        twoDiv.firstChild.style.opacity = (scope.isImgOneTop? 1 : 0);
       } else {
-        twoDiv.appendChild(busyImageObj[twoSrc]);
+        $timeout(updateDomImages, 20);
       }
     }
 
