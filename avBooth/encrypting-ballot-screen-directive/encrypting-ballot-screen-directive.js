@@ -84,7 +84,7 @@ angular.module('avBooth')
     };
 
     scope.isImgOneTop = scope.checkIsImgOneTop();
-    scope.busyImageObj = {
+    var busyImageObj = {
        'booth/img/loading.gif': new Image(),
        'booth/img/options.png': new Image(),
        'booth/img/cast.png': new Image(),
@@ -92,9 +92,9 @@ angular.module('avBooth')
        'booth/img/anonymized1.png': new Image(),
        'booth/img/anonymized2.png': new Image()
     };
-    var busyImageKeys = Object.keys(scope.busyImageObj);
+    var busyImageKeys = Object.keys(busyImageObj);
 
-    scope.getBusyImg = function(isTop) {
+    function getBusyImg(isTop) {
       if(0 === scope.fakeStepIndex || isTop ) {
         return scope.stepList[scope.fakeStepIndex].centralImgSrc;
       } else {
