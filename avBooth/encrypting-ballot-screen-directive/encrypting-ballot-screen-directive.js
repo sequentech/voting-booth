@@ -164,17 +164,21 @@ angular.module('avBooth')
     function fakeStateUpdate() {
       scope.stepList[scope.fakeStepIndex].state = busyStateEnum[2];
 
-      if(scope.fakeStepIndex + 1 < scope.stepList.length) {
+      if (scope.fakeStepIndex + 1 < scope.stepList.length) {
         scope.fakeStepIndex = scope.fakeStepIndex + 1;
         scope.isImgOneTop = scope.checkIsImgOneTop();
         scope.stepList[scope.fakeStepIndex].state = busyStateEnum[1];
         updateDomImages();
         scope.$apply();
-        $timeout(fakeStateUpdate, updateTimespan);
+        if (scope.fakeStepIndex + 1 < scope.stepList.length || !finishedRealEncryption) {
+          $timeout(fakeStateUpdate, updateTimespan);
+        } else {
+          $timeout(fakeStateUpdate, updateTimespan/5);
+        }
       } else {
         updateDomImages();
         scope.$apply();
-        if(finishedRealEncryption) {
+        if (!!finishedRealEncryption) {
           scope.next();
         } else {
           finishedFakeEncryption = true;
@@ -231,7 +235,7 @@ angular.module('avBooth')
       }
 
       $timeout(encryptBallot, delay);
-      $timeout(fakeStateUpdate, updateTimespan);
+      $timeout(fakeStateUpdate, updateTimespan/5);
     }
 
     return {
