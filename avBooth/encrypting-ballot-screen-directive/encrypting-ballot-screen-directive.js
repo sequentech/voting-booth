@@ -28,8 +28,7 @@ angular.module('avBooth')
        EncryptBallotService,
        $timeout,
        $window,
-       ConfigService,
-       preloader
+       ConfigService
   ) {
   function link(scope, element, attrs) {
 
@@ -84,57 +83,108 @@ angular.module('avBooth')
       return 0 === (scope.fakeStepIndex % 2);
     };
 
+    scope.stepImg = new Image();
     scope.isImgOneTop = scope.checkIsImgOneTop();
+    var busyImageObj = {
+       'booth/img/loading.gif': scope.stepImg,
+       'booth/img/options.png': new Image(),
+       'booth/img/cast.png': new Image(),
+       'booth/img/encrypted.png': new Image(),
+       'booth/img/anonymized1.png': new Image(),
+       'booth/img/anonymized2.png': new Image()
+    };
+    var busyImageKeys = Object.keys(busyImageObj);
 
-    scope.getBusyImg = function(isTop) {
-      if(0 === scope.fakeStepIndex || isTop ) {
+    function getBusyImg(isTop) {
+      if ( isTop ) {
         return scope.stepList[scope.fakeStepIndex].centralImgSrc;
       } else {
+        if (0 === scope.fakeStepIndex) {
+          return scope.stepList[1].centralImgSrc;
+        }
         return scope.stepList[scope.fakeStepIndex - 1].centralImgSrc;
       }
-    };
-
-    var busyImageSrc = [
-       'booth/img/loading.gif',
-       'booth/img/options.png',
-       'booth/img/cast.png',
-       'booth/img/encrypted.png',
-       'booth/img/anonymized1.png',
-       'booth/img/anonymized2.png'
-    ];
+    }
 
     scope.imagesPreloaded = false;
+    var imagesArray = [];
+    var backCount = busyImageKeys.length; // when this is 0, set imagesPreloaded to true
+    function checkCount() {
+        if(backCount > 0) {
+          backCount = backCount - 1;
+        }
+        if (backCount <= 0) {
+          scope.imagesPreloaded = true;
+          updateDomImages();
+        }
+    }
+
+    for(var i = 0; i < busyImageKeys.length; i++) {
+      busyImageObj[busyImageKeys[i]].onload = checkCount();
+      busyImageObj[busyImageKeys[i]].src = busyImageKeys[i];
+    }
+
+    function removeAllChilds(elem) {
+      while (elem.firstChild) {
+        elem.removeChild(elem.firstChild);
+      }
+    }
+
+    function updateDomImages() {
+      var oneDiv = document.getElementById('div-id-one');
+      var twoDiv = document.getElementById('div-id-two');
+      if(oneDiv && twoDiv) {
+        var oneSrc = getBusyImg(!scope.isImgOneTop);
+        busyImageObj[oneSrc].style.opacity = (scope.isImgOneTop? 0 : 1);
+        if (oneDiv.firstChild) {
+          if (busyImageObj[oneSrc] !== oneDiv.firstChild) {
+            removeAllChilds(oneDiv);
+            oneDiv.appendChild(busyImageObj[oneSrc]);
+          }
+        } else {
+          oneDiv.appendChild(busyImageObj[oneSrc]);
+        }
+        oneDiv.firstChild.style.opacity = (scope.isImgOneTop? 0 : 1);
+
+        var twoSrc = getBusyImg(scope.isImgOneTop);
+        if (twoDiv.firstChild) {
+          if (busyImageObj[twoSrc] !== twoDiv.firstChild) {
+            removeAllChilds(twoDiv);
+            twoDiv.appendChild(busyImageObj[twoSrc]);
+          }
+        } else {
+          twoDiv.appendChild(busyImageObj[twoSrc]);
+        }
+        twoDiv.firstChild.style.opacity = (scope.isImgOneTop? 1 : 0);
+      } else {
+        $timeout(updateDomImages, 20);
+      }
+    }
 
     function fakeStateUpdate() {
       scope.stepList[scope.fakeStepIndex].state = busyStateEnum[2];
 
-      if(scope.fakeStepIndex + 1 < scope.stepList.length) {
+      if (scope.fakeStepIndex + 1 < scope.stepList.length) {
         scope.fakeStepIndex = scope.fakeStepIndex + 1;
         scope.isImgOneTop = scope.checkIsImgOneTop();
         scope.stepList[scope.fakeStepIndex].state = busyStateEnum[1];
+        updateDomImages();
         scope.$apply();
-        $timeout(fakeStateUpdate, updateTimespan);
+        if (scope.fakeStepIndex + 1 < scope.stepList.length || !finishedRealEncryption) {
+          $timeout(fakeStateUpdate, updateTimespan);
+        } else {
+          $timeout(fakeStateUpdate, updateTimespan/5);
+        }
       } else {
+        updateDomImages();
         scope.$apply();
-        if(finishedRealEncryption) {
+        if (!!finishedRealEncryption) {
           scope.next();
         } else {
           finishedFakeEncryption = true;
         }
       }
     }
-
-    preloader.preloadImages( busyImageSrc )
-    .then(
-      function() {
-        // Loading was successful
-        scope.imagesPreloaded = true;
-      },
-      function() {
-        // Loading failed on at least one image
-        scope.showError(
-          $i18next("avBooth.errorLoadingImages",{}));
-      });
 
       // function that receives updates from the cast ballot service and shows
       // them to the user
@@ -185,7 +235,7 @@ angular.module('avBooth')
       }
 
       $timeout(encryptBallot, delay);
-      $timeout(fakeStateUpdate, updateTimespan);
+      $timeout(fakeStateUpdate, updateTimespan/5);
     }
 
     return {

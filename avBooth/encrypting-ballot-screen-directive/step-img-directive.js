@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-booth.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2016  Agora Voting SL <agora@agoravoting.com>
 
  * agora-gui-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,35 +15,17 @@
  * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-[avb-available-options] {
-  > .col-xs-12 {
-    padding: 0;
-    margin-bottom: 55px;
-  }
+angular.module('avBooth')
+  .directive(
+     'avbStepImg',
+     function() {
+    function link(scope, element, attrs) {
+      element.append(scope.stepImg);
+    }
 
-  .animate-repeat {
-    line-height: 40px;
-    list-style: none;
-    box-sizing: border-box;
-  }
-
-  .animate-repeat.ng-move,
-  .animate-repeat.ng-enter,
-  .animate-repeat.ng-leave {
-    transition:all linear 0.5s;
-  }
-
-  .animate-repeat.ng-leave.ng-leave-active,
-  .animate-repeat.ng-move,
-  .animate-repeat.ng-enter {
-    opacity:0;
-    max-height:0;
-  }
-
-  .animate-repeat.ng-leave,
-  .animate-repeat.ng-move.ng-move-active,
-  .animate-repeat.ng-enter.ng-enter-active {
-    opacity:1;
-    max-height:40px;
-  }
-}
+    return {
+      restrict: 'AE',
+      link: link,
+      template: ''
+    };
+  });

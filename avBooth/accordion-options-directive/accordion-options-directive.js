@@ -48,11 +48,24 @@ angular.module('avBooth')
       });
 
       // apply shuffling policy
-      if (angular.isDefined(scope.question.extra_options) &&
-        angular.isDefined(scope.question.extra_options.shuffling_policy) &&
-        scope.question.extra_options.shuffling_policy === "shuffle-categories-only")
-      {
-        scope.categories = _.shuffle(scope.categories);
+      if (angular.isDefined(scope.question.extra_options)) {
+        if(!!scope.question.extra_options.shuffle_categories) {
+          scope.categories = _.shuffle(scope.categories);
+        }
+
+        if (!!scope.question.extra_options.shuffle_all_options) {
+          scope.categories = _.each( scope.categories, function(category) {
+            category.options = _.shuffle(category.options);
+          });
+        } else if (!scope.question.extra_options.shuffle_all_options &&
+                    angular.isArray(scope.question.extra_options.shuffle_category_list) &&
+                    scope.question.extra_options.shuffle_category_list.length > 0) {
+          scope.categories = _.each( scope.categories, function(category) {
+            if (-1 !== scope.question.extra_options.shuffle_category_list.indexOf(category.title)) {
+              category.options = _.shuffle(category.options);
+            }
+          });
+        }
       }
 
       scope.nonEmptyCategories = _.filter(scope.categories, function (cat) {

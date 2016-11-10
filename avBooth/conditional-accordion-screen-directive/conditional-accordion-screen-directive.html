@@ -139,8 +139,15 @@
         <span
           class="text-brand-primary"
           id="maxSelectedLimitReached"
-          ng-i18next="[i18next]({max: stateData.question.max})avBooth.maxSelectedLimitReached"
           ng-if="numSelectedOptions() === stateData.question.max">
+            <div
+              ng-i18next="avBooth.maxSelectedLimitReached_singular"
+              ng-if="stateData.question.max === 1">
+            </div>
+            <div
+              ng-i18next="[i18next]({max: stateData.question.max})avBooth.maxSelectedLimitReached"
+              ng-if="stateData.question.max > 1">
+            </div>
         </span>
         <span
           ng-i18next="[i18next]({count: numSelectedOptions()})avBooth.numOptionsSelected"

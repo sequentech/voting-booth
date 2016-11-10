@@ -1,4 +1,4 @@
-<nav 
+<nav
   class="navbar encrypting-ballot-screen navbar-default navbar-fixed-top"
   av-affix-top=".navbar-unfixed-top"
   role="navigation"
@@ -9,7 +9,7 @@
         <span ng-if="election.logo_url">
           <img 
             class="logo-img" 
-            src="{{election.logo_url}}"
+            ng-src="{{election.logo_url}}"
           >
           </img>
         </span>
@@ -58,23 +58,11 @@
 
 <div class="busy-gui container" ng-if="imagesPreloaded">
   <div class="col-sm-offset-2 col-sm-6 margin-tb-15 hidden-xs">
-    <div class="busy-img-central text-center">
-        <img
-          class="busy-img-one"
-          ng-src="{{ getBusyImg(!isImgOneTop) }}"
-          ng-style="{
-                      opacity: (isImgOneTop? 0 : 1)
-                    }"
-        >
-        </img>
-        <img
-          class="busy-img-two"
-          ng-src="{{ getBusyImg(isImgOneTop) }}"
-          ng-style="{
-                      opacity: (isImgOneTop? 1 : 0)
-                    }"
-        >
-        </img>
+    <div class="busy-img-central text-center" id="img-central">
+        <div id="div-id-one">
+        </div>
+        <div id="div-id-two">
+        </div>
     </div>
   </div>
   <div class="busy-text">
@@ -99,12 +87,10 @@
             ng-if="'waiting' === step.state"
           >
           </i>
-          <img
-            class="step-img"
-            src="booth/img/loading.gif"
+          <span avb-step-img
             ng-if="'working' === step.state"
           >
-          </img>
+          </span>
           <i 
             class="fa fa-check"
             ng-if="'finished' === step.state"
