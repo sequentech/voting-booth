@@ -27,12 +27,8 @@ angular.module('avBooth')
     {
       scope.showPoints = function (question)
       {
-        return {
-          "plurality-at-large": true,
-          "borda": true,
-          "borda-nauru": true,
-          "pairwise-beta": false
-        }[question.tally_type];
+        return angular.isDefined(question.extra_options) && 
+          !!question.extra_options.show_points;
       };
 
       /**
