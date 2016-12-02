@@ -1,9 +1,46 @@
-<nav class="navbar navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
+<nav 
+  class="navbar navbar-default navbar-fixed-top"
+  av-affix-top=".navbar-unfixed-top"
+  role="navigation"
+>
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="pull-right">
-        <span class="dropdown left-padding" av-change-lang>
+      <div class="pull-left">
+        <span ng-if="election.logo_url">
+          <img 
+            class="logo-img" 
+            ng-src="{{election.logo_url}}"
+          >
+          </img>
         </span>
+        <span 
+          class="powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+          ng-if="!election.logo_url"
+        >
+        </span>
+      </div>
+      <div class="pull-right">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          ng-click="launchHelp()">
+        </span>
+        <span
+          ng-click="launchHelp()"
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          av-change-lang
+        >
+        </span>
+      </div>
+      <div
+        class="text-center hidden-xs powered-by"
+        ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+        ng-if="election.logo_url"
+      >
       </div>
     </div>
   </div>
@@ -49,30 +86,28 @@
       <p ng-i18next>
         [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator", url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
       </p>
-<!--      <p ng-i18next>avBooth.relatedLinksText</p>
-      <ul>
-        <li>
-          <a href="#/election/{{election.id}}/public/view/faqs.html" target="_blank" ng-i18next>avElection.public.faqsLink</a>
-        </li>
-        <li>
-          <a href="#/election/{{election.id}}/public/authorities" target="_blank" ng-i18next>avElection.public.authoritiesLink</a>
-        </li>
-        <li>
-          <a href="#/election/{{election.id}}/public/view/overview.html" target="_blank" ng-i18next>avElection.public.overviewLink</a>
-        </li>
-        <li>
-          <a href="/election/{{election.id}}/public/view/tech_overview.pdf" target="_blank" ng-i18next>avElection.public.technicalOverviewLink</a>
-        </li>-->
-      </ul>
-      <h2 class="text-center" ng-if="!!election.presentation.share_text">
-        <a
-          ng-i18next
-          href="{{tweetLink}}"
-          target="_blank">
-          avCommon.shareLink
-        </a>
-      </h2>
+      <div class="text-center" ng-if="!!election.presentation.share_text">
+        <span 
+          ng-if="!!buttonsInfo"
+          ng-repeat="q in buttonsInfo"
+        >
+          <a
+            href="{{ q.link }}"
+            target="_blank"
+            class="{{ q.class }}"
+          >
+            <img
+              class="logo-img"
+              ng-src="{{ q.img }}"
+            />
+            {{ q.button_text|truncate:25 }}
+          </a>
+        </span>
+      </div>
+
       <div ng-bind-html="successText">
+      </div>
+      <div documentation-directive ng-if="showDocOnVoteCast">
       </div>
     </div>
   </div>

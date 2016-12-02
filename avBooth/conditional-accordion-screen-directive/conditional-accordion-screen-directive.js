@@ -21,7 +21,7 @@
  * Shows a question and its possible answers to the user.
  */
 angular.module('avBooth')
-  .directive('avbConditionalAccordionScreen', function() {
+  .directive('avbConditionalAccordionScreen', function(ConfigService) {
 
     var link = function(scope, element, attrs) {
       scope.stateData.affixIsSet = false;
@@ -29,6 +29,7 @@ angular.module('avBooth')
       scope.hideSelection = false;
       scope.stateData.question.layout = "conditional";
       scope.conditionalState = "no-selection";
+      scope.organization = ConfigService.organization;
 
       scope.toggleConditionalState = function (val) {
         if (scope.conditionalState === val) {

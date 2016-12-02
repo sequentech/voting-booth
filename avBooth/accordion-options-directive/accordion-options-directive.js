@@ -28,7 +28,8 @@ angular.module('avBooth')
       // group by category
       var categories = _.groupBy(scope.options, "category");
       scope.folding_policy = undefined;
-      if (angular.isDefined(scope.question.extra_options)) {
+      if (angular.isDefined(scope.question.extra_options))
+      {
         scope.folding_policy = scope.question.extra_options.accordion_folding_policy;
       }
 
@@ -45,6 +46,27 @@ angular.module('avBooth')
           isOpen: (scope.folding_policy === "unfold-all")
         };
       });
+
+      // apply shuffling policy
+      if (angular.isDefined(scope.question.extra_options)) {
+        if(!!scope.question.extra_options.shuffle_categories) {
+          scope.categories = _.shuffle(scope.categories);
+        }
+
+        if (!!scope.question.extra_options.shuffle_all_options) {
+          scope.categories = _.each( scope.categories, function(category) {
+            category.options = _.shuffle(category.options);
+          });
+        } else if (!scope.question.extra_options.shuffle_all_options &&
+                    angular.isArray(scope.question.extra_options.shuffle_category_list) &&
+                    scope.question.extra_options.shuffle_category_list.length > 0) {
+          scope.categories = _.each( scope.categories, function(category) {
+            if (-1 !== scope.question.extra_options.shuffle_category_list.indexOf(category.title)) {
+              category.options = _.shuffle(category.options);
+            }
+          });
+        }
+      }
 
       scope.nonEmptyCategories = _.filter(scope.categories, function (cat) {
         return !!cat.title && cat.title.length > 0;

@@ -2,19 +2,31 @@
 <nav class="navbar navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="pull-left"
-        ng-i18next="[i18next]({num: '1', total:'3', qnum: stateData.questionNum+1, qtotal: election.questions.length})avBooth.stepAndQuestionNumber">
+      <div class="pull-left">
+        <span ng-if="election.logo_url">
+          <img 
+            class="logo-img" 
+            ng-src="{{election.logo_url}}"
+          >
+          </img>
+        </span>
+        <span ng-i18next="[i18next]({num: '1', total:'3', qnum: stateData.questionNum+1, qtotal: election.questions.length})avBooth.stepAndQuestionNumber">
+        </span>
       </div>
       <div class="pull-right">
         <span
-          class="glyphicon glyphicon-question-sign"
+          class="glyphicon glyphicon-question-sign hidden-xs"
           ng-click="launchHelp()">
         </span>
-        <span ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
+        <span class="hidden-xs" ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
         <span class="dropdown left-padding" av-change-lang>
       </div>
+      <div
+        class="text-center hidden-xs  powered-by"
+        ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+      >
+      </div>
     </div>
-
   </div>
 </nav>
 
@@ -107,6 +119,7 @@
           layout="stateData.question.layout"
           max="stateData.question.max"
           min="stateData.question.min"
+          tally_type="stateData.question.tally_type"
           sorted="stateData.sorted"
           ordered="stateData.ordered"
           options="stateData.question.answers">
@@ -126,8 +139,15 @@
         <span
           class="text-brand-primary"
           id="maxSelectedLimitReached"
-          ng-i18next="[i18next]({max: stateData.question.max})avBooth.maxSelectedLimitReached"
           ng-if="numSelectedOptions() === stateData.question.max">
+            <div
+              ng-i18next="avBooth.maxSelectedLimitReached_singular"
+              ng-if="stateData.question.max === 1">
+            </div>
+            <div
+              ng-i18next="[i18next]({max: stateData.question.max})avBooth.maxSelectedLimitReached"
+              ng-if="stateData.question.max > 1">
+            </div>
         </span>
         <span
           ng-i18next="[i18next]({count: numSelectedOptions()})avBooth.numOptionsSelected"

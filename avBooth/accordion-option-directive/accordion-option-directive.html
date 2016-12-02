@@ -37,7 +37,13 @@
           <span ng-if="ordered && showSelectedPos && option.selected > -1">
             {{option.selected + 1}}.
           </span>
-          <span>{{option.text}}</span>
+          <span>
+            <span ng-bind-html="option.text"></span>
+            <span
+              ng-if="showPoints && option.selected > -1"
+              ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
+            </span>
+          </span>
         </strong>
         <p class="details" ng-if="option.details && option.details.length > 1" ng-bind-html="option.details">
         </p>
@@ -47,8 +53,14 @@
 
   <!-- remove action -->
   <div class="show-remove">
-    <span ng-i18next="avBooth.removeSelectedItem"></span>
-    <span class="glyphicon glyphicon-remove"></span>
+    <div class="vertilize-wrapper">
+      <div class="vertilize">
+        <div class="vertilize-col">
+          <span ng-i18next="avBooth.removeSelectedItem"></span>
+          <span class="glyphicon glyphicon-remove"></span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -61,5 +73,7 @@
   ng-i18next="[alt]avBooth.openOptionLink"
   target="_blank">
   <span class="glyphicon glyphicon-link">
+  </span>
+  <span class="view-link-text" ng-i18next="avBooth.dropdownOptionView">
   </span>
 </a>

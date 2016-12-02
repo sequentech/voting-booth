@@ -21,7 +21,7 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbReviewScreen', function(ConfigService) {
+  .directive('avbReviewScreen', function(ConfigService, $modal) {
 
     var link = function(scope, element, attrs) {
       scope.organization = ConfigService.organization;
@@ -29,6 +29,15 @@ angular.module('avBooth')
       _.each(scope.election.questions, function (q) {
         q.isPairWise = _.contains(['pairwise-beta'], q.tally_type);
       });
+
+      scope.confirmAudit = function()
+      {
+        $modal.open({
+          templateUrl: "avBooth/confirm-audit-controller/confirm-audit-controller.html",
+          controller: "ConfirmAuditController",
+          size: 'md'
+        }).result.then(scope.audit);
+      };
 
       scope.audit = function() {
         scope.stateData.auditClicked = true;

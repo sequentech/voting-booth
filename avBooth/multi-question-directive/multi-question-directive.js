@@ -21,12 +21,13 @@
  * Shows a question and its possible answers to the user.
  */
 angular.module('avBooth')
-  .directive('avbMultiQuestion', function($modal) {
+  .directive('avbMultiQuestion', function($modal, ConfigService) {
 
     var link = function(scope, element, attrs) {
       scope.stateData.affixIsSet = false;
       scope.stateData.affixDropDownShown = false;
       scope.hideSelection = false;
+      scope.organization = ConfigService.organization;
 
       scope.getUrl = function(option, title) {
         return _.filter(option.urls, function (url) {
@@ -40,6 +41,16 @@ angular.module('avBooth')
           return null;
         }
         return url.url.replace("https://agoravoting.com/api/tag/", "");
+      };
+
+
+      scope.getGender = function(option)
+      {
+        var url = scope.getUrl(option, "Gender");
+        if (!url) {
+          return null;
+        }
+        return url.url.replace("https://agoravoting.com/api/gender/", "");
       };
 
       // set options' tag
@@ -169,19 +180,29 @@ angular.module('avBooth')
       if (_.contains(['circles'], question.layout)) {
         scope.hideSelection = true;
       }
-      if (question.randomize_answer_order) {
-          // we can't just sample the groupedOptions list because we need to
-          // 1. use the same list object
-          // 2. generate a specific ordering for all the options
-          var i = -1;
-          var answers = question.answers;
-          var shuffledNumbers = _.shuffle(_.map(answers, function () { i += 1; return i;}));
-          // map different sort orders
-          var shuffledAnswers = _.map(shuffledNumbers, function (index) { return answers[index].sort_order;});
-          // now, assign
-          _.each(answers, function (opt, index) { opt.sort_order = shuffledAnswers[index];});
-          answers.sort(function (item1, item2) { return item1.sort_order - item2.sort_order; });
-          scope.stateData.question.answers = answers;
+
+      // check if there is a default list of options that need to be selected
+      if (!question.selectedDefaultSet &&
+        question.extra_options &&
+        question.extra_options.default_selected_option_ids &&
+        angular.isArray(question.extra_options.default_selected_option_ids) &&
+        question.extra_options.default_selected_option_ids.length > 0)
+      {
+        _.each(
+          question.answers,
+          function (answer)
+          {
+            if (_.contains(
+              question.extra_options.default_selected_option_ids,
+              answer.id))
+            {
+              answer.selected = answer.id;
+            } else {
+              answer.selected = -1;
+            }
+          }
+        );
+        question.selectedDefaultSet = true;
       }
 
       scope.selectPresets = function () {
@@ -237,10 +258,12 @@ angular.module('avBooth')
         }
       };
 
-      // questionNext calls to scope.next() if user selected enough options.
-      // If not, then it flashes the #selectMoreOptsWarning div so that user
-      // notices.
-      scope.questionNext = function() {
+      /**
+       * Checks that the number of options is consistent with the min/max
+       * restrictions specified for the question.
+       */
+      function checkNumOptions(pipe)
+      {
         if (scope.numSelectedOptions() < scope.stateData.question.min)
         {
           if (scope.numSelectedOptions() > 0 ||
@@ -252,16 +275,143 @@ angular.module('avBooth')
           }
         }
 
+        pipe.continue();
+      }
+
+      /**
+       * Checks if there is sex parity
+       */
+      function hasZipBallotParity()
+      {
+        // sorted selection
+        var selection = _.sortBy(
+          _.filter(
+            scope.stateData.question.answers,
+            function (element)
+            {
+              return element.selected > -1;
+            }
+          ),
+          function(element)
+          {
+            return element.selected;
+          }
+        );
+
+        // find if parity is correct
+        var result = _.reduce(
+          selection,
+
+          // Reducer function. If previous calls found a parity mismatch, then
+          // memo.success will be false, and we will directy return it.
+          // Otherwise we first find this element gender (H for Male, M for
+          // Female), set in the memo that we will return, then check if it is
+          // consistent with previous element and if not, change memo.success to
+          // false and return.
+          function (memo, element)
+          {
+            if (!memo.success)
+            {
+              return memo;
+            }
+
+            var prevGender = memo.gender;
+            memo.gender = scope.getGender(element);
+            if (memo.gender === prevGender)
+            {
+              memo.success = false;
+            }
+
+            return memo;
+          },
+          {
+            gender: null,
+            success: true
+          }
+        );
+        return result.success;
+      }
+
+      /**
+       * If parity needs to be applied in the question in the ballot, it is
+       * checked here. Will only continue if the check is successful.
+       */
+      function checkBallotParity(pipe)
+      {
+        if (isExtraDefined('ballot_parity_criteria') &&
+          scope.stateData.question.extra_options.ballot_parity_criteria === 'zip' &&
+          !hasZipBallotParity())
+        {
+          $modal.open({
+            templateUrl: "avBooth/warn-ballot-parity-controller/warn-ballot-parity-controller.html",
+            controller: "WarnBallotParityController",
+            size: 'md'
+          });
+          return;
+        }
+        pipe.continue();
+      }
+
+      /**
+       * Check if the ballot is null, and show a warning if so. Will continue
+       * if the user accepts willingly.
+       */
+      function checkNullVote(pipe)
+      {
         // show null vote warning
-        if (scope.numSelectedOptions() === 0) {
+        if (scope.numSelectedOptions() === 0)
+        {
           $modal.open({
             templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
             controller: "ConfirmNullVoteController",
             size: 'md'
-          }).result.then(scope.next);
-        } else {
-          scope.next();
+          }).result.then(pipe.continue);
+          return;
         }
+        pipe.continue();
+      }
+
+      /**
+       * Executes a pipeline. A pipeline is a list of functions that receive
+       * as the first argument the pipe and an extra data (optional) as a second
+       * argument. To continue running the pipeline, each pipe needs to
+       * explicitly execute pipe.continue(), which will execute the next pipe.
+       */
+      function runPipeline(pipeline, i, extra)
+      {
+        if (i === undefined)
+        {
+          i = 0;
+        }
+
+        if (i >= pipeline.length)
+        {
+          return;
+        }
+
+        var el = pipeline[i];
+        var data = {
+          "continue": function()
+          {
+            runPipeline(pipeline, i + 1, extra);
+          }
+        };
+        el(data, extra);
+      }
+
+      // questionNext calls to scope.next() if user selected enough options.
+      // If not, then it flashes the #selectMoreOptsWarning div so that user
+      // notices.
+      scope.questionNext = function()
+      {
+        var pipes = [
+          checkNumOptions,
+       // checkBallotParity, // ballot parity check not allowed by default
+          checkNullVote,
+          scope.next
+        ];
+
+        runPipeline(pipes);
       };
     };
 

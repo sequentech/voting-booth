@@ -15,22 +15,14 @@
  * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-[avb-start-screen] {
-  .tos-text {
-    padding-bottom: 10px;
-  }
+angular.module('avBooth')
+  .controller('ConfirmAuditController',
+    function($scope, $modalInstance) {
+      $scope.ok = function () {
+        $modalInstance.close();
+      };
 
-  .description {
-    padding-bottom: 15px;
-  }
-
-  .unfixed-top-height {
-    max-height: 240px;
-  }
-
-  .logo-img {
-    max-height: 30px;
-    max-width: 130px;
-    width: auto;
-  }
-}
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    });

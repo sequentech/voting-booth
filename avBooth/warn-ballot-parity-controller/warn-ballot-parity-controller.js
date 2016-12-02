@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-booth.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2016  Agora Voting SL <agora@agoravoting.com>
 
  * agora-gui-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,22 +15,14 @@
  * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-[avb-start-screen] {
-  .tos-text {
-    padding-bottom: 10px;
-  }
-
-  .description {
-    padding-bottom: 15px;
-  }
-
-  .unfixed-top-height {
-    max-height: 240px;
-  }
-
-  .logo-img {
-    max-height: 30px;
-    max-width: 130px;
-    width: auto;
-  }
-}
+angular.module('avBooth')
+  .controller(
+    'WarnBallotParityController',
+    function($scope, $modalInstance)
+    {
+      $scope.ok = function ()
+      {
+        $modalInstance.close();
+      };
+    }
+  );

@@ -71,6 +71,44 @@ angular.module('avBooth')
         scope.showSelectedPos = true;
       }
 
+      scope.showPoints = false;
+
+      if (angular.isDefined(scope.question.extra_options) && 
+          !!scope.question.extra_options.show_points) {
+        scope.showPoints = true;
+      }
+
+      /**
+       * @returns number of points this ballot is giving to this option
+       */
+      scope.getPoints = function ()
+      {
+        if (!scope.showPoints) {
+          return 0;
+        }
+        if (scope.option.selected < 0) {
+          return 0;
+        }
+        return {
+          "plurality-at-large": function ()
+          {
+            return 1;
+          },
+          "borda": function()
+          {
+            return scope.question.max - scope.option.selected;
+          },
+          "borda-nauru": function()
+          {
+            return "1/" + (1 + scope.option.selected);
+          },
+          "pairwise-beta": function()
+          {
+            return;
+          }
+        }[scope.question.tally_type]();
+      };
+
       scope.isPreset = (scope.showSelectedPos && scope.presetSelectedSize > 0 && scope.option.selected - scope.presetSelectedSize < 0);
     };
 

@@ -1,19 +1,51 @@
-<nav class="navbar start-screen navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
+<nav 
+  class="navbar start-screen navbar-default navbar-fixed-top"
+  av-affix-top=".navbar-unfixed-top"
+  role="navigation"
+>
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="pull-left" ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
+      <div class="pull-left">
+        <span ng-if="election.logo_url">
+          <img 
+            class="logo-img" 
+            ng-src="{{election.logo_url}}"
+          >
+          </img>
+        </span>
+        <span 
+          class="powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+          ng-if="!election.logo_url"
+        >
+        </span>
       </div>
       <div class="pull-right">
         <span
           class="glyphicon glyphicon-question-sign"
           ng-click="launchHelp()">
         </span>
-        <span ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
-        <span class="dropdown left-padding" av-change-lang>
+        <span 
+          ng-click="launchHelp()" 
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          av-change-lang
+        >
+        </span>
+      </div>
+      <div
+        class="text-center hidden-xs"
+        ng-if="election.logo_url"
+      >
+        <span
+          class="powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
         </span>
       </div>
     </div>
-
   </div>
 </nav>
 
@@ -25,6 +57,10 @@
       <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
     </div>
   </div>
+</div>
+
+<div id="avb-toggle" class="text-center item-block hidden">
+  <span class="glyphicon glyphicon-play"></span>
 </div>
 
 <div class="container-fluid warning-demo" ng-if="!election.real">
@@ -45,10 +81,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<div id="avb-toggle" class="text-center item-block hidden">
-  <span class="glyphicon glyphicon-play"></span>
 </div>
 
 <div class="content avb-content start-screen">

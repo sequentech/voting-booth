@@ -118,8 +118,9 @@ angular.module('avCrypto')
             question.extra_options.force_allow_blank_vote === "TRUE");
 
           if (answers.length > question.max ||
-            (answers.length < question.min &&
-              (!forceAllowBlankVote || answers.length > 0))
+            ((answers.length < question.min) &&
+              (!forceAllowBlankVote || answers.length > 0) &&
+              (!question.disabled))
           ) {
             throw "error in the number of selected answers";
           }

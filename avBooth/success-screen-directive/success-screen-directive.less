@@ -15,7 +15,44 @@
  * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-[avb-success-screen] .padded > p > strong.localizador {
-  word-break: break-all;
-  display: block;
+[avb-success-screen] {
+
+  .padded > p > strong.localizador {
+    word-break: break-all;
+    display: block;
+  }
+
+  .logo-img {
+      max-height: 30px;
+      max-width: 130px;
+      width: auto;
+  }
+
+  .social-net-img {
+      max-height: 48px;
+      max-width: 150px;
+      width: auto;
+  }
+
+  .btn-primary {
+    border-color: transparent;
+    margin-right: 5px;
+  }
+
+  .btn-twitter {
+    background-color: #1da1f2;
+
+    &:hover {
+      background-color: darken(#1da1f2, 20%);
+    }
+  }
+
+  .btn-facebook {
+    background-color: #3b579d;
+
+    &:hover {
+      background-color: darken(#3b579d, 20%);
+    }
+  }
+
 }
