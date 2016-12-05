@@ -157,7 +157,7 @@
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de proba, os votos emitidos aquí non contan.",
-    "successBallotHash": "¡Parabén! Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. O localizador do teu voto é:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podes usar o teu localizador para <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que o teu voto quedou rexistrado</a>. Mentres que a votación estea en curso, podes votar de novo, sobreescribiendo e invalidando calquera voto que emitises anteriormente nesta votación.",
+    "successBallotHash": "¡Parabén! Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. O localizador do teu voto é:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podes usar o teu localizador para <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que o teu voto quedou rexistrado</a>.",
     "relatedLinksText": "Para máis información sobre a votación:",
 
     "circleOptionExternalLink": "Ver detalles",
