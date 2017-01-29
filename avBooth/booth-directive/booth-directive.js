@@ -123,7 +123,12 @@ angular.module('avBooth')
             state: stateEnum.pairwiseBeta,
             sorted: true,
             ordered: true
-          }
+          },
+          "desborda": {
+            state: stateEnum.multiQuestion,
+            sorted: true,
+            ordered: true
+          },
         };
         return map[question.tally_type];
       };

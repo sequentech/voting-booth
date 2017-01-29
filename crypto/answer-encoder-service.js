@@ -50,7 +50,7 @@ angular.module('avCrypto')
 
     return function (requestedCodec, numAvailableOptions) {
       var multi = {
-        validCodecs: ["plurality-at-large", "borda-nauru", "borda"],
+        validCodecs: ["plurality-at-large", "borda-nauru", "borda", "desborda"],
         numAvailableOptions: numAvailableOptions,
 
         /**

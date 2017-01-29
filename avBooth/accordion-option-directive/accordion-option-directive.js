@@ -105,6 +105,10 @@ angular.module('avBooth')
           "pairwise-beta": function()
           {
             return;
+          },
+          "desborda": function()
+          {
+            return 80 - scope.option.selected;
           }
         }[scope.question.tally_type]();
       };
