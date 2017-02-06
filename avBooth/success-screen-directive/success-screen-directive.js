@@ -44,7 +44,9 @@ angular.module('avBooth')
           var message = p.social_message;
           message = message.replace(
             '__URL__',
-            window.location.protocol + '//' + window.location.host + '/election/' + scope.election.id + '/public/login'
+            // TODO: HACK: FIXME: this was changed because podemos requested it in the last available drill:
+            // window.location.protocol + '//' + window.location.host + '/election/' + scope.election.id + '/public/login'
+            'https://participa.podemos.info'
           );
 
           if('Facebook' === p.network) {
