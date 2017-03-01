@@ -24,6 +24,67 @@ angular.module('avBooth')
   .directive('avbSelectedOptions', function() {
 
     var link = function(scope, element, attrs) {
+      scope.touchEventsList = [];
+      scope.divElement = angular.element(element)[0];
+
+      function searchElem(elem, touch) {
+        var optionsDomList = elem.getElementsByClassName("animate-repeat");
+        for (var i = 0; i < optionsDomList.length; i++) {
+          var rect = optionsDomList[i].getClientRects()[0];
+          if (rect.left <= touch.clientX &&
+              rect.right >=  touch.clientX &&
+              rect.top <=  touch.clientY &&
+              rect.bottom >=  touch.clientY) {
+             return i;
+          }
+        }
+        return -1;
+      }
+
+      element.on("touchstart", function (jEvent) {
+          var e = jEvent.originalEvent;
+          if (1 !== e.changedTouches.length) {
+            return;
+          }
+          var touch = e.changedTouches[0];
+          if (!scope.touchEventsList[touch.identifier]) {
+            console.log("adding " + touch.identifier);
+            var i = searchElem(scope.divElement, touch);
+            console.log("start id " + i); 
+            scope.touchEventsList[touch.identifier] = touch;
+          }
+          return true;
+        });
+
+      element.on("touchcancel", function (jEvent) {
+          var e = jEvent.originalEvent;
+          if (1 !== e.changedTouches.length) {
+            return;
+          }
+          var touch = e.changedTouches[0];
+          if (scope.touchEventsList[touch.identifier]) {
+            console.log("cancelling " + touch.identifier);
+            var i = searchElem(scope.divElement, touch);
+            console.log("cancel id " + i); 
+            delete scope.touchEventsList[touch.identifier];
+          }
+          return true;
+        });
+
+      element.on("touchend", function (jEvent) {
+          var e = jEvent.originalEvent;
+          if (1 !== e.changedTouches.length) {
+            return;
+          }
+          var touch = e.changedTouches[0];
+          if (scope.touchEventsList[touch.identifier]) {
+            console.log("ending " + touch.identifier);
+            var i = searchElem(scope.divElement, touch);
+            console.log("end id " + i); 
+            delete scope.touchEventsList[touch.identifier];
+          }
+          return true;
+        });
 
         if (!angular.isDefined(scope.presetSelectedSize)) {
           scope.presetSelectedSize = 0;
