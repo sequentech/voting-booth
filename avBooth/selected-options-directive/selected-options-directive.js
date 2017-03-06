@@ -49,13 +49,18 @@ angular.module('avBooth')
           }
           var touch = e.changedTouches[0];
           if (!scope.touchEventsList[touch.identifier]) {
-            console.log("adding " + touch.identifier);
+            console.log("adding identifier " + touch.identifier);
             var i = searchElem(scope.divElement, touch);
             console.log("start id " + i);
             if (-1 !== i) {
               touch.itemId = i;
               touch.timeStamp = timeStamp;
-              touch.timeOut = setTimeout(function(){ console.log("move timeout " + i); }, 1000);
+              touch.timeOut = setTimeout(function(){ 
+                if ('waiting' === touch.state) {
+                  touch.state = 'dragndrop';
+                }
+              }, 1000);
+              touch.state = 'waiting';
               scope.touchEventsList[touch.identifier] = touch;
             }
           }
@@ -65,25 +70,35 @@ angular.module('avBooth')
       element.on("touchmove", function (jEvent) {
           var timeStamp = Date.now();
           var e = jEvent.originalEvent;
+          var retval = true;
           if (1 !== e.changedTouches.length) {
             return;
           }
           var touch = e.changedTouches[0];
-          if (scope.touchEventsList[touch.identifier]) {
-            console.log("processing move " + touch.identifier);
-            var i = searchElem(scope.divElement, touch);
-            console.log("move id " + i);
-            if (-1 !== i) {
-              var touchEvent = scope.touchEventsList[touch.identifier];
-              // if pressed for more than a sec
-              if (touchEvent.timeOut) {
+          if (!!scope.touchEventsList[touch.identifier]) {
+            console.log("processing move identifier " + touch.identifier);
+
+            var touchEvent = scope.touchEventsList[touch.identifier];
+            if ( 'waiting' === touchEvent.state ) {
+              touch.state = 'scrolling';
+              if (!!touchEvent.timeOut) {
                 clearTimeout(touchEvent.timeOut);
                 delete touchEvent.timeOut;
-                console.log("timeout cancelled for id " + i);
+                console.log("timeout cancelled for identifier " + touch.identifier);
               }
             }
+            else if ( 'dragndrop' === touchEvent.state ) {
+              e.preventDefault();
+              retval = false;
+              var i = searchElem(scope.divElement, touch);
+              console.log("move id " + i);
+              if (-1 !== i) {
+                var touchEvent = scope.touchEventsList[touch.identifier];
+              }
+            }
+
           }
-          return true;
+          return retval;
         });
 
       element.on("touchcancel", function (jEvent) {
@@ -92,38 +107,38 @@ angular.module('avBooth')
             return;
           }
           var touch = e.changedTouches[0];
-          if (scope.touchEventsList[touch.identifier]) {
-            console.log("cancelling " + touch.identifier);
-            var i = searchElem(scope.divElement, touch);
-            console.log("cancel id " + i); 
-            if (-1 !== i) {
-              var touchEvent = scope.touchEventsList[touch.identifier];
-              if (touchEvent.timeOut) {
-                clearTimeout(touchEvent.timeOut);
-                delete touchEvent.timeOut;
-                console.log("timeout cancelled for id " + i);
-              }
-              delete scope.touchEventsList[touch.identifier];
+          if (!!scope.touchEventsList[touch.identifier]) {
+            console.log("cancelling identifier " + touch.identifier);
+            var touchEvent = scope.touchEventsList[touch.identifier];
+            if (!!touchEvent.timeOut) {
+              clearTimeout(touchEvent.timeOut);
+              delete touchEvent.timeOut;
+              console.log("timeout cancelled for id " + touch.identifier);
             }
+            delete scope.touchEventsList[touch.identifier];
           }
           return true;
         });
 
       element.on("touchend", function (jEvent) {
+          var retval = true;
           var e = jEvent.originalEvent;
           if (1 !== e.changedTouches.length) {
             return;
           }
           var touch = e.changedTouches[0];
-          if (scope.touchEventsList[touch.identifier]) {
-            console.log("ending " + touch.identifier);
+          if (!!scope.touchEventsList[touch.identifier]) {
+            console.log("ending identifier " + touch.identifier);
+            var touchEvent = scope.touchEventsList[touch.identifier];
             var i = searchElem(scope.divElement, touch);
             console.log("end id " + i);
-            if (-1 !== i) {
-              delete scope.tuchEventsList[touch.identifier];
+            if ( 'dragndrop' === touchEvent.state ) {
+              e.preventDefault();
+              retval = false;
             }
+            delete scope.touchEventsList[touch.identifier];
           }
-          return true;
+          return retval;
         });
 
         if (!angular.isDefined(scope.presetSelectedSize)) {
