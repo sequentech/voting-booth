@@ -42,6 +42,7 @@ angular.module('avBooth')
       }
 
       element.on("touchstart", function (jEvent) {
+          var timeStamp = Date.now();
           var e = jEvent.originalEvent;
           if (1 !== e.changedTouches.length) {
             return;
@@ -50,8 +51,12 @@ angular.module('avBooth')
           if (!scope.touchEventsList[touch.identifier]) {
             console.log("adding " + touch.identifier);
             var i = searchElem(scope.divElement, touch);
-            console.log("start id " + i); 
-            scope.touchEventsList[touch.identifier] = touch;
+            console.log("start id " + i);
+            if (-1 !== i) {
+              touch.itemId = i;
+              touch.timeStamp = timeStamp;
+              scope.touchEventsList[touch.identifier] = touch;
+            }
           }
           return true;
         });
@@ -66,7 +71,9 @@ angular.module('avBooth')
             console.log("cancelling " + touch.identifier);
             var i = searchElem(scope.divElement, touch);
             console.log("cancel id " + i); 
-            delete scope.touchEventsList[touch.identifier];
+            if (-1 !== i) {
+              delete scope.touchEventsList[touch.identifier];
+            }
           }
           return true;
         });
@@ -80,8 +87,10 @@ angular.module('avBooth')
           if (scope.touchEventsList[touch.identifier]) {
             console.log("ending " + touch.identifier);
             var i = searchElem(scope.divElement, touch);
-            console.log("end id " + i); 
-            delete scope.touchEventsList[touch.identifier];
+            console.log("end id " + i);
+            if (-1 !== i) {
+              delete scope.tuchEventsList[touch.identifier];
+            }
           }
           return true;
         });
