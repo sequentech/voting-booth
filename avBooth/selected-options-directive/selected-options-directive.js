@@ -55,6 +55,7 @@ angular.module('avBooth')
             if (-1 !== i) {
               touch.itemId = i;
               touch.timeStamp = timeStamp;
+              touch.timeOut = setTimeout(function(){ console.log("move timeout " + i); }, 1000);
               scope.touchEventsList[touch.identifier] = touch;
             }
           }
@@ -75,8 +76,10 @@ angular.module('avBooth')
             if (-1 !== i) {
               var touchEvent = scope.touchEventsList[touch.identifier];
               // if pressed for more than a sec
-              if (timeStamp - touchEvent.timeStamp >= 1000) {
-                console.log("PRESSED id " + i);
+              if (touchEvent.timeOut) {
+                clearTimeout(touchEvent.timeOut);
+                delete touchEvent.timeOut;
+                console.log("timeout cancelled for id " + i);
               }
             }
           }
@@ -94,6 +97,12 @@ angular.module('avBooth')
             var i = searchElem(scope.divElement, touch);
             console.log("cancel id " + i); 
             if (-1 !== i) {
+              var touchEvent = scope.touchEventsList[touch.identifier];
+              if (touchEvent.timeOut) {
+                clearTimeout(touchEvent.timeOut);
+                delete touchEvent.timeOut;
+                console.log("timeout cancelled for id " + i);
+              }
               delete scope.touchEventsList[touch.identifier];
             }
           }
