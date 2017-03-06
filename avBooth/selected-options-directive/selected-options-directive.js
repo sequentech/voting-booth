@@ -61,6 +61,28 @@ angular.module('avBooth')
           return true;
         });
 
+      element.on("touchmove", function (jEvent) {
+          var timeStamp = Date.now();
+          var e = jEvent.originalEvent;
+          if (1 !== e.changedTouches.length) {
+            return;
+          }
+          var touch = e.changedTouches[0];
+          if (scope.touchEventsList[touch.identifier]) {
+            console.log("processing move " + touch.identifier);
+            var i = searchElem(scope.divElement, touch);
+            console.log("move id " + i);
+            if (-1 !== i) {
+              var touchEvent = scope.touchEventsList[touch.identifier];
+              // if pressed for more than a sec
+              if (timeStamp - touchEvent.timeStamp >= 1000) {
+                console.log("PRESSED id " + i);
+              }
+            }
+          }
+          return true;
+        });
+
       element.on("touchcancel", function (jEvent) {
           var e = jEvent.originalEvent;
           if (1 !== e.changedTouches.length) {
