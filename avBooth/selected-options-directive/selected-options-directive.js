@@ -25,7 +25,8 @@ angular.module('avBooth')
 
     var link = function(scope, element, attrs) {
 
-        scope.isTouchDevice = IsService.touchDevice();
+        var dnd_disable = !attrs.ordered || (scope.options | scope.avbSelectedOptions).length < 2;
+        scope.isTouchDevice = !dnd_disable && IsService.touchDevice();
 
         if (!!scope.isTouchDevice) {
           var dragSrcEl = null;
@@ -52,8 +53,12 @@ angular.module('avBooth')
 
           scope.handleDragEnter = function (e, option) {
             console.log("drag enter, option " + option.selected);
-              if (dragSrcEl) {
+              if (dragSrcEl && dragSrcOption) {
                   e.target.classList.add('over');
+                  [].forEach.call(scope.options, function (op) {
+                      op.over = (option.selected === op.selected);
+                  });
+                  scope.$apply();
               }
           };
 
@@ -81,6 +86,7 @@ angular.module('avBooth')
                 scope.moveOption(dragSrcOption, option.selected);
                 dragSrcEl = null;
                 dragSrcOption = null;
+                scope.$apply();
             }
           };
         }
