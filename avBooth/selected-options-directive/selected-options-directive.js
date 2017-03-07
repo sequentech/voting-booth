@@ -27,6 +27,17 @@ angular.module('avBooth')
 
         scope.isTouchDevice = IsService.touchDevice();
 
+        if (!!scope.isTouchDevice) {
+          var dragSrcEl = null;
+          scope.handleDragStart = function (e) {
+            console.log("drag started");
+            if (e.target.className.indexOf('isdraggable') > -1) {
+              dragSrcEl = e.target;
+              console.log("good");
+            }
+          }
+        }
+
         if (!angular.isDefined(scope.presetSelectedSize)) {
           scope.presetSelectedSize = 0;
         }

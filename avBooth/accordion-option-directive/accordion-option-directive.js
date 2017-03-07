@@ -22,6 +22,28 @@ angular.module('avBooth')
   .directive('avbAccordionOption', function($sce) {
 
     var link = function(scope, element, attrs) {
+
+      if (!!scope.isTouchDevice) {
+        if ( _.isFunction(scope.handleDragStart) ) {
+          element.bind( "dragstart", scope.handleDragStart);
+        }
+        if ( _.isFunction(scope.handleDragEnter) ) {
+          element.bind( "dragenter", scope.handleDragEnter);
+        }
+        if ( _.isFunction(scope.handleDragOver) ) {
+          element.bind( "dragover", scope.handleDragOver);
+        }
+        if ( _.isFunction(scope.handleDragLeave) ) {
+          element.bind( "dragleave", scope.handleDragLeave);
+        }
+        if ( _.isFunction(scope.handleDrop) ) {
+          element.bind( "drop", scope.handleDrop);
+        }
+        if ( _.isFunction(scope.handleDragEnd) ) {
+          element.bind( "dragend", scope.handleDragEnd);
+        }
+      }
+
       scope.urls = _.object(_.map(scope.option.urls, function(url) {
         return [url.title, url.url];
       }));
