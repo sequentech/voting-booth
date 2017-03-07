@@ -21,11 +21,11 @@
  * Lists the selected options for a question, allowing to change selection.
  */
 angular.module('avBooth')
-  .directive('avbSelectedOptions', function() {
+  .directive('avbSelectedOptions', function(IsService) {
 
     var link = function(scope, element, attrs) {
 
-        scope.isTouchDevice = is.touchDevice();
+        scope.isTouchDevice = IsService.touchDevice();
 
         if (!angular.isDefined(scope.presetSelectedSize)) {
           scope.presetSelectedSize = 0;
