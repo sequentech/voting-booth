@@ -25,7 +25,7 @@
     <div class="vertilize-col vert-align-top">
       <img
         parent
-        ng-if="!isYoutube(option) && !!urls['Image URL']"
+        ng-if="!isTouchDevice && !isYoutube(option) && !!urls['Image URL']"
         ng-src="{{urls['Image URL']}}"
         alt="{{option.text}}" />
     </div>
@@ -45,7 +45,7 @@
             </span>
           </span>
         </strong>
-        <p class="details" ng-if="option.details && option.details.length > 1" ng-bind-html="option.details">
+        <p class="details" ng-if="!isTouchDevice &&option.details && option.details.length > 1" ng-bind-html="option.details">
         </p>
       </div>
     </div>

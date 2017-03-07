@@ -29,13 +29,60 @@ angular.module('avBooth')
 
         if (!!scope.isTouchDevice) {
           var dragSrcEl = null;
-          scope.handleDragStart = function (e) {
-            console.log("drag started");
+          var dragSrcOption = null;
+
+          scope.handleDragStart = function (e, option) {
+            console.log("drag started, option selected " + option.selected);
             if (e.target.className.indexOf('isdraggable') > -1) {
               dragSrcEl = e.target;
+              dragSrcOption = option;
+              var dt = e.dataTransfer;
+              dt.effectAllowed = 'move';
+              dt.setData('text', dragSrcEl.innerHTML);
               console.log("good");
             }
-          }
+          };
+
+          scope.handleDragOver = function (e) {
+            console.log("drag over");
+              if (dragSrcEl) {
+                  e.preventDefault();
+              }
+          };
+
+          scope.handleDragEnter = function (e) {
+            console.log("drag enter");
+              if (dragSrcEl) {
+                  e.target.classList.add('over');
+              }
+          };
+
+          scope.handleDragLeave = function (e) {
+            console.log("drag leave");
+              if (dragSrcEl) {
+                  e.target.classList.remove('over');
+              }
+          };
+
+          scope.handleDragEnd = function (e) {
+            console.log("drag end");
+            var dragList = document.querySelectorAll('#touch-selected-options .isdraggable');
+            [].forEach.call(dragList, function (dragEl) {
+                dragEl.classList.remove('over');
+            });
+          };
+
+          scope.handleDrop = function (e, option) {
+            console.log("drag drop, option " + option.selected);
+            if (dragSrcEl) {
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                e.preventDefault();
+                scope.moveOption(dragSrcOption, option.selected);
+                dragSrcEl = null;
+                dragSrcOption = null;
+            }
+          };
         }
 
         if (!angular.isDefined(scope.presetSelectedSize)) {

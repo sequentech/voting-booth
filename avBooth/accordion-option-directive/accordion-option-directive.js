@@ -25,7 +25,9 @@ angular.module('avBooth')
 
       if (!!scope.isTouchDevice) {
         if ( _.isFunction(scope.handleDragStart) ) {
-          element.bind( "dragstart", scope.handleDragStart);
+          element.bind( "dragstart", function (e) {
+            scope.handleDragStart(e, scope.option);
+          });
         }
         if ( _.isFunction(scope.handleDragEnter) ) {
           element.bind( "dragenter", scope.handleDragEnter);
@@ -37,7 +39,9 @@ angular.module('avBooth')
           element.bind( "dragleave", scope.handleDragLeave);
         }
         if ( _.isFunction(scope.handleDrop) ) {
-          element.bind( "drop", scope.handleDrop);
+          element.bind( "drop", function(e) {
+           scope.handleDrop(e, scope.option);
+          });
         }
         if ( _.isFunction(scope.handleDragEnd) ) {
           element.bind( "dragend", scope.handleDragEnd);
