@@ -19,6 +19,8 @@
  * Convenience service that returns access to is-js
  */
 
+angular.module('is-js', []);
+
 angular.module('is-js')
   .service('IsService', function() {
     /* jshint ignore:start */
