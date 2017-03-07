@@ -30,13 +30,19 @@ angular.module('avBooth')
           });
         }
         if ( _.isFunction(scope.handleDragEnter) ) {
-          element.bind( "dragenter", scope.handleDragEnter);
+          element.bind( "dragenter", function (e) {
+            scope.handleDragEnter(e, scope.option);
+          });
         }
         if ( _.isFunction(scope.handleDragOver) ) {
-          element.bind( "dragover", scope.handleDragOver);
+          element.bind( "dragover", function (e) {
+            scope.handleDragOver(e, scope.option);
+          });
         }
         if ( _.isFunction(scope.handleDragLeave) ) {
-          element.bind( "dragleave", scope.handleDragLeave);
+          element.bind( "dragleave", function (e) {
+            scope.handleDragLeave(e, scope.option);
+          });
         }
         if ( _.isFunction(scope.handleDrop) ) {
           element.bind( "drop", function(e) {
@@ -44,7 +50,9 @@ angular.module('avBooth')
           });
         }
         if ( _.isFunction(scope.handleDragEnd) ) {
-          element.bind( "dragend", scope.handleDragEnd);
+          element.bind( "dragend", function (e) {
+            scope.handleDragEnd(e, scope.option);
+          });
         }
       }
 

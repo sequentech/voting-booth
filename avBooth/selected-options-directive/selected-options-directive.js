@@ -32,7 +32,7 @@ angular.module('avBooth')
           var dragSrcOption = null;
 
           scope.handleDragStart = function (e, option) {
-            console.log("drag started, option selected " + option.selected);
+            console.log("drag started, option " + option.selected);
             if (e.target.className.indexOf('isdraggable') > -1) {
               dragSrcEl = e.target;
               dragSrcOption = option;
@@ -43,29 +43,29 @@ angular.module('avBooth')
             }
           };
 
-          scope.handleDragOver = function (e) {
-            console.log("drag over");
+          scope.handleDragOver = function (e, option) {
+            console.log("drag over, option " + option.selected);
               if (dragSrcEl) {
                   e.preventDefault();
               }
           };
 
-          scope.handleDragEnter = function (e) {
-            console.log("drag enter");
+          scope.handleDragEnter = function (e, option) {
+            console.log("drag enter, option " + option.selected);
               if (dragSrcEl) {
                   e.target.classList.add('over');
               }
           };
 
-          scope.handleDragLeave = function (e) {
-            console.log("drag leave");
+          scope.handleDragLeave = function (e, option) {
+            console.log("drag leave, option " + option.selected);
               if (dragSrcEl) {
                   e.target.classList.remove('over');
               }
           };
 
-          scope.handleDragEnd = function (e) {
-            console.log("drag end");
+          scope.handleDragEnd = function (e, option) {
+            console.log("drag end, option " + option.selected);
             var dragList = document.querySelectorAll('#touch-selected-options .isdraggable');
             [].forEach.call(dragList, function (dragEl) {
                 dragEl.classList.remove('over');
