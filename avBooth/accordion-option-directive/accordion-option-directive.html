@@ -6,6 +6,11 @@
     'preset': isPreset}"
   ng-click="!isPreset && toggleSelectItem(option)">
 
+  <div
+    class="over-element"
+    ng-if="!!isTouchDevice && !!option.over">
+  </div>
+
   <span class="label label-default" ng-if="showCategory && !!option.category">
     {{option.category}}
   </span>

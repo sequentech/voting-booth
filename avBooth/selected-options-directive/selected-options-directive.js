@@ -29,62 +29,51 @@ angular.module('avBooth')
         scope.isTouchDevice = !dnd_disable && IsService.touchDevice();
 
         if (!!scope.isTouchDevice) {
-          var dragSrcEl = null;
           var dragSrcOption = null;
 
           scope.handleDragStart = function (e, option) {
             console.log("drag started, option " + option.selected);
             if (e.target.className.indexOf('isdraggable') > -1) {
-              dragSrcEl = e.target;
+              option.isDragSrc = true;
               dragSrcOption = option;
-              var dt = e.dataTransfer;
-              dt.effectAllowed = 'move';
-              dt.setData('text', dragSrcEl.innerHTML);
-              console.log("good");
+              scope.$apply();
             }
           };
 
           scope.handleDragOver = function (e, option) {
             console.log("drag over, option " + option.selected);
-              if (dragSrcEl) {
+              if (dragSrcOption) {
                   e.preventDefault();
               }
           };
 
           scope.handleDragEnter = function (e, option) {
             console.log("drag enter, option " + option.selected);
-              if (dragSrcEl && dragSrcOption) {
-                  e.target.classList.add('over');
-                  [].forEach.call(scope.options, function (op) {
-                      op.over = (option.selected === op.selected);
-                  });
+              if (dragSrcOption) {
+                  option.over = true;
                   scope.$apply();
               }
           };
 
           scope.handleDragLeave = function (e, option) {
             console.log("drag leave, option " + option.selected);
-              if (dragSrcEl) {
-                  e.target.classList.remove('over');
-              }
+            option.over = false;
+            scope.$apply();
           };
 
           scope.handleDragEnd = function (e, option) {
             console.log("drag end, option " + option.selected);
-            var dragList = document.querySelectorAll('#touch-selected-options .isdraggable');
-            [].forEach.call(dragList, function (dragEl) {
-                dragEl.classList.remove('over');
-            });
           };
 
           scope.handleDrop = function (e, option) {
             console.log("drag drop, option " + option.selected);
-            if (dragSrcEl) {
+            if (dragSrcOption) {
                 e.stopPropagation();
                 e.stopImmediatePropagation();
                 e.preventDefault();
                 scope.moveOption(dragSrcOption, option.selected);
-                dragSrcEl = null;
+                dragSrcOption.over = false;
+                dragSrcOption.isDragSrc = false;
                 dragSrcOption = null;
                 scope.$apply();
             }
