@@ -55,37 +55,70 @@
   </div>
 
   <!-- remove action -->
-  <div
-    class="show-remove"
-    ng-if="!selectedOptions">
-    <div class="vertilize-wrapper">
-      <div class="vertilize">
-        <div class="vertilize-col">
-          <span class="visible-lg-inline" ng-i18next="avBooth.removeSelectedItem"></span>
-          <span class="hidden-lg" ng-i18next="avBooth.removeSelectedItemShort"></span>
-          <span class="glyphicon glyphicon-remove"></span>
+  <div class="visible-lg">
+    <div
+      class="show-remove"
+      ng-if="!selectedOptions">
+      <div class="vertilize-wrapper">
+        <div class="vertilize">
+          <div class="vertilize-col ">
+            <span ng-i18next="avBooth.removeSelectedItem"></span>
+            <span class="glyphicon glyphicon-remove"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="show-remove gray-bg"
+      ng-if="!!selectedOptions">
+      <div class="vertilize-wrapper">
+        <div class="vertilize">
+          <div class="vertilize-col">
+            <div class="pull-left margin-left">
+              <span ng-i18next="avBooth.removeSelectedItem"></span>
+              <span class="glyphicon glyphicon-remove"></span>
+            </div>
+          </div>
+          <div class="vertilize-col">
+            <div class="pull-right margin-right">
+              <span class="glyphicon glyphicon-random"></span>
+              <span ng-i18next="avBooth.dragSelectedItem"></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div
-    class="show-remove"
-    ng-if="!!selectedOptions">
-    <div class="vertilize-wrapper">
-      <div class="vertilize">
-        <div class="vertilize-col">
-          <div class="pull-left margin-left">
-            <span class="visible-lg-inline" ng-i18next="avBooth.removeSelectedItem"></span>
-            <span class="hidden-lg" ng-i18next="avBooth.removeSelectedItemShort"></span>
+  <div class="hidden-lg">
+    <div
+      class="show-remove"
+      ng-if="!selectedOptions">
+      <div class="vertilize-wrapper">
+        <div class="vertilize">
+          <div class="vertilize-col ">
+            <span ng-i18next="avBooth.removeSelectedItemShort"></span>
             <span class="glyphicon glyphicon-remove"></span>
           </div>
         </div>
-        <div class="vertilize-col">
-          <div class="pull-right margin-right">
-            <span class="glyphicon glyphicon-random"></span>
-            <span class="visible-lg-inline" ng-i18next="avBooth.dragSelectedItem"></span>
-            <span class="hidden-lg" ng-i18next="avBooth.dragSelectedItemShort"></span>
+      </div>
+    </div>
+    <div
+      class="show-remove gray-bg"
+      ng-if="!!selectedOptions">
+      <div class="vertilize-wrapper">
+        <div class="vertilize">
+          <div class="vertilize-col">
+            <div class="pull-left margin-left">
+              <span ng-i18next="avBooth.removeSelectedItemShort"></span>
+              <span class="glyphicon glyphicon-remove"></span>
+            </div>
+          </div>
+          <div class="vertilize-col">
+            <div class="pull-right margin-right">
+              <span class="glyphicon glyphicon-random"></span>
+              <span ng-i18next="avBooth.dragSelectedItemShort"></span>
+            </div>
           </div>
         </div>
       </div>
