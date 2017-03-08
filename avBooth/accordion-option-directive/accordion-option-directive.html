@@ -11,12 +11,14 @@
     ng-if="!!isTouchDevice && !!option.over">
   </div>
 
-  <span class="label label-default" ng-if="showCategory && !!option.category">
+  <span
+    class="label label-default"
+    ng-if="showCategory && !!option.category && !(!!isTouchDevice && !!option.isDragSrc &&!option.over)">
     {{option.category}}
   </span>
 
   <div
-    ng-if="!!isYoutube(option)"
+    ng-if="!!isYoutube(option) && !(!!isTouchDevice && !!option.isDragSrc &&!option.over)"
     class="videoWrapper">
     <iframe
       width="560"
@@ -26,7 +28,9 @@
       allowfullscreen>
     </iframe>
   </div>
-  <div class="vertilize">
+  <div
+    class="vertilize"
+    ng-if="!(!!isTouchDevice && !!option.isDragSrc &&!option.over)">
     <div class="vertilize-col vert-align-top">
       <img
         parent
@@ -57,7 +61,9 @@
   </div>
 
   <!-- remove action -->
-  <div class="show-remove">
+  <div
+    class="show-remove"
+    ng-if="!(!!isTouchDevice && !!option.isDragSrc &&!option.over)">
     <div class="vertilize-wrapper">
       <div class="vertilize">
         <div class="vertilize-col">
@@ -71,7 +77,7 @@
 
 <!-- show the link if needed -->
 <a
-  ng-if="!!urls.URL"
+  ng-if="!!urls.URL && !(!!isTouchDevice && !!option.isDragSrc &&!option.over)"
   class="btn btn-default btn-right"
   ng-class="{'show-category': showCategory && !!option.category}"
   href="{{urls.URL}}"
