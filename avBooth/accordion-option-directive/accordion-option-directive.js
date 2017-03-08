@@ -23,39 +23,6 @@ angular.module('avBooth')
 
     var link = function(scope, element, attrs) {
 
-      if (!!scope.isTouchDevice) {
-        if ( _.isFunction(scope.handleDragStart) ) {
-          element.bind( "dragstart", function (e) {
-            scope.handleDragStart(e, scope.option);
-          });
-        }
-        if ( _.isFunction(scope.handleDragEnter) ) {
-          element.bind( "dragenter", function (e) {
-            scope.handleDragEnter(e, scope.option);
-          });
-        }
-        if ( _.isFunction(scope.handleDragOver) ) {
-          element.bind( "dragover", function (e) {
-            scope.handleDragOver(e, scope.option);
-          });
-        }
-        if ( _.isFunction(scope.handleDragLeave) ) {
-          element.bind( "dragleave", function (e) {
-            scope.handleDragLeave(e, scope.option);
-          });
-        }
-        if ( _.isFunction(scope.handleDrop) ) {
-          element.bind( "drop", function(e) {
-           scope.handleDrop(e, scope.option);
-          });
-        }
-        if ( _.isFunction(scope.handleDragEnd) ) {
-          element.bind( "dragend", function (e) {
-            scope.handleDragEnd(e, scope.option);
-          });
-        }
-      }
-
       scope.urls = _.object(_.map(scope.option.urls, function(url) {
         return [url.title, url.url];
       }));

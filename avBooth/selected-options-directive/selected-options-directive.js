@@ -28,58 +28,6 @@ angular.module('avBooth')
         var dnd_disable = !attrs.ordered || (scope.options | scope.avbSelectedOptions).length < 2;
         scope.isTouchDevice = !dnd_disable && IsService.touchDevice();
 
-        if (!!scope.isTouchDevice) {
-          var dragSrcOption = null;
-
-          scope.handleDragStart = function (e, option) {
-            console.log("drag started, option " + option.selected);
-            if (e.target.className.indexOf('isdraggable') > -1) {
-              option.isDragSrc = true;
-              dragSrcOption = option;
-              scope.$apply();
-            }
-          };
-
-          scope.handleDragOver = function (e, option) {
-            console.log("drag over, option " + option.selected);
-              if (dragSrcOption) {
-                  e.preventDefault();
-              }
-          };
-
-          scope.handleDragEnter = function (e, option) {
-            console.log("drag enter, option " + option.selected);
-              if (dragSrcOption) {
-                  option.over = true;
-                  scope.$apply();
-              }
-          };
-
-          scope.handleDragLeave = function (e, option) {
-            console.log("drag leave, option " + option.selected);
-            option.over = false;
-            scope.$apply();
-          };
-
-          scope.handleDragEnd = function (e, option) {
-            console.log("drag end, option " + option.selected);
-          };
-
-          scope.handleDrop = function (e, option) {
-            console.log("drag drop, option " + option.selected);
-            if (dragSrcOption) {
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                e.preventDefault();
-                scope.moveOption(dragSrcOption, option.selected);
-                dragSrcOption.over = false;
-                dragSrcOption.isDragSrc = false;
-                dragSrcOption = null;
-                scope.$apply();
-            }
-          };
-        }
-
         if (!angular.isDefined(scope.presetSelectedSize)) {
           scope.presetSelectedSize = 0;
         }
