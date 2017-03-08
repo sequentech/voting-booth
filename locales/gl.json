@@ -93,9 +93,10 @@
     "alreadySelectedPack": "Seleccionaches unha opción vinculada a outros documentos máis. Non é posible seleccionalo de forma illada.",
     "cantSelectPack": "Tentaches seleccionar unha opción vinculada que non se pode seleccionar de forma illada, e xa tes outra seleccionada.",
 
-
     "removeSelectedItem": "click para deseleccionar",
+    "removeSelectedItemShort": "deseleccionar",
     "dragSelectedItem": "arrastrar para mover",
+    "dragSelectedItemShort": "mover",
 
     "helpTitle": "Axuda",
     "helpText": "",

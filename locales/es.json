@@ -97,7 +97,9 @@
     "cantSelectPack": "Intentaste seleccionar una opción vinculada que no se puede seleccionar de forma aislada, y ya tienes otra seleccionada.",
 
     "removeSelectedItem": "click para deseleccionar",
+    "removeSelectedItemShort": "deseleccionar",
     "dragSelectedItem": "arrastrar para mover",
+    "dragSelectedItemShort": "mover",
 
     "helpTitle": "Ayuda",
     "helpText": "",
