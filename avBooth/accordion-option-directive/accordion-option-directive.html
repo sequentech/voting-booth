@@ -6,12 +6,14 @@
     'preset': isPreset}"
   ng-click="!isPreset && toggleSelectItem(option)">
 
-  <span class="label label-default" ng-if="showCategory && !!option.category">
+  <span
+    class="label label-default"
+    ng-if="showCategory && !!option.category">
     {{option.category}}
   </span>
 
   <div
-    ng-if="!!isYoutube(option)"
+    ng-if="!!isYoutube(option) && !isTouchDevice"
     class="videoWrapper">
     <iframe
       width="560"
@@ -21,11 +23,12 @@
       allowfullscreen>
     </iframe>
   </div>
-  <div class="vertilize">
+  <div
+    class="vertilize">
     <div class="vertilize-col vert-align-top">
       <img
         parent
-        ng-if="!isYoutube(option) && !!urls['Image URL']"
+        ng-if="!isTouchDevice && !isYoutube(option) && !!urls['Image URL']"
         ng-src="{{urls['Image URL']}}"
         alt="{{option.text}}" />
     </div>
@@ -45,23 +48,83 @@
             </span>
           </span>
         </strong>
-        <p class="details" ng-if="option.details && option.details.length > 1" ng-bind-html="option.details">
+        <p class="details" ng-if="!isTouchDevice && option.details && option.details.length > 1" ng-bind-html="option.details">
         </p>
       </div>
     </div>
   </div>
 
   <!-- remove action -->
-  <div class="show-remove">
-    <div class="vertilize-wrapper">
-      <div class="vertilize">
-        <div class="vertilize-col">
-          <span ng-i18next="avBooth.removeSelectedItem"></span>
-          <span class="glyphicon glyphicon-remove"></span>
+  <div class="visible-lg">
+    <div
+      class="show-remove"
+      ng-if="!selectedOptions">
+      <div class="vertilize-wrapper">
+        <div class="vertilize">
+          <div class="vertilize-col ">
+            <span ng-i18next="avBooth.removeSelectedItem"></span>
+            <span class="glyphicon glyphicon-remove"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="show-remove gray-bg"
+      ng-if="!!selectedOptions">
+      <div class="vertilize-wrapper">
+        <div class="vertilize">
+          <div class="vertilize-col">
+            <div class="pull-left margin-left">
+              <span ng-i18next="avBooth.removeSelectedItem"></span>
+              <span class="glyphicon glyphicon-remove"></span>
+            </div>
+          </div>
+          <div class="vertilize-col">
+            <div class="pull-right margin-right">
+              <span class="glyphicon glyphicon-random"></span>
+              <span ng-i18next="avBooth.dragSelectedItem"></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="hidden-lg">
+    <div
+      class="show-remove"
+      ng-if="!selectedOptions">
+      <div class="vertilize-wrapper">
+        <div class="vertilize">
+          <div class="vertilize-col ">
+            <span ng-i18next="avBooth.removeSelectedItemShort"></span>
+            <span class="glyphicon glyphicon-remove"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="show-remove gray-bg"
+      ng-if="!!selectedOptions">
+      <div class="vertilize-wrapper">
+        <div class="vertilize">
+          <div class="vertilize-col">
+            <div class="pull-left margin-left">
+              <span ng-i18next="avBooth.removeSelectedItemShort"></span>
+              <span class="glyphicon glyphicon-remove"></span>
+            </div>
+          </div>
+          <div class="vertilize-col">
+            <div class="pull-right margin-right">
+              <span class="glyphicon glyphicon-random"></span>
+              <span ng-i18next="avBooth.dragSelectedItemShort"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- show the link if needed -->

@@ -97,7 +97,10 @@
     "cantSelectPack": "You tried to select option linked that cannot be selected in isolation, and you have already another option selected.",
     "tooManyUserUpdates": "Your ballot could not be cast because you have changed too many times in this election. As a result, your last correctly cast ballot it is the one that will count.",
 
-    "removeSelectedItem": "deselect",
+    "removeSelectedItem": "click to deselect",
+    "removeSelectedItemShort": "deselect",
+    "dragSelectedItem": "drag to move",
+    "dragSelectedItemShort": "move",
 
     "helpTitle": "Help",
     "helpText": "",

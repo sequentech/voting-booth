@@ -87,7 +87,10 @@
     "alreadySelectedPack": "Heu seleccionat una opció vinculada a altres documents. No és possible seleccionar-ho de forma aïllada.",
     "cantSelectPack": "Heu provat de seleccionar una opció vinculada que no es pot seleccionar de forma aïllada, i ja en teniu una altra de seleccionada.",
 
-    "removeSelectedItem": "deseleccioneu",
+    "removeSelectedItem": "click per deseleccioneu",
+    "removeSelectedItemShort": "deseleccioneu",
+    "dragSelectedItem": "arrossegar per moure",
+    "dragSelectedItemShort": "moure",
 
     "helpTitle": "Ajuda",
     "helpText": "",
