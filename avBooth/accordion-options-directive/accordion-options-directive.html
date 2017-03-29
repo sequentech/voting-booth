@@ -16,13 +16,13 @@
         </span>
         <span
           ng-if="enable_select_categories_1click && canSelect(category)"
-          ng-click="toggleCategory(category)">
+          ng-click="toggleCategory(category, $event)">
           <span class="accordion-plancha-label pull-right label label-primary"
-            ng-if="!scope.categoryIsSelected(category)"
+            ng-if="!category.isSelected"
             ng-i18next="avBooth.planchaSelect">
           </span>
           <span class="accordion-plancha-label pull-right label label-primary"
-            ng-if="scope.categoryIsSelected(category)"
+            ng-if="category.isSelected"
             ng-i18next="avBooth.planchaDeselect">
           </span>
         </span>

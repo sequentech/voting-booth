@@ -49,15 +49,15 @@ angular.module('avBooth')
           return scope.question.max >= newSelectedOptions;
       };
 
-      scope.toggleCategory = function (category) {
-        if (scope.categoryIsSelected(category)) {
+      scope.toggleCategory = function (category, $event) {
+        $event.stopPropagation();
+        if (category.isSelected) {
           // deselect
           _.each(category.options, function (el) {
             if (-1 < el.selected || true === element.isSelected) {
               scope.toggleSelectItem(el);
             }
           });
-          category.isOpen = false;
         } else {
           // select
           _.each(category.options, function (el) {
@@ -65,8 +65,8 @@ angular.module('avBooth')
               scope.toggleSelectItem(el);
             }
           });
-          category.isOpen = true;
         }
+        $scope.$apply();
       };
 
       // group by category
@@ -88,8 +88,15 @@ angular.module('avBooth')
           title: title,
           options: answers,
           isOpen: (scope.folding_policy === "unfold-all")
+          isSelected: false
         };
       });
+
+      scope.updateSelectionCategories = function () {
+        _.each(scope.categories, function(category) {
+          category.isSelected = scope.categoryIsSelected(category);
+        });
+      }
 
       // apply shuffling policy
       if (angular.isDefined(scope.question.extra_options)) {
@@ -137,6 +144,8 @@ angular.module('avBooth')
             return element.selected > -1 || element.isSelected === true;
           }).length;
       };
+
+      scope.$watch('nonEmptyCategories', updateSelectionCategories);
     };
 
     return {
