@@ -43,7 +43,7 @@ angular.module('avBooth')
 
       scope.canSelect = function (category) {
           var selectedOptions = scope.numSelectedOptions();
-          var selectedOnThisCat = numSelectedByCategory(category);
+          var selectedOnThisCat = scope.numSelectedByCategory(category);
           var newSelectedOptions = 
             selectedOptions - selectedOnThisCat + category.options.length;
           return scope.question.max >= newSelectedOptions;
@@ -52,18 +52,20 @@ angular.module('avBooth')
       scope.toggleCategory = function (category) {
         if (scope.categoryIsSelected(category)) {
           // deselect
-          .each(category.options, function (el) {
+          _.each(category.options, function (el) {
             if (-1 < el.selected || true === element.isSelected) {
               scope.toggleSelectItem(el);
             }
           });
+          category.isOpen = false;
         } else {
           // select
-          .each(category.options, function (el) {
+          _.each(category.options, function (el) {
             if (-1 === el.selected || false === element.isSelected) {
               scope.toggleSelectItem(el);
             }
           });
+          category.isOpen = true;
         }
       };
 

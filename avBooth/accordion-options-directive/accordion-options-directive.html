@@ -14,10 +14,17 @@
           class="pull-right glyphicon"
           ng-class="{'glyphicon-chevron-down': category.isOpen, 'glyphicon-chevron-right': !category.isOpen}">
         </span>
-        <span class="accordion-plancha-label pull-right label label-primary"
+        <span
           ng-if="enable_select_categories_1click && canSelect(category)"
-          ng-i18next="avBooth.planchaSelect"
           ng-click="toggleCategory(category)">
+          <span class="accordion-plancha-label pull-right label label-primary"
+            ng-if="!scope.categoryIsSelected(category)"
+            ng-i18next="avBooth.planchaSelect">
+          </span>
+          <span class="accordion-plancha-label pull-right label label-primary"
+            ng-if="scope.categoryIsSelected(category)"
+            ng-i18next="avBooth.planchaDeselect">
+          </span>
         </span>
         <span class="accordion-num-label pull-right label label-primary"
           ng-if="(category.options | avbSelectedOptions).length > 0">
