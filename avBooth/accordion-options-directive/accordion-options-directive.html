@@ -18,12 +18,14 @@
           ng-if="enable_select_categories_1click && canSelect(category)"
           ng-click="toggleCategory(category, $event)">
           <span class="accordion-plancha-label pull-right label label-primary"
-            ng-if="!category.isSelected"
-            ng-i18next="avBooth.planchaSelect">
+            ng-if="!category.isSelected">
+            <span class="glyphicon glyphicon-check"></span>
+            <span ng-i18next="avBooth.planchaSelect"></span>
           </span>
           <span class="accordion-plancha-label pull-right label label-primary"
-            ng-if="category.isSelected"
-            ng-i18next="avBooth.planchaDeselect">
+            ng-if="category.isSelected">
+            <span class="glyphicon glyphicon-remove"></span>
+            <span ng-i18next="avBooth.planchaDeselect"></span>
           </span>
         </span>
         <span class="accordion-num-label pull-right label label-primary"

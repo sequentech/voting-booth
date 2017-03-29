@@ -71,11 +71,12 @@
 
     .accordion-plancha-label {
       margin-right: 5px;
-      color: @av-secondary;
+      background-color: @av-primary-contrast;
+      color: @av-primary;
 
       &:hover {
-        background-color: @av-primary-contrast;
-        color: @av-primary;
+        color: @av-secondary;
+        background-color: darken(@av-primary, 10%);
       }
     }
 
