@@ -14,6 +14,11 @@
           class="pull-right glyphicon"
           ng-class="{'glyphicon-chevron-down': category.isOpen, 'glyphicon-chevron-right': !category.isOpen}">
         </span>
+        <span class="accordion-plancha-label pull-right label label-primary"
+          ng-if="enable_select_categories_1click"
+          ng-i18next="avBooth.planchaSelect"
+          ng-click="toggleTeam()">
+        </span>
         <span class="accordion-num-label pull-right label label-primary"
           ng-if="(category.options | avbSelectedOptions).length > 0">
           {{(category.options | avbSelectedOptions).length }}

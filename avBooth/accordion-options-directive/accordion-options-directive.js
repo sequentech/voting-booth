@@ -25,6 +25,15 @@ angular.module('avBooth')
   .directive('avbAccordionOptions', function() {
 
     var link = function(scope, element, attrs) {
+      // enable selecting and deselecting a category with a single click
+      scope.enable_select_categories_1click = false;
+      if (angular.isDefined(scope.question.extra_options)) {
+        scope.enable_select_categories_1click = !!scope.question.extra_options.select_categories_1click;
+      }
+      scope.toggleTeam = function() {
+        console.log("test");
+      }
+      
       // group by category
       var categories = _.groupBy(scope.options, "category");
       scope.folding_policy = undefined;
