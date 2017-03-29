@@ -51,6 +51,7 @@ angular.module('avBooth')
 
       scope.toggleCategory = function (category, $event) {
         $event.stopPropagation();
+        category.isSelected = scope.categoryIsSelected(category);
         if (category.isSelected) {
           // deselect
           _.each(category.options, function (el) {
@@ -66,7 +67,7 @@ angular.module('avBooth')
             }
           });
         }
-        $scope.$apply();
+        category.isSelected = scope.categoryIsSelected(category);
       };
 
       // group by category
@@ -87,7 +88,7 @@ angular.module('avBooth')
         return {
           title: title,
           options: answers,
-          isOpen: (scope.folding_policy === "unfold-all")
+          isOpen: (scope.folding_policy === "unfold-all"),
           isSelected: false
         };
       });
@@ -96,7 +97,7 @@ angular.module('avBooth')
         _.each(scope.categories, function(category) {
           category.isSelected = scope.categoryIsSelected(category);
         });
-      }
+      };
 
       // apply shuffling policy
       if (angular.isDefined(scope.question.extra_options)) {
@@ -144,8 +145,6 @@ angular.module('avBooth')
             return element.selected > -1 || element.isSelected === true;
           }).length;
       };
-
-      scope.$watch('nonEmptyCategories', updateSelectionCategories);
     };
 
     return {

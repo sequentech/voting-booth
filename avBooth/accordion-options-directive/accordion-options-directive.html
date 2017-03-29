@@ -34,6 +34,7 @@
       <div avb-accordion-option
         ng-repeat="option in category.options"
         class="animate-repeat highlight-selected"
+        ng-click="updateSelectionCategories()"
         ng-class="{selected: option.selected > -1}">
       </div>
     </div>
