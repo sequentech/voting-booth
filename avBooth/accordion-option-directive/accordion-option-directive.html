@@ -58,7 +58,7 @@
   <div class="visible-lg">
     <div
       class="show-remove"
-      ng-if="!selectedOptions">
+      ng-if="!selectedOptions || !!dnd_disable">
       <div class="vertilize-wrapper">
         <div class="vertilize">
           <div class="vertilize-col ">
@@ -70,7 +70,7 @@
     </div>
     <div
       class="show-remove gray-bg"
-      ng-if="!!selectedOptions">
+      ng-if="!!selectedOptions && !dnd_disable">
       <div class="vertilize-wrapper">
         <div class="vertilize">
           <div class="vertilize-col">
@@ -93,7 +93,7 @@
   <div class="hidden-lg">
     <div
       class="show-remove"
-      ng-if="!selectedOptions">
+      ng-if="!selectedOptions || !!dnd_disable">
       <div class="vertilize-wrapper">
         <div class="vertilize">
           <div class="vertilize-col ">
@@ -105,7 +105,7 @@
     </div>
     <div
       class="show-remove gray-bg"
-      ng-if="!!selectedOptions">
+      ng-if="!!selectedOptions && !dnd_disable">
       <div class="vertilize-wrapper">
         <div class="vertilize">
           <div class="vertilize-col">
