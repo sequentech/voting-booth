@@ -27,13 +27,46 @@ angular.module('avBooth')
     var link = function(scope, element, attrs) {
       // enable selecting and deselecting a category with a single click
       scope.enable_select_categories_1click = false;
+
       if (angular.isDefined(scope.question.extra_options)) {
         scope.enable_select_categories_1click = !!scope.question.extra_options.select_categories_1click;
       }
-      scope.toggleTeam = function() {
-        console.log("test");
-      }
-      
+
+      scope.numSelectedByCategory = function (category) {
+        return _.filter(
+                 category.options,
+                 function (element) {
+                   return -1 < element.selected || true === element.isSelected;
+                 }
+               ).length;
+      };
+
+      scope.canSelect = function (category) {
+          var selectedOptions = scope.numSelectedOptions();
+          var selectedOnThisCat = numSelectedByCategory(category);
+          var newSelectedOptions = 
+            selectedOptions - selectedOnThisCat + category.options.length;
+          return scope.question.max >= newSelectedOptions;
+      };
+
+      scope.toggleCategory = function (category) {
+        if (scope.categoryIsSelected(category)) {
+          // deselect
+          .each(category.options, function (el) {
+            if (-1 < el.selected || true === element.isSelected) {
+              scope.toggleSelectItem(el);
+            }
+          });
+        } else {
+          // select
+          .each(category.options, function (el) {
+            if (-1 === el.selected || false === element.isSelected) {
+              scope.toggleSelectItem(el);
+            }
+          });
+        }
+      };
+
       // group by category
       var categories = _.groupBy(scope.options, "category");
       scope.folding_policy = undefined;
@@ -93,14 +126,6 @@ angular.module('avBooth')
         return _.filter(category.options, function (el) {
           return el.selected > -1;
         }).length === category.options.length;
-      };
-
-      scope.deselectAll = function(category) {
-        _.each(category.options, function(el) {
-          if (el.selected > -1) {
-            scope.toggleSelectItem2(el);
-          }
-        });
       };
 
       scope.numSelectedOptions = function () {
