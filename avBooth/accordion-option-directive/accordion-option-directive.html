@@ -48,7 +48,8 @@
             </span>
           </span>
         </strong>
-        <p class="details" ng-if="!isTouchDevice && option.details && option.details.length > 1" ng-bind-html="option.details">
+        <p class="details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
+        <p class="details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
         </p>
       </div>
     </div>
