@@ -9,20 +9,20 @@
     <div accordion-group ng-repeat="category in nonEmptyCategories" is-open="category.isOpen"
         ng-class="{'in': category.isOpen}">
       <div accordion-heading>
-        <span class="heading-cat-title">{{category.title}}</span>
         <span
           class="pull-right glyphicon"
           ng-class="{'glyphicon-chevron-down': category.isOpen, 'glyphicon-chevron-right': !category.isOpen}">
         </span>
         <span
           ng-if="enable_select_categories_1click && canSelect(category)"
-          ng-click="toggleCategory(category, $event)">
-          <span class="accordion-plancha-label pull-right label label-primary"
+          ng-click="toggleCategory(category, $event)"
+          class="pull-right">
+          <span class="accordion-plancha-label label label-primary"
             ng-if="!category.isSelected">
             <span class="glyphicon glyphicon-check"></span>
             <span ng-i18next="avBooth.planchaSelect"></span>
           </span>
-          <span class="accordion-plancha-label pull-right label label-primary"
+          <span class="accordion-plancha-label label label-primary"
             ng-if="category.isSelected">
             <span class="glyphicon glyphicon-remove"></span>
             <span ng-i18next="avBooth.planchaDeselect"></span>
@@ -32,6 +32,7 @@
           ng-if="(category.options | avbSelectedOptions).length > 0">
           {{(category.options | avbSelectedOptions).length }}
         </span>
+        <span class="heading-cat-title pull-left col-xs-8" ng-class="{'col-sm-6': !hideSelection}">{{category.title}}</span>
       </div>
       <div avb-accordion-option
         ng-repeat="option in category.options"
