@@ -45,11 +45,11 @@
     "continueButton": "Continueu",
     "stepsToVote": "Seguiu aquests passos quan emeteu el vostre vot:",
     "selectOptionsTitle": "1. Escolliu la vostra resposta",
-    "selectOptionsText": "Respongueu a la pregunta de la votació. Tria un màxim de tres propostes entre la llista de votació.",
+    "selectOptionsText": "Respongueu a les preguntes de la votació.",
     "reviewOptionsTitle": "2. Reviseu el vostre vot",
-    "reviewOptionsText": "Un cop hàgiu escollit la vostra resposta la xifrarem i obtindreu un localitzador. Us mostrarem el contingut de la vostra  votació perquè la pugueu revisar.",
+    "reviewOptionsText": "Un cop hàgiu escollit la vostra resposta la xifrarem i obtindreu un localitzador. Us mostrarem el contingut de la vostra votació perquè la pugueu revisar.",
     "emitBallotTitle": "3. Envieu el vostre vot",
-    "emitBallotText": "Ja podeu enviar el vostre vot a l’urna electrònica  perquè sigui registrat. Tanmateix podeu auditar que el vostre vot ha estat xifrat correctament.",
+    "emitBallotText": "Ja podeu enviar el vostre vot a l’urna electrònica perquè sigui registrat. Tanmateix podeu auditar que el vostre vot ha estat xifrat correctament.",
 
     "errorTitle": "Ups. Ha passat alguna cosa inesperada",
     "errorHtml": "<p>Hi ha hagut el problema següent (identificador __errorId__): </p><p>__error__</p><p>En cas que cregueu que heu de contactar amb nosaltres, pode fer-ho enviant-nos un correu electrònic a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
@@ -102,7 +102,7 @@
 
     "errorElectionUrl": "L'adreça introduïda té un format erroni",
     "reviewYourBallotTitle": "Encara no s'ha enviat el vot: reviseu-lo abans",
-    "reviewYourBallotText": "Abans d'emetre el vostre vot, sisplau reviseu-ne el contingut",
+    "reviewYourBallotText": "Abans d'emetre el vostre vot, siusplau reviseu-ne el contingut",
     "castTheBallot": "Envieu el vot",
     "changeAnswerToQuestion": "canvia",
     "emptyAnswer": "<vot en blanc>",
@@ -113,7 +113,7 @@
     "sendingBallot": "Enviant la papereta xifrada al servidor, sisplau espereu (__percentage__% completat)",
 
     "successTitle": "Vot emès amb èxit",
-    "successSubheader": "Enhorabona, heu emès correctament el vostre vot i queda custodiat per una urna electrònica.",
+    "successSubheader": "Enhorabona, heu emès correctament el vostre vot i queda custodiat per una urna electrònica",
 
     "completePacksTitle": "Paquets complets",
     "listOfDraftDocuments": "Documents (cliqui per veure'ls)",
@@ -179,10 +179,10 @@
     "busy": {
       "title": "El teu vot serà...",
       "encryptedTitle": "xifrat",
-      "encryptedDescription": "para que nadie pueda saber qué opciones escogiste",
-      "castTitle": "emitido",
-      "castDescription": "perquè ningú pugui saber quines opcions vas escollir",
-      "anonymizedTitle": "anonimitzat",
+      "encryptedDescription": "perquè ningú puguis saber quines opcions vas escollir",
+      "castTitle": "emès",
+      "castDescription": "fent servir un canal segur i verificant la teva identitat",
+      "anonymizedTitle": "anònim",
       "anonymizedDescription": "perquè el recompte no revela el sentit del teu vot"
     }
   },
