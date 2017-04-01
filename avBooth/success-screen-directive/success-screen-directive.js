@@ -46,7 +46,7 @@ angular.module('avBooth')
             '__URL__',
             // TODO: HACK: FIXME: this was changed because podemos requested it in the last available drill:
             // window.location.protocol + '//' + window.location.host + '/election/' + scope.election.id + '/public/login'
-            'https://participa.podemos.info'
+            'https://participa.unpaisencomu.cat'
           );
 
           if('Facebook' === p.network) {
