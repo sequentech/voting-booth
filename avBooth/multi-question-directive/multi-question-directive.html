@@ -109,18 +109,33 @@
         class="col-xs-12 col-sm-6 padded"
         ng-if="!hideSelection">
         <h4
-          class="text-brand-success padded-left"
+          class="text-brand-success padded-left hidden-xs"
           ng-if="!stateData.ordered"
           ng-i18next>
           [i18next]({count: numSelectedOptions()})avBooth.questionSelectedOptionsTitle
         </h4>
         <h4
-          class="text-brand-success padded-left"
+          class="text-brand-success padded-left hidden-xs"
           ng-if="stateData.ordered"
           ng-i18next>
           [i18next]({count: numSelectedOptions()})avBooth.questionSelectedOptionsTitleOrdered
         </h4>
+        <!-- for small to big screens -->
         <div avb-selected-options
+          class="hidden-xs"
+          preset-selected-size="stateData.question.presetSelectedSize"
+          layout="stateData.question.layout"
+          tally-type="stateData.question.tally_type"
+          max="stateData.question.max"
+          min="stateData.question.min"
+          sorted="stateData.sorted"
+          ordered="stateData.ordered"
+          options="stateData.question.answers">
+        </div>
+        <!-- for extra small screens -->
+        <div avb-selected-options
+          class="visible-xs"
+          ng-class="{hidden: !stateData.affixDropDownShown}"
           preset-selected-size="stateData.question.presetSelectedSize"
           layout="stateData.question.layout"
           tally-type="stateData.question.tally_type"

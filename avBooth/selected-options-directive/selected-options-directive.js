@@ -25,8 +25,8 @@ angular.module('avBooth')
 
     var link = function(scope, element, attrs) {
 
-        var dnd_disable = !attrs.ordered || (scope.options | scope.avbSelectedOptions).length < 2;
-        scope.isTouchDevice = !dnd_disable && IsService.touchDevice();
+        scope.dnd_disable = !scope.ordered || (scope.options | scope.avbSelectedOptions).length < 2;
+        scope.isTouchDevice = IsService.touchDevice();
         scope.selectedOptions = true;
 
         if (!angular.isDefined(scope.presetSelectedSize)) {
