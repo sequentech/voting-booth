@@ -192,6 +192,12 @@
       "castDescription": "usando unha canle segura e comprobar a súa identidade",
       "anonymizedTitle": "anonimizado",
       "anonymizedDescription": "para que a conta non revela o significado do seu voto"
+    },
+
+    "tooFewAnswers": {
+      "header": "Selecciona más opciones",
+      "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
+      "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
     }
   },
   "avElection": {

@@ -204,6 +204,12 @@
       "castDescription": "using a secure channel and verifying your identity",
       "anonymizedTitle": "anonymized",
       "anonymizedDescription": "so that the tally does not reveal which way you voted"
+    },
+  
+    "tooFewAnswers": {
+      "header": "Choose more options",
+      "body": "In the following questions you have not selected as many options as the minimum number needed to continue:",
+      "question": "Question '__title__': you chose __selected__ options, but you need to choose at least __min__ options"
     }
   }
 }

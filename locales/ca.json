@@ -44,7 +44,7 @@
     "startVoting": "Comenceu a votar",
     "continueButton": "Continueu",
     "stepsToVote": "Seguiu aquests passos quan emeteu el vostre vot:",
-    "selectOptionsTitle": "1. Escolliu la vostra resposta",
+    "selectOptionsTitle": "1. Respon la pregunta",
     "selectOptionsText": "Respongueu a les preguntes de la votació.",
     "reviewOptionsTitle": "2. Reviseu el vostre vot",
     "reviewOptionsText": "Un cop hàgiu escollit la vostra resposta la xifrarem i obtindreu un localitzador. Us mostrarem el contingut de la vostra votació perquè la pugueu revisar.",
@@ -158,7 +158,18 @@
     "successBallotHash": "Enhorabona! Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podeu fer servir el localitzador per <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar <strong><u>AQUÍ</u></strong> que el vostre vot ha quedat registrat</a>.",
     "relatedLinksText": "Per a més informació sobre la votació:",
     "circleOptionExternalLink": "Mostra'n els detalls",
-    "voteInBlank": "Voti en blanc",
+    "voteInBlank": "Vota en blanc",
+    "openOptionLink": "Abrir enlace en nueva pestaña",
+
+    "ahoramPrimaries": {
+      "selectAll": "Seleccionar todo el equipo",
+      "deselectAll": "Deseleccionar todo el equipo",
+      "selectedOptions": "Opciones seleccionadas (en orden, pincha y arrastra para cambiarlo)",
+      "mayoral": "Alcaldía (__count__)",
+      "mayoral_plural": "Alcaldía (__count__)",
+      "councils": "Concejalías (__count__)",
+      "councils_plural": "Concejalías (__count__)"
+    },
 
     "reviewScreen": {
       "pair": "__one__ > __two__"
@@ -184,6 +195,12 @@
       "castDescription": "fent servir un canal segur i verificant la teva identitat",
       "anonymizedTitle": "anònim",
       "anonymizedDescription": "perquè el recompte no revela el sentit del teu vot"
+    },
+    
+    "tooFewAnswers": {
+      "header": "Selecciona más opciones",
+      "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
+      "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
     }
   },
   "avElection": {
