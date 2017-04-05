@@ -1,4 +1,29 @@
+/**
+ * This file is part of agora-gui-booth.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 [av-booth], .basic-booth-layout {
+  .btn-success {
+    background-color: @av-primary-contrast;
+  }
+
+  .btn-success:hover {
+    background-color: darken(@av-primary-contrast, 25%);
+  }
+
   .avb-content > .container {
     padding: 0;
 
@@ -38,10 +63,10 @@
     margin-top: -3px;
 
     a {
-      color: white;
+      color: @av-secondary;
 
       &:hover {
-        color: white;
+        color: @av-secondary;
       }
     }
 
@@ -96,7 +121,7 @@
   }
 
   #avb-toggle span {
-    color: white;
+    color: @av-secondary;
     cursor: pointer;
     transform: rotate(90deg);
   }
@@ -142,7 +167,7 @@
     .text-brand-warning {
       display: inline-block;
       background-color: @btn-warning-bg;
-      color: @av-primary-contrast;
+      color: @av-primary;
 
       &.flashing, &.flashing-out {
         transition: color .4s ease, background-color .4s ease;

@@ -24,16 +24,29 @@
     "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Tweet this election!",
     "votingSystem": "Voting System",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
   },
   "avBooth": {
     "legal": {
         "title": "Legal terms",
         "contact": "contact"
     },
+    "confirmAuditBallot": {
+      "header": "Do you want to Audit the ballot?",
+      "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/><strong>If you just want to cast your ballot, click <u>Cancel</u> to go back to the review ballot screen.</strong>",
+      "confirm": "Yes, I want to DISCARD my ballot to audit it"
+    },
+    "planchaSelect": "select all",
+    "planchaDeselect": "deselect all",
+    "showSelectedOptionPoints": "(__points__ points)",
+    "warnBallotParity": {
+      "header": "Papeleta no paritaria",
+      "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
+      "continue": "Revisar mi papeleta"
+    },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election",
     "loadingElectionTitle": "Loading election, please wait..",
-    "stepNumber": "step __num__ of __total__ &nbsp; &nbsp; powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "stepNumber": "step __num__ of __total__",
     "stepAndQuestionNumber": "step __num__ of __total__, question __qnum__ of __qtotal__",
     "continueButton": "Continue",
     "startVoting": "Start Voting",
@@ -46,6 +59,7 @@
     "emitBallotText": "You can cast it so that it's properly registered. Alternatively, you can audit that your ballot was correctly encrypted.",
     "errorTitle": "Oops. Something unexpected happened",
     "errorHtml": "<p>The following problem arised (identifier __errorId__): </p><p>__error__</p><p>If you think that you need to contact us, you can do so sending an email to <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingImages": "Error on voting booth. Images not loaded.",
     "errorLoadingElection": "Error loading the election. This could be happenning for multiple reasons: the link might be invalid, you might have typed it incorrectly or the link might have been incorrectly crafted. Please, try to produce the link again. Finally, the server might be temporarily unavailable. If that's the case, try again later and if the issue persists please contact us.",
     "errorLoadingElectionPubKeys": "Error loading the election public keys. This could be happenning for multiple reasons: the link might be invalid, you might have typed it incorrectly or the link might have been incorrectly crafted. Please, try to produce the link again. Finally, the server might be temporarily unavailable. If that's the case, try again later and if the issue persists please contact us.",
     "errorSendingBallot": "Error sending the ballot. It was not correctly cast. Please, try again in another and more updated web browser, and if the problem persists try to contact us. Sorry for the inconvenience.",
@@ -76,6 +90,7 @@
     "numSelectedOptionsSmall_plural": "__count__ selected",
     "selectMoreOpts": "Select at least __min__ options.",
     "selectMoreOpts_plural": "Select at least __min__ options.",
+    "maxSelectedLimitReached_singular": "Remember that you can only choose one option",
     "maxSelectedLimitReached": "Maximum number of selected options reached (__max__). To select an option, deselect another first.",
     "maxSelectedLimitTagReached": "You cannot select more options of type __tagName__ (máximo __max__). To select one, please deselect another first.",
     "maxSelectedLimitNoTagReached": "You cannot select more options not of type __tagName__ (máximo __max__). To select one, please deselect another first.",
@@ -84,7 +99,10 @@
     "cantSelectPack": "You tried to select option linked that cannot be selected in isolation, and you have already another option selected.",
     "tooManyUserUpdates": "Your ballot could not be cast because you have changed too many times in this election. As a result, your last correctly cast ballot it is the one that will count.",
 
-    "removeSelectedItem": "deselect",
+    "removeSelectedItem": "click to deselect",
+    "removeSelectedItemShort": "deselect",
+    "dragSelectedItem": "drag to move",
+    "dragSelectedItemShort": "move",
 
     "helpTitle": "Help",
     "helpText": "",
@@ -145,7 +163,7 @@
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
-    "successBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>You can use your ballot tracker to <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verify that your ballot has been correctly cast</a>. When the election voting period is still active, you can still vote again, overriding and invalidating any previously ballot that you may have previously cast in this election.",
+    "successBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>You can use your ballot tracker to <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verify that your ballot has been correctly cast</a>.",
     "relatedLinksText": "For more information about this election:",
 
     "circleOptionExternalLink": "View details",
@@ -178,6 +196,16 @@
       "confirm": "Yes, I want to vote in blank when not selecting any option"
     },
 
+    "busy": {
+      "title": "Your ballot will be...",
+      "encryptedTitle": "encrypted",
+      "encryptedDescription": "so that nobody can know what options you chose",
+      "castTitle": "cast",
+      "castDescription": "using a secure channel and verifying your identity",
+      "anonymizedTitle": "anonymized",
+      "anonymizedDescription": "so that the tally does not reveal which way you voted"
+    },
+  
     "tooFewAnswers": {
       "header": "Choose more options",
       "body": "In the following questions you have not selected as many options as the minimum number needed to continue:",

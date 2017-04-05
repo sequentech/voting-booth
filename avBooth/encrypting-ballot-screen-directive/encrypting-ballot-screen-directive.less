@@ -1,4 +1,96 @@
+/**
+ * This file is part of agora-gui-booth.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 [avb-encrypting-ballot-screen] {
+
+  .logo-img {
+    max-height: 30px;
+    max-width: 130px;
+    width: auto;
+  }
+
+  .margin-tb-15 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .has-transitions {
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+  }
+
+  .busy-step {
+    display: block;
+    margin: auto;
+  }
+
+  .bullet-title {
+    font-size: 21px;
+  }
+
+  .h1 {
+    font-size: 40px;
+  }
+
+  #div-id-one img {
+    display: inline-block;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    height: 300px;
+  }
+
+  #div-id-two img {
+    display: inline-block;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    height: 300px;
+    margin-top: -300px;
+  }
+
+  .step-waiting {
+    color: black;
+  }
+
+  .step-working {
+    color: @btn-warning-bg;
+  }
+
+  .step-finished {
+    color: @av-secondary-contrast;
+  }
+
+  .busy-img-central {
+    font-size: 0;
+    display: block;
+    margin: auto;
+    height: 300px;
+  }
+
+  .step-img {
+    height: 21px;
+    max-width: 21px;
+  }
+
   .avb-busy-percent {
     position: fixed;
     top: 0;

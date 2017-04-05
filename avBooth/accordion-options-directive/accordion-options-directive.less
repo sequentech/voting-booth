@@ -1,3 +1,20 @@
+/**
+ * This file is part of agora-gui-booth.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 [avb-accordion-options] [accordion], [avb-accordion-option] {
 
 
@@ -22,6 +39,12 @@
     }
   }
 
+  .heading-cat-title {
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .panel {
     border: 0 none;
     border-radius: 0 !important;
@@ -36,7 +59,7 @@
         padding: 10px 15px;
         cursor: pointer;
         display: block;
-        min-height: 37px;
+        min-height: 50px;
         width: 100%;
         transition: all .4s ease;
 
@@ -48,8 +71,20 @@
       }
     }
 
+    .accordion-plancha-label {
+      margin-right: 5px;
+      background-color: @av-primary-contrast;
+      color: @av-primary;
+
+      &:hover {
+        color: @av-secondary;
+        background-color: darken(@av-primary, 10%);
+      }
+    }
+
     .accordion-num-label {
       margin-right: 5px;
+      color: @av-secondary;
     }
 
     &.in {

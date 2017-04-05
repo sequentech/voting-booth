@@ -2,19 +2,31 @@
 <nav class="navbar navbar-default navbar-fixed-top" av-affix-top=".navbar-unfixed-top" role="navigation">
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="pull-left"
-        ng-i18next="[i18next]({num:'1', total: '3', qnum: stateData.questionNum+1, qtotal: election.questions.length})avBooth.stepAndQuestionNumber">
+      <div class="pull-left">
+        <span ng-if="election.logo_url">
+          <img 
+            class="logo-img" 
+            ng-src="{{election.logo_url}}"
+          >
+          </img>
+        </span>
+        <span ng-i18next="[i18next]({num:'1', total: '3', qnum: stateData.questionNum+1, qtotal: election.questions.length})avBooth.stepAndQuestionNumber">
+        </span>
       </div>
       <div class="pull-right">
         <span
-          class="glyphicon glyphicon-question-sign"
+          class="glyphicon glyphicon-question-sign hidden-xs"
           ng-click="launchHelp()">
         </span>
-        <span ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
+        <span class="hidden-xs" ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
         <span class="dropdown left-padding" av-change-lang>
       </div>
+      <div
+        class="text-center hidden-xs powered-by"
+        ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+      >
+      </div>
     </div>
-
   </div>
 </nav>
 
@@ -37,7 +49,7 @@
 
 <div class="content avb-content" ng-if="!showingPreset">
   <div class="container">
-    <div class="row">
+    <div class="row booth-row">
       <!-- only shown if in mobile: a row with selected opts and filter -->
       <div
         ng-if="!hideSelection"
@@ -88,30 +100,45 @@
           min="stateData.question.min"
           question="stateData.question"
           filter="{{stateData.filter}}"
-          ng-class="{hidden: stateData.affixIsSet && stateData.affixDropDownShown}">
+          ng-class="{hidden: stateData.affixDropDownShown}">
         </div>
       </div>
 
       <!-- show selected options -->
       <div
         class="col-xs-12 col-sm-6 padded"
-        ng-if="!hideSelection"
-        ng-class="{hidden: windowWidth < 768 && !stateData.affixDropDownShown, affixedSelection: windowWidth < 768 && stateData.affixIsSet}">
+        ng-if="!hideSelection">
         <h4
-          class="text-brand-success padded-left"
+          class="text-brand-success padded-left hidden-xs"
           ng-if="!stateData.ordered"
           ng-i18next>
           [i18next]({count: numSelectedOptions()})avBooth.questionSelectedOptionsTitle
         </h4>
         <h4
-          class="text-brand-success padded-left"
+          class="text-brand-success padded-left hidden-xs"
           ng-if="stateData.ordered"
           ng-i18next>
           [i18next]({count: numSelectedOptions()})avBooth.questionSelectedOptionsTitleOrdered
         </h4>
+        <!-- for small to big screens -->
         <div avb-selected-options
+          class="hidden-xs"
           preset-selected-size="stateData.question.presetSelectedSize"
           layout="stateData.question.layout"
+          tally-type="stateData.question.tally_type"
+          max="stateData.question.max"
+          min="stateData.question.min"
+          sorted="stateData.sorted"
+          ordered="stateData.ordered"
+          options="stateData.question.answers">
+        </div>
+        <!-- for extra small screens -->
+        <div avb-selected-options
+          class="visible-xs"
+          ng-class="{hidden: !stateData.affixDropDownShown}"
+          preset-selected-size="stateData.question.presetSelectedSize"
+          layout="stateData.question.layout"
+          tally-type="stateData.question.tally_type"
           max="stateData.question.max"
           min="stateData.question.min"
           sorted="stateData.sorted"
@@ -122,7 +149,7 @@
     </div>
 
     <!-- next button -->
-    <div class="row hidden" ng-cloak av-affix-bottom="stateData.affixIsSet" data-force-affix-width="768">
+    <div class="row affix-bottom text-center">
       <p class="warnings">
         <span
           class="text-brand-warning"
@@ -142,12 +169,19 @@
           ng-i18next="[i18next]({max: noTagMax, tagName: tagName})avBooth.maxSelectedLimitNoTagReached"
           ng-if="numSelectedOptions() !== stateData.question.max && numSelectedOptions() - numTaggedSelectedOptions() === noTagMax">
         </span>
-        <span
+        <div
           class="text-brand-primary"
           id="maxSelectedLimitReached"
-          ng-i18next="[i18next]({max: stateData.question.max})avBooth.maxSelectedLimitReached"
           ng-if="numSelectedOptions() === stateData.question.max">
-        </span>
+            <div
+              ng-i18next="avBooth.maxSelectedLimitReached_singular"
+              ng-if="stateData.question.max === 1">
+            </div>
+            <div
+              ng-i18next="[i18next]({max: stateData.question.max})avBooth.maxSelectedLimitReached"
+              ng-if="stateData.question.max > 1">
+            </div>
+        </div>
         <span
           ng-i18next="[i18next]({count: numSelectedOptions()})avBooth.numOptionsSelected"
           ng-if="numSelectedOptions() !== stateData.question.max && numSelectedOptions() >= stateData.question.min && numTaggedSelectedOptions() !== tagMax && (!noTagMax || numSelectedOptions() - numTaggedSelectedOptions() !== noTagMax)">

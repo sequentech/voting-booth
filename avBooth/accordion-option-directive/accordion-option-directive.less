@@ -1,3 +1,20 @@
+/**
+ * This file is part of agora-gui-booth.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 [avb-accordion-option] {
   cursor: pointer;
   line-height: 15px;
@@ -34,9 +51,9 @@
 
     img {
       width: auto;
-      max-height: 100px;
-      max-width: 100px;
-      border-radius: 25px;
+      max-height: 50px;
+      max-width: 50px;
+      border-radius: 12px;
       margin: 0 10px 0 0;
       display: inline-block;
       vertical-align: bottom;
@@ -61,6 +78,7 @@
 
     .vertilize-col {
       padding: 10px 0;
+      vertical-align: middle;
     }
 
     .vertilize-col > img, .vertilize-col .text-sibling {
@@ -84,9 +102,8 @@
   a.btn-right {
     display: block;
     position: absolute;
-    right: 0;
+    right: 15px;
     top: 5px;
-    width: 34px;
     padding: 5px;
     margin-right: 5px;
     background-color: transparent;
@@ -95,21 +112,50 @@
     &.show-category {
       top: 22px;
     }
-  }
 
+    .view-link-text {
+      padding-left: 4px;
+    }
+
+    &:hover {
+      .glyphicon, .view-link-text {
+        color: @av-primary;
+      }
+    }
+  }
 
   .show-remove {
     display: none;
-    padding: 0 10px;
     position: absolute;
-    background-color: @brand-danger;
-    top: 10px;
-    right: 55px;
+    background-color: fade(@brand-danger, 70%);
+    top: 0 !important;
+    left: 0 !important;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 24px;
+
+    .vertilize-wrapper {
+      width: 100%;
+      height: 100%;
+
+      .margin-right {
+        margin-right: 15px;
+      }
+
+      .margin-left {
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .show-remove.gray-bg {
+    background-color: fade(@av-secondary, 80%);
   }
 
   &.selected.highlight-selected {
-    color: white;
-    background-color: @av-primary;
+    color: @av-primary;
+    background-color: @av-secondary;
 
 
     a.btn-right {

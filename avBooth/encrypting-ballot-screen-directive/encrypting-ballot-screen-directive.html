@@ -1,3 +1,116 @@
-<div class="avb-busy-percent" style="width: {{percentCompleted}}%"></div>
-<div class="avb-busy-title"></div>
-<div class="avb-busy-loading"></div>
+<nav
+  class="navbar encrypting-ballot-screen navbar-default navbar-fixed-top"
+  av-affix-top=".navbar-unfixed-top"
+  role="navigation"
+>
+  <div class="container">
+    <div class="row avb-top-navbar">
+      <div class="pull-left">
+        <span ng-if="election.logo_url">
+          <img 
+            class="logo-img" 
+            ng-src="{{election.logo_url}}"
+          >
+          </img>
+        </span>
+        <span 
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+          ng-if="!election.logo_url"
+        >
+        </span>
+      </div>
+      <div class="pull-right">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          ng-click="launchHelp()">
+        </span>
+        <span 
+          ng-click="launchHelp()" 
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          av-change-lang
+        >
+        </span>
+      </div>
+      <div
+        class="text-center hidden-xs"
+        ng-if="election.logo_url"
+      >
+        <span ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
+        </span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrapper-unfixed" ng-if="imagesPreloaded">
+  <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-encrypting-ballot-screen] #avb-toggle">
+    <div class="container">
+      <div class="hidden unfixed-top-height">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="busy-gui container" ng-if="imagesPreloaded">
+  <div class="col-sm-offset-3 col-sm-6 margin-tb-15 hidden-xs">
+    <div class="busy-img-central text-center" id="img-central">
+        <div id="div-id-one">
+        </div>
+        <div id="div-id-two">
+        </div>
+    </div>
+  </div>
+  <div class="busy-text">
+    <div class="col-sm-offset-3 col-sm-6 col-xs-12">
+      <h1 class="text-center" ng-i18next="avBooth.busy.title">
+      </h1>
+    </div>
+    <div
+      class="busy-step row has-transitions" 
+      ng-repeat="step in bulletList"
+      ng-class="{
+                  'step-waiting': 'waiting' === step.state,
+                  'step-working': 'working' === step.state,
+                  'step-finished': 'finished' === step.state
+                }"
+    >
+      <div
+        class="col-sm-offset-3 col-sm-3 col-xs-12 bullet-title"
+      >
+          <i
+            class="fa fa-times"
+            ng-if="'waiting' === step.state"
+          >
+          </i>
+          <span avb-step-img
+            ng-if="'working' === step.state"
+          >
+          </span>
+          <i 
+            class="fa fa-check"
+            ng-if="'finished' === step.state"
+          >
+          </i>
+          <span>
+            <b
+              class="step-title"
+              ng-i18next="avBooth.busy.{{ step.title }}"
+            >
+            </b>
+          </span> 
+      </div>
+      <div class="col-sm-3 col-xs-12">
+        <p
+          class="step-description"
+          ng-i18next=" avBooth.busy.{{ step.description }}"
+        >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,31 @@
+/**
+ * This file is part of agora-gui-booth.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 angular.module('avBooth')
-  .directive('avBooth', function($http, $location, $i18next, $window, $timeout, HmacService, ConfigService, InsideIframeService) {
+  .directive('avBooth', function(
+    $http,
+    $location,
+    $i18next,
+    $window,
+    $timeout,
+    HmacService,
+    ConfigService,
+    InsideIframeService)
+{
 
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
@@ -97,7 +123,12 @@ angular.module('avBooth')
             state: stateEnum.pairwiseBeta,
             sorted: true,
             ordered: true
-          }
+          },
+          "desborda": {
+            state: stateEnum.multiQuestion,
+            sorted: true,
+            ordered: true
+          },
         };
         return map[question.tally_type];
       };
@@ -117,13 +148,22 @@ angular.module('avBooth')
           return;
         }
 
-        var question = scope.election.questions[n];
+        // what should be the next question?
+        var nextQuestion = processConditionalQuestions(n);
+
+        var isLastQuestion = (scope.election.questions.length === nextQuestion);
+        if (isLastQuestion) {
+          scope.setState(stateEnum.encryptingBallotScreen, {});
+          return;
+        }
+
+        var question = scope.election.questions[nextQuestion];
         var mapped = scope.mapQuestion(question);
 
         scope.setState(mapped.state, {
-          question: scope.election.questions[n],
-          questionNum: n,
-          isLastQuestion: (scope.election.questions.length === n + 1),
+          question: scope.election.questions[nextQuestion],
+          questionNum: nextQuestion,
+          isLastQuestion: (scope.election.questions.length === nextQuestion + 1),
           reviewMode: reviewMode,
           filter: "",
           sorted: mapped.sorted,
@@ -131,6 +171,86 @@ angular.module('avBooth')
           affixIsSet: false,
           pairNum: 0 // only used for pairwise comparison
         });
+      }
+
+      // Set the vote in a question as blank (no option selected)
+      function blankVoteQuestion(question)
+      {
+        _.each(
+          question.answers,
+          function (element)
+          {
+            element.selected = -1;
+          }
+        );
+      }
+
+      // taking into account the choices in previous questions, check if
+      // questions [n, max] are enabled or not, reset to blank vote disabled
+      // questions and return the first enabled question between [n, max+1]
+      function processConditionalQuestions(n)
+      {
+        // if there are no conditional question, then continue
+        if (!scope.election.presentation.conditional_questions ||
+          !angular.isArray(scope.election.presentation.conditional_questions))
+        {
+          return n;
+        }
+
+        // review all questions, disabling conditional questions as needed
+        // and resetting their answers
+        _.each(
+          scope.election.questions,
+          function (question, index)
+          {
+            var conditional_questions = _.filter(
+              scope.election.presentation.conditional_questions,
+              function (cond_question)
+              {
+                return cond_question.question_id === index;
+              }
+            );
+
+            // if it's not a conditional question, then we are finished
+            if (conditional_questions.length === 0) {
+              question.disabled = false;
+              return;
+            }
+
+            var cond_question = conditional_questions[0];
+            var conditions = _.filter(
+              cond_question.when_any,
+              // check if the options is selected
+              function (condition)
+              {
+                return _.find(
+                  scope.election.questions[condition.question_id].answers,
+                  function (answer)
+                  {
+                    return (answer.id === condition.answer_id &&
+                      answer.selected > -1);
+                  }
+                ) !== undefined;
+              }
+            );
+
+            question.disabled = (conditions.length === 0);
+            if (question.disabled) {
+              blankVoteQuestion(question);
+            }
+          }
+        );
+
+        // return the next enabled question index including or after n
+        var nextEnabledQuestion = scope.election.questions.length + 1;
+        for (var i = n; i < scope.election.questions.length; i++)
+        {
+          if (!scope.election.questions[i].disabled) {
+            return i;
+          }
+        }
+
+        return scope.election.questions.length + 1;
       }
 
       // changes state to the next one, calculating it and setting some scope
@@ -189,13 +309,44 @@ angular.module('avBooth')
 
         } else if (scope.stateData.isLastQuestion || scope.stateData.reviewMode)
         {
-          scope.setState(stateEnum.encryptingBallotScreen, {});
+          // process again conditional questions
+          processConditionalQuestions(0);
+
+          // before going back to the review screen, we check if there is any
+          // empty question that cannot be empty in selected answers, and go
+          // back to it if that happens
+          var inconsistentQuestion = -1;
+          for (var i = 0; i < scope.election.questions.length; i++)
+          {
+            var question = scope.election.questions[i];
+            if (!question.disabled && question.min > numSelectedOptions(question))
+            {
+              inconsistentQuestion = i;
+              break;
+            }
+          }
+          if (inconsistentQuestion > -1)
+          {
+            goToQuestion(i, true);
+          } else {
+            scope.setState(stateEnum.encryptingBallotScreen, {});
+          }
 
         } else if (_.contains(questionStates, scope.state) &&
                    !scope.stateData.isLastQuestion)
         {
           goToQuestion(scope.stateData.questionNum + 1, false);
         }
+      }
+
+      // count the number of selected options in a question
+      function numSelectedOptions(question)
+      {
+        return _.filter(
+          question.answers,
+          function (element) {
+            return element.selected > -1 || element.isSelected === true;
+          }).length;
       }
 
       // shows the error string
