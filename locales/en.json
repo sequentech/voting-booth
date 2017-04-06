@@ -170,16 +170,6 @@
     "voteInBlank": "Blank Vote",
     "openOptionLink": "Open link in a new tab",
 
-    "ahoramPrimaries": {
-      "selectAll": "Select the whole team",
-      "deselectAll": "Deselect the whole team",
-      "selectedOptions": "Selected options (in order, drag and drop to change it)",
-      "mayoral": "Mayoral (__count__)",
-      "mayoral_plural": "Mayoral (__count__)",
-      "councils": "Councils (__count__)",
-      "councils_plural": "Councils (__count__)"
-    },
-
     "reviewScreen": {
       "pair": "__one__ > __two__"
     },
@@ -204,6 +194,12 @@
       "castDescription": "using a secure channel and verifying your identity",
       "anonymizedTitle": "anonymized",
       "anonymizedDescription": "so that the tally does not reveal which way you voted"
+    },
+  
+    "tooFewAnswers": {
+      "header": "Choose more options",
+      "body": "In the following questions you have not selected as many options as the minimum number needed to continue:",
+      "question": "Question '__title__': you chose __selected__ options, but you need to choose at least __min__ options"
     }
   }
 }

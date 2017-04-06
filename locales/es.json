@@ -51,7 +51,7 @@
     "startVoting": "Empezar a votar",
     "continueButton": "Continuar",
     "stepsToVote": "Seguirás estos pasos al emitir tu voto:",
-    "selectOptionsTitle": "1. Elige tus preferencias",
+    "selectOptionsTitle": "1. Responde a la pregunta",
     "selectOptionsText": "Responde a las preguntas de la votación que se presentan una a una. Configurarás así las preferencias de tu papeleta.",
     "reviewOptionsTitle": "2. Revisa tu papeleta",
     "reviewOptionsText": "Una vez has elegido tus preferencias, procederemos a cifrarlas y obtendrás un localizador. Te mostraremos el contenido de tu papeleta para que puedas revisarla.",
@@ -171,16 +171,6 @@
     "voteInBlank": "Votar en Blanco",
     "openOptionLink": "Abrir enlace en nueva pestaña",
 
-    "ahoramPrimaries": {
-      "selectAll": "Seleccionar todo el equipo",
-      "deselectAll": "Deseleccionar todo el equipo",
-      "selectedOptions": "Opciones seleccionadas (en orden, pincha y arrastra para cambiarlo)",
-      "mayoral": "Alcaldía (__count__)",
-      "mayoral_plural": "Alcaldía (__count__)",
-      "councils": "Concejalías (__count__)",
-      "councils_plural": "Concejalías (__count__)"
-    },
-
     "reviewScreen": {
       "pair": "__one__ > __two__"
     },
@@ -205,6 +195,13 @@
       "castDescription": "usando un canal seguro y verificando tu identidad",
       "anonymizedTitle": "anonimizado",
       "anonymizedDescription": "para que el recuento no revele el sentido de tu voto"
+    },
+
+    "tooFewAnswers": {
+      "header": "Selecciona más opciones",
+      "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
+      "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
+
     }
   },
   "avElection": {
