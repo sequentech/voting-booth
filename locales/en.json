@@ -170,16 +170,6 @@
     "voteInBlank": "Blank Vote",
     "openOptionLink": "Open link in a new tab",
 
-    "ahoramPrimaries": {
-      "selectAll": "Select the whole team",
-      "deselectAll": "Deselect the whole team",
-      "selectedOptions": "Selected options (in order, drag and drop to change it)",
-      "mayoral": "Mayoral (__count__)",
-      "mayoral_plural": "Mayoral (__count__)",
-      "councils": "Councils (__count__)",
-      "councils_plural": "Councils (__count__)"
-    },
-
     "reviewScreen": {
       "pair": "__one__ > __two__"
     },

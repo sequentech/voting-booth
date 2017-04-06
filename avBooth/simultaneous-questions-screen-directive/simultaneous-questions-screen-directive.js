@@ -75,8 +75,10 @@ angular.module('avBooth')
 
         // stablish the number of rows
         scope.answerColumnsSize = 6;
-        if (angular.isDefined(groupExtraData.answer_columns_size)) {
-          scope.answerColumnsSize = parseInt(groupExtraData.answer_columns_size, 10);
+        if (angular.isDefined(groupExtraData.answer_columns_size) && 
+            _.isNumber(groupExtraData.answer_columns_size) &&
+           0 === (groupExtraData.answer_columns_size % 1)) {
+          scope.answerColumnsSize = groupExtraData.answer_columns_size;
         }
 
         // group pairs together? only makes sense if there's a pair number of
@@ -85,7 +87,7 @@ angular.module('avBooth')
         if (((12 / scope.answerColumnsSize) % 2) === 0 &&
           angular.isDefined(groupExtraData.group_answer_pairs))
         {
-          scope.groupPairs = (groupExtraData.group_answer_pairs === 'TRUE');
+          scope.groupPairs = (true === groupExtraData.group_answer_pairs);
         }
 
         // FIXME: Why this is needed?

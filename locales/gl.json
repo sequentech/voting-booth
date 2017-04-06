@@ -168,16 +168,6 @@
     "voteInBlank": "Votar en Branco",
     "openOptionLink": "Abrir ligazón en nova pestana",
 
-    "ahoramPrimaries": {
-      "selectAll": "Seleccionar todo o equipo",
-      "deselectAll": "Deseleccionar todo o equipo",
-      "selectedOptions": "Opcións seleccionadas (en orde, pica e arrastra para cambialo)",
-      "mayoral": "Alcaldía (__count__)",
-      "mayoral_plural": "Alcaldía (__count__)",
-      "councils": "Concellerías (__count__)",
-      "councils_plural": "Concellerías(__count__)"
-    },
-
     "confirmNullVote": {
       "header": "Voto en blanco",
       "body": "No has seleccionado ninguna opción en alguna pregunta, lo que equivale a votar en blanco.",
