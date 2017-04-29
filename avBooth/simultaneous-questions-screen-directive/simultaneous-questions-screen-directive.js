@@ -49,13 +49,46 @@ angular.module('avBooth')
 
         var lastGroupQuestionArrayIndex = groupQuestions[groupQuestions.length-1];
         var lastGroupQuestionIndex = lastGroupQuestionArrayIndex.num;
+
         // update if it's last question and set questionNum to the last in the
         // group
-
         scope.stateData.isLastQuestion = (
           scope.stateData.isLastQuestion ||
           scope.election.questions.length === lastGroupQuestionIndex + 1);
         scope.stateData.questionNum = lastGroupQuestionIndex;
+
+        // from each question of our group, get the extra_data, and then fusion
+        // all the extra_datas of our question group into one
+        var groupExtraData = _.extend.apply(_,
+          _.union(
+            [{}],
+            _.map(groupQuestions, function (q) { return q.extra_options; })));
+
+        // set next button text by default if it has not been specified
+        if (angular.isDefined(groupExtraData.next_button) &&
+          !scope.stateData.isLastQuestion)
+        {
+          scope.nextButtonText = groupExtraData.next_button;
+        } else {
+          scope.nextButtonText = $i18next('avBooth.continueButton');
+        }
+
+        // stablish the number of rows
+        scope.answerColumnsSize = 6;
+        if (angular.isDefined(groupExtraData.answer_columns_size) && 
+            _.isNumber(groupExtraData.answer_columns_size) &&
+           0 === (groupExtraData.answer_columns_size % 1)) {
+          scope.answerColumnsSize = groupExtraData.answer_columns_size;
+        }
+
+        // group pairs together? only makes sense if there's a pair number of
+        // columns per row
+        scope.groupPairs = false;
+        if (((12 / scope.answerColumnsSize) % 2) === 0 &&
+          angular.isDefined(groupExtraData.group_answer_pairs))
+        {
+          scope.groupPairs = (true === groupExtraData.group_answer_pairs);
+        }
 
         // FIXME: Why this is needed?
         scope.organization = ConfigService.organization;
@@ -130,9 +163,35 @@ angular.module('avBooth')
 
         // questionNext calls to scope.next() if user selected enough options.
         // Shows a warning to confirm blank vote in any of the questions before
-        // proceeding.
+        // proceeding, or to inform if it's needed to select an option.
         scope.questionNext = function()
         {
+          // show notification to select options if needs to select more
+          // options
+          var tooFewAnswersQuestions = _.filter(
+            groupQuestions,
+            function(question)
+            {
+              return scope.numSelectedOptions(question) < question.min;
+            }
+          );
+
+          // if there any question with a blank vote, show the confirm dialog
+          if (tooFewAnswersQuestions.length > 0)
+          {
+            $modal.open({
+              templateUrl: "avBooth/too-few-answers-controller/too-few-answers-controller.html",
+              controller: "TooFewAnswersController",
+              size: 'md',
+              resolve: {
+                questions: function() { return tooFewAnswersQuestions; },
+                numSelectedOptions: function() { return scope.numSelectedOptions; }
+              }
+            });
+            return;
+          }
+
+          // show has any blank vote confirmation screen if allowed
           var hasAnyBlankVote = _.reduce(
             groupQuestions,
             function(hasAnyBlankVote, question)

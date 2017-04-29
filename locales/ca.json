@@ -22,7 +22,7 @@
     "poweredBy": "Funciona amb <strong>__name__</strong>",
     "shareLink": "¡Tuitgeu aquesta votació!",
     "votingSystem": "Sistema de votació",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
   },
   "avBooth": {
     "legal": {
@@ -34,6 +34,8 @@
       "body": "L'auditoria de la papereta l'invalidarà i hauràs d'iniciar el procés de votació de nou si desitges emetre el teu vot. El procés d'auditoria de la papereta permet verificar que està codificada correctament. Fer aquest procés requereix que uns coneixements tècnics importants, pel que no es recomana si no saps el que estàs fent. <br/> <br/> <strong> Si el que desitja és emetre el seu vot, en <u>Cancel·la</u> per tornar a la pantalla de revisió de votació. </strong>",
       "confirm": "Sí, vull INVALIDAR meu papereta per AUDITAR"
     },
+    "planchaSelect": "seleccionar-ho tot",
+    "planchaDeselect": "deseleccionar-ho tot",
     "showSelectedOptionPoints": "(__points__ punts)",
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Aquesta és una votació de PROVA",
     "loadingElectionTitle": "Carregant la votació, un moment sisplau..",
@@ -42,12 +44,12 @@
     "startVoting": "Comenceu a votar",
     "continueButton": "Continueu",
     "stepsToVote": "Seguiu aquests passos quan emeteu el vostre vot:",
-    "selectOptionsTitle": "1. Escolliu la vostra resposta",
-    "selectOptionsText": "Respongueu a la pregunta de la votació. Tria un màxim de tres propostes entre la llista de votació.",
+    "selectOptionsTitle": "1. Respon la pregunta",
+    "selectOptionsText": "Respongueu a les preguntes de la votació.",
     "reviewOptionsTitle": "2. Reviseu el vostre vot",
-    "reviewOptionsText": "Un cop hàgiu escollit la vostra resposta la xifrarem i obtindreu un localitzador. Us mostrarem el contingut de la vostra  votació perquè la pugueu revisar.",
+    "reviewOptionsText": "Un cop hàgiu escollit la vostra resposta la xifrarem i obtindreu un localitzador. Us mostrarem el contingut de la vostra votació perquè la pugueu revisar.",
     "emitBallotTitle": "3. Envieu el vostre vot",
-    "emitBallotText": "Ja podeu enviar el vostre vot a l’urna electrònica  perquè sigui registrat. Tanmateix podeu auditar que el vostre vot ha estat xifrat correctament.",
+    "emitBallotText": "Ja podeu enviar el vostre vot a l’urna electrònica perquè sigui registrat. Tanmateix podeu auditar que el vostre vot ha estat xifrat correctament.",
 
     "errorTitle": "Ups. Ha passat alguna cosa inesperada",
     "errorHtml": "<p>Hi ha hagut el problema següent (identificador __errorId__): </p><p>__error__</p><p>En cas que cregueu que heu de contactar amb nosaltres, pode fer-ho enviant-nos un correu electrònic a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
@@ -87,7 +89,10 @@
     "alreadySelectedPack": "Heu seleccionat una opció vinculada a altres documents. No és possible seleccionar-ho de forma aïllada.",
     "cantSelectPack": "Heu provat de seleccionar una opció vinculada que no es pot seleccionar de forma aïllada, i ja en teniu una altra de seleccionada.",
 
-    "removeSelectedItem": "deseleccioneu",
+    "removeSelectedItem": "click per deseleccioneu",
+    "removeSelectedItemShort": "deseleccioneu",
+    "dragSelectedItem": "arrossegar per moure",
+    "dragSelectedItemShort": "moure",
 
     "helpTitle": "Ajuda",
     "helpText": "",
@@ -97,7 +102,7 @@
 
     "errorElectionUrl": "L'adreça introduïda té un format erroni",
     "reviewYourBallotTitle": "Encara no s'ha enviat el vot: reviseu-lo abans",
-    "reviewYourBallotText": "Abans d'emetre el vostre vot, sisplau reviseu-ne el contingut",
+    "reviewYourBallotText": "Abans d'emetre el vostre vot, siusplau reviseu-ne el contingut",
     "castTheBallot": "Envieu el vot",
     "changeAnswerToQuestion": "canvia",
     "emptyAnswer": "<vot en blanc>",
@@ -108,7 +113,7 @@
     "sendingBallot": "Enviant la papereta xifrada al servidor, sisplau espereu (__percentage__% completat)",
 
     "successTitle": "Vot emès amb èxit",
-    "successSubheader": "Enhorabona, heu emès correctament el vostre vot i queda custodiat per una urna electrònica.",
+    "successSubheader": "Enhorabona, heu emès correctament el vostre vot i queda custodiat per una urna electrònica",
 
     "completePacksTitle": "Paquets complets",
     "listOfDraftDocuments": "Documents (cliqui per veure'ls)",
@@ -153,7 +158,8 @@
     "successBallotHash": "Enhorabona! Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podeu fer servir el localitzador per <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar <strong><u>AQUÍ</u></strong> que el vostre vot ha quedat registrat</a>.",
     "relatedLinksText": "Per a més informació sobre la votació:",
     "circleOptionExternalLink": "Mostra'n els detalls",
-    "voteInBlank": "Voti en blanc",
+    "voteInBlank": "Vota en blanc",
+    "openOptionLink": "Abrir enlace en nueva pestaña",
 
     "reviewScreen": {
       "pair": "__one__ > __two__"
@@ -174,11 +180,17 @@
     "busy": {
       "title": "El teu vot serà...",
       "encryptedTitle": "xifrat",
-      "encryptedDescription": "para que nadie pueda saber qué opciones escogiste",
-      "castTitle": "emitido",
-      "castDescription": "perquè ningú pugui saber quines opcions vas escollir",
-      "anonymizedTitle": "anonimitzat",
+      "encryptedDescription": "perquè ningú puguis saber quines opcions vas escollir",
+      "castTitle": "emès",
+      "castDescription": "fent servir un canal segur i verificant la teva identitat",
+      "anonymizedTitle": "anònim",
       "anonymizedDescription": "perquè el recompte no revela el sentit del teu vot"
+    },
+    
+    "tooFewAnswers": {
+      "header": "Selecciona más opciones",
+      "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
+      "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
     }
   },
   "avElection": {

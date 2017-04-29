@@ -40,7 +40,9 @@
   }
 
   .heading-cat-title {
-    margin-right: 45px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .panel {
@@ -69,8 +71,20 @@
       }
     }
 
+    .accordion-plancha-label {
+      margin-right: 5px;
+      background-color: @av-primary-contrast;
+      color: @av-primary;
+
+      &:hover {
+        color: @av-secondary;
+        background-color: darken(@av-primary, 10%);
+      }
+    }
+
     .accordion-num-label {
       margin-right: 5px;
+      color: @av-secondary;
     }
 
     &.in {

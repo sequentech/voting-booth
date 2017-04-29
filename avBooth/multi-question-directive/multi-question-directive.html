@@ -100,28 +100,42 @@
           min="stateData.question.min"
           question="stateData.question"
           filter="{{stateData.filter}}"
-          ng-class="{hidden: stateData.affixIsSet && stateData.affixDropDownShown}">
+          ng-class="{hidden: stateData.affixDropDownShown}">
         </div>
       </div>
 
       <!-- show selected options -->
       <div
         class="col-xs-12 col-sm-6 padded"
-        ng-if="!hideSelection"
-        ng-class="{hidden: windowWidth < 768 && !stateData.affixDropDownShown, affixedSelection: windowWidth < 768 && stateData.affixIsSet}">
+        ng-if="!hideSelection">
         <h4
-          class="text-brand-success padded-left"
+          class="text-brand-success padded-left hidden-xs"
           ng-if="!stateData.ordered"
           ng-i18next>
           [i18next]({count: numSelectedOptions()})avBooth.questionSelectedOptionsTitle
         </h4>
         <h4
-          class="text-brand-success padded-left"
+          class="text-brand-success padded-left hidden-xs"
           ng-if="stateData.ordered"
           ng-i18next>
           [i18next]({count: numSelectedOptions()})avBooth.questionSelectedOptionsTitleOrdered
         </h4>
+        <!-- for small to big screens -->
         <div avb-selected-options
+          class="hidden-xs"
+          preset-selected-size="stateData.question.presetSelectedSize"
+          layout="stateData.question.layout"
+          tally-type="stateData.question.tally_type"
+          max="stateData.question.max"
+          min="stateData.question.min"
+          sorted="stateData.sorted"
+          ordered="stateData.ordered"
+          options="stateData.question.answers">
+        </div>
+        <!-- for extra small screens -->
+        <div avb-selected-options
+          class="visible-xs"
+          ng-class="{hidden: !stateData.affixDropDownShown}"
           preset-selected-size="stateData.question.presetSelectedSize"
           layout="stateData.question.layout"
           tally-type="stateData.question.tally_type"
@@ -135,7 +149,7 @@
     </div>
 
     <!-- next button -->
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+    <div class="row affix-bottom text-center">
       <p class="warnings">
         <span
           class="text-brand-warning"

@@ -22,6 +22,7 @@ angular.module('avBooth')
   .directive('avbAccordionOption', function($sce) {
 
     var link = function(scope, element, attrs) {
+
       scope.urls = _.object(_.map(scope.option.urls, function(url) {
         return [url.title, url.url];
       }));
@@ -105,6 +106,10 @@ angular.module('avBooth')
           "pairwise-beta": function()
           {
             return;
+          },
+          "desborda": function()
+          {
+            return 80 - scope.option.selected;
           }
         }[scope.question.tally_type]();
       };

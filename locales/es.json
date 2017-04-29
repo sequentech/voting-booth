@@ -24,7 +24,7 @@
     "poweredBy": "Funciona con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Twittea esta votación!",
     "votingSystem": "Sistema de Voto",
-    "votings": {"plurality-at-large": "Voto en bloque o Escrutinio Mayoritario Plurinominal", "borda-nauru": "Borda de Nauru o Borda Dowdall (1/n)", "borda": "Borda Count (tradicional)", "pairwise-beta": "Comparación de pares (distribución beta)"}
+    "votings": {"plurality-at-large": "Voto en bloque o Escrutinio Mayoritario Plurinominal", "borda-nauru": "Borda de Nauru o Borda Dowdall (1/n)", "borda": "Borda Count (tradicional)", "pairwise-beta": "Comparación de pares (distribución beta)", "desborda": "DesBorda"}
   },
   "avBooth": {
     "legal": {
@@ -36,6 +36,8 @@
       "body": "La auditoría de la papeleta lo invalidará y tendrás que iniciar el proceso de votación de nuevo si deseas emitir tu voto. El proceso de auditoría de la papeleta permite verificar que está codificada correctamente. Hacer este proceso requiere que unos conocimientos técnicos importantes, por lo que no se recomienda si no sabes lo que estás haciendo. <br/> <br/><strong>Si lo que desea es emitir su voto, en <u>Cancelar</u> para volver a la pantalla de revisión de votación.</strong>",
       "confirm": "Sí, quiero INVALIDAR mi papeleta para AUDITARLA"
     },
+    "planchaSelect": "seleccionar todos",
+    "planchaDeselect": "deseleccionar todos",
     "showSelectedOptionPoints": "(__points__ puntos)",
     "warnBallotParity": {
       "header": "Papeleta no paritaria",
@@ -49,7 +51,7 @@
     "startVoting": "Empezar a votar",
     "continueButton": "Continuar",
     "stepsToVote": "Seguirás estos pasos al emitir tu voto:",
-    "selectOptionsTitle": "1. Elige tus preferencias",
+    "selectOptionsTitle": "1. Responde a la pregunta",
     "selectOptionsText": "Responde a las preguntas de la votación que se presentan una a una. Configurarás así las preferencias de tu papeleta.",
     "reviewOptionsTitle": "2. Revisa tu papeleta",
     "reviewOptionsText": "Una vez has elegido tus preferencias, procederemos a cifrarlas y obtendrás un localizador. Te mostraremos el contenido de tu papeleta para que puedas revisarla.",
@@ -96,7 +98,10 @@
     "alreadySelectedPack": "Seleccionaste una opción vinculada a otros documentos más. No es posible seleccionarlo de forma aislada.",
     "cantSelectPack": "Intentaste seleccionar una opción vinculada que no se puede seleccionar de forma aislada, y ya tienes otra seleccionada.",
 
-    "removeSelectedItem": "deseleccionar",
+    "removeSelectedItem": "click para deseleccionar",
+    "removeSelectedItemShort": "deseleccionar",
+    "dragSelectedItem": "arrastrar para mover",
+    "dragSelectedItemShort": "mover",
 
     "helpTitle": "Ayuda",
     "helpText": "",
@@ -166,16 +171,6 @@
     "voteInBlank": "Votar en Blanco",
     "openOptionLink": "Abrir enlace en nueva pestaña",
 
-    "ahoramPrimaries": {
-      "selectAll": "Seleccionar todo el equipo",
-      "deselectAll": "Deseleccionar todo el equipo",
-      "selectedOptions": "Opciones seleccionadas (en orden, pincha y arrastra para cambiarlo)",
-      "mayoral": "Alcaldía (__count__)",
-      "mayoral_plural": "Alcaldía (__count__)",
-      "councils": "Concejalías (__count__)",
-      "councils_plural": "Concejalías (__count__)"
-    },
-
     "reviewScreen": {
       "pair": "__one__ > __two__"
     },
@@ -188,8 +183,8 @@
 
     "confirmNullVote": {
       "header": "Voto en blanco",
-      "body": "No has seleccionado ninguna opción en alguna pregunta, lo que equivale a votar en blanco.",
-      "confirm": "Sí, quiero votar en blanco cuando no seleciono ninguna opción"
+      "body": "No has seleccionado ninguna opción en alguna pregunta, lo que equivale a votar en blanco en dicha pregunta. ¿Estás seguro que es eso lo que quieres que ocurra cuando no seleccionas ninguna opción en alguna pregunta?",
+      "confirm": "Sí, es eso lo que quiero votar"
     },
 
     "busy": {
@@ -200,6 +195,13 @@
       "castDescription": "usando un canal seguro y verificando tu identidad",
       "anonymizedTitle": "anonimizado",
       "anonymizedDescription": "para que el recuento no revele el sentido de tu voto"
+    },
+
+    "tooFewAnswers": {
+      "header": "Selecciona más opciones",
+      "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
+      "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
+
     }
   },
   "avElection": {

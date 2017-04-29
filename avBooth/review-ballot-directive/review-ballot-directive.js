@@ -58,6 +58,10 @@ angular.module('avBooth')
           "pairwise-beta": function()
           {
             return;
+          },
+          "desborda": function()
+          {
+            return 80 - answer.selected;
           }
         }[question.tally_type]();
       };

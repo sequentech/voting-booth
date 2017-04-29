@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-booth.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2017  Agora Voting SL <nvotes@nvotes.com>
 
  * agora-gui-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -16,12 +16,14 @@
 **/
 
 /*
- * Convenience service that returns access to the sjcl
+ * Convenience service that returns access to is-js
  */
 
-angular.module('avCrypto')
-  .service('SjclService', function() {
+angular.module('is-js', []);
+
+angular.module('is-js')
+  .service('IsService', function() {
     /* jshint ignore:start */
-    return sjcl;
+    return is;
     /* jshint ignore:end */
   });

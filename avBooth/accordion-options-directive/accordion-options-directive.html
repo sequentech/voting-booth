@@ -9,19 +9,41 @@
     <div accordion-group ng-repeat="category in nonEmptyCategories" is-open="category.isOpen"
         ng-class="{'in': category.isOpen}">
       <div accordion-heading>
-        <span class="heading-cat-title">{{category.title}}</span>
-        <span
-          class="pull-right glyphicon"
-          ng-class="{'glyphicon-chevron-down': category.isOpen, 'glyphicon-chevron-right': !category.isOpen}">
+        <span class="pull-right">
+          <span
+            class="accordion-num-label label label-primary"
+            ng-if="(category.options | avbSelectedOptions).length > 0">
+            {{(category.options | avbSelectedOptions).length }}
+          </span>
+          <span
+            ng-if="enable_select_categories_1click && canSelect(category)"
+            ng-click="toggleCategory(category, $event)">
+            <span
+              class="accordion-plancha-label label label-primary"
+              ng-if="!category.isSelected">
+              <span class="glyphicon glyphicon-check"></span>
+              <span ng-i18next="avBooth.planchaSelect"></span>
+            </span>
+            <span
+              class="accordion-plancha-label label label-primary"
+              ng-if="category.isSelected">
+              <span class="glyphicon glyphicon-remove"></span>
+              <span ng-i18next="avBooth.planchaDeselect"></span>
+            </span>
+          </span>
+          <span
+            class="glyphicon"
+            ng-class="{'glyphicon-chevron-down': category.isOpen, 'glyphicon-chevron-right': !category.isOpen}">
+          </span>
         </span>
-        <span class="accordion-num-label pull-right label label-primary"
-          ng-if="(category.options | avbSelectedOptions).length > 0">
-          {{(category.options | avbSelectedOptions).length }}
+        <span class="heading-cat-title">
+          {{category.title}}
         </span>
       </div>
       <div avb-accordion-option
         ng-repeat="option in category.options"
         class="animate-repeat highlight-selected"
+        ng-click="updateSelectionCategories()"
         ng-class="{selected: option.selected > -1}">
       </div>
     </div>
