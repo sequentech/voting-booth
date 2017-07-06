@@ -24,7 +24,8 @@ angular.module('avBooth')
     $timeout,
     HmacService,
     ConfigService,
-    InsideIframeService)
+    InsideIframeService,
+    Authmethod)
 {
 
     // we use it as something similar to a controller here
@@ -449,6 +450,13 @@ angular.module('avBooth')
             // on error, like parse error or 404
             .error(function (error) {
               showError($i18next("avBooth.errorLoadingElection"));
+            });
+
+          Authmethod.viewEvent(scope.electionId)
+            .success(function(data) {
+              if (data.status === "ok") {
+                scope.authEvent = data.events;
+              }
             });
         } catch (error) {
           showError($i18next("avBooth.errorLoadingElection"));

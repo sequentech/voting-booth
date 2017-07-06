@@ -20,8 +20,18 @@
  */
 angular.module('avBooth')
   .directive('avbHelpScreen', function(ConfigService) {
+    function link(scope, element, attrs) {
+      scope.extra = {};
+      if (_.isObject(scope.election)) {
+        scope.extra.election = scope.election;
+      }
+      if (_.isObject(scope.authEvent)) {
+        scope.extra.authEvent = scope.authEvent;
+      }
+    }
     return {
       restrict: 'AE',
+      link: link,
       templateUrl: 'avBooth/help-screen-directive/help-screen-directive.html'
     };
   });
