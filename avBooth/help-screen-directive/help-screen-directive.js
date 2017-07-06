@@ -23,7 +23,10 @@ angular.module('avBooth')
     function link(scope, element, attrs) {
       scope.extra = {};
       if (_.isObject(scope.election)) {
-        scope.extra = { election: scope.election };
+        scope.extra.election = scope.election;
+      }
+      if (_.isObject(scope.authEvent)) {
+        scope.extra.authEvent = scope.authEvent;
       }
     }
     return {
