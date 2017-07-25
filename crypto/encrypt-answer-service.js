@@ -46,7 +46,7 @@ angular.module('avCrypto')
       return {
 
         // randomness argument is optional, used just for unit testing really
-        encryptAnswer: function(plain_answer, randomness, randomness2, error_func)) {
+        encryptAnswer: function(plain_answer, randomness, randomness2, error_func) {
           var plaintext = new ElGamalService.Plaintext(
             BigIntService.fromJSONObject(plain_answer),
             publicKey,
