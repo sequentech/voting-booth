@@ -296,7 +296,7 @@ angular.module('avCrypto')
           return;
         }
         console.log("plaintext = " + plaintext);
-        var encryptedAnswer = encryptor.encryptAnswer(plaintext);
+        var encryptedAnswer = encryptor.encryptAnswer(plaintext, false, false, console.log);
         answers.push(encryptedAnswer);
 
         if (data.verify) {

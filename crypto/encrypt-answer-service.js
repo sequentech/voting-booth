@@ -19,7 +19,7 @@
   usage:
 
     var encryptor = EncryptBallotService.init(pk);
-    var ctext = encryptor.encryptAnswer(23);
+    var ctext = encryptor.encryptAnswer(23, false, false, console.log);
 
   dependencies
 
@@ -46,11 +46,21 @@ angular.module('avCrypto')
       return {
 
         // randomness argument is optional, used just for unit testing really
-        encryptAnswer: function(plain_answer, randomness, randomness2) {
+        encryptAnswer: function(plain_answer, randomness, randomness2, error_func)) {
           var plaintext = new ElGamalService.Plaintext(
             BigIntService.fromJSONObject(plain_answer),
             publicKey,
             true);
+
+          // checking that encoding a number to a member of the group and then
+          // decoding it returns the same number. This will usually detect if
+          // a number too big to encode in the group
+          var plainAnswerDecoded = plaintext.getPlaintext();
+          if (!!error_func &&
+            (plainAnswerDecoded.toJSONObject()+"" !== plain_answer+""))
+          {
+            error_func("errorEncoding", "error while encoding the number to a member of the group");
+          }
           if (!randomness) {
             randomness = RandomService.getRandomInteger(publicKey.q);
           } else {
