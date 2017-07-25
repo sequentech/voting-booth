@@ -296,7 +296,15 @@ angular.module('avCrypto')
           return;
         }
         console.log("plaintext = " + plaintext);
-        var encryptedAnswer = encryptor.encryptAnswer(plaintext, false, false, console.log);
+        var hasEncryptionError = false;
+        var logEncryptionError = function (name, description) {
+          data.error(name, description);
+          hasEncryptionError = true;
+        };
+        var encryptedAnswer = encryptor.encryptAnswer(plaintext, false, false, logEncryptionError);
+        if (!!hasEncryptionError) {
+          return;
+        }
         answers.push(encryptedAnswer);
 
         if (data.verify) {
