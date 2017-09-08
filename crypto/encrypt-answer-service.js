@@ -54,10 +54,17 @@ angular.module('avCrypto')
 
           // checking that encoding a number to a member of the group and then
           // decoding it returns the same number. This will usually detect if
-          // a number too big to encode in the group
+          // a number too big to encode in the group.
+          //
+          // Because the number coming from the group will never have a zero to
+          // the left but the origin plain_answer might, we strip the zeros to
+          // the left of plain_answer. We could convert them to BigInts both
+          // and compare but seems overkill, and we cannot convert them to ints
+          // because the numbers might be bigger than the max-safe-int in
+          // javascript, so that's why are we still comparing them as strings.
           var plainAnswerDecoded = plaintext.getPlaintext();
           if (!!error_func &&
-            (plainAnswerDecoded.toJSONObject()+"" !== plain_answer+""))
+            (plainAnswerDecoded.toJSONObject()+"" !== plain_answer.replace(/^0+/, "")+""))
           {
             error_func("errorEncoding", "error while encoding the number to a member of the group");
           }
