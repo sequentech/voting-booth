@@ -83,6 +83,7 @@
     "selectMoreOpts": "Heu de seleccionar almenys __min__ opcions.",
     "selectMoreOpts_plural": "Heu de seleccionar almenys __min__ opcions.",
     "maxSelectedLimitReached": "No podeu seleccionar més opcions (màxim __max__). Si voleu canviar el vostre vot, primer heu de deseleccionar la vostra primera elecció.",
+    "maxSelectedLimitReached_singular": "Recordeu que només podeu triar una opció",
     "maxSelectedTagLimitReached": "No podeu seleccionar més opcions de tipo __tagName__ (màxim __max__). Per seleccionar una, deseleccioneu-ne una altra primer.",
     "maxSelectedTagLimitReached": "No podeu seleccionar més opcions que no siguin __tagName__ (màxim __max__). Per seleccionar-ne una, deseleccioneu-ne una altra primer",
     "alreadySelectedDocumentType": "No podeu seleccionar dos documents del mateix tipus, desseleccioneu-los primer abans.",
@@ -91,6 +92,7 @@
 
     "removeSelectedItem": "click per deseleccioneu",
     "removeSelectedItemShort": "deseleccioneu",
+
     "dragSelectedItem": "arrossegar per moure",
     "dragSelectedItemShort": "moure",
 
