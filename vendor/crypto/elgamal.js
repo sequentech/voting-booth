@@ -344,9 +344,12 @@ ElGamal.Plaintext = Class.extend({
 
     this.pk = pk;
 
+    // encode to m * legendre(m|p)
     if (encode_m) {
       // need to encode the message given that p = 2q+1
       var y = m.add(BigInt.ONE);
+
+      // euler criterion to determine quadratic residuosity
       var test = y.modPow(pk.q, pk.p);
       if (test.equals(BigInt.ONE)) {
     	  this.m = y;
