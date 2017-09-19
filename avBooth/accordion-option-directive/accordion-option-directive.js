@@ -107,6 +107,10 @@ angular.module('avBooth')
           {
             return;
           },
+          "desborda3": function()
+          {
+            return Math.max(1, Math.floor(scope.question.num_winners * 1.3) - scope.option.selected);
+          },
           "desborda2": function()
           {
             return Math.max(1, Math.floor(scope.question.num_winners * 1.3) - scope.option.selected);
