@@ -44,7 +44,7 @@ angular.module('avBooth')
           var message = p.social_message;
           message = message.replace(
             '__URL__',
-            window.location.protocol + '//' + window.location.host + '/election/' + scope.election.id + '/public/login'
+            window.location.protocol + '//' + window.location.host + '/election/' + scope.election.id + '/public/home'
           );
 
           if('Facebook' === p.network) {
