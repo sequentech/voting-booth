@@ -41,15 +41,6 @@ angular.module('avBooth')
       // demo booth
       scope.isDemo = !InsideIframeService() && !scope.voterId;
 
-      // global variables
-      $window.isDemo = scope.isDemo;
-      $window.isReal = ((_.isObject(scope.election))? (!!scope.election.real) : false);
-      $window.election = scope.election;
-      scope.$watch('election', function (newEl) {
-        $window.isReal = ((_.isObject(newEl))? (!!newEl.real) : false);
-        $window.election = newEl;
-      });
-
       function updateWidth() {
         $timeout.cancel(timeoutWidth);
         timeoutWidth = $timeout(function() {
@@ -446,6 +437,11 @@ angular.module('avBooth')
               }
 
               scope.election = angular.fromJson(value.payload.configuration);
+
+              // global variables
+              $window.isDemo = scope.isDemo;
+              $window.isReal = ((_.isObject(scope.election))? (!!scope.election.real) : false);
+              $window.election = scope.election;
 
               // index questions
               _.each(scope.election.questions, function(q, num) { q.num = num; });
