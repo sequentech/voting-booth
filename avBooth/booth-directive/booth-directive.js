@@ -41,6 +41,13 @@ angular.module('avBooth')
       // demo booth
       scope.isDemo = !InsideIframeService() && !scope.voterId;
 
+      // global variables
+      $window.isDemo = scope.isDemo;
+      $window.isReal = ((_.isObject(scope.election))? (!!scope.election.real) : false);
+      scope.$watch('election', function (newEl) {
+        $window.isReal = ((_.isObject(newEl))? (!!newEl.real) : false);
+      });
+
       function updateWidth() {
         $timeout.cancel(timeoutWidth);
         timeoutWidth = $timeout(function() {
