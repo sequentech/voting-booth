@@ -44,8 +44,10 @@ angular.module('avBooth')
       // global variables
       $window.isDemo = scope.isDemo;
       $window.isReal = ((_.isObject(scope.election))? (!!scope.election.real) : false);
+      $window.election = scope.election;
       scope.$watch('election', function (newEl) {
         $window.isReal = ((_.isObject(newEl))? (!!newEl.real) : false);
+        $window.election = newEl;
       });
 
       function updateWidth() {
