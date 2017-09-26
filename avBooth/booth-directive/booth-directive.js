@@ -443,6 +443,10 @@ angular.module('avBooth')
 
               scope.election = angular.fromJson(value.payload.configuration);
 
+              // global variables
+              $window.isDemo = scope.isDemo;
+              $window.election = scope.election;
+
               // index questions
               _.each(scope.election.questions, function(q, num) { q.num = num; });
 
