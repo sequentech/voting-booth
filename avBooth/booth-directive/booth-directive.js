@@ -125,6 +125,11 @@ angular.module('avBooth')
             sorted: true,
             ordered: true
           },
+          "desborda3": {
+            state: stateEnum.multiQuestion,
+            sorted: true,
+            ordered: true
+          },
           "desborda2": {
             state: stateEnum.multiQuestion,
             sorted: true,
