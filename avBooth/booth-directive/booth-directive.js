@@ -125,6 +125,11 @@ angular.module('avBooth')
             sorted: true,
             ordered: true
           },
+          "desborda3": {
+            state: stateEnum.multiQuestion,
+            sorted: true,
+            ordered: true
+          },
           "desborda2": {
             state: stateEnum.multiQuestion,
             sorted: true,
@@ -437,6 +442,10 @@ angular.module('avBooth')
               }
 
               scope.election = angular.fromJson(value.payload.configuration);
+
+              // global variables
+              $window.isDemo = scope.isDemo;
+              $window.election = scope.election;
 
               // index questions
               _.each(scope.election.questions, function(q, num) { q.num = num; });
