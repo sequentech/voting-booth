@@ -48,7 +48,7 @@
   <div class="container">
     <div class="row options-row" ng-repeat="question in groupQuestions">
       <div class="col-xs-12">
-        <h3>{{question.title}}</h3>
+        <h3 aria-level="2">{{question.title}}</h3>
         <p
           ng-if="question.description"
           ng-bind-html="question.description | addTargetBlank">
@@ -63,7 +63,11 @@
                      'col-xs-6': (answerColumnsSize === 6),
                      'col-xs-4': (answerColumnsSize === 4),
                      'col-xs-3': (answerColumnsSize === 3)}">
-          <div class="opt" ng-click="toggleSelectItem(question, answer)">
+          <div
+            tabindex="0"
+            ng-space-click
+            class="opt"
+            ng-click="toggleSelectItem(question, answer)">
             <span class="glyphicon"
               ng-class="{'glyphicon-unchecked': answer.selected === -1,
                         'glyphicon-check': answer.selected > -1}">
@@ -77,6 +81,7 @@
     <!-- next button -->
     <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
       <button
+        id="continue-btn"
         class="btn btn-block btn-lg btn-success btn-plain"
         ng-i18next
         ng-click="questionNext()">
