@@ -18,11 +18,12 @@
       </div>
       <div class="pull-right">
         <span
-          class="glyphicon glyphicon-question-sign"
+          class="glyphicon glyphicon-question-sign hidden-xs"
           ng-click="launchHelp()"
         >
         </span>
         <span
+          class="hidden-xs"
           ng-click="launchHelp()"
           ng-i18next="avBooth.helpTitle"
         >
@@ -38,6 +39,24 @@
       >
       </div>
     </div>
+
+    <div class="row visible-xs">
+      <div class="pull-left">
+        <span
+          class="text-center powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+        >
+        </span>
+      </div>
+      <div class="pull-right">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          ng-click="launchHelp()">
+        </span>
+        <span ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
+      </div>
+    </div>
+
   </div>
 </nav>
 
