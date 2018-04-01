@@ -227,6 +227,13 @@ angular.module('avBooth')
             answer.selected = -1;
           });
       };
+      
+      /**
+       * Focus on Continue button after closing modal.
+       */
+      function focusContinueBtn() {
+        angular.element.find('#continue-btn')[0].focus();
+      }
 
       scope.presetNext = function() {
         // show null vote warning
@@ -237,7 +244,7 @@ angular.module('avBooth')
             size: 'md'
           }).result.then(function () {
             scope.showingPreset = false;
-          });
+          }, focusContinueBtn);
           return;
         }
 
@@ -330,13 +337,6 @@ angular.module('avBooth')
           }
         );
         return result.success;
-      }
-      
-      /**
-       * Focus on Continue button after closing modal.
-       */
-      function focusContinueBtn() {
-        angular.element.find('#continue-btn')[0].focus();
       }
 
       /**

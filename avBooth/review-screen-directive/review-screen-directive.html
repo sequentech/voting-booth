@@ -98,6 +98,8 @@
             [html:i18next]({ballotHash: stateData.ballotHash})avBooth.reviewBallotHashText
           </span>
           (<a
+            tabindex="0"
+            ng-space-click
             ng-i18next="avBooth.auditTheBallot"
             ng-click="confirmAudit()">
           </a>)
@@ -105,6 +107,7 @@
       </div>
       <div class="col-xs-12 no-padding">
         <button
+          id="continue-btn"
           class="btn btn-block btn-lg btn-success btn-plain"
           ng-i18next="avBooth.castTheBallot"
           ng-click="next()">

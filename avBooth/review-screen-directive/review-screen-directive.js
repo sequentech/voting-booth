@@ -29,6 +29,13 @@ angular.module('avBooth')
       _.each(scope.election.questions, function (q) {
         q.isPairWise = _.contains(['pairwise-beta'], q.tally_type);
       });
+      
+      /**
+       * Focus on Continue button after closing modal.
+       */
+      function focusContinueBtn() {
+        angular.element.find('#continue-btn')[0].focus();
+      }
 
       scope.confirmAudit = function()
       {
@@ -36,7 +43,7 @@ angular.module('avBooth')
           templateUrl: "avBooth/confirm-audit-controller/confirm-audit-controller.html",
           controller: "ConfirmAuditController",
           size: 'md'
-        }).result.then(scope.audit);
+        }).result.then(scope.audit, focusContinueBtn);
       };
 
       scope.audit = function() {
