@@ -4,8 +4,8 @@
     <div class="row avb-top-navbar">
       <div class="pull-left">
         <span ng-if="election.logo_url">
-          <img 
-            class="logo-img" 
+          <img
+            class="logo-img"
             ng-src="{{election.logo_url}}"
           >
           </img>
@@ -135,7 +135,7 @@
         <!-- for extra small screens -->
         <div avb-selected-options
           class="visible-xs"
-          ng-class="{hidden: !stateData.affixDropDownShown}"
+          ng-class="{hidden: !stateData.affixDropDownShown, hidden-xs: stateData.affixDropDownShown}"
           preset-selected-size="stateData.question.presetSelectedSize"
           layout="stateData.question.layout"
           tally-type="stateData.question.tally_type"
