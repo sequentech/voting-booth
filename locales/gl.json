@@ -156,7 +156,7 @@
 
     "auditBallotTitle": "Auditar a papeleta",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>O localizador do teu voto é: <code>__ballotHash__</code></p><p><strong>A auditoría da papeleta require certos coñecementos técnicos. Se non os tes, podes simplemente comezar de novo o proceso de voto facendo clic abaixo</strong>.</p><p>Para verificar o teu voto, necesitas:</p><ol><li>Copiar e gardar nun ficheiro a papeleta (clic para seleccionar):<br/><div class=\"code\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir os pasos de <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que a papeleta foi cifrada correctamente</a>.</li></ol><p>Por razóns de seguridade, ao auditar o voto, ten que ser refugado. Para continuar o proceso de voto, debes comezar o proceso de novo.</p>",
+    "auditBallotText": "<p>O localizador do teu voto é: <code>__ballotHash__</code></p><p><strong>A auditoría da papeleta require certos coñecementos técnicos. Se non os tes, podes simplemente comezar de novo o proceso de voto facendo clic abaixo</strong>.</p><p>Para verificar o teu voto, necesitas:</p><ol><li>Copiar e gardar nun ficheiro a papeleta (clic para seleccionar):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir os pasos de <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que a papeleta foi cifrada correctamente</a>.</li></ol><p>Por razóns de seguridade, ao auditar o voto, ten que ser refugado. Para continuar o proceso de voto, debes comezar o proceso de novo.</p>",
     "auditStartAgain": "Comezar o proceso de voto de novo",
 
 
