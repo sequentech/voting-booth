@@ -15,7 +15,7 @@
   </span>
 
   <div
-    ng-if="!!isYoutube(option) && !isTouchDevice"
+    ng-if="!!isYoutube(option)"
     class="videoWrapper">
     <iframe
       width="560"
@@ -30,7 +30,7 @@
     <div class="vertilize-col vert-align-top">
       <img
         parent
-        ng-if="!isTouchDevice && !isYoutube(option) && !!urls['Image URL']"
+        ng-if="!isYoutube(option) && !!urls['Image URL']"
         ng-src="{{urls['Image URL']}}"
         alt="{{option.text}}" />
     </div>
