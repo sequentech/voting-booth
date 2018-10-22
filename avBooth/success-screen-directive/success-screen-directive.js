@@ -68,7 +68,7 @@ angular.module('avBooth')
 
       // cookies log out
       var postfix = "_authevent_" + scope.election.id;
-      delete $cookies["authevent_" + scope.csrf.eventId];
+      delete $cookies["authevent_" + postfix];
       delete $cookies["userid" + postfix];
       delete $cookies["user" + postfix];
       delete $cookies["auth" + postfix];

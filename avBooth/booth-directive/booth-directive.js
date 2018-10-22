@@ -454,7 +454,13 @@ angular.module('avBooth')
               // initialize ballotClearText as a list of lists
               scope.ballotClearText = _.map(
                 scope.election.questions, function () { return []; });
-              scope.setState(stateEnum.startScreen, {});
+
+              if (scope.election.presentation.start_screen__skip)
+              {
+                goToQuestion(0, false);
+              } else {
+                scope.setState(stateEnum.startScreen, {});
+              }
             })
             // on error, like parse error or 404
             .error(function (error) {
