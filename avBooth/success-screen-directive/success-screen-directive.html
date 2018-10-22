@@ -75,22 +75,22 @@
   <div class="container">
     <div class="padded">
       <p
-        nf-if="!election.presentation.success_screen__hide_ballot_tracker"
+        nf-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
         ng-i18next>
         [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator", url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
       </p>
       <p
-        nf-if="!!election.presentation.success_screen__hide_ballot_tracker"
+        nf-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"
         ng-i18next>
         [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
       </p>
-      <div class="text-center" ng-if="!!election.presentation.success_screen__redirect_to_login">
+      <div class="text-center" ng-if="!!election.presentation.extra_options.success_screen__redirect_to_login">
         <span>
           <a
             href="/election/{{election.id}}/public/login"
             target="_blank"
             class="btn btn-twitter">
-            {{ election.presentation.success_screen__redirect_to_login__text }}
+            {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
           </a>
         </span>
       </div>

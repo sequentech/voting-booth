@@ -75,15 +75,15 @@ angular.module('avBooth')
       delete $cookies["isAdmin" + postfix];
 
       // Automatic redirect to login if configured to do so
-      if (scope.election.presentation.success_screen__redirect_to_login__auto_seconds &&
-          angular.isNumber(scope.election.presentation.success_screen__redirect_to_login__auto_seconds) &&
-          scope.election.presentation.success_screen__redirect_to_login__auto_seconds >= 0) {
+      if (scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds &&
+          angular.isNumber(scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds) &&
+          scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds >= 0) {
         setTimeout(
           function()
           {
             $window.location.href = "/election/" + scope.election.id + "/public/login";
           },
-          1000*scope.election.presentation.success_screen__redirect_to_login__auto_seconds
+          1000*scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds
         );
       }
     }
