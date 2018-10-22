@@ -21,7 +21,7 @@
 angular.module('avBooth')
   .directive(
     'avbSuccessScreen',
-    function(ConfigService, $interpolate)
+    function(ConfigService, $interpolate, $window)
     {
 
     function link(scope, element, attrs) {
@@ -65,6 +65,27 @@ angular.module('avBooth')
       generateButtonsInfo();
 
       scope.successText = text({electionId: scope.election.id});
+
+      // cookies log out
+      delete $cookies["authevent_" + scope.csrf.eventId];
+      delete $cookies["userid" + postfix];
+      delete $cookies["user" + postfix];
+      delete $cookies["auth" + postfix];
+      delete $cookies["isAdmin" + postfix];
+
+      // Automatic redirect to login if configured to do so
+      if (scope.election.presentation.success_screen__redirect_to_login__auto_seconds &&
+          angular.isNumber(scope.election.presentation.success_screen__redirect_to_login__auto_seconds) &&
+          scope.election.presentation.success_screen__redirect_to_login__auto_seconds >= 0) {
+        setTimeout(
+          function()
+          {
+            $window.location.href = "/election/" + scope.election.id + "/public/login";
+          },
+          1000*scope.election.presentation.success_screen__redirect_to_login__auto_seconds
+        );
+      }
+    )
     }
 
       return {

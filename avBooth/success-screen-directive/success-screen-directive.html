@@ -1,4 +1,4 @@
-<nav 
+<nav
   class="navbar navbar-default navbar-fixed-top"
   av-affix-top=".navbar-unfixed-top"
   role="navigation"
@@ -14,7 +14,7 @@
           >
           </img>
         </span>
-        <span 
+        <span
           class="powered-by"
           ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
           ng-if="!election.logo_url"
@@ -31,7 +31,7 @@
           ng-i18next="avBooth.helpTitle"
         >
         </span>
-        <span 
+        <span
           class="dropdown left-padding"
           av-change-lang
         >
@@ -74,11 +74,28 @@
 <div class="content avb-content">
   <div class="container">
     <div class="padded">
-      <p ng-i18next>
+      <p
+        nf-if="!election.presentation.success_screen__hide_ballot_tracker"
+        ng-i18next>
         [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator", url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
       </p>
+      <p
+        nf-if="!!election.presentation.success_screen__hide_ballot_tracker"
+        ng-i18next>
+        [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
+      </p>
+      <div class="text-center" ng-if="!!election.presentation.success_screen__redirect_to_login">
+        <span>
+          <a
+            href="/election/{{election.id}}/public/login"
+            target="_blank"
+            class="btn btn-twitter">
+            {{ election.presentation.success_screen__redirect_to_login__text }}
+          </a>
+        </span>
+      </div>
       <div class="text-center" ng-if="!!election.presentation.share_text">
-        <span 
+        <span
           ng-if="!!buttonsInfo"
           ng-repeat="q in buttonsInfo"
         >
