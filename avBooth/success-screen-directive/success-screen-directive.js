@@ -67,6 +67,7 @@ angular.module('avBooth')
       scope.successText = text({electionId: scope.election.id});
 
       // cookies log out
+      var postfix = "_authevent_" + scope.election.id;
       delete $cookies["authevent_" + scope.csrf.eventId];
       delete $cookies["userid" + postfix];
       delete $cookies["user" + postfix];
@@ -85,7 +86,6 @@ angular.module('avBooth')
           1000*scope.election.presentation.success_screen__redirect_to_login__auto_seconds
         );
       }
-    )
     }
 
       return {
