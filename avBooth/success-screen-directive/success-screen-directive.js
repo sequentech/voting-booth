@@ -21,7 +21,7 @@
 angular.module('avBooth')
   .directive(
     'avbSuccessScreen',
-    function(ConfigService, $interpolate, $window)
+    function(ConfigService, $interpolate, $window, $cookies)
     {
 
     function link(scope, element, attrs) {
