@@ -256,7 +256,8 @@ module.exports = function (grunt) {
             "dist/locales/es.json": ["locales/es.json", "plugins/**/locales/es.json", "bower_components/avCommon/locales/es.json"],
             "dist/locales/gl.json": ["locales/gl.json", "plugins/**/locales/gl.json", "bower_components/avCommon/locales/gl.json"],
             "dist/locales/ca.json": ["locales/ca.json", "plugins/**/locales/ca.json", "bower_components/avCommon/locales/ca.json"],
-            "dist/locales/fi.json": ["locales/fi.json", "plugins/**/locales/fi.json", "bower_components/avCommon/locales/fi.json"]
+            "dist/locales/fi.json": ["locales/fi.json", "plugins/**/locales/fi.json", "bower_components/avCommon/locales/fi.json"],
+            "dist/locales/sv.json": ["locales/sv.json", "plugins/**/locales/sv.json", "bower_components/avCommon/locales/sv.json"]
         }
       }
     },
