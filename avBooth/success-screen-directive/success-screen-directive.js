@@ -21,7 +21,7 @@
 angular.module('avBooth')
   .directive(
     'avbSuccessScreen',
-    function(ConfigService, $interpolate, $window, $cookies)
+    function(ConfigService, Authmethod, $interpolate, $window, $cookies)
     {
 
     function link(scope, element, attrs) {
@@ -66,6 +66,55 @@ angular.module('avBooth')
 
       scope.successText = text({electionId: scope.election.id});
 
+      // simply redirect to login
+      function simpleRedirectToLogin()
+      {
+        $window.location.href = "/election/" + scope.election.id + "/public/login";
+      }
+
+      // Returns the logout url if any from the appropiate openidprovider
+      // TODO: logout asumes that you are using the first provider, so it
+      // basically supports only one provider
+      function getLogoutUri()
+      {
+        if (!ConfigService.openIDConnectProviders.length == 0
+          || !ConfigService.openIDConnectProviders[0].logout_uri
+        )
+        {
+          return false;
+        }
+
+        return ConfigService.openIDConnectProviders[0].logout_uri
+          .replace("__EVENT_ID__", "" + scope.election.id);
+      }
+
+      // (maybe logout, in openid when there's a logout_uri and) redirect to login
+      scope.redirectToLogin = function()
+      {
+        Authmethod.viewEvent(scope.election.id)
+          .success(
+            function(value)
+            {
+              if (data.status !== "ok"
+                || !data.events
+                || data.events.auth_method !== 'openid-connect'
+                || !getLogoutUri())
+              {
+                simpleRedirectToLogin();
+                return;
+              }
+
+              $window.location.href = getLogoutUri();
+            }
+          )
+          .error(
+            function(error)
+            {
+              simpleRedirectToLogin();
+            }
+          );
+      }
+
       // cookies log out
       var postfix = "_authevent_" + scope.election.id;
       delete $cookies["authevent_" + postfix];
@@ -79,10 +128,7 @@ angular.module('avBooth')
           angular.isNumber(scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds) &&
           scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds >= 0) {
         setTimeout(
-          function()
-          {
-            $window.location.href = "/election/" + scope.election.id + "/public/login";
-          },
+          scope.redirectToLogin,
           1000*scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds
         );
       }

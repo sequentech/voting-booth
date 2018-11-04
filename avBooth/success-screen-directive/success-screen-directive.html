@@ -87,7 +87,7 @@
       <div class="text-center" ng-if="!!election.presentation.extra_options.success_screen__redirect_to_login">
         <span>
           <a
-            href="/election/{{election.id}}/public/login"
+            ng-click="redirectToLogin()"
             class="btn btn-primary btn-login">
             {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
           </a>
