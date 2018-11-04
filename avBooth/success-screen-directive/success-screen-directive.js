@@ -77,7 +77,7 @@ angular.module('avBooth')
       // basically supports only one provider
       function getLogoutUri()
       {
-        if (!ConfigService.openIDConnectProviders.length === 0 || !ConfigService.openIDConnectProviders[0].logout_uri)
+        if (ConfigService.openIDConnectProviders.length === 0 || !ConfigService.openIDConnectProviders[0].logout_uri)
         {
           return false;
         }
@@ -107,7 +107,7 @@ angular.module('avBooth')
               simpleRedirectToLogin();
             }
           );
-      }
+      };
 
       // cookies log out
       var postfix = "_authevent_" + scope.election.id;
