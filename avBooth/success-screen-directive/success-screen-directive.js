@@ -77,15 +77,12 @@ angular.module('avBooth')
       // basically supports only one provider
       function getLogoutUri()
       {
-        if (!ConfigService.openIDConnectProviders.length == 0
-          || !ConfigService.openIDConnectProviders[0].logout_uri
-        )
+        if (!ConfigService.openIDConnectProviders.length === 0 || !ConfigService.openIDConnectProviders[0].logout_uri)
         {
           return false;
         }
 
-        return ConfigService.openIDConnectProviders[0].logout_uri
-          .replace("__EVENT_ID__", "" + scope.election.id);
+        return ConfigService.openIDConnectProviders[0].logout_uri.replace("__EVENT_ID__", "" + scope.election.id);
       }
 
       // (maybe logout, in openid when there's a logout_uri and) redirect to login
@@ -93,12 +90,9 @@ angular.module('avBooth')
       {
         Authmethod.viewEvent(scope.election.id)
           .success(
-            function(value)
+            function(data)
             {
-              if (data.status !== "ok"
-                || !data.events
-                || data.events.auth_method !== 'openid-connect'
-                || !getLogoutUri())
+              if (data.status !== "ok" || !data.events || data.events.auth_method !== 'openid-connect' || !getLogoutUri())
               {
                 simpleRedirectToLogin();
                 return;
