@@ -86,18 +86,25 @@ angular.module('avBooth')
         uri = uri.replace("__EVENT_ID__", "" + scope.election.id);
 
         var postfix = "_authevent_" + scope.election.id;
-        if ($cookies["id_token_" + postfix])
+        if (!!$cookies["id_token_" + postfix])
         {
           uri = uri.replace("__ID_TOKEN__", $cookies["id_token_" + postfix]);
-          delete $cookies["id_token_" + postfix];
         }
 
         return uri;
       }
 
+      scope.redirectingToUri = false;
+
       // (maybe logout, in openid when there's a logout_uri and) redirect to login
       scope.redirectToLogin = function()
       {
+        if (scope.redirectingToUri)
+        {
+          return;
+        }
+        scope.redirectingToUri = true;
+
         Authmethod.viewEvent(scope.election.id)
           .success(
             function(data)
@@ -108,6 +115,8 @@ angular.module('avBooth')
                 return;
               }
 
+              var postfix = "_authevent_" + scope.election.id;
+              delete $cookies["id_token_" + postfix];
               $window.location.href = getLogoutUri();
             }
           )
