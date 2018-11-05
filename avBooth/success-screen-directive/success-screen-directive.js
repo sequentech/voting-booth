@@ -116,8 +116,9 @@ angular.module('avBooth')
               }
 
               var postfix = "_authevent_" + scope.election.id;
+              var uri = getLogoutUri();
               delete $cookies["id_token_" + postfix];
-              $window.location.href = getLogoutUri();
+              $window.location.href = uri;
             }
           )
           .error(
