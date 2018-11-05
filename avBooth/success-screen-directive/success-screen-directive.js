@@ -82,7 +82,17 @@ angular.module('avBooth')
           return false;
         }
 
-        return ConfigService.openIDConnectProviders[0].logout_uri.replace("__EVENT_ID__", "" + scope.election.id);
+        var uri = ConfigService.openIDConnectProviders[0].logout_uri;
+        uri = uri.replace("__EVENT_ID__", "" + scope.election.id);
+
+        var postfix = "_authevent_" + scope.election.id;
+        if ($cookies["id_token_" + postfix])
+        {
+          uri = uri.replace("__ID_TOKEN__", $cookies["id_token_" + postfix]);
+          delete $cookies["id_token_" + postfix];
+        }
+
+        return uri;
       }
 
       // (maybe logout, in openid when there's a logout_uri and) redirect to login
@@ -115,6 +125,7 @@ angular.module('avBooth')
       delete $cookies["userid" + postfix];
       delete $cookies["user" + postfix];
       delete $cookies["auth" + postfix];
+      delete $cookies["isAdmin" + postfix];
       delete $cookies["isAdmin" + postfix];
 
       // Automatic redirect to login if configured to do so
