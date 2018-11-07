@@ -89,6 +89,12 @@ angular.module('avBooth')
         if (!!$cookies["id_token_" + postfix])
         {
           uri = uri.replace("__ID_TOKEN__", $cookies["id_token_" + postfix]);
+        // if __ID_TOKEN__ is there but we cannot replace it, we need to
+        // directly redirect to the login, otherwise the URI might show an
+        // error 500
+        } else if (uri.indexOf("__ID_TOKEN__") > -1)
+        {
+          uri = "/election/" + eventId + "/public/login";
         }
 
         return uri;
