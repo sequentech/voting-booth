@@ -94,7 +94,7 @@ angular.module('avBooth')
         // error 500
         } else if (uri.indexOf("__ID_TOKEN__") > -1)
         {
-          uri = "/election/" + eventId + "/public/login";
+          uri = "/election/" + scope.election.id + "/public/login";
         }
 
         return uri;
