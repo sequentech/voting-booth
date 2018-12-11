@@ -178,7 +178,7 @@ angular.module('avBooth')
             {
               scope.question.lastCategorySelected = {
                 name: option.category,
-                clicks: 0
+                clicks: 1
               };
             }
           }
@@ -197,10 +197,12 @@ angular.module('avBooth')
           ).length;
 
           _.each(
-            scope.groupedOptions,
+            scope.question.anwers,
             function(option)
             {
-              if (option.selected <= -1 && numSelected < parseInt(scope.max,10))
+              if (option.category === scope.question.lastCategorySelected.name &&
+                option.selected <= -1 &&
+                numSelected < parseInt(scope.max,10))
               {
                 scope.toggleSelectItem(option);
                 numSelected++;
