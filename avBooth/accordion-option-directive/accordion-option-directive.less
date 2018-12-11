@@ -16,7 +16,6 @@
 **/
 
 [avb-accordion-option] {
-  cursor: pointer;
   line-height: 15px;
   position: relative;
   display: block;
@@ -32,6 +31,14 @@
     line-height: 15px;
     padding-right: 55px;
     min-height: 40px;
+
+    &.selected-options.no-handle {
+      cursor: move;
+    }
+
+    &.has-handle {
+      cursor: default;
+    }
 
     &.show-category {
       margin-top: 15px;
@@ -210,6 +217,7 @@
   }
 
   [dnd-handle] {
+    cursor: move;
     position: absolute;
     left: 15px;
     top: 25px;

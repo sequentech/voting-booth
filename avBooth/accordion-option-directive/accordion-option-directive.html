@@ -1,11 +1,13 @@
-<dnd-nodrag
-  class="opt-data vertilize-wrapper selected-options"
+<div
+  class="opt-data vertilize-wrapper has-handle"
   tabindex="0"
   ng-space-click
-  ng-if="selectedOptions"
+  dnd-nodrag
+  ng-if="isTouchDevice"
   ng-class="{
     'hide-link': !urls.URL,
     'show-category': showCategory && !!option.category,
+    'selected-options': selectedOptions,
     'preset': isPreset}"
   ng-click="!isPreset && toggleSelectItem(option)">
 
@@ -62,13 +64,13 @@
     </div>
   </div>
 
-</dnd-nodrag>
+</div>
 
 <div
-  class="opt-data vertilize-wrapper"
+  class="opt-data vertilize-wrapper no-handle"
   tabindex="0"
   ng-space-click
-  ng-if="!selectedOptions"
+  ng-if="!isTouchDevice"
   ng-class="{
     'hide-link': !urls.URL,
     'show-category': showCategory && !!option.category,
