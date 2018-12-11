@@ -195,11 +195,17 @@
       "anonymizedTitle": "anonymized",
       "anonymizedDescription": "so that the tally does not reveal which way you voted"
     },
-  
+
     "tooFewAnswers": {
       "header": "Choose more options",
       "body": "In the following questions you have not selected as many options as the minimum number needed to continue:",
       "question": "Question '__title__': you chose __selected__ options, but you need to choose at least __min__ options"
+    },
+    "selectAllCategory": {
+      "header": "Select all options from the <strong>__category__</strong>?",
+      "body": "You have multiple options from the <strong>__category__</strong>. If you want to select all the options from <strong>__category__</strong>, it will not unselect any other option and it will stop when no more options can be selected.",
+      "confirm": "Select all the options from <strong>__category__</strong>",
+      "doNotShowAgain": "Do not show this again"
     }
   }
 }

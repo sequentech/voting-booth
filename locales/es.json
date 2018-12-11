@@ -202,6 +202,12 @@
       "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
       "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
 
+    },
+    "selectAllCategory": {
+      "header": "¿Seleccionar todas las opciones de <strong>__category__</strong>?",
+      "body": "Has seleccionado varias opciones de <strong>__category__</strong>. Si seleccionas todas las opciones de <strong>__category__</strong>, no se deseleccionará ninguna otra opción y se parará cuando no se puedan seleccionar más opciones.",
+      "confirm": "Seleccionar todas las opciones de <strong>__category__</strong>",
+      "doNotShowAgain": "No mostrar esto de nuevo"
     }
   },
   "avElection": {
