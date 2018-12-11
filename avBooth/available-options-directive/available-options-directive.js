@@ -170,7 +170,7 @@ angular.module('avBooth')
                 $modal.open({
                   templateUrl: "avBooth/select-all-category-controller/select-all-category-controller.html",
                   controller: "SelectAllCategoryController",
-                  size: 'md',
+                  size: 'lg',
                   resolve: {
                     category: function() { return option.category; }
                   }
