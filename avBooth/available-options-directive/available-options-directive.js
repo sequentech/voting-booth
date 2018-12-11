@@ -21,18 +21,24 @@
  * Lists the available options for a question, allowing to change selection.
  */
 angular.module('avBooth')
-  .directive('avbAvailableOptions', function($filter) {
+  .directive(
+    'avbAvailableOptions',
+    function($filter, $cookies, $modal)
+    {
 
-    // This counter is used to show a popup when many clicks selecting options
-    // in a category to select all
-    scope.question.lastCategorySelected = {
-      name: null,
-      clicks: 0
-    };
-    var link = function(scope, element, attrs) {
+      var link = function(scope, element, attrs)
+      {
         scope.options = scope.question.answers;
         scope.tagMax = null;
         scope.noTagMax = null;
+
+        // This counter is used to show a popup when many clicks selecting options
+        // in a category to select all
+        scope.question.lastCategorySelected = {
+          name: null,
+          clicks: 0
+        };
+
         if (angular.isDefined(scope.question.extra_options))
         {
           if (angular.isDefined(scope.question.extra_options.restrict_choices_by_tag__max))
@@ -259,4 +265,5 @@ angular.module('avBooth')
       link: link,
       templateUrl: 'avBooth/available-options-directive/available-options-directive.html'
     };
-  });
+  }
+);
