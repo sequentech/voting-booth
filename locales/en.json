@@ -202,9 +202,9 @@
       "question": "Question '__title__': you chose __selected__ options, but you need to choose at least __min__ options"
     },
     "selectAllCategory": {
-      "header": "Select all options from the category?",
-      "body": "You have multiple options from the category __category__. Do you want to select all the options from that category? If you do, it will not unselect any other option and it will stop when no more options can be selected.",
-      "confirm": "Select all the category options",
+      "header": "Select all options from the <strong>__category__</strong>?",
+      "body": "You have multiple options from the <strong>__category__</strong>. If you want to select all the options from <strong>__category__</strong>, it will not unselect any other option and it will stop when no more options can be selected.",
+      "confirm": "Select all the options from <strong>__category__</strong>",
       "doNotShowAgain": "Do not show this again"
     }
   }

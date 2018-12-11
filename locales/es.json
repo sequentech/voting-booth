@@ -204,9 +204,9 @@
 
     },
     "selectAllCategory": {
-      "header": "¿Seleccionar todas las opciones de la categoría?",
-      "body": "Has seleccionado varias opciones de la categoría __category__. ¿Quieres seleccionar todas las opciones de esa categoría? Si lo haces, no se deseleccionará ninguna otra opción y se parará cuando no se puedan seleccionar más opciones.",
-      "confirm": "Seleccionar todas las opciones de la categoría",
+      "header": "¿Seleccionar todas las opciones de <strong>__category__</strong>?",
+      "body": "Has seleccionado varias opciones de <strong>__category__</strong>. Si seleccionas todas las opciones de <strong>__category__</strong>, no se deseleccionará ninguna otra opción y se parará cuando no se puedan seleccionar más opciones.",
+      "confirm": "Seleccionar todas las opciones de <strong>__category__</strong>",
       "doNotShowAgain": "No mostrar esto de nuevo"
     }
   },
