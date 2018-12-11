@@ -17,7 +17,7 @@
 
 angular.module('avBooth')
   .controller('SelectAllCategoryController',
-    function($scope, $modalInstance, $cookies) {
+    function($scope, $modalInstance, $cookies, category) {
       $scope.ok = function () {
         $modalInstance.close();
       };
@@ -30,4 +30,6 @@ angular.module('avBooth')
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
+
+      $scope.category = category;
     });
