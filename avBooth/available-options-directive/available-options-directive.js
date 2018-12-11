@@ -23,6 +23,12 @@
 angular.module('avBooth')
   .directive('avbAvailableOptions', function($filter) {
 
+    // This counter is used to show a popup when many clicks selecting options
+    // in a category to select all
+    scope.question.lastCategorySelected = {
+      name: null,
+      clicks: 0
+    };
     var link = function(scope, element, attrs) {
         scope.options = scope.question.answers;
         scope.tagMax = null;
@@ -102,6 +108,12 @@ angular.module('avBooth')
               }
             });
             option.selected = -1;
+
+            // restart lastCategorySelected count
+            scope.question.lastCategorySelected = {
+                name: null,
+                clicks: 0
+            };
           } else {
             // if max options selectable is 1, deselect any other and select
             // this
@@ -138,7 +150,57 @@ angular.module('avBooth')
             }
 
             option.selected = numSelected;
+
+            // update last category selected
+            if (scope.question.lastCategorySelected.name === option.category)
+            {
+              scope.question.lastCategorySelected.clicks += 1;
+
+              // if many clicks, show dialog to select all
+              if (scope.question.lastCategorySelected.clicks === 3 &&
+                !$cookies["do_not_show_select_all_category_dialog"] &&
+                scope.question.lastCategorySelected.name !== null)
+              {
+                $modal.open({
+                  templateUrl: "avBooth/select-all-category-controller/select-all-category-controller.html",
+                  controller: "SelectAllCategoryController",
+                  size: 'md'
+                }).result.then(scope.selectAllLastCategory);
+              }
+            }
+            else
+            {
+              scope.question.lastCategorySelected = {
+                name: option.category,
+                clicks: 0
+              };
+            }
           }
+        };
+
+        // Try to select all the options in a category. Called only by the
+        // select all category controller when many options of a category have
+        // been selected sequentially
+        scope.selectAllLastCategory = function()
+        {
+          var numSelected = _.filter(
+            scope.question.answers,
+            function (element) {
+              return element.selected > -1;
+            }
+          ).length;
+
+          _.each(
+            scope.groupedOptions,
+            function(option)
+            {
+              if (option.selected <= -1 && numSelected < parseInt(scope.max,10))
+              {
+                scope.toggleSelectItem(option);
+                numSelected++;
+              }
+            }
+          );
         };
 
         // TODO: only use this when localeCompare is unavailable
