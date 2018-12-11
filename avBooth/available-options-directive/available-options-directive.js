@@ -197,7 +197,7 @@ angular.module('avBooth')
           ).length;
 
           _.each(
-            scope.question.anwers,
+            scope.question.answers,
             function(option)
             {
               if (option.category === scope.question.lastCategorySelected.name &&
