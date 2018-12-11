@@ -3,16 +3,22 @@
   tabindex="0"
   ng-space-click
   dnd-nodrag
-  ng-if="isTouchDevice"
+  ng-if="isTouchDevice && selectedOptions"
   ng-class="{
     'hide-link': !urls.URL,
     'show-category': showCategory && !!option.category,
     'selected-options': selectedOptions,
-    'preset': isPreset}"
-  ng-click="!isPreset && toggleSelectItem(option)">
+    'preset': isPreset}">
 
   <div ng-if="selectedOptions" dnd-handle class="handle">
     <span class="glyphicon glyphicon-list"></span>
+  </div>
+
+  <div
+    ng-if="selectedOptions"
+    ng-click="!isPreset && toggleSelectItem(option)"
+    class="remove-selected-item">
+    <span class="glyphicon glyphicon-remove"></span>
   </div>
 
   <span
@@ -70,7 +76,7 @@
   class="opt-data vertilize-wrapper no-handle"
   tabindex="0"
   ng-space-click
-  ng-if="!isTouchDevice"
+  ng-if="!isTouchDevice || !selectedOptions"
   ng-class="{
     'hide-link': !urls.URL,
     'show-category': showCategory && !!option.category,
@@ -102,6 +108,42 @@
         ng-if="!isYoutube(option) && !!urls['Image URL']"
         ng-src="{{urls['Image URL']}}"
         alt="{{option.text}}" />
+    </div>
+
+    <!-- remove action -->
+    <div class="visible-lg">
+      <div
+        class="show-remove"
+        ng-if="!selectedOptions || !!dnd_disable">
+        <div class="vertilize-wrapper">
+          <div class="vertilize">
+            <div class="vertilize-col ">
+              <span ng-i18next="avBooth.removeSelectedItem"></span>
+              <span class="glyphicon glyphicon-remove"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="show-remove"
+        ng-if="!!selectedOptions && !dnd_disable">
+        <div class="vertilize-wrapper">
+          <div class="vertilize">
+            <div class="vertilize-col">
+              <div class="pull-left margin-left">
+                <span ng-i18next="avBooth.removeSelectedItem"></span>
+                <span class="glyphicon glyphicon-remove"></span>
+              </div>
+            </div>
+            <div class="vertilize-col">
+              <div class="pull-right margin-right">
+                <span class="glyphicon glyphicon-random"></span>
+                <span ng-i18next="avBooth.dragSelectedItem"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- texts -->
