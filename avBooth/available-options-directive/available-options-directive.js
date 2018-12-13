@@ -171,6 +171,7 @@ angular.module('avBooth')
                   templateUrl: "avBooth/select-all-category-controller/select-all-category-controller.html",
                   controller: "SelectAllCategoryController",
                   size: 'lg',
+                  backdrop: 'static',
                   windowClass: "select-all-category-controller",
                   resolve: {
                     category: function() { return option.category; }
