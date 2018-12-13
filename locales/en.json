@@ -203,8 +203,9 @@
     },
     "selectAllCategory": {
       "header": "Select all options from the <strong>__category__</strong>?",
-      "body": "You have multiple options from the <strong>__category__</strong>. If you want to select all the options from <strong>__category__</strong>, it will not unselect any other option and it will stop when no more options can be selected.",
-      "confirm": "Select all the options from <strong>__category__</strong>",
+      "body": "Hey! It looks like you want to select all the options of <strong>__category__</strong>",
+      "confirm": "Yes, Select them",
+      "cancel": "No",
       "doNotShowAgain": "Do not show this again"
     }
   }
