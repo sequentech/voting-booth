@@ -201,12 +201,25 @@ angular.module('avBooth')
             }
           ).length;
 
+          // use the sorted category so that when the category is displayed with
+          // random order the options are selected in that order too. The
+          // category_index attribute is set inside accordionOptionsDirective
+          var sortedCategoryOptions = _.sortBy(
+            _.filter(
+              scope.question.answers,
+              function (option)
+              {
+                return option.category === scope.question.lastCategorySelected.name;
+              }
+            ),
+            'category_index'
+          );
+
           _.each(
-            scope.question.answers,
+            sortedCategoryOptions,
             function(option)
             {
-              if (option.category === scope.question.lastCategorySelected.name &&
-                option.selected <= -1 &&
+              if (option.selected <= -1 &&
                 numSelected < parseInt(scope.max,10))
               {
                 scope.toggleSelectItem(option);
