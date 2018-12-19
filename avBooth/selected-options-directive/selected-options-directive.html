@@ -1,3 +1,5 @@
+<div class="draggable-hack" ng-if="isTouchDevice && selectedOptions">
+</div>
 <div
   class="col-xs-12"
   ng-if="!isTouchDevice && (layout === 'accordion' || layout === 'conditional-accordion' || layout === 'simple' || layout === 'details')"
@@ -6,7 +8,7 @@
   <div avb-accordion-option
     dnd-draggable="option"
     dnd-effect-allowed="move"
-    dnd-disable-if="isSizeXS() || !ordered || (options | avbSelectedOptions).length < 2 || (presetSelectedSize > 0 && option.selected - presetSelectedSize < 0)"
+    dnd-disable-if="!ordered || (options | avbSelectedOptions).length < 2 || (presetSelectedSize > 0 && option.selected - presetSelectedSize < 0)"
     ng-repeat="option in options | avbSelectedOptions"
     show-category="true"
     show-selected-pos="true"
@@ -32,7 +34,7 @@
     draggable="true"
     dnd-draggable="option"
     dnd-effect-allowed="move"
-    dnd-disable-if="isSizeXS() || !ordered || (options | avbSelectedOptions).length < 2 || (presetSelectedSize > 0 && option.selected - presetSelectedSize < 0)"
+    dnd-disable-if="!ordered || (options | avbSelectedOptions).length < 2 || (presetSelectedSize > 0 && option.selected - presetSelectedSize < 0)"
     ng-repeat="option in options | avbSelectedOptions"
     show-category="true"
     show-selected-pos="true"
