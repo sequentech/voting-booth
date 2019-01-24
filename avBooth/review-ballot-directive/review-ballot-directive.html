@@ -1,11 +1,13 @@
 <div
+  tabindex="0"
+  ng-space-click
   class="question padded"
   ng-repeat="question in election.questions"
   ng-if="!question.disabled && question.disabled !== true"
   ng-click="goToQuestion($index, true)">
 
   <!-- title -->
-  <h3 class="text-brand-success">
+  <h3 aria-level="2" class="text-brand-success">
     {{$index + 1}}. {{question.title}}
     <div class="pull-right">
       <span class="glyphicon glyphicon-edit"></span>

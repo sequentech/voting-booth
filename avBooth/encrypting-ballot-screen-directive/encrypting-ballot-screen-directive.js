@@ -118,10 +118,15 @@ angular.module('avBooth')
           updateDomImages();
         }
     }
+    
+    function getImageAlt(imagePath) {
+      return imagePath.substr(imagePath.lastIndexOf('/')+1);
+    }
 
     for(var i = 0; i < busyImageKeys.length; i++) {
       busyImageObj[busyImageKeys[i]].onload = checkCount();
       busyImageObj[busyImageKeys[i]].src = busyImageKeys[i];
+      busyImageObj[busyImageKeys[i]].setAttribute('alt', getImageAlt(busyImageKeys[i]));
     }
 
     function removeAllChilds(elem) {

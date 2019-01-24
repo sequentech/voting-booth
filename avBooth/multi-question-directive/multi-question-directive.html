@@ -4,8 +4,9 @@
     <div class="row avb-top-navbar">
       <div class="pull-left">
         <span ng-if="election.logo_url">
-          <img 
-            class="logo-img" 
+          <img
+            alt="Logo Image"
+            class="logo-img"
             ng-src="{{election.logo_url}}"
           >
           </img>
@@ -27,6 +28,24 @@
       >
       </div>
     </div>
+
+    <div class="row visible-xs">
+      <div class="pull-left">
+        <span
+          class="text-center powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+        >
+        </span>
+      </div>
+      <div class="pull-right">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          ng-click="launchHelp()">
+        </span>
+        <span ng-click="launchHelp()" ng-i18next="avBooth.helpTitle"></span>
+      </div>
+    </div>
+
   </div>
 </nav>
 
@@ -82,7 +101,7 @@
       <!-- show available options and filter -->
       <div class="col-xs-12" ng-class="{'col-sm-6': !hideSelection}">
         <div class="pull-left hidden-xs">
-          <h4 class="text-brand-success" ng-i18next="avBooth.questionAvailableOptionsTitle"></h4>
+          <h4 aria-level="2" class="text-brand-success" ng-i18next="avBooth.questionAvailableOptionsTitle"></h4>
         </div>
         <div class="pull-right filter-input hidden-xs">
           <input type="text"
@@ -109,12 +128,14 @@
         class="col-xs-12 col-sm-6 padded"
         ng-if="!hideSelection">
         <h4
+          aria-level="2"
           class="text-brand-success padded-left hidden-xs"
           ng-if="!stateData.ordered"
           ng-i18next>
           [i18next]({count: numSelectedOptions()})avBooth.questionSelectedOptionsTitle
         </h4>
         <h4
+          aria-level="2"
           class="text-brand-success padded-left hidden-xs"
           ng-if="stateData.ordered"
           ng-i18next>
@@ -135,7 +156,7 @@
         <!-- for extra small screens -->
         <div avb-selected-options
           class="visible-xs"
-          ng-class="{hidden: !stateData.affixDropDownShown}"
+          ng-class="{hidden: !stateData.affixDropDownShown, 'hidden-xs': !stateData.affixDropDownShown}"
           preset-selected-size="stateData.question.presetSelectedSize"
           layout="stateData.question.layout"
           tally-type="stateData.question.tally_type"
@@ -192,6 +213,7 @@
         </span>
       </p>
       <button
+        id="continue-btn"
         class="btn btn-block btn-lg btn-success btn-plain"
         ng-i18next="avBooth.continueButton"
         ng-click="questionNext()">

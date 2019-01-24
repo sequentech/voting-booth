@@ -68,7 +68,7 @@
     "errorSendingBallotElectionNotOpen": "Non se puido enviar o voto porque a votación xa non está aberta. Desculpa as molestias.",
     "couldntSendBallotUnauthorized": "Non se puido enviar o voto porque o token de autenticación asociado a esta ligazón é incorrecto. Sentimos as molestias. No caso de que o problema persista, por favor ponte en contacto connosco.",
     "errorEncrypting": "Ocorreu un problema mentres que cifrabamos o teu voto polo que non puido ser emitido. Seguramente isto sexa debido a que utilizas un navegador web non soportado polo noso software. Por favor, téntao de novo noutro navegador web diferente e máis actualizado, e se o problema persiste ponte en contacto connosco. Desculpa as molestias.",
-    "errorEncoding": "Ocorreu un problema codificando o teu voto, polo que non puido ser emitido. Seguramente isto sexa debido a que utilizas un navegador web non soportado polo noso software. Por favor, téntao de novo noutro navegador web diferente e máis actualizado, e se o problema persiste ponche en contacto connosco. Desculpa as molestias.",
+    "errorEncoding": "<p>__msg__</p>Ocorreu un problema codificando o teu voto, polo que non puido ser emitido. Seguramente isto sexa debido a que utilizas un navegador web non soportado polo noso software. Por favor, téntao de novo noutro navegador web diferente e máis actualizado, e se o problema persiste ponche en contacto connosco. Desculpa as molestias.",
     "sanityChecksFailed": "Ocorreu un problema facendo comprobacións automáticas de codificación previas ao envío do voto, polo que non puidemos emitir o teu voto. Seguramente isto sexa debido a que utilizas un navegador web non soportado polo noso software. Por favor, téntao de novo noutro navegador web diferente e máis actualizado, e se o problema persiste ponche en contacto connosco. Desculpa as molestias.",
     "couldntSendBallotNotFound":  "Non se puido enviar o voto. Poida que haxa problemas de conexión, ou o servidor non estea dispoñible temporalmente. Se se trata deste caso, proba de novo máis tarde e se o problema persiste ponche en contacto connosco.",
     "tooManyUserUpdates": "Non se puido rexistrar o voto, debido a que o cambiaches demasiadas veces nesta votación. Por tanto, o último voto que emitises é o que queda rexistrado.",
@@ -119,7 +119,7 @@
     "sendingBallot": "Enviando a papeleta cifrada ao servidor, por favor espera (__percentage__% completado)",
 
     "successTitle": "Voto emitido con Éxito",
-    "successSubheader": "Parabén, emitiches correctamente o teu voto e queda custodiado pola urna electrónica.",
+    "successSubheader": "Parabéns, emitiches correctamente o teu voto e queda custodiado pola urna electrónica.",
 
     "completePacksTitle": "Packs completos",
     "listOfDraftDocuments": "Documentos (clic para ver)",
@@ -156,12 +156,13 @@
 
     "auditBallotTitle": "Auditar a papeleta",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>O localizador do teu voto é: <code>__ballotHash__</code></p><p><strong>A auditoría da papeleta require certos coñecementos técnicos. Se non os tes, podes simplemente comezar de novo o proceso de voto facendo clic abaixo</strong>.</p><p>Para verificar o teu voto, necesitas:</p><ol><li>Copiar e gardar nun ficheiro a papeleta (clic para seleccionar):<br/><div class=\"code\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir os pasos de <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que a papeleta foi cifrada correctamente</a>.</li></ol><p>Por razóns de seguridade, ao auditar o voto, ten que ser refugado. Para continuar o proceso de voto, debes comezar o proceso de novo.</p>",
+    "auditBallotText": "<p>O localizador do teu voto é: <code>__ballotHash__</code></p><p><strong>A auditoría da papeleta require certos coñecementos técnicos. Se non os tes, podes simplemente comezar de novo o proceso de voto facendo clic abaixo</strong>.</p><p>Para verificar o teu voto, necesitas:</p><ol><li>Copiar e gardar nun ficheiro a papeleta (clic para seleccionar):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir os pasos de <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que a papeleta foi cifrada correctamente</a>.</li></ol><p>Por razóns de seguridade, ao auditar o voto, ten que ser refugado. Para continuar o proceso de voto, debes comezar o proceso de novo.</p>",
     "auditStartAgain": "Comezar o proceso de voto de novo",
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de proba, os votos emitidos aquí non contan.",
-    "successBallotHash": "¡Parabén! Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. O localizador do teu voto é:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podes usar o teu localizador para <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que o teu voto quedou rexistrado</a>.",
+    "successBallotHash": "¡Parabéns! Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. O localizador do teu voto é:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podes usar o teu localizador para <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que o teu voto quedou rexistrado</a>.",
+    "successNoBallotHash": "Parabéns! Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. ",
     "relatedLinksText": "Para máis información sobre a votación:",
 
     "circleOptionExternalLink": "Ver detalles",
@@ -181,7 +182,7 @@
       "castTitle": "emitido",
       "castDescription": "usando unha canle segura e comprobar a súa identidade",
       "anonymizedTitle": "anonimizado",
-      "anonymizedDescription": "para que a conta non revela o significado do seu voto"
+      "anonymizedDescription": "para que a conta non revele o significado do seu voto"
     },
 
     "tooFewAnswers": {

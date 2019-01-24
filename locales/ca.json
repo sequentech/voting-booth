@@ -62,7 +62,7 @@
     "errorSendingBallotElectionNotOpen": "No s'ha pogut enviar el vot perquè la votació ja no està oberta. Disculpeu les molèsties.",
     "couldntSendBallotUnauthorized": "No s'ha pogut enviar el vot perquè el token d'autenticació associat a aquest enllaç és incorrecte. Sentim les molèsties. En cas que el problema persisteixi, sisplau poseu-vos en contacte amb nosaltres.",
     "errorEncrypting": "Hi ha hagut un problema mentre xifràvem el vostre vot, cosa que ha impedit que s'emetés. Segurament això és perquè feu servir un navegador web no admès pel nostre programari. Si us plau, proveu-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix poseu-vos en contacte amb nosaltres. Disculpeu les molèsties",
-    "errorEncoding": "Hi ha hagut un problema mentre xifràvem el vostre vot cosa que ha impedit que s'emetés. Segurament això és perquè feu servir un navegador web no admès pel nostre programari. Sisplau, proveu-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix poseu-vos contacte amb nosaltres.Disculpeu les molèsties",
+    "errorEncoding": "<p>__msg__</p>Hi ha hagut un problema mentre xifràvem el vostre vot cosa que ha impedit que s'emetés. Segurament això és perquè feu servir un navegador web no admès pel nostre programari. Sisplau, proveu-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix poseu-vos contacte amb nosaltres.Disculpeu les molèsties",
     "sanityChecksFailed": "Hi ha hagut un problema fent comprovacions automàtiques de codificació prèvies a la tramesa del vot, cosa que ha impedit emetre el vostre vot. Segurament això és perquè feu servir un navegador web no admès pel nostre programari. Si us plau, proveu-ho un altre cop amb un altre navegador web i més actualitzat, i si el problema persisteix poseu-vos contacte amb nosaltres.Disculpeu les molèsties.",
     "couldntSendBallotNotFound":  "No s'ha pogut enviar el vot. Pot ser que hi hagi problemes de connexió, o que el servidor no estigui disponible temporalment. Si fos aquest el cas, proveu-ho un altre cop més tard i si el problema persisteix poseu-vos en contacte amb nosaltres.",
     "tooManyUserUpdates": "El vostre vot ja ha estat emès i registrat prèviament.",
@@ -83,6 +83,7 @@
     "selectMoreOpts": "Heu de seleccionar almenys __min__ opcions.",
     "selectMoreOpts_plural": "Heu de seleccionar almenys __min__ opcions.",
     "maxSelectedLimitReached": "No podeu seleccionar més opcions (màxim __max__). Si voleu canviar el vostre vot, primer heu de deseleccionar la vostra primera elecció.",
+    "maxSelectedLimitReached_singular": "Recordeu que només podeu triar una opció",
     "maxSelectedTagLimitReached": "No podeu seleccionar més opcions de tipo __tagName__ (màxim __max__). Per seleccionar una, deseleccioneu-ne una altra primer.",
     "maxSelectedTagLimitReached": "No podeu seleccionar més opcions que no siguin __tagName__ (màxim __max__). Per seleccionar-ne una, deseleccioneu-ne una altra primer",
     "alreadySelectedDocumentType": "No podeu seleccionar dos documents del mateix tipus, desseleccioneu-los primer abans.",
@@ -91,6 +92,7 @@
 
     "removeSelectedItem": "click per deseleccioneu",
     "removeSelectedItemShort": "deseleccioneu",
+
     "dragSelectedItem": "arrossegar per moure",
     "dragSelectedItemShort": "moure",
 
@@ -150,7 +152,7 @@
 
     "auditBallotTitle": "Auditi el vot",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>El localitzador del vostre vot és: <code>__ballotHash__</code></p><p><strong>L'auditoria del vot requereix certs coneixements tècnics. Si no els teniu, cal començar de nou el procés d'escollir  l'opció del vostre vot fent clic a baix</strong>.</p><p>Per verificar el vostre vot, necessiteu:</p><ol><li>Copieu i guardeu en un fitxer el vot. Per seleccionar totes aquestes dades, cliqueu sobre la part grisa, el primer codi és el localitzador :<br/><div class=\"code\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguiu els passos <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">d'aquest tutorial (CLIQUEU AQUÍ) per verificar que el vot ha estat xifrat correctament</a>.</li></ol><p>Per raons de seguretat, en auditar el vot, el localitzador ha de ser rebutjat. Per continuar el procés de vot, heu de començar el procés de nou.</p>",
+    "auditBallotText": "<p>El localitzador del vostre vot és: <code>__ballotHash__</code></p><p><strong>L'auditoria del vot requereix certs coneixements tècnics. Si no els teniu, cal començar de nou el procés d'escollir  l'opció del vostre vot fent clic a baix</strong>.</p><p>Per verificar el vostre vot, necessiteu:</p><ol><li>Copieu i guardeu en un fitxer el vot. Per seleccionar totes aquestes dades, cliqueu sobre la part grisa, el primer codi és el localitzador :<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguiu els passos <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">d'aquest tutorial (CLIQUEU AQUÍ) per verificar que el vot ha estat xifrat correctament</a>.</li></ol><p>Per raons de seguretat, en auditar el vot, el localitzador ha de ser rebutjat. Per continuar el procés de vot, heu de començar el procés de nou.</p>",
     "auditStartAgain": "Comenceu de nou el procés de vot",
 
 

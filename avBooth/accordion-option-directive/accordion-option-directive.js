@@ -19,10 +19,11 @@
  * Directive that shows an accordion option.
  */
 angular.module('avBooth')
-  .directive('avbAccordionOption', function($sce) {
+  .directive('avbAccordionOption', function($sce, IsService) {
 
     var link = function(scope, element, attrs) {
 
+      scope.isTouchDevice = IsService.touchDevice();
       scope.urls = _.object(_.map(scope.option.urls, function(url) {
         return [url.title, url.url];
       }));
@@ -74,7 +75,7 @@ angular.module('avBooth')
 
       scope.showPoints = false;
 
-      if (angular.isDefined(scope.question.extra_options) && 
+      if (angular.isDefined(scope.question.extra_options) &&
           !!scope.question.extra_options.show_points) {
         scope.showPoints = true;
       }

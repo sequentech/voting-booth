@@ -44,7 +44,7 @@ angular.module('avBooth')
       scope.canSelect = function (category) {
           var selectedOptions = scope.numSelectedOptions();
           var selectedOnThisCat = scope.numSelectedByCategory(category);
-          var newSelectedOptions = 
+          var newSelectedOptions =
             selectedOptions - selectedOnThisCat + category.options.length;
           return scope.question.max >= newSelectedOptions;
       };
@@ -119,6 +119,22 @@ angular.module('avBooth')
           });
         }
       }
+
+      // set category order so that it can be used in
+      // avbAvailableOptions.scope.selectAllLastCategory
+      _.each(
+        scope.categories,
+        function (category)
+        {
+          _.each(
+            category.options,
+            function (option, index)
+            {
+              option.category_index = index;
+            }
+          );
+        }
+      );
 
       scope.nonEmptyCategories = _.filter(scope.categories, function (cat) {
         return !!cat.title && cat.title.length > 0;

@@ -70,7 +70,7 @@
     "errorSendingBallotElectionNotOpen": "No se pudo enviar el voto porque la votación ya no está abierta. Disculpa las molestias.",
     "couldntSendBallotUnauthorized": "No se pudo enviar el voto porque el token de autenticación asociado a este enlace es incorrecto. Sentimos las molestias. En caso de que el problema persista, por favor ponte en contacto con nosotros.",
     "errorEncrypting": "Ocurrió un problema mientras que cifrábamos tu voto por lo que no ha podido ser emitido. Seguramente esto sea debido a que utilizas un navegador web no soportado por nuestro software. Por favor, inténtalo de nuevo en otro navegador web diferente y más actualizado, y si el problema persiste ponte en contacto con nosotros. Disculpa las molestias.",
-    "errorEncoding": "Ocurrió un problema codificando tu voto, por lo que no ha podido ser emitido. Seguramente esto sea debido a que utilizas un navegador web no soportado por nuestro software. Por favor, inténtalo de nuevo en otro navegador web diferente y más actualizado, y si el problema persiste ponte en contacto con nosotros. Disculpa las molestias.",
+    "errorEncoding": "<p>__msg__</p>Ocurrió un problema codificando tu voto, por lo que no ha podido ser emitido. Seguramente esto sea debido a que utilizas un navegador web no soportado por nuestro software. Por favor, inténtalo de nuevo en otro navegador web diferente y más actualizado, y si el problema persiste ponte en contacto con nosotros. Disculpa las molestias.",
     "sanityChecksFailed": "Ocurrió un problema haciendo comprobaciones automáticas de codificación previas al envío del voto, por lo que no hemos podido emitir tu voto. Seguramente esto sea debido a que utilizas un navegador web no soportado por nuestro software. Por favor, inténtalo de nuevo en otro navegador web diferente y más actualizado, y si el problema persiste ponte en contacto con nosotros. Disculpa las molestias.",
     "couldntSendBallotNotFound":  "No se pudo enviar el voto. Puede que haya problemas de conexión, o el servidor no esté disponible temporalmente. Si se trata de este caso, prueba de nuevo más tarde y si el problema persiste ponte en contacto con nosotros.",
     "tooManyUserUpdates": "No se pudo registrar el voto, debido a que lo has cambiado demasiadas veces en esta votación. Por tanto, el último voto que hayas emitido es el que queda registrado.",
@@ -159,7 +159,7 @@
 
     "auditBallotTitle": "Auditar la papeleta",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>El localizador de tu voto es: <code>__ballotHash__</code></p><p><strong>La auditoría de la papeleta requiere ciertos conocimientos técnicos. Si no los tienes, puedes simplemente comenzar de nuevo el proceso de voto haciendo clic abajo</strong>.</p><p>Para verificar tu voto, necesitas:</p><ol><li>Copiar y guardar en un fichero la papeleta (clic para seleccionar):<br/><div class=\"code\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir los pasos de <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que la papeleta fue cifrada correctamente</a>.</li></ol><p>Por razones de seguridad, al auditar el voto, el ha de ser desechado. Para continuar el proceso de voto, debes comenzar el proceso de nuevo.</p>",
+    "auditBallotText": "<p>El localizador de tu voto es: <code>__ballotHash__</code></p><p><strong>La auditoría de la papeleta requiere ciertos conocimientos técnicos. Si no los tienes, puedes simplemente comenzar de nuevo el proceso de voto haciendo clic abajo</strong>.</p><p>Para verificar tu voto, necesitas:</p><ol><li>Copiar y guardar en un fichero la papeleta (clic para seleccionar):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir los pasos de <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que la papeleta fue cifrada correctamente</a>.</li></ol><p>Por razones de seguridad, al auditar el voto, el ha de ser desechado. Para continuar el proceso de voto, debes comenzar el proceso de nuevo.</p>",
     "auditStartAgain": "Comenzar el proceso de voto de nuevo",
 
 
@@ -202,6 +202,13 @@
       "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
       "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
 
+    },
+    "selectAllCategory": {
+      "header": "¿Seleccionar todas las opciones de <strong>__category__</strong>?",
+      "body": "¡Ey! Parece que quieres seleccionar la mayoría de las opciones de <strong>__category__</strong>",
+      "confirm": "SI, seleccionar",
+      "cancel": "NO",
+      "doNotShowAgain": "No mostrar esto de nuevo"
     }
   },
   "avElection": {
