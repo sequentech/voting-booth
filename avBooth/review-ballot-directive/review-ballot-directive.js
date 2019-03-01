@@ -27,7 +27,7 @@ angular.module('avBooth')
     {
       scope.showPoints = function (question)
       {
-        return angular.isDefined(question.extra_options) && 
+        return angular.isDefined(question.extra_options) &&
           !!question.extra_options.show_points;
       };
 
@@ -50,6 +50,10 @@ angular.module('avBooth')
           "borda": function()
           {
             return question.max - answer.selected;
+          },
+          "borda-mas-madrid": function()
+          {
+            return scope.question.max - scope.option.selected;
           },
           "borda-nauru": function()
           {

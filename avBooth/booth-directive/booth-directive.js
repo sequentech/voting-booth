@@ -120,6 +120,11 @@ angular.module('avBooth')
             sorted: true,
             ordered: true
           },
+          "borda-mas-madrid": {
+            state: stateEnum.multiQuestion,
+            sorted: true,
+            ordered: true
+          },
           "pairwise-beta": {
             state: stateEnum.pairwiseBeta,
             sorted: true,

@@ -100,6 +100,10 @@ angular.module('avBooth')
           {
             return scope.question.max - scope.option.selected;
           },
+          "borda-mas-madrid": function()
+          {
+            return scope.question.max - scope.option.selected;
+          },
           "borda-nauru": function()
           {
             return "1/" + (1 + scope.option.selected);
