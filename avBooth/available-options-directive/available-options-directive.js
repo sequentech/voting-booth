@@ -163,7 +163,7 @@ angular.module('avBooth')
               scope.question.lastCategorySelected.clicks += 1;
 
               // if many clicks, show dialog to select all
-              if (scope.question.lastCategorySelected.clicks === 10 &&
+              if (scope.question.lastCategorySelected.clicks === 2 &&
                 !$cookies["do_not_show_select_all_category_dialog"] &&
                 scope.question.lastCategorySelected.name !== null)
               {
