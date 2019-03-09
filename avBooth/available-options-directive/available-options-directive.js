@@ -144,18 +144,18 @@ angular.module('avBooth')
 
             // if sleection was zero
             if (numSelected === 0 &&
-              option.category.name !== null &&
+              option.category !== null &&
               (
                 angular.isDefined(scope.question.extra_options) &&
                 angular.isDefined(scope.question.extra_options.shuffle_category_list) &&
                 !_.contains(
                   scope.question.extra_options.shuffle_category_list,
-                  option.category.name
+                  option.category
                 )
               )
             )
             {
-              scope.selectCategory(option.category.name);
+              scope.selectCategory(option.category);
             }
           }
         };
