@@ -32,13 +32,6 @@ angular.module('avBooth')
         scope.tagMax = null;
         scope.noTagMax = null;
 
-        // This counter is used to show a popup when many clicks selecting options
-        // in a category to select all
-        scope.question.lastCategorySelected = {
-          name: null,
-          clicks: 0
-        };
-
         if (angular.isDefined(scope.question.extra_options))
         {
           if (angular.isDefined(scope.question.extra_options.restrict_choices_by_tag__max))
@@ -114,12 +107,6 @@ angular.module('avBooth')
               }
             });
             option.selected = -1;
-
-            // restart lastCategorySelected count
-            scope.question.lastCategorySelected = {
-                name: null,
-                clicks: 0
-            };
           } else {
             // if max options selectable is 1, deselect any other and select
             // this
@@ -133,9 +120,7 @@ angular.module('avBooth')
               return;
             }
 
-            var numSelected = _.filter(scope.question.answers, function (element) {
-              return element.selected > -1;
-            }).length;
+            var numSelected = scope.numSelectedOptions();
 
             // can't select more, flash info
             if (numSelected === parseInt(scope.max,10)) {
@@ -157,73 +142,40 @@ angular.module('avBooth')
 
             option.selected = numSelected;
 
-            // update last category selected
-            if (scope.question.lastCategorySelected.name === option.category)
+            // if sleection was zero
+            if (numSelected == 0 &&
+              option.category.name !== null &&
+              (
+                angular.isDefined(scope.question.extra_options) &&
+                angular.isDefined(scope.question.extra_options.shuffle_category_list) &&
+                !_.contains(
+                  scope.question.extra_options.shuffle_category_list,
+                  option.category.name
+                )
+              )
+            )
             {
-              scope.question.lastCategorySelected.clicks += 1;
-
-              // if many clicks, show dialog to select all
-              if (scope.question.lastCategorySelected.clicks === 2 &&
-                !$cookies["do_not_show_select_all_category_dialog"] &&
-                scope.question.lastCategorySelected.name !== null)
-              {
-                $modal.open({
-                  templateUrl: "avBooth/select-all-category-controller/select-all-category-controller.html",
-                  controller: "SelectAllCategoryController",
-                  size: 'lg',
-                  backdrop: 'static',
-                  windowClass: "select-all-category-controller",
-                  resolve: {
-                    category: function() { return option.category; }
-                  }
-                }).result.then(scope.selectAllLastCategory);
-              }
-            }
-            else
-            {
-              scope.question.lastCategorySelected = {
-                name: option.category,
-                clicks: 1
-              };
+              scope.selectCategory(option.category.name);
             }
           }
         };
 
-        // Try to select all the options in a category. Called only by the
-        // select all category controller when many options of a category have
-        // been selected sequentially
-        scope.selectAllLastCategory = function()
+        // select all the options in the category and only that category
+        scope.selectCategory = function(category)
         {
-          var numSelected = _.filter(
-            scope.question.answers,
-            function (element) {
-              return element.selected > -1;
-            }
-          ).length;
-
-          // use the sorted category so that when the category is displayed with
-          // random order the options are selected in that order too. The
-          // category_index attribute is set inside accordionOptionsDirective
-          var sortedCategoryOptions = _.sortBy(
-            _.filter(
-              scope.question.answers,
-              function (option)
-              {
-                return option.category === scope.question.lastCategorySelected.name;
-              }
-            ),
-            'category_index'
-          );
+          var count = 0;
 
           _.each(
-            sortedCategoryOptions,
-            function(option)
+            scope.question.answers,
+            function(answer)
             {
-              if (option.selected <= -1 &&
-                numSelected < parseInt(scope.max,10))
+              if (answer.category === category &&
+                count < parseInt(scope.max, 10))
               {
-                scope.toggleSelectItem(option);
-                numSelected++;
+                answer.selected = count;
+                count++;
+              } else {
+                answer.selected = -1;
               }
             }
           );
