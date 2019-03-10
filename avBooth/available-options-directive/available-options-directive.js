@@ -146,8 +146,8 @@ angular.module('avBooth')
             if (numSelected === 0 &&
               option.category !== null &&
               (
-                angular.isDefined(scope.question.extra_options) &&
-                angular.isDefined(scope.question.extra_options.shuffle_category_list) &&
+                !angular.isDefined(scope.question.extra_options) ||
+                !angular.isDefined(scope.question.extra_options.shuffle_category_list) ||
                 !_.contains(
                   scope.question.extra_options.shuffle_category_list,
                   option.category
