@@ -156,15 +156,15 @@ angular.module('avBooth')
               )
             )
             {
-              scope.selectCategory(option.category);
+              scope.selectCategory(option.category, numSelected);
             }
           }
         };
 
         // select all the options in the category and only that category
-        scope.selectCategory = function(category)
+        scope.selectCategory = function(category, numSelected)
         {
-          var count = 0;
+          var count = numSelected;
 
           _.each(
             scope.question.answers,
