@@ -143,7 +143,7 @@ angular.module('avBooth')
             option.selected = numSelected;
 
             // if sleection was zero
-            if (numSelected === 0 &&
+            if (numSelected <= 1 &&
               option.category !== null &&
               (
                 !angular.isDefined(scope.question.extra_options) ||
