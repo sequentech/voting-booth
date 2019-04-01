@@ -171,12 +171,11 @@ angular.module('avBooth')
             function(answer)
             {
               if (answer.category === category &&
+                answer.selected === -1 &&
                 count < parseInt(scope.max, 10))
               {
                 answer.selected = count;
                 count++;
-              } else {
-                answer.selected = -1;
               }
             }
           );
