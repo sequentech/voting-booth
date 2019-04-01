@@ -145,6 +145,7 @@ angular.module('avBooth')
             // if sleection was zero
             if (numSelected <= 1 &&
               option.category !== null &&
+              option.category !== "" &&
               (
                 !angular.isDefined(scope.question.extra_options) ||
                 !angular.isDefined(scope.question.extra_options.shuffle_category_list) ||
