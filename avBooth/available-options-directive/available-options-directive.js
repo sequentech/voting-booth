@@ -164,7 +164,7 @@ angular.module('avBooth')
         // select all the options in the category and only that category
         scope.selectCategory = function(category, numSelected)
         {
-          var count = numSelected;
+          var count = numSelected + 1;
 
           _.each(
             scope.question.answers,
