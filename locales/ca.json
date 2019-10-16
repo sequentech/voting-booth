@@ -158,6 +158,7 @@
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Atenció!</strong> Cabina de votació de prova, els vots emesos aquí no compten.",
     "successBallotHash": "Enhorabona! Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podeu fer servir el localitzador per <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar <strong><u>AQUÍ</u></strong> que el vostre vot ha quedat registrat</a>.",
+    "successNoBallotHash": "Enhorabona! Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "relatedLinksText": "Per a més informació sobre la votació:",
     "circleOptionExternalLink": "Mostra'n els detalls",
     "voteInBlank": "Vota en blanc",
@@ -188,7 +189,7 @@
       "anonymizedTitle": "anònim",
       "anonymizedDescription": "perquè el recompte no revela el sentit del teu vot"
     },
-    
+
     "tooFewAnswers": {
       "header": "Selecciona más opciones",
       "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",

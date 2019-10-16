@@ -164,6 +164,7 @@
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
     "successBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>You can use your ballot tracker to <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verify that your ballot has been correctly cast</a>.",
+    "successNoBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "relatedLinksText": "For more information about this election:",
 
     "circleOptionExternalLink": "View details",
