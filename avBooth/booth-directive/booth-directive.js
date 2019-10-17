@@ -460,7 +460,7 @@ angular.module('avBooth')
               scope.ballotClearText = _.map(
                 scope.election.questions, function () { return []; });
 
-              if (scope.election.presentation.extra_options.start_screen__skip)
+              if (scope.election.presentation.extra_options && scope.election.presentation.extra_options.start_screen__skip)
               {
                 goToQuestion(0, false);
               } else {
