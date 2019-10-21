@@ -145,7 +145,8 @@ angular.module('avBooth')
       delete $cookies["isAdmin" + postfix];
 
       // Automatic redirect to login if configured to do so
-      if (scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds &&
+      if (!!scope.election.presentation.extra_options &&
+	  scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds &&
           angular.isNumber(scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds) &&
           scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds >= 0) {
         setTimeout(
