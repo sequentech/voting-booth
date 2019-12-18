@@ -142,7 +142,12 @@ angular.module('avBooth')
 
             option.selected = numSelected;
 
-            // if sleection was zero
+            // if selection was zero and selection empty and category is not
+            // shuffled, the whole category would be selected. This was once
+            // required by client but we are disabling it for now. In the future,
+            // we could re-enable it by creating an election level option to 
+            // enable this behavior
+            /*
             if (numSelected <= 1 &&
               option.category !== null &&
               option.category !== "" &&
@@ -158,6 +163,7 @@ angular.module('avBooth')
             {
               scope.selectCategory(option.category, numSelected);
             }
+            */
           }
         };
 
