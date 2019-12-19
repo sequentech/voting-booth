@@ -164,8 +164,8 @@
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de prueba, los votos emitidos aquí no cuentan.",
-    "successBallotHash": "¡Enhorabuena! Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de tu voto es:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Puedes usar tu localizador para <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que tu voto ha quedado registrado</a>.",
-    "successNoBallotHash": "¡Enhorabuena! Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
+    "successBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de tu voto es:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Puedes usar tu localizador para <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que tu voto ha quedado registrado</a>.",
+    "successNoBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "relatedLinksText": "Para más información sobre la votación:",
 
     "circleOptionExternalLink": "Ver detalles",
