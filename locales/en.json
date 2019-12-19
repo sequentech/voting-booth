@@ -122,7 +122,7 @@
     "emptyAnswer": "<blank vote>",
 
     "successTitle": "Vote cast successfully",
-    "successSubheader": "Congratulations, you have correctly cast your ballot and it's now being kept in our electronic ballot box.",
+    "successSubheader": "You have correctly cast your ballot and it's now being kept in our electronic ballot box.",
 
     "completePacksTitle": "Complete packs",
     "listOfDraftDocuments": "Documents (click to open)",

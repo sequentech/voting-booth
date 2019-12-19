@@ -119,7 +119,7 @@
     "sendingBallot": "Enviando a papeleta cifrada ao servidor, por favor espera (__percentage__% completado)",
 
     "successTitle": "Voto emitido con Éxito",
-    "successSubheader": "Parabéns, emitiches correctamente o teu voto e queda custodiado pola urna electrónica.",
+    "successSubheader": "Emitiches correctamente o teu voto e queda custodiado pola urna electrónica.",
 
     "completePacksTitle": "Packs completos",
     "listOfDraftDocuments": "Documentos (clic para ver)",

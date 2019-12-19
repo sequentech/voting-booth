@@ -122,7 +122,7 @@
     "emptyAnswer": "<blank vote>",
 
     "successTitle": "Äänesi on tallennettu",
-    "successSubheader": "Onneksi olkoon, äänesi on salattu ja tallennettu onnistuneesti sähköiseen vaaliuurnaan.",
+    "successSubheader": "Äänesi on salattu ja tallennettu onnistuneesti sähköiseen vaaliuurnaan.",
 
     "completePacksTitle": "Complete packs",
     "listOfDraftDocuments": "Documents (click to open)",

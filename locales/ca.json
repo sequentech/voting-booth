@@ -115,7 +115,7 @@
     "sendingBallot": "Enviant la papereta xifrada al servidor, sisplau espereu (__percentage__% completat)",
 
     "successTitle": "Vot emès amb èxit",
-    "successSubheader": "Enhorabona, heu emès correctament el vostre vot i queda custodiat per una urna electrònica",
+    "successSubheader": "Heu emès correctament el vostre vot i queda custodiat per una urna electrònica",
 
     "completePacksTitle": "Paquets complets",
     "listOfDraftDocuments": "Documents (cliqui per veure'ls)",
