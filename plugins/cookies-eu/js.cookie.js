@@ -23,9 +23,14 @@
 }(function ($) {
 
 	var pluses = /\+/g;
+	var api = null;
 
 	function encode(s) {
 		return api.raw ? s : encodeURIComponent(s);
+	}
+
+	function isFunction(obj) {
+		return Object.prototype.toString.call(obj) === '[object Function]';
 	}
 
 	function decode(s) {
@@ -69,11 +74,7 @@
 		return result;
 	}
 
-	function isFunction(obj) {
-		return Object.prototype.toString.call(obj) === '[object Function]';
-	}
-
-	var api = function (key, value, options) {
+	api = function (key, value, options) {
 
 		// Write
 

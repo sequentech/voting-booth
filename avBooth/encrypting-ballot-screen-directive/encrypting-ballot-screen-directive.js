@@ -109,25 +109,6 @@ angular.module('avBooth')
     scope.imagesPreloaded = false;
     var imagesArray = [];
     var backCount = busyImageKeys.length; // when this is 0, set imagesPreloaded to true
-    function checkCount() {
-        if(backCount > 0) {
-          backCount = backCount - 1;
-        }
-        if (backCount <= 0) {
-          scope.imagesPreloaded = true;
-          updateDomImages();
-        }
-    }
-    
-    function getImageAlt(imagePath) {
-      return imagePath.substr(imagePath.lastIndexOf('/')+1);
-    }
-
-    for(var i = 0; i < busyImageKeys.length; i++) {
-      busyImageObj[busyImageKeys[i]].onload = checkCount();
-      busyImageObj[busyImageKeys[i]].src = busyImageKeys[i];
-      busyImageObj[busyImageKeys[i]].setAttribute('alt', getImageAlt(busyImageKeys[i]));
-    }
 
     function removeAllChilds(elem) {
       while (elem.firstChild) {
@@ -164,6 +145,26 @@ angular.module('avBooth')
       } else {
         $timeout(updateDomImages, 20);
       }
+    }
+
+    function checkCount() {
+        if(backCount > 0) {
+          backCount = backCount - 1;
+        }
+        if (backCount <= 0) {
+          scope.imagesPreloaded = true;
+          updateDomImages();
+        }
+    }
+    
+    function getImageAlt(imagePath) {
+      return imagePath.substr(imagePath.lastIndexOf('/')+1);
+    }
+
+    for(var i = 0; i < busyImageKeys.length; i++) {
+      busyImageObj[busyImageKeys[i]].onload = checkCount();
+      busyImageObj[busyImageKeys[i]].src = busyImageKeys[i];
+      busyImageObj[busyImageKeys[i]].setAttribute('alt', getImageAlt(busyImageKeys[i]));
     }
 
     function fakeStateUpdate() {

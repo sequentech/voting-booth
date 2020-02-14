@@ -71,6 +71,13 @@ angular.module('avBooth')
         scope.nextButtonText = $i18next('avBooth.continueButton');
       }
 
+      function updateFilteredOptions() {
+        // ignore usage of filterRow before definition
+        /* jshint ignore:start */
+        scope.filteredOptions = $filter('filter')(scope.groupedOptions, filterRow);
+          /* jshint ignore:end */
+      }
+
       /*
        * Toggles selection, if possible.
        */
@@ -385,7 +392,6 @@ angular.module('avBooth')
           }).length;
       };
 
-
       // TODO: only use this when localeCompare is unavailable
       function removeAccents(value) {
         return value
@@ -421,11 +427,6 @@ angular.module('avBooth')
           }
           /* jshint ignore:end */
           return false;
-      }
-
-
-      function updateFilteredOptions() {
-        scope.filteredOptions = $filter('filter')(scope.groupedOptions, filterRow);
       }
 
       scope.$watch("stateData.filter", updateFilteredOptions);

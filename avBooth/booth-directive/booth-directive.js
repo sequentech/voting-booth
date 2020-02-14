@@ -149,44 +149,14 @@ angular.module('avBooth')
         return map[question.tally_type];
       };
 
-      // given a question number, looks at the question type and tells the
-      // correct state to set, so that the associated directive correctly shows
-      // the given question
-      function goToQuestion(n, reviewMode) {
-        // first check for special election-wide layouts
-        var layout = scope.election.layout;
-        if (layout === "2questions-conditional") {
-          scope.setState(stateEnum["2questionsConditionalScreen"], {
-            isLastQuestion: true,
-            reviewMode: true,
-            filter: ""
-          });
-          return;
-        }
-
-        // what should be the next question?
-        var nextQuestion = processConditionalQuestions(n);
-
-        var isLastQuestion = (scope.election.questions.length === nextQuestion);
-        if (isLastQuestion) {
-          scope.setState(stateEnum.encryptingBallotScreen, {});
-          return;
-        }
-
-        var question = scope.election.questions[nextQuestion];
-        var mapped = scope.mapQuestion(question);
-
-        scope.setState(mapped.state, {
-          question: scope.election.questions[nextQuestion],
-          questionNum: nextQuestion,
-          isLastQuestion: (scope.election.questions.length === nextQuestion + 1),
-          reviewMode: reviewMode,
-          filter: "",
-          sorted: mapped.sorted,
-          ordered: mapped.ordered,
-          affixIsSet: false,
-          pairNum: 0 // only used for pairwise comparison
-        });
+      // count the number of selected options in a question
+      function numSelectedOptions(question)
+      {
+        return _.filter(
+          question.answers,
+          function (element) {
+            return element.selected > -1 || element.isSelected === true;
+          }).length;
       }
 
       // Set the vote in a question as blank (no option selected)
@@ -267,6 +237,46 @@ angular.module('avBooth')
         }
 
         return scope.election.questions.length + 1;
+      }
+
+      // given a question number, looks at the question type and tells the
+      // correct state to set, so that the associated directive correctly shows
+      // the given question
+      function goToQuestion(n, reviewMode) {
+        // first check for special election-wide layouts
+        var layout = scope.election.layout;
+        if (layout === "2questions-conditional") {
+          scope.setState(stateEnum["2questionsConditionalScreen"], {
+            isLastQuestion: true,
+            reviewMode: true,
+            filter: ""
+          });
+          return;
+        }
+
+        // what should be the next question?
+        var nextQuestion = processConditionalQuestions(n);
+
+        var isLastQuestion = (scope.election.questions.length === nextQuestion);
+        if (isLastQuestion) {
+          scope.setState(stateEnum.encryptingBallotScreen, {});
+          return;
+        }
+
+        var question = scope.election.questions[nextQuestion];
+        var mapped = scope.mapQuestion(question);
+
+        scope.setState(mapped.state, {
+          question: scope.election.questions[nextQuestion],
+          questionNum: nextQuestion,
+          isLastQuestion: (scope.election.questions.length === nextQuestion + 1),
+          reviewMode: reviewMode,
+          filter: "",
+          sorted: mapped.sorted,
+          ordered: mapped.ordered,
+          affixIsSet: false,
+          pairNum: 0 // only used for pairwise comparison
+        });
       }
 
       // changes state to the next one, calculating it and setting some scope
@@ -353,16 +363,6 @@ angular.module('avBooth')
         {
           goToQuestion(scope.stateData.questionNum + 1, false);
         }
-      }
-
-      // count the number of selected options in a question
-      function numSelectedOptions(question)
-      {
-        return _.filter(
-          question.answers,
-          function (element) {
-            return element.selected > -1 || element.isSelected === true;
-          }).length;
       }
 
       // shows the error string
