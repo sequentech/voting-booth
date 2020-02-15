@@ -102,21 +102,23 @@ angular.module('avCrypto')
             vote_hash: ballotHash
         },
         {headers: {Authorization: data.authorizationHeader}})
-      .success(function(postData, status, headers, config) {
-          data.success(postData);
-      })
-      .error(function(postData, status, headers, config) {
-        if (status === 401) {
-          data.error("couldntSendBallotUnauthorized", stringify(postData));
-        } else if (status === 404 || status === 502) {
-          data.error("couldntSendBallotNotFound", stringify(postData));
-        } else if (status === 400 && postData.payload === 'Maximum number of revotes reached') {
-           data.error("tooManyUserUpdates", stringify(postData));
-        } else if (status === 400 && postData.payload === 'Election is not open') {
-           data.error("errorSendingBallotElectionNotOpen", stringify(postData));
-        } else {
-          data.error("couldntSendBallot", stringify(postData));
-        }
-      });
+        .then(
+          function onSuccess(response) {
+            data.success(response.data);
+          },
+          function(response) {
+            if (response.status === 401) {
+              data.error("couldntSendBallotUnauthorized", stringify(response.data));
+            } else if (response.status === 404 || response.status === 502) {
+              data.error("couldntSendBallotNotFound", stringify(response.data));
+            } else if (response.status === 400 && response.data.payload === 'Maximum number of revotes reached') {
+              data.error("tooManyUserUpdates", stringify(response.data));
+            } else if (response.status === 400 && response.data.payload === 'Election is not open') {
+              data.error("errorSendingBallotElectionNotOpen", stringify(response.data));
+            } else {
+              data.error("couldntSendBallot", stringify(response.data));
+            }
+          }
+        );
     };
   });

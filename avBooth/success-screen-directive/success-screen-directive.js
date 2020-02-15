@@ -112,10 +112,10 @@ angular.module('avBooth')
         scope.redirectingToUri = true;
 
         Authmethod.viewEvent(scope.election.id)
-          .success(
-            function(data)
+          .then(
+            function onSuccess(response)
             {
-              if (data.status !== "ok" || !data.events || data.events.auth_method !== 'openid-connect' || !getLogoutUri())
+              if (response.data.status !== "ok" || !response.data.events || response.data.events.auth_method !== 'openid-connect' || !getLogoutUri())
               {
                 simpleRedirectToLogin();
                 return;
@@ -125,10 +125,8 @@ angular.module('avBooth')
               var uri = getLogoutUri();
               delete $cookies["id_token_" + postfix];
               $window.location.href = uri;
-            }
-          )
-          .error(
-            function(error)
+            },
+            function onError(response)
             {
               simpleRedirectToLogin();
             }

@@ -439,45 +439,49 @@ angular.module('avBooth')
       function retrieveElectionConfig() {
         try {
           $http.get(scope.baseUrl + "election/" + scope.electionId)
-            // on success
-            .success(function(value) {
-              if (!scope.isDemo && value.payload.state !== "started") {
-                showError($i18next("avBooth.errorElectionIsNotOpen"));
-                return;
+            .then(
+              function onSuccess(response) {
+                if (!scope.isDemo && response.data.payload.state !== "started") {
+                  showError($i18next("avBooth.errorElectionIsNotOpen"));
+                  return;
+                }
+
+                scope.election = angular.fromJson(response.data.payload.configuration);
+
+                // global variables
+                $window.isDemo = scope.isDemo;
+                $window.election = scope.election;
+
+                // index questions
+                _.each(scope.election.questions, function(q, num) { q.num = num; });
+
+                scope.pubkeys = angular.fromJson(response.data.payload.pks);
+                // initialize ballotClearText as a list of lists
+                scope.ballotClearText = _.map(
+                  scope.election.questions, function () { return []; }
+                );
+
+                if (scope.election.presentation.extra_options && scope.election.presentation.extra_options.start_screen__skip)
+                {
+                  goToQuestion(0, false);
+                } else {
+                  scope.setState(stateEnum.startScreen, {});
+                }
+              },
+              // on error, like parse error or 404
+              function onError(response) {
+                showError($i18next("avBooth.errorLoadingElection"));
               }
-
-              scope.election = angular.fromJson(value.payload.configuration);
-
-              // global variables
-              $window.isDemo = scope.isDemo;
-              $window.election = scope.election;
-
-              // index questions
-              _.each(scope.election.questions, function(q, num) { q.num = num; });
-
-              scope.pubkeys = angular.fromJson(value.payload.pks);
-              // initialize ballotClearText as a list of lists
-              scope.ballotClearText = _.map(
-                scope.election.questions, function () { return []; });
-
-              if (scope.election.presentation.extra_options && scope.election.presentation.extra_options.start_screen__skip)
-              {
-                goToQuestion(0, false);
-              } else {
-                scope.setState(stateEnum.startScreen, {});
-              }
-            })
-            // on error, like parse error or 404
-            .error(function (error) {
-              showError($i18next("avBooth.errorLoadingElection"));
-            });
+            );
 
           Authmethod.viewEvent(scope.electionId)
-            .success(function(data) {
-              if (data.status === "ok") {
-                scope.authEvent = data.events;
+            .then(
+              function onSuccess(response) {
+                if (response.data.status === "ok") {
+                  scope.authEvent = response.data.events;
+                }
               }
-            });
+            );
         } catch (error) {
           showError($i18next("avBooth.errorLoadingElection"));
         }
