@@ -160,6 +160,13 @@ angular.module('avBooth')
               return element.selected > -1 || element.isSelected === true;
             }).length;
         };
+      
+        /**
+         * Focus on Continue button after closing modal.
+         */
+        function focusContinueBtn() {
+          angular.element.find('#continue-btn')[0].focus();
+        }
 
         // questionNext calls to scope.next() if user selected enough options.
         // Shows a warning to confirm blank vote in any of the questions before
@@ -187,7 +194,7 @@ angular.module('avBooth')
                 questions: function() { return tooFewAnswersQuestions; },
                 numSelectedOptions: function() { return scope.numSelectedOptions; }
               }
-            });
+            }).result.then(focusContinueBtn,focusContinueBtn);
             return;
           }
 
@@ -208,7 +215,7 @@ angular.module('avBooth')
               templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
               controller: "ConfirmNullVoteController",
               size: 'md'
-            }).result.then(scope.next);
+            }).result.then(scope.next, focusContinueBtn);
             return;
           }
 

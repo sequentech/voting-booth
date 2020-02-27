@@ -1,0 +1,206 @@
+{
+  "yes": "kyllä",
+  "no": "ei",
+  "eg": "esim.",
+  "next": "Seuraava",
+  "done": "Valmis",
+  "loading": "Lataa...",
+  "nomore": "Ei enempää sisältöä",
+  "registered": "Rekisteröity",
+  "created": "luotu",
+  "started": "aloitettu",
+  "stopped": "pysäytetty",
+  "tally_ok": "laskenta suoritettu",
+  "results_ok": "tulokset valmiit",
+  "results_pub": "tulokset julkaistu",
+  "doing_tally": "äänten laskenta käynnissä",
+  "tally_error": "virhe äänten laskennassa",
+
+  "app": {
+    "name": "Agora Voting"
+  },
+  "avCommon": {
+    "cancel": "Keskeytä",
+    "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "shareLink": "¡Twiittaa tästä!",
+    "votingSystem": "Äänestysjärjestelmä",
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
+  },
+  "avBooth": {
+    "legal": {
+        "title": "Käyttöehdot",
+        "contact": "yhteystiedot"
+    },
+    "confirmAuditBallot": {
+      "header": "Halautko tarkistaa äänesi?",
+      "body": "Äänesi tarkistaminen mitätöi aikaisemman äänen ja joudut tallentamaan uuden äänen. Tarkastaminen antaa sinulle mahdollisuuden varmistaa, että äänesi on aidosti kirjautunut sähköiseen vaaliuurnaan. Tämän tekeminen edellyttää teknistä osaamista, joten älä tee tätä, ellet ole varma, mitä olet tekemässä. <br/><br/><strong>Jos haluat vain tallentaa äänesi, klikkaa <u>Keskeytä</u> siirtyäksesi takaisin äänen yhteenvetonäkymään. </strong>",
+      "confirm": "Kyllä, olen varma, että haluan MITÄTÖIDÄ aikaisemman ääneni tarkastaakseni sen"
+    },
+    "planchaSelect": "valitse kaikki",
+    "planchaDeselect": "poista kaikki valinnat",
+    "showSelectedOptionPoints": "(__points__ points)",
+    "warnBallotParity": {
+      "header": "Papeleta no paritaria",
+      "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
+      "continue": "Revisar mi papeleta"
+    },
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>HUOM!</strong> Tämä on testiäänestys",
+    "loadingElectionTitle": "Vaalin tiedot latautuu. Odota, kiitos... ",
+    "stepNumber": "vaihe __num__ yhteensä __total__ vaiheesta",
+    "stepAndQuestionNumber": "vaihe __num__ yhteensä __total__ vaiheesta, kysymys __qnum__ yhteensä __qtotal__ kysymyksestä",
+    "continueButton": "Jatka",
+    "startVoting": "Siirry äänestämään",
+    "stepsToVote": "Äänestäminen tapahtuu näissä vaiheissa:",
+    "selectOptionsTitle": "1. Tee valinnat",
+    "selectOptionsText": "Valitse tilastoinnin takia koulusi, oman kotipaikkasi postinumero ja lopuksi se ehdokas, jolle haluat antaa äänesi.",
+    "reviewOptionsTitle": "2. Tarkista valinnat",
+    "reviewOptionsText": "Kun olet tehnyt valinnat, järjestelmä salaa ne. Sinua pyydetään varmistamaan, että tiedot pitävät paikkansa.",
+    "emitBallotTitle": "3. Tallenna äänesi",
+    "emitBallotText": "Lopuksi tallennat äänesi sähköiseen vaaliuurnaan. Tarvittaessa voit tarkistaa, että äänesi on tallennettu oikein järjestelmään.",
+    "errorTitle": "Voi ei, jotain meni pieleen.",
+    "errorHtml": "<p>Ongelmatilanteen vikakoodi on (identifier __errorId__): </p><p>__error__</p><p> Jos haluat raportoida virheestä meille, voit lähettää kuvauksen virhetilanteesta vikakoodin kanssa sähköpostilla meille <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingImages": "Ongelma sähköisessä äänestyskopissa. Kuvat ei lataudu.",
+    "errorLoadingElection": "Ongelma äänestyksen tietojen lataamisessa. Tähän voi olla monia vaihtoehtoisia syitä: linkki voi olla virheellinen tai kirjoitit osoitteen väärin. Tarkista linkki ja yritä uudelleen. Jos ongelma toistuu, voi palvelu olla hetkellisesti alhaaalla. Voit kokeilla hetken päästä uudelleen ja tarvittaessa olla meihin yhteydessä, jos ongelma ei korjaannu nopeasti.",
+    "errorLoadingElectionPubKeys": "Ongelma äänestyksen julkisten salausavainten lataamisessa. Tähän voi olla monia vaihtoehtoisia syitä: linkki voi olla virheellinen tai kirjoitit osoitteen väärin. Tarkista linkki ja yritä uudelleen. Jos ongelma toistuu, voi palvelu olla hetkellisesti alhaaalla. Voit kokeilla hetken päästä uudelleen ja tarvittaessa olla meihin yhteydessä, jos ongelma ei korjaannu nopeasti.",
+    "errorSendingBallot": "Ongelma äänen lähettämisessä palvelimelle. Ääni ei ole tallentunut oikein. Kokeile uudestaan eri selaimella ja, jos tilanne toistuu ota yhteyttä. Pahoittelut tilanteesta!",
+    "errorCastingBallotUnknown": "Odottamaton virhe äänen tallentamisessa. Kokeile uudestaan eri selaimella ja, jos tilanne toistuu ota yhteyttä. Pahoittelut tilanteesta!",
+    "errorEncryptingBallotUnknown": "Odottamaton virhe äänen salaamisessa. Kokeile uudestaan eri selaimella ja, jos tilanne toistuu ota yhteyttä. Pahoittelut tilanteesta!",
+    "errorElectionIsNotOpen": "Anteeksi, mutta vaali ei ole auki, joten äänestäminen ei onnistu.",
+    "errorSendingBallotElectionNotOpen": "Anteeksi, mutta ääntäsi ei voi tallentaa, sillä vaali ei ole nyt käynnissä.",
+    "couldntSendBallotUnauthorized": "Anteeis, mutta ääntä ei pystytty tallentamaan palvelimelle, autentikaatio-ongelman takia. Jos tilanne toistuu, ota yhteyttä. Pahoittelut tilanteesta!",
+    "errorEncrypting": "Äänen salaamisessa (kryptauksessa) ilmeni ongelma eikä ääni tallentunut. Tämä johtuu todennäköisesti liian vanhan selaimen käyttämisestä. Kokeile uudestaan eri selaimella ja, jos tilanne toistuu ota yhteyttä. Pahoittelut tilanteesta!",
+    "errorEncoding": "<p>__msg__</p>Äänen salaamisessa (enkoodaamisessa) ilmeni ongelma eikä ääni tallentunut. Tämä johtuu todennäköisesti liian vanhan selaimen käyttämisestä. Kokeile uudestaan eri selaimella ja, jos tilanne toistuu ota yhteyttä. Pahoittelut tilanteesta!",
+    "sanityChecksFailed": "Äänen salauksen automaattisessa varmennuksen yhteydessä havaittiin ongelma, eikä ääni tallentunut. Tämä johtuu todennäköisesti liian vanhan selaimen käyttämisestä. Kokeile uudestaan eri selaimella ja, jos tilanne toistuu ota yhteyttä. Pahoittelut tilanteesta!",
+    "couldntSendBallotNotFound":  "Ääni ei tallentunut palvelimelle! Sinulla voi olla ongelmia verkkoyhteyden kanssa tai palvelin voi olla hetkellisesti tavoittamattomissa. Varmista, että verkkoyhteytesi toimii ja kokeile uudelleen. Ota yhteyttä tarvittaessa.",
+
+
+    "questionSelectedOptionsTitle": "Valittu (__count__):",
+    "questionSelectedOptionsTitle_plural": "Valittuina (__count__):",
+    "questionSelectedOptionsTitleOrdered": "Yhteensä (__count__) valinta tehtynä. Voit raahata valinnan eri järjestykseen halutessasi.",
+    "questionSelectedOptionsTitleOrdered_plural": "Yhteensä (__count__) valintaa tehtynä. Voit raahata valinnat eri järjestykseen halutessasi.",
+    "questionAvailableOptionsTitle": "Valitse näistä:",
+    "numOptionsSelected": "__count__ valittuna.",
+    "numOptionsSelected_plural": "__count__ valittuna.",
+    "numOptionsSelected_plural_2": "__count__ valittu.",
+    "noOptionsSelected": "Ei yhtään valittuna.",
+    "numOptionsLimits": "Tee vähintään __min__ ja enintään __max__ valintaa.",
+    "filterOptionsPlaceholder": "Suodata vaihtoehtoja",
+    "noResults": "Suodatuksen perusteella ei löydy valintoja.",
+    "numSelectedOptionsSmall": "__count__ valittu",
+    "numSelectedOptionsSmall_plural": "__count__ valittu",
+    "selectMoreOpts": "Valitse vähintään __min__ vaihtoehto.",
+    "selectMoreOpts_plural": "Valitse vähintään __min__ vaihtoehtoa.",
+    "maxSelectedLimitReached_singular": "Huom! Sinun pitää valita yksi vaihtoehto listalta, ennen kuin voit jatkaa eteenpäin",
+    "maxSelectedLimitReached": "Olet tehnyt maksimimäärän valintoja (__max__). Klikkaa jo tekemiäsi valintoja poistaaksesi jonkin valinnan, jos haluat valita tilalle jonkin toisen vaihtoehtoehdon.",
+    "maxSelectedLimitTagReached": "Et voi valita enempää kuin __max__ vaihtoehtoa kohdassa __tagName__. Valitaksesi uuden, poista ensin aiempi valinta (klikkaamalla sitä).",
+    "maxSelectedLimitNoTagReached": "Et voi valita enempää kuin __max__ vaihtoehtoa kohdassa __tagName__. Valitaksesi uuden, poista ensin aiempi valinta (klikkaamalla sitä).",
+    "alreadySelectedDocumentType": "Et voi valita kahta samanlaista dokumenttia. Poista ensin aiempi valinta (klikkaamalla sitä).",
+    "alreadySelectedPack": "Valitsit vaihtoehdon, joka on linkitetty toiseen dokumenttiin. Valintaa ei voi tehdä irrallisena.",
+    "cantSelectPack": "Yritit valita vaihtoehdon, joka on linkitetty toiseen dokumenttiin. Valintaa ei voi tehdä irrallisena.",
+    "tooManyUserUpdates": "Ääntäsi ei voi tallentaa, koska olet muuttanut sitä liian monta kertaa. Viimeisin tallentunut äänesi lasketaan.",
+
+    "removeSelectedItem": "Klikkaa tästä poistaaksesi valinnan",
+    "removeSelectedItemShort": "poista valinta",
+    "dragSelectedItem": "Raahaa valinta eri järjestykseen",
+    "dragSelectedItemShort": "raahaa",
+
+    "helpTitle": "Apua",
+    "helpText": "",
+    "goBack": "Takaisin äänestyskoppiin",
+    "selectedOptionsFollow": "Teit __num__ valintaa:",
+    "selectedOptionFollow": "Valintasi oli:",
+
+    "errorElectionUrl": "Verkko-osoite on väärässä muodossa",
+    "reviewYourBallotTitle": "Ääntäsi ei ole vielä tallennettu: tarkasta valintasi",
+    "reviewYourBallotText": "Ennen äänen tallentamista, varmista vielä, että kaikki alla näkyvät tiedot ovat varmasti oikein.",
+    "castTheBallot": "Tallenna ääneni",
+
+    "statusExecutingSanityChecks": "Varmistetaan, että selaimesi kykenee salaamaan äänesi, odota (__percentage__% valmiina)",
+    "statusEncryptingQuestion": "Salataan vastausta kysymykseen __questionNum__, odota (__percentage__% valmiina)",
+    "statusVerifyingQuestion": "Varmistetaan vastauksen kysymykseen  __questionNum__ salausta, odota (__percentage__% completed)",
+    "sendingBallot": "Tallennetaan ääntä sähköiseen vaaliuurnaan palvelimella, odota (__percentage__% completed)",
+    "emptyAnswer": "<blank vote>",
+
+    "successTitle": "Äänesi on tallennettu",
+    "successSubheader": "Äänesi on salattu ja tallennettu onnistuneesti sähköiseen vaaliuurnaan.",
+
+    "completePacksTitle": "Complete packs",
+    "listOfDraftDocuments": "Documents (click to open)",
+    "selectedDocuments": "Documents (clic to select)",
+    "alreadySelectedAPack": "You already selected a pack. Remove your selection to be able to select another",
+    "optionInCategoryAlreadySelected": "To be able to select a pack, please deselect any other item",
+    "cantSelectNormalOptionPackAlreadySelected": "To be able to select an option, please deselect the pack you chose",
+    "cantSelectPackNormalOptionAlreadySelected": "To be able to select a pack, pelase deselect the options you chose",
+    "packLabel": "vote all",
+    "accordionCategoryTitle": "Category:",
+
+    "proposalsTitleClickToSelect": "Valintoja (klikkaa valitaksesi):",
+    "proposalsTitleClickToDeselect": "Valintoja (klikkaa poistaaksesi valintoja):",
+    "notSelectableCell": "ei sisälly",
+    "clickToSelectCell": "klikkaa valitaksesi",
+    "clickToDeselectCell": "poista valinta x",
+    "draftIncludesList": "Sisältää __includeList__",
+    "dropdownOptionView": "Näytä",
+
+    "filterOptionsPlaceholder2": "Etsi ehdokasta:",
+    "candidatesTitle": "Ehdokkaat:",
+    "helpTextViewSingleCandidates": "Klikkaa Näytä nähdäkseni ehdokkaan tiedot",
+    "helpTextViewCell": "Klikkaa solua valitaksesi sen",
+    "randomizeColumn": "Satunnainen järjestys",
+    "firstCandidateOfMany": "__name__ ja muut",
+    "numCandidatesSelected": "__name__ ja muut",
+    "numCandidatesSelected": "(valittuna __selected__ yhteensä __total__ ehdokkaasta)",
+    "cannotSelectAll": "Valitaksesi kaikki nämä, sinun pitää poistaa ensin joitain valintoja.",
+    "totalsQuestionColumn": "(Valittuna __selected__ yhteensä __count__ vaihtoehdosta)",
+
+    "reviewBallotHashText": "Äänesi seurantakoodi on: __ballotHash__",
+    "auditTheBallot": "Tee äänentarkistus",
+
+    "auditBallotTitle": "Tarkasta antamasi ääni",
+    "auditBallotSubtitle": "",
+    "auditBallotText": "<p>Äänen seurantakoodi on: <code>__ballotHash__</code></p><p><strong>Äänen tarkastusprosessi vaati jonkin verran teknistä osaamista. Jos mielummin vain äänestät uudelleen korvaten aiemman äänen, klikkaa äänestysnappia alla.</strong></p><p>Äänen tarkastamiseksi sinun pitää:</p><ol><li>Kopioi ja tallenna alla oleva äänesi salattu muoto tiedostoon (klikkaa valitaksesi):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Noudata täällä kuvattuja vaiheita <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">, jos haluat todentaa, että ääni on salattu ja tallennettu oikein</a>.</li></ol><p>Turvallisuussyistä tarkistettua ääntä ei voida enää ottaa huomioon ääntenlaskennassa. Se poistetaan sähköisestä vaaliuurnasta tarkastamisen yhteydessä. Tarkastamisen jälkeen on siis aloitettava äänestys alusta.</p>",
+    "auditStartAgain": "Aloita äänestys uudelleen alusta",
+
+
+    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Tämä on äänestyksen esittelysivu. Täällä annettuja ääniä ei lasketa.",
+    "successBallotHash": "Äänesi on tallennettu <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-palvelun sähköiseen vaaliuurnaan. Äänesi tarkistusnunumero:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Voit käyttää tarkistusnumeroa varmistaaksi, että äänesi on varmasti <a href=\"__ballotLocatorUrl__\" target=\"_blank\">tallennettu palvelimelle</a>.",
+    "successNoBallotHash": "Äänesi on tallennettu <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-palvelun sähköiseen vaaliuurnaan.",
+    "relatedLinksText": "Lue lisää tästä äänestyksestä:",
+
+    "circleOptionExternalLink": "Näytä lisätietoja",
+    "voteInBlank": "tyhjä ääni",
+    "openOptionLink": "Avaa uuteen välilehteen",
+
+    "reviewScreen": {
+      "pair": "__one__ > __two__"
+    },
+
+    "pairwiseBeta": {
+      "web": "Verkko",
+      "warning": "Klikkaa valitaksesi. __count__ enintään __max__:stä vertailusta tehty.",
+      "warning_plural": "Klikkaa valitaksesi. __count__ enintään __max__:sta vertailusta tehty."
+    },
+
+    "confirmNullVote": {
+      "header": "Tyhjä ääni",
+      "body": "Et ole tehnyt yhtään valintaa, eli olet äänestämässä tyhjää.",
+      "confirm": "KYLLÄ, haluan nimenomaan äänestää tyhjää"
+    },
+
+    "busy": {
+      "title": "Ääntäsi...",
+      "encryptedTitle": "salataan",
+      "encryptedDescription": "jotta kukaan ei näe valintoja",
+      "castTitle": "tallennetaan",
+      "castDescription": "tietoturvallisen yhteyden yli",
+      "anonymizedTitle": "anonymisoidaan",
+      "anonymizedDescription": "vaalisalaisuuden sälilyttämiseksi"
+    },
+
+    "tooFewAnswers": {
+      "header": "Valitse useampi vaihtoehto",
+      "body": "Et ole valinnut tarpeeksi montaa vaihtoehtoa tähän kysymykseen:",
+      "question": "Kysymys '__title__': teit __selected__ valintaa, mutta siinä edellytetään vähintään __min__ valintaa"
+    }
+  }
+}

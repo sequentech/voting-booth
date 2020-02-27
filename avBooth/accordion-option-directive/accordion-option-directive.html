@@ -1,5 +1,82 @@
 <div
-  class="opt-data vertilize-wrapper"
+  class="opt-data vertilize-wrapper has-handle"
+  tabindex="0"
+  ng-space-click
+  dnd-nodrag
+  ng-if="isTouchDevice && selectedOptions"
+  ng-class="{
+    'hide-link': !urls.URL,
+    'show-category': showCategory && !!option.category,
+    'selected-options': selectedOptions,
+    'preset': isPreset}">
+
+  <div ng-if="selectedOptions" dnd-handle class="handle">
+    <span class="glyphicon glyphicon-list"></span>
+  </div>
+
+  <div
+    ng-if="selectedOptions"
+    ng-click="!isPreset && toggleSelectItem(option)"
+    class="remove-selected-item">
+    <span class="glyphicon glyphicon-remove"></span>
+  </div>
+
+  <span
+    class="label label-default"
+    ng-if="showCategory && !!option.category">
+    {{option.category}}
+  </span>
+
+  <div
+    ng-if="!!isYoutube(option)"
+    class="videoWrapper">
+    <iframe
+    width="560"
+    height="315"
+    src="{{isYoutube(option)}}"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+  </div>
+  <div
+    class="vertilize">
+    <div class="vertilize-col vert-align-top">
+    <img
+        parent
+        ng-if="!isYoutube(option) && !!urls['Image URL']"
+        ng-src="{{urls['Image URL']}}"
+        alt="{{option.text}}" />
+    </div>
+
+    <!-- texts -->
+    <div class="vertilize-col">
+      <div class="text-sibling">
+          <strong class="show-value">
+          <span ng-if="ordered && showSelectedPos && option.selected > -1">
+              {{option.selected + 1}}.
+          </span>
+          <span>
+              <span ng-bind-html="option.text"></span>
+              <span
+              ng-if="showPoints && option.selected > -1"
+              ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
+              </span>
+          </span>
+          </strong>
+          <p class="details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
+          <p class="details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
+          </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div
+  class="opt-data vertilize-wrapper no-handle"
+  tabindex="0"
+  ng-space-click
+  ng-if="!isTouchDevice || !selectedOptions"
   ng-class="{
     'hide-link': !urls.URL,
     'show-category': showCategory && !!option.category,
@@ -13,115 +90,80 @@
   </span>
 
   <div
-    ng-if="!!isYoutube(option) && !isTouchDevice"
+    ng-if="!!isYoutube(option)"
     class="videoWrapper">
     <iframe
-      width="560"
-      height="315"
-      src="{{isYoutube(option)}}"
-      frameborder="0"
-      allowfullscreen>
+    width="560"
+    height="315"
+    src="{{isYoutube(option)}}"
+    frameborder="0"
+    allowfullscreen>
     </iframe>
   </div>
   <div
     class="vertilize">
     <div class="vertilize-col vert-align-top">
-      <img
+    <img
         parent
-        ng-if="!isTouchDevice && !isYoutube(option) && !!urls['Image URL']"
+        ng-if="!isYoutube(option) && !!urls['Image URL']"
         ng-src="{{urls['Image URL']}}"
         alt="{{option.text}}" />
+    </div>
+
+    <!-- remove action -->
+    <div class="visible-lg">
+      <div
+        class="show-remove"
+        ng-if="!selectedOptions || !!dnd_disable">
+        <div class="vertilize-wrapper">
+          <div class="vertilize">
+            <div class="vertilize-col ">
+              <span ng-i18next="avBooth.removeSelectedItem"></span>
+              <span class="glyphicon glyphicon-remove"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="show-remove"
+        ng-if="!!selectedOptions && !dnd_disable">
+        <div class="vertilize-wrapper">
+          <div class="vertilize">
+            <div class="vertilize-col">
+              <div class="pull-left margin-left">
+                <span ng-i18next="avBooth.removeSelectedItem"></span>
+                <span class="glyphicon glyphicon-remove"></span>
+              </div>
+            </div>
+            <div class="vertilize-col">
+              <div class="pull-right margin-right">
+                <span class="glyphicon glyphicon-random"></span>
+                <span ng-i18next="avBooth.dragSelectedItem"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- texts -->
     <div class="vertilize-col">
       <div class="text-sibling">
-        <strong class="show-value">
+          <strong class="show-value">
           <span ng-if="ordered && showSelectedPos && option.selected > -1">
-            {{option.selected + 1}}.
+              {{option.selected + 1}}.
           </span>
           <span>
-            <span ng-bind-html="option.text"></span>
-            <span
+              <span ng-bind-html="option.text"></span>
+              <span
               ng-if="showPoints && option.selected > -1"
               ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
-            </span>
+              </span>
           </span>
-        </strong>
-        <p class="details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
-        <p class="details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- remove action -->
-  <div class="visible-lg">
-    <div
-      class="show-remove"
-      ng-if="!selectedOptions || !!dnd_disable">
-      <div class="vertilize-wrapper">
-        <div class="vertilize">
-          <div class="vertilize-col ">
-            <span ng-i18next="avBooth.removeSelectedItem"></span>
-            <span class="glyphicon glyphicon-remove"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="show-remove gray-bg"
-      ng-if="!!selectedOptions && !dnd_disable">
-      <div class="vertilize-wrapper">
-        <div class="vertilize">
-          <div class="vertilize-col">
-            <div class="pull-left margin-left">
-              <span ng-i18next="avBooth.removeSelectedItem"></span>
-              <span class="glyphicon glyphicon-remove"></span>
-            </div>
-          </div>
-          <div class="vertilize-col">
-            <div class="pull-right margin-right">
-              <span class="glyphicon glyphicon-random"></span>
-              <span ng-i18next="avBooth.dragSelectedItem"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hidden-lg">
-    <div
-      class="show-remove"
-      ng-if="!selectedOptions || !!dnd_disable">
-      <div class="vertilize-wrapper">
-        <div class="vertilize">
-          <div class="vertilize-col ">
-            <span ng-i18next="avBooth.removeSelectedItemShort"></span>
-            <span class="glyphicon glyphicon-remove"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="show-remove gray-bg"
-      ng-if="!!selectedOptions && !dnd_disable">
-      <div class="vertilize-wrapper">
-        <div class="vertilize">
-          <div class="vertilize-col">
-            <div class="pull-left margin-left">
-              <span ng-i18next="avBooth.removeSelectedItemShort"></span>
-              <span class="glyphicon glyphicon-remove"></span>
-            </div>
-          </div>
-          <div class="vertilize-col">
-            <div class="pull-right margin-right">
-              <span class="glyphicon glyphicon-random"></span>
-              <span ng-i18next="avBooth.dragSelectedItemShort"></span>
-            </div>
-          </div>
-        </div>
+          </strong>
+          <p class="details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
+          <p class="details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
+          </p>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<nav 
+<nav
   class="navbar navbar-default navbar-fixed-top"
   av-affix-top=".navbar-unfixed-top"
   role="navigation"
@@ -7,13 +7,14 @@
     <div class="row avb-top-navbar">
       <div class="pull-left">
         <span ng-if="election.logo_url">
-          <img 
-            class="logo-img" 
+          <img
+            class="logo-img"
+            alt="Logo Image"
             ng-src="{{election.logo_url}}"
           >
           </img>
         </span>
-        <span 
+        <span
           class="powered-by"
           ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
           ng-if="!election.logo_url"
@@ -30,7 +31,7 @@
           ng-i18next="avBooth.helpTitle"
         >
         </span>
-        <span 
+        <span
           class="dropdown left-padding"
           av-change-lang
         >
@@ -60,16 +61,6 @@
   <span class="glyphicon glyphicon-play"></span>
 </div>
 
-<div class="container-fluid warning-demo" ng-if="!election.real">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <p ng-i18next="[html]avBooth.thisisATest"></p>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="container-fluid warning-demo" ng-if="isDemo">
   <div class="container">
     <div class="row">
@@ -83,11 +74,27 @@
 <div class="content avb-content">
   <div class="container">
     <div class="padded">
-      <p ng-i18next>
+      <p
+        ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
+        ng-i18next>
         [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator", url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
       </p>
+      <p
+        ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"
+        ng-i18next>
+        [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
+      </p>
+      <div class="text-center" ng-if="!!election.presentation.extra_options.success_screen__redirect_to_login">
+        <span>
+          <a
+            ng-click="redirectToLogin()"
+            class="btn btn-primary btn-login">
+            {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
+          </a>
+        </span>
+      </div>
       <div class="text-center" ng-if="!!election.presentation.share_text">
-        <span 
+        <span
           ng-if="!!buttonsInfo"
           ng-repeat="q in buttonsInfo"
         >
@@ -97,6 +104,7 @@
             class="{{ q.class }}"
           >
             <img
+              alt="{{ q.network }}"
               class="logo-img"
               ng-src="{{ q.img }}"
             />

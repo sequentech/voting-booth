@@ -24,7 +24,8 @@ angular.module('avBooth')
     $timeout,
     HmacService,
     ConfigService,
-    InsideIframeService)
+    InsideIframeService,
+    Authmethod)
 {
 
     // we use it as something similar to a controller here
@@ -119,8 +120,23 @@ angular.module('avBooth')
             sorted: true,
             ordered: true
           },
+          "borda-mas-madrid": {
+            state: stateEnum.multiQuestion,
+            sorted: true,
+            ordered: true
+          },
           "pairwise-beta": {
             state: stateEnum.pairwiseBeta,
+            sorted: true,
+            ordered: true
+          },
+          "desborda3": {
+            state: stateEnum.multiQuestion,
+            sorted: true,
+            ordered: true
+          },
+          "desborda2": {
+            state: stateEnum.multiQuestion,
             sorted: true,
             ordered: true
           },
@@ -133,44 +149,14 @@ angular.module('avBooth')
         return map[question.tally_type];
       };
 
-      // given a question number, looks at the question type and tells the
-      // correct state to set, so that the associated directive correctly shows
-      // the given question
-      function goToQuestion(n, reviewMode) {
-        // first check for special election-wide layouts
-        var layout = scope.election.layout;
-        if (layout === "2questions-conditional") {
-          scope.setState(stateEnum["2questionsConditionalScreen"], {
-            isLastQuestion: true,
-            reviewMode: true,
-            filter: ""
-          });
-          return;
-        }
-
-        // what should be the next question?
-        var nextQuestion = processConditionalQuestions(n);
-
-        var isLastQuestion = (scope.election.questions.length === nextQuestion);
-        if (isLastQuestion) {
-          scope.setState(stateEnum.encryptingBallotScreen, {});
-          return;
-        }
-
-        var question = scope.election.questions[nextQuestion];
-        var mapped = scope.mapQuestion(question);
-
-        scope.setState(mapped.state, {
-          question: scope.election.questions[nextQuestion],
-          questionNum: nextQuestion,
-          isLastQuestion: (scope.election.questions.length === nextQuestion + 1),
-          reviewMode: reviewMode,
-          filter: "",
-          sorted: mapped.sorted,
-          ordered: mapped.ordered,
-          affixIsSet: false,
-          pairNum: 0 // only used for pairwise comparison
-        });
+      // count the number of selected options in a question
+      function numSelectedOptions(question)
+      {
+        return _.filter(
+          question.answers,
+          function (element) {
+            return element.selected > -1 || element.isSelected === true;
+          }).length;
       }
 
       // Set the vote in a question as blank (no option selected)
@@ -251,6 +237,46 @@ angular.module('avBooth')
         }
 
         return scope.election.questions.length + 1;
+      }
+
+      // given a question number, looks at the question type and tells the
+      // correct state to set, so that the associated directive correctly shows
+      // the given question
+      function goToQuestion(n, reviewMode) {
+        // first check for special election-wide layouts
+        var layout = scope.election.layout;
+        if (layout === "2questions-conditional") {
+          scope.setState(stateEnum["2questionsConditionalScreen"], {
+            isLastQuestion: true,
+            reviewMode: true,
+            filter: ""
+          });
+          return;
+        }
+
+        // what should be the next question?
+        var nextQuestion = processConditionalQuestions(n);
+
+        var isLastQuestion = (scope.election.questions.length === nextQuestion);
+        if (isLastQuestion) {
+          scope.setState(stateEnum.encryptingBallotScreen, {});
+          return;
+        }
+
+        var question = scope.election.questions[nextQuestion];
+        var mapped = scope.mapQuestion(question);
+
+        scope.setState(mapped.state, {
+          question: scope.election.questions[nextQuestion],
+          questionNum: nextQuestion,
+          isLastQuestion: (scope.election.questions.length === nextQuestion + 1),
+          reviewMode: reviewMode,
+          filter: "",
+          sorted: mapped.sorted,
+          ordered: mapped.ordered,
+          affixIsSet: false,
+          pairNum: 0 // only used for pairwise comparison
+        });
       }
 
       // changes state to the next one, calculating it and setting some scope
@@ -339,16 +365,6 @@ angular.module('avBooth')
         }
       }
 
-      // count the number of selected options in a question
-      function numSelectedOptions(question)
-      {
-        return _.filter(
-          question.answers,
-          function (element) {
-            return element.selected > -1 || element.isSelected === true;
-          }).length;
-      }
-
       // shows the error string
       function showError(error) {
         if (scope.state === stateEnum.errorScreen) {
@@ -423,28 +439,49 @@ angular.module('avBooth')
       function retrieveElectionConfig() {
         try {
           $http.get(scope.baseUrl + "election/" + scope.electionId)
-            // on success
-            .success(function(value) {
-              if (!scope.isDemo && value.payload.state !== "started") {
-                showError($i18next("avBooth.errorElectionIsNotOpen"));
-                return;
+            .then(
+              function onSuccess(response) {
+                if (!scope.isDemo && response.data.payload.state !== "started") {
+                  showError($i18next("avBooth.errorElectionIsNotOpen"));
+                  return;
+                }
+
+                scope.election = angular.fromJson(response.data.payload.configuration);
+
+                // global variables
+                $window.isDemo = scope.isDemo;
+                $window.election = scope.election;
+
+                // index questions
+                _.each(scope.election.questions, function(q, num) { q.num = num; });
+
+                scope.pubkeys = angular.fromJson(response.data.payload.pks);
+                // initialize ballotClearText as a list of lists
+                scope.ballotClearText = _.map(
+                  scope.election.questions, function () { return []; }
+                );
+
+                if (scope.election.presentation.extra_options && scope.election.presentation.extra_options.start_screen__skip)
+                {
+                  goToQuestion(0, false);
+                } else {
+                  scope.setState(stateEnum.startScreen, {});
+                }
+              },
+              // on error, like parse error or 404
+              function onError(response) {
+                showError($i18next("avBooth.errorLoadingElection"));
               }
+            );
 
-              scope.election = angular.fromJson(value.payload.configuration);
-
-              // index questions
-              _.each(scope.election.questions, function(q, num) { q.num = num; });
-
-              scope.pubkeys = angular.fromJson(value.payload.pks);
-              // initialize ballotClearText as a list of lists
-              scope.ballotClearText = _.map(
-                scope.election.questions, function () { return []; });
-              scope.setState(stateEnum.startScreen, {});
-            })
-            // on error, like parse error or 404
-            .error(function (error) {
-              showError($i18next("avBooth.errorLoadingElection"));
-            });
+          Authmethod.viewEvent(scope.electionId)
+            .then(
+              function onSuccess(response) {
+                if (response.data.status === "ok") {
+                  scope.authEvent = response.data.events;
+                }
+              }
+            );
         } catch (error) {
           showError($i18next("avBooth.errorLoadingElection"));
         }

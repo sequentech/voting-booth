@@ -21,12 +21,17 @@
  * Lists the available options for a question, allowing to change selection.
  */
 angular.module('avBooth')
-  .directive('avbAvailableOptions', function($filter) {
+  .directive(
+    'avbAvailableOptions',
+    function($filter, $cookies, $modal)
+    {
 
-    var link = function(scope, element, attrs) {
+      var link = function(scope, element, attrs)
+      {
         scope.options = scope.question.answers;
         scope.tagMax = null;
         scope.noTagMax = null;
+
         if (angular.isDefined(scope.question.extra_options))
         {
           if (angular.isDefined(scope.question.extra_options.restrict_choices_by_tag__max))
@@ -115,9 +120,7 @@ angular.module('avBooth')
               return;
             }
 
-            var numSelected = _.filter(scope.question.answers, function (element) {
-              return element.selected > -1;
-            }).length;
+            var numSelected = scope.numSelectedOptions();
 
             // can't select more, flash info
             if (numSelected === parseInt(scope.max,10)) {
@@ -138,7 +141,50 @@ angular.module('avBooth')
             }
 
             option.selected = numSelected;
+
+            // if selection was zero and selection empty and category is not
+            // shuffled, the whole category would be selected. This was once
+            // required by client but we are disabling it for now. In the future,
+            // we could re-enable it by creating an election level option to 
+            // enable this behavior
+            /*
+            if (numSelected <= 1 &&
+              option.category !== null &&
+              option.category !== "" &&
+              (
+                !angular.isDefined(scope.question.extra_options) ||
+                !angular.isDefined(scope.question.extra_options.shuffle_category_list) ||
+                !_.contains(
+                  scope.question.extra_options.shuffle_category_list,
+                  option.category
+                )
+              )
+            )
+            {
+              scope.selectCategory(option.category, numSelected);
+            }
+            */
           }
+        };
+
+        // select all the options in the category and only that category
+        scope.selectCategory = function(category, numSelected)
+        {
+          var count = numSelected + 1;
+
+          _.each(
+            scope.question.answers,
+            function(answer)
+            {
+              if (answer.category === category &&
+                answer.selected === -1 &&
+                count < parseInt(scope.max, 10))
+              {
+                answer.selected = count;
+                count++;
+              }
+            }
+          );
         };
 
         // TODO: only use this when localeCompare is unavailable
@@ -197,4 +243,5 @@ angular.module('avBooth')
       link: link,
       templateUrl: 'avBooth/available-options-directive/available-options-directive.html'
     };
-  });
+  }
+);

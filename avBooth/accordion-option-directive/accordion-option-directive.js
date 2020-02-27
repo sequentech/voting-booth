@@ -19,10 +19,11 @@
  * Directive that shows an accordion option.
  */
 angular.module('avBooth')
-  .directive('avbAccordionOption', function($sce) {
+  .directive('avbAccordionOption', function($sce, IsService) {
 
     var link = function(scope, element, attrs) {
 
+      scope.isTouchDevice = IsService.touchDevice();
       scope.urls = _.object(_.map(scope.option.urls, function(url) {
         return [url.title, url.url];
       }));
@@ -74,7 +75,7 @@ angular.module('avBooth')
 
       scope.showPoints = false;
 
-      if (angular.isDefined(scope.question.extra_options) && 
+      if (angular.isDefined(scope.question.extra_options) &&
           !!scope.question.extra_options.show_points) {
         scope.showPoints = true;
       }
@@ -99,6 +100,10 @@ angular.module('avBooth')
           {
             return scope.question.max - scope.option.selected;
           },
+          "borda-mas-madrid": function()
+          {
+            return scope.question.max - scope.option.selected;
+          },
           "borda-nauru": function()
           {
             return "1/" + (1 + scope.option.selected);
@@ -106,6 +111,14 @@ angular.module('avBooth')
           "pairwise-beta": function()
           {
             return;
+          },
+          "desborda3": function()
+          {
+            return Math.max(1, Math.floor(scope.question.num_winners * 1.3) - scope.option.selected);
+          },
+          "desborda2": function()
+          {
+            return Math.max(1, Math.floor(scope.question.num_winners * 1.3) - scope.option.selected);
           },
           "desborda": function()
           {

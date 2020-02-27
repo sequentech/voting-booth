@@ -27,7 +27,7 @@ angular.module('avBooth')
     {
       scope.showPoints = function (question)
       {
-        return angular.isDefined(question.extra_options) && 
+        return angular.isDefined(question.extra_options) &&
           !!question.extra_options.show_points;
       };
 
@@ -51,6 +51,10 @@ angular.module('avBooth')
           {
             return question.max - answer.selected;
           },
+          "borda-mas-madrid": function()
+          {
+            return scope.question.max - scope.option.selected;
+          },
           "borda-nauru": function()
           {
             return "1/" + (1 + answer.selected);
@@ -58,6 +62,14 @@ angular.module('avBooth')
           "pairwise-beta": function()
           {
             return;
+          },
+          "desborda3": function()
+          {
+            return Math.max(1, Math.floor(question.num_winners * 1.3) - answer.selected);
+          },
+          "desborda2": function()
+          {
+            return Math.max(1, Math.floor(question.num_winners * 1.3) - answer.selected);
           },
           "desborda": function()
           {

@@ -7,7 +7,8 @@
     <div class="row avb-top-navbar">
       <div class="pull-left">
         <span ng-if="election.logo_url">
-          <img 
+          <img
+            alt="Logo Image"
             class="logo-img" 
             ng-src="{{election.logo_url}}"
           >
@@ -63,16 +64,6 @@
   <span class="glyphicon glyphicon-play"></span>
 </div>
 
-<div class="container-fluid warning-demo" ng-if="!election.real">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <p ng-i18next="[html]avBooth.thisisATest"></p>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="container-fluid warning-demo" ng-if="isDemo">
   <div class="container">
     <div class="row">
@@ -92,15 +83,15 @@
     </div>
     <div class="row">
       <div class="padded col-xs-12 col-sm-4">
-        <h3 class="text-brand-success" ng-i18next="avBooth.selectOptionsTitle"></h3>
+        <h2 class="text-brand-success" ng-i18next="avBooth.selectOptionsTitle"></h2>
         <p ng-i18next="avBooth.selectOptionsText"></p>
       </div>
       <div class="padded col-xs-12 col-sm-4">
-        <h3 class="text-brand-success" ng-i18next="avBooth.reviewOptionsTitle"></h3>
+        <h2 class="text-brand-success" ng-i18next="avBooth.reviewOptionsTitle"></h2>
         <p ng-i18next="avBooth.reviewOptionsText"></p>
       </div>
       <div class="padded col-xs-12 col-sm-4">
-        <h3 class="text-brand-success" ng-i18next="avBooth.emitBallotTitle"></h3>
+        <h2 class="text-brand-success" ng-i18next="avBooth.emitBallotTitle"></h2>
         <p ng-i18next="avBooth.emitBallotText"></p>
       </div>
     </div>

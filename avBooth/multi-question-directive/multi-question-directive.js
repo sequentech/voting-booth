@@ -227,6 +227,13 @@ angular.module('avBooth')
             answer.selected = -1;
           });
       };
+      
+      /**
+       * Focus on Continue button after closing modal.
+       */
+      function focusContinueBtn() {
+        angular.element.find('#continue-btn')[0].focus();
+      }
 
       scope.presetNext = function() {
         // show null vote warning
@@ -237,7 +244,7 @@ angular.module('avBooth')
             size: 'md'
           }).result.then(function () {
             scope.showingPreset = false;
-          });
+          }, focusContinueBtn);
           return;
         }
 
@@ -346,7 +353,7 @@ angular.module('avBooth')
             templateUrl: "avBooth/warn-ballot-parity-controller/warn-ballot-parity-controller.html",
             controller: "WarnBallotParityController",
             size: 'md'
-          });
+          }).result.then(focusContinueBtn,focusContinueBtn);
           return;
         }
         pipe.continue();
@@ -365,7 +372,7 @@ angular.module('avBooth')
             templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
             controller: "ConfirmNullVoteController",
             size: 'md'
-          }).result.then(pipe.continue);
+          }).result.then(pipe.continue, focusContinueBtn);
           return;
         }
         pipe.continue();

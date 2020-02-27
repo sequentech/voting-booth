@@ -1,0 +1,203 @@
+{
+  "yes": "ja",
+  "no": "nej",
+  "eg": "t.ex.",
+  "next": "Nästa",
+  "done": "Färdig",
+  "loading": "Laddar...",
+  "nomore": "Inget mer innehåll",
+  "registered": "Den registrerade",
+  "created": "skapad",
+  "started": "påbörjad",
+  "stopped": "stoppad",
+  "tally_ok": "räkning utförd",
+  "results_ok": "resultaten klara",
+  "results_pub": "resultaten publicerade",
+  "doing_tally": "rösträkning pågår",
+  "tally_error": "fel i rösträkningen",
+
+  "app": {
+    "name": "Agora Voting"
+  },
+  "avCommon": {
+    "cancel": "Avbryt",
+    "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "shareLink": "Tweeta om det här!",
+    "votingSystem": "Röstningssystem",
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
+  },
+  "avBooth": {
+    "legal": {
+        "title": "Användningsvillkor",
+        "contact": "kontaktuppgifter"
+    },
+    "confirmAuditBallot": {
+      "header": "Vill du kontrollera din röst?",
+      "body": "Ifall du kontrollerar din röst annulleras din tidigare röst och du måste lagra en ny. Kontrollen ger dit möjligheten att se till att din röst verkligen har registrerats i den elektroniska valurnan. Att göra detta kräver tekniskt kunnande, så undvik att göra det ifall du inte är säker på vad du gör. <br/><br/><strong>Ifall du enbart vill lagra din röst, klicka på <u>Avbryt</u> för att återgå till vyn över röstens sammandrag.</strong>",
+      "confirm": "Ja, jag är säker på att jag vill ANNULLERA min tidigare röst för att kontrollera den"
+    },
+    "planchaSelect": "välj alla",
+    "planchaDeselect": "ta bort alla val",
+    "showSelectedOptionPoints": "(__points__ points)",
+    "warnBallotParity": {
+      "header": "Papeleta no paritaria",
+      "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
+      "continue": "Revisar mi papeleta"
+    },
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>OBS!</strong> Detta är en teströstning",
+    "loadingElectionTitle": "Information om valet laddas. Var god och vänta... ",
+    "stepNumber": "skede __num__ av totalt __total__ skeden",
+    "stepAndQuestionNumber": "skede __num__ av totalt __total__ skeden, fråga __qnum__ av sammanlagt __qtotal__” frågor",
+    "continueButton": "Fortsätt",
+    "startVoting": "Övergå till röstningen",
+    "stepsToVote": "Röstning sker genom följande skeden:",
+    "selectOptionsTitle": "1. Gör dina val",
+    "selectOptionsText": "Välj för statistikföringsändamål din skola, din hemorts postnummer och slutligen den kandidat du vill rösta på.",
+    "reviewOptionsTitle": "2. Kontrollera dina val",
+    "reviewOptionsText": "Efter att du gjort dina val, krypterar systemet dem. Du ombes kontrollera att uppgifterna stämmer.",
+    "emitBallotTitle": "3. Lagra din röst",
+    "emitBallotText": "Till slut lagrar du din röst i den elektroniska valurnan. Du kan vid behov kontrollera att din röst har lagrats korrekt i systemet.",
+    "errorTitle": "Oj nej, någonting gick snett.",
+    "errorHtml": "<p>Felkoden för problemsituationen är (identifier __errorId__): </p><p>__error__</p><p> Om du vill rapportera felet till oss, kan du skicka oss en beskrivning av problemsituationen jämte felkod per e-post till <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingImages": "Problem med det elektroniska valbåset. Bilderna laddas inte.",
+    "errorLoadingElection": "Problem med laddning av valuppgifterna. Det kan finnas många olika orsaker till detta: länken kan vara felaktig eller du kan ha skrivit in fel adress. Kontrollera länken och försök igen. Ifall problemet kvarstår, kan tjänsten tillfälligt vara nere. Du kan försöka igen om en liten stund, och vid behov kan du kontakta oss ifall problemet inte löser sig snabbt.",
+    "errorLoadingElectionPubKeys": "Problem med nerladdning av den öppna krypteringsnyckeln. Det kan finnas många olika orsaker till detta: länken kan vara felaktig eller du kan ha skrivit in fel adress. Kontrollera länken och försök igen. Ifall problemet kvarstår, kan tjänsten tillfälligt vara nere. Du kan försöka igen om en liten stund, och vid behov kan du kontakta oss ifall problemet inte löser sig snabbt.",
+    "errorSendingBallot": "Problem med avsändning av röst till servern. Din röst har inte lagrats rätt. Försök igen med en annan webbläsare, och ifall problemet kvarstår ta kontakt med oss. Ledsen för besväret!",
+    "errorCastingBallotUnknown": "Ett oväntat fel har uppstått i lagringen av rösten. Försök igen med en annan webbläsare, och ifall problemet kvarstår ta kontakt med oss. Ledsen för besväret!",
+    "errorEncryptingBallotUnknown": "Ett oväntat fel har uppstått i krypteringen av rösten. Försök igen med en annan webbläsare, och ifall problemet kvarstår ta kontakt med oss. Ledsen för besväret!",
+    "errorElectionIsNotOpen": "Tyvärr är inte valet öppet, så det går inte att rösta.",
+    "errorSendingBallotElectionNotOpen": "Tyvärr kan inte din röst lagras, eftersom valet inte pågår just nu.",
+    "couldntSendBallotUnauthorized": "Tyvärr kunde din röst inte lagras på servern på grund av ett autentifikationsproblem. Ifall problemet kvarstår, ta kontakt med oss. Ledsen för besväret!",
+    "errorEncrypting": "Ett problem uppstod i krypteringen av rösten, vilket innebär att rösten inte lagrats. Detta beror troligtvis på att din webbläsare är för gammal. Försök igen med en annan webbläsare, och ifall problemet kvarstår ta kontakt med oss. Ledsen för besväret!",
+    "errorEncoding": "<p>__msg__</p>Ett problem uppstod i krypteringen (kodning) av rösten, vilket innebär att rösten inte lagrats. Detta beror troligtvis på att din webbläsare är för gammal. Försök igen med en annan webbläsare, och ifall problemet kvarstår ta kontakt med oss. Ledsen för besväret!",
+    "sanityChecksFailed": "Ett problem uppstod i samband med den automatiska autentiseringen vid krypteringen av din röst, vilket innebär att rösten inte lagrades. Detta beror troligtvis på att din webbläsare är för gammal. Försök igen med en annan webbläsare, och ifall problemet kvarstår ta kontakt med oss. Ledsen för besväret!",
+    "couldntSendBallotNotFound":  "Rösten lagrades inte på servern! Det kan hända att du har problem med din nätuppkoppling, eller så är servern tillfälligt oåtkomlig. Kontrollera att din nätuppkoppling är i skick och försök igen. Ta kontakt vid behov.",
+    "questionSelectedOptionsTitle": "Alternativ valda (__count__):",
+    "questionSelectedOptionsTitle_plural": "Alternativ valda (__count__):",
+    "questionSelectedOptionsTitleOrdered": "Sammanlagt (__count__) alternativ valda. Du kan valfritt ändra på ordningen av dina valda alternativ genom att dra dem.",
+    "questionSelectedOptionsTitleOrdered_plural": "Sammanlagt (__count__) alternativ valda. Du kan valfritt ändra på ordningen av dina valda alternativ genom att dra dem.",
+    "questionAvailableOptionsTitle": "Välj bland dessa:",
+    "numOptionsSelected": "__count__ valda.",
+    "numOptionsSelected_plural": "__count__ valda.",
+    "numOptionsSelected_plural_2": "__count__ alternativ valda.",
+    "noOptionsSelected": "Inga alternativ valda.",
+    "numOptionsLimits": "Välj minst __min__ och högst __max__ alternativ.",
+    "filterOptionsPlaceholder": "Filtrera alternativ",
+    "noResults": "Inga alternativ hittades med filtret.",
+    "numSelectedOptionsSmall": "__count__ alternativ valda.",
+    "numSelectedOptionsSmall_plural": "__count__ alternativ valda.",
+    "selectMoreOpts": "Välj minst __min__ alternativ.",
+    "selectMoreOpts_plural": "Välj minst __min__ alternativ.",
+    "maxSelectedLimitReached_singular": "Obs! Du måste välja ett alternativ från listan innan du kan fortsätta",
+    "maxSelectedLimitReached": "Du har valt det maximala antalet alternativ (__max__). Klicka på alternativen du redan valt för att avlägsna valet, ifall du istället vill välja ett annat alternativ.",
+    "maxSelectedLimitTagReached": "Du kan inte välja mer än __max__ alternativ i punkten __tagName__. För att välja ett nytt alternativ, ta först bort ditt föregående val (genom att klicka på det).",
+    "maxSelectedLimitNoTagReached": "Du kan inte välja mer än __max__ alternativ i punkten __tagName__. För att välja ett nytt alternativ, ta först bort ditt föregående val (genom att klicka på det).",
+    "alreadySelectedDocumentType": "Du kan inte välja två likadana dokument. Ta först bort ditt föregående val (genom att klicka på det).",
+    "alreadySelectedPack": "Du har valt ett alternativ som är länkat till ett annat dokument. Alternativet kan inte väljas separat.",
+    "cantSelectPack": "Du har valt ett alternativ som är länkat till ett annat dokument. Alternativet kan inte väljas separat.",
+    "tooManyUserUpdates": "Din röst kan inte lagras eftersom du har ändrat den för många gånger. Den senaste rösten du lagrat räknas.",
+
+    "removeSelectedItem": "Klicka här för att ta bort alternativet.",
+    "removeSelectedItemShort": "ta bort alternativ",
+    "dragSelectedItem": "Ändra på ordningen av alternativen genom att dra",
+    "dragSelectedItemShort": "dra",
+
+    "helpTitle": "Hjälp",
+    "helpText": "",
+    "goBack": "Tillbaka till valbåset",
+    "selectedOptionsFollow": "Du har valt __num__ alternativ:",
+    "selectedOptionFollow": "Ditt alternativ var:",
+
+    "errorElectionUrl": "Webbadressen är i fel format",
+    "reviewYourBallotTitle": "Din röst har inte ännu lagrats: kontrollera ditt val",
+    "reviewYourBallotText": "Innan du lagrar rösten, kontrollera att alla uppgifter nedan säkert är korrekta.",
+    "castTheBallot": "Lagra min röst",
+
+    "statusExecutingSanityChecks": "Kontrollerar att din webbläsare kan kryptera din röst, vänta (__percentage__% färdig)",
+    "statusEncryptingQuestion": "Krypterar svaret på frågan __questionNum__, vänta (__percentage__% färdig)",
+    "statusVerifyingQuestion": "Kontrollerar krypteringen av svaret till frågan __questionNum__, vänta (__percentage__% färdig)",
+    "sendingBallot": "Lagrar rösten i den elektroniska valurnan på servern, vänta (__percentage__% färdig)",
+    "emptyAnswer": "<blank vote>",
+
+    "successTitle": "Din röst har lagrats",
+    "successSubheader": "Din röst har krypterats och lagrats i den elektroniska valurnan!",
+
+    "completePacksTitle": "Complete packs",
+    "listOfDraftDocuments": "Documents (click to open)",
+    "selectedDocuments": "Documents (clic to select)",
+    "alreadySelectedAPack": "You already selected a pack. Remove your selection to be able to select another",
+    "optionInCategoryAlreadySelected": "To be able to select a pack, please deselect any other item",
+    "cantSelectNormalOptionPackAlreadySelected": "To be able to select an option, please deselect the pack you chose",
+    "cantSelectPackNormalOptionAlreadySelected": "To be able to select a pack, pelase deselect the options you chose",
+    "packLabel": "vote all",
+    "accordionCategoryTitle": "Category:",
+
+    "proposalsTitleClickToSelect": "Alternativ (klicka för att välja):",
+    "proposalsTitleClickToDeselect": "Alternativ (klicka för att ta bort alternativ):",
+    "notSelectableCell": "ingår inte",
+    "clickToSelectCell": "klicka för att välja",
+    "clickToDeselectCell": "ta bort alternativ x",
+    "draftIncludesList": "Innehåller __includeList__",
+    "dropdownOptionView": "Visa",
+
+    "filterOptionsPlaceholder2": "Leta efter kandidat:",
+    "candidatesTitle": "Kandidater:",
+    "helpTextViewSingleCandidates": "Klicka på Visa för att visa kandidatens uppgifter",
+    "helpTextViewCell": "Klicka på cellen för att välja den",
+    "randomizeColumn": "Slumpmässig ordning",
+    "firstCandidateOfMany": "__name__ och andra",
+    "numCandidatesSelected": "__name__ och andra",
+    "numCandidatesSelected": "(valda __selected__ av sammanlagt __total__ kandidater)",
+    "cannotSelectAll": "För att välja alla dessa måste du först ta bort några alternativ.",
+    "totalsQuestionColumn": "(valda __selected__ av sammanlagt __count__ alternativ)",
+
+    "reviewBallotHashText": "Kontrollkoden för din röst är: __ballotHash__",
+    "auditTheBallot": "Kontrollera din röst",
+
+    "auditBallotTitle": "Kontrollera rösten du gett",
+    "auditBallotSubtitle": "",
+    "auditBallotText": "<p>Röstens kontrollkod är: <code>__ballotHash__</code></p><p><strong>Processen att kontrollera din röst kräver tekniskt kunnande i någon mån. Ifall du hellre bara röstar på nytt för att ersätta din tidigare röst, klicka nedan på röstningsknappen.</strong></p><p>För att kontrollera din röst ska du:</p><ol><li>Kopiera och lagra den krypterade versionen av din röst nedan i en fil (klicka för att välja):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__ </div></li><li>Följ de skeden som beskrivs här <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\"> ifall du vill kontrollera att din röst har krypterats och lagrats korrekt</a>. </li></ol><p>Av säkerhetsskäl kan en kontrollerad röst inte längre beaktas när rösterna räknas. Den raderas från den elektroniska valurnan i samband med kontrollen. Efter kontrollen måste man alltså börja röstningen på nytt.</p>",
+    "auditStartAgain": "Börja rösta på nytt från början",
+
+
+    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Varning!</strong> Det här är en presentationssida för röstningen. Röster som ges här räknas inte.",
+    "successBallotHash": "Din röst har lagrats i <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-tjänstens elektroniska valurna. Kontrollnumret för din röst:<br/><br/></h3><p>__ballotHash__<strong></strong><br/><br/>Du kan använda kontrollnumret för att kontrollera att din röst säkert har <a href=\"__ballotLocatorUrl__\" target=\"_blank\">lagrats på servern</a>.",
+    "relatedLinksText": "Läs mer om röstningen här:",
+
+    "circleOptionExternalLink": "Visa mer information",
+    "voteInBlank": "blank röst",
+    "openOptionLink": "Öppna i ny flik",
+
+    "reviewScreen": {
+      "pair": "__one__ > __two__"
+    },
+
+    "pairwiseBeta": {
+      "web": "Nät",
+      "warning": "Klicka för att välja. __count__ av högst __max__ jämförelser genomförda.",
+      "warning_plural": "Klicka för att välja. __count__ av högst __max__ jämförelser genomförda."
+    },
+
+    "confirmNullVote": {
+      "header": "Blank röst",
+      "body": "Du har inte valt några alternativ, du röstar således blankt.",
+      "confirm": "JA, jag vill definitivt rösta blankt"
+    },
+
+    "busy": {
+      "title": "Din röst...",
+      "encryptedTitle": "krypteras",
+      "encryptedDescription": "så att ingen kan se vilka val du gjort",
+      "castTitle": "lagras",
+      "castDescription": "över en datasäker förbindelse",
+      "anonymizedTitle": "anonymiseras",
+      "anonymizedDescription": "för att upprätthålla valhemligheten"
+    },
+
+    "tooFewAnswers": {
+      "header": "Välj flera alternativ",
+      "body": "Du har inte valt tillräckligt med alternativ för denna fråga:",
+      "question": "Fråga ’__title__’: du har valt __selected__ alternativ, men den förutsätter minst __min__ alternativ"
+    }
+  }
+}

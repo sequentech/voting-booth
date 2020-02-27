@@ -24,7 +24,7 @@
     "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Tweet this election!",
     "votingSystem": "Voting System",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
   },
   "avBooth": {
     "legal": {
@@ -69,7 +69,7 @@
     "errorSendingBallotElectionNotOpen": "The ballot could not be cast because the election is not open. Sorry for the inconvenience.",
     "couldntSendBallotUnauthorized": "The ballot couldn't be cast because the authentication token associated to this link is invalid. Sorry for the inconvenience. If the problem persists, please try to contact us.",
     "errorEncrypting": "There was a problem while ballot encryption and it couldn't be cast. This is probably due to you being using an outdated web browser unsupported by our software. Please, try again in a different and more updated web browser, and if the problem persists please contact us. Sorry for the inconvenience.",
-    "errorEncoding": "There was a problem during ballot encoding and as a result your ballot was not cast. This is probably due to you being using an outdated web browser unsupported by our software. Please, try again in a different and more updated web browser, and if the problem persists please contact us. Sorry for the inconvenience.",
+    "errorEncoding": "<p>__msg__</p>There was a problem during ballot encoding and as a result your ballot was not cast. This is probably due to you being using an outdated web browser unsupported by our software. Please, try again in a different and more updated web browser, and if the problem persists please contact us. Sorry for the inconvenience.",
     "sanityChecksFailed": "There was a problem during the automatic encoding verifications done before ballot casting, and as a result your ballot was not cast. This is probably due to you being using an outdated web browser unsupported by our software. Please, try again in a different and more updated web browser, and if the problem persists please contact us. Sorry for the inconvenience.",
     "couldntSendBallotNotFound":  "The ballot could not be sent. There might be an issue with the connection,  or the server might be temporarily unavailable. If that's the case, please try again later and if the issue persists please contact us.",
 
@@ -122,7 +122,7 @@
     "emptyAnswer": "<blank vote>",
 
     "successTitle": "Vote cast successfully",
-    "successSubheader": "Congratulations, you have correctly cast your ballot and it's now being kept in our electronic ballot box.",
+    "successSubheader": "You have correctly cast your ballot and it's now being kept in our electronic ballot box.",
 
     "completePacksTitle": "Complete packs",
     "listOfDraftDocuments": "Documents (click to open)",
@@ -158,12 +158,13 @@
 
     "auditBallotTitle": "Audit your Ballot",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>The ballot tracker id is: <code>__ballotHash__</code></p><p><strong>The audit of the ballot requires some technical knowledge. If you don't have it, you can simply start again the voting process clicking in the button below.</strong></p><p>To verify your ballot you need to:</p><ol><li>Copy and save to a file your ballot (click to select):<br/><div class=\"code\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Follow the steps in <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">this tutorial to verify that the ballot was correctly encrypted</a>.</li></ol><p>For security reasons, if you audit the ballot, it needs to be spoiled. To continue the voting process, you need to start from the begining.</p>",
+    "auditBallotText": "<p>The ballot tracker id is: <code>__ballotHash__</code></p><p><strong>The audit of the ballot requires some technical knowledge. If you don't have it, you can simply start again the voting process clicking in the button below.</strong></p><p>To verify your ballot you need to:</p><ol><li>Copy and save to a file your ballot (click to select):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Follow the steps in <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">this tutorial to verify that the ballot was correctly encrypted</a>.</li></ol><p>For security reasons, if you audit the ballot, it needs to be spoiled. To continue the voting process, you need to start from the begining.</p>",
     "auditStartAgain": "Start voting from the begining",
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
     "successBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>You can use your ballot tracker to <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verify that your ballot has been correctly cast</a>.",
+    "successNoBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "relatedLinksText": "For more information about this election:",
 
     "circleOptionExternalLink": "View details",
@@ -195,11 +196,18 @@
       "anonymizedTitle": "anonymized",
       "anonymizedDescription": "so that the tally does not reveal which way you voted"
     },
-  
+
     "tooFewAnswers": {
       "header": "Choose more options",
       "body": "In the following questions you have not selected as many options as the minimum number needed to continue:",
       "question": "Question '__title__': you chose __selected__ options, but you need to choose at least __min__ options"
+    },
+    "selectAllCategory": {
+      "header": "Select all options from the <strong>__category__</strong>?",
+      "body": "Hey! It looks like you want to select all the options of <strong>__category__</strong>",
+      "confirm": "Yes, Select them",
+      "cancel": "No",
+      "doNotShowAgain": "Do not show this again"
     }
   }
 }

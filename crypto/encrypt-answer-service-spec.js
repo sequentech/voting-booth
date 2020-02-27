@@ -49,7 +49,7 @@ describe("EncryptAnswerService tests", function() {
     var secret = params.generate();
     // encrypt
     var encryptor = EncryptAnswerService(secret.pk.toJSONObject());
-    var encrypted = encryptor.encryptAnswer(plaintext);
+    var encrypted = encryptor.encryptAnswer(plaintext, false, false, console.log);
 
     // verify plaintext proof
     expect(encryptor.verifyPlaintextProof(encrypted)).toBe(true);
@@ -84,7 +84,8 @@ describe("EncryptAnswerService tests", function() {
     var encrypted = encryptor.encryptAnswer(
       parseInt(encryptedAnswer.plaintext),
       parseInt(encryptedAnswer.randomness),
-      randomness2);
+      randomness2,
+      console.log);
 
     // verify encrypted vote is bit by bit exact
     expect(stringify(encrypted)).toBe(stringify(encryptedAnswer));
