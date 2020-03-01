@@ -164,7 +164,9 @@ angular.module('avBooth')
 
               // if many clicks, show dialog to select all
               if (
-                scope.question.lastCategorySelected.clicks === 5 &&
+                angular.isDefined(scope.question.extra_options) &&
+                angular.isDefined(scope.question.extra_options.select_all_category_clicks) &&
+                scope.question.lastCategorySelected.clicks === scope.question.extra_options.select_all_category_clicks &&
                 !$cookies["do_not_show_select_all_category_dialog"] &&
                 scope.question.lastCategorySelected.name !== null &&
                 (
