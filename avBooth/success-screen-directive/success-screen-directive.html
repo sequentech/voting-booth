@@ -74,15 +74,24 @@
 <div class="content avb-content">
   <div class="container">
     <div class="padded">
-      <p
-        ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
-        ng-i18next>
-        [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
-      </p>
-      <div
-        class="text-center qr-code"
-        ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
-        ng-bind-html="qrCodeImg">
+      <div 
+        ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker">
+        <p
+          ng-i18next>
+          [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
+        </p>
+        <div
+          class="text-center qr-code"
+          ng-bind-html="qrCodeImg">
+        </div>
+        <a 
+          download="ticket_{{election.id}}_{{stateData.ballotHash}}.pdf"
+          class="btn btn-primary btn-login"
+          ng-click="downloadBallotTicket()"
+          target="_blank"
+          ng-i18next>
+          avBooth.downloadBallotTicket
+        </a>
       </div>
       <p
         ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"

@@ -25,8 +25,10 @@ angular.module('avBooth')
       ConfigService, 
       Authmethod, 
       QrCodeService,
+      PdfMakeService,
       $interpolate, 
-      $window, 
+      $window,
+      i18next,
       $cookies)
     {
 
@@ -87,6 +89,41 @@ angular.module('avBooth')
 
           scope.buttonsInfo.push(buttonInfo);
         }
+      }
+
+      /**
+       * Creates a ballot ticket in PDF and opens it in a new tab
+       */
+      scope.downloadBallotTicket = function() {
+        var docDefinition = {
+          content: [
+            {
+              text: $i18next('avBooth.ballotTicket.title'),
+              style: 'h1'
+            },
+            {
+              text: $i18next('avBooth.ballotTicket.subtitle'),
+              style: 'h2'
+            }
+          ],
+          styles: {
+            h1: {
+              fontSize: 18,
+              bold: true,
+              margin: [0, 0, 0, 10]
+            },
+            h2: {
+              fontSize: 16,
+              bold: true,
+              margin: [0, 10, 0, 5]
+            },
+            p: {
+              fontSize: 14,
+              bold: false
+            }
+          }
+        };
+        PdfMakeService.createPDF(docDefinition).download();
       }
 
       generateButtonsInfo();
