@@ -34,7 +34,12 @@ angular.module('avBooth')
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
       scope.showDocOnVoteCast = ConfigService.showDocOnVoteCast;
-      if (!scope.election.presentation.extra_options.success_screen__hide_ballot_tracker) {
+
+      // Generate the QR Code if needed
+      if (
+        !scope.election.presentation.extra_options || 
+        !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker
+      ) {
         var typeNumber = 4;
         var errorCorrectionLevel = 'L';
         var qr = QrCodeService(typeNumber, errorCorrectionLevel);
