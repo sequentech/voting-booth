@@ -84,14 +84,15 @@
           class="text-center qr-code"
           ng-bind-html="qrCodeImg">
         </div>
-        <a 
-          download="ticket_{{election.id}}_{{stateData.ballotHash}}.pdf"
-          class="text-center btn btn-primary btn-login"
-          ng-click="downloadBallotTicket()"
-          target="_blank"
-          ng-i18next>
-          avBooth.downloadBallotTicket
-        </a>
+        <div class="text-center">
+          <a
+            class="btn btn-primary btn-login"
+            ng-click="downloadBallotTicket()"
+            target="_blank"
+            ng-i18next>
+            avBooth.downloadBallotTicket
+          </a>
+        </div>
       </div>
       <p
         ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"

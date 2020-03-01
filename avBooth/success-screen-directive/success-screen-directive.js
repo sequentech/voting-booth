@@ -55,7 +55,7 @@ angular.module('avBooth')
           scope.stateData.ballotHash
         );
         qr.make();
-        scope.qrCodeImg = qr.createImgTag(8);
+        scope.qrCodeImg = qr.createImgTag(6);
       }
 
       function generateButtonsInfo() {
@@ -95,7 +95,11 @@ angular.module('avBooth')
        * Creates a ballot ticket in PDF and opens it in a new tab
        */
       scope.downloadBallotTicket = function() {
+        var fileName = 'ticket_' + scope.election.id + '_' + scope.stateData.ballotHash + '.pdf';
         var docDefinition = {
+          info: {
+            title: fileName
+          },
           content: [
             {
               text: $i18next('avBooth.ballotTicket.title'),
@@ -123,7 +127,7 @@ angular.module('avBooth')
             }
           }
         };
-        PdfMakeService.createPdf(docDefinition).download();
+        PdfMakeService.createPdf(docDefinition).download(fileName);
       };
 
       generateButtonsInfo();
