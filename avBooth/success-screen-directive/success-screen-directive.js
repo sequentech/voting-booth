@@ -40,7 +40,7 @@ angular.module('avBooth')
         !scope.election.presentation.extra_options || 
         !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker
       ) {
-        var typeNumber = 4;
+        var typeNumber = 0;
         var errorCorrectionLevel = 'L';
         var qr = QrCodeService(typeNumber, errorCorrectionLevel);
         qr.addData(
@@ -53,7 +53,7 @@ angular.module('avBooth')
           scope.stateData.ballotHash
         );
         qr.make();
-        scope.qrCodeImg = qr.createImgTag();
+        scope.qrCodeImg = qr.createImgTag(8);
       }
 
       function generateButtonsInfo() {
