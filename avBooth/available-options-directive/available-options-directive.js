@@ -32,6 +32,13 @@ angular.module('avBooth')
         scope.tagMax = null;
         scope.noTagMax = null;
 
+        // This counter is used to show a popup when many clicks selecting options
+        // in a category to select all
+        scope.question.lastCategorySelected = {
+          name: null,
+          clicks: 0
+        };
+
         if (angular.isDefined(scope.question.extra_options))
         {
           if (angular.isDefined(scope.question.extra_options.restrict_choices_by_tag__max))
@@ -107,6 +114,13 @@ angular.module('avBooth')
               }
             });
             option.selected = -1;
+
+            // restart lastCategorySelected count
+            scope.question.lastCategorySelected = {
+              name: null,
+              clicks: 0
+            };
+
           } else {
             // if max options selectable is 1, deselect any other and select
             // this
@@ -142,28 +156,50 @@ angular.module('avBooth')
 
             option.selected = numSelected;
 
-            // if selection was zero and selection empty and category is not
-            // shuffled, the whole category would be selected. This was once
-            // required by client but we are disabling it for now. In the future,
-            // we could re-enable it by creating an election level option to 
-            // enable this behavior
-            /*
-            if (numSelected <= 1 &&
-              option.category !== null &&
-              option.category !== "" &&
-              (
-                !angular.isDefined(scope.question.extra_options) ||
-                !angular.isDefined(scope.question.extra_options.shuffle_category_list) ||
-                !_.contains(
-                  scope.question.extra_options.shuffle_category_list,
-                  option.category
-                )
-              )
-            )
+
+            // update last category selected
+            if (scope.question.lastCategorySelected.name === option.category)
             {
-              scope.selectCategory(option.category, numSelected);
+              scope.question.lastCategorySelected.clicks += 1;
+
+              // if many clicks, show dialog to select all
+              if (
+                angular.isDefined(scope.question.extra_options) &&
+                angular.isDefined(scope.question.extra_options.select_all_category_clicks) &&
+                scope.question.lastCategorySelected.clicks === scope.question.extra_options.select_all_category_clicks &&
+                !$cookies["do_not_show_select_all_category_dialog"] &&
+                scope.question.lastCategorySelected.name !== null &&
+                (
+                  !angular.isDefined(scope.question.extra_options) ||
+                  !angular.isDefined(scope.question.extra_options.shuffle_category_list) ||
+                  !_.contains(
+                    scope.question.extra_options.shuffle_category_list,
+                    option.category
+                  )
+                )
+              ) {
+                $modal.open({
+                  templateUrl: "avBooth/select-all-category-controller/select-all-category-controller.html",
+                  controller: "SelectAllCategoryController",
+                  size: 'lg',
+                  backdrop: 'static',
+                  windowClass: "select-all-category-controller",
+                  resolve: {
+                    category: function() { return option.category; }
+                  }
+                }).result.then(
+                  function selectLastCategory() {
+                    scope.selectCategory(option.category, numSelected);
+                  });
+              }
             }
-            */
+            else
+            {
+              scope.question.lastCategorySelected = {
+                name: option.category,
+                clicks: 1
+              };
+            }
           }
         };
 
