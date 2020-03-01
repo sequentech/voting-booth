@@ -123,7 +123,7 @@ angular.module('avBooth')
             }
           }
         };
-        PdfMakeService.createPDF(docDefinition).download();
+        PdfMakeService.createPdf(docDefinition).download();
       };
 
       generateButtonsInfo();

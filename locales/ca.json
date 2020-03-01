@@ -159,6 +159,7 @@
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Atenció!</strong> Cabina de votació de prova, els vots emesos aquí no compten.",
     "successBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Podeu fer servir el localitzador per <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar <strong><u>AQUÍ</u></strong> que el vostre vot ha quedat registrat en aquesta adreça</a>, també accessible mitjançant el següent codi QR:",
     "successNoBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
+    "downloadBallotTicket": "Descargar ticket en PDF",
     "relatedLinksText": "Per a més informació sobre la votació:",
     "circleOptionExternalLink": "Mostra'n els detalls",
     "voteInBlank": "Vota en blanc",
