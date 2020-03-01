@@ -163,7 +163,7 @@
     "auditStartAgain": "Comenzar el proceso de voto de nuevo",
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de prueba, los votos emitidos aquí no cuentan.",
-    "successBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de tu voto es:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Puedes usar tu localizador para <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que tu voto ha quedado registrado en esta dirección</a>, también accesible mediante el siguiente código QR:",
+    "successBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de tu voto es:<br/><br/></h3><p> <a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Puedes usar tu localizador para verificar que tu voto ha quedado registrado en <strong><a href=\"__ballotLocatorUrl__\" target=\"_blank\">esta dirección</a></strong>, también accesible mediante el siguiente código QR:",
     "successNoBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "downloadBallotTicket": "Descargar ticket en PDF",
     "relatedLinksText": "Para más información sobre la votación:",
