@@ -28,7 +28,7 @@ angular.module('avBooth')
       PdfMakeService,
       $interpolate, 
       $window,
-      i18next,
+      $i18next,
       $cookies)
     {
 
@@ -124,7 +124,7 @@ angular.module('avBooth')
           }
         };
         PdfMakeService.createPDF(docDefinition).download();
-      }
+      };
 
       generateButtonsInfo();
 
