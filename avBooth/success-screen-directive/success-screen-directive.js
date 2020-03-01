@@ -21,13 +21,35 @@
 angular.module('avBooth')
   .directive(
     'avbSuccessScreen',
-    function(ConfigService, Authmethod, $interpolate, $window, $cookies)
+    function(
+      ConfigService, 
+      Authmethod, 
+      QrCodeService,
+      $interpolate, 
+      $window, 
+      $cookies)
     {
 
     function link(scope, element, attrs) {
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
       scope.showDocOnVoteCast = ConfigService.showDocOnVoteCast;
+      if (!scope.election.presentation.extra_options.success_screen__hide_ballot_tracker) {
+        var typeNumber = 4;
+        var errorCorrectionLevel = 'L';
+        var qr = QrCodeService(typeNumber, errorCorrectionLevel);
+        qr.addData(
+          window.location.protocol + 
+          '//' + 
+          window.location.host + 
+          '/election/' + 
+          scope.election.id + 
+          '/public/ballot-locator/' + 
+          scope.stateData.ballotHash
+        );
+        qr.make();
+        scope.qrCodeImg = qr.createImgTag();
+      }
 
       function generateButtonsInfo() {
         scope.buttonsInfo = [];

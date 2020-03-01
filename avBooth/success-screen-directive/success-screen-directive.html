@@ -77,8 +77,13 @@
       <p
         ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
         ng-i18next>
-        [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator", url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
+        [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
       </p>
+      <div
+        class="text-center qr-code"
+        ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
+        ng-bind-html="qrCodeImg">
+      </div>
       <p
         ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"
         ng-i18next>
