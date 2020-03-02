@@ -169,7 +169,7 @@
     "downloadBallotTicket": "Descargar ticket en PDF",
     "ballotTicket": {
       "h3": "Justificante de voto",
-      "h4": "Su voto ha sido emitido correctamente. Este document justifica la emisión del mismo.",
+      "h4": "Su voto ha sido emitido correctamente. Este documento justifica la emisión del mismo.",
       "tracker": "Localizador del voto:",
       "title": "Título de la votación:",
       "id": "Id de la votación:",
