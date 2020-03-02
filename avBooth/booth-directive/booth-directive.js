@@ -297,7 +297,8 @@ angular.module('avBooth')
             // in a demo, we don't send the ballot, we just show as if we had sent it
             if (scope.isDemo) {
               scope.setState(stateEnum.successScreen, {
-                ballotHash: scope.stateData.ballotHash
+                ballotHash: scope.stateData.ballotHash,
+                ballotResponse: scope.stateData.ballotResponse
               });
             // if we are not in a demo, send the ballot
             } else {

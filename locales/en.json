@@ -167,6 +167,18 @@
     "successBallotQrCode": "You can verify your ballot has been correctly cast using the following QR Code:",
     "successNoBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "downloadBallotTicket": "Download ballot ticket PDF",
+    "ballotTicket": {
+      "h3": "Vote receipt",
+      "h4": "Your vote has been cast correctly. This document justifies its issuance.",
+      "tracker": "Ballot tracker:",
+      "title": "Election title:",
+      "id": "Election Id:",
+      "voterId": "Voter Id:",
+      "created": "Ballot registration date:",
+      "link": "Ballot tracker link:",
+      "qrCode": "You can use the following QR Code to access the ballot tracker link:",
+      "isDemo": "This ballot tracker was generated in a demo voting booth. This ballot was NOT cast."
+    },
     "relatedLinksText": "For more information about this election:",
 
     "circleOptionExternalLink": "View details",

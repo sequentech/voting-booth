@@ -167,6 +167,18 @@
     "successBallotQrCode": "Puedes verificar que tu voto ha quedado registrado mediante el siguiente código QR:",
     "successNoBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "downloadBallotTicket": "Descargar ticket en PDF",
+    "ballotTicket": {
+      "h3": "Justificante de voto",
+      "h4": "Su voto ha sido emitido correctamente. Este document justifica la emisión del mismo.",
+      "tracker": "Localizador del voto:",
+      "title": "Título de la votación:",
+      "id": "Id de la votación:",
+      "voterId": "Id del votante:",
+      "created": "Fecha de registro del voto:",
+      "link": "Enlace para localizar el voto:",
+      "qrCode": "Puedes usar el siguiente código QR y acceder al enlace para localizar el voto:",
+      "isDemo": "Este justificante de voto fue generado en una cabina de votación de prueba. Este voto NO fue emitido."
+    },
     "relatedLinksText": "Para más información sobre la votación:",
 
     "circleOptionExternalLink": "Ver detalles",
