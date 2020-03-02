@@ -198,7 +198,7 @@ angular.module('avBooth')
                   },
                   {
                     text: moment(scope.stateData.ballotResponse.payload.created)
-                            .format('YYYY-MM-DD hh:mm:ss'),
+                            .format('YYYY-MM-DD HH:mm:ss'),
                     style: 'cell',
                     width: '*'
                   }
