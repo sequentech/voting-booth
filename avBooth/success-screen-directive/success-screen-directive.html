@@ -81,18 +81,26 @@
           [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
         </p>
         <div
-          class="text-center qr-code"
-          ng-bind-html="qrCodeImg">
+          class="text-center"
+          ng-if="!election.presentation.extra_options.success_screen__hide_qr_code">
+          <p ng-i18next>
+            avBooth.successBallotQrCode
+          </p>
+          <div 
+            class="qr-code" 
+            ng-bind-html="qrCodeImg">
+          </div>
         </div>
-        <div class="text-center download-ticket">
-          <a
-            class="btn btn-primary btn-login"
-            ng-click="downloadBallotTicket()"
-            target="_blank"
-            ng-i18next>
-            avBooth.downloadBallotTicket
-          </a>
-        </div>
+      </div>
+      <div class="text-center download-ticket">
+        <a
+          class="btn btn-primary btn-login"
+          ng-click="downloadBallotTicket()"
+          ng-if="!election.presentation.extra_options.success_screen__hide_download_ballot_ticket"
+          target="_blank"
+          ng-i18next>
+          avBooth.downloadBallotTicket
+        </a>
       </div>
       <p
         ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"
