@@ -331,7 +331,8 @@ angular.module('avBooth')
         } else if (scope.state === stateEnum.castingBallotScreen)
         {
           scope.setState(stateEnum.successScreen, {
-            ballotHash: scope.stateData.ballotHash
+            ballotHash: scope.stateData.ballotHash,
+            ballotResponse: scope.stateData.ballotResponse
           });
 
         } else if (scope.stateData.isLastQuestion || scope.stateData.reviewMode)

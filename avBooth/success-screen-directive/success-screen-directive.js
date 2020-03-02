@@ -299,6 +299,10 @@ angular.module('avBooth')
         }
       };
 
+      if (!scope.election.presentation.extra_options || !scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket) {
+        createBallotTicket();
+      }
+
       generateButtonsInfo();
 
       scope.successText = text({electionId: scope.election.id});
