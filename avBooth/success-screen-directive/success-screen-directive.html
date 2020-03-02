@@ -72,71 +72,73 @@
 </div>
 
 <div class="content avb-content">
-  <div class="container">
-    <div class="padded">
-      <div 
-        ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker">
-        <span
-          ng-i18next>
-          [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
-        </span> &nbsp; <span
-          ng-if="!election.presentation.extra_options.success_screen__hide_qr_code">
-          <span ng-i18next>
-            avBooth.successBallotQrCode
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div 
+          ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker">
+          <span
+            ng-i18next>
+            [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
+          </span> &nbsp; <span
+            ng-if="!election.presentation.extra_options.success_screen__hide_qr_code">
+            <span ng-i18next>
+              avBooth.successBallotQrCode
+            </span>
+            <div 
+              class="qr-code text-center"
+              ng-bind-html="qrCodeImg">
+            </div>
           </span>
-          <div 
-            class="qr-code text-center"
-            ng-bind-html="qrCodeImg">
-          </div>
-        </span>
-      </div>
-      <div class="text-center download-ticket">
-        <a
-          class="btn btn-primary btn-login"
-          ng-click="downloadBallotTicket()"
-          ng-if="!election.presentation.extra_options.success_screen__hide_download_ballot_ticket"
-          target="_blank"
-          ng-i18next>
-          avBooth.downloadBallotTicket
-        </a>
-      </div>
-      <p
-        ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"
-        ng-i18next>
-        [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
-      </p>
-      <div class="text-center" ng-if="!!election.presentation.extra_options.success_screen__redirect_to_login">
-        <span>
+        </div>
+        <div class="text-center download-ticket">
           <a
-            ng-click="redirectToLogin()"
-            class="btn btn-primary btn-login">
-            {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
-          </a>
-        </span>
-      </div>
-      <div class="text-center" ng-if="!!election.presentation.share_text">
-        <span
-          ng-if="!!buttonsInfo"
-          ng-repeat="q in buttonsInfo"
-        >
-          <a
-            href="{{ q.link }}"
+            class="btn btn-primary btn-login"
+            ng-click="downloadBallotTicket()"
+            ng-if="!election.presentation.extra_options.success_screen__hide_download_ballot_ticket"
             target="_blank"
-            class="{{ q.class }}"
-          >
-            <img
-              alt="{{ q.network }}"
-              class="logo-img"
-              ng-src="{{ q.img }}"
-            />
-            {{ q.button_text|truncate:25 }}
+            ng-i18next>
+            avBooth.downloadBallotTicket
           </a>
-        </span>
-      </div>
+        </div>
+        <p
+          ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"
+          ng-i18next>
+          [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
+        </p>
+        <div class="text-center" ng-if="!!election.presentation.extra_options.success_screen__redirect_to_login">
+          <span>
+            <a
+              ng-click="redirectToLogin()"
+              class="btn btn-primary btn-login">
+              {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
+            </a>
+          </span>
+        </div>
+        <div class="text-center" ng-if="!!election.presentation.share_text">
+          <span
+            ng-if="!!buttonsInfo"
+            ng-repeat="q in buttonsInfo"
+          >
+            <a
+              href="{{ q.link }}"
+              target="_blank"
+              class="{{ q.class }}"
+            >
+              <img
+                alt="{{ q.network }}"
+                class="logo-img"
+                ng-src="{{ q.img }}"
+              />
+              {{ q.button_text|truncate:25 }}
+            </a>
+          </span>
+        </div>
 
-      <div ng-bind-html="successText">
-      </div>
-      <div documentation-directive ng-if="showDocOnVoteCast">
+        <div ng-bind-html="successText">
+        </div>
+        <div documentation-directive ng-if="showDocOnVoteCast">
+        </div>
       </div>
     </div>
   </div>
