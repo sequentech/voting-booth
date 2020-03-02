@@ -191,7 +191,7 @@ angular.module('avBooth')
               },
               h2: {
                 fontSize: 16,
-                bold: flase,
+                bold: false,
                 margin: [0, 10, 0, 5]
               },
               h3: {
