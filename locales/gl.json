@@ -161,7 +161,7 @@
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de proba, os votos emitidos aquí non contan.",
-    "successBallotHash": "Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. O localizador do teu voto é:<br/><br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/><br/>Podes usar o teu localizador para verificar que o teu voto quedou rexistrado <a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>neste enderezo</strong></a>.",
+    "successBallotHash": "Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. O localizador do teu voto é:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Podes usar o teu localizador para verificar que o teu voto quedou rexistrado <a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>neste enderezo</strong></a>.",
     "successBallotQrCode": "Podes comprobar que o seu voto foi rexistrado usando o seguinte código QR:",
     "successNoBallotHash": "Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. ",
     "relatedLinksText": "Para máis información sobre a votación:",
