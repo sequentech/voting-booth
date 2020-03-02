@@ -235,7 +235,7 @@ angular.module('avBooth')
               link: {
                 fontSize: 12,
                 bold: true,
-                decoration: underline,
+                decoration: 'underline',
                 color: '#0000ff',
                 margin: 7
               },
