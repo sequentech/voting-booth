@@ -21,13 +21,45 @@
 angular.module('avBooth')
   .directive(
     'avbSuccessScreen',
-    function(ConfigService, Authmethod, $interpolate, $window, $cookies)
+    function(
+      ConfigService, 
+      Authmethod, 
+      QrCodeService,
+      PdfMakeService,
+      moment,
+      $interpolate, 
+      $window,
+      $i18next,
+      $http,
+      $cookies)
     {
 
     function link(scope, element, attrs) {
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
       scope.showDocOnVoteCast = ConfigService.showDocOnVoteCast;
+
+      // Generate the QR Code if needed
+      if (
+        !scope.election.presentation.extra_options || 
+        !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker
+      ) {
+        var typeNumber = 0;
+        var errorCorrectionLevel = 'L';
+        scope.ballotTrackerUrl = window.location.protocol + 
+          '//' + 
+          window.location.host + 
+          '/election/' + 
+          scope.election.id + 
+          '/public/ballot-locator/' + 
+          scope.stateData.ballotHash;
+        var qr = QrCodeService(typeNumber, errorCorrectionLevel);
+        qr.addData(scope.ballotTrackerUrl);
+        qr.make();
+        scope.qrCodeImg = qr.createImgTag(6);
+      }
+
+      scope.pdf = {value: null, fileName: ''};
 
       function generateButtonsInfo() {
         scope.buttonsInfo = [];
@@ -60,6 +92,270 @@ angular.module('avBooth')
 
           scope.buttonsInfo.push(buttonInfo);
         }
+      }
+
+      /**
+       * Creates a ballot ticket in PDF and opens it in a new tab
+       */
+      function createBallotTicket() {
+        scope.pdf.fileName = 'ticket_' + scope.election.id + '_' + scope.stateData.ballotHash + '.pdf';
+
+        function download(images) {
+          var docDefinition = {
+            info: {
+              title: scope.pdf.fileName,
+
+            },
+            content: [
+              {
+                columns: [
+                  {
+                    image: 'logo',
+                    fit: [250, 250]
+                  },
+                  [
+                    {
+                      text: ConfigService.organization.orgSubtitle || ConfigService.organization.orgName,
+                      style: 'h1'
+                    },
+                    {
+                      text: ConfigService.organization.orgSubtitle && ConfigService.organization.orgName || "",
+                      style: 'h2'
+                    },
+                  ]
+                ]
+              },
+              {
+                text: $i18next('avBooth.ballotTicket.h3'),
+                style: 'h3'
+              },
+              {
+                text: $i18next('avBooth.ballotTicket.h4'),
+                style: 'h4'
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.tracker'),
+                    style: 'cell',
+                    width: '40%'
+                  },
+                  {
+                    text: scope.stateData.ballotHash.substr(0, 32) + ' ' + scope.stateData.ballotHash.substr(32, 32),
+                    style: 'cell',
+                    width: '*'
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.title'),
+                    style: 'cell',
+                    width: '40%'
+                  },
+                  {
+                    text: scope.election.title,
+                    style: 'cell',
+                    width: '*'
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.id'),
+                    style: 'cell',
+                    width: '40%'
+                  },
+                  {
+                    text: scope.election.id,
+                    style: 'cell',
+                    width: '*'
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.voterId'),
+                    style: 'cell',
+                    width: '40%'
+                  },
+                  {
+                    text: scope.stateData.ballotResponse.payload.voter_id,
+                    style: 'cell',
+                    width: '*'
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.created'),
+                    style: 'cell',
+                    width: '40%'
+                  },
+                  {
+                    text: moment(scope.stateData.ballotResponse.payload.created)
+                            .format('YYYY-MM-DD hh:mm:ss'),
+                    style: 'cell',
+                    width: '*'
+                  }
+                ]
+              }
+            ],
+            images: images,
+            styles: {
+              h1: {
+                fontSize: 18,
+                bold: true,
+                margin: [0, 0, 0, 10]
+              },
+              h2: {
+                fontSize: 16,
+                bold: false,
+                margin: [0, 10, 0, 5]
+              },
+              h3: {
+                fontSize: 16,
+                bold: true,
+                margin: [0, 20, 0, 10]
+              },
+              h4: {
+                fontSize: 14,
+                bold: true,
+                margin: [0, 10, 0, 10]
+              },
+              cell: {
+                fontSize: 12,
+                bold: false,
+                margin: 7
+              },
+              link: {
+                fontSize: 12,
+                bold: true,
+                decoration: 'underline',
+                color: '#0000ff',
+                margin: 7
+              },
+              p: {
+                fontSize: 14,
+                bold: false,
+                margin: 15
+              },
+              demo: {
+                fontSize: 16,
+                bold: true,
+                background: '#f0ad4e',
+                margin: 15
+              }
+            }
+          };
+
+          // add link
+          if (!scope.election.presentation.extra_options || !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker) {
+            docDefinition.content.push(
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.link'),
+                    width: '40%',
+                    style: 'cell'
+                  },
+                  {
+                    text: $i18next('avBooth.ballotTicket.linkClickHere'),
+                    link: scope.ballotTrackerUrl,
+                    width: '*',
+                    style: 'link'
+                  }
+                ]
+              }
+            );
+          }
+
+          // add qr code
+          if (!scope.election.presentation.extra_options || !scope.election.presentation.extra_options.success_screen__hide_qr_code) {
+            docDefinition.content.push(
+              {
+                text: $i18next('avBooth.ballotTicket.qrCode'),
+                style: 'p'
+              },
+              {
+                columns: [
+                  {
+                    text: '',
+                    width: '*'
+                  },
+                  {
+                    qr: scope.ballotTrackerUrl,
+                    fit: 200
+                  },
+                  {
+                    text: '',
+                    width: '*'
+                  }
+                ]
+              }
+              
+            );
+          }
+          // if is demo
+          if (scope.isDemo) {
+            docDefinition.content.push(
+              {
+                text: $i18next('avBooth.ballotTicket.isDemo'),
+                style: 'demo'
+              }
+            );
+
+          }
+          scope.pdf.value = PdfMakeService.createPdf(docDefinition);
+        }
+
+        function addEmptyImage(images, name, callback) {
+          // empty 1px image
+          images[name] = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6fwYAAtMBznRijrsAAAAASUVORK5CYII=';
+          callback(images);
+        }
+
+        function addImageBlob(images, name, callback, blob) {
+            // blob data to URL
+            var reader = new FileReader();
+            reader.onload = function(event) {
+              images[name] = event.target.result;
+              callback(images);
+            };
+            reader.readAsDataURL(blob);
+        }
+
+        var images = {};
+
+        $http({
+          method: 'GET',
+          url: ConfigService.organization.orgBigLogo,
+          headers: {
+            'Content-Type': 'image/png'
+          },
+          responseType: 'blob' 
+        }).then(
+          function onSuccess(response) {
+            addImageBlob(images, 'logo', download, response.data);
+          },
+          function onError() {
+            addEmptyImage(images, 'logo', download);
+          }
+        );
+      }
+
+      scope.downloadBallotTicket = function () {
+        if (scope.pdf.value) {
+          scope.pdf.value.download(scope.pdf.fileName);
+        }
+      };
+
+      if (!scope.election.presentation.extra_options || !scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket) {
+        createBallotTicket();
       }
 
       generateButtonsInfo();

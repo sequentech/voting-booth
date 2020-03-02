@@ -163,7 +163,8 @@
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Tämä on äänestyksen esittelysivu. Täällä annettuja ääniä ei lasketa.",
-    "successBallotHash": "Äänesi on tallennettu <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-palvelun sähköiseen vaaliuurnaan. Äänesi tarkistusnunumero:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Voit käyttää tarkistusnumeroa varmistaaksi, että äänesi on varmasti <a href=\"__ballotLocatorUrl__\" target=\"_blank\">tallennettu palvelimelle</a>.",
+    "successBallotHash": "Äänesi on tallennettu <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-palvelun sähköiseen vaaliuurnaan. Äänesi tarkistusnunumero:<br/><br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Voit käyttää tarkistusnumeroa varmistaaksi, että äänesi on varmasti <strong><a href=\"__ballotLocatorUrl__\" target=\"_blank\">tallennettu palvelimelle tässä osoitteessa</a></strong>.",
+    "successBallotQrCode": "Voit varmistaa, että äänesi on rekisteröity, seuraavalla QR-koodilla:",
     "successNoBallotHash": "Äänesi on tallennettu <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-palvelun sähköiseen vaaliuurnaan.",
     "relatedLinksText": "Lue lisää tästä äänestyksestä:",
 

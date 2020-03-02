@@ -162,10 +162,24 @@
     "auditBallotText": "<p>El localizador de tu voto es: <code>__ballotHash__</code></p><p><strong>La auditoría de la papeleta requiere ciertos conocimientos técnicos. Si no los tienes, puedes simplemente comenzar de nuevo el proceso de voto haciendo clic abajo</strong>.</p><p>Para verificar tu voto, necesitas:</p><ol><li>Copiar y guardar en un fichero la papeleta (clic para seleccionar):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir los pasos de <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que la papeleta fue cifrada correctamente</a>.</li></ol><p>Por razones de seguridad, al auditar el voto, el ha de ser desechado. Para continuar el proceso de voto, debes comenzar el proceso de nuevo.</p>",
     "auditStartAgain": "Comenzar el proceso de voto de nuevo",
 
-
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de prueba, los votos emitidos aquí no cuentan.",
-    "successBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de tu voto es:<br/><br/></h3><p> <strong>__ballotHash__</strong><br/><br/>Puedes usar tu localizador para <a href=\"__ballotLocatorUrl__\" target=\"_blank\">verificar que tu voto ha quedado registrado</a>.",
+    "successBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de tu voto es:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Puedes usar tu localizador para verificar que tu voto ha quedado registrado en <strong><a href=\"__ballotLocatorUrl__\" target=\"_blank\">esta dirección</a></strong>.",
+    "successBallotQrCode": "Puedes verificar que tu voto ha quedado registrado mediante el siguiente código QR:",
     "successNoBallotHash": "Has emitido tu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
+    "downloadBallotTicket": "Descargar ticket en PDF",
+    "ballotTicket": {
+      "h3": "Justificante de voto",
+      "h4": "Su voto ha sido emitido correctamente. Este documento justifica la emisión del mismo.",
+      "tracker": "Localizador del voto:",
+      "title": "Título de la votación:",
+      "id": "Id de la votación:",
+      "voterId": "Id del votante:",
+      "created": "Fecha de registro del voto:",
+      "link": "Enlace para localizar el voto:",
+      "linkClickHere": "clic aquí",
+      "qrCode": "Puedes usar el siguiente código QR y acceder al enlace para localizar el voto:",
+      "isDemo": "Este justificante de voto fue generado en una cabina de votación de prueba. Este voto NO fue emitido."
+    },
     "relatedLinksText": "Para más información sobre la votación:",
 
     "circleOptionExternalLink": "Ver detalles",

@@ -57,9 +57,10 @@ angular.module('avBooth')
 
           // on success, we first then try to submit, then once submitted we
           // show the next screen (which is the success-screen directive)
-          success: function(encryptedBallot, auditableBallot) {
+          success: function(ballotResponse) {
             scope.updateTitle($i18next("avBooth.sendingBallot", {percentage: 100}));
             scope.percentCompleted = 100;
+            scope.stateData.ballotResponse = ballotResponse;
             scope.next();
           },
 

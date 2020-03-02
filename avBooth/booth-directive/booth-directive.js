@@ -297,7 +297,17 @@ angular.module('avBooth')
             // in a demo, we don't send the ballot, we just show as if we had sent it
             if (scope.isDemo) {
               scope.setState(stateEnum.successScreen, {
-                ballotHash: scope.stateData.ballotHash
+                ballotHash: scope.stateData.ballotHash,
+                ballotResponse: {
+                  date: "2020-03-02 13:22:03.035",
+                  payload: {
+                    election_id: scope.election.id,
+                    voter_id: "2bf885da9bdc0676d90f7d8cc66f",
+                    vote: scope.stateData.encryptedBallot,
+                    hash: scope.stateData.ballotHash,
+                    created: "2020-03-02T13:22:03.030"
+                  }
+                }
               });
             // if we are not in a demo, send the ballot
             } else {
@@ -330,7 +340,8 @@ angular.module('avBooth')
         } else if (scope.state === stateEnum.castingBallotScreen)
         {
           scope.setState(stateEnum.successScreen, {
-            ballotHash: scope.stateData.ballotHash
+            ballotHash: scope.stateData.ballotHash,
+            ballotResponse: scope.stateData.ballotResponse
           });
 
         } else if (scope.stateData.isLastQuestion || scope.stateData.reviewMode)
