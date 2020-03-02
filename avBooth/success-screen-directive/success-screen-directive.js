@@ -111,7 +111,7 @@ angular.module('avBooth')
                 columns: [
                   {
                     image: 'logo',
-                    width: '50%'
+                    fit: [400, 400]
                   },
                   [
                     {
