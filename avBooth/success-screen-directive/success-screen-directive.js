@@ -111,7 +111,7 @@ angular.module('avBooth')
                 columns: [
                   {
                     image: 'logo',
-                    fit: [200, 200]
+                    fit: [250, 250]
                   },
                   [
                     {
@@ -137,12 +137,12 @@ angular.module('avBooth')
                 columns: [
                   {
                     text: $i18next('avBooth.ballotTicket.tracker'),
-                    style: 'p',
+                    style: 'cell',
                     width: '40%'
                   },
                   {
                     text: scope.stateData.ballotHash,
-                    style: 'p',
+                    style: 'cell',
                     width: '*'
                   }
                 ]
@@ -151,12 +151,12 @@ angular.module('avBooth')
                 columns: [
                   {
                     text: $i18next('avBooth.ballotTicket.title'),
-                    style: 'p',
+                    style: 'cell',
                     width: '40%'
                   },
                   {
                     text: scope.election.title,
-                    style: 'p',
+                    style: 'cell',
                     width: '*'
                   }
                 ]
@@ -165,12 +165,12 @@ angular.module('avBooth')
                 columns: [
                   {
                     text: $i18next('avBooth.ballotTicket.id'),
-                    style: 'p',
+                    style: 'cell',
                     width: '40%'
                   },
                   {
                     text: scope.election.id,
-                    style: 'p',
+                    style: 'cell',
                     width: '*'
                   }
                 ]
@@ -179,12 +179,12 @@ angular.module('avBooth')
                 columns: [
                   {
                     text: $i18next('avBooth.ballotTicket.voterId'),
-                    style: 'p',
+                    style: 'cell',
                     width: '40%'
                   },
                   {
                     text: scope.stateData.ballotResponse.payload.voter_id,
-                    style: 'p',
+                    style: 'cell',
                     width: '*'
                   }
                 ]
@@ -193,13 +193,13 @@ angular.module('avBooth')
                 columns: [
                   {
                     text: $i18next('avBooth.ballotTicket.created'),
-                    style: 'p',
+                    style: 'cell',
                     width: '40%'
                   },
                   {
                     text: moment(scope.stateData.ballotResponse.payload.created)
                             .format('YYYY-MM-DD hh:mm:ss'),
-                    style: 'p',
+                    style: 'cell',
                     width: '*'
                   }
                 ]
@@ -220,12 +220,24 @@ angular.module('avBooth')
               h3: {
                 fontSize: 16,
                 bold: true,
-                margin: [0, 10, 0, 10]
+                margin: [0, 20, 0, 10]
               },
               h4: {
                 fontSize: 14,
                 bold: true,
                 margin: [0, 10, 0, 10]
+              },
+              cell: {
+                fontSize: 12,
+                bold: false,
+                margin: 7
+              },
+              link: {
+                fontSize: 12,
+                bold: true,
+                decoration: underline,
+                color: '#0000ff',
+                margin: 7
               },
               p: {
                 fontSize: 14,
@@ -249,13 +261,13 @@ angular.module('avBooth')
                   {
                     text: $i18next('avBooth.ballotTicket.link'),
                     width: '40%',
-                    style: 'p'
+                    style: 'cell'
                   },
                   {
                     text: $i18next('avBooth.ballotTicket.linkClickHere'),
                     link: scope.ballotTrackerUrl,
                     width: '*',
-                    style: 'p'
+                    style: 'link'
                   }
                 ]
               }
@@ -272,6 +284,7 @@ angular.module('avBooth')
               {
                 columns: [
                   {
+                    text: '',
                     width: '*'
                   },
                   {
@@ -279,6 +292,7 @@ angular.module('avBooth')
                     fit: 200
                   },
                   {
+                    text: '',
                     width: '*'
                   }
                 ]
