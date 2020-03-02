@@ -176,6 +176,7 @@
       "voterId": "Voter Id:",
       "created": "Ballot registration date:",
       "link": "Ballot tracker link:",
+      "linkClickHere": "click here",
       "qrCode": "You can use the following QR Code to access the ballot tracker link:",
       "isDemo": "This vote receipt was generated in a demo voting booth. The ballot was NOT cast."
     },

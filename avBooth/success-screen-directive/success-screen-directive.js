@@ -136,54 +136,71 @@ angular.module('avBooth')
               {
                 columns: [
                   {
-                    width: '40%',
-                    columns: [
-                      {
-                        text: $i18next('avBooth.ballotTicket.tracker'),
-                        style: 'p'
-                      },
-                      {
-                        text: $i18next('avBooth.ballotTicket.title'),
-                        style: 'p'
-                      },
-                      {
-                        text: $i18next('avBooth.ballotTicket.id'),
-                        style: 'p'
-                      },
-                      {
-                        text: $i18next('avBooth.ballotTicket.voterId'),
-                        style: 'p'
-                      },
-                      {
-                        text: $i18next('avBooth.ballotTicket.created'),
-                        style: 'p'
-                      }
-                    ],
+                    text: $i18next('avBooth.ballotTicket.tracker'),
+                    style: 'p',
+                    width: '40%'
                   },
                   {
-                    width: '60%',
-                    columns: [
-                      {
-                        text: scope.stateData.ballotHash,
-                        style: 'p'
-                      },
-                      {
-                        text: scope.election.title,
-                        style: 'p'
-                      },
-                      {
-                        text: scope.election.id,
-                        style: 'p'
-                      },
-                      {
-                        text: scope.stateData.voterId,
-                        style: 'p'
-                      },
-                      {
-                        text: moment(scope.stateData.ballotResponse.payload.created).format('YYYY-MM-DD hh:mm:ss'),
-                        style: 'p'
-                      }
-                    ]
+                    text: scope.stateData.ballotHash,
+                    style: 'p',
+                    width: '*'
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.title'),
+                    style: 'p',
+                    width: '40%'
+                  },
+                  {
+                    text: scope.election.title,
+                    style: 'p',
+                    width: '*'
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.id'),
+                    style: 'p',
+                    width: '40%'
+                  },
+                  {
+                    text: scope.election.id,
+                    style: 'p',
+                    width: '*'
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.voterId'),
+                    style: 'p',
+                    width: '40%'
+                  },
+                  {
+                    text: scope.stateData.ballotResponse.payload.voter_id,
+                    style: 'p',
+                    width: '*'
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.created'),
+                    style: 'p',
+                    width: '40%'
+                  },
+                  {
+                    text: moment(scope.stateData.ballotResponse.payload.created)
+                            .format('YYYY-MM-DD hh:mm:ss'),
+                    style: 'p',
+                    width: '*'
                   }
                 ]
               }
@@ -233,9 +250,9 @@ angular.module('avBooth')
                 style: 'p'
               },
               {
-                text: scope.ballotTrackerUrl,
+                text: i18next('avBooth.ballotTicket.linkClickHere'),
                 link: scope.ballotTrackerUrl,
-                width: '60%',
+                width: '*',
                 style: 'p'
               }
             );
@@ -249,10 +266,20 @@ angular.module('avBooth')
                 style: 'p'
               },
               {
-                qr: scope.ballotTrackerUrl,
-                fit: 100,
-                margin: [100, 10]
+                columns: [
+                  {
+                    width: '*'
+                  },
+                  {
+                    qr: scope.ballotTrackerUrl,
+                    fit: 200
+                  },
+                  {
+                    width: '*'
+                  }
+                ]
               }
+              
             );
           }
           // if is demo
