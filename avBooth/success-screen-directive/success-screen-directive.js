@@ -141,7 +141,7 @@ angular.module('avBooth')
                     width: '40%'
                   },
                   {
-                    text: scope.stateData.ballotHash,
+                    text: scope.stateData.ballotHash.substr(0, 32) + ' ' + scope.stateData.ballotHash.substr(32, 32),
                     style: 'cell',
                     width: '*'
                   }
