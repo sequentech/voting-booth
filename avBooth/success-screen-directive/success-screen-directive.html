@@ -76,21 +76,19 @@
     <div class="padded">
       <div 
         ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker">
-        <p
+        <span
           ng-i18next>
           [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
-        </p>
-        <div
-          class="text-center"
+        </span> <span
           ng-if="!election.presentation.extra_options.success_screen__hide_qr_code">
-          <p ng-i18next>
+          <span ng-i18next>
             avBooth.successBallotQrCode
-          </p>
+          </span>
           <div 
-            class="qr-code" 
+            class="qr-code text-center"
             ng-bind-html="qrCodeImg">
           </div>
-        </div>
+        </span>
       </div>
       <div class="text-center download-ticket">
         <a
