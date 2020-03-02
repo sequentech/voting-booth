@@ -177,7 +177,7 @@
       "created": "Ballot registration date:",
       "link": "Ballot tracker link:",
       "qrCode": "You can use the following QR Code to access the ballot tracker link:",
-      "isDemo": "This ballot tracker was generated in a demo voting booth. This ballot was NOT cast."
+      "isDemo": "This vote receipt was generated in a demo voting booth. The ballot was NOT cast."
     },
     "relatedLinksText": "For more information about this election:",
 
