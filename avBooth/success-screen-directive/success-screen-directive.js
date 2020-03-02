@@ -250,7 +250,7 @@ angular.module('avBooth')
                 style: 'p'
               },
               {
-                text: i18next('avBooth.ballotTicket.linkClickHere'),
+                text: $i18next('avBooth.ballotTicket.linkClickHere'),
                 link: scope.ballotTrackerUrl,
                 width: '*',
                 style: 'p'
