@@ -245,15 +245,19 @@ angular.module('avBooth')
           if (!scope.election.presentation.extra_options || !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker) {
             docDefinition.content.push(
               {
-                text: $i18next('avBooth.ballotTicket.link'),
-                width: '40%',
-                style: 'p'
-              },
-              {
-                text: $i18next('avBooth.ballotTicket.linkClickHere'),
-                link: scope.ballotTrackerUrl,
-                width: '*',
-                style: 'p'
+                columns: [
+                  {
+                    text: $i18next('avBooth.ballotTicket.link'),
+                    width: '40%',
+                    style: 'p'
+                  },
+                  {
+                    text: $i18next('avBooth.ballotTicket.linkClickHere'),
+                    link: scope.ballotTrackerUrl,
+                    width: '*',
+                    style: 'p'
+                  }
+                ]
               }
             );
           }
