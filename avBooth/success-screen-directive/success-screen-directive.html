@@ -106,7 +106,16 @@
           ng-i18next>
           [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
         </p>
-        <div class="text-center" ng-if="!!election.presentation.extra_options.success_screen__redirect_to_login">
+        <div class="text-center" ng-if="!nextElection">
+          <span>
+            <a
+              ng-click="goToNextElection()"
+              class="btn btn-primary btn-login" ng-i18next>
+              avBooth.goToNextElection
+            </a>
+          </span>
+        </div>
+        <div class="text-center" ng-if="!nextElection && !!election.presentation.extra_options.success_screen__redirect_to_login">
           <span>
             <a
               ng-click="redirectToLogin()"

@@ -36,6 +36,7 @@
       "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/><strong>If you just want to cast your ballot, click <u>Cancel</u> to go back to the review ballot screen.</strong>",
       "confirm": "Yes, I want to DISCARD my ballot to audit it"
     },
+    "goToNextElection": "Go to next election",
     "planchaSelect": "select all",
     "planchaDeselect": "deselect all",
     "showSelectedOptionPoints": "(__points__ points)",
