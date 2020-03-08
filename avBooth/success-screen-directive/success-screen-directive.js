@@ -461,7 +461,7 @@ angular.module('avBooth')
             scope.credentials,
             function (electionCredential) {
               return (
-                electionCredential.electionId !== scope.electionId
+                electionCredential.electionId.toString() !== scope.electionId
               );
             }
           );

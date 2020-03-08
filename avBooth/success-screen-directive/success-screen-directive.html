@@ -106,7 +106,7 @@
           ng-i18next>
           [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
         </p>
-        <div class="text-center" ng-if="!nextElection">
+        <div class="text-center" ng-if="!!nextElection">
           <span>
             <a
               ng-click="goToNextElection()"
