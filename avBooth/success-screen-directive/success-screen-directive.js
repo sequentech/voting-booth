@@ -469,7 +469,7 @@ angular.module('avBooth')
           // If there are more elections to vote, set next election.
           if (filtered.length > 0) {
             scope.nextElection = filtered[0];
-            $cookies["vote_permission_tokens"] = JSON.dumps(filtered);
+            $cookies["vote_permission_tokens"] = JSON.stringify(filtered);
           }
         }
   
