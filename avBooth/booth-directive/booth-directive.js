@@ -545,6 +545,7 @@ angular.module('avBooth')
         // set scope.voterId and scope.authorizationHeader
         scope.voterId = voterId;
         scope.authorizationHeader = currentElectionCredentials.token;
+        scope.isDemo = false;
       }
 
       //////////////////// Initialization part ////////////////////
