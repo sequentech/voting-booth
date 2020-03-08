@@ -528,9 +528,9 @@ angular.module('avBooth')
           return;
         }
         var voterId = splitMessage[0];
-        var action = splitMessage[1];
+        var objectType = splitMessage[1];
         var objectId = splitMessage[2];
-        var objectType = splitMessage[3];
+        var action = splitMessage[3];
         // timestamp has already been validated so we don't validate it again
         if (
           isNaN(parseInt(voterId, 10)) ||
