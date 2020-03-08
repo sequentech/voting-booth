@@ -496,23 +496,26 @@ angular.module('avBooth')
             credentials,
             function (electionCredential) {
               return (
-                electionCredential.electionId === scope.electionId
+                electionCredential.electionId.toString() === scope.electionId
               );
             }
           );
         } catch (error) {
           showError($i18next("avBooth.errorLoadingElection"));
+          return;
         }
 
         // credentials for current election should have been found
         if (!currentElectionCredentials) {
           showError($i18next("avBooth.errorLoadingElection"));
+          return;
         }
 
         // token should be valid
         var hmac = HmacService.checkKhmac(currentElectionCredentials.token);
         if (!hmac) {
           showError($i18next("avBooth.errorLoadingElection"));
+          return;
         }
 
         // verify message, which should be of the format
@@ -520,6 +523,7 @@ angular.module('avBooth')
         var splitMessage = hmac.message.split(':');
         if (splitMessage.length !== 5) {
           showError($i18next("avBooth.errorLoadingElection"));
+          return;
         }
         var voterId = splitMessage[0];
         var action = splitMessage[1];
@@ -533,6 +537,7 @@ angular.module('avBooth')
           objectType !== 'AuthEvent'
         ) {
           showError($i18next("avBooth.errorLoadingElection"));
+          return;
         }
         
         // set scope.voterId and scope.authorizationHeader
