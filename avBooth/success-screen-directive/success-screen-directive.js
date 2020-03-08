@@ -452,30 +452,24 @@ angular.module('avBooth')
         delete $cookies["isAdmin" + postfix];
 
         // Process vote_permission_tokens
-        var credentialsStr = $cookies["vote_permission_tokens"];
-        if (!!credentialsStr) {
-          try {
-            var credentials = JSON.parse(credentialsStr);
-
-            // first remove current election from the array
-            var filtered = _.filter(
-              credentials,
-              function (electionCredential) {
-                return (
-                  electionCredential.electionId !== scope.electionId
-                );
-              }
-            );
-
-            // if there are more elections to vote
-            if (filtered.length > 0) {
-              scope.nextElection = filtered[0];
-              $cookies["vote_permission_tokens"] = JSON.dumps(filtered);
-            } else {
-              delete $cookies["vote_permission_tokens"];
+        if (scope.credentials.length > 0) {
+          // Remove current election from the credentials array. As the
+          // credentials array is in natural order, the next election inside
+          // the filtered array will be the next election in which this user
+          // can vote, if any.
+          var filtered = _.filter(
+            scope.credentials,
+            function (electionCredential) {
+              return (
+                electionCredential.electionId !== scope.electionId
+              );
             }
-          } catch (error) {
-            // do nothing, we are not showing an error on success
+          );
+
+          // If there are more elections to vote, set next election.
+          if (filtered.length > 0) {
+            scope.nextElection = filtered[0];
+            $cookies["vote_permission_tokens"] = JSON.dumps(filtered);
           }
         }
   

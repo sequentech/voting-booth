@@ -487,13 +487,15 @@ angular.module('avBooth')
         var credentialsStr = $cookies["vote_permission_tokens"];
         if (!credentialsStr) {
           return;
+        } else {
+          delete $cookies["vote_permission_tokens"];
         }
-        var credentials = null;
+        scope.credentials = [];
         var currentElectionCredentials = null;
         try {
-          credentials = JSON.parse(credentialsStr);
+          scope.credentials = JSON.parse(credentialsStr);
           currentElectionCredentials = _.find(
-            credentials,
+            scope.credentials,
             function (electionCredential) {
               return (
                 electionCredential.electionId.toString() === scope.electionId
@@ -527,8 +529,8 @@ angular.module('avBooth')
         }
         var voterId = splitMessage[0];
         var action = splitMessage[1];
-        var objectType = splitMessage[2];
-        var objectId = splitMessage[3];
+        var objectId = splitMessage[2];
+        var objectType = splitMessage[3];
         // timestamp has already been validated so we don't validate it again
         if (
           isNaN(parseInt(voterId, 10)) ||
