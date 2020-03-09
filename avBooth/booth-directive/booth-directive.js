@@ -533,7 +533,6 @@ angular.module('avBooth')
         var action = splitMessage[3];
         // timestamp has already been validated so we don't validate it again
         if (
-          isNaN(parseInt(voterId, 10)) ||
           isNaN(parseInt(objectId, 10)) ||
           action !== 'vote' ||
           objectType !== 'AuthEvent'
