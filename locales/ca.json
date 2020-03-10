@@ -196,6 +196,13 @@
       "header": "Selecciona más opciones",
       "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
       "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
+    },
+    "selectAllCategory": {
+      "header": "Vols seleccionar totes les opcions la llista  <strong>__category__</strong>?",
+      "body": "Hey! Sembla que vols seleccionar totes les opcions de la llista <strong>__category__</strong>",
+      "confirm": "Sí, marca tota la llista",
+      "cancel": "No",
+      "doNotShowAgain": "No em mostris més això"
     }
   },
   "avElection": {
