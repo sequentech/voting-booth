@@ -34,6 +34,12 @@ angular.module('avBooth')
       var timeoutWidth;
       var w = angular.element($window);
       $("#theme").attr("href", "booth/themes/" + ConfigService.theme + "/app.min.css");
+      //window.avThemes.change(ConfigService.theme);
+
+      // when we are not inside an iframe and voter id is not set, this is a
+      // demo booth
+      scope.isDemo = !InsideIframeService() && !scope.voterId;
+      scope.documentation = ConfigService.documentation;
 
       function updateWidth() {
         $timeout.cancel(timeoutWidth);

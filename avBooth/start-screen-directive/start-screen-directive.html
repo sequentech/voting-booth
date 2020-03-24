@@ -24,9 +24,11 @@
       <div class="pull-right">
         <span
           class="glyphicon glyphicon-question-sign"
+          ng-if="documentation.show_help"
           ng-click="launchHelp()">
         </span>
-        <span 
+        <span
+          ng-if="documentation.show_help"
           ng-click="launchHelp()" 
           ng-i18next="avBooth.helpTitle"
         >
