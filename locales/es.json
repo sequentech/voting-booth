@@ -39,6 +39,7 @@
         "title": "Términos legales",
         "contact": "contacto"
     },
+    "instructionsTitle": "Instrucciones",
     "goToNextElection": "Ir a la siguiente votación",
     "confirmAuditBallot": {
       "header": "¿Realmente quieres auditar tu papeleta?",
