@@ -36,7 +36,6 @@ angular.module('avBooth')
 
     function link(scope, element, attrs) {
 
-
       function generateButtonsInfo() {
         scope.buttonsInfo = [];
 
@@ -472,6 +471,12 @@ angular.module('avBooth')
             $cookies["vote_permission_tokens"] = JSON.stringify(filtered);
           }
         }
+
+        /**
+         * Stop warning the user about reloading/leaving the page, as the vote
+         * has been cast already;
+         */
+        $window.onbeforeunload = null;
   
         var extra = scope.election.presentation.extra_options;
         // Automatic redirect to login if configured to do so
