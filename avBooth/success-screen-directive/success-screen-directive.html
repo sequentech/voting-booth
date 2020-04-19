@@ -117,6 +117,15 @@
             </a>
           </span>
         </div>
+        <div class="text-center" ng-if="!nextElection">
+          <span>
+            <a
+              ng-click="closeWindow()"
+              class="btn btn-primary btn-login" ng-i18next>
+              avBooth.closeWindow
+            </a>
+          </span>
+        </div>
         <div class="text-center" ng-if="!nextElection && !!election.presentation.extra_options.success_screen__redirect_to_login">
           <span>
             <a

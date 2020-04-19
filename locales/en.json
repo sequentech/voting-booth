@@ -44,6 +44,7 @@
       "confirm": "Yes, I want to DISCARD my ballot to audit it"
     },
     "instructionsTitle": "Instructions",
+    "closeWindow": "Finish and close",
     "goToNextElection": "Go to next election",
     "planchaSelect": "select all",
     "planchaDeselect": "deselect all",

@@ -496,6 +496,10 @@ angular.module('avBooth')
         }
       }
 
+      scope.closeWindow = function () {
+        $window.close();
+      };
+
       // redirects to next election
       scope.goToNextElection = function () {
         $window.location.href = "/booth/" + scope.nextElection.electionId + "/vote";
