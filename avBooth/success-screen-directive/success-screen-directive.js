@@ -451,7 +451,7 @@ angular.module('avBooth')
         delete $cookies["isAdmin" + postfix];
 
         // Process vote_permission_tokens
-        if (scope.credentials.length > 0) {
+        if (scope.credentials && scope.credentials.length > 0) {
           // Remove current election from the credentials array. As the
           // credentials array is in natural order, the next election inside
           // the filtered array will be the next election in which this user
