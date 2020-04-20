@@ -130,7 +130,7 @@ angular.module('avBooth')
                     width: '40%'
                   },
                   {
-                    text: scope.election.title,
+                    text: scope.election.presentation && scope.election.presentation.extra_options && scope.election.presentation.public_title || scope.election.title,
                     style: 'cell',
                     width: '*'
                   }

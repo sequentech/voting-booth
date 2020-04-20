@@ -1,3 +1,4 @@
+<!-- top navbar -->
 <nav 
   class="navbar start-screen navbar-default navbar-fixed-top"
   av-affix-top=".navbar-unfixed-top"
@@ -30,7 +31,7 @@
           ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
         </div>
         <div class="top-navbar-title">
-          {{election.presentation.extra_options.booth_title || election.title}}
+          {{election.presentation.extra_options.public_title || election.title}}
         </div>
       </div>
 

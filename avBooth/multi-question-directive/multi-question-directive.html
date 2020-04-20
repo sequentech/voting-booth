@@ -25,13 +25,8 @@
       <div 
         class="col-md-7 text-center center-col"
       >
-        <div
-          class="powered-by"
-          ng-if="election.logo_url"
-          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
-        </div>
         <div class="top-navbar-title">
-          {{election.presentation.extra_options.booth_title || election.title}}
+          {{election.presentation.extra_options.public_title || election.title}}
         </div>
 
         <div
