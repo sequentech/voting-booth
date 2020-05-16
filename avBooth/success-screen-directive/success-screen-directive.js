@@ -497,7 +497,11 @@ angular.module('avBooth')
       }
 
       scope.closeWindow = function () {
-        $window.close();
+        try {
+          $window.close();
+        } finally {
+          $window.location.href = ConfigService.defaultRoute;
+        }
       };
 
       // redirects to next election
