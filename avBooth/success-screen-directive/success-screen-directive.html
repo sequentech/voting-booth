@@ -80,30 +80,34 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <div class="text-center" ng-if="!!nextElection">
-          <span>
-            <a
-              ng-click="goToNextElection()"
-              class="btn btn-primary btn-login" ng-i18next>
-              avBooth.goToNextElection
-            </a>
-          </span>
-        </div>
-        <div class="text-center" ng-if="!nextElection">
-          <span>
-            <a
-              ng-click="closeWindow()"
-              class="close-window-btn btn btn-primary btn-login" ng-i18next>
-              avBooth.closeWindow
-            </a>
-          </span>
-        </div>
         <div 
           ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker">
           <span
             ng-i18next>
             [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
-          </span> &nbsp; <span
+          </span> 
+
+          <div class="text-center" ng-if="!!nextElection">
+            <span>
+              <a
+                ng-click="goToNextElection()"
+                class="btn btn-primary btn-login" ng-i18next>
+                avBooth.goToNextElection
+              </a>
+            </span>
+          </div>
+          <div class="text-center" ng-if="!nextElection">
+            <span>
+              <a
+                ng-click="closeWindow()"
+                class="close-window-btn btn btn-primary btn-login" ng-i18next>
+                avBooth.closeWindow
+              </a>
+            </span>
+          </div>
+
+          &nbsp;
+          <span
             ng-if="!election.presentation.extra_options.success_screen__hide_qr_code">
             <span ng-i18next>
               avBooth.successBallotQrCode
