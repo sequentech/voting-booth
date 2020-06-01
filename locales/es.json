@@ -164,7 +164,7 @@
     "totalsQuestionColumn": "(__selected__ de __count__ seleccionados)",
 
     "castOrCancelTitle": "Enviar el voto",
-    "castOrCancelSubtitle": "Tu voto está cifrado, ya puedes enviarlo a la urna electrónica para que sea debidamente registrado. Alternativamente, puedes auditar que fue correctamente cifrado.",
+    "castOrCancelSubtitle": "Tu voto está cifrado, ya puedes enviarlo a la urna electrónica para que sea debidamente registrado.",
     "reviewBallotHashText": "El localizador de tu voto es: <strong>__ballotHash__</strong>",
     "auditTheBallot": "Auditar la papeleta",
 
