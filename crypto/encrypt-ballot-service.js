@@ -100,10 +100,15 @@
 */
 
 angular.module('avCrypto')
-  .service('EncryptBallotService', function(ConfigService, EncryptAnswerService,
-    moment, SjclService, DeterministicJsonStringifyService, ElGamalService,
-    AnswerEncoderService, $timeout)
-  {
+  .service('EncryptBallotService', function(
+    ConfigService, 
+    EncryptAnswerService,
+    moment, 
+    SjclService, 
+    DeterministicJsonStringifyService, 
+    AnswerEncoderService, 
+    $timeout
+  ) {
     var stringify = DeterministicJsonStringifyService;
 
     function hashObject(obj) {

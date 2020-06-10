@@ -24,7 +24,14 @@
     "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Tweet this election!",
     "votingSystem": "Voting System",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
+    "votings": {
+      "plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", 
+      "borda": "Borda Count (traditional)",
+      "pairwise-beta": "Pairwise (beta-distribution)", 
+      "desborda3": "DesBorda3",
+      "desborda2": "DesBorda2", 
+      "desborda": "DesBorda"
+    }
   },
   "avBooth": {
     "legal": {
@@ -36,6 +43,9 @@
       "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/><strong>If you just want to cast your ballot, click <u>Cancel</u> to go back to the review ballot screen.</strong>",
       "confirm": "Yes, I want to DISCARD my ballot to audit it"
     },
+    "instructionsTitle": "Instructions",
+    "closeWindow": "Finish and close",
+    "goToNextElection": "Go to next election",
     "planchaSelect": "select all",
     "planchaDeselect": "deselect all",
     "showSelectedOptionPoints": "(__points__ points)",
@@ -57,6 +67,7 @@
     "reviewOptionsText": "Once you have chosen your preferences, we will proceed to encrypt them and you'll be shown the ballot's tracker id. You'll also be shown a summary with the content of your ballot for review.",
     "emitBallotTitle": "3. Cast your ballot",
     "emitBallotText": "You can cast it so that it's properly registered. Alternatively, you can audit that your ballot was correctly encrypted.",
+    "emitBallotTextNoAudit": "You can cast it so that it's properly registered.",
     "errorTitle": "Oops. Something unexpected happened",
     "errorHtml": "<p>The following problem arised (identifier __errorId__): </p><p>__error__</p><p>If you think that you need to contact us, you can do so sending an email to <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
     "errorLoadingImages": "Error on voting booth. Images not loaded.",

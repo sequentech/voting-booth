@@ -26,6 +26,12 @@
     background-color: @av-primary-contrast;
   }
 
+  .logo-img {
+    max-height: 150px;
+    max-width: 400px;
+    width: auto;
+  }
+
   .btn-success:hover {
     background-color: darken(@av-primary-contrast, 25%);
   }
@@ -68,6 +74,17 @@
   .avb-top-navbar {
     margin-top: -3px;
 
+    .center-col {
+      padding: 0 15px;
+    }
+
+    .top-navbar-title {
+      padding: 15px 0;
+      color: #ff0d01;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
     a {
       color: @av-secondary;
 
@@ -86,8 +103,9 @@
   }
 
   .unfixed-top-height {
-    max-height: 150px;
+    max-height: 240px;
   }
+
 
   .navbar-unfixed-top {
     border: none;
@@ -97,10 +115,10 @@
     margin: 0;
     margin-top: 20px;
     padding: 5px;
-    transition: all .8s ease;
+    transition: all .4s ease;
 
     &.collapsed {
-      max-height: 150px;
+      max-height: 240px;
       overflow-y: hidden;
     }
 

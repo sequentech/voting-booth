@@ -17,17 +17,16 @@
 
 angular.module('avBooth')
   .directive('avBooth', function(
+    $cookies,
     $http,
-    $location,
     $i18next,
-    $window,
     $timeout,
-    HmacService,
+    $window,
+    Authmethod,
     ConfigService,
-    InsideIframeService,
-    Authmethod)
-{
-
+    HmacService,
+    InsideIframeService
+  ) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       // timeout is used with updateWidth so that we do not create too many
@@ -40,6 +39,7 @@ angular.module('avBooth')
       // when we are not inside an iframe and voter id is not set, this is a
       // demo booth
       scope.isDemo = !InsideIframeService() && !scope.voterId;
+      scope.documentation = ConfigService.documentation;
 
       function updateWidth() {
         $timeout.cancel(timeoutWidth);
@@ -49,10 +49,6 @@ angular.module('avBooth')
           scope.$apply();
         }, 100);
       }
-      w.bind('resize', function () {
-        updateWidth();
-      });
-      updateWidth();
 
       // possible values of the election state scope variable
       var stateEnum = {
@@ -83,7 +79,7 @@ angular.module('avBooth')
         scope.stateChange++;
       }
 
-      scope.mapQuestion = function(question) {
+      function mapQuestion(question) {
         if (question.layout === "conditional-accordion") {
           return {
             state: stateEnum.conditionalAccordionScreen,
@@ -147,7 +143,7 @@ angular.module('avBooth')
           },
         };
         return map[question.tally_type];
-      };
+      }
 
       // count the number of selected options in a question
       function numSelectedOptions(question)
@@ -409,44 +405,6 @@ angular.module('avBooth')
           scope.stateData.oldState.data);
       }
 
-      // init scope vars
-      angular.extend(scope, {
-        election: null,
-        setState: setState,
-        stateEnum: stateEnum,
-        stateChange: 0,
-        showError: showError,
-        launchHelp: launchHelp,
-        backFromHelp: backFromHelp,
-        goToQuestion: goToQuestion,
-        next: next,
-
-        // stateData stores information used by the directive being shown.
-        // Its content depends on the current state.
-        stateData: {},
-
-        // contains the clear text of the ballot. It's a list with an element
-        // per question.
-        // The format of each item in the array depends on the voting method for
-        // the related question. This is used by the directives to store the
-        // clear text of the ballot.
-        ballotClearText: [],
-
-        // convert config to JSON
-        config: angular.fromJson(scope.configStr)
-      });
-
-      // execute pre-check first
-      if (attrs.preCheck) {
-        var ret = scope.preCheck();
-        if (ret !== null) {
-          showError(ret);
-          return;
-        }
-      }
-
-      setState(stateEnum.receivingElection, {});
-
       function retrieveElectionConfig() {
         try {
           $http.get(scope.baseUrl + "election/" + scope.electionId)
@@ -497,13 +455,16 @@ angular.module('avBooth')
           showError($i18next("avBooth.errorLoadingElection"));
         }
       }
-      function avPostAuthorization(e, errorHandler) {
+
+      // Function that receives and processes authorization token when this
+      // this token is sent by a parent window when we are inside an iframe
+      function avPostAuthorization(event, errorHandler) {
         var action = "avPostAuthorization:";
-        if (e.data.substr(0, action.length) !== action) {
+        if (event.data.substr(0, action.length) !== action) {
           return;
         }
 
-        var khmacStr = e.data.substr(action.length, e.data.length);
+        var khmacStr = event.data.substr(action.length, event.data.length);
         var khmac = HmacService.checkKhmac(khmacStr);
         if (!khmac) {
           scope.authorizationReceiverErrorHandler();
@@ -521,28 +482,144 @@ angular.module('avBooth')
         scope.authorizationReceiver();
         scope.authorizationReceiver = null;
       }
-      scope.setAuthorizationReceiver = function (callback, errorCallback) {
+
+      function setAuthorizationReceiver(callback, errorCallback) {
         scope.authorizationReceiver = callback;
         scope.authorizationReceiverErrorHandler = errorCallback;
-      };
+      }
 
+      // Try to read and process voting credentials from $cookies
+      function readVoteCredentials() {
+        var credentialsStr = $cookies["vote_permission_tokens"];
+        if (!credentialsStr) {
+          return;
+        } else {
+          delete $cookies["vote_permission_tokens"];
+        }
+        scope.credentials = [];
+        var currentElectionCredentials = null;
+        try {
+          scope.credentials = JSON.parse(credentialsStr);
+          currentElectionCredentials = _.find(
+            scope.credentials,
+            function (electionCredential) {
+              return (
+                electionCredential.electionId.toString() === scope.electionId
+              );
+            }
+          );
+        } catch (error) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+
+        // credentials for current election should have been found
+        if (!currentElectionCredentials) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+
+        // token should be valid
+        var hmac = HmacService.checkKhmac(currentElectionCredentials.token);
+        if (!hmac) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+
+        // verify message, which should be of the format
+        // "userid:vote:AuthEvent:1110:134234111"
+        var splitMessage = hmac.message.split(':');
+        if (splitMessage.length !== 5) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+        var voterId = splitMessage[0];
+        var objectType = splitMessage[1];
+        var objectId = splitMessage[2];
+        var action = splitMessage[3];
+        // timestamp has already been validated so we don't validate it again
+        if (
+          isNaN(parseInt(objectId, 10)) ||
+          action !== 'vote' ||
+          objectType !== 'AuthEvent'
+        ) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+        
+        // set scope.voterId and scope.authorizationHeader
+        scope.voterId = voterId;
+        scope.authorizationHeader = currentElectionCredentials.token;
+        scope.isDemo = false;
+      }
+
+      //////////////////// Initialization part ////////////////////
+
+      // init scope vars
+      angular.extend(scope, {
+        election: null,
+        setState: setState,
+        stateEnum: stateEnum,
+        stateChange: 0,
+        showError: showError,
+        launchHelp: launchHelp,
+        backFromHelp: backFromHelp,
+        goToQuestion: goToQuestion,
+        setAuthorizationReceiver: setAuthorizationReceiver,
+        mapQuestion: mapQuestion,
+        next: next,
+
+        // stateData stores information used by the directive being shown.
+        // Its content depends on the current state.
+        stateData: {},
+
+        // contains the clear text of the ballot. It's a list with an element
+        // per question.
+        // The format of each item in the array depends on the voting method for
+        // the related question. This is used by the directives to store the
+        // clear text of the ballot.
+        ballotClearText: [],
+
+        // convert config to JSON
+        config: angular.fromJson(scope.configStr),
+
+        // Variable that stablishes if the election is a demo or not. True
+        // by default if not inside an iframe but it's changed if the $cookies 
+        // var receives valid voting credencials.
+        isDemo: !InsideIframeService(),
+
+        // By default no voterId is set
+        voterId: '',
+
+        // By default the authorizationHeader is an empty looking khmac
+        authorizationHeader: "khmac:///sha-256;/"
+      });
+
+      // bind resize to updateWidth
+      w.bind('resize', function () {
+        updateWidth();
+      });
+      updateWidth();
+
+      // process vote credentials
+      readVoteCredentials();
+
+      // set the initial state
+      setState(stateEnum.receivingElection, {});
+
+      // allow receival of khmac token by parent window
       $window.addEventListener('message', avPostAuthorization, false);
+
+      // retrieve election config
       retrieveElectionConfig();
     }
-
 
     return {
       restrict: 'AE',
       scope: {
         baseUrl: '@',
-        voterId: '@',
         electionId: '@',
-        authorizationHeader: '@',
-        configStr: '@config',
-
-        // optional function to be called before anything, that will return null
-        // if there's no error, or the error to be shown if there was some
-        preCheck: '&',
+        configStr: '@config'
       },
       link: link,
       templateUrl: 'avBooth/booth-directive/booth-directive.html'

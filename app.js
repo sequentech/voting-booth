@@ -128,7 +128,7 @@ angular.module('agora-gui-booth').config(
       });
 });
 
-angular.module('agora-gui-booth').run(function($http, $rootScope, ConfigService) {
+angular.module('agora-gui-booth').run(function($http, $rootScope, ConfigService, $window) {
 
   $rootScope.boothTitle = ConfigService.webTitle;
   $rootScope.safeApply = function(fn) {
@@ -152,6 +152,17 @@ angular.module('agora-gui-booth').run(function($http, $rootScope, ConfigService)
       console.log("change success");
       $("#angular-preloading").hide();
     });
+  
+  /**
+   * Warns the user about leaving the page, using a standard browser
+   * prompt dialog (there's no way to use any custom one).
+   */
+  $window.onbeforeunload = function(e) {
+    // Cancel the event
+    e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+    // Chrome requires returnValue to be set
+    e.returnValue = '';
+  };
 });
 
 

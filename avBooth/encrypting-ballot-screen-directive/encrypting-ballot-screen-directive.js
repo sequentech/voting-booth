@@ -204,7 +204,6 @@ angular.module('avBooth')
           election: scope.election,
           pubkeys: scope.pubkeys,
           statusUpdate: statusUpdateFunc,
-          authorizationHeader: scope.authorizationHeader,
 
           // on success, we first then try to submit, then once submitted we
           // show the next screen (which is the success-screen directive)

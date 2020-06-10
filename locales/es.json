@@ -24,13 +24,24 @@
     "poweredBy": "Funciona con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Twittea esta votación!",
     "votingSystem": "Sistema de Voto",
-    "votings": {"plurality-at-large": "Voto en bloque o Escrutinio Mayoritario Plurinominal", "borda-nauru": "Borda de Nauru o Borda Dowdall (1/n)", "borda": "Borda Count (tradicional)", "pairwise-beta": "Comparación de pares (distribución beta)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
+    "votings": {
+      "plurality-at-large": "Voto en bloque o Escrutinio Mayoritario Plurinominal",
+      "borda-nauru": "Borda de Nauru o Borda Dowdall (1/n)", 
+      "borda": "Borda Count (tradicional)",
+      "pairwise-beta": "Comparación de pares (distribución beta)",
+      "desborda3": "DesBorda3",
+      "desborda2": "DesBorda2",
+      "desborda": "DesBorda"
+    }
   },
   "avBooth": {
     "legal": {
         "title": "Términos legales",
         "contact": "contacto"
     },
+    "instructionsTitle": "Instrucciones",
+    "goToNextElection": "Ir a la siguiente votación",
+    "closeWindow": "Finalizar y cerrar",
     "confirmAuditBallot": {
       "header": "¿Realmente quieres auditar tu papeleta?",
       "body": "La auditoría de la papeleta lo invalidará y tendrás que iniciar el proceso de votación de nuevo si deseas emitir tu voto. El proceso de auditoría de la papeleta permite verificar que está codificada correctamente. Hacer este proceso requiere que unos conocimientos técnicos importantes, por lo que no se recomienda si no sabes lo que estás haciendo. <br/> <br/><strong>Si lo que desea es emitir su voto, en <u>Cancelar</u> para volver a la pantalla de revisión de votación.</strong>",
@@ -51,12 +62,12 @@
     "startVoting": "Empezar a votar",
     "continueButton": "Continuar",
     "stepsToVote": "Seguirás estos pasos al emitir tu voto:",
-    "selectOptionsTitle": "1. Responde a la pregunta",
-    "selectOptionsText": "Responde a las preguntas de la votación que se presentan una a una. Configurarás así las preferencias de tu papeleta.",
+    "selectOptionsTitle": "1. Selecciona tus opciones de voto",
+    "selectOptionsText": "Selecciona tus opciones de voto que se presentan una a una. Configurarás así las preferencias de tu papeleta.",
     "reviewOptionsTitle": "2. Revisa tu papeleta",
     "reviewOptionsText": "Una vez has elegido tus preferencias, procederemos a cifrarlas y obtendrás un localizador. Te mostraremos el contenido de tu papeleta para que puedas revisarla.",
     "emitBallotTitle": "3. Envía tu voto",
-    "emitBallotText": "Puedes enviar tu voto a la urna electrónica para que sea debidamente registrado. Alternativamente, puedes auditar que tu voto fue correctamente cifrado.",
+    "emitBallotText": "Puedes enviar tu voto a la urna electrónica para que sea debidamente registrado.",
 
     "errorTitle": "Oops. Ocurrió algo inesperado",
     "errorHtml": "<p>Ocurrió el siguiente problema (identificador __errorId__): </p><p>__error__</p><p>En caso de que creas que debes contactar con nosotros, puedes hacerlo enviándonos un email a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
@@ -153,7 +164,7 @@
     "totalsQuestionColumn": "(__selected__ de __count__ seleccionados)",
 
     "castOrCancelTitle": "Enviar el voto",
-    "castOrCancelSubtitle": "Tu voto está cifrado, ya puedes enviarlo a la urna electrónica para que sea debidamente registrado. Alternativamente, puedes auditar que fue correctamente cifrado.",
+    "castOrCancelSubtitle": "Tu voto está cifrado, ya puedes enviarlo a la urna electrónica para que sea debidamente registrado.",
     "reviewBallotHashText": "El localizador de tu voto es: <strong>__ballotHash__</strong>",
     "auditTheBallot": "Auditar la papeleta",
 

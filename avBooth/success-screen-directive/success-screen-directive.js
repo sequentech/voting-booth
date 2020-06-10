@@ -35,31 +35,6 @@ angular.module('avBooth')
     {
 
     function link(scope, element, attrs) {
-      var text = $interpolate(ConfigService.success.text);
-      scope.organization = ConfigService.organization;
-      scope.showDocOnVoteCast = ConfigService.showDocOnVoteCast;
-
-      // Generate the QR Code if needed
-      if (
-        !scope.election.presentation.extra_options || 
-        !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker
-      ) {
-        var typeNumber = 0;
-        var errorCorrectionLevel = 'L';
-        scope.ballotTrackerUrl = window.location.protocol + 
-          '//' + 
-          window.location.host + 
-          '/election/' + 
-          scope.election.id + 
-          '/public/ballot-locator/' + 
-          scope.stateData.ballotHash;
-        var qr = QrCodeService(typeNumber, errorCorrectionLevel);
-        qr.addData(scope.ballotTrackerUrl);
-        qr.make();
-        scope.qrCodeImg = qr.createImgTag(6);
-      }
-
-      scope.pdf = {value: null, fileName: ''};
 
       function generateButtonsInfo() {
         scope.buttonsInfo = [];
@@ -354,13 +329,46 @@ angular.module('avBooth')
         }
       };
 
-      if (!scope.election.presentation.extra_options || !scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket) {
+      // Generate the QR Code if needed
+      function generateQrCode() {
+        if (
+          !scope.election.presentation.extra_options || 
+          !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker
+        ) {
+          var typeNumber = 0;
+          var errorCorrectionLevel = 'L';
+          scope.ballotTrackerUrl = window.location.protocol + 
+            '//' + 
+            window.location.host + 
+            '/election/' + 
+            scope.election.id + 
+            '/public/ballot-locator/' + 
+            scope.stateData.ballotHash;
+          var qr = QrCodeService(typeNumber, errorCorrectionLevel);
+          qr.addData(scope.ballotTrackerUrl);
+          qr.make();
+          scope.qrCodeImg = qr.createImgTag(6);
+        }
+      }
+
+      var text = $interpolate(ConfigService.success.text);
+      scope.organization = ConfigService.organization;
+      scope.showDocOnVoteCast = ConfigService.showDocOnVoteCast;
+
+      scope.pdf = {value: null, fileName: ''};
+
+      scope.successText = text({electionId: scope.election.id});
+
+      generateQrCode();
+
+      if (
+        !scope.election.presentation.extra_options || 
+        !scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket
+      ) {
         createBallotTicket();
       }
 
       generateButtonsInfo();
-
-      scope.successText = text({electionId: scope.election.id});
 
       // simply redirect to login
       function simpleRedirectToLogin()
@@ -396,8 +404,6 @@ angular.module('avBooth')
         return uri;
       }
 
-      scope.redirectingToUri = false;
-
       // (maybe logout, in openid when there's a logout_uri and) redirect to login
       scope.redirectToLogin = function()
       {
@@ -411,8 +417,12 @@ angular.module('avBooth')
           .then(
             function onSuccess(response)
             {
-              if (response.data.status !== "ok" || !response.data.events || response.data.events.auth_method !== 'openid-connect' || !getLogoutUri())
-              {
+              if (
+                response.data.status !== "ok" || 
+                !response.data.events || 
+                response.data.events.auth_method !== 'openid-connect' || 
+                !getLogoutUri()
+              ) {
                 simpleRedirectToLogin();
                 return;
               }
@@ -429,25 +439,78 @@ angular.module('avBooth')
           );
       };
 
-      // cookies log out
-      var postfix = "_authevent_" + scope.election.id;
-      delete $cookies["authevent_" + postfix];
-      delete $cookies["userid" + postfix];
-      delete $cookies["user" + postfix];
-      delete $cookies["auth" + postfix];
-      delete $cookies["isAdmin" + postfix];
-      delete $cookies["isAdmin" + postfix];
+      // deletes and modifies cookies and launch redirects when appropiate
+      function handleCookiesAndRedirects() {
+        // cookies log out
+        var postfix = "_authevent_" + scope.election.id;
+        delete $cookies["authevent_" + postfix];
+        delete $cookies["userid" + postfix];
+        delete $cookies["user" + postfix];
+        delete $cookies["auth" + postfix];
+        delete $cookies["isAdmin" + postfix];
+        delete $cookies["isAdmin" + postfix];
 
-      // Automatic redirect to login if configured to do so
-      if (!!scope.election.presentation.extra_options &&
-	  scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds &&
-          angular.isNumber(scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds) &&
-          scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds >= 0) {
-        setTimeout(
-          scope.redirectToLogin,
-          1000*scope.election.presentation.extra_options.success_screen__redirect_to_login__auto_seconds
-        );
+        // Process vote_permission_tokens
+        if (scope.credentials && scope.credentials.length > 0) {
+          // Remove current election from the credentials array. As the
+          // credentials array is in natural order, the next election inside
+          // the filtered array will be the next election in which this user
+          // can vote, if any.
+          var filtered = _.filter(
+            scope.credentials,
+            function (electionCredential) {
+              return (
+                electionCredential.electionId.toString() !== scope.electionId
+              );
+            }
+          );
+
+          // If there are more elections to vote, set next election.
+          if (filtered.length > 0) {
+            scope.nextElection = filtered[0];
+            $cookies["vote_permission_tokens"] = JSON.stringify(filtered);
+          }
+        }
+
+        /**
+         * Stop warning the user about reloading/leaving the page, as the vote
+         * has been cast already;
+         */
+        $window.onbeforeunload = null;
+  
+        var extra = scope.election.presentation.extra_options;
+        // Automatic redirect to login if configured to do so
+        if (
+          !scope.nextElection &&
+          !!extra &&
+          extra.success_screen__redirect_to_login__auto_seconds &&
+          angular.isNumber(
+            extra.success_screen__redirect_to_login__auto_seconds
+          ) &&
+          extra.success_screen__redirect_to_login__auto_seconds >= 0
+        ) {
+          setTimeout(
+            scope.redirectToLogin,
+            1000*extra.success_screen__redirect_to_login__auto_seconds
+          );
+        }
       }
+
+      scope.closeWindow = function () {
+        try {
+          $window.close();
+        } finally {
+          $window.location.href = ConfigService.defaultRoute;
+        }
+      };
+
+      // redirects to next election
+      scope.goToNextElection = function () {
+        $window.location.href = "/booth/" + scope.nextElection.electionId + "/vote";
+      };
+
+      scope.redirectingToUri = false;
+      handleCookiesAndRedirects();
     }
 
       return {
