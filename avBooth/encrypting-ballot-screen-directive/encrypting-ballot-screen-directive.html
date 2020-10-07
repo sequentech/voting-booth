@@ -21,7 +21,7 @@
         </span>
       </div>
 
-      <div class="col-md-1 text-right">
+      <div class="col-md-8 text-right">
         <span
           class="glyphicon glyphicon-question-sign"
           ng-if="documentation.show_help"
@@ -64,6 +64,9 @@
   </div>
   <div class="busy-text">
     <div class="col-sm-offset-3 col-sm-6 col-xs-12">
+      <h1 class="text-center">
+        {{election.presentation.extra_options.public_title || election.title}}
+      </h1>
       <h1 class="text-center" ng-i18next="avBooth.busy.title">
       </h1>
     </div>
