@@ -55,6 +55,9 @@
   <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-review-screen] #avb-toggle">
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
+      <h1 class="text-center">
+        {{election.presentation.extra_options.public_title || election.title}}
+      </h1>
       <h1 ng-i18next="avBooth.reviewYourBallotTitle"></h1>
         <p ng-i18next="avBooth.reviewYourBallotText"></p>
     </div>
@@ -79,9 +82,6 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h1 class="text-center">
-          {{election.presentation.extra_options.public_title || election.title}}
-        </h1>
         <div avb-review-ballot></div>
       </div>
     </div>
