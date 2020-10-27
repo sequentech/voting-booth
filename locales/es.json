@@ -61,7 +61,7 @@
     "stepAndQuestionNumber": "paso __num__ de __total__, pregunta __qnum__ de __qtotal__",
     "startVoting": "Empezar a votar",
     "continueButton": "Continuar",
-    "stepsToVote": "Seguirás estos pasos al emitir tu voto:",
+    "stepsToVote": "Seguirá estos pasos al emitir tu voto:",
     "selectOptionsTitle": "1. Seleccione su opción de voto",
     "selectOptionsText": "Seleccione sus opciones de voto que se presentan una a una. Configurará así las preferencias de su papeleta.",
     "reviewOptionsTitle": "2. Revise su papeleta",
@@ -216,11 +216,11 @@
     "busy": {
       "title": "Su voto será...",
       "encryptedTitle": "cifrado",
-      "encryptedDescription": "para que nadie pueda saber qué opciones escogiste",
+      "encryptedDescription": "para que nadie pueda saber qué opciones escogió",
       "castTitle": "emitido",
       "castDescription": "usando un canal seguro y verificando su identidad",
       "anonymizedTitle": "anonimizado",
-      "anonymizedDescription": "para que el recuento no revele el sentido de tu voto"
+      "anonymizedDescription": "para que el recuento no revele el sentido de su voto"
     },
 
     "tooFewAnswers": {
