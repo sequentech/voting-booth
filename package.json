@@ -40,7 +40,7 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master",
+    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#update-security-deps",
     "pdfmake": "^0.1.65",
     "qrcode-generator": "^1.4.4"
   }
