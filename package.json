@@ -43,5 +43,11 @@
     "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#update-security-deps",
     "pdfmake": "^0.1.65",
     "qrcode-generator": "^1.4.4"
+  },
+  "resolutions": {
+    "**/ws": "7.2.1",
+    "**/lodash": "^4.17.19",
+    "**/minimist": "1.2.5",
+    "**/yargs-parser": "13.1.2"
   }
 }
