@@ -167,7 +167,7 @@ angular.module('avBooth')
                 angular.isDefined(scope.question.extra_options) &&
                 angular.isDefined(scope.question.extra_options.select_all_category_clicks) &&
                 scope.question.lastCategorySelected.clicks === scope.question.extra_options.select_all_category_clicks &&
-                !$cookies["do_not_show_select_all_category_dialog"] &&
+                !$cookies.get("do_not_show_select_all_category_dialog") &&
                 scope.question.lastCategorySelected.name !== null &&
                 (
                   !angular.isDefined(scope.question.extra_options) ||

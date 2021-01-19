@@ -390,9 +390,9 @@ angular.module('avBooth')
         uri = uri.replace("__EVENT_ID__", "" + scope.election.id);
 
         var postfix = "_authevent_" + scope.election.id;
-        if (!!$cookies["id_token_" + postfix])
+        if (!!$cookies.get("id_token_" + postfix))
         {
-          uri = uri.replace("__ID_TOKEN__", $cookies["id_token_" + postfix]);
+          uri = uri.replace("__ID_TOKEN__", $cookies.get("id_token_" + postfix));
         // if __ID_TOKEN__ is there but we cannot replace it, we need to
         // directly redirect to the login, otherwise the URI might show an
         // error 500
@@ -429,7 +429,7 @@ angular.module('avBooth')
 
               var postfix = "_authevent_" + scope.election.id;
               var uri = getLogoutUri();
-              delete $cookies["id_token_" + postfix];
+              $cookies.remove("id_token_" + postfix);
               $window.location.href = uri;
             },
             function onError(response)
@@ -443,12 +443,12 @@ angular.module('avBooth')
       function handleCookiesAndRedirects() {
         // cookies log out
         var postfix = "_authevent_" + scope.election.id;
-        delete $cookies["authevent_" + postfix];
-        delete $cookies["userid" + postfix];
-        delete $cookies["user" + postfix];
-        delete $cookies["auth" + postfix];
-        delete $cookies["isAdmin" + postfix];
-        delete $cookies["isAdmin" + postfix];
+        $cookies.remove("authevent_" + postfix);
+        $cookies.remove("userid" + postfix);
+        $cookies.remove("user" + postfix);
+        $cookies.remove("auth" + postfix);
+        $cookies.remove("isAdmin" + postfix);
+        $cookies.remove("isAdmin" + postfix);
 
         // Process vote_permission_tokens
         if (scope.credentials && scope.credentials.length > 0) {
@@ -468,7 +468,7 @@ angular.module('avBooth')
           // If there are more elections to vote, set next election.
           if (filtered.length > 0) {
             scope.nextElection = filtered[0];
-            $cookies["vote_permission_tokens"] = JSON.stringify(filtered);
+            $cookies.put("vote_permission_tokens", JSON.stringify(filtered));
           }
         }
 

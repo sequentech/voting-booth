@@ -23,7 +23,7 @@ angular.module('avBooth')
       };
 
       $scope.doNotShowAgain = function () {
-        $cookies["do_not_show_select_all_category_dialog"] = true;
+        $cookies.put("do_not_show_select_all_category_dialog", true);
         $modalInstance.dismiss('cancel');
       };
 

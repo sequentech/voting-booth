@@ -3,7 +3,7 @@
   "version": "20.2.0",
   "devDependencies": {
     "angular-local-storage": "^0.7.1",
-    "angular-mocks": "~1.2",
+    "angular-mocks": "~1.4",
     "bootstrap": "3.4.1",
     "dragdroptouch": "https://github.com/Bernardo-Castilho/dragdroptouch.git#master",
     "font-awesome": "~4.3",
@@ -48,6 +48,8 @@
     "**/ws": "7.2.1",
     "**/lodash": "^4.17.19",
     "**/minimist": "1.2.5",
-    "**/yargs-parser": "13.1.2"
+    "**/yargs-parser": "13.1.2",
+    "**/cheerio": "0.12.3",
+    "**/cheerio-select": "0.0.3"
   }
 }
