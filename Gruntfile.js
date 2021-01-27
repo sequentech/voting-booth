@@ -130,11 +130,14 @@ module.exports = function (grunt) {
         }]
       }
     },
-    autoprefixer: {
+    postcss: {
       options: {
-        browsers: ['ie >= 8', 'ff > 4', 'last 8 versions']
+        map: true,
+        processors: [
+          require('autoprefixer')()
+        ]
       },
-      main: {
+      dist: {
         src: 'temp/node_modules/agora-gui-common/themes/**/app.css'
       }
     },
@@ -407,7 +410,7 @@ module.exports = function (grunt) {
       'clean:before',
       'copy:temp',
       'less',
-      'autoprefixer',
+      'postcss',
       'dom_munger',
       'ngtemplates',
       'cssmin',
