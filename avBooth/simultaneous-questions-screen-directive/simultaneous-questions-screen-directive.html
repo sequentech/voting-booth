@@ -77,8 +77,10 @@
         </p>
       </div>
 
-      <div class="question-answers text-left"
-        ng-class="{'group-pairs': question.extra_options.group_pairs}">
+      <div 
+        class="question-answers text-left"
+        ng-class="{'group-pairs': question.extra_options.group_pairs}"
+      >
         <div ng-repeat="answer in question.answers"
           class="question-answer"
           ng-class="{
@@ -150,6 +152,12 @@
           </div>
         </div>
       </div>
+
+      <div 
+        class="question-separator-dots"
+        ng-i18next="[i18next]({qnum: $index+1, qtotal: groupQuestions.length})avBooth.openOptionLink"
+      >
+      </div> 
     </div>
 
     <!-- next button -->

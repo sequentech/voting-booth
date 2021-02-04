@@ -59,6 +59,7 @@
     "loadingElectionTitle": "Cargando votación, un momento por favor..",
     "stepNumber": "paso __num__ de __total__",
     "stepAndQuestionNumber": "paso __num__ de __total__, pregunta __qnum__ de __qtotal__",
+    "questionNumber": "Pregunta __qnum__ de __qtotal__",
     "startVoting": "Empezar a votar",
     "continueButton": "Continuar",
     "stepsToVote": "Seguirá estos pasos al emitir tu voto:",
