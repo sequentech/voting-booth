@@ -35,4 +35,8 @@
   <div avb-success-screen ng-if="state == stateEnum.successScreen">
   </div>
 </div>
-<style av-load-css css="election.presentation.theme_css"></style>
+<style 
+  ng-if="allowCustomElectionThemeCss === true" 
+  av-load-css 
+  css="election.presentation.theme_css">
+</style>
