@@ -78,13 +78,13 @@
       </div>
 
       <div class="question-answers"
-        ng-class="{'group-pairs': groupPairs}">
+        ng-class="{'group-pairs': question.extra_options.group_pairs}">
         <div ng-repeat="answer in question.answers"
           class="question-answer"
-          ng-class="{'col-xs-12': (answerColumnsSize === 12),
-                     'col-xs-6': (answerColumnsSize === 6),
-                     'col-xs-4': (answerColumnsSize === 4),
-                     'col-xs-3': (answerColumnsSize === 3)}">
+          ng-class="{'col-xs-12': (question.extra_options.answer_columns_size === 12),
+                     'col-xs-6': (question.extra_options.answer_columns_size === 6),
+                     'col-xs-4': (question.extra_options.answer_columns_size === 4),
+                     'col-xs-3': (question.extra_options.answer_columns_size === 3)}">
           <div
             tabindex="0"
             ng-space-click
