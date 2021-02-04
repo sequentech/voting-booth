@@ -41,6 +41,9 @@ angular.module('avBooth')
       scope.isDemo = !InsideIframeService() && !scope.voterId;
       scope.documentation = ConfigService.documentation;
 
+      // This is used to enable custom css overriding
+      scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
+
       function updateWidth() {
         $timeout.cancel(timeoutWidth);
         timeoutWidth = $timeout(function() {
