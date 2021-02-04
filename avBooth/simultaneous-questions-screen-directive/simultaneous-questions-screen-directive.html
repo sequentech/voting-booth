@@ -77,24 +77,76 @@
         </p>
       </div>
 
-      <div class="question-answers"
+      <div class="question-answers text-left"
         ng-class="{'group-pairs': question.extra_options.group_pairs}">
         <div ng-repeat="answer in question.answers"
           class="question-answer"
-          ng-class="{'col-xs-12': (question.extra_options.answer_columns_size === 12),
-                     'col-xs-6': (question.extra_options.answer_columns_size === 6),
-                     'col-xs-4': (question.extra_options.answer_columns_size === 4),
-                     'col-xs-3': (question.extra_options.answer_columns_size === 3)}">
+          ng-class="{
+            'col-xs-12': (question.extra_options.answer_columns_size === 12),
+            'col-xs-6': (question.extra_options.answer_columns_size === 6),
+            'col-xs-4': (question.extra_options.answer_columns_size === 4),
+            'col-xs-3': (question.extra_options.answer_columns_size === 3)
+          }">
           <div
             tabindex="0"
             ng-space-click
-            class="opt"
-            ng-click="toggleSelectItem(question, answer)">
-            <span class="glyphicon"
-              ng-class="{'glyphicon-unchecked': answer.selected === -1,
-                        'glyphicon-check': answer.selected > -1}">
-            </span>
-            {{answer.text}}
+            class="opt vertilize-wrapper"
+            ng-click="toggleSelectItem(question, answer)"
+          >
+            <div class="vertilize">
+              <!-- show checkbox icon -->
+              <div class="vertilize-col answer-glyphicon">
+                <span 
+                  class="glyphicon"
+                  ng-class="{
+                    'glyphicon-unchecked': answer.selected === -1,
+                    'glyphicon-check': answer.selected > -1
+                  }"
+                ></span>
+              </div>
+              
+              <!-- show answer image if any -->
+              <div class="vertilize-col answer-image">
+                <img
+                  parent
+                  ng-if="!!answer.urls['Image URL']"
+                  ng-src="{{answer.urls['Image URL']}}"
+                  alt="{{answer.urls.text}}" 
+                />
+              </div>
+
+              <!-- show answer texts -->
+              <div class="vertilize-col vert-align-top answer-texts">
+                <span 
+                  class="answer-text" 
+                  ng-bind-html="answer.text"
+                ></span>
+                <p
+                  ng-if="answer.details && answer.details.length > 1"
+                  class="answer-details"
+                  ng-bind-html="answer.details | addTargetBlank"
+                ></p>
+              </div>
+
+              <!-- Show URL link -->
+              <div 
+                class="vertilize-col vert-align-top answer-links"
+                ng-if="!!answer.urls.URL"
+              >
+                <a
+                  class="btn btn-default btn-right"
+                  href="{{answer.urls.URL}}"
+                  ng-i18next="[alt]avBooth.openOptionLink"
+                  target="_blank"
+                >
+                  <span class="glyphicon glyphicon-link"></span>
+                  <span 
+                    class="view-link-text" 
+                    ng-i18next="avBooth.dropdownOptionView"
+                  ></span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

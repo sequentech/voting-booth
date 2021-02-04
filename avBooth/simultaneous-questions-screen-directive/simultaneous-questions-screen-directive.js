@@ -73,20 +73,36 @@ angular.module('avBooth')
           scope.nextButtonText = $i18next('avBooth.continueButton');
         }
 
-        // set a sane default for answer_columns_size
         _.each(
           groupQuestions,
           function (question)
           {
+            // set a sane default for answer_columns_size
             if (!angular.isDefined(question.extra_options)) 
             {
               question.extra_options = {};
             }
-
             if (!angular.isDefined(question.extra_options.answer_columns_size)) 
             {
               question.extra_options.answer_columns_size = 6;
             }
+
+            // convert each answer url list to a map
+            _.each(
+              question.answers,
+              function (answer)
+              {
+                answer.urls = _.object(
+                  _.map(
+                    answer.urls, 
+                    function(url) 
+                    {
+                      return [url.title, url.url];
+                    }
+                  )
+                );
+              }
+            );
           }
         );
 
