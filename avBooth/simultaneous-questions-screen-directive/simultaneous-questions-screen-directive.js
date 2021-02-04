@@ -73,24 +73,23 @@ angular.module('avBooth')
           scope.nextButtonText = $i18next('avBooth.continueButton');
         }
 
-        // stablish the number of rows
-        scope.answerColumnsSize = 6;
-        if (angular.isDefined(groupExtraData.answer_columns_size) && 
-            _.isNumber(groupExtraData.answer_columns_size) &&
-           0 === (groupExtraData.answer_columns_size % 1)) {
-          scope.answerColumnsSize = groupExtraData.answer_columns_size;
-        }
+        // set a sane default for answer_columns_size
+        _.each(
+          groupQuestions,
+          function (question)
+          {
+            if (!angular.isDefined(question.extra_options)) 
+            {
+              question.extra_options = {};
+            }
 
-        // group pairs together? only makes sense if there's a pair number of
-        // columns per row
-        scope.groupPairs = false;
-        if (((12 / scope.answerColumnsSize) % 2) === 0 &&
-          angular.isDefined(groupExtraData.group_answer_pairs))
-        {
-          scope.groupPairs = (true === groupExtraData.group_answer_pairs);
-        }
+            if (!angular.isDefined(question.extra_options.answer_columns_size)) 
+            {
+              question.extra_options.answer_columns_size = 6;
+            }
+          }
+        );
 
-        // FIXME: Why this is needed?
         scope.organization = ConfigService.organization;
 
         // reset selection on initialization
