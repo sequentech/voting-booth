@@ -111,9 +111,9 @@
               <div class="vertilize-col answer-image">
                 <img
                   parent
-                  ng-if="!!answer.urls['Image URL']"
-                  ng-src="{{answer.urls['Image URL']}}"
-                  alt="{{answer.urls.text}}" 
+                  ng-if="!!answer.urlsObject['Image URL']"
+                  ng-src="{{answer.urlsObject['Image URL']}}"
+                  alt="{{answer.text}}" 
                 />
               </div>
 
@@ -133,11 +133,11 @@
               <!-- Show URL link -->
               <div 
                 class="vertilize-col vert-align-top answer-links"
-                ng-if="!!answer.urls.URL"
+                ng-if="!!answer.urlsObject.URL"
               >
                 <a
                   class="btn btn-default btn-right"
-                  href="{{answer.urls.URL}}"
+                  href="{{answer.urlsObject.URL}}"
                   ng-i18next="[alt]avBooth.openOptionLink"
                   target="_blank"
                 >

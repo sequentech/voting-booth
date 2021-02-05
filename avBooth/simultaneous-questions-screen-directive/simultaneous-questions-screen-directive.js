@@ -88,7 +88,7 @@ angular.module('avBooth')
               question.answers,
               function (answer)
               {
-                answer.urls = _.object(
+                answer.urlsObject = _.object(
                   _.map(
                     answer.urls, 
                     function(url) 
