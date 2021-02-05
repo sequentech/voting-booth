@@ -28,16 +28,11 @@ angular.module('avBooth')
   .directive(
     'avbSimultaneousQuestionsScreen',
     function(
-      $i18next,
-      $filter,
-      $interpolate,
-      $timeout,
       $modal,
-      $window,
-      ConfigService)
-    {
+      ConfigService
+    ) {
       var simultaneousQuestionsLayout = "simultaneous-questions";
-      var link = function(scope, element, attrs)
+      var link = function(scope, _element, _attrs)
       {
         // filter the list of questions to get the list of questions of type
         // "simultaneous-questions"
@@ -66,11 +61,12 @@ angular.module('avBooth')
 
         // set next button text by default if it has not been specified
         if (angular.isDefined(groupExtraData.next_button) &&
+          groupExtraData.next_button.length > 0 &&
           !scope.stateData.isLastQuestion)
         {
           scope.nextButtonText = groupExtraData.next_button;
         } else {
-          scope.nextButtonText = $i18next('avBooth.continueButton');
+          scope.nextButtonText = 'avBooth.continueButton';
         }
 
         _.each(
