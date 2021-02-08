@@ -58,6 +58,7 @@
     "loadingElectionTitle": "Loading election, please wait..",
     "stepNumber": "step __num__ of __total__",
     "stepAndQuestionNumber": "step __num__ of __total__, question __qnum__ of __qtotal__",
+    "questionNumber": "Question __qnum__ of __qtotal__",
     "continueButton": "Continue",
     "startVoting": "Start Voting",
     "stepsToVote": "You need to follow these steps to cast your ballot:",
@@ -151,7 +152,7 @@
     "clickToSelectCell": "click to select",
     "clickToDeselectCell": "deselect x",
     "draftIncludesList": "Includes __includeList__",
-    "dropdownOptionView": "View",
+    "dropdownOptionView": "More information",
 
     "filterOptionsPlaceholder2": "Search name or candidate..",
     "candidatesTitle": "Candidates",

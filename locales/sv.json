@@ -48,6 +48,7 @@
     "loadingElectionTitle": "Information om valet laddas. Var god och vänta... ",
     "stepNumber": "skede __num__ av totalt __total__ skeden",
     "stepAndQuestionNumber": "skede __num__ av totalt __total__ skeden, fråga __qnum__ av sammanlagt __qtotal__” frågor",
+    "questionNumber": "Fråga __qnum__ av sammanlagt __qtotal__” frågor",
     "continueButton": "Fortsätt",
     "startVoting": "Övergå till röstningen",
     "stepsToVote": "Röstning sker genom följande skeden:",
