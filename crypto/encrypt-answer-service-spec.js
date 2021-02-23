@@ -49,7 +49,7 @@ describe("EncryptAnswerService tests", function() {
     var secret = params.generate();
     // encrypt
     var encryptor = EncryptAnswerService(secret.pk.toJSONObject());
-    var encrypted = encryptor.encryptAnswer(plaintext, false, false, console.log);
+    var encrypted = encryptor.encryptAnswer("" + plaintext, false, false, console.log);
 
     // verify plaintext proof
     expect(encryptor.verifyPlaintextProof(encrypted)).toBe(true);
@@ -82,7 +82,7 @@ describe("EncryptAnswerService tests", function() {
     // encrypt
     var encryptor = EncryptAnswerService(pubkey);
     var encrypted = encryptor.encryptAnswer(
-      parseInt(encryptedAnswer.plaintext),
+      encryptedAnswer.plaintext,
       parseInt(encryptedAnswer.randomness),
       randomness2,
       console.log);

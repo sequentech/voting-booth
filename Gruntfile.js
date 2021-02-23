@@ -375,6 +375,9 @@ module.exports = function (grunt) {
         autoWatch: false, //watching is handled by grunt-contrib-watch
         singleRun: true
       },
+      headless: {
+        browsers: ['PhantomJS']
+      },
       all_tests: {
         browsers: ['PhantomJS','Chrome','Firefox']
       },
@@ -424,7 +427,8 @@ module.exports = function (grunt) {
     ]
   );
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
-  grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
+  grunt.registerTask('test',['dom_munger:read','karma:headless']);
+  grunt.registerTask('test-all',['dom_munger:read','karma:all_tests']);
 
   grunt.event.on('watch', function(action, filepath) {
     //https://github.com/gruntjs/grunt-contrib-watch/issues/156
