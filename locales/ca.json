@@ -41,6 +41,7 @@
     "loadingElectionTitle": "Carregant la votació, un moment sisplau..",
     "stepNumber": "pas __num__ de __total__",
     "stepAndQuestionNumber": "pas __num__ de __total__, pregunta __qnum__ de __qtotal__",
+    "questionNumber": "pregunta __qnum__ de __qtotal__",
     "startVoting": "Comenceu a votar",
     "continueButton": "Continueu",
     "stepsToVote": "Seguiu aquests passos quan emeteu el vostre vot:",

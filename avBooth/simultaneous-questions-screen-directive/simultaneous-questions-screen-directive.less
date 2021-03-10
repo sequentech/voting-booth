@@ -16,16 +16,6 @@
 **/
 
 [avb-simultaneous-questions-screen] {
-  .opt {
-    font-size: 20px;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: @gray-lighter;
-    }
-  }
 
   .left-border {
     border-left: 1px solid @gray;
@@ -47,5 +37,84 @@
   {
     text-align: left;
     padding-left: 30px;
+  }
+
+  .vertilize-col {
+    padding: 10px 0;
+    vertical-align: middle;
+  }
+
+  // answer styles
+  .opt {
+    font-size: 20px;
+    text-align: left;
+    padding: 5px;
+    cursor: pointer;
+    display: inline-block;
+
+    &:hover {
+      background-color: @gray-lighter;
+    }
+
+    &:focus {
+      border: none;
+    }
+
+    .answer-glyphicon .glyphicon {
+      font-size: 50px;
+      margin-right: 10px;
+    }
+  
+    .answer-image {
+      img {
+        max-height: 130px;
+        max-width: 130px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+    .answer-texts {
+      box-sizing: border-box;
+      padding-left: 10px;
+      width: 100%;
+
+      .answer-text {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .answer-details {
+        font-size: 14px;
+      }
+    }
+
+    .answer-links {
+      .btn {
+        border: none;
+        text-decoration: underline;
+        background: transparent;
+      }
+    }
+  }
+
+  // question separator style
+  .question-separator-dots {
+    width: 100%;
+    display: block;
+    clear: both;
+    float: left;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 20px;
+    border-top: 1px solid #c0c0c0;
+
+    span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: -12px;
+    }
   }
 }

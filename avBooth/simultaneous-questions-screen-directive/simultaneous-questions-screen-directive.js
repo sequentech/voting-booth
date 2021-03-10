@@ -28,16 +28,11 @@ angular.module('avBooth')
   .directive(
     'avbSimultaneousQuestionsScreen',
     function(
-      $i18next,
-      $filter,
-      $interpolate,
-      $timeout,
       $modal,
-      $window,
-      ConfigService)
-    {
+      ConfigService
+    ) {
       var simultaneousQuestionsLayout = "simultaneous-questions";
-      var link = function(scope, element, attrs)
+      var link = function(scope, _element, _attrs)
       {
         // filter the list of questions to get the list of questions of type
         // "simultaneous-questions"
@@ -66,31 +61,47 @@ angular.module('avBooth')
 
         // set next button text by default if it has not been specified
         if (angular.isDefined(groupExtraData.next_button) &&
+          groupExtraData.next_button.length > 0 &&
           !scope.stateData.isLastQuestion)
         {
           scope.nextButtonText = groupExtraData.next_button;
         } else {
-          scope.nextButtonText = $i18next('avBooth.continueButton');
+          scope.nextButtonText = 'avBooth.continueButton';
         }
 
-        // stablish the number of rows
-        scope.answerColumnsSize = 6;
-        if (angular.isDefined(groupExtraData.answer_columns_size) && 
-            _.isNumber(groupExtraData.answer_columns_size) &&
-           0 === (groupExtraData.answer_columns_size % 1)) {
-          scope.answerColumnsSize = groupExtraData.answer_columns_size;
-        }
+        _.each(
+          groupQuestions,
+          function (question)
+          {
+            // set a sane default for answer_columns_size
+            if (!angular.isDefined(question.extra_options)) 
+            {
+              question.extra_options = {};
+            }
+            if (!angular.isDefined(question.extra_options.answer_columns_size)) 
+            {
+              question.extra_options.answer_columns_size = 6;
+            }
 
-        // group pairs together? only makes sense if there's a pair number of
-        // columns per row
-        scope.groupPairs = false;
-        if (((12 / scope.answerColumnsSize) % 2) === 0 &&
-          angular.isDefined(groupExtraData.group_answer_pairs))
-        {
-          scope.groupPairs = (true === groupExtraData.group_answer_pairs);
-        }
+            // convert each answer url list to a map
+            _.each(
+              question.answers,
+              function (answer)
+              {
+                answer.urlsObject = _.object(
+                  _.map(
+                    answer.urls, 
+                    function(url) 
+                    {
+                      return [url.title, url.url];
+                    }
+                  )
+                );
+              }
+            );
+          }
+        );
 
-        // FIXME: Why this is needed?
         scope.organization = ConfigService.organization;
 
         // reset selection on initialization

@@ -48,6 +48,7 @@
     "loadingElectionTitle": "Vaalin tiedot latautuu. Odota, kiitos... ",
     "stepNumber": "vaihe __num__ yhteensä __total__ vaiheesta",
     "stepAndQuestionNumber": "vaihe __num__ yhteensä __total__ vaiheesta, kysymys __qnum__ yhteensä __qtotal__ kysymyksestä",
+    "questionNumber": "Kysymys __qnum__ yhteensä __qtotal__ kysymyksestä",
     "continueButton": "Jatka",
     "startVoting": "Siirry äänestämään",
     "stepsToVote": "Äänestäminen tapahtuu näissä vaiheissa:",
