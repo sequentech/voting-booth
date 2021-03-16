@@ -70,8 +70,14 @@ angular
     
           for (var index = baseList.length - 1; index >= 0; index--)
           {
-          decodedValues.unshift(accumulator % baseList[index]);
-          accumulator = Math.floor(accumulator / baseList[index]);
+            decodedValues.unshift(accumulator % baseList[index]);
+            accumulator = Math.floor(accumulator / baseList[index]);
+
+            // if no value is left to decode, return early
+            if (accumulator === 0)
+            {
+              return decodedValues;
+            }
           }
           return decodedValues;
         }
