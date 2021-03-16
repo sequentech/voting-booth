@@ -20,28 +20,116 @@
  * 
  */
 /* jshint ignore:start */
-describe("AnswerEncoderService tests", function () {
+describe(
+  "AnswerEncoderService tests", 
+  function () 
+  {
+    beforeEach(module("avCrypto"));
 
-  beforeEach(module("avCrypto"));
+    beforeEach(
+      inject(
+        function (
+          _AnswerEncoderService_, 
+          _DeterministicJsonStringifyService_,
+          _BigIntService_
+        ) {
+          answerEncoder = _AnswerEncoderService_;
+          stringify = _DeterministicJsonStringifyService_;
+          BigInt = _BigIntService_;
+        }
+      )
+    );
 
-  beforeEach(inject(function (_AnswerEncoderService_, _DeterministicJsonStringifyService_) {
-    answerEncoder = _AnswerEncoderService_;
-    stringify = _DeterministicJsonStringifyService_;
-  }));
+    it(
+      "AnswerEncoderService test", 
+      function () 
+      {
+        var answer = [1, 5];
+        var codec = answerEncoder("plurality-at-large", 7);
+        expect(codec.sanityCheck()).toBe(true);
+        
+        var encoded = codec.encode(answer);
+        var decoded = codec.decode(encoded);
+        expect((stringify(decoded) == stringify(answer))).toBe(true);  
+        
+      }
+    );
 
-  it("AnswerEncoderService test", function () {
+    /**
+     * Mixed number encoding. It will encode using multiple different bases. The
+     * number of bases and the number of values need to be equal.
+     * 
+     * @param {int[]} valueList List of positive integer number values to encode.
+     * @param {int[]} baseList List of positive integer bases to use.
+     */
+    function mixedBaseEncode(valueList, baseList) 
+    {
+      // validate
+      if (valueList.length !== baseList.length) 
+      {
+        throw new Error(
+          "Invalid parameters: 'valueList' and 'baseList' must have the same " + 
+          "length."
+        );
+      }
+
+      // Encode
+      var baseAccumulator = 1;
+
+      return baseList.reduceRight(
+        function (accumulator, base, index) 
+        {
+          const ret = accumulator + (baseAccumulator * valueList[index]);
+          baseAccumulator = baseAccumulator * base;
+
+          return ret;
+        },
+        0
+      );
+    }
+
+    it(
+      "mixedBaseEncoding 1 ",
+      function ()
+      {
+        expect(
+          mixedBaseEncode(
+            /*valueList = */ [29, 23, 59],
+            /*baseList = */ [30, 24, 60]
+          )
+        )
+        .toBe((29*24 + 23)*60 + 59); // 43199
+      }
+    );
+
+    it(
+      "mixedBaseEncoding 2 ",
+      function ()
+      {
+        expect(
+          mixedBaseEncode(
+            /*valueList = */ [10, 10, 10],
+            /*baseList = */ [30, 24, 60]
+          )
+        )
+        .toBe((10*24 + 10)*60 + 10); // 15010
+      }
+    );
     
-    var answer = [1, 5];
-    var codec = answerEncoder("plurality-at-large", 7);
-    expect(codec.sanityCheck()).toBe(true); // false
-    
-    var encoded = codec.encode(answer);
-    var decoded = codec.decode(encoded);
-    // false; [5, 1] == [1, 5]
-    expect((stringify(decoded) == stringify(answer))).toBe(true);  
-    
-  });
-
-});
+    it(
+      "mixedBaseEncoding 3 ",
+      function ()
+      {
+        expect(
+          mixedBaseEncode(
+            /*valueList = */ [21, 10, 11],
+            /*baseList = */ [30, 24, 60]
+          )
+        )
+        .toBe(30851); // (21*24 + 10)*60 + 11 = 30851
+      }
+    );
+  }
+);
 
 /* jshint ignore:end */
