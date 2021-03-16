@@ -26,12 +26,13 @@ angular
     'MixedRadixService',
     function(BigIntService) 
     {
+      var BigInt = BigIntService;
       /**
        * Mixed number encoding. It will encode using multiple different bases. The
        * number of bases and the number of values need to be equal.
        * 
-       * @param {int[]} valueList List of positive integer number values to encode.
-       * @param {int[]} baseList List of positive integer bases to use.
+       * @param {BigInt[]} valueList List of positive integer number values to encode.
+       * @param {BigInt[]} baseList List of positive integer bases to use.
        */
       function encoder(valueList, baseList) 
       {
@@ -45,11 +46,11 @@ angular
         }
   
         // Encode
-        var encodedValue = 0;
+        var encodedValue = new BigInt("0");
   
         for (var index = 0; index < valueList.length; index++)
         {
-          encodedValue = encodedValue * baseList[index] + valueList[index];
+          encodedValue = encodedValue.multiply(baseList[index]).add(valueList[index]);
         }
         return encodedValue;
       }
@@ -57,8 +58,8 @@ angular
       /**
         * Mixed number decoding. It will decode using multiple different bases.
         * 
-        * @param {int[]} baseList List of positive integer bases to use.
-        * @param {int} encodedValue Integer value to decode.
+        * @param {BigInt[]} baseList List of positive integer bases to use.
+        * @param {BigInt} encodedValue Integer value to decode.
         * 
         * @return List of positive integer bases to use.
         */
@@ -66,13 +67,14 @@ angular
         {
           // Encode
           var decodedValues = [];
-          var accumulator = encodedValue;
+          var accumulator = encodedValue.clone();
     
           for (var index = baseList.length - 1; index >= 0; index--)
           {
-            decodedValues.unshift(accumulator % baseList[index]);
-            accumulator = Math.floor(accumulator / baseList[index]);
+            decodedValues.unshift(accumulator.remainder(baseList[index]));
+            accumulator = accumulator.divide(baseList[index]);
           }
+
           return decodedValues;
         }
         return {

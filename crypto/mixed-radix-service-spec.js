@@ -40,17 +40,42 @@ describe(
       )
     );
 
+    function stringifyBigInt(obj) 
+    {
+      if (Array.isArray(obj)) {
+        var serialized = [];
+        for(i = 0; i < obj.length; i++) {
+          serialized.push(stringifyBigInt(obj[i]));
+        }
+        return "[" + serialized.join(",") + "]";
+      } else if (typeof(obj) === 'object' && obj.toString && typeof(obj.toString) === 'function') {
+        return obj.toString();
+      } else {
+        return stringify(obj);
+      }
+    }
+
     it(
       "mixedRadix.encode 1 ",
       function ()
       {
         expect(
           mixedRadix.encode(
-            /*valueList = */ [29, 23, 59],
-            /*baseList = */ [30, 24, 60]
+            /*valueList = */ [
+              new BigInt("29", 10),
+              new BigInt("23", 10),
+              new BigInt("59", 10)
+            ],
+            /*baseList = */ [
+              new BigInt("30", 10),
+              new BigInt("24", 10),
+              new BigInt("60", 10)
+            ]
+          ).compareTo(
+            new BigInt("" + ((29*24 + 23)*60 + 59), 10) // = 43199
           )
         )
-        .toBe((29*24 + 23)*60 + 59); // = 43199
+        .toBe(0);
       }
     );
 
@@ -60,25 +85,45 @@ describe(
       {
         expect(
           mixedRadix.encode(
-            /*valueList = */ [10, 10, 10],
-            /*baseList = */ [30, 24, 60]
+            /*valueList = */ [
+              new BigInt("10", 10),
+              new BigInt("10", 10),
+              new BigInt("10", 10)
+            ],
+            /*baseList = */ [
+              new BigInt("30", 10),
+              new BigInt("24", 10),
+              new BigInt("60", 10)
+            ]
+          ).compareTo(
+            new BigInt("" + ((10*24 + 10)*60 + 10), 10) // = 15010
           )
         )
-        .toBe((10*24 + 10)*60 + 10); // = 15010
+        .toBe(0);
       }
     );
-    
+
     it(
       "mixedRadix.encode 3 ",
       function ()
       {
         expect(
           mixedRadix.encode(
-            /*valueList = */ [21, 10, 11],
-            /*baseList = */ [30, 24, 60]
+            /*valueList = */ [
+              new BigInt("21", 10),
+              new BigInt("10", 10),
+              new BigInt("11", 10)
+            ],
+            /*baseList = */ [
+              new BigInt("30", 10),
+              new BigInt("24", 10),
+              new BigInt("60", 10)
+            ]
+          ).compareTo(
+            new BigInt("30851", 10) // = (21*24 + 10)*60 + 11 = 30851
           )
         )
-        .toBe(30851); // (21*24 + 10)*60 + 11 = 30851
+        .toBe(0);
       }
     );
 
@@ -87,14 +132,18 @@ describe(
       function ()
       {
         expect(
-          stringify(
+          stringifyBigInt(
             mixedRadix.decode(
-              /*baseList = */ [30, 24, 60],
-              /* encodedValue = */43199  // = (29*24 + 23)*60 + 59
+              /*baseList = */ [
+                new BigInt("30", 10),
+                new BigInt("24", 10),
+                new BigInt("60", 10)
+              ],
+              /* encodedValue = */new BigInt("43199", 10)  // = (29*24 + 23)*60 + 59
             )
           )
         )
-        .toBe(stringify([29, 23, 59]));
+        .toBe(stringifyBigInt([29, 23, 59]));
       }
     );
 
@@ -103,30 +152,38 @@ describe(
       function ()
       {
         expect(
-          stringify(
+          stringifyBigInt(
             mixedRadix.decode(
-              /*baseList = */ [30, 24, 60],
-              /* encodedValue = */(10*24 + 10)*60 + 10 // = 15010
+              /*baseList = */ [
+                new BigInt("30", 10),
+                new BigInt("24", 10),
+                new BigInt("60", 10)
+              ],
+              /* encodedValue = */new BigInt("" + ((10*24 + 10)*60 + 10), 10)  // = 15010
             )
           )
         )
-        .toBe(stringify([10, 10, 10]));
+        .toBe(stringifyBigInt([10, 10, 10]));
       }
     );
 
     it(
-      "mixedRadix.decode 2 ",
+      "mixedRadix.decode 3 ",
       function ()
       {
         expect(
-          stringify(
+          stringifyBigInt(
             mixedRadix.decode(
-              /*baseList = */ [30, 24, 60],
-              /* encodedValue = */30851 // = (21*24 + 10)*60 + 11
+              /*baseList = */ [
+                new BigInt("30", 10),
+                new BigInt("24", 10),
+                new BigInt("60", 10)
+              ],
+              /* encodedValue = */new BigInt("30851", 10)  // = (21*24 + 10)*60 + 11
             )
           )
         )
-        .toBe(stringify([21, 10, 11]));
+        .toBe(stringifyBigInt([21, 10, 11]));
       }
     );
 
@@ -136,20 +193,64 @@ describe(
       {
         var examples = [
           {
-            valueList: [21, 10, 11],
-            baseList: [30, 24, 60]
+            valueList: [
+              new BigInt("21", 10),
+              new BigInt("10", 10),
+              new BigInt("11", 10)
+            ],
+            baseList: [
+              new BigInt("30", 10),
+              new BigInt("24", 10),
+              new BigInt("60", 10)
+            ]
           },
           {
-            valueList: [3, 2, 1],
-            baseList: [5, 10, 10]
+            valueList: [
+              new BigInt("3", 10),
+              new BigInt("2", 10),
+              new BigInt("1", 10)
+            ],
+            baseList: [
+              new BigInt("5", 10),
+              new BigInt("10", 10),
+              new BigInt("10", 10)
+            ]
           },
           {
-            valueList: [1, 0, 2, 2, 128, 125, 0, 0],
-            baseList: [3, 3, 3, 3, 256, 256, 256, 256]
+            valueList: [
+              new BigInt("1", 10),
+              new BigInt("0", 10),
+              new BigInt("2", 10),
+              new BigInt("2", 10),
+              new BigInt("128", 10),
+              new BigInt("125", 10),
+              new BigInt("0", 10),
+              new BigInt("0", 10),
+            ],
+            baseList: [
+              new BigInt("3", 10),
+              new BigInt("3", 10),
+              new BigInt("3", 10),
+              new BigInt("3", 10),
+              new BigInt("256", 10),
+              new BigInt("256", 10),
+              new BigInt("256", 10),
+              new BigInt("256", 10)
+            ]
           },
           {
-            valueList: [0, 1, 2, 0],
-            baseList: [3, 3, 3, 3]
+            valueList: [
+              new BigInt("0", 10),
+              new BigInt("1", 10),
+              new BigInt("2", 10),
+              new BigInt("0", 10),
+            ],
+            baseList: [
+              new BigInt("3", 10),
+              new BigInt("3", 10),
+              new BigInt("3", 10),
+              new BigInt("3", 10),
+            ]
           }
         ];
 
@@ -157,7 +258,7 @@ describe(
         {
           var example = examples[index];
           expect(
-            stringify(
+            stringifyBigInt(
               mixedRadix.decode(
                 /* baseList = */ example.baseList,
                 /* encodedValue = */ mixedRadix.encode(
@@ -167,7 +268,7 @@ describe(
               )
             )
           )
-          .toBe(stringify(example.valueList));
+          .toBe(stringifyBigInt(example.valueList));
         }
       }
     );
