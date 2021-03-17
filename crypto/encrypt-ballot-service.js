@@ -120,7 +120,7 @@ angular.module('avCrypto')
     function getPlainText(question, verify) {
       // encode the answers
       var codec = AnswerEncoderService(question);
-      var rawBallot = codec.getRawBallot();
+      var rawBallot = codec.encodeRawBallot();
       var encoded = codec.encode(rawBallot);
       if (verify) {
         var decoded = codec.decode(encoded);

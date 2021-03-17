@@ -147,12 +147,12 @@ angular
             "cumulative"
           ],
           numAvailableOptions: numAvailableOptions,
-          question: question,
+          question: angular.copy(question),
 
           /**
            * Converts a raw ballot into an encoded number ready to be encrypted. 
            * A raw ballot is a list of positive integer numbers representing
-           * the ballot, and can be obtained calling to `this.getRawBallot()`.
+           * the ballot, and can be obtained calling to `this.encodeRawBallot()`.
            *
            * Encoding is done using mixed radix encoding. The bases are 
            * automatically calculated when instancing this object. The bases 
@@ -166,7 +166,7 @@ angular
            * If in a `plurality-at-large` there are three candidates `A`, `B`,
            * and `C` with answer ids `0`, `1` and `2`, and the voter wants to
            * vote to candidates `A` and `C`, then his ballot (extracted with 
-           * getRawBallot) will be  `v = [1, 0, 1]` and the ballot will be
+           * encodeRawBallot) will be  `v = [1, 0, 1]` and the ballot will be
            * encoded this way:
            * 
            * ```
@@ -346,7 +346,7 @@ angular
            * Please read the description of the encode function for details on
            * the output format of the raw ballot.
            */
-          getRawBallot: function() 
+          encodeRawBallot: function() 
           {
 
             // sort answers by id
@@ -487,10 +487,19 @@ angular
           },
 
           /**
-           * Does exactly the reverse of of encodeQuestionAnswer. It should be
+           * Does the opposite of `this.encodeRawBallot`.
+           * 
+           * @returns `this.questions` with the data from the raw ballot.
+           */
+          decodeRawBallot: function(rawVote) {},
+
+          /**
+           * Does exactly the reverse of of encode. It should be
            * such as the following statement is always true:
            *
+           * ```
            * data == codec.decode(codec.encode(answer))
+           * ```
            *
            * This function is very useful for sanity checks.
            */
@@ -603,7 +612,7 @@ angular
              * order by this attribute, and return an ordered array with all the
              * answers' ids. An answer id is set by its "id" attribute.
              */
-             getRawBallot: function() 
+             encodeRawBallot: function() 
             {
               // get the selected sorted options as a list of int ids
               var answers = _.pluck(_.flatten(this.question.selection), "id");

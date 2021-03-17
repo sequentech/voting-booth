@@ -39,7 +39,7 @@ describe(
     );
 
     it(
-      "AnswerEncoderService getRawBallot 1 ", 
+      "AnswerEncoderService encodeRawBallot 1 ", 
       function () 
       {
         // the question contains the minimum data required for the encoder to
@@ -60,7 +60,7 @@ describe(
         expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.getRawBallot();
+        var answers = codec.encodeRawBallot();
         expect(stringify(answers))
           .toBe(stringify({
             bases: [2, 2, 2, 2, 2, 2, 2, 2],
@@ -70,7 +70,7 @@ describe(
     );
 
     it(
-      "AnswerEncoderService getRawBallot 2 ", 
+      "AnswerEncoderService encodeRawBallot 2 ", 
       function () 
       {
         // the question contains the minimum data required for the encoder to
@@ -91,7 +91,7 @@ describe(
         expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.getRawBallot();
+        var answers = codec.encodeRawBallot();
         expect(stringify(answers))
           .toBe(stringify({
             bases: [2, 2, 2, 2, 2, 2, 2, 2],
@@ -101,7 +101,7 @@ describe(
     );
 
     it(
-      "AnswerEncoderService getRawBallot 3 ", 
+      "AnswerEncoderService encodeRawBallot 3 ", 
       function () 
       {
         // the question contains the minimum data required for the encoder to
@@ -123,7 +123,7 @@ describe(
         expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.getRawBallot();
+        var answers = codec.encodeRawBallot();
         expect(stringify(answers))
           .toBe(stringify({
             bases: [2, 4, 4, 4, 4, 4, 4, 4],
@@ -133,7 +133,7 @@ describe(
     );
 
     it(
-      "AnswerEncoderService getRawBallot invalid ", 
+      "AnswerEncoderService encodeRawBallot invalid ", 
       function () 
       {
         // the question contains the minimum data required for the encoder to
@@ -154,7 +154,7 @@ describe(
         expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.getRawBallot();
+        var answers = codec.encodeRawBallot();
         expect(stringify(answers))
           .toBe(stringify({
             bases: [2, 2, 2],
@@ -164,7 +164,7 @@ describe(
     );
 
     it(
-      "AnswerEncoderService getRawBallot write-ins 1 ", 
+      "AnswerEncoderService encodeRawBallot write-ins 1 ", 
       function () 
       {
         // the question contains the minimum data required for the encoder to
@@ -198,7 +198,7 @@ describe(
         expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.getRawBallot();
+        var answers = codec.encodeRawBallot();
         expect(stringify(answers))
           .toBe(stringify({
             bases:     [2, 3, 3, 3, 3, 3, 256, 256, 256],
@@ -208,7 +208,7 @@ describe(
     );
 
     it(
-      "AnswerEncoderService getRawBallot write-ins 1 ", 
+      "AnswerEncoderService encodeRawBallot write-ins 2 ", 
       function () 
       {
         // the question contains the minimum data required for the encoder to
@@ -247,7 +247,7 @@ describe(
         expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.getRawBallot();
+        var answers = codec.encodeRawBallot();
         expect(stringify(answers))
           .toBe(stringify({
             bases:     [2, 2, 2, 2, 2, 2, 2, 256, 256, 256, 256, 256, 256, 256, 256, 256],
@@ -279,7 +279,7 @@ describe(
         expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.getRawBallot();
+        var answers = codec.encodeRawBallot();
         expect(stringify(answers))
           .toBe(stringify({
             bases: [2, 2, 2, 2, 2, 2, 2, 2],
