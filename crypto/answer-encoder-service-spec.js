@@ -172,6 +172,7 @@ describe(
         var question = {
           tally_type: "borda",
           max: 2,
+          extra_options: {allow_writeins: true},
           answers: [
             {id: 0, selected: 0},
             {id: 1},
@@ -215,6 +216,7 @@ describe(
         // work
         var question = {
           tally_type: "plurality-at-large",
+          extra_options: {allow_writeins: true},
           max: 3,
           answers: [
             {id: 0, selected: 1},

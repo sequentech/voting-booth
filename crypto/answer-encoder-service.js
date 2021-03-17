@@ -33,9 +33,13 @@ angular
   .module('avCrypto')
   .service(
     'AnswerEncoderService', 
-    function(DeterministicJsonStringifyService) 
+    function(
+      DeterministicJsonStringifyService,
+      MixedRadixService
+    ) 
     {
       var stringify = DeterministicJsonStringifyService;
+      var mixedRadix = MixedRadixService;
 
       /**
        * Converts a number to a string. For example if number=23 and 
@@ -148,6 +152,50 @@ angular
           ],
           numAvailableOptions: numAvailableOptions,
           question: angular.copy(question),
+
+          /**
+           * Obtains the bases related to this question.
+           */
+          getBases: function () 
+          {
+            // sort answers by id
+            var sortedAnswers = _.sortBy(
+              this.question.answers, 
+              function (option) 
+              {
+                return option.id;
+              }
+            );
+
+            const validAnwsers = _.filter(
+              sortedAnswers, 
+              function (answer)
+              {
+                return (
+                  !hasUrl(answer.urls, 'invalidVoteFlag', 'true')
+                );
+              }
+            );
+
+            // Calculate the base for answers. It depends on the 
+            // `question.tally_type`:
+            // - plurality-at-large: base 2 (value can be either 0 o 1)
+            // - 
+            // - preferential (*bordas*): question.max + 1
+            // - cummulative: question.max + 1
+            const answerBase = (this.question.tally_type === "plurality-at-large") 
+              ? 2
+              : this.question.max + 1;
+
+            // Set the initial bases and raw ballot. We will populate the rest
+            // next.
+            var bases = [2];
+
+            // populate rawBallot and bases using the valid answers list
+            _.each(validAnwsers, function (_) { bases.push(answerBase);});
+
+            return bases;
+          },
 
           /**
            * Converts a raw ballot into an encoded number ready to be encrypted. 
@@ -309,27 +357,33 @@ angular
            * encodedChoices = 1*2^4 + 1*2^5 + 68*2^6 + 69*2^8 = 22064
            * ```
            */
-          encodeToBigInt: function(answers)
+          encodeToBigInt: function(rawBallot)
           {
-            var numChars = (this.numAvailableOptions + 2).toString(10).length;
-            var encodedAnswer = _.reduceRight(
-              answers, 
-              function (memo, answerId) 
-              {
-                return numberToString(answerId + 1, numChars) + memo;
-              },
-              ""
+            return mixedRadix.encode(
+              /*valueList = */rawBallot.choices,
+              /*baseList = */rawBallot.bases
             );
+          },
 
-            // blank vote --> make it not count numAvailableOptions + 2;
-            if (encodedAnswer.length === 0) 
-            {
-              encodedAnswer = numberToString(
-                this.numAvailableOptions + 2,
-                numChars
-              );
-            }
-            return encodedAnswer;
+          /**
+           * Does exactly the reverse of of encodeFromBigInt. It should be
+           * such as the following statement is always true:
+           *
+           * ```
+           * data == codec.decodeFromBigInt(
+           *   codec.encodeFromBigInt(answer)
+           * )
+           * ```
+           *
+           * This function is very useful for sanity checks.
+           */
+          decodeFromBigInt: function(bigIntBallot) 
+          {
+            const bases = this.getBases();
+            return mixedRadix.encode(
+              /*baseList = */ bases,
+              /*encodedValue = */ bigIntBallot
+            );
           },
 
           /**
@@ -348,7 +402,6 @@ angular
            */
           encodeRawBallot: function() 
           {
-
             // sort answers by id
             var sortedAnswers = _.sortBy(
               this.question.answers, 
@@ -358,7 +411,7 @@ angular
               }
             );
 
-            // First we separate the answers between:
+            // Separate the answers between:
             // - Invalid vote answer (if any)
             // - Write-ins (if any)
             // - Valid answers (normal answers + write-ins if any)
@@ -390,29 +443,9 @@ angular
               }
             );
 
-            // Calculate the maximum number of write-ins allowed. Basically it
-            // is just `question.max +1 ` but only if 
-            // `question.extra_options.allow_writeins` is set.
-            const maxNumWriteIns = (
-              this.question.extra_options && 
-              this.question.extra_options.allow_writeins
-            )
-              ? this.question.max
-              : 0;
-
-            // Calculate the base for answers. It depends on the 
-            // `question.tally_type`:
-            // - plurality-at-large: base 2 (value can be either 0 o 1)
-            // - 
-            // - preferential (*bordas*): question.max + 1
-            // - cummulative: question.max + 1
-            var answerBase = (this.question.tally_type === "plurality-at-large") 
-              ? answerBase = 2
-              : answerBase = this.question.max + 1;
-
             // Set the initial bases and raw ballot. We will populate the rest
             // next.
-            var bases = [2];
+            var bases = this.getBases();
             var choices = [invalidVoteFlag];
 
             // populate rawBallot and bases using the valid answers list
@@ -445,7 +478,6 @@ angular
                     : answer.selected + 1;
                   choices.push(answerValue);
                 }
-                bases.push(answerBase);
               }
             );
             
@@ -454,31 +486,37 @@ angular
             // encode the write-in answer.text string with UTF-8 and use for 
             // each byte a specific value with base 256 and end each write-in 
             // with a \0 byte. Note that even write-ins.
-            _.each(
-              writeInAnwsers,
-              function (answer)
-              {
-                if (!answer.text || answer.text.length === 0) 
+            if (
+              this.question.extra_options && 
+              this.question.extra_options.allow_writeins
+            )
+            {
+              _.each(
+                writeInAnwsers,
+                function (answer)
                 {
-                  bases.push(256);
-                  choices.push(0);
-                  return;
-                }
-
-                const encodedText = encodeUTF8(answer.text);
-                _.each(
-                  encodedText,
-                  function (textByte) 
+                  if (!answer.text || answer.text.length === 0) 
                   {
                     bases.push(256);
-                    choices.push(textByte);
+                    choices.push(0);
+                    return;
                   }
-                );
-                // end it with a zero
-                bases.push(256);
-                choices.push(0);
-              }
-            );
+
+                  const encodedText = encodeUTF8(answer.text);
+                  _.each(
+                    encodedText,
+                    function (textByte) 
+                    {
+                      bases.push(256);
+                      choices.push(textByte);
+                    }
+                  );
+                  // end it with a zero
+                  bases.push(256);
+                  choices.push(0);
+                }
+              );
+            }
 
             return {
               bases: bases,
@@ -492,49 +530,6 @@ angular
            * @returns `this.questions` with the data from the raw ballot.
            */
           decodeRawBallot: function(rawVote) {},
-
-          /**
-           * Does exactly the reverse of of encode. It should be
-           * such as the following statement is always true:
-           *
-           * ```
-           * data == codec.decodeFromBigInt(
-           *   codec.encodeFromBigInt(answer)
-           * )
-           * ```
-           *
-           * This function is very useful for sanity checks.
-           */
-          decodeFromBigInt: function(encodedAnswer) 
-          {
-            var encodedStr = encodedAnswer;
-            var length = encodedStr.length;
-            var tabNumChars = (this.numAvailableOptions + 2).toString(10).length;
-            var missingZeros = (tabNumChars - (length % tabNumChars)) % tabNumChars;
-            var i;
-            var decodedAnswer = [];
-
-            // check if it's a blank vote
-            if (parseInt(encodedStr, 10) === this.numAvailableOptions + 2) 
-            {
-              return [];
-            }
-
-            // add zeros to the left for tabulation
-            for (i = 0; i < missingZeros; i++) 
-            {
-              encodedStr = "0" + encodedStr;
-            }
-
-            // decode each option
-            for (i = 0; i < (encodedStr.length / tabNumChars); i++) 
-            {
-              var optionStr = encodedStr.substr(i*tabNumChars, tabNumChars);
-              var optionId = parseInt(optionStr, 10);
-              decodedAnswer.push(optionId - 1);
-            }
-            return decodedAnswer;
-          },
 
           // question is optional
           sanityCheck: function() 
@@ -601,37 +596,7 @@ angular
           }
         };
 
-        var pairwise = _.extend(
-          _.clone(multi), 
-          {
-            validCodecs: ["pairwise-beta"],
-
-            /**
-             * Returns extracted answers from a question.
-             *
-             * The question objects needs to have an "answers" key, and each
-             * selected asnwer will be marked by a "selected" attribute. We will
-             * order by this attribute, and return an ordered array with all the
-             * answers' ids. An answer id is set by its "id" attribute.
-             */
-             encodeRawBallot: function() 
-            {
-              // get the selected sorted options as a list of int ids
-              var answers = _.pluck(_.flatten(this.question.selection), "id");
-
-              if (
-                answers.length > this.question.max*2 ||
-                answers.length < this.question.min*2
-              ) {
-                throw "error in the number of selected answers";
-              }
-
-              return answers;
-            }
-          }
-        );
-
-        var codecs = [multi, pairwise];
+        var codecs = [multi];
 
         var foundCodec = _.find(
           codecs, 
