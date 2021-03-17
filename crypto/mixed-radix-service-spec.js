@@ -210,6 +210,32 @@ describe(
     );
 
     it(
+      "mixedRadix.decode large baseList ",
+      function ()
+      {
+        const encodedValue = 1 + 2*2*61;
+        expect(
+          stringifyBigInt(
+            mixedRadix.decode(
+              /*baseList = */ [
+                new BigInt("2", 10),
+                new BigInt("2", 10),
+                new BigInt("256", 10),
+                new BigInt("256", 10),
+                new BigInt("256", 10),
+                new BigInt("256", 10),
+                new BigInt("256", 10)
+              ],
+              /* encodedValue = */new BigInt(""+encodedValue, 10),  
+              /* lastBase */ new BigInt("256", 10)
+            )
+          )
+        )
+        .toBe(stringifyBigInt([1, 0, 61, 0, 0, 0, 0]));
+      }
+    );
+
+    it(
       "mixedRadix.(encode then decode)",
       function ()
       {
