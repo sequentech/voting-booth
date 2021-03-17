@@ -188,6 +188,28 @@ describe(
     );
 
     it(
+      "mixedRadix.decode lastBase ",
+      function ()
+      {
+        const encodedValue = 1 + 2*2*61 + 2*2*256*256*256*68;
+        expect(
+          stringifyBigInt(
+            mixedRadix.decode(
+              /*baseList = */ [
+                new BigInt("2", 10),
+                new BigInt("2", 10),
+                new BigInt("256", 10)
+              ],
+              /* encodedValue = */new BigInt(""+encodedValue, 10),  
+              /* lastBase */ new BigInt("256", 10)
+            )
+          )
+        )
+        .toBe(stringifyBigInt([1, 0, 61, 0, 0, 68]));
+      }
+    );
+
+    it(
       "mixedRadix.(encode then decode)",
       function ()
       {

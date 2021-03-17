@@ -68,14 +68,26 @@ angular
         */
         function decoder(baseList, encodedValue, lastBase) 
         {
-          // Encode
           var decodedValues = [];
           var accumulator = encodedValue.clone();
+          var zero = new BigInt("0", 10);
+          var index = 0;
     
-          for (var index = 0; index < baseList.length; index++)
+          while (accumulator.compareTo(zero) > 0)
           {
-            decodedValues.push(accumulator.remainder(baseList[index]));
-            accumulator = accumulator.divide(baseList[index]);
+            const base = (index < baseList.length)
+              ? baseList[index]
+              : lastBase;
+
+            decodedValues.push(accumulator.remainder(base));
+            accumulator = accumulator.divide(base);
+            index += 1;
+          }
+
+          // If we didn't run all the bases, fill the rest with zeros
+          for (; index < baseList.length; index++)
+          {
+            decodedValues.push(zero.clone());
           }
 
           return decodedValues;
