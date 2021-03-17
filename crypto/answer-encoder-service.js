@@ -165,14 +165,14 @@ angular
            * 
            * If in a `plurality-at-large` there are three candidates `A`, `B`,
            * and `C` with answer ids `0`, `1` and `2`, and the voter wants to
-           * vote to candidates `A` and `C`, then his ballot (extracted with 
-           * encodeRawBallot) will be  `v = [1, 0, 1]` and the ballot will be
-           * encoded this way:
+           * vote to candidates `A` and `C`, then his ballot choices (obtained
+           * using encodeRawBallot) will be  `v = [1, 0, 1]` and the encoded 
+           * choices will be encoded this way:
            * 
            * ```
-           * encodedBallot = v[0] + v[1]*b[0] + v[2]*b[0]*b[1]
-           * encodedBallot = v[0] + b[0]*(v[1] + b[1]*v[2])
-           * encodedBallot = 1 + 2*(0 + 2 * 1) = 1 + 4*1 = 5
+           * encodedChoices = v[0] + v[1]*b[0] + v[2]*b[0]*b[1]
+           * encodedChoices = v[0] + b[0]*(v[1] + b[1]*v[2])
+           * encodedChoices = 1 + 2*(0 + 2 * 1) = 1 + 4*1 = 5
            * ```
            * 
            * And the bases are `b = [2, 2, 2]`. The reason the bases are 2 here
@@ -190,13 +190,13 @@ angular
            * value `0`, so choosing it as first position would be value `1` and
            * so on. If the voter can choose up to 3 candidates, then the base
            * would be `maxChoices+1 = 3+1 = 4`, and thus bases will be 
-           * `b = [4, 4, 4]` and raw ballot would be `v = [1, 0, 2]` and the
-           * encoded ballot would be calculated as:
+           * `b = [4, 4, 4]` and choices would be `v = [1, 0, 2]` and the
+           * encoded choices would be calculated as:
            * 
            * ```
-           * encodedBallot = v[0] + v[1]*b[1] + v[2]*b[1]*b[2]
-           * encodedBallot = v[0] + b[0]*(v[1] + b[1]*v[2])
-           * encodedBallot = 1 + 4*(0 + 4*2) = 1 + 16*2 = 33
+           * encodedChoices = v[0] + v[1]*b[1] + v[2]*b[1]*b[2]
+           * encodedChoices = v[0] + b[0]*(v[1] + b[1]*v[2])
+           * encodedChoices = 1 + 4*(0 + 4*2) = 1 + 16*2 = 33
            * ```
            * 
            * # Invalid Ballot Flag
@@ -219,14 +219,14 @@ angular
            * always the invalid flag, whose max value is 1 so the base is always
            * 2).
            * 
-           * The raw ballot would not be `v = [1, 0, 2]` but (if the vote was
+           * The choices would not be `v = [1, 0, 2]` but (if the vote was
            * not marked as invalid) `v = [0, 1, 0, 2]` and thus the encoded
-           * ballot would be calculated as:
+           * choices would be calculated as:
            * 
            * ```
-           * encodedBallot = v[0] + b[0]*(v[1] + b[1]*(v[2] + b[2]*v[3])
-           * encodedBallot = 0 + 2*(1 + 4*(0 + 4*2)) = 2*1 + 2*4*4*2
-           * encodedBallot = 2*1 + 32*2 = 66
+           * encodedChoices = v[0] + b[0]*(v[1] + b[1]*(v[2] + b[2]*v[3])
+           * encodedChoices = 0 + 2*(1 + 4*(0 + 4*2)) = 2*1 + 2*4*4*2
+           * encodedChoices = 2*1 + 32*2 = 66
            * ```
            * 
            * # Cumulative voting system
@@ -247,14 +247,14 @@ angular
            * for a preferential voting system, if the voter can assign a 
            * maximum of 4 points, and he wants to assign 2 points to candidate
            * `A` and 2 points to candidate `C` and he didn't mark his ballot
-           * as invalid, then his raw ballot would be `v = [0, 2, 0, 1]`, the
-           * bases would be `b = [2, 5, 5, 5]` and the encoded ballot would be
+           * as invalid, then his choices would be `v = [0, 2, 0, 1]`, the bases 
+           * would be `b = [2, 5, 5, 5]` and the encoded choices would be 
            * calculated as:
            * 
            * ```
-           * encodedBallot = v[0] + b[0]*(v[1] + b[1]*(v[2] + b[2]*v[3])
-           * encodedBallot = 0 + 2*(2 + 5*(0 + 5*1)) = 2*2 + 2*5*5*1
-           * encodedBallot = 2*2 + 50*1 = 54
+           * encodedChoices = v[0] + b[0]*(v[1] + b[1]*(v[2] + b[2]*v[3])
+           * encodedChoices = 0 + 2*(2 + 5*(0 + 5*1)) = 2*2 + 2*5*5*1
+           * encodedChoices = 2*2 + 50*1 = 54
            * ```
            * 
            * # Write-ins
@@ -276,15 +276,15 @@ angular
            * For example in a plurality-at-large question example with three
            * candidates `A`, `B` and `C` where the voter can choose up to 2
            * candidates, if the voter wants to cast a valid ballot to his 2
-           * write-ins, then the bases, the rawBallot and the encoded ballot 
+           * write-ins, then the bases, the choices and the encoded choices 
            * would be:
            * 
            * ```
            * // bases
            * b = [2, 2, 2, 2, 2, 2]
-           * // raw ballot
+           * // choices
            * v = [0, 0, 0, 0, 1, 1]
-           * encodedBallot = 1*2^4 + 1*2^5 = 48
+           * encodedChoices = 1*2^4 + 1*2^5 = 48
            * ```
            * 
            * # Write-in names
@@ -298,18 +298,18 @@ angular
            * 
            * So if in our case the name of the voter's two write-ins is `D` and
            * `E`, and knowing that character D is encoded as number `68` and E
-           * is `69`, then the bases, the rawBallot and the encoded ballot 
+           * is `69`, then the bases, the choices and the encoded choices
            * would be:
            * 
            * ```
            * // bases
            * b = [2, 2, 2, 2, 2, 2, 256, 256, 256, 256]
-           * // raw ballot
+           * // choices
            * v = [0, 0, 0, 0, 1, 1, 68,  0,   69,  0]
-           * encodedBallot = 1*2^4 + 1*2^5 + 68*2^6 + 69*2^8 = 22064
+           * encodedChoices = 1*2^4 + 1*2^5 + 68*2^6 + 69*2^8 = 22064
            * ```
            */
-          encode: function(answers)
+          encodeToBigInt: function(answers)
           {
             var numChars = (this.numAvailableOptions + 2).toString(10).length;
             var encodedAnswer = _.reduceRight(
@@ -338,7 +338,7 @@ angular
            * 
            * ```
            * {
-           *   rawBallot: [0, 0, 0, 0, 1, 1, 68,  0,   69,  0],
+           *   choices: [0, 0, 0, 0, 1, 1, 68,  0,   69,  0],
            *   bases: [2, 2, 2, 2, 2, 2, 256, 256, 256, 256]
            * }
            * ```
@@ -413,7 +413,7 @@ angular
             // Set the initial bases and raw ballot. We will populate the rest
             // next.
             var bases = [2];
-            var rawBallot = [invalidVoteFlag];
+            var choices = [invalidVoteFlag];
 
             // populate rawBallot and bases using the valid answers list
             var tally_type = this.question.tally_type;
@@ -431,7 +431,7 @@ angular
                     answer.selected === -1
                   )
                     ? 0 : 1;
-                  rawBallot.push(answerValue);
+                  choices.push(answerValue);
                 } 
                 else 
                 {
@@ -443,7 +443,7 @@ angular
                   )
                     ? 0
                     : answer.selected + 1;
-                  rawBallot.push(answerValue);
+                  choices.push(answerValue);
                 }
                 bases.push(answerBase);
               }
@@ -461,7 +461,7 @@ angular
                 if (!answer.text || answer.text.length === 0) 
                 {
                   bases.push(256);
-                  rawBallot.push(0);
+                  choices.push(0);
                   return;
                 }
 
@@ -471,18 +471,18 @@ angular
                   function (textByte) 
                   {
                     bases.push(256);
-                    rawBallot.push(textByte);
+                    choices.push(textByte);
                   }
                 );
                 // end it with a zero
                 bases.push(256);
-                rawBallot.push(0);
+                choices.push(0);
               }
             );
 
             return {
               bases: bases,
-              rawBallot: rawBallot
+              choices: choices
             };
           },
 
@@ -498,12 +498,14 @@ angular
            * such as the following statement is always true:
            *
            * ```
-           * data == codec.decode(codec.encode(answer))
+           * data == codec.decodeFromBigInt(
+           *   codec.encodeFromBigInt(answer)
+           * )
            * ```
            *
            * This function is very useful for sanity checks.
            */
-          decode: function(encodedAnswer) 
+          decodeFromBigInt: function(encodedAnswer) 
           {
             var encodedStr = encodedAnswer;
             var length = encodedStr.length;
@@ -572,8 +574,8 @@ angular
                   }
                 }
                 // check encode -> decode pipe doesn't modify the ballot
-                var encodedAnswer = multi.encode(answer);
-                var decodedAnswer = stringify(multi.decode(encodedAnswer));
+                var encodedAnswer = multi.encodeToBigInt(answer);
+                var decodedAnswer = stringify(multi.decodeFromBigInt(encodedAnswer));
                 if (stringify(answer) !== decodedAnswer) 
                 {
                   return false;
