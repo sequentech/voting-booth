@@ -72,7 +72,7 @@ describe(
               new BigInt("60", 10)
             ]
           ).compareTo(
-            new BigInt("" + ((29*24 + 23)*60 + 59), 10) // = 43199
+            new BigInt("" + (29 + 30*(23 + 24*59)), 10) // = 43199
           )
         )
         .toBe(0);
@@ -96,7 +96,7 @@ describe(
               new BigInt("60", 10)
             ]
           ).compareTo(
-            new BigInt("" + ((10*24 + 10)*60 + 10), 10) // = 15010
+            new BigInt("" + (10 + 30*(10 + 24*10)), 10) // = 7510
           )
         )
         .toBe(0);
@@ -120,7 +120,7 @@ describe(
               new BigInt("60", 10)
             ]
           ).compareTo(
-            new BigInt("30851", 10) // = (21*24 + 10)*60 + 11 = 30851
+            new BigInt("" + (21 + 30*(10 + 24*11)), 10) // = 8241
           )
         )
         .toBe(0);
@@ -139,7 +139,7 @@ describe(
                 new BigInt("24", 10),
                 new BigInt("60", 10)
               ],
-              /* encodedValue = */new BigInt("43199", 10)  // = (29*24 + 23)*60 + 59
+              /* encodedValue = */new BigInt("43199", 10)  // = (29 + 30*(23 + 24*59))
             )
           )
         )
@@ -159,7 +159,7 @@ describe(
                 new BigInt("24", 10),
                 new BigInt("60", 10)
               ],
-              /* encodedValue = */new BigInt("" + ((10*24 + 10)*60 + 10), 10)  // = 15010
+              /* encodedValue = */new BigInt("" + (10 + 30*(10 + 24*10)), 10) // = 7510
             )
           )
         )
@@ -179,7 +179,7 @@ describe(
                 new BigInt("24", 10),
                 new BigInt("60", 10)
               ],
-              /* encodedValue = */new BigInt("30851", 10)  // = (21*24 + 10)*60 + 11
+              /* encodedValue = */new BigInt("8241", 10)  // = 21 + 30*(10 + 24*11)
             )
           )
         )
@@ -198,6 +198,7 @@ describe(
               new BigInt("10", 10),
               new BigInt("11", 10)
             ],
+            encodedValue: "8241",
             baseList: [
               new BigInt("30", 10),
               new BigInt("24", 10),
@@ -210,6 +211,7 @@ describe(
               new BigInt("2", 10),
               new BigInt("1", 10)
             ],
+            encodedValue: "63",
             baseList: [
               new BigInt("5", 10),
               new BigInt("10", 10),
@@ -227,6 +229,7 @@ describe(
               new BigInt("0", 10),
               new BigInt("0", 10),
             ],
+            encodedValue: "2602441",
             baseList: [
               new BigInt("3", 10),
               new BigInt("3", 10),
@@ -245,11 +248,33 @@ describe(
               new BigInt("2", 10),
               new BigInt("0", 10),
             ],
+            encodedValue: "21",
             baseList: [
               new BigInt("3", 10),
               new BigInt("3", 10),
               new BigInt("3", 10),
               new BigInt("3", 10),
+            ]
+          },
+          {
+            valueList: [
+              new BigInt("1", 10),
+              new BigInt("0", 10),
+              new BigInt("0", 10),
+              new BigInt("0", 10),
+              new BigInt("0", 10),
+              new BigInt("0", 10),
+              new BigInt("0", 10),
+            ],
+            encodedValue: "1",
+            baseList: [
+              new BigInt("2", 10),
+              new BigInt("2", 10),
+              new BigInt("256", 10),
+              new BigInt("256", 10),
+              new BigInt("256", 10),
+              new BigInt("256", 10),
+              new BigInt("256", 10),
             ]
           }
         ];
@@ -257,18 +282,22 @@ describe(
         for (var index = 0; index < examples.length; index++)
         {
           var example = examples[index];
-          expect(
-            stringifyBigInt(
-              mixedRadix.decode(
-                /* baseList = */ example.baseList,
-                /* encodedValue = */ mixedRadix.encode(
-                  /* valueList = */ example.valueList,
-                  /* baseList = */ example.baseList
-                )
-              )
+          const encodedValue = mixedRadix.encode(
+            /* valueList = */ example.valueList,
+            /* baseList = */ example.baseList
+          );
+          const decodedValue = stringifyBigInt(
+            mixedRadix.decode(
+              /* baseList = */ example.baseList,
+              /* encodedValue = */ encodedValue
             )
-          )
-          .toBe(stringifyBigInt(example.valueList));
+          );
+
+          expect(stringifyBigInt(encodedValue))
+            .toBe(example.encodedValue);
+
+          expect(decodedValue)
+            .toBe(stringifyBigInt(example.valueList));
         }
       }
     );

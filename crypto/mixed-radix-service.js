@@ -48,9 +48,11 @@ angular
         // Encode
         var encodedValue = new BigInt("0");
   
-        for (var index = 0; index < valueList.length; index++)
+        for (var index = valueList.length - 1; index >= 0; index--)
         {
-          encodedValue = encodedValue.multiply(baseList[index]).add(valueList[index]);
+          encodedValue = encodedValue
+            .multiply(baseList[index])
+            .add(valueList[index]);
         }
         return encodedValue;
       }
@@ -58,20 +60,21 @@ angular
       /**
         * Mixed number decoding. It will decode using multiple different bases.
         * 
-        * @param {BigInt[]} baseList List of positive integer bases to use.
-        * @param {BigInt} encodedValue Integer value to decode.
+        * @param {BigInt[]} baseList     List of positive integer bases to use.
+        * @param {BigInt}   lastBase     Base to use if baseList is too short.
+        * @param {BigInt}   encodedValue Integer value to decode.
         * 
         * @return List of positive integer bases to use.
         */
-        function decoder(baseList, encodedValue) 
+        function decoder(baseList, encodedValue, lastBase) 
         {
           // Encode
           var decodedValues = [];
           var accumulator = encodedValue.clone();
     
-          for (var index = baseList.length - 1; index >= 0; index--)
+          for (var index = 0; index < baseList.length; index++)
           {
-            decodedValues.unshift(accumulator.remainder(baseList[index]));
+            decodedValues.push(accumulator.remainder(baseList[index]));
             accumulator = accumulator.divide(baseList[index]);
           }
 
