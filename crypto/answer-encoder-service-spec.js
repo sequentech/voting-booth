@@ -39,19 +39,260 @@ describe(
     );
 
     it(
-      "AnswerEncoderService test", 
+      "AnswerEncoderService getRawBallot 1 ", 
       function () 
       {
-        var answer = [1, 5];
-        var codec = answerEncoder("plurality-at-large", 7);
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          answers: [
+            {id: 0},
+            {id: 1, selected: 0},
+            {id: 2},
+            {id: 3},
+            {id: 4},
+            {id: 5, selected: 1},
+            {id: 6}
+          ]
+        };
+        var codec = answerEncoder(question);
         expect(codec.sanityCheck()).toBe(true);
         
-        var encoded = codec.encode(answer);
-        var decoded = codec.decode(encoded);
-        expect((stringify(decoded) == stringify(answer))).toBe(true);  
-        
+        // check raw ballot getter
+        var answers = codec.getRawBallot();
+        expect(stringify(answers))
+          .toBe(stringify({
+            bases: [2, 2, 2, 2, 2, 2, 2, 2],
+            rawBallot: [0, 0, 1, 0, 0, 0, 1, 0]
+          }));
       }
     );
+
+    it(
+      "AnswerEncoderService getRawBallot 2 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          answers: [
+            {id: 0, selected: 1},
+            {id: 1, selected: 1},
+            {id: 2},
+            {id: 3},
+            {id: 4},
+            {id: 5, selected: 1},
+            {id: 6}
+          ]
+        };
+        var codec = answerEncoder(question);
+        expect(codec.sanityCheck()).toBe(true);
+        
+        // check raw ballot getter
+        var answers = codec.getRawBallot();
+        expect(stringify(answers))
+          .toBe(stringify({
+            bases: [2, 2, 2, 2, 2, 2, 2, 2],
+            rawBallot: [0, 1, 1, 0, 0, 0, 1, 0]
+          }));
+      }
+    );
+
+    it(
+      "AnswerEncoderService getRawBallot 3 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "borda",
+          max: 3,
+          answers: [
+            {id: 0, selected: 0},
+            {id: 1, selected: 2},
+            {id: 2},
+            {id: 3},
+            {id: 4},
+            {id: 5, selected: 1},
+            {id: 6}
+          ]
+        };
+        var codec = answerEncoder(question);
+        expect(codec.sanityCheck()).toBe(true);
+        
+        // check raw ballot getter
+        var answers = codec.getRawBallot();
+        expect(stringify(answers))
+          .toBe(stringify({
+            bases: [2, 4, 4, 4, 4, 4, 4, 4],
+            rawBallot: [0, 1, 3, 0, 0, 0, 2, 0]
+          }));
+      }
+    );
+
+    it(
+      "AnswerEncoderService getRawBallot invalid ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          answers: [
+            {id: 0, selected: 1},
+            {id: 1},
+            {
+              id: 2,
+              selected: 1,
+              urls: [{title: 'invalidVoteFlag', url: 'true'}]
+            }
+          ]
+        };
+        var codec = answerEncoder(question);
+        expect(codec.sanityCheck()).toBe(true);
+        
+        // check raw ballot getter
+        var answers = codec.getRawBallot();
+        expect(stringify(answers))
+          .toBe(stringify({
+            bases: [2, 2, 2],
+            rawBallot: [1, 1, 0]
+          }));
+      }
+    );
+
+    it(
+      "AnswerEncoderService getRawBallot write-ins 1 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "borda",
+          max: 2,
+          answers: [
+            {id: 0, selected: 0},
+            {id: 1},
+            {id: 2},
+            {
+              id: 3,
+              selected: 1,
+              urls: [{title: 'invalidVoteFlag', url: 'true'}]
+            },
+            {
+              id: 4,
+              text: 'D',
+              selected: 1,
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            },
+            {
+              id: 5,
+              text: '',
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            }
+          ]
+        };
+        var codec = answerEncoder(question);
+        expect(codec.sanityCheck()).toBe(true);
+        
+        // check raw ballot getter
+        var answers = codec.getRawBallot();
+        expect(stringify(answers))
+          .toBe(stringify({
+            bases:     [2, 3, 3, 3, 3, 3, 256, 256, 256],
+            rawBallot: [1, 1, 0, 0, 2, 0, 68,  0,   0]
+          }));
+      }
+    );
+
+    it(
+      "AnswerEncoderService getRawBallot write-ins 1 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          max: 3,
+          answers: [
+            {id: 0, selected: 1},
+            {id: 1},
+            {id: 2},
+            {
+              id: 3,
+              urls: [{title: 'invalidVoteFlag', url: 'true'}]
+            },
+            {
+              id: 4,
+              text: 'E',
+              selected: 1,
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            },
+            {
+              id: 5,
+              text: '',
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            },
+            {
+              id: 6,
+              selected: 1,
+              text: 'Ä bc',
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            }
+          ]
+        };
+        var codec = answerEncoder(question);
+        expect(codec.sanityCheck()).toBe(true);
+        
+        // check raw ballot getter
+        var answers = codec.getRawBallot();
+        expect(stringify(answers))
+          .toBe(stringify({
+            bases:     [2, 2, 2, 2, 2, 2, 2, 256, 256, 256, 256, 256, 256, 256, 256, 256],
+            rawBallot: [0, 1, 0, 0, 1, 0, 1, 69,  0,   0,   195, 132, 32,  98,  99,  0]
+          }));
+      }
+    );
+
+
+    /*it(
+      "AnswerEncoderService full test ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          answers: [
+            {id: 0},
+            {id: 1, selected: 0},
+            {id: 2},
+            {id: 3},
+            {id: 4},
+            {id: 5, selected: 1},
+            {id: 6}
+          ]
+        };
+        var codec = answerEncoder(question);
+        expect(codec.sanityCheck()).toBe(true);
+        
+        // check raw ballot getter
+        var answers = codec.getRawBallot();
+        expect(stringify(answers))
+          .toBe(stringify({
+            bases: [2, 2, 2, 2, 2, 2, 2, 2],
+            rawBallot: [0, 0, 1, 0, 0, 0, 1, 0]
+          }));
+
+
+        var encoded = codec.encode(answers);
+        var decoded = codec.decode(encoded);
+        expect(stringify(decoded)).toBe(stringify([1, 5]));  
+        
+      }
+    );*/
   }
 );
 

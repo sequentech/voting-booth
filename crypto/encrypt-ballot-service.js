@@ -119,12 +119,12 @@ angular.module('avCrypto')
 
     function getPlainText(question, verify) {
       // encode the answers
-      var codec = AnswerEncoderService(question.tally_type, question.answers.length);
-      var answers = codec.extractAnswers(question);
-      var encoded = codec.encode(answers);
+      var codec = AnswerEncoderService(question);
+      var rawBallot = codec.getRawBallot();
+      var encoded = codec.encode(rawBallot);
       if (verify) {
         var decoded = codec.decode(encoded);
-        if (stringify(answers) !== stringify(decoded)) {
+        if (stringify(rawBallot) !== stringify(decoded)) {
           return null;
         }
       }
@@ -184,8 +184,8 @@ angular.module('avCrypto')
       try {
         for (i = 0; i < numQuestions; i++) {
           question = data.election.questions[i];
-          codec = AnswerEncoderService(question.tally_type, question.answers.length);
-          if (!codec.sanityCheck(data.election.questions[i])) {
+          codec = AnswerEncoderService(question);
+          if (!codec.sanityCheck()) {
             sanitized = false;
             break;
           }
