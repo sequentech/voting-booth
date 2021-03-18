@@ -36,12 +36,30 @@ angular.module('avBooth')
       {
         // filter the list of questions to get the list of questions of type
         // "simultaneous-questions"
-        var groupQuestions = scope.groupQuestions = _.filter(
+        var groupQuestions = _.filter(
           scope.election.questions,
           function (q) {
             return q.layout === simultaneousQuestionsLayout;
-          });
+        });
 
+        // add categories to questions
+        groupQuestions.forEach(function(q) {
+          var categories = _.groupBy(q.answers, "category");
+          categories = _.map(_.pairs(categories), function(pair) {
+            var i = -1;
+            var title = pair[0];
+            var answers = pair[1];
+
+            return {
+              title: title,
+              answers: answers,
+            };
+          });
+          q.categories = categories;
+          q.hasCategories = categories.length > 1 || (categories.length === 1 && categories[0].title === '');
+        });
+
+        scope.groupQuestions = groupQuestions;
         var lastGroupQuestionArrayIndex = groupQuestions[groupQuestions.length-1];
         var lastGroupQuestionIndex = lastGroupQuestionArrayIndex.num;
 
@@ -232,7 +250,6 @@ angular.module('avBooth')
 
           scope.next();
         };
-
       };
 
       return {
