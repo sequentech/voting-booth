@@ -78,12 +78,12 @@ describe(
         var question = {
           tally_type: "plurality-at-large",
           answers: [
-            {id: 0, selected: 1},
-            {id: 1, selected: 1},
+            {id: 0, selected: 0},
+            {id: 1, selected: 0},
             {id: 2},
             {id: 3},
             {id: 4},
-            {id: 5, selected: 1},
+            {id: 5, selected: 0},
             {id: 6}
           ]
         };
@@ -257,7 +257,268 @@ describe(
           }));
       }
     );
+    
+    it(
+      "AnswerEncoderService decodeRawBallot 1 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          answers: [
+            {id: 0},
+            {id: 1},
+            {id: 2},
+            {id: 3},
+            {id: 4},
+            {id: 5},
+            {id: 6}
+          ]
+        };
+        var codec = answerEncoder(question);
+        
+        var decodedBallot = codec.decodeRawBallot({
+          bases: [2, 2, 2, 2, 2, 2, 2, 2],
+          choices:   [0, 0, 1, 0, 0, 0, 1, 0]
+        });
+        expect(stringify(decodedBallot))
+          .toBe(stringify({
+            tally_type: "plurality-at-large",
+            answers: [
+              {id: 0, selected: -1},
+              {id: 1, selected: 0 },
+              {id: 2, selected: -1},
+              {id: 3, selected: -1},
+              {id: 4, selected: -1},
+              {id: 5, selected: 0 },
+              {id: 6, selected: -1}
+            ]
+          }));
+      }
+    );
 
+    it(
+      "AnswerEncoderService decodeRawBallot 2 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          answers: [
+            {id: 0},
+            {id: 1},
+            {id: 2},
+            {id: 3},
+            {id: 4},
+            {id: 5},
+            {id: 6}
+          ]
+        };
+        var codec = answerEncoder(question);
+        
+        var decodedBallot = codec.decodeRawBallot({
+          bases: [2, 2, 2, 2, 2, 2, 2, 2],
+          choices:   [0, 1, 1, 0, 0, 0, 1, 0]
+        });
+        expect(stringify(decodedBallot))
+          .toBe(stringify({
+            tally_type: "plurality-at-large",
+            answers: [
+              {id: 0, selected: 0 },
+              {id: 1, selected: 0 },
+              {id: 2, selected: -1},
+              {id: 3, selected: -1},
+              {id: 4, selected: -1},
+              {id: 5, selected: 0 },
+              {id: 6, selected: -1}
+            ]
+          }));
+      }
+    );
+
+    it(
+      "AnswerEncoderService decodeRawBallot 3 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "borda",
+          max: 3,
+          answers: [
+            {id: 0},
+            {id: 1},
+            {id: 2},
+            {id: 3},
+            {id: 4},
+            {id: 5},
+            {id: 6}
+          ]
+        };
+        var codec = answerEncoder(question);
+
+        var decodedBallot = codec.decodeRawBallot({
+          bases:   [2, 4, 4, 4, 4, 4, 4, 4],
+          choices: [0, 1, 3, 0, 0, 0, 2, 0]
+        });
+        expect(stringify(decodedBallot))
+          .toBe(stringify({
+            tally_type: "borda",
+            max: 3,
+            answers: [
+              {id: 0, selected: 0 },
+              {id: 1, selected: 2 },
+              {id: 2, selected: -1},
+              {id: 3, selected: -1},
+              {id: 4, selected: -1},
+              {id: 5, selected: 1 },
+              {id: 6, selected: -1}
+            ]
+          }));
+      }
+    );
+
+    it(
+      "AnswerEncoderService decodeRawBallot write-ins 1 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "borda",
+          max: 2,
+          extra_options: {allow_writeins: true},
+          answers: [
+            {id: 0},
+            {id: 1},
+            {id: 2},
+            {
+              id: 3,
+              urls: [{title: 'invalidVoteFlag', url: 'true'}]
+            },
+            {
+              id: 4,
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            },
+            {
+              id: 5,
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            }
+          ]
+        };
+        var codec = answerEncoder(question);
+
+        var decodedBallot = codec.decodeRawBallot({
+          bases:     [2, 3, 3, 3, 3, 3, 256, 256, 256],
+          choices:   [1, 1, 0, 0, 2, 0, 68,  0,   0]
+        });
+        expect(stringify(decodedBallot))
+          .toBe(stringify({
+            tally_type: "borda",
+            max: 2,
+            extra_options: {allow_writeins: true},
+            answers: [
+              {id: 0, selected: 0 },
+              {id: 1, selected: -1},
+              {id: 2, selected: -1},
+              {
+                id: 3,
+                selected: 1,
+                urls: [{title: 'invalidVoteFlag', url: 'true'}]
+              },
+              {
+                id: 4,
+                text: 'D',
+                selected: 1,
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              },
+              {
+                id: 5,
+                selected: -1,
+                text: '',
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              }
+            ]
+          }));
+      }
+    );
+
+    it(
+      "AnswerEncoderService decodeRawBallot write-ins 2 ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          max: 3,
+          extra_options: {allow_writeins: true},
+          answers: [
+            {id: 0},
+            {id: 1},
+            {id: 2},
+            {
+              id: 3,
+              urls: [{title: 'invalidVoteFlag', url: 'true'}]
+            },
+            {
+              id: 4,
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            },
+            {
+              id: 5,
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            },
+            {
+              id: 6,
+              urls: [{title: 'isWriteIn', url: 'true'}]
+            }
+          ]
+        };
+        var codec = answerEncoder(question);
+
+        var decodedBallot = codec.decodeRawBallot({
+          bases:     [2, 2, 2, 2, 2, 2, 2, 256, 256, 256, 256, 256, 256, 256, 256, 256],
+          choices:   [0, 1, 0, 0, 1, 0, 1, 69,  0,   0,   195, 132, 32,  98,  99,  0]
+        });
+        expect(stringify(decodedBallot))
+          .toBe(stringify({
+            tally_type: "plurality-at-large",
+            max: 3,
+            extra_options: {allow_writeins: true},
+            answers: [
+              {id: 0, selected: 0 },
+              {id: 1, selected: -1},
+              {id: 2, selected: -1},
+              {
+                id: 3,
+                selected: 0,
+                urls: [{title: 'invalidVoteFlag', url: 'true'}]
+              },
+              {
+                id: 4,
+                text: 'E',
+                selected: 0,
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              },
+              {
+                id: 5,
+                selected: -1,
+                text: '',
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              },
+              {
+                id: 6,
+                selected: 0,
+                text: 'Ä bc',
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              }
+            ]
+          }));
+      }
+    );
 
     /*it(
       "AnswerEncoderService full test ", 

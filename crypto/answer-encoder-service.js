@@ -77,7 +77,8 @@ angular
 
       // source https://gist.github.com/pascaldekloe/62546103a1576803dade9269ccf76330
       // Marshals a string to an Uint8Array.
-      function encodeUTF8(s) {
+      function encodeUTF8(s) 
+      {
         var i = 0, bytes = new Uint8Array(s.length * 4);
         for (var ci = 0; ci != s.length; ci++) {
           var c = s.charCodeAt(ci);
@@ -106,7 +107,8 @@ angular
       }
 
       // Unmarshals a string from an Uint8Array.
-      function decodeUTF8(bytes) {
+      function decodeUTF8(bytes) 
+      {
         var i = 0, s = '';
         while (i < bytes.length) {
           var c = bytes[i++];
@@ -191,8 +193,23 @@ angular
             // next.
             var bases = [2];
 
-            // populate rawBallot and bases using the valid answers list
+            // populate bases using the valid answers list
             _.each(validAnwsers, function (_) { bases.push(answerBase);});
+
+            // populate with byte-sized bases for the \0 end for each write-in
+            if (
+              this.question.extra_options && 
+              this.question.extra_options.allow_writeins
+            ) {
+              const writeInAnwsers = _.filter(
+                sortedAnswers, 
+                function (answer)
+                {
+                  return hasUrl(answer.urls, 'isWriteIn', 'true');
+                }
+              );
+              _.each(writeInAnwsers, function (_) { bases.push(256);});
+            }
 
             return bases;
           },
@@ -382,7 +399,8 @@ angular
             const bases = this.getBases();
             return mixedRadix.encode(
               /*baseList = */ bases,
-              /*encodedValue = */ bigIntBallot
+              /*encodedValue = */ bigIntBallot,
+              /* lastBase = */ 256
             );
           },
 
@@ -497,7 +515,8 @@ angular
                 {
                   if (!answer.text || answer.text.length === 0) 
                   {
-                    bases.push(256);
+                    // we don't do a bases.push(256) as this is done in getBases()
+                  // end it with a zero
                     choices.push(0);
                     return;
                   }
@@ -511,8 +530,9 @@ angular
                       choices.push(textByte);
                     }
                   );
+
                   // end it with a zero
-                  bases.push(256);
+                  // we don't do a bases.push(256) as this is done in getBases()
                   choices.push(0);
                 }
               );
@@ -529,7 +549,156 @@ angular
            * 
            * @returns `this.questions` with the data from the raw ballot.
            */
-          decodeRawBallot: function(rawVote) {},
+          decodeRawBallot: function(rawBallot) 
+          {
+            // 1. clone the question and reset the selections
+            var question = angular.copy(this.question);
+            _.each(
+              question.answers,
+              function (answer) 
+              {
+                answer.selected = -1
+              }
+            );
+
+            // 2. sort & segment answers
+            // 2.1. sort answers by id
+            var sortedAnswers = _.sortBy(
+              question.answers, 
+              function (option) 
+              {
+                return option.id;
+              }
+            );
+
+            // 3. Obtain the invalidVote flag and set it.
+            const invalidVoteAnswer = _.find(
+              sortedAnswers, 
+              function (answer)
+              {
+                return hasUrl(answer.urls, 'invalidVoteFlag', 'true');
+              }
+            );
+            if (angular.isDefined(invalidVoteAnswer))
+            {
+              if(rawBallot.choices[0] > 0)
+              {
+                invalidVoteAnswer.selected = 1;
+              } else {
+                invalidVoteAnswer.selected = 0;
+              }
+            }
+
+            // 4. Do some verifications on the number of choices:
+            // Checking that the rawBallot has as many choices as required
+            const minNumChoices = question.answers.length;
+            if (rawBallot.choices.length < minNumChoices)
+            {
+              throw new Error('Invalid Ballot: Not enough choices to decode');
+            }
+            
+            // 5. Obtain the vote for valid answers and populate the selections.
+            const validAnwsers = _.filter(
+              sortedAnswers,
+              function (answer)
+              {
+                return (
+                  !hasUrl(answer.urls, 'invalidVoteFlag', 'true')
+                );
+              }
+            );
+
+            // 5.1. Populate the valid answers. We asume they are in the same
+            // order as in rawBallot.choices
+            _.each(
+              validAnwsers,
+              function (answer, index)
+              {
+                // we add 1 to the index because rawBallot.choice[0] is just the
+                // invalidVoteFlag
+                const choiceIndex = index + 1;
+                answer.selected = rawBallot.choices[choiceIndex] - 1
+              }
+            );
+
+            // 6. Filter for the write ins, decode the write-in texts into 
+            //    UTF-8 and split by the \0 character, finally the text for the
+            //    write-ins.
+            if (
+              this.question.extra_options && 
+              this.question.extra_options.allow_writeins
+            )
+            {
+              const writeInAnswers = _.filter(
+                sortedAnswers, 
+                function (answer)
+                {
+                  return hasUrl(answer.urls, 'isWriteIn', 'true');
+                }
+              );
+              // if no write ins, return
+              if (writeInAnswers.length === 0) 
+              {
+                return question;
+              }
+
+              // 6.1. Slice the choices to get only the bytes related to the write ins
+              const writeInRawBytes = rawBallot.choices.slice(question.answers.length);
+
+              // 6.2. Split the write-in bytes arrays in multiple sub-arrays 
+              // using byte \0 as a separator.
+              var writeInsRawBytesArray = [ [] ];
+               _.each(
+                writeInRawBytes,
+                function (byteElement, index)
+                {
+                  if(byteElement === 0) 
+                  {
+                    // Start the next write-in byte array, but only if this is
+                    // not the last one
+                    if (index !== writeInRawBytes.length - 1)
+                    {
+                      writeInsRawBytesArray.push([]);
+                    }
+                  }
+                  else 
+                  {
+                    const index = writeInsRawBytesArray.length-1;
+                    writeInsRawBytesArray[index].push(byteElement);
+                  }
+                }
+              );
+              if (writeInsRawBytesArray.length !== writeInAnswers.length)
+              {
+                throw new Error(
+                  "Invalid Ballot: invalid number of write-in bytes," +
+                  " writeInsRawBytesArray.length = " + writeInsRawBytesArray.length +
+                  ", writeInAnswers.length = " + writeInAnswers.length +
+                  ", writeInsRawBytesArray = " + stringify(writeInsRawBytesArray) 
+                );
+              }
+
+              // 6.3. Decode each write-in byte array
+              const writeInDecoded = _.map(
+                writeInsRawBytesArray,
+                function (writeInEncodedUtf8) 
+                {
+                  return decodeUTF8(writeInEncodedUtf8);
+                }
+              );
+
+              // 6.4. Assign the write-in name for each write in
+              _.each (
+                writeInAnswers,
+                function (writeInAnswer, index)
+                {
+                  writeInAnswer.text = writeInDecoded[index];
+                }
+              );
+            }
+
+            return question;
+          },
 
           // question is optional
           sanityCheck: function() 
