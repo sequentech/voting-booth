@@ -182,12 +182,79 @@ angular.module('avBooth')
           });
         });
 
+        // Object to store check selected by question
+        scope.cumulativeChecks = { };
+        groupQuestions.forEach(function(q) {
+          var n = q.extra_options.cumulative_number_of_checkboxes;
+          scope.cumulativeChecks[q.title] = {};
+          q.answers.forEach(function(a) {
+            scope.cumulativeChecks[q.title][a.id] = Array.apply(null, Array(n));
+          });
+        });
+
+        scope.deselectAllCumulative = function(question, option) {
+          var n = question.extra_options.cumulative_number_of_checkboxes;
+          for (var i=0; i<n; i++) {
+            scope.cumulativeChecks[question.title][option.id][i] = false;
+          }
+        };
+
+        scope.toggleSelectItemCumulative = function(question, option, index) {
+          window.s = scope;
+
+          // toggle the current value in the scope
+          var value = scope.cumulativeChecks[question.title][option.id][index];
+          scope.cumulativeChecks[question.title][option.id][index] = !value;
+
+          var checks = scope.cumulativeChecks[question.title][option.id].reduce(
+            function(accumulator, v) {
+              return v ? accumulator + 1 : accumulator;
+            }, 0);
+
+          // if option is selected, then simply deselect it
+          if (option.selected > -1 && checks === 0)
+          {
+            option.selected = -1;
+          }
+          // select option
+          else
+          {
+            // if max options selectable is 1, deselect any other and select
+            // this
+            if (question.max === 1) {
+              _.each(question.answers, function (element) {
+                if (element !== option)
+                {
+                  scope.deselectAllCumulative(question, element);
+                  element.selected = -1;
+                }
+              });
+            }
+
+            var numSelected = _.filter(question.answers, function (element) {
+              return element.selected > -1;
+            }).length;
+
+            // can't select more, flash info
+            if (numSelected > parseInt(question.max, 10)) {
+              scope.deselectAllCumulative(question, option);
+              return;
+            }
+
+            option.selected = checks - 1;
+          }
+        };
+
         /**
          * Flips/toggles the selection state of a question's option, selecting
          * or deselecting it.
          */
         scope.toggleSelectItem = function(question, option)
         {
+          if (question.tally_type === "cumulative") {
+            return false;
+          }
+
           // if option is selected, then simply deselect it
           if (option.selected > -1)
           {
