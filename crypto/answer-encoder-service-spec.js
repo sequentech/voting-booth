@@ -640,42 +640,8 @@ describe(
             ]
           },
           rawBallot: {
-            bases:     [
-              2, 
-              2, 
-              2, 
-              2, 
-              2, 
-              2, 
-              2, 
-              256, 
-              256, 
-              256, 
-              256, 
-              256, 
-              256, 
-              256, 
-              256, 
-              256
-            ],
-            choices:   [
-              0, 
-              1, 
-              0, 
-              0, 
-              1, 
-              0, 
-              1, 
-              69,
-              0,   
-              0,   
-              195, 
-              132, 
-              32,  
-              98,  
-              99,  
-              0
-            ]
+            bases:     [2, 2, 2, 2, 2, 2, 2, 256, 256, 256, 256, 256, 256, 256, 256, 256],
+            choices:   [0, 1, 0, 0, 1, 0, 1, 69,  0,   0,   195, 132, 32,  98,  99,  0]
           },
           bigIntBallot: new BigInt("916649230342635397842", 10)
         };
@@ -706,43 +672,6 @@ describe(
           .toBe(stringify(data.ballot));
       }
     );
-
-    /*it(
-      "AnswerEncoderService full test ", 
-      function () 
-      {
-        // the question contains the minimum data required for the encoder to
-        // work
-        const question = {
-          tally_type: "plurality-at-large",
-          answers: [
-            {id: 0},
-            {id: 1, selected: 0},
-            {id: 2},
-            {id: 3},
-            {id: 4},
-            {id: 5, selected: 1},
-            {id: 6}
-          ]
-        };
-        var codec = answerEncoder(question);
-        expect(codec.sanityCheck()).toBe(true);
-        
-        // check raw ballot getter
-        const rawBallot = codec.encodeRawBallot();
-        expect(stringify(rawBallot))))
-          .toBe(stringify({
-            bases: [2, 2, 2, 2, 2, 2, 2, 2],
-            choices:   [0, 0, 1, 0, 0, 0, 1, 0]
-          }));
-
-
-        var encoded = codec.encodeToBigInt(answers);
-        var decoded = codec.decodeFromBigInt(encoded);
-        expect(stringify(decoded)).toBe(stringify([1, 5]));  
-        
-      }
-    );*/
   }
 );
 
