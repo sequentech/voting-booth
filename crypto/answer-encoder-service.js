@@ -42,21 +42,6 @@ angular
       var mixedRadix = MixedRadixService;
 
       /**
-       * Converts a number to a string. For example if number=23 and 
-       * numCharts=3, result="023"
-       */
-      function numberToString(number, numChars) 
-      {
-        var numStr = number.toString(10);
-        var ret = numStr;
-        for (var i = 0; i < numChars - numStr.length; i++) 
-        {
-          ret = "0" + ret;
-        }
-        return ret;
-      }
-
-      /**
        * @returns true if the url with the specific title and url appears in the
        * urls list.
        */
