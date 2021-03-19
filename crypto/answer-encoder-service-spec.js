@@ -26,7 +26,6 @@ describe(
   {
     beforeEach(module("avCrypto"));
 
-
     function stringifyBigInt(obj) 
     {
       if (Array.isArray(obj)) {
@@ -73,7 +72,7 @@ describe(
           ]
         };
         var codec = answerEncoder(question);
-        //TODO: expect(codec.sanityCheck()).toBe(true);
+        expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
         const rawBallot = codec.encodeRawBallot();
@@ -104,7 +103,7 @@ describe(
           ]
         };
         var codec = answerEncoder(question);
-        //TODO: expect(codec.sanityCheck()).toBe(true);
+        expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
         const rawBallot = codec.encodeRawBallot();
@@ -136,7 +135,7 @@ describe(
           ]
         };
         var codec = answerEncoder(question);
-        //TODO: expect(codec.sanityCheck()).toBe(true);
+        expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
         const rawBallot = codec.encodeRawBallot();
@@ -167,7 +166,7 @@ describe(
           ]
         };
         var codec = answerEncoder(question);
-        //TODO: expect(codec.sanityCheck()).toBe(true);
+        expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
         const rawBallot = codec.encodeRawBallot();
@@ -212,7 +211,7 @@ describe(
           ]
         };
         var codec = answerEncoder(question);
-        //TODO: expect(codec.sanityCheck()).toBe(true);
+        expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
         const rawBallot = codec.encodeRawBallot();
@@ -262,7 +261,7 @@ describe(
           ]
         };
         var codec = answerEncoder(question);
-        //TODO: expect(codec.sanityCheck()).toBe(true);
+        expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
         const rawBallot = codec.encodeRawBallot();
@@ -647,7 +646,7 @@ describe(
         };
         // 1. encode from ballot to rawBallot and test it
         var encoder = answerEncoder(data.ballot);
-        // expect(codec.sanityCheck()).toBe(true);
+        expect(encoder.sanityCheck()).toBe(true);
         const rawBallot = encoder.encodeRawBallot();
         expect(stringify(rawBallot))
           .toBe(stringify(data.rawBallot));
@@ -661,7 +660,7 @@ describe(
         // 3. create a pristine encoder using the question without any selection 
         // set, and decode from BigInt to rawBallot and test it
         var decoder = answerEncoder(data.question);
-        // expect(codec.sanityCheck()).toBe(true);
+        expect(decoder.sanityCheck()).toBe(true);
         const decodedRawBallot = decoder.decodeFromBigInt(data.bigIntBallot);
         expect(stringify(decodedRawBallot))
           .toBe(stringify(data.rawBallot));

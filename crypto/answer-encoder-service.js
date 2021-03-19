@@ -41,6 +41,8 @@ angular
       var stringify = DeterministicJsonStringifyService;
       var mixedRadix = MixedRadixService;
 
+      // TODO: deduplicate these functions
+
       /**
        * @returns true if the url with the specific title and url appears in the
        * urls list.
@@ -120,6 +122,21 @@ angular
           } else throw new Error('UTF-8 decode: code point 0x' + c.toString(16) + ' exceeds UTF-16 reach');
         }
         return s;
+      }
+      
+      function stringifyBigInt(obj) 
+      {
+        if (Array.isArray(obj)) {
+          var serialized = [];
+          for(i = 0; i < obj.length; i++) {
+            serialized.push(stringifyBigInt(obj[i]));
+          }
+          return "[" + serialized.join(",") + "]";
+        } else if (typeof(obj) === 'object' && obj.toString && typeof(obj.toString) === 'function') {
+          return obj.toString();
+        } else {
+          return stringify(obj);
+        }
       }
 
       return function (question) 
@@ -736,9 +753,128 @@ angular
             return question;
           },
 
+          /**
+           * Sanity check with a specific manual example, to see that encoding
+           * and decoding works as expected.
+           * 
+           * @returns true if the test checks out
+           */
+          specificSanityCheck: function()
+          {
+            try {
+              const data = {
+                question: {
+                  tally_type: "plurality-at-large",
+                  max: 3,
+                  extra_options: {allow_writeins: true},
+                  answers: [
+                    {id: 0},
+                    {id: 1},
+                    {id: 2},
+                    {
+                      id: 3,
+                      urls: [{title: 'invalidVoteFlag', url: 'true'}]
+                    },
+                    {
+                      id: 4,
+                      urls: [{title: 'isWriteIn', url: 'true'}]
+                    },
+                    {
+                      id: 5,
+                      urls: [{title: 'isWriteIn', url: 'true'}]
+                    },
+                    {
+                      id: 6,
+                      urls: [{title: 'isWriteIn', url: 'true'}]
+                    }
+                  ]
+                },
+                ballot: {
+                  tally_type: "plurality-at-large",
+                  max: 3,
+                  extra_options: {allow_writeins: true},
+                  answers: [
+                    {id: 0, selected: 0 },
+                    {id: 1, selected: -1},
+                    {id: 2, selected: -1},
+                    {
+                      id: 3,
+                      selected: -1,
+                      urls: [{title: 'invalidVoteFlag', url: 'true'}]
+                    },
+                    {
+                      id: 4,
+                      text: 'E',
+                      selected: 0,
+                      urls: [{title: 'isWriteIn', url: 'true'}]
+                    },
+                    {
+                      id: 5,
+                      selected: -1,
+                      text: '',
+                      urls: [{title: 'isWriteIn', url: 'true'}]
+                    },
+                    {
+                      id: 6,
+                      selected: 0,
+                      text: 'Ä bc',
+                      urls: [{title: 'isWriteIn', url: 'true'}]
+                    }
+                  ]
+                },
+                rawBallot: {
+                  bases:     [2, 2, 2, 2, 2, 2, 2, 256, 256, 256, 256, 256, 256, 256, 256, 256],
+                  choices:   [0, 1, 0, 0, 1, 0, 1, 69,  0,   0,   195, 132, 32,  98,  99,  0]
+                },
+                bigIntBallot: new BigInt("916649230342635397842", 10)
+              };
+              // 1. encode from ballot to rawBallot and test it
+              var encoder = answerEncoder(data.ballot);
+              // expect(codec.sanityCheck()).toBe(true);
+              const rawBallot = encoder.encodeRawBallot();
+              if (stringify(rawBallot) != stringify(data.rawBallot))
+              {
+                throw new Error("Sanity Check fail");
+              }
+      
+              // 2. encode from rawBallot to BigInt and test it
+              console.log(stringify(rawBallot));
+              const bigIntBallot = encoder.encodeToBigInt(rawBallot);
+              if (stringifyBigInt(bigIntBallot) != stringifyBigInt(data.bigIntBallot))
+              {
+                throw new Error("Sanity Check fail");
+              }
+      
+              // 3. create a pristine encoder using the question without any selection 
+              // set, and decode from BigInt to rawBallot and test it
+              var decoder = answerEncoder(data.question);
+              // expect(codec.sanityCheck()).toBe(true);
+              const decodedRawBallot = decoder.decodeFromBigInt(data.bigIntBallot);
+              if (stringify(decodedRawBallot) != stringify(data.rawBallot))
+              {
+                throw new Error("Sanity Check fail");
+              }
+              
+              // 4. decode from raw ballot to ballot and test it
+              const decodedBallot = decoder.decodeRawBallot(decodedRawBallot);
+              if (stringify(decodedBallot) != stringify(data.ballot))
+              {
+                throw new Error("Sanity Check fail");
+              }
+            }
+            catch (e)
+            {
+              throw e;
+            }
+
+            return true;
+          },
+
           // question is optional
           sanityCheck: function() 
           {
+            return this.specificSanityCheck();
+            /*
             try {
               var possibleAnswers = _.times(
                 this.numAvailableOptions, 
@@ -797,7 +933,7 @@ angular
             }
 
             // if everything whent right
-            return true;
+            return true;*/
           }
         };
 
