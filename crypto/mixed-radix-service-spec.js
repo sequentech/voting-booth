@@ -40,6 +40,17 @@ describe(
       )
     );
 
+    function toBigIntArray(intArray)
+    {
+      return _.map(
+        intArray,
+        function (intValue)
+        {
+          return new BigInt("" + intValue, 10);
+        }
+      );
+    }
+
     function stringifyBigInt(obj) 
     {
       if (Array.isArray(obj)) {
@@ -236,107 +247,60 @@ describe(
     );
 
     it(
-      "mixedRadix.(encode then decode)",
+      "mixedRadix.(encode then decode) ",
       function ()
       {
         var examples = [
           {
-            valueList: [
-              new BigInt("21", 10),
-              new BigInt("10", 10),
-              new BigInt("11", 10)
-            ],
-            encodedValue: "8241",
-            baseList: [
-              new BigInt("30", 10),
-              new BigInt("24", 10),
-              new BigInt("60", 10)
-            ]
+            valueList: [21, 10, 11],
+            baseList:  [30, 24, 60],
+            encodedValue: "8241"
           },
           {
-            valueList: [
-              new BigInt("3", 10),
-              new BigInt("2", 10),
-              new BigInt("1", 10)
-            ],
+            valueList: [3, 2,  1 ],
+            baseList:  [5, 10, 10],
             encodedValue: "63",
-            baseList: [
-              new BigInt("5", 10),
-              new BigInt("10", 10),
-              new BigInt("10", 10)
-            ]
           },
           {
-            valueList: [
-              new BigInt("1", 10),
-              new BigInt("0", 10),
-              new BigInt("2", 10),
-              new BigInt("2", 10),
-              new BigInt("128", 10),
-              new BigInt("125", 10),
-              new BigInt("0", 10),
-              new BigInt("0", 10),
-            ],
-            encodedValue: "2602441",
-            baseList: [
-              new BigInt("3", 10),
-              new BigInt("3", 10),
-              new BigInt("3", 10),
-              new BigInt("3", 10),
-              new BigInt("256", 10),
-              new BigInt("256", 10),
-              new BigInt("256", 10),
-              new BigInt("256", 10)
-            ]
+            valueList: [1, 0, 2, 2, 128, 125, 0,   0  ],
+            baseList:  [3, 3, 3, 3, 256, 256, 256, 256],
+            encodedValue: "2602441"
           },
           {
-            valueList: [
-              new BigInt("0", 10),
-              new BigInt("1", 10),
-              new BigInt("2", 10),
-              new BigInt("0", 10),
-            ],
+            valueList: [0, 1, 2, 0],
+            baseList:  [3, 3, 3, 3],
             encodedValue: "21",
-            baseList: [
-              new BigInt("3", 10),
-              new BigInt("3", 10),
-              new BigInt("3", 10),
-              new BigInt("3", 10),
-            ]
           },
           {
-            valueList: [
-              new BigInt("1", 10),
-              new BigInt("0", 10),
-              new BigInt("0", 10),
-              new BigInt("0", 10),
-              new BigInt("0", 10),
-              new BigInt("0", 10),
-              new BigInt("0", 10),
-            ],
-            encodedValue: "1",
-            baseList: [
-              new BigInt("2", 10),
-              new BigInt("2", 10),
-              new BigInt("256", 10),
-              new BigInt("256", 10),
-              new BigInt("256", 10),
-              new BigInt("256", 10),
-              new BigInt("256", 10),
-            ]
+            valueList: [1, 0, 0,   0,   0,   0,   0  ],
+            baseList:  [2, 2, 256, 256, 256, 256, 256],
+            encodedValue: "1"
+          },
+          {
+            valueList: [0, 1, 0, 0, 1, 0, 1, 69,],
+            baseList:  [2, 2, 2, 2, 2, 2, 2, 256],
+            encodedValue: "" + (0 + 2*(1 + 2*(0 + 2*(0 + 2*(1 + 2*(0+ 2*(1 + 2*(69))))))))
+          },
+          {
+            valueList: [0, 1, 0, 0, 1, 0, 1, 69,  0,   0,   195, 132, 32,  98,  99,  0  ],
+            baseList:  [2, 2, 2, 2, 2, 2, 2, 256, 256, 256, 256, 256, 256, 256, 256, 256],
+            // Value calculated in python3 that uses by default big ints for
+            // integers. The formula is:
+            // (0 + 2*(1 + 2*(0 + 2*(0 + 2*(1 + 2*(0+ 2*(1 + 2*(69 + 256*(0 + 256*(0 + 256*(195 + 256*(132 + 256*(32 + 256*(98+ 256*99))))))))))))))
+            encodedValue: "916649230342635397842"
           }
         ];
 
         for (var index = 0; index < examples.length; index++)
         {
-          var example = examples[index];
+          const example = examples[index];
           const encodedValue = mixedRadix.encode(
-            /* valueList = */ example.valueList,
-            /* baseList = */ example.baseList
+            /* valueList = */ toBigIntArray(example.valueList),
+            /* baseList = */ toBigIntArray(example.baseList)
           );
           const decodedValue = stringifyBigInt(
             mixedRadix.decode(
-              /* baseList = */ example.baseList,
+              /* baseList = */ toBigIntArray(example.baseList),
               /* encodedValue = */ encodedValue
             )
           );
@@ -345,7 +309,7 @@ describe(
             .toBe(example.encodedValue);
 
           expect(decodedValue)
-            .toBe(stringifyBigInt(example.valueList));
+            .toBe(stringify(example.valueList));
         }
       }
     );
