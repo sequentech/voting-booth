@@ -376,9 +376,25 @@ angular
            */
           encodeToBigInt: function(rawBallot)
           {
+            const bigIntRawBallot = {
+              choices: _.map(
+                rawBallot.choices,
+                function (intValue)
+                {
+                  return new BigInt("" + intValue, 10);
+                }
+              ),
+              bases: _.map(
+                rawBallot.bases,
+                function (intValue)
+                {
+                  return new BigInt("" + intValue, 10);
+                }
+              )
+            };
             return mixedRadix.encode(
-              /*valueList = */rawBallot.choices,
-              /*baseList = */rawBallot.bases
+              /*valueList = */bigIntRawBallot.choices,
+              /*baseList = */bigIntRawBallot.bases
             );
           },
 
@@ -396,12 +412,47 @@ angular
            */
           decodeFromBigInt: function(bigIntBallot) 
           {
-            const bases = this.getBases();
-            return mixedRadix.encode(
-              /*baseList = */ bases,
-              /*encodedValue = */ bigIntBallot,
-              /* lastBase = */ 256
+            var bases = this.getBases();
+            const bigIntBases = _.map(
+              bases,
+              function (intValue)
+              {
+                return new BigInt("" + intValue, 10);
+              }
             );
+            const bigIntChoices = mixedRadix.decode(
+              /*baseList = */ bigIntBases,
+              /*encodedValue = */ bigIntBallot,
+              /* lastBase = */ new BigInt("256", 10)
+            );
+            const choices = _.map(
+              bigIntChoices,
+              function (intValue)
+              {
+                return parseInt(intValue.toString(), 10);
+              }
+            );
+
+            // minor changes are required for the write-ins
+            if (
+              this.question.extra_options && 
+              this.question.extra_options.allow_writeins
+            ) {
+              // add missing byte bases and last \0 in the choices
+              if (bases.length < choices.length)
+              {
+                choices.push(0);
+              }
+
+              for (var index = bases.length + 1; index <= choices.length; index++)
+              {
+                bases.push(256);
+              }
+            }
+            return {
+              choices: choices,
+              bases: bases
+            };
           },
 
           /**

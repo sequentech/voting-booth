@@ -26,6 +26,22 @@ describe(
   {
     beforeEach(module("avCrypto"));
 
+
+    function stringifyBigInt(obj) 
+    {
+      if (Array.isArray(obj)) {
+        var serialized = [];
+        for(i = 0; i < obj.length; i++) {
+          serialized.push(stringifyBigInt(obj[i]));
+        }
+        return "[" + serialized.join(",") + "]";
+      } else if (typeof(obj) === 'object' && obj.toString && typeof(obj.toString) === 'function') {
+        return obj.toString();
+      } else {
+        return stringify(obj);
+      }
+    }
+
     beforeEach(
       inject(
         function (
@@ -44,7 +60,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           answers: [
             {id: 0},
@@ -60,8 +76,8 @@ describe(
         //TODO: expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.encodeRawBallot();
-        expect(stringify(answers))
+        const rawBallot = codec.encodeRawBallot();
+        expect(stringify(rawBallot))
           .toBe(stringify({
             bases: [2, 2, 2, 2, 2, 2, 2, 2],
             choices:   [0, 0, 1, 0, 0, 0, 1, 0]
@@ -75,7 +91,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           answers: [
             {id: 0, selected: 0},
@@ -91,8 +107,8 @@ describe(
         //TODO: expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.encodeRawBallot();
-        expect(stringify(answers))
+        const rawBallot = codec.encodeRawBallot();
+        expect(stringify(rawBallot))
           .toBe(stringify({
             bases: [2, 2, 2, 2, 2, 2, 2, 2],
             choices:   [0, 1, 1, 0, 0, 0, 1, 0]
@@ -106,7 +122,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "borda",
           max: 3,
           answers: [
@@ -123,8 +139,8 @@ describe(
         //TODO: expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.encodeRawBallot();
-        expect(stringify(answers))
+        const rawBallot = codec.encodeRawBallot();
+        expect(stringify(rawBallot))
           .toBe(stringify({
             bases: [2, 4, 4, 4, 4, 4, 4, 4],
             choices:   [0, 1, 3, 0, 0, 0, 2, 0]
@@ -138,7 +154,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           answers: [
             {id: 0, selected: 1},
@@ -154,8 +170,8 @@ describe(
         //TODO: expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.encodeRawBallot();
-        expect(stringify(answers))
+        const rawBallot = codec.encodeRawBallot();
+        expect(stringify(rawBallot))
           .toBe(stringify({
             bases: [2, 2, 2],
             choices:   [1, 1, 0]
@@ -169,7 +185,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "borda",
           max: 2,
           extra_options: {allow_writeins: true},
@@ -199,8 +215,8 @@ describe(
         //TODO: expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.encodeRawBallot();
-        expect(stringify(answers))
+        const rawBallot = codec.encodeRawBallot();
+        expect(stringify(rawBallot))
           .toBe(stringify({
             bases:     [2, 3, 3, 3, 3, 3, 256, 256, 256],
             choices:   [1, 1, 0, 0, 2, 0, 68,  0,   0]
@@ -214,7 +230,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           extra_options: {allow_writeins: true},
           max: 3,
@@ -249,8 +265,8 @@ describe(
         //TODO: expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.encodeRawBallot();
-        expect(stringify(answers))
+        const rawBallot = codec.encodeRawBallot();
+        expect(stringify(rawBallot))
           .toBe(stringify({
             bases:     [2, 2, 2, 2, 2, 2, 2, 256, 256, 256, 256, 256, 256, 256, 256, 256],
             choices:   [0, 1, 0, 0, 1, 0, 1, 69,  0,   0,   195, 132, 32,  98,  99,  0]
@@ -264,7 +280,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           answers: [
             {id: 0},
@@ -304,7 +320,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           answers: [
             {id: 0},
@@ -344,7 +360,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "borda",
           max: 3,
           answers: [
@@ -386,7 +402,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           answers: [
             {id: 0},
@@ -425,7 +441,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "borda",
           max: 2,
           extra_options: {allow_writeins: true},
@@ -490,7 +506,7 @@ describe(
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           max: 3,
           extra_options: {allow_writeins: true},
@@ -559,13 +575,145 @@ describe(
       }
     );
 
+    it(
+      "AnswerEncoderService decodeRawBallot full encoding test ", 
+      function () 
+      {
+        const data = {
+          question: {
+            tally_type: "plurality-at-large",
+            max: 3,
+            extra_options: {allow_writeins: true},
+            answers: [
+              {id: 0},
+              {id: 1},
+              {id: 2},
+              {
+                id: 3,
+                urls: [{title: 'invalidVoteFlag', url: 'true'}]
+              },
+              {
+                id: 4,
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              },
+              {
+                id: 5,
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              },
+              {
+                id: 6,
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              }
+            ]
+          },
+          ballot: {
+            tally_type: "plurality-at-large",
+            max: 3,
+            extra_options: {allow_writeins: true},
+            answers: [
+              {id: 0, selected: 0 },
+              {id: 1, selected: -1},
+              {id: 2, selected: -1},
+              {
+                id: 3,
+                selected: -1,
+                urls: [{title: 'invalidVoteFlag', url: 'true'}]
+              },
+              {
+                id: 4,
+                text: 'E',
+                selected: 0,
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              },
+              {
+                id: 5,
+                selected: -1,
+                text: '',
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              },
+              {
+                id: 6,
+                selected: 0,
+                text: 'Ä bc',
+                urls: [{title: 'isWriteIn', url: 'true'}]
+              }
+            ]
+          },
+          rawBallot: {
+            bases:     [
+              2, 
+              2, 
+              2, 
+              2, 
+              2, 
+              2, 
+              2, 
+              256, 
+              256, 
+              256, 
+              256, 
+              256, 
+              256, 
+              256, 
+              256, 
+              256
+            ],
+            choices:   [
+              0, 
+              1, 
+              0, 
+              0, 
+              1, 
+              0, 
+              1, 
+              69,
+              0,   
+              0,   
+              195, 
+              132, 
+              32,  
+              98,  
+              99,  
+              0
+            ]
+          },
+          bigIntBallot: new BigInt("916649230342635397842", 10)
+        };
+        // 1. encode from ballot to rawBallot and test it
+        var encoder = answerEncoder(data.ballot);
+        // expect(codec.sanityCheck()).toBe(true);
+        const rawBallot = encoder.encodeRawBallot();
+        expect(stringify(rawBallot))
+          .toBe(stringify(data.rawBallot));
+
+        // 2. encode from rawBallot to BigInt and test it
+        console.log(stringify(rawBallot));
+        const bigIntBallot = encoder.encodeToBigInt(rawBallot);
+        expect(stringifyBigInt(bigIntBallot))
+          .toBe(stringifyBigInt(data.bigIntBallot));
+
+        // 3. create a pristine encoder using the question without any selection 
+        // set, and decode from BigInt to rawBallot and test it
+        var decoder = answerEncoder(data.question);
+        // expect(codec.sanityCheck()).toBe(true);
+        const decodedRawBallot = decoder.decodeFromBigInt(data.bigIntBallot);
+        expect(stringify(decodedRawBallot))
+          .toBe(stringify(data.rawBallot));
+        
+        // 4. decode from raw ballot to ballot and test it
+        const decodedBallot = decoder.decodeRawBallot(decodedRawBallot);
+        expect(stringify(decodedBallot))
+          .toBe(stringify(data.ballot));
+      }
+    );
+
     /*it(
       "AnswerEncoderService full test ", 
       function () 
       {
         // the question contains the minimum data required for the encoder to
         // work
-        var question = {
+        const question = {
           tally_type: "plurality-at-large",
           answers: [
             {id: 0},
@@ -581,8 +729,8 @@ describe(
         expect(codec.sanityCheck()).toBe(true);
         
         // check raw ballot getter
-        var answers = codec.encodeRawBallot();
-        expect(stringify(answers))
+        const rawBallot = codec.encodeRawBallot();
+        expect(stringify(rawBallot))))
           .toBe(stringify({
             bases: [2, 2, 2, 2, 2, 2, 2, 2],
             choices:   [0, 0, 1, 0, 0, 0, 1, 0]
