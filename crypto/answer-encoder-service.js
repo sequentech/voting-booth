@@ -440,7 +440,7 @@ angular
                 return hasUrl(answer.urls, 'invalidVoteFlag', 'true');
               }
             );
-            const invalidVoteFlag = invalidVoteAnswer && (invalidVoteAnswer.selected > 0)
+            const invalidVoteFlag = invalidVoteAnswer && (invalidVoteAnswer.selected > -1)
               ? 1 : 0;
 
             const writeInAnwsers = _.filter(
@@ -583,9 +583,9 @@ angular
             {
               if(rawBallot.choices[0] > 0)
               {
-                invalidVoteAnswer.selected = 1;
-              } else {
                 invalidVoteAnswer.selected = 0;
+              } else {
+                invalidVoteAnswer.selected = -1;
               }
             }
 

@@ -179,7 +179,7 @@ describe(
             {id: 2},
             {
               id: 3,
-              selected: 1,
+              selected: 0,
               urls: [{title: 'invalidVoteFlag', url: 'true'}]
             },
             {
@@ -381,6 +381,45 @@ describe(
     );
 
     it(
+      "AnswerEncoderService decodeRawBallot invalid ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        var question = {
+          tally_type: "plurality-at-large",
+          answers: [
+            {id: 0},
+            {id: 1},
+            {
+              id: 2,
+              urls: [{title: 'invalidVoteFlag', url: 'true'}]
+            }
+          ]
+        };
+        var codec = answerEncoder(question);
+
+        var decodedBallot = codec.decodeRawBallot({
+          bases: [2, 2, 2],
+          choices:   [1, 1, 0]
+        });
+        expect(stringify(decodedBallot))
+          .toBe(stringify({
+            tally_type: "plurality-at-large",
+            answers: [
+              {id: 0, selected: 0},
+              {id: 1, selected: -1},
+              {
+                id: 2,
+                selected: 0,
+                urls: [{title: 'invalidVoteFlag', url: 'true'}]
+              }
+            ]
+          }));
+      }
+    );
+
+    it(
       "AnswerEncoderService decodeRawBallot write-ins 1 ", 
       function () 
       {
@@ -425,7 +464,7 @@ describe(
               {id: 2, selected: -1},
               {
                 id: 3,
-                selected: 1,
+                selected: 0,
                 urls: [{title: 'invalidVoteFlag', url: 'true'}]
               },
               {
@@ -494,7 +533,7 @@ describe(
               {id: 2, selected: -1},
               {
                 id: 3,
-                selected: 0,
+                selected: -1,
                 urls: [{title: 'invalidVoteFlag', url: 'true'}]
               },
               {
