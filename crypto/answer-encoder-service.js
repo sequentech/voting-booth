@@ -19,16 +19,7 @@
  * Encodes/Decodes the answer to a question given the question type.
  *
  * The encoder function always receives answer as a list of answer ids.
- *
- * Usage:
- *   var codec = AnswerEncoderService(question);
- *   assert(codec.sanityCheck()).toBe(true);
- *   var encoded = codec.encode([1, 5]);
- *   var decoded = codec.decode(encoded);
- *   assert(DeterministicJsonStringifyService(decoded) ==
- *          DeterministicJsonStringifyService([1, 5])).toBe(true);
  */
-
 angular
   .module('avCrypto')
   .service(
@@ -759,7 +750,7 @@ angular
            * 
            * @returns true if the test checks out
            */
-          specificSanityCheck: function()
+           sanityCheck: function()
           {
             try {
               const data = {
@@ -838,7 +829,6 @@ angular
               }
       
               // 2. encode from rawBallot to BigInt and test it
-              console.log(stringify(rawBallot));
               const bigIntBallot = encoder.encodeToBigInt(rawBallot);
               if (stringifyBigInt(bigIntBallot) != stringifyBigInt(data.bigIntBallot))
               {
@@ -868,72 +858,6 @@ angular
             }
 
             return true;
-          },
-
-          // question is optional
-          sanityCheck: function() 
-          {
-            return this.specificSanityCheck();
-            /*
-            try {
-              var possibleAnswers = _.times(
-                this.numAvailableOptions, 
-                function(n) 
-                {
-                  return n + 1;
-                }
-              );
-
-              if (question !== undefined)
-              {
-                possibleAnswers = _.pluck(this.question.answers, "id");
-              }
-
-              // TODO do a test with specific input and output values
-
-              // test 10 random ballots. Note, we won't honor the limits of number
-              // of options for this question for simplicity, we'll just do some
-              // tests to assure everything is fine.
-              for (var i = 0; i < 10; i++) 
-              {
-                // generate answer
-                var answer = [];
-                var randomNumOptions = Math.ceil(Math.random() * 10000) % possibleAnswers.length;
-                for (var j = 0; j < randomNumOptions; j++) 
-                {
-                  var rnd = Math.ceil(Math.random() * 10000) % possibleAnswers.length;
-                  var opt = possibleAnswers[rnd];
-                  // do not duplicate options
-                  if (_.indexOf(answer, opt) === -1) 
-                  {
-                    answer.push(opt);
-                  }
-                }
-                // check encode -> decode pipe doesn't modify the ballot
-                var encodedAnswer = multi.encodeToBigInt(answer);
-                var decodedAnswer = stringify(multi.decodeFromBigInt(encodedAnswer));
-                if (stringify(answer) !== decodedAnswer) 
-                {
-                  return false;
-                }
-              }
-
-              // test blank vote
-              var encoded = multi.encode([]);
-              var decoded = stringify(multi.decode(encoded));
-              if (stringify([]) !== decoded)
-              {
-                return false;
-              }
-            // if any any exception is thrown --> sanity check didnt pass
-            }
-            catch (e) 
-            {
-              return false;
-            }
-
-            // if everything whent right
-            return true;*/
           }
         };
 
