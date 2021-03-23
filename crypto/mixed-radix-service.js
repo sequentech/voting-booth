@@ -61,8 +61,8 @@ angular
         * Mixed number decoding. It will decode using multiple different bases.
         * 
         * @param {BigInt[]} baseList     List of positive integer bases to use.
-        * @param {BigInt}   lastBase     Base to use if baseList is too short.
         * @param {BigInt}   encodedValue Integer value to decode.
+        * @param {BigInt}   lastBase     Base to use if baseList is too short.
         * 
         * @return List of positive BigInt values.
         */
@@ -78,6 +78,12 @@ angular
             const base = (index < baseList.length)
               ? baseList[index]
               : lastBase;
+            if (index >= baseList.length && !angular.isDefined(lastBase))
+            {
+              throw new Error(
+                'Error decoding: lasBase was needed but not provided'
+              );
+            }
 
             decodedValues.push(accumulator.remainder(base));
             accumulator = accumulator.divide(base);
