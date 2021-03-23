@@ -652,7 +652,6 @@ describe(
           .toBe(stringify(data.rawBallot));
 
         // 2. encode from rawBallot to BigInt and test it
-        console.log(stringify(rawBallot));
         const bigIntBallot = encoder.encodeToBigInt(rawBallot);
         expect(stringifyBigInt(bigIntBallot))
           .toBe(stringifyBigInt(data.bigIntBallot));
@@ -669,6 +668,86 @@ describe(
         const decodedBallot = decoder.decodeRawBallot(decodedRawBallot);
         expect(stringify(decodedBallot))
           .toBe(stringify(data.ballot));
+      }
+    );
+
+    it(
+      "AnswerEncoderService biggestEncodableNormalBallot ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        const data = [
+          {
+            question: {
+              tally_type: "plurality-at-large",
+              answers: [
+                {id: 0},
+                {id: 1}
+              ]
+            },
+            expectedValue: "7"
+          },
+          {
+            question: {
+              tally_type: "borda",
+              max: 3,
+              answers: [
+                {id: 0},
+                {id: 1},
+                {id: 2}
+              ]
+            },
+            expectedValue: "" + (1 + 3*2 + 3*2*4 + 3*2*4*4) // 127
+          },
+          {
+            question: {
+              tally_type: "plurality-at-large",
+              max: 3,
+              extra_options: {allow_writeins: true},
+              answers: [
+                {id: 0},
+                {id: 1},
+                {id: 2},
+                {
+                  id: 3,
+                  urls: [{title: 'invalidVoteFlag', url: 'true'}]
+                },
+                {
+                  id: 4,
+                  urls: [{title: 'isWriteIn', url: 'true'}]
+                },
+                {
+                  id: 5,
+                  urls: [{title: 'isWriteIn', url: 'true'}]
+                },
+                {
+                  id: 6,
+                  urls: [{title: 'isWriteIn', url: 'true'}]
+                }
+              ]
+            },
+            // highestValueList = [1, 1, 1, 1, 1, 1, 1, 255, 255, 255]
+            // bases =            [2, 2, 2, 2, 2, 2, 2, 256, 256, 256]
+            // expectedValue = "" + (1 + 1*2 + 2**2 + 2**3 + 2**4 + 2**5 + 2**6 + 255*(2**7) + 255*(2**7)*256  + 255*(2**7)*(256**2)) = "2147483647"
+            expectedValue: "2147483647"
+          }
+        ];
+
+        for (var i = 0; i < data.length; i++)
+        {
+          const element = data[i];
+          var codec = answerEncoder(element.question);
+          expect(codec.sanityCheck()).toBe(true);
+          
+          // check the number of bytes left
+          expect(
+            stringifyBigInt(
+              codec.biggestEncodableNormalBallot()
+            )
+          )
+            .toBe(element.expectedValue);
+        }
       }
     );
   }

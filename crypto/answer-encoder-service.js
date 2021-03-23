@@ -32,6 +32,17 @@ angular
       var stringify = DeterministicJsonStringifyService;
       var mixedRadix = MixedRadixService;
 
+      function toBigIntArray(intArray)
+      {
+        return _.map(
+          intArray,
+          function (intValue)
+          {
+            return new BigInt("" + intValue, 10);
+          }
+        );
+      }
+
       // TODO: deduplicate these functions
 
       /**
@@ -858,7 +869,77 @@ angular
             }
 
             return true;
+          },
+
+          /**
+           * @returns the biggest encodable ballot that doesn't include any
+           * write-in text (or they are empty strings) encoded as a big int 
+           * voting to non-write-ins.
+           * 
+           * Used to know if the ballot would overflow, for example during
+           * election creation, because it contains too many options.
+           */
+          biggestEncodableNormalBallot: function()
+          {
+            const bases = this.getBases();
+
+            // calculate the biggest number that can be encoded with the 
+            // minumum number of bases, which should be bigger than modulus
+            const highestValueList = _.map(
+              bases,
+              function (base)
+              {
+                return base-1;
+              }
+            );
+            console.log("highestValueList = " + stringifyBigInt(highestValueList));
+            console.log("bases = " + stringifyBigInt(bases));
+            const highestBigInt = mixedRadix.encode(
+              toBigIntArray(highestValueList),
+              toBigIntArray(bases)
+            );
+            return highestBigInt;
+          },
+
+          /**
+           * @returns the numbers of ASCII characters left to encode a number
+           * not bigger than the BigInt modulus given as input.
+           */
+          numWriteInBytesLeft: function (modulus)
+          {
+            // The calculations here do not make sense when there are no 
+            // write-ins
+            if (
+              !this.question.extra_options ||
+              !this.question.extra_options.allow_writeins
+            ) {
+              throw new Error("Contest does not have write-ins");
+            }
+
+            // Sanity check: modulus needs to be bigger than the biggest 
+            // encodable normal ballot
+            const bases = this.getBases();
+            const highestBigInt = this.biggestEncodableNormalBallot();
+            if (modulus.compareTo(highestBigInt) < 0)
+            {
+              throw new Error("modulus too small");
+            }
+
+            // If we decode the modulus bigint as a ballot, the value will
+            // be garbage but the number of bases will be 1 too many (as the
+            // last base will never be usable). 
+            const decodedmodulusBallot = this.decodeRawBallot(modulus);
+            const encodedRawBallot = this.encodeRawBallot();
+            const maxBaseLength = decodedmodulusBallot.bases.length - 1;
+
+            // As we know that the modulus is big enough for a ballot with no
+            // write-ins and because we know all extra bases will be bytes,
+            // the difference between the number of bases used for encoding the
+            // ballot and the number of bases used to encode the modulus is the
+            // number of byte bases left
+            return maxBaseLength - encodedRawBallot.bases.length;
           }
+
         };
 
         var codecs = [multi];
