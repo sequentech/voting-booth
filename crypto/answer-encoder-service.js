@@ -43,6 +43,17 @@ angular
         );
       }
 
+      function fromBigIntArray(bigIntArray)
+      {
+        return _.map(
+          bigIntArray,
+          function (bigIntValue)
+          {
+            return parseInt(bigIntValue.toString(), 10)
+          }
+        );
+      }
+
       // TODO: deduplicate these functions
 
       /**
@@ -141,7 +152,7 @@ angular
         }
       }
 
-      return function (question) 
+      var answerEncoder = function (question) 
       {
         const requestedCodec = question.tally_type;
         const numAvailableOptions = question.answers.length;
@@ -429,13 +440,7 @@ angular
               /*encodedValue = */ bigIntBallot,
               /* lastBase = */ new BigInt("256", 10)
             );
-            const choices = _.map(
-              bigIntChoices,
-              function (intValue)
-              {
-                return parseInt(intValue.toString(), 10);
-              }
-            );
+            const choices = fromBigIntArray(bigIntChoices);
 
             // minor changes are required for the write-ins
             if (
@@ -892,8 +897,6 @@ angular
                 return base-1;
               }
             );
-            console.log("highestValueList = " + stringifyBigInt(highestValueList));
-            console.log("bases = " + stringifyBigInt(bases));
             const highestBigInt = mixedRadix.encode(
               toBigIntArray(highestValueList),
               toBigIntArray(bases)
@@ -928,9 +931,13 @@ angular
             // If we decode the modulus bigint as a ballot, the value will
             // be garbage but the number of bases will be 1 too many (as the
             // last base will never be usable). 
-            const decodedmodulusBallot = this.decodeRawBallot(modulus);
+            const decodedModulus  = mixedRadix.decode(
+              /* baseList = */ toBigIntArray(bases),
+              /* encodedValue = */ modulus,
+              new BigInt("256", 10)
+            );
             const encodedRawBallot = this.encodeRawBallot();
-            const maxBaseLength = decodedmodulusBallot.bases.length - 1;
+            const maxBaseLength = decodedModulus.length - 1;
 
             // As we know that the modulus is big enough for a ballot with no
             // write-ins and because we know all extra bases will be bytes,
@@ -959,5 +966,6 @@ angular
 
         return foundCodec;
       };
+      return answerEncoder;
     })
   ;

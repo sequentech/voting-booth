@@ -64,7 +64,7 @@ angular
         * @param {BigInt}   lastBase     Base to use if baseList is too short.
         * @param {BigInt}   encodedValue Integer value to decode.
         * 
-        * @return List of positive integer bases to use.
+        * @return List of positive BigInt values.
         */
         function decoder(baseList, encodedValue, lastBase) 
         {

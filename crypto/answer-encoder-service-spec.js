@@ -750,6 +750,124 @@ describe(
         }
       }
     );
+
+    it(
+      "AnswerEncoderService numWriteInBytesLeft ", 
+      function () 
+      {
+        // the question contains the minimum data required for the encoder to
+        // work
+        const data = [
+          {
+            question: {
+              tally_type: 'plurality-at-large',
+              answers: [
+                {id: 0},
+                {id: 1}
+              ]
+            },
+            modulus: '111',
+            bytesLeft: 'throws'
+          },
+          {
+            question: {
+              tally_type: 'plurality-at-large',
+              max: 1,
+              extra_options: {allow_writeins: true},
+              answers: [
+                {id: 0},
+                {id: 1},
+                {
+                  id: 2,
+                  urls: [{title: 'isWriteIn', url: 'true'}]
+                }
+              ]
+            },
+            modulus: "" + (1 + 1*2 + 1*2*2 + 1*2*2 + 255*2*2*2 + 255*2*2*2*256 + 1*2*2*2*256*256), // 1048579
+            bytesLeft: 1
+          },
+          {
+            question: {
+              tally_type: 'plurality-at-large',
+              max: 1,
+              extra_options: {allow_writeins: true},
+              answers: [
+                {id: 0},
+                {id: 1},
+                {
+                  id: 2,
+                  urls: [{title: 'isWriteIn', url: 'true'}]
+                }
+              ]
+            },
+            modulus: "" + (1 + 1*2 + 1*2*2 + 1*2*2 + 255*2*2*2 + 255*2*2*2*256 + 255*2*2*2*256*256), // 1048579
+            bytesLeft: 1
+          },
+          {
+            question: {
+              tally_type: 'plurality-at-large',
+              max: 1,
+              extra_options: {allow_writeins: true},
+              answers: [
+                {id: 0},
+                {id: 1},
+                {
+                  id: 2,
+                  urls: [{title: 'isWriteIn', url: 'true'}]
+                }
+              ]
+            },
+            modulus: "" + (1 + 1*2 + 1*2*2 + 1*2*2 + 255*2*2*2 + 255*2*2*2*256 + 255*2*2*2*256*256 + 1*2*2*2*256*256*256),
+            bytesLeft: 2
+          },
+          {
+            question: {
+              tally_type: 'plurality-at-large',
+              max: 1,
+              extra_options: {allow_writeins: true},
+              answers: [
+                {id: 0},
+                {id: 1},
+                {
+                  id: 2,
+                  urls: [{title: 'isWriteIn', url: 'true'}]
+                }
+              ]
+            },
+            modulus: "" + (1 + 1*2 + 1*2*2 + 1*2*2 + 255*2*2*2 + 255*2*2*2*256 + 255*2*2*2*256*256 + 255*2*2*2*256*256*256),
+            bytesLeft: 2
+          },
+        ];
+
+        for (var i = 0; i < data.length; i++)
+        {
+          const element = data[i];
+          var codec = answerEncoder(element.question);
+          expect(codec.sanityCheck()).toBe(true);
+
+          // check the number of bytes left
+          if (element.bytesLeft === 'throws')
+          {
+            expect(
+              function () 
+              {
+                return codec.numWriteInBytesLeft(
+                  new BigInt(element.modulus, 10)
+                )
+              }
+            ).toThrow();
+          } 
+          else
+          {
+            expect(
+              codec.numWriteInBytesLeft(
+                new BigInt(element.modulus, 10)
+              )
+            ).toBe(element.bytesLeft);
+          }
+        }
+      }
+    );
   }
 );
 
