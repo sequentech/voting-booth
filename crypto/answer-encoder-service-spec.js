@@ -53,6 +53,72 @@ describe(
       )
     );
 
+
+    it(
+      "AnswerEncoderService getBases ", 
+      function () 
+      {
+        // The question contains the minimum data required for the encoder to work
+        const data_list = [
+          {
+            question:{
+              tally_type:"plurality-at-large",
+              answers:[
+                {id:0},
+                {id:1,selected:0},
+                {id:2},
+                {id:3},
+                {id:4},
+                {id:5, selected:1},
+                {id:6}
+              ]
+            },
+            bases:[2, 2, 2, 2, 2, 2, 2, 2]
+          },
+          {
+            question:{
+              tally_type:"plurality-at-large",
+              answers:[
+                {id:0},
+              ]
+            },
+            bases:[2, 2]
+          },
+          {
+            question:{
+              tally_type:"borda",
+              max:1,
+              answers:[
+                {id:0},
+              ]
+            },
+            bases:[2, 2]
+          },
+          {
+            question:{
+              tally_type:"borda",
+              max:2,
+              answers:[
+                {id:0},
+                {id:1},
+                {id:2}
+              ]
+            },
+            bases:[2, 3, 3, 3]
+          },
+        ]
+        _.each(
+          data_list,
+          function(data)
+          {
+            const codec = answerEncoder(data["question"])
+            expect(stringify(codec.getBases()))
+              .toBe(stringify(data["bases"]));
+          }
+        );
+      }
+    );
+
     it(
       "AnswerEncoderService encodeRawBallot 1 ", 
       function () 

@@ -197,7 +197,6 @@ angular
             // Calculate the base for answers. It depends on the 
             // `question.tally_type`:
             // - plurality-at-large: base 2 (value can be either 0 o 1)
-            // - 
             // - preferential (*bordas*): question.max + 1
             // - cummulative: question.max + 1
             const answerBase = (this.question.tally_type === "plurality-at-large") 
