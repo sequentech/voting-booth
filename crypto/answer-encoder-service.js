@@ -707,7 +707,7 @@ angular
               // 6.2. Split the write-in bytes arrays in multiple sub-arrays 
               // using byte \0 as a separator.
               var writeInsRawBytesArray = [ [] ];
-               _.each(
+              _.each(
                 writeInRawBytes,
                 function (byteElement, index)
                 {
@@ -722,8 +722,8 @@ angular
                   }
                   else 
                   {
-                    const index = writeInsRawBytesArray.length-1;
-                    writeInsRawBytesArray[index].push(byteElement);
+                    const lastIndex = writeInsRawBytesArray.length-1;
+                    writeInsRawBytesArray[lastIndex].push(byteElement);
                   }
                 }
               );
@@ -836,7 +836,6 @@ angular
               };
               // 1. encode from ballot to rawBallot and test it
               var encoder = answerEncoder(data.ballot);
-              // expect(codec.sanityCheck()).toBe(true);
               const rawBallot = encoder.encodeRawBallot();
               if (stringify(rawBallot) != stringify(data.rawBallot))
               {
@@ -853,7 +852,6 @@ angular
               // 3. create a pristine encoder using the question without any selection 
               // set, and decode from BigInt to rawBallot and test it
               var decoder = answerEncoder(data.question);
-              // expect(codec.sanityCheck()).toBe(true);
               const decodedRawBallot = decoder.decodeFromBigInt(data.bigIntBallot);
               if (stringify(decodedRawBallot) != stringify(data.rawBallot))
               {
@@ -869,7 +867,7 @@ angular
             }
             catch (e)
             {
-              throw e;
+              return false;
             }
 
             return true;
@@ -922,7 +920,7 @@ angular
             // encodable normal ballot
             const bases = this.getBases();
             const highestBigInt = this.biggestEncodableNormalBallot();
-            if (modulus.compareTo(highestBigInt) < 0)
+            if (modulus.compareTo(highestBigInt) <= 0)
             {
               throw new Error("modulus too small");
             }
