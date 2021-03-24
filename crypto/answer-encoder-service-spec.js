@@ -641,7 +641,7 @@ describe(
     );
 
     it(
-      "AnswerEncoderService decodeRawBallot full encoding test ", 
+      "AnswerEncoderService full encoding test ", 
       function () 
       {
         const data = {
