@@ -1,4 +1,5 @@
 {
+    "esversion": 6,
     "curly": true,
     "eqeqeq": true,
     "immed": true,
@@ -12,6 +13,7 @@
     "browser": true,
     "smarttabs": true,
     "globals": {
+        "BigInt": true,
         "jQuery": true,
         "angular": true,
         "console": true,

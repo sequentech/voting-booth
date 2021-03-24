@@ -16,7 +16,7 @@
 **/
 
 /**
- * Implements mixed radix encoding and decoding with BigInt numbers. 
+ * Implements mixed radix encoding and decoding with BigInt numbers.
  * Returns an object with two elements, 'encode' and 'decode', which are the
  * two functions defined and described below.
  */
@@ -24,30 +24,30 @@ angular
   .module('avCrypto')
   .service(
     'MixedRadixService',
-    function(BigIntService) 
+    function(BigIntService)
     {
       var BigInt = BigIntService;
       /**
        * Mixed number encoding. It will encode using multiple different bases. The
        * number of bases and the number of values need to be equal.
-       * 
+       *
        * @param {BigInt[]} valueList List of positive integer number values to encode.
        * @param {BigInt[]} baseList List of positive integer bases to use.
        */
-      function encoder(valueList, baseList) 
+      function encoder(valueList, baseList)
       {
         // validate
-        if (valueList.length !== baseList.length) 
+        if (valueList.length !== baseList.length)
         {
           throw new Error(
-            "Invalid parameters: 'valueList' and 'baseList' must have the same " + 
+            "Invalid parameters: 'valueList' and 'baseList' must have the same " +
             "length."
           );
         }
-  
+
         // Encode
         var encodedValue = new BigInt("0");
-  
+
         for (var index = valueList.length - 1; index >= 0; index--)
         {
           encodedValue = encodedValue
@@ -56,28 +56,27 @@ angular
         }
         return encodedValue;
       }
-  
+
       /**
         * Mixed number decoding. It will decode using multiple different bases.
-        * 
+        *
         * @param {BigInt[]} baseList     List of positive integer bases to use.
         * @param {BigInt}   encodedValue Integer value to decode.
         * @param {BigInt}   lastBase     Base to use if baseList is too short.
-        * 
+        *
         * @return List of positive BigInt values.
         */
-        function decoder(baseList, encodedValue, lastBase) 
+        function decoder(baseList, encodedValue, lastBase)
         {
           var decodedValues = [];
           var accumulator = encodedValue.clone();
           var zero = new BigInt("0", 10);
           var index = 0;
-    
+
           while (accumulator.compareTo(zero) > 0)
           {
-            const base = (index < baseList.length)
-              ? baseList[index]
-              : lastBase;
+            const base = (index < baseList.length) ?
+              baseList[index] : lastBase;
             if (index >= baseList.length && !angular.isDefined(lastBase))
             {
               throw new Error(

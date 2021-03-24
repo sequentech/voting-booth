@@ -17,19 +17,19 @@
 
 /*
  * AnswerEncodeService unit tests
- * 
+ *
  */
 /* jshint ignore:start */
 describe(
-  "MixedRadixService tests", 
-  function () 
+  "MixedRadixService tests",
+  function ()
   {
     beforeEach(module("avCrypto"));
 
     beforeEach(
       inject(
         function (
-          _MixedRadixService_, 
+          _MixedRadixService_,
           _DeterministicJsonStringifyService_,
           _BigIntService_
         ) {
@@ -51,7 +51,7 @@ describe(
       );
     }
 
-    function stringifyBigInt(obj) 
+    function stringifyBigInt(obj)
     {
       if (Array.isArray(obj)) {
         var serialized = [];
@@ -211,7 +211,7 @@ describe(
                 new BigInt("2", 10),
                 new BigInt("256", 10)
               ],
-              /* encodedValue = */new BigInt(""+encodedValue, 10),  
+              /* encodedValue = */new BigInt(""+encodedValue, 10),
               /* lastBase */ new BigInt("256", 10)
             )
           )
@@ -237,7 +237,7 @@ describe(
                 new BigInt("256", 10),
                 new BigInt("256", 10)
               ],
-              /* encodedValue = */new BigInt(""+encodedValue, 10),  
+              /* encodedValue = */new BigInt(""+encodedValue, 10),
               /* lastBase */ new BigInt("256", 10)
             )
           )

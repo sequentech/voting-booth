@@ -23,11 +23,11 @@
 angular
   .module('avCrypto')
   .service(
-    'AnswerEncoderService', 
+    'AnswerEncoderService',
     function(
       DeterministicJsonStringifyService,
       MixedRadixService
-    ) 
+    )
     {
       var stringify = DeterministicJsonStringifyService;
       var mixedRadix = MixedRadixService;
@@ -49,7 +49,7 @@ angular
           bigIntArray,
           function (bigIntValue)
           {
-            return parseInt(bigIntValue.toString(), 10)
+            return parseInt(bigIntValue.toString(), 10);
           }
         );
       }
@@ -62,25 +62,23 @@ angular
        */
       function hasUrl(urls, title, url)
       {
-        const url = _.find(
+        const u = _.find(
           urls,
-          function(urlObject) 
+          function(urlObject)
           {
             return urlObject.title === title && urlObject.url === url;
           }
         );
-        if (url) {
-          return true;
-        }
-        return false;
+
+        return !!u;
       }
 
       // source https://gist.github.com/pascaldekloe/62546103a1576803dade9269ccf76330
       // Marshals a string to an Uint8Array.
-      function encodeUTF8(s) 
+      function encodeUTF8(s)
       {
         var i = 0, bytes = new Uint8Array(s.length * 4);
-        for (var ci = 0; ci != s.length; ci++) {
+        for (var ci = 0; ci !== s.length; ci++) {
           var c = s.charCodeAt(ci);
           if (c < 128) {
             bytes[i++] = c;
@@ -90,15 +88,19 @@ angular
             bytes[i++] = c >> 6 | 192;
           } else {
             if (c > 0xd7ff && c < 0xdc00) {
-              if (++ci >= s.length)
+              if (++ci >= s.length) {
                 throw new Error('UTF-8 encode: incomplete surrogate pair');
+              }
               var c2 = s.charCodeAt(ci);
-              if (c2 < 0xdc00 || c2 > 0xdfff)
+              if (c2 < 0xdc00 || c2 > 0xdfff) {
                 throw new Error('UTF-8 encode: second surrogate character 0x' + c2.toString(16) + ' at index ' + ci + ' out of range');
+              }
               c = 0x10000 + ((c & 0x03ff) << 10) + (c2 & 0x03ff);
               bytes[i++] = c >> 18 | 240;
               bytes[i++] = c >> 12 & 63 | 128;
-            } else bytes[i++] = c >> 12 | 224;
+            } else {
+              bytes[i++] = c >> 12 | 224;
+            }
             bytes[i++] = c >> 6 & 63 | 128;
           }
           bytes[i++] = c & 63 | 128;
@@ -107,41 +109,49 @@ angular
       }
 
       // Unmarshals a string from an Uint8Array.
-      function decodeUTF8(bytes) 
+      function decodeUTF8(bytes)
       {
         var i = 0, s = '';
         while (i < bytes.length) {
           var c = bytes[i++];
           if (c > 127) {
             if (c > 191 && c < 224) {
-              if (i >= bytes.length)
+              if (i >= bytes.length) {
                 throw new Error('UTF-8 decode: incomplete 2-byte sequence');
+              }
               c = (c & 31) << 6 | bytes[i++] & 63;
             } else if (c > 223 && c < 240) {
-              if (i + 1 >= bytes.length)
+              if (i + 1 >= bytes.length) {
                 throw new Error('UTF-8 decode: incomplete 3-byte sequence');
+              }
               c = (c & 15) << 12 | (bytes[i++] & 63) << 6 | bytes[i++] & 63;
             } else if (c > 239 && c < 248) {
-              if (i + 2 >= bytes.length)
+              if (i + 2 >= bytes.length) {
                 throw new Error('UTF-8 decode: incomplete 4-byte sequence');
+              }
               c = (c & 7) << 18 | (bytes[i++] & 63) << 12 | (bytes[i++] & 63) << 6 | bytes[i++] & 63;
-            } else throw new Error('UTF-8 decode: unknown multibyte start 0x' + c.toString(16) + ' at index ' + (i - 1));
+            } else {
+              throw new Error('UTF-8 decode: unknown multibyte start 0x' + c.toString(16) + ' at index ' + (i - 1));
+            }
           }
-          if (c <= 0xffff) s += String.fromCharCode(c);
-          else if (c <= 0x10ffff) {
+          if (c <= 0xffff) {
+            s += String.fromCharCode(c);
+          } else if (c <= 0x10ffff) {
             c -= 0x10000;
-            s += String.fromCharCode(c >> 10 | 0xd800)
-            s += String.fromCharCode(c & 0x3FF | 0xdc00)
-          } else throw new Error('UTF-8 decode: code point 0x' + c.toString(16) + ' exceeds UTF-16 reach');
+            s += String.fromCharCode(c >> 10 | 0xd800);
+            s += String.fromCharCode(c & 0x3FF | 0xdc00);
+          } else {
+            throw new Error('UTF-8 decode: code point 0x' + c.toString(16) + ' exceeds UTF-16 reach');
+          }
         }
         return s;
       }
-      
-      function stringifyBigInt(obj) 
+
+      function stringifyBigInt(obj)
       {
         if (Array.isArray(obj)) {
           var serialized = [];
-          for(i = 0; i < obj.length; i++) {
+          for(var i = 0; i < obj.length; i++) {
             serialized.push(stringifyBigInt(obj[i]));
           }
           return "[" + serialized.join(",") + "]";
@@ -152,18 +162,18 @@ angular
         }
       }
 
-      var answerEncoder = function (question) 
+      var answerEncoder = function (question)
       {
         const requestedCodec = question.tally_type;
         const numAvailableOptions = question.answers.length;
         var multi = {
           validCodecs: [
-            "plurality-at-large", 
-            "borda-nauru", 
-            "borda", 
-            "desborda3", 
-            "desborda2", 
-            "desborda", 
+            "plurality-at-large",
+            "borda-nauru",
+            "borda",
+            "desborda3",
+            "desborda2",
+            "desborda",
             "borda-mas-madrid",
             "cumulative"
           ],
@@ -173,19 +183,19 @@ angular
           /**
            * Obtains the bases related to this question.
            */
-          getBases: function () 
+          getBases: function ()
           {
             // sort answers by id
             var sortedAnswers = _.sortBy(
-              this.question.answers, 
-              function (option) 
+              this.question.answers,
+              function (option)
               {
                 return option.id;
               }
             );
 
             const validAnwsers = _.filter(
-              sortedAnswers, 
+              sortedAnswers,
               function (answer)
               {
                 return (
@@ -194,14 +204,13 @@ angular
               }
             );
 
-            // Calculate the base for answers. It depends on the 
+            // Calculate the base for answers. It depends on the
             // `question.tally_type`:
             // - plurality-at-large: base 2 (value can be either 0 o 1)
             // - preferential (*bordas*): question.max + 1
             // - cummulative: question.max + 1
-            const answerBase = (this.question.tally_type === "plurality-at-large") 
-              ? 2
-              : this.question.max + 1;
+            const answerBase = (this.question.tally_type === "plurality-at-large") ?
+              2 : this.question.max + 1;
 
             // Set the initial bases and raw ballot. We will populate the rest
             // next.
@@ -212,11 +221,11 @@ angular
 
             // populate with byte-sized bases for the \0 end for each write-in
             if (
-              this.question.extra_options && 
+              this.question.extra_options &&
               this.question.extra_options.allow_writeins
             ) {
               const writeInAnwsers = _.filter(
-                sortedAnswers, 
+                sortedAnswers,
                 function (answer)
                 {
                   return hasUrl(answer.urls, 'isWriteIn', 'true');
@@ -229,57 +238,57 @@ angular
           },
 
           /**
-           * Converts a raw ballot into an encoded number ready to be encrypted. 
+           * Converts a raw ballot into an encoded number ready to be encrypted.
            * A raw ballot is a list of positive integer numbers representing
            * the ballot, and can be obtained calling to `this.encodeRawBallot()`.
            *
-           * Encoding is done using mixed radix encoding. The bases are 
-           * automatically calculated when instancing this object. The bases 
+           * Encoding is done using mixed radix encoding. The bases are
+           * automatically calculated when instancing this object. The bases
            * used are either the number of points assigned to each answer or the
-           * position in which that answer was selected for preferential 
+           * position in which that answer was selected for preferential
            * elections. Please refer to mixed radix documentation to understand
            * how it works or read https://en.wikipedia.org/wiki/Mixed_radix
-           * 
+           *
            * # Basics
-           * 
+           *
            * If in a `plurality-at-large` there are three candidates `A`, `B`,
            * and `C` with answer ids `0`, `1` and `2`, and the voter wants to
            * vote to candidates `A` and `C`, then his ballot choices (obtained
-           * using encodeRawBallot) will be  `v = [1, 0, 1]` and the encoded 
+           * using encodeRawBallot) will be  `v = [1, 0, 1]` and the encoded
            * choices will be encoded this way:
-           * 
+           *
            * ```
            * encodedChoices = v[0] + v[1]*b[0] + v[2]*b[0]*b[1]
            * encodedChoices = v[0] + b[0]*(v[1] + b[1]*v[2])
            * encodedChoices = 1 + 2*(0 + 2 * 1) = 1 + 4*1 = 5
            * ```
-           * 
+           *
            * And the bases are `b = [2, 2, 2]`. The reason the bases are 2 here
            * is because plurality-at-large is a non-preferential voting system
-           * and each base is representing if the voter chose (then we use 
-           * `v[x] = 1`) or not (then we use `v[x] = 0`), and the base is in 
+           * and each base is representing if the voter chose (then we use
+           * `v[x] = 1`) or not (then we use `v[x] = 0`), and the base is in
            * this case max(v[x])+1`.
-           * 
+           *
            * # Preferential systems
-           * 
+           *
            * In a preferential system, the voter can choose a specific ordering.
            * If we reuse the previous example, the voter might have chosen for
            * the first choice in his ballot candidate `A`, and for his second
            * choice candidate `B`. Not choosing a candidate would be encoded as
            * value `0`, so choosing it as first position would be value `1` and
            * so on. If the voter can choose up to 3 candidates, then the base
-           * would be `maxChoices+1 = 3+1 = 4`, and thus bases will be 
+           * would be `maxChoices+1 = 3+1 = 4`, and thus bases will be
            * `b = [4, 4, 4]` and choices would be `v = [1, 0, 2]` and the
            * encoded choices would be calculated as:
-           * 
+           *
            * ```
            * encodedChoices = v[0] + v[1]*b[1] + v[2]*b[1]*b[2]
            * encodedChoices = v[0] + b[0]*(v[1] + b[1]*v[2])
            * encodedChoices = 1 + 4*(0 + 4*2) = 1 + 16*2 = 33
            * ```
-           * 
+           *
            * # Invalid Ballot Flag
-           * 
+           *
            * What was outlined before is the basics, but actually it does not
            * work exactly like that. The first value (`v[0]`) in the raw ballot
            * does not really represent the vote for the first candidate answer,
@@ -287,77 +296,77 @@ angular
            * or not by the voter. Note that this is not the only way to create
            * an invalid ballot. For example the voter could vote to more options
            * than allowed, and that would also be an invalid ballot.
-           * 
+           *
            * We asumes the invalid ballot flag is represented in the question
            * as a answer inside `question.answers` and it is flagged  by having
-           * an element in `answer.urls` as 
+           * an element in `answer.urls` as
            * `{title: 'invalidVoteFlag', url: 'true'}`.
-           * 
+           *
            * Using the last example of a preferential vote, the bases would not
            * be `b = [4, 4, 4]` but `b = [2, 4, 4, 4]` (the first base encodes
            * always the invalid flag, whose max value is 1 so the base is always
            * 2).
-           * 
+           *
            * The choices would not be `v = [1, 0, 2]` but (if the vote was
            * not marked as invalid) `v = [0, 1, 0, 2]` and thus the encoded
            * choices would be calculated as:
-           * 
+           *
            * ```
            * encodedChoices = v[0] + b[0]*(v[1] + b[1]*(v[2] + b[2]*v[3])
            * encodedChoices = 0 + 2*(1 + 4*(0 + 4*2)) = 2*1 + 2*4*4*2
            * encodedChoices = 2*1 + 32*2 = 66
            * ```
-           * 
+           *
            * # Cumulative voting system
-           * 
+           *
            * In a cumulative voting system, the voter would have a total number
            * of integer points to assign to candidates, and the voter can assign
            * them to the available candidates with a maximum number of options
-           * that can be assigned to each candidate. 
-           * 
+           * that can be assigned to each candidate.
+           *
            * For example, the voter might be able to assign up to 2 points to
            * each candidate and assign a total of 3 points. In practice, the
-           * encoding is done in a very similar format as with preferential 
+           * encoding is done in a very similar format as with preferential
            * voting system. For each candidate, the value we assign is a number
            * that represents the points assigned to the candidate, and the base
            * used is the maximum number of assignable points plus one.
-           * 
+           *
            * Retaking the previous example used for plurality-at-large and used
-           * for a preferential voting system, if the voter can assign a 
+           * for a preferential voting system, if the voter can assign a
            * maximum of 4 points, and he wants to assign 2 points to candidate
            * `A` and 2 points to candidate `C` and he didn't mark his ballot
-           * as invalid, then his choices would be `v = [0, 2, 0, 1]`, the bases 
-           * would be `b = [2, 5, 5, 5]` and the encoded choices would be 
+           * as invalid, then his choices would be `v = [0, 2, 0, 1]`, the bases
+           * would be `b = [2, 5, 5, 5]` and the encoded choices would be
            * calculated as:
-           * 
+           *
            * ```
            * encodedChoices = v[0] + b[0]*(v[1] + b[1]*(v[2] + b[2]*v[3])
            * encodedChoices = 0 + 2*(2 + 5*(0 + 5*1)) = 2*2 + 2*5*5*1
            * encodedChoices = 2*2 + 50*1 = 54
            * ```
-           * 
+           *
            * # Write-ins
-           * 
+           *
            * This encoder supports write-ins. The idea of write-ins is that the
            * voter can choose candidates that are not in the preconfigured list
-           * of candidates. The maximum number of write-ins allowed is 
-           * calculated automatically by suppossing the voter tries to 
+           * of candidates. The maximum number of write-ins allowed is
+           * calculated automatically by suppossing the voter tries to
            * distribute his vote entirely just for write-in candidates, which
            * is usually `question.max`.
-           * 
+           *
            * The vote for each write-in is encoded using the same procedure as
            * for normal candidates, in order and as if the write-ins were in
-           * the list of candidates. It asumes all write-ins (even if not 
-           * selected) are in the list of candidates and they are flagged as 
+           * the list of candidates. It asumes all write-ins (even if not
+           * selected) are in the list of candidates and they are flagged as
            * such simply by an element in `answer.urls` as
            * `{title: 'isWriteIn', url: 'true'}`.
-           * 
+           *
            * For example in a plurality-at-large question example with three
            * candidates `A`, `B` and `C` where the voter can choose up to 2
            * candidates, if the voter wants to cast a valid ballot to his 2
-           * write-ins, then the bases, the choices and the encoded choices 
+           * write-ins, then the bases, the choices and the encoded choices
            * would be:
-           * 
+           *
            * ```
            * // bases
            * b = [2, 2, 2, 2, 2, 2]
@@ -365,21 +374,21 @@ angular
            * v = [0, 0, 0, 0, 1, 1]
            * encodedChoices = 1*2^4 + 1*2^5 = 48
            * ```
-           * 
+           *
            * # Write-in names
-           * 
+           *
            * Of course that's not where a vote with write-ins ends. If the voter
            * voted to the write-ins, we would also have to encode the free text
            * string of the name of the write-ins. This is done by converting the
-           * text from UTF-8 to numeric bytes, and encoding each byte using 
+           * text from UTF-8 to numeric bytes, and encoding each byte using
            * 2^8 = 256 as a base. The separation between the different write-in
            * names is done using an empty byte (so `v[x] = 0`).
-           * 
+           *
            * So if in our case the name of the voter's two write-ins is `D` and
            * `E`, and knowing that character D is encoded as number `68` and E
            * is `69`, then the bases, the choices and the encoded choices
            * would be:
-           * 
+           *
            * ```
            * // bases
            * b = [2, 2, 2, 2, 2, 2, 256, 256, 256, 256]
@@ -424,7 +433,7 @@ angular
            *
            * This function is very useful for sanity checks.
            */
-          decodeFromBigInt: function(bigIntBallot) 
+          decodeFromBigInt: function(bigIntBallot)
           {
             var bases = this.getBases();
             const bigIntBases = _.map(
@@ -443,7 +452,7 @@ angular
 
             // minor changes are required for the write-ins
             if (
-              this.question.extra_options && 
+              this.question.extra_options &&
               this.question.extra_options.allow_writeins
             ) {
               // add missing byte bases and last \0 in the choices
@@ -466,7 +475,7 @@ angular
           /**
            * @returns the ballot choices and the bases to be used for encoding
            * as an object, for example something like:
-           * 
+           *
            * ```
            * {
            *   choices: [0, 0, 0, 0, 1, 1, 68,  0,   69,  0],
@@ -477,12 +486,12 @@ angular
            * Please read the description of the encode function for details on
            * the output format of the raw ballot.
            */
-          encodeRawBallot: function() 
+          encodeRawBallot: function()
           {
             // sort answers by id
             var sortedAnswers = _.sortBy(
-              this.question.answers, 
-              function (option) 
+              this.question.answers,
+              function (option)
               {
                 return option.id;
               }
@@ -493,17 +502,17 @@ angular
             // - Write-ins (if any)
             // - Valid answers (normal answers + write-ins if any)
             const invalidVoteAnswer = _.find(
-              sortedAnswers, 
+              sortedAnswers,
               function (answer)
               {
                 return hasUrl(answer.urls, 'invalidVoteFlag', 'true');
               }
             );
-            const invalidVoteFlag = invalidVoteAnswer && (invalidVoteAnswer.selected > -1)
-              ? 1 : 0;
+            const invalidVoteFlag = invalidVoteAnswer && (invalidVoteAnswer.selected > -1) ?
+              1 : 0;
 
             const writeInAnwsers = _.filter(
-              sortedAnswers, 
+              sortedAnswers,
               function (answer)
               {
                 return hasUrl(answer.urls, 'isWriteIn', 'true');
@@ -511,7 +520,7 @@ angular
             );
 
             const validAnwsers = _.filter(
-              sortedAnswers, 
+              sortedAnswers,
               function (answer)
               {
                 return (
@@ -539,32 +548,29 @@ angular
                     !angular.isDefined(answer.selected) ||
                     answer.selected === null ||
                     answer.selected === -1
-                  )
-                    ? 0 : 1;
+                  ) ? 0 : 1;
                   choices.push(answerValue);
-                } 
-                else 
+                }
+                else
                 {
                   // we add 1 because the counting starts with 1, as zero means
                   // this answer was not voted / ranked
                   const answerValue = (
                     !angular.isDefined(answer.selected) ||
                     answer.selected === null
-                  )
-                    ? 0
-                    : answer.selected + 1;
+                  ) ? 0 : answer.selected + 1;
                   choices.push(answerValue);
                 }
               }
             );
-            
-            // Populate the bases and the rawBallot values with the write-ins 
-            // if there's any. We will through each write-in (if any), and then 
-            // encode the write-in answer.text string with UTF-8 and use for 
-            // each byte a specific value with base 256 and end each write-in 
+
+            // Populate the bases and the rawBallot values with the write-ins
+            // if there's any. We will through each write-in (if any), and then
+            // encode the write-in answer.text string with UTF-8 and use for
+            // each byte a specific value with base 256 and end each write-in
             // with a \0 byte. Note that even write-ins.
             if (
-              this.question.extra_options && 
+              this.question.extra_options &&
               this.question.extra_options.allow_writeins
             )
             {
@@ -572,7 +578,7 @@ angular
                 writeInAnwsers,
                 function (answer)
                 {
-                  if (!answer.text || answer.text.length === 0) 
+                  if (!answer.text || answer.text.length === 0)
                   {
                     // we don't do a bases.push(256) as this is done in getBases()
                   // end it with a zero
@@ -583,7 +589,7 @@ angular
                   const encodedText = encodeUTF8(answer.text);
                   _.each(
                     encodedText,
-                    function (textByte) 
+                    function (textByte)
                     {
                       bases.push(256);
                       choices.push(textByte);
@@ -605,26 +611,26 @@ angular
 
           /**
            * Does the opposite of `this.encodeRawBallot`.
-           * 
+           *
            * @returns `this.questions` with the data from the raw ballot.
            */
-          decodeRawBallot: function(rawBallot) 
+          decodeRawBallot: function(rawBallot)
           {
             // 1. clone the question and reset the selections
             var question = angular.copy(this.question);
             _.each(
               question.answers,
-              function (answer) 
+              function (answer)
               {
-                answer.selected = -1
+                answer.selected = -1;
               }
             );
 
             // 2. sort & segment answers
             // 2.1. sort answers by id
             var sortedAnswers = _.sortBy(
-              question.answers, 
-              function (option) 
+              question.answers,
+              function (option)
               {
                 return option.id;
               }
@@ -632,7 +638,7 @@ angular
 
             // 3. Obtain the invalidVote flag and set it.
             const invalidVoteAnswer = _.find(
-              sortedAnswers, 
+              sortedAnswers,
               function (answer)
               {
                 return hasUrl(answer.urls, 'invalidVoteFlag', 'true');
@@ -655,7 +661,7 @@ angular
             {
               throw new Error('Invalid Ballot: Not enough choices to decode');
             }
-            
+
             // 5. Obtain the vote for valid answers and populate the selections.
             const validAnwsers = _.filter(
               sortedAnswers,
@@ -676,27 +682,27 @@ angular
                 // we add 1 to the index because rawBallot.choice[0] is just the
                 // invalidVoteFlag
                 const choiceIndex = index + 1;
-                answer.selected = rawBallot.choices[choiceIndex] - 1
+                answer.selected = rawBallot.choices[choiceIndex] - 1;
               }
             );
 
-            // 6. Filter for the write ins, decode the write-in texts into 
+            // 6. Filter for the write ins, decode the write-in texts into
             //    UTF-8 and split by the \0 character, finally the text for the
             //    write-ins.
             if (
-              this.question.extra_options && 
+              this.question.extra_options &&
               this.question.extra_options.allow_writeins
             )
             {
               const writeInAnswers = _.filter(
-                sortedAnswers, 
+                sortedAnswers,
                 function (answer)
                 {
                   return hasUrl(answer.urls, 'isWriteIn', 'true');
                 }
               );
               // if no write ins, return
-              if (writeInAnswers.length === 0) 
+              if (writeInAnswers.length === 0)
               {
                 return question;
               }
@@ -704,14 +710,14 @@ angular
               // 6.1. Slice the choices to get only the bytes related to the write ins
               const writeInRawBytes = rawBallot.choices.slice(question.answers.length);
 
-              // 6.2. Split the write-in bytes arrays in multiple sub-arrays 
+              // 6.2. Split the write-in bytes arrays in multiple sub-arrays
               // using byte \0 as a separator.
               var writeInsRawBytesArray = [ [] ];
               _.each(
                 writeInRawBytes,
                 function (byteElement, index)
                 {
-                  if(byteElement === 0) 
+                  if(byteElement === 0)
                   {
                     // Start the next write-in byte array, but only if this is
                     // not the last one
@@ -720,7 +726,7 @@ angular
                       writeInsRawBytesArray.push([]);
                     }
                   }
-                  else 
+                  else
                   {
                     const lastIndex = writeInsRawBytesArray.length-1;
                     writeInsRawBytesArray[lastIndex].push(byteElement);
@@ -733,14 +739,14 @@ angular
                   "Invalid Ballot: invalid number of write-in bytes," +
                   " writeInsRawBytesArray.length = " + writeInsRawBytesArray.length +
                   ", writeInAnswers.length = " + writeInAnswers.length +
-                  ", writeInsRawBytesArray = " + stringify(writeInsRawBytesArray) 
+                  ", writeInsRawBytesArray = " + stringify(writeInsRawBytesArray)
                 );
               }
 
               // 6.3. Decode each write-in byte array
               const writeInDecoded = _.map(
                 writeInsRawBytesArray,
-                function (writeInEncodedUtf8) 
+                function (writeInEncodedUtf8)
                 {
                   return decodeUTF8(writeInEncodedUtf8);
                 }
@@ -762,7 +768,7 @@ angular
           /**
            * Sanity check with a specific manual example, to see that encoding
            * and decoding works as expected.
-           * 
+           *
            * @returns true if the test checks out
            */
            sanityCheck: function()
@@ -837,30 +843,30 @@ angular
               // 1. encode from ballot to rawBallot and test it
               var encoder = answerEncoder(data.ballot);
               const rawBallot = encoder.encodeRawBallot();
-              if (stringify(rawBallot) != stringify(data.rawBallot))
+              if (stringify(rawBallot) !== stringify(data.rawBallot))
               {
                 throw new Error("Sanity Check fail");
               }
-      
+
               // 2. encode from rawBallot to BigInt and test it
               const bigIntBallot = encoder.encodeToBigInt(rawBallot);
-              if (stringifyBigInt(bigIntBallot) != stringifyBigInt(data.bigIntBallot))
+              if (stringifyBigInt(bigIntBallot) !== stringifyBigInt(data.bigIntBallot))
               {
                 throw new Error("Sanity Check fail");
               }
-      
-              // 3. create a pristine encoder using the question without any selection 
+
+              // 3. create a pristine encoder using the question without any selection
               // set, and decode from BigInt to rawBallot and test it
               var decoder = answerEncoder(data.question);
               const decodedRawBallot = decoder.decodeFromBigInt(data.bigIntBallot);
-              if (stringify(decodedRawBallot) != stringify(data.rawBallot))
+              if (stringify(decodedRawBallot) !== stringify(data.rawBallot))
               {
                 throw new Error("Sanity Check fail");
               }
-              
+
               // 4. decode from raw ballot to ballot and test it
               const decodedBallot = decoder.decodeRawBallot(decodedRawBallot);
-              if (stringify(decodedBallot) != stringify(data.ballot))
+              if (stringify(decodedBallot) !== stringify(data.ballot))
               {
                 throw new Error("Sanity Check fail");
               }
@@ -875,9 +881,9 @@ angular
 
           /**
            * @returns the biggest encodable ballot that doesn't include any
-           * write-in text (or they are empty strings) encoded as a big int 
+           * write-in text (or they are empty strings) encoded as a big int
            * voting to non-write-ins.
-           * 
+           *
            * Used to know if the ballot would overflow, for example during
            * election creation, because it contains too many options.
            */
@@ -885,7 +891,7 @@ angular
           {
             const bases = this.getBases();
 
-            // calculate the biggest number that can be encoded with the 
+            // calculate the biggest number that can be encoded with the
             // minumum number of bases, which should be bigger than modulus
             const highestValueList = _.map(
               bases,
@@ -907,7 +913,7 @@ angular
            */
           numWriteInBytesLeft: function (modulus)
           {
-            // The calculations here do not make sense when there are no 
+            // The calculations here do not make sense when there are no
             // write-ins
             if (
               !this.question.extra_options ||
@@ -916,7 +922,7 @@ angular
               throw new Error("Contest does not have write-ins");
             }
 
-            // Sanity check: modulus needs to be bigger than the biggest 
+            // Sanity check: modulus needs to be bigger than the biggest
             // encodable normal ballot
             const bases = this.getBases();
             const highestBigInt = this.biggestEncodableNormalBallot();
@@ -927,7 +933,7 @@ angular
 
             // If we decode the modulus bigint as a ballot, the value will
             // be garbage but the number of bases will be 1 too many (as the
-            // last base will never be usable). 
+            // last base will never be usable).
             const decodedModulus  = mixedRadix.decode(
               /* baseList = */ toBigIntArray(bases),
               /* encodedValue = */ modulus,
@@ -949,14 +955,14 @@ angular
         var codecs = [multi];
 
         var foundCodec = _.find(
-          codecs, 
-          function (codec) 
+          codecs,
+          function (codec)
           {
             return _.contains(codec.validCodecs, requestedCodec);
           }
         );
 
-        if (!foundCodec) 
+        if (!foundCodec)
         {
           throw "unknown answer encoding service requested: " + requestedCodec;
         }
