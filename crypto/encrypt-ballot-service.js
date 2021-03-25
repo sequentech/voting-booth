@@ -117,45 +117,57 @@ angular.module('avCrypto')
       return SjclService.codec.hex.fromBits(hashBits);
     }
 
-    function getPlainText(question, verify) {
+    function getPlainText(question, verify) 
+    {
       // encode the answers
-      var codec = AnswerEncoderService(question.tally_type, question.answers.length);
-      var answers = codec.extractAnswers(question);
-      var encoded = codec.encode(answers);
-      if (verify) {
-        var decoded = codec.decode(encoded);
-        if (stringify(answers) !== stringify(decoded)) {
+      var codec = AnswerEncoderService(question);
+      const rawBallot = codec.encodeRawBallot();
+      const encoded = codec.encodeToBigInt(rawBallot);
+      if (verify) 
+      {
+        const decodedRawBallot = codec.decodeFromBigInt(encoded);
+        if (stringify(rawBallot) !== stringify(decodedRawBallot)) 
+        {
           return null;
         }
       }
-      return encoded;
+      return encoded.toString();
     }
 
     return function (data) {
       // minimally check input
-      if (!angular.isObject(data)) {
+      if (!angular.isObject(data)) 
+      {
         throw "invalid input data, not an object";
       }
-      if (!angular.isDefined(data.error) || !angular.isFunction(data.error)) {
+      if (!angular.isDefined(data.error) || !angular.isFunction(data.error)) 
+      {
         throw "data.error is not a function";
       }
-      if (!angular.isDefined(data.success) || !angular.isFunction(data.success)) {
+      if (!angular.isDefined(data.success) || !angular.isFunction(data.success)) 
+      {
         data.error("invalidDataFormat", "data.success is not a function");
         return;
       }
-      if (!angular.isDefined(data.statusUpdate) || !angular.isFunction(data.statusUpdate)) {
+      if (
+        !angular.isDefined(data.statusUpdate) || 
+        !angular.isFunction(data.statusUpdate)
+      ) {
         data.error("invalidDataFormat", "data.statusUpdate is not a function");
         return;
       }
-      if (!angular.isDefined(data.election) || !angular.isObject(data.election)) {
+      if (!angular.isDefined(data.election) || !angular.isObject(data.election)) 
+      {
         data.error("invalidDataFormat", "invalid data.election, not an object");
         return;
       }
-      if (!angular.isDefined(data.pubkeys) || !angular.isArray(data.pubkeys)) {
+      if (!angular.isDefined(data.pubkeys) || !angular.isArray(data.pubkeys)) 
+      {
         data.error("invalidDataFormat", "invalid data.pubkeys, not an array");
         return;
       }
-      if (!angular.isDefined(data.verify)) {
+      if (!angular.isDefined(data.verify)) 
+      {
         data.error("invalidDataFormat", "invalid data.verify");
         return;
       }
@@ -169,7 +181,8 @@ angular.module('avCrypto')
       // used to calculate the percentage. If data.verify is true, each
       // iteration has two steps
       var iterationSteps = 1;
-      if (data.verify) {
+      if (data.verify) 
+      {
         iterationSteps = 2;
       }
 
@@ -181,20 +194,26 @@ angular.module('avCrypto')
       var question;
       var codec;
       var percent;
-      try {
-        for (i = 0; i < numQuestions; i++) {
+      try 
+      {
+        for (i = 0; i < numQuestions; i++) 
+        {
           question = data.election.questions[i];
-          codec = AnswerEncoderService(question.tally_type, question.answers.length);
-          if (!codec.sanityCheck(data.election.questions[i])) {
+          codec = AnswerEncoderService(question);
+          if (!codec.sanityCheck()) 
+          {
             sanitized = false;
             break;
           }
         }
-      } catch(e) {
+      }
+      catch(e) 
+      {
         sanitized = false;
       }
 
-      if (!sanitized) {
+      if (!sanitized) 
+      {
         data.error("sanityChecksFailed", "we have detected errors when doing some " +
           "sanity automatic checks which prevents to assure that you can " +
           "vote with this web browser. This is most likely a problem with " +
@@ -202,13 +221,16 @@ angular.module('avCrypto')
         return;
       }
 
-    function formatBallot(election, answers) {
+    function formatBallot(election, answers) 
+    {
       var ballot = {
         "proofs": [],
         "choices": [],
         "issue_date": moment().format("DD/MM/YYYY"),
       };
-      for (var i = 0; i < election.questions.length; i++) {
+      
+      for (var i = 0; i < election.questions.length; i++) 
+      {
         var qAnswer = answers[i];
         ballot.proofs.push({
           "commitment": qAnswer['commitment'],
@@ -223,14 +245,16 @@ angular.module('avCrypto')
       return ballot;
     }
 
-    function formatAuditableBallot(election, answers, base_url) {
+    function formatAuditableBallot(election, answers) 
+    {
       var ballot = {
         "proofs": [],
         "choices": [],
         "issue_date": moment().format("DD/MM/YYYY"),
         "election_url": ConfigService.baseUrl + "election/" + election.id
       };
-      for (var i = 0; i < election.questions.length; i++) {
+      for (var i = 0; i < election.questions.length; i++) 
+      {
         var qAnswer = answers[i];
         ballot.proofs.push({
           "commitment": qAnswer['commitment'],
@@ -251,11 +275,13 @@ angular.module('avCrypto')
       i = 0;
       // encrypt question one by one, with timeouts in the middle to give time
       // to other things (like browser ui) to update
-      function encryptNextQuestion() {
-        if (i >= numQuestions) {
+      function encryptNextQuestion() 
+      {
+        if (i >= numQuestions) 
+        {
           // ballot generated
           var ballot = formatBallot(data.election, answers);
-          var auditData = formatAuditableBallot(data.election, answers, data.baseUrl);
+          var auditData = formatAuditableBallot(data.election, answers);
           var ballotStr = stringify(ballot);
 
           // generate ballot hash
@@ -272,7 +298,8 @@ angular.module('avCrypto')
 
         // hey, let's say to the user we have done something already, 5%
         // minimum right?
-        if (percent < 5) {
+        if (percent < 5) 
+        {
           percent = 5;
         }
 
@@ -291,32 +318,49 @@ angular.module('avCrypto')
         // we always verify plaintext just to be sure, because it takes very
         // little CPU time
         var plaintext = null;
-        try {
+        try 
+        {
           plaintext = getPlainText(question, true);
-        } catch(e) {
+        } 
+        catch(e) 
+        {
         }
 
-        if (!plaintext) {
-          data.error("errorEncoding", "error while encoding the answer to a question");
+        if (!plaintext) 
+        {
+          data.error(
+            "errorEncoding", 
+            "error while encoding the answer to a question"
+          );
           return;
         }
         console.log("plaintext = " + plaintext);
         var hasEncryptionError = false;
-        var logEncryptionError = function (name, description) {
+        var logEncryptionError = function (name, description) 
+        {
           data.error(name, description);
           hasEncryptionError = true;
         };
-        var encryptedAnswer = encryptor.encryptAnswer(plaintext, false, false, logEncryptionError);
-        if (!!hasEncryptionError) {
+        
+        var encryptedAnswer = encryptor.encryptAnswer(
+          plaintext, 
+          false, 
+          false, 
+          logEncryptionError
+        );
+        if (!!hasEncryptionError) 
+        {
           return;
         }
         answers.push(encryptedAnswer);
 
-        if (data.verify) {
+        if (data.verify) 
+        {
           // send status update
           percent = Math.floor(
             (100*i*iterationSteps + 1) / (numQuestions*iterationSteps));
-          if (percent < 5) {
+          if (percent < 5) 
+          {
             percent = 5;
           }
           data.statusUpdate(
@@ -326,8 +370,12 @@ angular.module('avCrypto')
               percentageCompleted: percent
             }
           );
-          if (!encryptor.verifyPlaintextProof(encryptedAnswer)) {
-            data.error("errorEncrypting", "error while encrypting the answer to a question");
+          if (!encryptor.verifyPlaintextProof(encryptedAnswer)) 
+          {
+            data.error(
+              "errorEncrypting", 
+              "error while encrypting the answer to a question"
+            );
             return;
           }
         }

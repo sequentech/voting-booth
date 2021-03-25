@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-booth.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2015-2021  Agora Voting SL <agora@agoravoting.com>
 
  * agora-gui-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,10 +18,10 @@
 /*
   usage:
 
-    var encryptor = EncryptBallotService.init(pk);
-    var ctext = encryptor.encryptAnswer(23, false, false, console.log);
+    const encryptor = EncryptBallotService.init(public_key_json);
+    const ctext = encryptor.encryptAnswer("23", false, false, console.log);
 
-  dependencies
+  dependencies:
 
   jsbn.js
   jsbn2.js
@@ -35,95 +35,124 @@
 */
 
 angular.module('avCrypto')
-  .service('EncryptAnswerService', function(ElGamalService, BigIntService, RandomService, DeterministicJsonStringifyService) {
-    return function (publicKeyJson) {
-      // private members
-      var publicKeyJsonCopy = publicKeyJson;
-      var publicKey = ElGamalService.PublicKey.fromJSONObject(publicKeyJsonCopy);
-      var proof2;
+  .service(
+    'EncryptAnswerService', 
+    function(
+      ElGamalService, 
+      BigIntService, 
+      RandomService, 
+      DeterministicJsonStringifyService
+    ) 
+    {
+      return function (publicKeyJson) 
+      {
+        // private members
+        const publicKeyJsonCopy = publicKeyJson;
+        const publicKey = ElGamalService.PublicKey.fromJSONObject(publicKeyJsonCopy);
 
-      // public interface
-      return {
+        // public interface
+        return {
+          // randomness argument is optional, used just for unit testing really
+          encryptAnswer: function(
+            plainAnswerStr, 
+            randomness, 
+            randomness2, 
+            error_func
+          ) {
+            const plaintext = new ElGamalService.Plaintext(
+              BigIntService.fromJSONObject(plainAnswerStr),
+              publicKey,
+              true
+            );
 
-        // randomness argument is optional, used just for unit testing really
-        encryptAnswer: function(plain_answer, randomness, randomness2, error_func) {
-          var plaintext = new ElGamalService.Plaintext(
-            BigIntService.fromJSONObject(plain_answer),
-            publicKey,
-            true);
+            // checking that encoding a number to a member of the group and then
+            // decoding it returns the same number. This will usually detect if
+            // a number too big to encode in the group.
+            //
+            // Because the number coming from the group will never have a zero to
+            // the left but the origin plainAnswer might, we strip the zeros to
+            // the left of plainAnswer. We could convert them to BigInts both
+            // and compare but seems overkill, and we cannot convert them to ints
+            // because the numbers might be bigger than the max-safe-int in
+            // javascript, so that's why are we still comparing them as strings.
+            const plainAnswerDecoded = plaintext.getPlaintext();
+            const plainAnswerDecodedStr = plainAnswerDecoded.toString();
 
-          // checking that encoding a number to a member of the group and then
-          // decoding it returns the same number. This will usually detect if
-          // a number too big to encode in the group.
-          //
-          // Because the number coming from the group will never have a zero to
-          // the left but the origin plain_answer might, we strip the zeros to
-          // the left of plain_answer. We could convert them to BigInts both
-          // and compare but seems overkill, and we cannot convert them to ints
-          // because the numbers might be bigger than the max-safe-int in
-          // javascript, so that's why are we still comparing them as strings.
-          var plainAnswerDecoded = plaintext.getPlaintext();
-          if (!!error_func &&
-            (plainAnswerDecoded.toJSONObject()+"" !== plain_answer.replace(/^0+/, "")+""))
+            if (!!error_func && (plainAnswerDecodedStr !== plainAnswerStr)) 
+            {
+              error_func(
+                "errorEncoding", 
+                "error while encoding the number to a member of the group"
+              );
+            }
+
+            if (!randomness) 
+            {
+              randomness = RandomService.getRandomInteger(publicKey.q);
+            } else 
+            {
+              randomness = BigIntService.fromInt(randomness);
+            }
+
+            if (!randomness2) 
+            {
+              randomness2 = RandomService.getRandomInteger(publicKey.q);
+            } else 
+            {
+              randomness2 = BigIntService.fromInt(randomness2);
+            }
+
+            const ctext = ElGamalService.encrypt(publicKey, plaintext, randomness);
+            // obtains proof of plaintext knowledge (schnorr protocol)
+            const proof = plaintext.proveKnowledge(
+              ctext.alpha,
+              randomness,
+              ElGamalService.fiatshamir_dlog_challenge_generator,
+              randomness2
+            );
+            const ciphertext =  ctext.toJSONObject();
+            const jsonProof = proof.toJSONObject();
+            const encryptedBallot = {
+              alpha: ciphertext.alpha,
+              beta: ciphertext.beta,
+              commitment: jsonProof.commitment,
+              response: jsonProof.response,
+              challenge: jsonProof.challenge,
+              randomness: randomness.toJSONObject(),
+              plaintext: plainAnswerStr
+            };
+
+            return encryptedBallot;
+          },
+
+          getPublicKey: function() 
           {
-            error_func("errorEncoding", "error while encoding the number to a member of the group");
-          }
-          if (!randomness) {
-            randomness = RandomService.getRandomInteger(publicKey.q);
-          } else {
-            randomness = BigIntService.fromInt(randomness);
-          }
+            return publicKeyJson;
+          },
 
-          if (!randomness2) {
-            randomness2 = RandomService.getRandomInteger(publicKey.q);
-          } else {
-            randomness2 = BigIntService.fromInt(randomness2);
-          }
-
-          var ctext = ElGamalService.encrypt(publicKey, plaintext, randomness);
-          // obtains proof of plaintext knowledge (schnorr protocol)
-          var proof = plaintext.proveKnowledge(
-            ctext.alpha,
-            randomness,
-            ElGamalService.fiatshamir_dlog_challenge_generator,
-            randomness2);
-          var ciphertext =  ctext.toJSONObject();
-          var jsonProof = proof.toJSONObject();
-          var encAnswer = {
-            alpha: ciphertext.alpha,
-            beta: ciphertext.beta,
-            commitment: jsonProof.commitment,
-            response: jsonProof.response,
-            challenge: jsonProof.challenge,
-            randomness: randomness.toJSONObject(),
-            plaintext: plain_answer
-          };
-
-          return encAnswer;
-        },
-
-        getPublicKey: function() {
-          return publicKeyJson;
-        },
-
-        // verifies the proof of plaintext knowledge (schnorr protocol)
-        verifyPlaintextProof: function(encrypted) {
-          var ctext = new ElGamalService.Ciphertext(
-            BigIntService.fromInt(encrypted.alpha),
-            BigIntService.fromInt(encrypted.beta),
-            publicKey);
-          var proof = new ElGamalService.DLogProof(
-            new ElGamalService.PlaintextCommitment(
+          // verifies the proof of plaintext knowledge (schnorr protocol)
+          verifyPlaintextProof: function(encrypted) 
+          {
+            const ctext = new ElGamalService.Ciphertext(
               BigIntService.fromInt(encrypted.alpha),
-              BigIntService.fromInt(encrypted.commitment)
-            ),
-            BigIntService.fromInt(encrypted.challenge),
-            BigIntService.fromInt(encrypted.response));
+              BigIntService.fromInt(encrypted.beta),
+              publicKey
+            );
+            const proof = new ElGamalService.DLogProof(
+              new ElGamalService.PlaintextCommitment(
+                BigIntService.fromInt(encrypted.alpha),
+                BigIntService.fromInt(encrypted.commitment)
+              ),
+              BigIntService.fromInt(encrypted.challenge),
+              BigIntService.fromInt(encrypted.response)
+            );
 
-          return ctext.verifyPlaintextProof(
-            proof,
-            ElGamalService.fiatshamir_dlog_challenge_generator);
-        }
+            return ctext.verifyPlaintextProof(
+              proof,
+              ElGamalService.fiatshamir_dlog_challenge_generator
+            );
+          }
+        };
       };
-    };
-  });
+    }
+  );
