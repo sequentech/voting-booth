@@ -82,13 +82,26 @@
             class="category"
             ng-repeat="category in question.categories"
             ng-class="{
+              'checkable': question.extra_options.enable_checkable_lists,
               'col-xs-12': (question.extra_options.answer_columns_size === 12),
               'col-xs-6': (question.extra_options.answer_columns_size === 6),
               'col-xs-4': (question.extra_options.answer_columns_size === 4),
               'col-xs-3': (question.extra_options.answer_columns_size === 3)
             }"
         >
-          <h4 class="category-heading" ng-if="question.hasCategories">{{ category.title }}</h4>
+          <h4 class="category-heading" ng-if="question.hasCategories">
+            <div
+              ng-if="question.extra_options.enable_checkable_lists"
+              class="list-checks"
+            >
+            <!-- TODO: link this with a hidden answer -->
+              <span
+                ng-repeat="x in [].constructor(question.extra_options.cumulative_number_of_checkboxes) track by $index"
+                class="glyphicon glyphicon-unchecked"
+              ></span>
+            </div>
+            {{ category.title }}
+          </h4>
           <div class="category-body">
             <div avb-simultaneous-question-answers-screen > </div>
           </div>
