@@ -394,7 +394,7 @@ angular
            * b = [2, 2, 2, 2, 2, 2, 256, 256, 256, 256]
            * // choices
            * v = [0, 0, 0, 0, 1, 1, 68,  0,   69,  0]
-           * encodedChoices = 1*2^4 + 1*2^5 + 68*2^6 + 69*2^8 = 22064
+           * encodedChoices = 1*(2**4) + 1*(2**5) + 68*(2**6) + 69*(2**6)*(256**2) = 289411376
            * ```
            */
           encodeToBigInt: function(rawBallot)
@@ -768,10 +768,15 @@ angular
           /**
            * Sanity check with a specific manual example, to see that encoding
            * and decoding works as expected.
+           * 
+           * If modulus is given, it will also verify that the biggest encodable
+           * number (without write-ins) works, and that the number of bytes left
+           * for the current ballot given to the encoder on construction is not
+           * negative.
            *
            * @returns true if the test checks out
            */
-           sanityCheck: function()
+           sanityCheck: function(modulus)
           {
             try {
               const data = {
@@ -870,6 +875,27 @@ angular
               {
                 throw new Error("Sanity Check fail");
               }
+
+              // 5. verify modulus
+              if (angular.isDefined(modulus))
+              {
+                // verify that current ballot does not overflow
+                const rawBallot = this.encodeRawBallot();
+                const intBallot = this.encodeToBigInt(rawBallot);
+                /* jshint ignore:start */
+                if (modulus.compareTo(intBallot.add(BigInteger.ONE)) <= 0)
+                {
+                  throw new Error("Sanity Check fail");
+                }
+
+                // verify that the bigger normal ballot does not overflow
+                const biggestBallot = this.biggestEncodableNormalBallot();
+                if (modulus.compareTo(biggestBallot.add(BigInteger.ONE)) <= 0)
+                {
+                  throw new Error("Sanity Check fail");
+                }
+                /* jshint ignore:end */
+              }
             }
             catch (e)
             {
@@ -897,7 +923,7 @@ angular
               bases,
               function (base)
               {
-                return base-1;
+                return base - 1;
               }
             );
             const highestBigInt = mixedRadix.encode(
@@ -923,20 +949,27 @@ angular
             }
 
             // Sanity check: modulus needs to be bigger than the biggest
-            // encodable normal ballot
+            // encodable normal ballot plus one because the encryption always
+            // adds one
             const bases = this.getBases();
             const highestBigInt = this.biggestEncodableNormalBallot();
-            if (modulus.compareTo(highestBigInt) <= 0)
+            /* jshint ignore:start */
+            if (modulus.compareTo(highestBigInt.add(BigInteger.ONE)) <= 0)
             {
               throw new Error("modulus too small");
             }
+            /* jshint ignore:end */
 
-            // If we decode the modulus bigint as a ballot, the value will
-            // be garbage but the number of bases will be 1 too many (as the
-            // last base will never be usable).
+            // If we decode the modulus minus one, the value will be the highest
+            // encodable number plus one, given the set of bases for this 
+            // question and using 256 as the lastBase.
+            // However, as it overflows the maximum the maximum encodable 
+            // number, the last byte (last base) is unusable and it should be
+            // discarded. That is why maxBaseLength is obtained by using
+            // decodedModulus.length - 1
             const decodedModulus  = mixedRadix.decode(
               /* baseList = */ toBigIntArray(bases),
-              /* encodedValue = */ modulus,
+              /* encodedValue = */ modulus.subtract(new BigInt("1", 10)),
               new BigInt("256", 10)
             );
             const encodedRawBallot = this.encodeRawBallot();
@@ -949,7 +982,6 @@ angular
             // number of byte bases left
             return maxBaseLength - encodedRawBallot.bases.length;
           }
-
         };
 
         var codecs = [multi];

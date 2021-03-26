@@ -190,17 +190,18 @@ angular.module('avCrypto')
 
       // for each question, execute sanity check
       var sanitized = true;
-      var i = 0;
+      var questionIndex = 0;
       var question;
       var codec;
       var percent;
       try 
       {
-        for (i = 0; i < numQuestions; i++) 
+        for (questionIndex = 0; questionIndex < numQuestions; questionIndex++) 
         {
-          question = data.election.questions[i];
+          question = data.election.questions[questionIndex];
           codec = AnswerEncoderService(question);
-          if (!codec.sanityCheck()) 
+          const q = data.pubkeys[questionIndex].q;
+          if (!angular.isDefined(q) || !codec.sanityCheck(new BigInt(q, 10))) 
           {
             sanitized = false;
             break;
@@ -214,70 +215,71 @@ angular.module('avCrypto')
 
       if (!sanitized) 
       {
-        data.error("sanityChecksFailed", "we have detected errors when doing some " +
+        data.error(
+          "sanityChecksFailed", "we have detected errors when doing some " +
           "sanity automatic checks which prevents to assure that you can " +
           "vote with this web browser. This is most likely a problem with " +
           "your web browser.");
         return;
       }
 
-    function formatBallot(election, answers) 
-    {
-      var ballot = {
-        "proofs": [],
-        "choices": [],
-        "issue_date": moment().format("DD/MM/YYYY"),
-      };
-      
-      for (var i = 0; i < election.questions.length; i++) 
+      function formatBallot(election, answers) 
       {
-        var qAnswer = answers[i];
-        ballot.proofs.push({
-          "commitment": qAnswer['commitment'],
-          "response": qAnswer['response'],
-          "challenge": qAnswer['challenge']
-        });
-        ballot.choices.push({
-          "alpha": qAnswer['alpha'],
-          "beta": qAnswer['beta']
-        });
+        var ballot = {
+          "proofs": [],
+          "choices": [],
+          "issue_date": moment().format("DD/MM/YYYY"),
+        };
+        
+        for (var i = 0; i < election.questions.length; i++) 
+        {
+          var qAnswer = answers[i];
+          ballot.proofs.push({
+            "commitment": qAnswer['commitment'],
+            "response": qAnswer['response'],
+            "challenge": qAnswer['challenge']
+          });
+          ballot.choices.push({
+            "alpha": qAnswer['alpha'],
+            "beta": qAnswer['beta']
+          });
+        }
+        return ballot;
       }
-      return ballot;
-    }
 
-    function formatAuditableBallot(election, answers) 
-    {
-      var ballot = {
-        "proofs": [],
-        "choices": [],
-        "issue_date": moment().format("DD/MM/YYYY"),
-        "election_url": ConfigService.baseUrl + "election/" + election.id
-      };
-      for (var i = 0; i < election.questions.length; i++) 
+      function formatAuditableBallot(election, answers) 
       {
-        var qAnswer = answers[i];
-        ballot.proofs.push({
-          "commitment": qAnswer['commitment'],
-          "response": qAnswer['response'],
-          "challenge": qAnswer['challenge']
-        });
-        ballot.choices.push({
-          "alpha": qAnswer['alpha'],
-          "beta": qAnswer['beta'],
-          "randomness": qAnswer['randomness'],
-          "plaintext": qAnswer['plaintext']
-        });
+        var ballot = {
+          "proofs": [],
+          "choices": [],
+          "issue_date": moment().format("DD/MM/YYYY"),
+          "election_url": ConfigService.baseUrl + "election/" + election.id
+        };
+        for (var i = 0; i < election.questions.length; i++) 
+        {
+          var qAnswer = answers[i];
+          ballot.proofs.push({
+            "commitment": qAnswer['commitment'],
+            "response": qAnswer['response'],
+            "challenge": qAnswer['challenge']
+          });
+          ballot.choices.push({
+            "alpha": qAnswer['alpha'],
+            "beta": qAnswer['beta'],
+            "randomness": qAnswer['randomness'],
+            "plaintext": qAnswer['plaintext']
+          });
+        }
+        return ballot;
       }
-      return ballot;
-    }
 
 
-      i = 0;
+      questionIndex = 0;
       // encrypt question one by one, with timeouts in the middle to give time
       // to other things (like browser ui) to update
       function encryptNextQuestion() 
       {
-        if (i >= numQuestions) 
+        if (questionIndex >= numQuestions) 
         {
           // ballot generated
           var ballot = formatBallot(data.election, answers);
@@ -292,9 +294,9 @@ angular.module('avCrypto')
         }
 
         // initialization
-        question = data.election.questions[i];
+        question = data.election.questions[questionIndex];
         percent = Math.floor(
-          (100*i*iterationSteps) / (numQuestions*iterationSteps));
+          (100*questionIndex*iterationSteps) / (numQuestions*iterationSteps));
 
         // hey, let's say to the user we have done something already, 5%
         // minimum right?
@@ -306,14 +308,14 @@ angular.module('avCrypto')
         data.statusUpdate(
           "encryptingQuestion",
           {
-            questionNum: i,
+            questionNum: questionIndex,
             percentageCompleted: percent
           }
         );
 
         // crypto time!
 
-        var encryptor = EncryptAnswerService(data.pubkeys[i]);
+        var encryptor = EncryptAnswerService(data.pubkeys[questionIndex]);
 
         // we always verify plaintext just to be sure, because it takes very
         // little CPU time
@@ -358,7 +360,7 @@ angular.module('avCrypto')
         {
           // send status update
           percent = Math.floor(
-            (100*i*iterationSteps + 1) / (numQuestions*iterationSteps));
+            (100*questionIndex*iterationSteps + 1) / (numQuestions*iterationSteps));
           if (percent < 5) 
           {
             percent = 5;
@@ -366,7 +368,7 @@ angular.module('avCrypto')
           data.statusUpdate(
             "verifyingQuestion",
             {
-              questionNum: i,
+              questionNum: questionIndex,
               percentageCompleted: percent
             }
           );
@@ -379,7 +381,7 @@ angular.module('avCrypto')
             return;
           }
         }
-        i += 1;
+        questionIndex += 1;
         $timeout(encryptNextQuestion, data.delay);
       }
 

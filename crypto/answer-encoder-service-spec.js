@@ -851,11 +851,11 @@ describe(
             },
             //                bases  = [2, 2, 2, 2, 256]
             // biggest normal ballot = [1, 1, 1, 1, 255]
-            // minimum encoded modulus for one byte free:
-            //               modulus = {
+            // minimum encoded modulus-1 for one byte free:
+            //               modulus-1 = {
             //                  value: [2, 2, 2, 2, 256, 256, 256]
             //                  value: [0, 0, 0, 0, 0,   0,   1  ]
-            modulus: "" + (1*2*2*2*2*256*256 - 1), // 1048575
+            modulus: "" + (1*2*2*2*2*256*256), // 1048576
             bytesLeft: 0
           },
           {
@@ -874,11 +874,11 @@ describe(
             },
             //                bases  = [2, 2, 2, 2, 256]
             // biggest normal ballot = [1, 1, 1, 1, 255]
-            // minimum encoded modulus for one byte free:
-            //               modulus = {
+            // minimum encoded modulus-1 for one byte free:
+            //               modulus-1 = {
             //                  value: [2, 2, 2, 2, 256, 256, 256]
             //                  value: [0, 0, 0, 0, 0,   0,   1  ]
-            modulus: "" + (1*2*2*2*2*256*256), // 1048576
+            modulus: "" + (1*2*2*2*2*256*256+1), // 1048577
             bytesLeft: 1
           },
           {
@@ -897,34 +897,34 @@ describe(
             },
             //                bases  = [2, 2, 2, 2, 256]
             // biggest normal ballot = [1, 1, 1, 1, 255]
-            // minimum encoded modulus for 2 bytes free:
-            //               modulus = {
-            //                  value: [2, 2, 2, 2, 256, 256, 256, 256]
-            //                  value: [0, 0, 0, 0, 0,   0,   0,   1  ]
-            modulus: "" + (1*2*2*2*2*256*256*256 - 1), // 268435455
-            bytesLeft: 1
-          },
-          {
-            question: {
-              tally_type: 'plurality-at-large',
-              max: 1,
-              extra_options: {allow_writeins: true},
-              answers: [
-                {id: 0},
-                {id: 1},
-                {
-                  id: 2,
-                  urls: [{title: 'isWriteIn', url: 'true'}]
-                }
-              ]
-            },
-            //                bases  = [2, 2, 2, 2, 256]
-            // biggest normal ballot = [1, 1, 1, 1, 255]
-            // minimum encoded modulus for 2 bytes free:
-            //               modulus = {
+            // minimum encoded modulus-1 for 2 bytes free:
+            //               modulus-1 = {
             //                  value: [2, 2, 2, 2, 256, 256, 256, 256]
             //                  value: [0, 0, 0, 0, 0,   0,   0,   1  ]
             modulus: "" + (1*2*2*2*2*256*256*256), // 268435456
+            bytesLeft: 1
+          },
+          {
+            question: {
+              tally_type: 'plurality-at-large',
+              max: 1,
+              extra_options: {allow_writeins: true},
+              answers: [
+                {id: 0},
+                {id: 1},
+                {
+                  id: 2,
+                  urls: [{title: 'isWriteIn', url: 'true'}]
+                }
+              ]
+            },
+            //                bases  = [2, 2, 2, 2, 256]
+            // biggest normal ballot = [1, 1, 1, 1, 255]
+            // minimum encoded modulus for 2 bytes free:
+            //               modulus = {
+            //                  value: [2, 2, 2, 2, 256, 256, 256, 256]
+            //                  value: [0, 0, 0, 0, 0,   0,   0,   1  ]
+            modulus: "" + (1*2*2*2*2*256*256*256+1), // 268435457
             bytesLeft: 2
           },
         ];
