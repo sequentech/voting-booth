@@ -78,9 +78,18 @@
       </div>
 
       <div class="categories">
-        <div class="panel panel-default" ng-repeat="category in question.categories">
-          <div class="panel-heading" ng-if="question.hasCategories">{{ category.title }}</div>
-          <div class="panel-body">
+        <div
+            class="category"
+            ng-repeat="category in question.categories"
+            ng-class="{
+              'col-xs-12': (question.extra_options.answer_columns_size === 12),
+              'col-xs-6': (question.extra_options.answer_columns_size === 6),
+              'col-xs-4': (question.extra_options.answer_columns_size === 4),
+              'col-xs-3': (question.extra_options.answer_columns_size === 3)
+            }"
+        >
+          <h4 class="category-heading" ng-if="question.hasCategories">{{ category.title }}</h4>
+          <div class="category-body">
             <div avb-simultaneous-question-answers-screen > </div>
           </div>
         </div>
