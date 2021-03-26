@@ -768,10 +768,15 @@ angular
           /**
            * Sanity check with a specific manual example, to see that encoding
            * and decoding works as expected.
+           * 
+           * If modulus is given, it will also verify that the biggest encodable
+           * number (without write-ins) works, and that the number of bytes left
+           * for the current ballot given to the encoder on construction is not
+           * negative.
            *
            * @returns true if the test checks out
            */
-           sanityCheck: function()
+           sanityCheck: function(modulus)
           {
             try {
               const data = {
@@ -869,6 +874,15 @@ angular
               if (stringify(decodedBallot) !== stringify(data.ballot))
               {
                 throw new Error("Sanity Check fail");
+              }
+
+              // 5. verify modulus
+              if (angular.isDefined(modulus))
+              {
+                if (this.numWriteInBytesLeft(modulus) < 0)
+                {
+                  throw new Error("Sanity Check fail");
+                }
               }
             }
             catch (e)
