@@ -851,8 +851,8 @@ describe(
             },
             //                bases  = [2, 2, 2, 2, 256]
             // biggest normal ballot = [1, 1, 1, 1, 255]
-            // minimum encoded modulus for one byte free:
-            //               modulus = {
+            // minimum encoded modulus-1 for one byte free:
+            //               modulus-1 = {
             //                  value: [2, 2, 2, 2, 256, 256, 256]
             //                  value: [0, 0, 0, 0, 0,   0,   1  ]
             modulus: "" + (1*2*2*2*2*256*256), // 1048576
@@ -874,8 +874,8 @@ describe(
             },
             //                bases  = [2, 2, 2, 2, 256]
             // biggest normal ballot = [1, 1, 1, 1, 255]
-            // minimum encoded modulus for one byte free:
-            //               modulus = {
+            // minimum encoded modulus-1 for one byte free:
+            //               modulus-1 = {
             //                  value: [2, 2, 2, 2, 256, 256, 256]
             //                  value: [0, 0, 0, 0, 0,   0,   1  ]
             modulus: "" + (1*2*2*2*2*256*256+1), // 1048577
@@ -897,8 +897,8 @@ describe(
             },
             //                bases  = [2, 2, 2, 2, 256]
             // biggest normal ballot = [1, 1, 1, 1, 255]
-            // minimum encoded modulus for 2 bytes free:
-            //               modulus = {
+            // minimum encoded modulus-1 for 2 bytes free:
+            //               modulus-1 = {
             //                  value: [2, 2, 2, 2, 256, 256, 256, 256]
             //                  value: [0, 0, 0, 0, 0,   0,   0,   1  ]
             modulus: "" + (1*2*2*2*2*256*256*256), // 268435456

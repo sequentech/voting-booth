@@ -879,7 +879,17 @@ angular
               // 5. verify modulus
               if (angular.isDefined(modulus))
               {
-                if (this.numWriteInBytesLeft(modulus) < 0)
+                // verify that current ballot does not overflow
+                const rawBallot = this.encodeRawBallot();
+                const intBallot = this.encodeToBigInt(rawBallot);
+                if (modulus.compareTo(intBallot.add(BigInteger.ONE)) <= 0)
+                {
+                  throw new Error("Sanity Check fail");
+                }
+
+                // verify that the bigger normal ballot does not overflow
+                const biggestBallot = this.biggestEncodableNormalBallot();
+                if (modulus.compareTo(biggestBallot.add(BigInteger.ONE)) <= 0)
                 {
                   throw new Error("Sanity Check fail");
                 }
@@ -941,7 +951,7 @@ angular
             // adds one
             const bases = this.getBases();
             const highestBigInt = this.biggestEncodableNormalBallot();
-            if (modulus.compareTo(highestBigInt) < 1)
+            if (modulus.compareTo(highestBigInt.add(BigInteger.ONE)) <= 0)
             {
               throw new Error("modulus too small");
             }
