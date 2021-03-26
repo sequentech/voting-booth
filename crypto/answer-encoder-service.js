@@ -882,6 +882,7 @@ angular
                 // verify that current ballot does not overflow
                 const rawBallot = this.encodeRawBallot();
                 const intBallot = this.encodeToBigInt(rawBallot);
+                /* jshint ignore:start */
                 if (modulus.compareTo(intBallot.add(BigInteger.ONE)) <= 0)
                 {
                   throw new Error("Sanity Check fail");
@@ -893,6 +894,7 @@ angular
                 {
                   throw new Error("Sanity Check fail");
                 }
+                /* jshint ignore:end */
               }
             }
             catch (e)
@@ -951,10 +953,12 @@ angular
             // adds one
             const bases = this.getBases();
             const highestBigInt = this.biggestEncodableNormalBallot();
+            /* jshint ignore:start */
             if (modulus.compareTo(highestBigInt.add(BigInteger.ONE)) <= 0)
             {
               throw new Error("modulus too small");
             }
+            /* jshint ignore:end */
 
             // If we decode the modulus minus one, the value will be the highest
             // encodable number plus one, given the set of bases for this 
