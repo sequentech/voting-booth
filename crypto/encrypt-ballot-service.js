@@ -221,55 +221,55 @@ angular.module('avCrypto')
         return;
       }
 
-    function formatBallot(election, answers) 
-    {
-      var ballot = {
-        "proofs": [],
-        "choices": [],
-        "issue_date": moment().format("DD/MM/YYYY"),
-      };
-      
-      for (var i = 0; i < election.questions.length; i++) 
+      function formatBallot(election, answers) 
       {
-        var qAnswer = answers[i];
-        ballot.proofs.push({
-          "commitment": qAnswer['commitment'],
-          "response": qAnswer['response'],
-          "challenge": qAnswer['challenge']
-        });
-        ballot.choices.push({
-          "alpha": qAnswer['alpha'],
-          "beta": qAnswer['beta']
-        });
+        var ballot = {
+          "proofs": [],
+          "choices": [],
+          "issue_date": moment().format("DD/MM/YYYY"),
+        };
+        
+        for (var i = 0; i < election.questions.length; i++) 
+        {
+          var qAnswer = answers[i];
+          ballot.proofs.push({
+            "commitment": qAnswer['commitment'],
+            "response": qAnswer['response'],
+            "challenge": qAnswer['challenge']
+          });
+          ballot.choices.push({
+            "alpha": qAnswer['alpha'],
+            "beta": qAnswer['beta']
+          });
+        }
+        return ballot;
       }
-      return ballot;
-    }
 
-    function formatAuditableBallot(election, answers) 
-    {
-      var ballot = {
-        "proofs": [],
-        "choices": [],
-        "issue_date": moment().format("DD/MM/YYYY"),
-        "election_url": ConfigService.baseUrl + "election/" + election.id
-      };
-      for (var i = 0; i < election.questions.length; i++) 
+      function formatAuditableBallot(election, answers) 
       {
-        var qAnswer = answers[i];
-        ballot.proofs.push({
-          "commitment": qAnswer['commitment'],
-          "response": qAnswer['response'],
-          "challenge": qAnswer['challenge']
-        });
-        ballot.choices.push({
-          "alpha": qAnswer['alpha'],
-          "beta": qAnswer['beta'],
-          "randomness": qAnswer['randomness'],
-          "plaintext": qAnswer['plaintext']
-        });
+        var ballot = {
+          "proofs": [],
+          "choices": [],
+          "issue_date": moment().format("DD/MM/YYYY"),
+          "election_url": ConfigService.baseUrl + "election/" + election.id
+        };
+        for (var i = 0; i < election.questions.length; i++) 
+        {
+          var qAnswer = answers[i];
+          ballot.proofs.push({
+            "commitment": qAnswer['commitment'],
+            "response": qAnswer['response'],
+            "challenge": qAnswer['challenge']
+          });
+          ballot.choices.push({
+            "alpha": qAnswer['alpha'],
+            "beta": qAnswer['beta'],
+            "randomness": qAnswer['randomness'],
+            "plaintext": qAnswer['plaintext']
+          });
+        }
+        return ballot;
       }
-      return ballot;
-    }
 
 
       i = 0;

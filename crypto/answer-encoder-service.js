@@ -394,7 +394,7 @@ angular
            * b = [2, 2, 2, 2, 2, 2, 256, 256, 256, 256]
            * // choices
            * v = [0, 0, 0, 0, 1, 1, 68,  0,   69,  0]
-           * encodedChoices = 1*2^4 + 1*2^5 + 68*2^6 + 69*2^8 = 22064
+           * encodedChoices = 1*(2**4) + 1*(2**5) + 68*(2**6) + 69*(2**6)*(256**2) = 289411376
            * ```
            */
           encodeToBigInt: function(rawBallot)
@@ -897,7 +897,7 @@ angular
               bases,
               function (base)
               {
-                return base-1;
+                return base - 1;
               }
             );
             const highestBigInt = mixedRadix.encode(
@@ -923,20 +923,25 @@ angular
             }
 
             // Sanity check: modulus needs to be bigger than the biggest
-            // encodable normal ballot
+            // encodable normal ballot plus one because the encryption always
+            // adds one
             const bases = this.getBases();
             const highestBigInt = this.biggestEncodableNormalBallot();
-            if (modulus.compareTo(highestBigInt) <= 0)
+            if (modulus.compareTo(highestBigInt) < 1)
             {
               throw new Error("modulus too small");
             }
 
-            // If we decode the modulus bigint as a ballot, the value will
-            // be garbage but the number of bases will be 1 too many (as the
-            // last base will never be usable).
+            // If we decode the modulus minus one, the value will be the highest
+            // encodable number plus one, given the set of bases for this 
+            // question and using 256 as the lastBase.
+            // However, as it overflows the maximum the maximum encodable 
+            // number, the last byte (last base) is unusable and it should be
+            // discarded. That is why maxBaseLength is obtained by using
+            // decodedModulus.length - 1
             const decodedModulus  = mixedRadix.decode(
               /* baseList = */ toBigIntArray(bases),
-              /* encodedValue = */ modulus,
+              /* encodedValue = */ modulus.subtract(new BigInt("1", 10)),
               new BigInt("256", 10)
             );
             const encodedRawBallot = this.encodeRawBallot();
@@ -949,7 +954,6 @@ angular
             // number of byte bases left
             return maxBaseLength - encodedRawBallot.bases.length;
           }
-
         };
 
         var codecs = [multi];
