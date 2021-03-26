@@ -200,8 +200,8 @@ angular.module('avCrypto')
         {
           question = data.election.questions[questionIndex];
           codec = AnswerEncoderService(question);
-          const pubKey = data.pubkeys[questionIndex].q;
-          if (!angular.isDefined(pubKey) || !codec.sanityCheck(pubKey)) 
+          const q = data.pubkeys[questionIndex].q;
+          if (!angular.isDefined(q) || !codec.sanityCheck(new BigInt(q, 10))) 
           {
             sanitized = false;
             break;
@@ -215,7 +215,8 @@ angular.module('avCrypto')
 
       if (!sanitized) 
       {
-        data.error("sanityChecksFailed", "we have detected errors when doing some " +
+        data.error(
+          "sanityChecksFailed", "we have detected errors when doing some " +
           "sanity automatic checks which prevents to assure that you can " +
           "vote with this web browser. This is most likely a problem with " +
           "your web browser.");
