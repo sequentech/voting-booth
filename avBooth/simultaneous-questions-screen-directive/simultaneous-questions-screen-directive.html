@@ -70,8 +70,9 @@
   <div class="container">
     <div class="row options-row" ng-repeat="question in groupQuestions">
       <div class="col-xs-12">
-        <h3 aria-level="2">{{question.title}}</h3>
+        <h3 class="question-title text-center" aria-level="2">{{question.title}}</h3>
         <p
+          class="question-description"
           ng-if="question.description"
           ng-bind-html="question.description | addTargetBlank">
         </p>
@@ -83,10 +84,10 @@
             ng-repeat="category in question.categories"
             ng-class="{
               'checkable': question.extra_options.enable_checkable_lists,
-              'col-xs-12': (question.extra_options.answer_columns_size === 12),
-              'col-xs-6': (question.extra_options.answer_columns_size === 6),
-              'col-xs-4': (question.extra_options.answer_columns_size === 4),
-              'col-xs-3': (question.extra_options.answer_columns_size === 3)
+              'col-md-12': (question.extra_options.answer_columns_size === 12),
+              'col-md-6': (question.extra_options.answer_columns_size === 6),
+              'col-md-4': (question.extra_options.answer_columns_size === 4),
+              'col-md-3': (question.extra_options.answer_columns_size === 3)
             }"
         >
           <h4 class="category-heading" ng-if="question.hasCategories">
