@@ -21,12 +21,37 @@
 angular.module('avBooth')
   .directive(
     'avbSimultaneousQuestionAnswer',
-    function() {
+    function() 
+    {
+      /**
+       * @returns true if the url with the specific title and url appears in the
+       * urls list.
+       */
+      function hasUrl(urls, title, url)
+      {
+        const u = _.find(
+          urls,
+          function(urlObject)
+          {
+            return urlObject.title === title && urlObject.url === url;
+          }
+        );
+
+        return !!u;
+      }
+
+      function link(scope, _element, _attrs)
+      {
+        scope.isCategoryList = hasUrl(scope.answer, 'isCategoryList', 'true');
+      }
+
       return {
         restrict: 'AE',
+        link: link,
         scope: {
           question: '=',
-          answer: '='
+          answer: '=',
+          toggleSelectItem: '='
         },
         templateUrl: 'avBooth/simultaneous-question-answer-directive/simultaneous-question-answer-directive.html'
       };

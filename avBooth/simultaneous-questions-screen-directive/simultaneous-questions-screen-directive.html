@@ -100,12 +100,13 @@
                 avb-simultaneous-question-answer
                 answer="category.categoryAnswer"
                 question="question"
+                toggle-select-item="toggleSelectItem"
               >
               </div>
             </div>
 
             <div
-              ng-if="question.extra_options.enable_checkable_lists"
+              ng-if="!question.extra_options || !question.extra_options.enable_checkable_lists"
               class="list-checks"
             >
               {{ category.title }}
@@ -123,6 +124,7 @@
                   avb-simultaneous-question-answer
                   answer="answer"
                   question="question"
+                  toggle-select-item="toggleSelectItem"
                 ></div>
               </div>
           </div>
