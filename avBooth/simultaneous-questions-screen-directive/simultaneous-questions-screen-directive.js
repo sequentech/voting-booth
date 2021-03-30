@@ -32,31 +32,79 @@ angular.module('avBooth')
       ConfigService
     ) {
       var simultaneousQuestionsLayout = "simultaneous-questions";
+
+      /**
+       * @returns true if the url with the specific title and url appears in the
+       * urls list.
+       */
+       function hasUrl(urls, title, url)
+       {
+         const u = _.find(
+           urls,
+           function(urlObject)
+           {
+             return urlObject.title === title && urlObject.url === url;
+           }
+         );
+ 
+         return !!u;
+       }
+
+
       var link = function(scope, _element, _attrs)
       {
         // filter the list of questions to get the list of questions of type
         // "simultaneous-questions"
         var groupQuestions = _.filter(
           scope.election.questions,
-          function (q) {
-            return q.layout === simultaneousQuestionsLayout;
-        });
+          function (question) 
+          {
+            return question.layout === simultaneousQuestionsLayout;
+          }
+        );
 
         // add categories to questions
-        groupQuestions.forEach(function(q) {
-          var categories = _.groupBy(q.answers, "category");
-          categories = _.map(_.pairs(categories), function(pair) {
-            var i = -1;
-            var title = pair[0];
-            var answers = pair[1];
+        groupQuestions.forEach(function(question) 
+        {
+          var filteredAnswers = _.filter(
+            question.answers,
+            function (answer)
+            {
+              return (
+                !hasUrl(answer.urls, 'invalidVoteFlag', 'true') &&
+                !hasUrl(answer.urls, 'isCategoryList', 'true') &&
+                !hasUrl(answer.urls, 'isWriteIn', 'true')
+              ); 
+            }
+          );
+          var categories = _.groupBy(filteredAnswers, "category");
+          categories = _.map(
+            _.pairs(categories), 
+            function(pair) 
+            {
+              var i = -1;
+              var title = pair[0];
+              var answers = pair[1];
+              var categoryAnswer = _.find(
+                question.answers,
+                function (answer)
+                {
+                  return (
+                    answer.text === title &&
+                    hasUrl(answer.urls, 'isCategoryList', 'true')
+                  );
+                }
+              );
 
-            return {
-              title: title,
-              answers: answers,
-            };
-          });
-          q.categories = categories;
-          q.hasCategories = categories.length > 1 || (categories.length === 1 && categories[0].title === '');
+              return {
+                title: title,
+                answers: answers,
+                categoryAnswer: categoryAnswer
+              };
+            }
+          );
+          question.categories = categories;
+          question.hasCategories = categories.length > 1 || (categories.length === 1 && categories[0].title === '');
         });
 
         scope.groupQuestions = groupQuestions;

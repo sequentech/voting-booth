@@ -23,14 +23,14 @@
       </div>
 
       <div 
-        class="col-xs-6 col-md-7 text-center center-col"
+        class="col-xs-4 text-center center-col"
       >
         <div
           ng-i18next="[html:i18next]({num:'1', total: '3', url: organization.orgUrl, name: organization.orgName})avBooth.stepNumber">
         </div>
       </div>
 
-      <div class="col-xs-2 col-md-1 text-right">
+      <div class="col-xs-offset-2 col-xs-2 text-right">
         <span
           class="glyphicon glyphicon-question-sign"
           ng-if="documentation.show_help"
@@ -56,32 +56,77 @@
   <div class="navbar-unfixed-top text-center">
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
-      <h1>{{election.title}}</h1>
-      <p
-        ng-if="election.description"
-        class="description"
-        ng-bind-html="election.description | addTargetBlank">
-      </p>
     </div>
   </div>
 </div>
 
 <div class="content avb-content">
   <div class="container">
+    <div class="col-xs-12 text-center">
+      <h1 class="election-title">{{election.title}}</h1>
+      <p
+        ng-if="election.description"
+        class="election-description"
+        ng-bind-html="election.description | addTargetBlank">
+      </p>
+    </div>
     <div class="row options-row" ng-repeat="question in groupQuestions">
       <div class="col-xs-12">
-        <h3 aria-level="2">{{question.title}}</h3>
+        <h3 class="question-title text-center" aria-level="2">{{question.title}}</h3>
         <p
+          class="question-description"
           ng-if="question.description"
           ng-bind-html="question.description | addTargetBlank">
         </p>
       </div>
 
       <div class="categories">
-        <div class="panel panel-default" ng-repeat="category in question.categories">
-          <div class="panel-heading" ng-if="question.hasCategories">{{ category.title }}</div>
-          <div class="panel-body">
-            <div avb-simultaneous-question-answers-screen > </div>
+        <div
+            class="category"
+            ng-repeat="category in question.categories"
+            ng-class="{
+              'checkable': question.extra_options.enable_checkable_lists,
+              'col-md-12': (question.extra_options.answer_columns_size === 12),
+              'col-md-6': (question.extra_options.answer_columns_size === 6),
+              'col-md-4': (question.extra_options.answer_columns_size === 4),
+              'col-md-3': (question.extra_options.answer_columns_size === 3)
+            }"
+        >
+          <h4 class="category-heading" ng-if="question.hasCategories">
+            <div
+              ng-if="question.extra_options.enable_checkable_lists"
+            >
+              <div 
+                avb-simultaneous-question-answer
+                answer="category.categoryAnswer"
+                question="question"
+                toggle-select-item="toggleSelectItem"
+              >
+              </div>
+            </div>
+
+            <div
+              ng-if="!question.extra_options || !question.extra_options.enable_checkable_lists"
+              class="list-checks"
+            >
+              {{ category.title }}
+            </div>
+          </h4>
+          <div class="category-body">
+            <div 
+              class="question-answers text-left"
+              ng-class="{'group-pairs': question.extra_options.group_pairs}"
+            >
+              <div 
+                ng-repeat="answer in category.answers"
+              >
+                <div 
+                  avb-simultaneous-question-answer
+                  answer="answer"
+                  question="question"
+                  toggle-select-item="toggleSelectItem"
+                ></div>
+              </div>
           </div>
         </div>
       </div>
@@ -96,7 +141,12 @@
     </div>
 
     <!-- next button -->
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+    <div
+      class="row hidden" 
+      ng-cloak
+      av-affix-bottom data-force-affix-width="768"
+      style="max-height: 50px"
+    >
       <button
         id="continue-btn"
         class="btn btn-block btn-lg btn-success btn-plain"
