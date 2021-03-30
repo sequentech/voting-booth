@@ -104,7 +104,14 @@
             {{ category.title }}
           </h4>
           <div class="category-body">
-            <div avb-simultaneous-question-answers-screen > </div>
+            <div 
+              class="question-answers text-left"
+              ng-class="{'group-pairs': question.extra_options.group_pairs}"
+            >
+              <div 
+                ng-repeat="answer in category.answers"
+                avb-simultaneous-question-answer
+              ></div>
           </div>
         </div>
       </div>

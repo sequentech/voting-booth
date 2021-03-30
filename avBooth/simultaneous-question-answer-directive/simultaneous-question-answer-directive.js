@@ -20,11 +20,11 @@
  */
 angular.module('avBooth')
   .directive(
-    'avbSimultaneousQuestionAnswersScreen',
+    'avbSimultaneousQuestionAnswer',
     function() {
       return {
         restrict: 'AE',
-        templateUrl: 'avBooth/simultaneous-questions-screen-directive/simultaneous-question-answers-screen-directive.html'
+        templateUrl: 'avBooth/simultaneous-question-answer-directive/simultaneous-question-answer-directive.html'
       };
     }
   );
