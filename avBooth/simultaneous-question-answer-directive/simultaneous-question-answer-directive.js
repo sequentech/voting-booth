@@ -42,7 +42,7 @@ angular.module('avBooth')
 
       function link(scope, _element, _attrs)
       {
-        scope.isCategoryList = hasUrl(scope.answer, 'isCategoryList', 'true');
+        scope.isCategoryList = hasUrl(scope.answer.urls, 'isCategoryList', 'true');
       }
 
       return {
