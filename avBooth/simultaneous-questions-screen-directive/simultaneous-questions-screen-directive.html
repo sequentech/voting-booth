@@ -52,10 +52,9 @@
   </div>
 </nav>
 
-<div class="wrapper-unfixed">
-  <div class="navbar-unfixed-top text-center">
-    <div class="container">
-      <div class="hidden unfixed-top-height"></div>
+<div class="content avb-content">
+  <div class="container">
+    <div class="col-xs-12">
       <h1 class="election-title">{{election.title}}</h1>
       <p
         ng-if="election.description"
@@ -63,11 +62,6 @@
         ng-bind-html="election.description | addTargetBlank">
       </p>
     </div>
-  </div>
-</div>
-
-<div class="content avb-content">
-  <div class="container">
     <div class="row options-row" ng-repeat="question in groupQuestions">
       <div class="col-xs-12">
         <h3 class="question-title text-center" aria-level="2">{{question.title}}</h3>
