@@ -32,6 +32,25 @@ angular.module('avBooth')
       ConfigService
     ) {
       var simultaneousQuestionsLayout = "simultaneous-questions";
+
+      /**
+       * @returns true if the url with the specific title and url appears in the
+       * urls list.
+       */
+       function hasUrl(urls, title, url)
+       {
+         const u = _.find(
+           urls,
+           function(urlObject)
+           {
+             return urlObject.title === title && urlObject.url === url;
+           }
+         );
+ 
+         return !!u;
+       }
+
+
       var link = function(scope, _element, _attrs)
       {
         // filter the list of questions to get the list of questions of type
@@ -43,16 +62,38 @@ angular.module('avBooth')
         });
 
         // add categories to questions
-        groupQuestions.forEach(function(q) {
+        groupQuestions.forEach(function(q) 
+        {
           var categories = _.groupBy(q.answers, "category");
           categories = _.map(_.pairs(categories), function(pair) {
             var i = -1;
             var title = pair[0];
-            var answers = pair[1];
+            var answers = _.filter(
+              pair[1],
+              function (answer)
+              {
+                return (
+                  !hasUrl(answer.urls, 'invalidVoteFlag', 'true') &&
+                  !hasUrl(answer.urls, 'isCategoryList', 'true') &&
+                  !hasUrl(answer.urls, 'isWriteIn', 'true')
+                );
+              }
+            );
+            var categoryAnswer = _.find(
+              q.answers,
+              function (answer)
+              {
+                return (
+                  answer.text === title &&
+                  hasUrl(answer.urls, 'isCategoryList', 'true')
+                );
+              }
+            );
 
             return {
               title: title,
               answers: answers,
+              categoryAnswer: categoryAnswer
             };
           });
           q.categories = categories;

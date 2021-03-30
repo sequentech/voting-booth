@@ -24,6 +24,10 @@ angular.module('avBooth')
     function() {
       return {
         restrict: 'AE',
+        scope: {
+          question: '@',
+          answer: '@'
+        },
         templateUrl: 'avBooth/simultaneous-question-answer-directive/simultaneous-question-answer-directive.html'
       };
     }

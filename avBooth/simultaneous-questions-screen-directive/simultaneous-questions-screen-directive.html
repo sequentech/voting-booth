@@ -95,15 +95,21 @@
           <h4 class="category-heading" ng-if="question.hasCategories">
             <div
               ng-if="question.extra_options.enable_checkable_lists"
+            >
+              <div 
+                avb-simultaneous-question-answer
+                answer="category.categoryAnswer"
+                question="question"
+              >
+              </div>
+            </div>
+
+            <div
+              ng-if="question.extra_options.enable_checkable_lists"
               class="list-checks"
             >
-            <!-- TODO: link this with a hidden answer -->
-              <span
-                ng-repeat="x in [].constructor(question.extra_options.cumulative_number_of_checkboxes) track by $index"
-                class="glyphicon glyphicon-unchecked"
-              ></span>
+              {{ category.title }}
             </div>
-            {{ category.title }}
           </h4>
           <div class="category-body">
             <div 
@@ -115,6 +121,8 @@
               >
                 <div 
                   avb-simultaneous-question-answer
+                  answer="answer"
+                  question="question"
                 ></div>
               </div>
           </div>
@@ -131,7 +139,12 @@
     </div>
 
     <!-- next button -->
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+    <div
+      class="row hidden" 
+      ng-cloak
+      av-affix-bottom data-force-affix-width="768"
+      style="max-height: 50px"
+    >
       <button
         id="continue-btn"
         class="btn btn-block btn-lg btn-success btn-plain"
