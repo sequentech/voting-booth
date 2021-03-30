@@ -25,8 +25,8 @@ angular.module('avBooth')
       return {
         restrict: 'AE',
         scope: {
-          question: '@',
-          answer: '@'
+          question: '=',
+          answer: '='
         },
         templateUrl: 'avBooth/simultaneous-question-answer-directive/simultaneous-question-answer-directive.html'
       };
