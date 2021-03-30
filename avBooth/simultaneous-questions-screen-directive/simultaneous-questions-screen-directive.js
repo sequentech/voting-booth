@@ -104,7 +104,7 @@ angular.module('avBooth')
             }
           );
           question.categories = categories;
-          question.hasCategories = categories.length > 1 || (categories.length === 1 && categories[0].title === '');
+          question.hasCategories = categories.length > 1 || (categories.length === 1 && categories[0].title !== '');
         });
 
         scope.groupQuestions = groupQuestions;
