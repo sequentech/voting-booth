@@ -143,7 +143,6 @@ angular.module('avBooth')
           ];
         }
 
-
         /**
          * Updates scope.errors with the errors found in scope.groupQuestions
          */
@@ -205,7 +204,19 @@ angular.module('avBooth')
             }
           );
           question.categories = categories;
-          question.hasCategories = categories.length > 1 || (categories.length === 1 && categories[0].title === '');
+          question.hasCategories = (
+            categories.length > 1 || 
+            (categories.length === 1 && categories[0].title === '')
+          );
+
+          // Try to find and set the invalidVoteAnswer, if any
+          question.invalidVoteAnswer = _.find(
+            question.answers,
+            function (answer)
+            {
+              return hasUrl(answer.urls, 'invalidVoteFlag', 'true'); 
+            }
+          );
         });
 
         scope.groupQuestions = groupQuestions;

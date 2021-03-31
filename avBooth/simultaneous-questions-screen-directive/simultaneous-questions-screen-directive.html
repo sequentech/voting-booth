@@ -80,6 +80,19 @@
         </p>
       </div>
 
+      <div 
+        class="invalid-vote-col col-xs-12"
+        ng-if="question.invalidVoteAnswer"
+      >
+        <div 
+          avb-simultaneous-question-answer
+          answer="invalidVoteAnswer"
+          question="question"
+          toggle-select-item="toggleSelectItem"
+        >
+        </div>
+      </div>
+
       <div class="categories">
         <div
             class="category"
