@@ -20,9 +20,6 @@
  *
  * A layout that shows multiple questions at the same time.
  * NOTE: Only valid for unordered voting systems.
- *
- * FIXME: Does not check if the user selected less options in a question than
- * the minimum so when that happens an encryption codification error is shown.
  */
 angular.module('avBooth')
   .directive(
@@ -115,7 +112,8 @@ angular.module('avBooth')
         // group
         scope.stateData.isLastQuestion = (
           scope.stateData.isLastQuestion ||
-          scope.election.questions.length === lastGroupQuestionIndex + 1);
+          scope.election.questions.length === lastGroupQuestionIndex + 1
+        );
         scope.stateData.questionNum = lastGroupQuestionIndex;
 
         // from each question of our group, get the extra_data, and then fusion
@@ -123,7 +121,9 @@ angular.module('avBooth')
         var groupExtraData = _.extend.apply(_,
           _.union(
             [{}],
-            _.map(groupQuestions, function (q) { return q.extra_options; })));
+            _.map(groupQuestions, function (q) { return q.extra_options; })
+          )
+        );
 
         // set next button text by default if it has not been specified
         if (angular.isDefined(groupExtraData.next_button) &&
