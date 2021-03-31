@@ -17,10 +17,6 @@ angular.module('avBooth')
         $modalInstance.dismiss('cancel');
       };
 
-      $scope.errors = data.errors;
-      $scope.header = data.header;
-      $scope.body = data.header;
-      $scope.continue = data.continue;
-      $scope.cancel = data.cancel;
+      $scope.data = data;
     }
   );
