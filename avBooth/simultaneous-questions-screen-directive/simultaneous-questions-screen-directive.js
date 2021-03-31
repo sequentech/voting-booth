@@ -106,12 +106,13 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
-                    if (question.extra_options.invalid_vote_policy === 'allowed')
-                    {
+                    if (
+                      question.extra_options.invalid_vote_policy === 'allowed' ||
+                      scope.numSelectedOptions(question) === 0
+                    ) {
                       return true;
                     }
                     return (
-                      scope.numSelectedOptions(question) > 0 ||
                       (softIgnoreMin && !question.deselectedAtLeastOnce) ||
                       scope.numSelectedOptions(question) >= question.min
                     );
