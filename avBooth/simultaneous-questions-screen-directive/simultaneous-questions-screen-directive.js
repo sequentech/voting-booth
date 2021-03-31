@@ -394,7 +394,7 @@ angular.module('avBooth')
                   };
                 }
               }
-            }).result.then(focusContinueBtn,focusContinueBtn);
+            }).result.then(scope.next, focusContinueBtn);
             return;
           }
 
