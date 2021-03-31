@@ -26,7 +26,8 @@ angular.module('avBooth')
     'avbSimultaneousQuestionsScreen',
     function(
       $modal,
-      ConfigService
+      ConfigService,
+      CheckerService
     ) {
       var simultaneousQuestionsLayout = "simultaneous-questions";
 
@@ -60,12 +61,67 @@ angular.module('avBooth')
           }
         );
 
+
         /**
          * Updates scope.errors with the errors found in scope.groupQuestions
          */
         function updateErrors() 
         {
-
+          var errorChecks = [
+            {
+              check: "array-key-group-chain",
+              key: "questions",
+              append: {key: "qtitle", value: "$value.title"},
+              prefix: "question-",
+              checks: [
+                {
+                  check: "lambda",
+                  appendOnErrorLambda: function (question) 
+                  {
+                    return {
+                      min: question.min,
+                      num_selected: scope.numSelectedOptions(question)
+                    };
+                  },
+                  validator: function (question) 
+                  {
+                    return (
+                      question.deselectedAtLeastOnce &&
+                      scope.numSelectedOptions(question) < question.min
+                    );
+                  },
+                  postfix: "-min"
+                },
+                {
+                  check: "lambda",
+                  appendOnErrorLambda: function (question) 
+                  {
+                    return {
+                      max: question.max,
+                      num_selected: scope.numSelectedOptions(question)
+                    };
+                  },
+                  validator: function (question) 
+                  {
+                    return scope.numSelectedOptions(question) > question.max;
+                  },
+                  postfix: "-max"
+                },
+              ]
+            }
+          ];
+          scope.errors = [];
+          CheckerService({
+            checks: errorChecks,
+            data: scope.elections,
+            onError: function (errorKey, errorData) 
+            {
+              scope.errors.push({
+                data: errorData,
+                key: errorKey
+              });
+            }
+          });
         }
 
         // add categories to questions
@@ -248,7 +304,7 @@ angular.module('avBooth')
           return _.filter(
             question.answers,
             function (element) {
-              return element.selected > -1 || element.isSelected === true;
+              return element.selected > -1;
             }).length;
         };
       
