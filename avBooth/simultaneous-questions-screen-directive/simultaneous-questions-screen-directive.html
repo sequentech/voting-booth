@@ -146,6 +146,21 @@
       ng-cloak
       av-affix-bottom data-force-affix-width="768"
     >
+
+      <div 
+        class="col-xs-offset-2 col-xs-8 text-danger input-error" 
+        ng-if="errors.length > 0"
+      >
+        <ul>
+          <li
+            class="error"
+            ng-repeat="error in errors"
+            data-i18n="{{error.data}}"
+            ng-i18next>
+            [i18next]({{error.data}})avBooth.errors.{{error.key}}
+          </li>
+        </ul>
+      </div>
       <button
         id="continue-btn"
         class="btn btn-block btn-lg btn-success btn-plain"

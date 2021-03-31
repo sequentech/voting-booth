@@ -60,6 +60,14 @@ angular.module('avBooth')
           }
         );
 
+        /**
+         * Updates scope.errors with the errors found in scope.groupQuestions
+         */
+        function updateErrors() 
+        {
+
+        }
+
         // add categories to questions
         groupQuestions.forEach(function(question) 
         {
@@ -126,12 +134,15 @@ angular.module('avBooth')
         );
 
         // set next button text by default if it has not been specified
-        if (angular.isDefined(groupExtraData.next_button) &&
+        if (
+          angular.isDefined(groupExtraData.next_button) &&
           groupExtraData.next_button.length > 0 &&
-          !scope.stateData.isLastQuestion)
-        {
+          !scope.stateData.isLastQuestion
+        ) {
           scope.nextButtonText = groupExtraData.next_button;
-        } else {
+        } 
+        else 
+        {
           scope.nextButtonText = 'avBooth.continueButton';
         }
 
@@ -169,6 +180,7 @@ angular.module('avBooth')
         );
 
         scope.organization = ConfigService.organization;
+        scope.errors = [];
 
         // reset selection on initialization
         _.each(scope.election.questions, function(question)
@@ -191,38 +203,40 @@ angular.module('avBooth')
           // if option is selected, then simply deselect it
           if (option.selected > -1)
           {
-            _.each(question.answers, function (element) {
-              if (element.selected > option.selected) {
-                element.selected -= 1;
-              }
-            });
             option.selected = -1;
+
+            // flag to updateErrors that it can start showing the "not enough
+            // options selected error", as the voter already deselected an 
+            // option
+            question.deselectedAtLeastOnce = true;
           }
           // select option
           else
           {
             // if max options selectable is 1, deselect any other and select
-            // this
-            if (question.max === 1) {
-              _.each(question.answers, function (element) {
-                if (element.selected > option.selected) {
-                  element.selected -= 1;
+            // this (if question.extra_options.invalid_vote_policy is 
+            // not-allowed)
+            if (
+              question.max === 1 &&
+              (
+                !question.extra_options.invalid_vote_policy ||
+                question.extra_options.invalid_vote_policy === 'not-allowed'
+              )
+            ) {
+              _.each(
+                question.answers, 
+                function (element) 
+                {
+                  if (element.id !== option.id) 
+                  {
+                    element.selected = -1;
+                  }
                 }
-              });
-              option.selected = 0;
-              return;
+              );
             }
 
-            var numSelected = _.filter(question.answers, function (element) {
-              return element.selected > -1;
-            }).length;
-
-            // can't select more, flash info
-            if (numSelected === parseInt(question.max, 10)) {
-              return;
-            }
-
-            option.selected = numSelected;
+            option.selected = 0;
+            updateErrors();
           }
         };
 
