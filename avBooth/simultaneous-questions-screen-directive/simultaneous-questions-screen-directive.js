@@ -292,8 +292,8 @@ angular.module('avBooth')
             }
 
             option.selected = 0;
-            updateErrors();
           }
+          updateErrors();
         };
 
         /**
