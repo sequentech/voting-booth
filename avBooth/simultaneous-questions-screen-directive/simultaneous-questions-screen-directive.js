@@ -61,19 +61,16 @@ angular.module('avBooth')
           }
         );
 
-
-        /**
-         * Updates scope.errors with the errors found in scope.groupQuestions
-         */
-        function updateErrors() 
+        function getErrorsChecker(softIgnoreMin)
         {
-          var errorChecks = [
+          return [
             {
               check: "array-key-group-chain",
               key: "questions",
               append: {key: "qtitle", value: "$value.title"},
-              prefix: "question-",
+              prefix: "avBooth.errors.question-",
               checks: [
+                // raise if vote is blank if not softIgnoreMin
                 {
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
@@ -85,13 +82,43 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
+                    if (!!question.extra_options.force_allow_blank_vote)
+                    {
+                      return true;
+                    }
                     return (
-                      !question.deselectedAtLeastOnce ||
+                      (softIgnoreMin && !question.deselectedAtLeastOnce) ||
+                      scope.numSelectedOptions(question) > 0
+                    );
+                  },
+                  postfix: "-blank"
+                },
+                // raise if numSelectedOptions < min, but not if blank, and not
+                // if softIgnoreMin
+                {
+                  check: "lambda",
+                  appendOnErrorLambda: function (question) 
+                  {
+                    return {
+                      min: question.min,
+                      num_selected: scope.numSelectedOptions(question)
+                    };
+                  },
+                  validator: function (question) 
+                  {
+                    if (question.extra_options.invalid_vote_policy === 'allowed')
+                    {
+                      return true;
+                    }
+                    return (
+                      scope.numSelectedOptions(question) > 0 ||
+                      (softIgnoreMin && !question.deselectedAtLeastOnce) ||
                       scope.numSelectedOptions(question) >= question.min
                     );
                   },
                   postfix: "-min"
                 },
+                // raise if numSelectedOptions > max
                 {
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
@@ -103,6 +130,10 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
+                    if (question.extra_options.invalid_vote_policy === 'allowed')
+                    {
+                      return true;
+                    }
                     return scope.numSelectedOptions(question) <= question.max;
                   },
                   postfix: "-max"
@@ -110,6 +141,15 @@ angular.module('avBooth')
               ]
             }
           ];
+        }
+
+
+        /**
+         * Updates scope.errors with the errors found in scope.groupQuestions
+         */
+        function updateErrors() 
+        {
+          var errorChecks = getErrorsChecker(true);
           scope.errors = [];
           CheckerService({
             checks: errorChecks,
@@ -320,49 +360,37 @@ angular.module('avBooth')
         // proceeding, or to inform if it's needed to select an option.
         scope.questionNext = function()
         {
-          // show notification to select options if needs to select more
-          // options
-          var tooFewAnswersQuestions = _.filter(
-            groupQuestions,
-            function(question)
+          // calculate errors that might render the vote invalid or blank
+          var errorChecks = getErrorsChecker(false);
+          var errors = [];
+          CheckerService({
+            checks: errorChecks,
+            data: scope.election,
+            onError: function (errorKey, errorData) 
             {
-              return scope.numSelectedOptions(question) < question.min;
+              errors.push({
+                data: errorData,
+                key: errorKey
+              });
             }
-          );
+          });
 
           // if there any question with a blank vote, show the confirm dialog
-          if (tooFewAnswersQuestions.length > 0)
+          if (errors.length > 0)
           {
             $modal.open({
-              templateUrl: "avBooth/too-few-answers-controller/too-few-answers-controller.html",
+              templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
               controller: "TooFewAnswersController",
               size: 'md',
               resolve: {
-                questions: function() { return tooFewAnswersQuestions; },
-                numSelectedOptions: function() { return scope.numSelectedOptions; }
+                errors: function() { return errors; },
+                header: function () { return "avBooth.invalidAnswers.header"; },
+                body: function () { return "avBooth.invalidAnswers.body"; },
+                continue: function () { return "avBooth.invalidAnswers.continue"; },
+                cancel: function () { return "avBooth.invalidAnswers.cancel"; },
+
               }
             }).result.then(focusContinueBtn,focusContinueBtn);
-            return;
-          }
-
-          // show has any blank vote confirmation screen if allowed
-          var hasAnyBlankVote = _.reduce(
-            groupQuestions,
-            function(hasAnyBlankVote, question)
-            {
-              return hasAnyBlankVote || (scope.numSelectedOptions(question) === 0);
-            },
-            false
-          );
-
-          // if there any question with a blank vote, show the confirm dialog
-          if (hasAnyBlankVote)
-          {
-            $modal.open({
-              templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
-              controller: "ConfirmNullVoteController",
-              size: 'md'
-            }).result.then(scope.next, focusContinueBtn);
             return;
           }
 

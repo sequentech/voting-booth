@@ -3,7 +3,7 @@
     <span class="glyphicon glyphicon-warning-sign">
     </span>
     <span class="title" ng-i18next>
-      avBooth.tooFewAnswers.header
+      {{header}}
     </span>
     <button type="button" aria-label="close" class="close pull-right" ng-click="ok()">×</button>
   </h4>
@@ -11,18 +11,24 @@
 <div class="modal-body">
   <p>
     <span ng-i18next>
-      avBooth.tooFewAnswers.body
+      {{body}}
     </span>
-    <ul>
+    <ul ng-if="errors.length > 0">
       <li
-        ng-repeat="question in questions"
-        ng-i18next="[html:i18next]({title: question.title, min: question.min, selected: numSelectedOptions(question)})avBooth.tooFewAnswers.question">
+        class="error"
+        ng-repeat="error in errors"
+        data-i18n="{{error.data}}"
+        ng-i18next>
+        [i18next]({{error.data}}){{error.key}}
       </li>
     </ul>
   </p>
 </div>
 <div class="modal-footer">
   <button class="btn btn-warning" ng-click="ok()" ng-i18next>
-    avBooth.continueButton
+    {{continue}}
+  </button>
+  <button class="btn" ng-click="cancel()" ng-i18next>
+    {{cancel}}
   </button>
 </div>
