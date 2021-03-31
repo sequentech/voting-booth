@@ -380,7 +380,7 @@ angular.module('avBooth')
           {
             $modal.open({
               templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
-              controller: "TooFewAnswersController",
+              controller: "InvalidAnswersController",
               size: 'md',
               resolve: {
                 errors: function() { return errors; },
