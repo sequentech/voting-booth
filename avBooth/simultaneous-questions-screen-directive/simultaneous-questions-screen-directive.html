@@ -60,19 +60,6 @@
   </div>
 </div>
 
-<div class="content avb-content">
-  <div class="container">
-    <div class="col-xs-12 text-center">
-      <h1 class="election-title">{{election.title}}</h1>
-      <p
-        ng-if="election.description"
-        class="election-description"
-        ng-bind-html="election.description | addTargetBlank">
-      </p>
-    </div>
-  </div>
-</div>
-
 <div id="avb-toggle" class="text-center item-block hidden">
   <span class="glyphicon glyphicon-play"></span>
 </div>
@@ -89,6 +76,14 @@
 
 <div class="content avb-content">
   <div class="container">
+    <div class="col-xs-12 text-center">
+      <h1 class="election-title">{{election.title}}</h1>
+      <p
+        ng-if="election.description"
+        class="election-description"
+        ng-bind-html="election.description | addTargetBlank">
+      </p>
+    </div>
     <div class="row options-row" ng-repeat="question in groupQuestions">
       <div class="col-xs-12">
         <h3 class="question-title text-center" aria-level="2">{{question.title}}</h3>
