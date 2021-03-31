@@ -113,7 +113,7 @@ angular.module('avBooth')
           scope.errors = [];
           CheckerService({
             checks: errorChecks,
-            data: scope.elections,
+            data: scope.election,
             onError: function (errorKey, errorData) 
             {
               scope.errors.push({
