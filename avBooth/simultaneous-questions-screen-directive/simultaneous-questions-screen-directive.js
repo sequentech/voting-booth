@@ -389,8 +389,8 @@ angular.module('avBooth')
                     errors: errors,
                     header: "avBooth.invalidAnswers.header",
                     body: "avBooth.invalidAnswers.body",
-                    header: "avBooth.invalidAnswers.header",
-                    header: "avBooth.invalidAnswers.header"
+                    continue: "avBooth.invalidAnswers.continue",
+                    cancel: "avBooth.invalidAnswers.cancel"
                   };
                 }
               }
