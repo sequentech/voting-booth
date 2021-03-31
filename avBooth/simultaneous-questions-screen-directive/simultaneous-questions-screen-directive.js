@@ -384,11 +384,15 @@ angular.module('avBooth')
               size: 'md',
               resolve: {
                 errors: function() { return errors; },
-                header: function () { return "avBooth.invalidAnswers.header"; },
-                body: function () { return "avBooth.invalidAnswers.body"; },
-                continue: function () { return "avBooth.invalidAnswers.continue"; },
-                cancel: function () { return "avBooth.invalidAnswers.cancel"; },
-
+                data: function() {
+                  return {
+                    errors: errors,
+                    header: "avBooth.invalidAnswers.header",
+                    body: "avBooth.invalidAnswers.body",
+                    header: "avBooth.invalidAnswers.header",
+                    header: "avBooth.invalidAnswers.header"
+                  };
+                }
               }
             }).result.then(focusContinueBtn,focusContinueBtn);
             return;
