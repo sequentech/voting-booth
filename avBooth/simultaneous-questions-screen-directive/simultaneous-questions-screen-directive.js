@@ -163,61 +163,90 @@ angular.module('avBooth')
           });
         }
 
-        // add categories to questions
-        groupQuestions.forEach(function(question) 
-        {
-          var filteredAnswers = _.filter(
-            question.answers,
-            function (answer)
-            {
-              return (
-                !hasUrl(answer.urls, 'invalidVoteFlag', 'true') &&
-                !hasUrl(answer.urls, 'isCategoryList', 'true') &&
-                !hasUrl(answer.urls, 'isWriteIn', 'true')
-              ); 
-            }
-          );
-          var categories = _.groupBy(filteredAnswers, "category");
-          categories = _.map(
-            _.pairs(categories), 
-            function(pair) 
-            {
-              var i = -1;
-              var title = pair[0];
-              var answers = pair[1];
-              var categoryAnswer = _.find(
-                question.answers,
-                function (answer)
-                {
-                  return (
-                    answer.text === title &&
-                    hasUrl(answer.urls, 'isCategoryList', 'true')
-                  );
-                }
-              );
+        // add categories to questions, and other initialization stuff
+        groupQuestions.forEach(
+          function(question) 
+          {
+            var filteredAnswers = _.filter(
+              question.answers,
+              function (answer)
+              {
+                return (
+                  !hasUrl(answer.urls, 'invalidVoteFlag', 'true') &&
+                  !hasUrl(answer.urls, 'isCategoryList', 'true') &&
+                  !hasUrl(answer.urls, 'isWriteIn', 'true')
+                ); 
+              }
+            );
+            var categories = _.groupBy(filteredAnswers, "category");
+            categories = _.map(
+              _.pairs(categories), 
+              function(pair) 
+              {
+                var i = -1;
+                var title = pair[0];
+                var answers = pair[1];
+                var categoryAnswer = _.find(
+                  question.answers,
+                  function (answer)
+                  {
+                    return (
+                      answer.text === title &&
+                      hasUrl(answer.urls, 'isCategoryList', 'true')
+                    );
+                  }
+                );
 
-              return {
-                title: title,
-                answers: answers,
-                categoryAnswer: categoryAnswer
-              };
-            }
-          );
-          question.categories = categories;
-          question.hasCategories = (
-            categories.length > 1 || 
-            (categories.length === 1 && categories[0].title === '')
-          );
+                return {
+                  title: title,
+                  answers: answers,
+                  categoryAnswer: categoryAnswer
+                };
+              }
+            );
+            question.categories = categories;
+            question.hasCategories = (
+              categories.length > 1 || 
+              (categories.length === 1 && categories[0].title === '')
+            );
 
-          // Try to find and set the invalidVoteAnswer, if any
-          question.invalidVoteAnswer = _.find(
-            question.answers,
-            function (answer)
+            // set a sane default for answer_columns_size
+            if (!angular.isDefined(question.extra_options)) 
             {
-              return hasUrl(answer.urls, 'invalidVoteFlag', 'true'); 
+              question.extra_options = {};
             }
-          );
-        });
+            if (!angular.isDefined(question.extra_options.answer_columns_size)) 
+            {
+              question.extra_options.answer_columns_size = 6;
+            }
+
+            // convert each answer url list to a map
+            _.each(
+              question.answers,
+              function (answer)
+              {
+                answer.urlsObject = _.object(
+                  _.map(
+                    answer.urls, 
+                    function(url) 
+                    {
+                      return [url.title, url.url];
+                    }
+                  )
+                );
+              }
+            );
+
+            // Try to find and set the invalidVoteAnswer, if any
+            question.invalidVoteAnswer = _.find(
+              question.answers,
+              function (answer)
+              {
+                return hasUrl(answer.urls, 'invalidVoteFlag', 'true'); 
+              }
+            );
+          }
+        );
 
         scope.groupQuestions = groupQuestions;
         var lastGroupQuestionArrayIndex = groupQuestions[groupQuestions.length-1];
@@ -252,39 +281,6 @@ angular.module('avBooth')
         {
           scope.nextButtonText = 'avBooth.continueButton';
         }
-
-        _.each(
-          groupQuestions,
-          function (question)
-          {
-            // set a sane default for answer_columns_size
-            if (!angular.isDefined(question.extra_options)) 
-            {
-              question.extra_options = {};
-            }
-            if (!angular.isDefined(question.extra_options.answer_columns_size)) 
-            {
-              question.extra_options.answer_columns_size = 6;
-            }
-
-            // convert each answer url list to a map
-            _.each(
-              question.answers,
-              function (answer)
-              {
-                answer.urlsObject = _.object(
-                  _.map(
-                    answer.urls, 
-                    function(url) 
-                    {
-                      return [url.title, url.url];
-                    }
-                  )
-                );
-              }
-            );
-          }
-        );
 
         scope.organization = ConfigService.organization;
         scope.errors = [];
