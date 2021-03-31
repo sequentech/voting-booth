@@ -86,8 +86,8 @@ angular.module('avBooth')
                   validator: function (question) 
                   {
                     return (
-                      question.deselectedAtLeastOnce &&
-                      scope.numSelectedOptions(question) < question.min
+                      !question.deselectedAtLeastOnce ||
+                      scope.numSelectedOptions(question) >= question.min
                     );
                   },
                   postfix: "-min"
@@ -103,7 +103,7 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
-                    return scope.numSelectedOptions(question) > question.max;
+                    return scope.numSelectedOptions(question) <= question.max;
                   },
                   postfix: "-max"
                 },

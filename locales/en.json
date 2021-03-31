@@ -35,8 +35,8 @@
   },
   "avBooth": {
     "errors": {
-      "question-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__",
-      "question-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__"
+      "question-lambda-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__",
+      "question-lambda-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__"
     },
     "legal": {
         "title": "Legal terms",
