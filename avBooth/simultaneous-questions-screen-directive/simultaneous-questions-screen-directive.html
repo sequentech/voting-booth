@@ -77,7 +77,7 @@
 <div class="content avb-content">
   <div class="container">
     <div class="col-xs-12 text-center">
-      <h1 class="election-title">{{election.title}}</h1>
+      <h1 class="election-title">{{election.presentation.extra_options.public_title || election.title}}</h1>
       <p
         ng-if="election.description"
         class="election-description"
