@@ -211,7 +211,7 @@ angular.module('avBooth')
               (categories.length === 1 && categories[0].title === '')
             );
 
-            // set a sane default for answer_columns_size
+            // set a sane default for columns sizes
             if (!angular.isDefined(question.extra_options)) 
             {
               question.extra_options = {};
@@ -219,6 +219,10 @@ angular.module('avBooth')
             if (!angular.isDefined(question.extra_options.answer_columns_size)) 
             {
               question.extra_options.answer_columns_size = 6;
+            }
+            if (!angular.isDefined(question.extra_options.answer_group_columns_size)) 
+            {
+              question.extra_options.answer_group_columns_size = 6;
             }
 
             // convert each answer url list to a map

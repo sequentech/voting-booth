@@ -112,11 +112,10 @@
             class="category"
             ng-repeat="category in question.categories"
             ng-class="{
-              'checkable': question.extra_options.enable_checkable_lists,
-              'col-md-12': (question.extra_options.answer_columns_size === 12),
-              'col-md-6': (question.extra_options.answer_columns_size === 6),
-              'col-md-4': (question.extra_options.answer_columns_size === 4),
-              'col-md-3': (question.extra_options.answer_columns_size === 3)
+              'col-md-12': (question.extra_options.answer_group_columns_size === 12),
+              'col-md-6': (question.extra_options.answer_group_columns_size === 6),
+              'col-md-4': (question.extra_options.answer_group_columns_size === 4),
+              'col-md-3': (question.extra_options.answer_group_columns_size === 3)
             }"
         >
           <h4 class="category-heading" ng-if="question.hasCategories">
@@ -142,7 +141,12 @@
           <div class="category-body">
             <div 
               class="question-answers text-left"
-              ng-class="{'group-pairs': question.extra_options.group_pairs}"
+              ng-class="{
+                'col-md-12': (question.extra_options.answer_columns_size === 12),
+                'col-md-6': (question.extra_options.answer_columns_size === 6),
+                'col-md-4': (question.extra_options.answer_columns_size === 4),
+                'col-md-3': (question.extra_options.answer_columns_size === 3)
+              }"
             >
               <div 
                 ng-repeat="answer in category.answers"
