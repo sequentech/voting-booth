@@ -118,7 +118,7 @@
               'col-md-3': (question.extra_options.answer_group_columns_size === 3)
             }"
         >
-          <h4 class="category-heading" ng-if="question.hasCategories">
+          <h4 class="category-heading" ng-if="question.hasCategories && category.title.length > 0">
             <div
               ng-if="question.extra_options.enable_checkable_lists"
             >
