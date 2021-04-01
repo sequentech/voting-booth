@@ -36,6 +36,7 @@
         <span
           class="glyphicon glyphicon-question-sign"
           role="link"
+          tabindex="0"
           ng-if="documentation.show_help"
           ng-keyup="launchHelp()"
           ng-click="launchHelp()">
@@ -43,6 +44,7 @@
         <span
           ng-if="documentation.show_help"
           role="link"
+          tabindex="0"
           ng-keyup="launchHelp()"
           ng-click="launchHelp()" 
           ng-i18next="avBooth.helpTitle"
