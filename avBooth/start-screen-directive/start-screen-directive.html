@@ -33,17 +33,17 @@
       </div>
 
       <div class="col-xs-offset-2 col-xs-2 text-right">
-        <span
+        <a
           class="glyphicon glyphicon-question-sign"
           ng-if="documentation.show_help"
           ng-click="launchHelp()">
-        </span>
-        <span
+        </a>
+        <a
           ng-if="documentation.show_help"
           ng-click="launchHelp()" 
           ng-i18next="avBooth.helpTitle"
         >
-        </span>
+        </a>
         <span 
           class="dropdown left-padding"
           av-change-lang
