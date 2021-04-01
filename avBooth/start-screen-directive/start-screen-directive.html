@@ -33,19 +33,24 @@
       </div>
 
       <div class="col-xs-offset-2 col-xs-2 text-right">
-        <a
+        <span
           class="glyphicon glyphicon-question-sign"
+          role="link"
           ng-if="documentation.show_help"
+          ng-keyup="launchHelp()"
           ng-click="launchHelp()">
-        </a>
-        <a
+        </span>
+        <span
           ng-if="documentation.show_help"
+          role="link"
+          ng-keyup="launchHelp()"
           ng-click="launchHelp()" 
           ng-i18next="avBooth.helpTitle"
         >
-        </a>
+        </span>
         <span 
           class="dropdown left-padding"
+          role="menuitem"
           av-change-lang
         >
         </span>
