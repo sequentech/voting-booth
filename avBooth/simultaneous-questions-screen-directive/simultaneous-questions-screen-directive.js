@@ -218,7 +218,7 @@ angular.module('avBooth')
             }
             if (!angular.isDefined(question.extra_options.answer_columns_size)) 
             {
-              question.extra_options.answer_columns_size = 6;
+              question.extra_options.answer_columns_size = 12;
             }
             if (!angular.isDefined(question.extra_options.answer_group_columns_size)) 
             {
