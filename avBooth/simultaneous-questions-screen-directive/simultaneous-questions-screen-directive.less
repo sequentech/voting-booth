@@ -35,77 +35,9 @@
     }
   }
 
-  // TODO: the following two nth-child changes are to put together the options
-  // when there are only two
-  .question-answers.group-pairs .question-answer:nth-child(odd) .opt
-  {
-    text-align: right;
-    padding-right: 30px;
-  }
-
-  .question-answers.group-pairs .question-answer:nth-child(even) .opt
-  {
-    text-align: left;
-    padding-left: 30px;
-  }
-
   .vertilize-col {
     padding: 0;
     vertical-align: middle;
-  }
-
-  // answer styles
-  .opt {
-    font-size: 20px;
-    text-align: left;
-    padding: 5px;
-    cursor: pointer;
-    display: inline-block;
-
-    &:hover {
-      background-color: @gray-lighter;
-    }
-
-    &:focus {
-      border: none;
-    }
-
-    .answer-glyphicon .glyphicon {
-      font-size: 30px;
-      margin-right: 10px;
-    }
-  
-    .answer-image {
-      img {
-        max-height: 130px;
-        max-width: 130px;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-    }
-
-    .answer-texts {
-      box-sizing: border-box;
-      padding-left: 10px;
-      width: 100%;
-
-      .answer-text {
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .answer-details {
-        font-size: 14px;
-      }
-    }
-
-    .answer-links {
-      .btn {
-        border: none;
-        text-decoration: underline;
-        background: transparent;
-      }
-    }
   }
 
   // question separator style
@@ -140,6 +72,14 @@
     font-weight: bold;
     text-decoration: underline;
     font-size: 20px;
+  }
+
+  .question-answer-wrapper.col-md-12,
+  .question-answer-wrapper.col-md-6,
+  .question-answer-wrapper.col-md-4,
+  .question-answer-wrapper.col-md-3 {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   [av-affix-bottom] {
