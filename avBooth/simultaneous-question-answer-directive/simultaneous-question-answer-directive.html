@@ -9,6 +9,7 @@
     aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
     aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
     class="opt vertilize-wrapper"
+    ng-keyup="toggleSelectItem(question, answer)"
     ng-click="toggleSelectItem(question, answer)"
   >
     <div class="vertilize">
