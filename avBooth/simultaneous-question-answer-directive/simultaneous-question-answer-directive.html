@@ -5,6 +5,9 @@
   <div
     tabindex="0"
     ng-space-click
+    role="checkbox"
+    aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
+    aria-label="{{answer.text}}"
     class="opt vertilize-wrapper"
     ng-click="toggleSelectItem(question, answer)"
   >
