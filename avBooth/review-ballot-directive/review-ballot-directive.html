@@ -1,6 +1,4 @@
 <div
-  tabindex="0"
-  ng-space-click
   class="question padded"
   ng-repeat="question in election.questions"
   ng-if="!question.disabled && question.disabled !== true"
@@ -10,11 +8,11 @@
   <h3 aria-level="2" class="text-brand-success">
     {{$index + 1}}. {{question.title}}
     <div class="pull-right">
-      <span class="glyphicon glyphicon-edit"></span>
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
     </div>
   </h3>
 
-  <!-- "Selected items:" line -->
+  <!-- Selected items line -->
   <p
     ng-if="!question.isPairWise && (question.answers | avbSelectedOptions).length < 2"
     ng-i18next="avBooth.selectedOptionFollow">

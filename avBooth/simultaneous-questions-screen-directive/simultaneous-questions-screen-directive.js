@@ -166,8 +166,11 @@ angular.module('avBooth')
 
         // add categories to questions, and other initialization stuff
         groupQuestions.forEach(
-          function(question) 
+          function(question, index) 
           {
+            // add index to the question
+            question.index = index;
+            
             var filteredAnswers = _.filter(
               question.answers,
               function (answer)
