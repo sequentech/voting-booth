@@ -25,10 +25,20 @@
   </p>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-warning" ng-click="ok()" ng-i18next>
+  <button 
+    ng-if="data.continue" 
+    class="btn btn-warning" 
+    ng-click="ok()" 
+    ng-i18next
+  >
     {{data.continue}}
   </button>
-  <button class="btn" ng-click="cancel()" ng-i18next>
+  <button 
+  ng-if="data.cancel" 
+    class="btn" 
+    ng-click="cancel()" 
+    ng-i18next
+  >
     {{data.cancel}}
   </button>
 </div>

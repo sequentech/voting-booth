@@ -347,7 +347,7 @@ angular.module('avBooth')
           var qr = QrCodeService(typeNumber, errorCorrectionLevel);
           qr.addData(scope.ballotTrackerUrl);
           qr.make();
-          scope.qrCodeImg = qr.createImgTag(6);
+          scope.qrCodeImg = qr.createImgTag(6, undefined, $i18next("avBooth.qrCodeAlt"));
         }
       }
 

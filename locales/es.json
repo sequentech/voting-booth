@@ -176,6 +176,7 @@
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de prueba, los votos emitidos aquí no cuentan.",
     "successBallotHash": "Ha emitido su voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de su voto es:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Puede usar su localizador para verificar que su voto ha quedado registrado en <strong><a href=\"__ballotLocatorUrl__\" target=\"_blank\">esta dirección</a></strong>.",
+    "qrCodeAlt": "Código QR",
     "successBallotQrCode": "Puede verificar que su voto ha quedado registrado mediante el siguiente código QR:",
     "successNoBallotHash": "Ha emitido su voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "downloadBallotTicket": "Descargar ticket en PDF",
