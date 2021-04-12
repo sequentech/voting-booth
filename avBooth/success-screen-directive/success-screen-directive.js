@@ -500,7 +500,7 @@ angular.module('avBooth')
         try {
           $window.close();
         } finally {
-          $window.location.href = ConfigService.defaultRoute;
+          $window.location.href = scope.redirectToLogin();
         }
       };
 
