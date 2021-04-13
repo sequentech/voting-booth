@@ -219,7 +219,7 @@ angular
                 break;
               default:
                 answerBase = this.question.max + 1;
-
+            }
             // Set the initial bases and raw ballot. We will populate the rest
             // next.
             var bases = [2];
