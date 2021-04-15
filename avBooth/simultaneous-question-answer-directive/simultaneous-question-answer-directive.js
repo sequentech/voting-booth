@@ -51,7 +51,10 @@ angular.module('avBooth')
 
         if (scope.cumulativeChecks)
         {
-          scope.answer_cumulative_checks = scope.cumulativeChecks[scope.question.title][scope.answer.id];
+          scope.answer_cumulative_checks = _.map(
+            Array(scope.question.extra_options.cumulative_number_of_checkboxes),
+            function (_value, index) { return index; }
+          );
         }
       }
 
