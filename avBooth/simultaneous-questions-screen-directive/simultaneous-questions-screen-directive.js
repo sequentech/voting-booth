@@ -61,7 +61,7 @@ angular.module('avBooth')
           }
         );
 
-        function getErrorsChecker(softIgnoreMin)
+        function getErrorsChecker(checkerTypeFlag)
         {
           return [
             {
@@ -70,9 +70,10 @@ angular.module('avBooth')
               append: {key: "qtitle", value: "$value.title"},
               prefix: "avBooth.errors.question-",
               checks: [
-                // raise if vote is blank if not softIgnoreMin
+                // raise if vote is blank if not checkerTypeFlag
                 {
                   check: "lambda",
+           
                   appendOnErrorLambda: function (question) 
                   {
                     return {
@@ -87,14 +88,14 @@ angular.module('avBooth')
                       return true;
                     }
                     return (
-                      (softIgnoreMin && !question.deselectedAtLeastOnce) ||
+                      (checkerTypeFlag === "soft" && !question.deselectedAtLeastOnce) ||
                       scope.numSelectedOptions(question) > 0
                     );
                   },
                   postfix: "-blank"
                 },
-                // raise if numSelectedOptions < min, but not if blank, and not
-                // if softIgnoreMin
+                // raise if numSelectedOptions < min, but not if blank, and
+                // checkerTypeFlag is normal
                 {
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
@@ -113,7 +114,7 @@ angular.module('avBooth')
                       return true;
                     }
                     return (
-                      (softIgnoreMin && !question.deselectedAtLeastOnce) ||
+                      (checkerTypeFlag === "normal" && !question.deselectedAtLeastOnce) ||
                       scope.numSelectedOptions(question) >= question.min
                     );
                   },
@@ -149,7 +150,7 @@ angular.module('avBooth')
          */
         function updateErrors() 
         {
-          var errorChecks = getErrorsChecker(true);
+          var errorChecks = getErrorsChecker("soft");
           scope.errors = [];
           CheckerService({
             checks: errorChecks,
@@ -162,6 +163,7 @@ angular.module('avBooth')
               });
             }
           });
+          
         }
 
         // add categories to questions, and other initialization stuff
@@ -481,7 +483,7 @@ angular.module('avBooth')
         scope.questionNext = function()
         {
           // calculate errors that might render the vote invalid or blank
-          var errorChecks = getErrorsChecker(false);
+          var errorChecks = getErrorsChecker("normal");
           var errors = [];
           CheckerService({
             checks: errorChecks,
@@ -489,6 +491,19 @@ angular.module('avBooth')
             onError: function (errorKey, errorData) 
             {
               errors.push({
+                data: errorData,
+                key: errorKey
+              });
+            }
+          });
+          var showStopperErrorChecks = getErrorsChecker("show-stoppers");
+          var showStopperErrors = [];
+          CheckerService({
+            checks: showStopperErrorChecks,
+            data: scope.election,
+            onError: function (errorKey, errorData) 
+            {
+              showStopperErrors.push({
                 data: errorData,
                 key: errorKey
               });
@@ -509,7 +524,9 @@ angular.module('avBooth')
                     errors: errors,
                     header: "avBooth.invalidAnswers.header",
                     body: "avBooth.invalidAnswers.body",
-                    continue: "avBooth.invalidAnswers.continue",
+                    continue: (
+                      showStopperErrors.length === 0 ? "avBooth.invalidAnswers.continue" : undefined
+                    ),
                     cancel: "avBooth.invalidAnswers.cancel"
                   };
                 }
