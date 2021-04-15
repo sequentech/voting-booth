@@ -109,7 +109,11 @@ angular.module('avBooth')
                   {
                     if (
                       question.extra_options.invalid_vote_policy === 'allowed' ||
-                      scope.numSelectedOptions(question) === 0
+                      scope.numSelectedOptions(question) === 0 ||
+                      (
+                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        checkerTypeFlag === "show-stoppers"
+                      )
                     ) {
                       return true;
                     }
@@ -132,8 +136,13 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
-                    if (question.extra_options.invalid_vote_policy === 'allowed')
-                    {
+                    if (
+                      question.extra_options.invalid_vote_policy === 'allowed' || 
+                      (
+                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        checkerTypeFlag === "show-stoppers"
+                      )
+                    ) {
                       return true;
                     }
                     return scope.numSelectedOptions(question) <= question.max;
