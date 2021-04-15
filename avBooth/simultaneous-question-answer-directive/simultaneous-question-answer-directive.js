@@ -51,7 +51,7 @@ angular.module('avBooth')
 
         if (scope.cumulativeChecks)
         {
-          scope.answer_cumulative_checks = scope.cumulativeChecks[scope.question.title];
+          scope.answer_cumulative_checks = scope.cumulativeChecks[scope.question.title][scope.answer.id];
         }
       }
 
