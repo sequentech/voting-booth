@@ -18,9 +18,20 @@
         <span 
           class="glyphicon"
           aria-hidden="true"
+          ng-if="!question.tally_type === 'cumulative'"
           ng-class="{
             'glyphicon-unchecked': answer.selected === -1,
             'glyphicon-check': answer.selected > -1
+          }"
+        ></span>
+        <!-- show cumulative checkboxes -->
+        <span
+          class="glyphicon cumulative-glyphicon"
+          ng-repeat="check in cumulative_checks"
+          ng-click="toggleSelectItemCumulative(question, answer, check)"
+          ng-class="{
+            'glyphicon-unchecked': !isCheckSelected(answer, check),
+            'glyphicon-check': isCheckSelected(answer, check)
           }"
         ></span>
       </div>
