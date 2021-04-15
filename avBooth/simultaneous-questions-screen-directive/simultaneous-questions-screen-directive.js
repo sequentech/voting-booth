@@ -325,10 +325,10 @@ angular.module('avBooth')
 
         scope.deselectAllCumulative = function(question, option)
         {
-          var n = question.extra_options.cumulative_number_of_checkboxes;
-          for (var i=0; i<n; i++)
+          var num = question.extra_options.cumulative_number_of_checkboxes;
+          for (var index = 0; index < num; index++)
           {
-            scope.cumulativeChecks[question.title][option.id][i] = false;
+            scope.cumulativeChecks[question.title][option.id][index] = false;
           }
         };
 
@@ -340,50 +340,55 @@ angular.module('avBooth')
           var value = scope.cumulativeChecks[question.title][option.id][index];
           scope.cumulativeChecks[question.title][option.id][index] = !value;
 
-          var checks = scope.cumulativeChecks[question.title][option.id].reduce(
-            function(accumulator, v) {
-              return v ? accumulator + 1 : accumulator;
-            }, 0);
+          // flag to updateErrors that it can start showing the "not enough
+          // options selected error", as the voter already deselected an 
+          // option
+          if (value) 
+          {
+            question.deselectedAtLeastOnce = true;
+          }
+
+          var currentAnswerChecks = scope.cumulativeChecks[question.title][option.id]
+            .reduce(
+              function(accumulator, check) 
+              {
+                return check ? accumulator + 1 : accumulator;
+              }, 
+              0
+            );
 
           // if option is selected, then simply deselect it
-          if (option.selected > -1 && checks === 0)
+          if (option.selected > -1 && currentAnswerChecks === 0)
           {
             option.selected = -1;
           }
           // select option
           else
           {
-            // if max options selectable is 1, deselect any other and select
-            // this
-            if (question.max === 1)
-            {
-              _.each(question.answers, function (element)
-              {
-                if (element !== option)
+            // if max options selectable is 1 and invalid votes are not allowed, 
+            // deselect any other and select this
+            if (
+              question.max === 1 &&
+              (
+                !question.extra_options.invalid_vote_policy ||
+                question.extra_options.invalid_vote_policy === 'not-allowed'
+              )
+            ) {
+              _.each(
+                question.answers, 
+                function (element)
                 {
-                  scope.deselectAllCumulative(question, element);
-                  element.selected = -1;
+                  if (element !== option)
+                  {
+                    scope.deselectAllCumulative(question, element);
+                    element.selected = -1;
+                  }
                 }
-              });
+              );
             }
-
-            var numSelected = _.filter(
-              question.answers, 
-              function (element) 
-              {
-                return element.selected > -1;
-              }
-            ).length;
-
-            // can't select more, flash info
-            if (numSelected > parseInt(question.max, 10)) 
-            {
-              scope.deselectAllCumulative(question, option);
-              return;
-            }
-
-            option.selected = checks - 1;
+            option.selected = currentAnswerChecks - 1;
           }
+          updateErrors();
         };
 
         /**
@@ -392,7 +397,8 @@ angular.module('avBooth')
          */
         scope.toggleSelectItem = function(question, option)
         {
-          if (question.tally_type === "cumulative") {
+          if (question.tally_type === "cumulative") 
+          {
             return false;
           }
 
@@ -441,11 +447,25 @@ angular.module('avBooth')
          */
         scope.numSelectedOptions = function (question)
         {
-          return _.filter(
-            question.answers,
-            function (element) {
-              return element.selected > -1;
-            }).length;
+          if (question.tally_type === "cumulative") 
+          {
+            return question.answers.reduce(
+              function (accumulator, answer)
+              {
+                return accumulator + answer.selected + 1;
+              },
+              0
+            );
+          }
+          else 
+          {
+            return _.filter(
+              question.answers,
+              function (element) {
+                return element.selected > -1;
+              }
+            ).length;
+          }
         };
       
         /**
