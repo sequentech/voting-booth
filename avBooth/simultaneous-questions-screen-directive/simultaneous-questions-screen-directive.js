@@ -334,7 +334,7 @@ angular.module('avBooth')
                   .map(
                     function (_value, index) 
                     {
-                      return answer.selected + 1 >= index;
+                      return answer.selected >= index;
                     }
                   );
               }
