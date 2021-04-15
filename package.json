@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master",
+    "angular-aria": "^1.8.2",
     "pdfmake": "^0.1.65",
     "qrcode-generator": "^1.4.4"
   },

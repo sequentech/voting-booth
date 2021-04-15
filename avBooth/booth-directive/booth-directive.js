@@ -355,7 +355,18 @@ angular.module('avBooth')
           for (var i = 0; i < scope.election.questions.length; i++)
           {
             var question = scope.election.questions[i];
-            if (!question.disabled && question.min > numSelectedOptions(question))
+            if (
+              !question.disabled && 
+              (
+                question.min > numSelectedOptions(question) ||
+                numSelectedOptions(question) > question.max
+              ) &&
+              (
+                !question.extra_options ||
+                !question.extra_options.invalid_vote_policy ||
+                question.extra_options.invalid_vote_policy === 'not-allowed'
+              )
+            )
             {
               inconsistentQuestion = i;
               break;

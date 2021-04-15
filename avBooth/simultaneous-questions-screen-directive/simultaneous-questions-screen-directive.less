@@ -17,6 +17,10 @@
 
 [avb-simultaneous-questions-screen] {
 
+  .invalid-vote-col {
+    padding: 0 15px !important;
+  }
+
   .left-border {
     border-left: 1px solid @gray;
   }
@@ -31,22 +35,8 @@
     }
   }
 
-  // TODO: the following two nth-child changes are to put together the options
-  // when there are only two
-  .question-answers.group-pairs .question-answer:nth-child(odd) .opt
-  {
-    text-align: right;
-    padding-right: 30px;
-  }
-
-  .question-answers.group-pairs .question-answer:nth-child(even) .opt
-  {
-    text-align: left;
-    padding-left: 30px;
-  }
-
   .vertilize-col {
-    padding: 5px 0;
+    padding: 0;
     vertical-align: middle;
   }
 
@@ -138,7 +128,7 @@
   }
 
   .category {
-    margin-top: 40px;
+    margin-top: 25px;
   }
 
   .category-heading {
@@ -147,6 +137,15 @@
     font-size: 20px;
   }
 
-  .category-body {
+  .question-answer-wrapper.col-md-12,
+  .question-answer-wrapper.col-md-6,
+  .question-answer-wrapper.col-md-4,
+  .question-answer-wrapper.col-md-3 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  [av-affix-bottom] {
+    max-height: 150px;
   }
 }

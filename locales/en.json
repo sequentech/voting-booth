@@ -34,6 +34,17 @@
     }
   },
   "avBooth": {
+    "errors": {
+      "question-lambda-blank": "Question '__qtitle__': selected zero options. It would be counted as a blank vote.",
+      "question-lambda-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__. It would be counted as invalid.",
+      "question-lambda-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__. It would be counted as invalid."
+    },
+    "invalidAnswers": {
+      "header": "Invalid or blank vote",
+      "body": "Some of your answers might render the ballot in one or more questions invalid or blank:",
+      "continue": "Accept and continue",
+      "cancel": "Back and review"
+    },
     "legal": {
         "title": "Legal terms",
         "contact": "contact"
@@ -176,6 +187,7 @@
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
     "successBallotHash": "You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>You can use your ballot tracker to verify that your ballot has been correctly cast <strong><a href=\"__ballotLocatorUrl__\" target=\"_blank\">using this address</a></strong>.",
+    "qrCodeAlt": "QR Code",
     "successBallotQrCode": "You can verify your ballot has been correctly cast using the following QR Code:",
     "successNoBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "downloadBallotTicket": "Download ballot ticket PDF",

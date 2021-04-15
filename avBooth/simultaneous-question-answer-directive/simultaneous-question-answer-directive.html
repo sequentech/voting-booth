@@ -5,7 +5,11 @@
   <div
     tabindex="0"
     ng-space-click
+    role="checkbox"
+    aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
+    aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
     class="opt vertilize-wrapper"
+    ng-keydown="toggleSelectItem(question, answer)"
     ng-click="toggleSelectItem(question, answer)"
   >
     <div class="vertilize">
@@ -13,6 +17,7 @@
       <div class="vertilize-col answer-glyphicon">
         <span 
           class="glyphicon"
+          aria-hidden="true"
           ng-class="{
             'glyphicon-unchecked': answer.selected === -1,
             'glyphicon-check': answer.selected > -1
@@ -32,10 +37,11 @@
 
       <!-- show answer texts -->
       <div class="vertilize-col vert-align-top answer-texts">
-        <span 
+        <label 
+          id="question_{{question.index}}_answer_{{answer.id}}"
           class="answer-text" 
           ng-bind-html="answer.text"
-        ></span>
+        ></label>
         <p
           ng-if="answer.details && answer.details.length > 1"
           class="answer-details"
