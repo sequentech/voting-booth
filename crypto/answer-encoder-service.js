@@ -209,7 +209,7 @@ angular
             // - plurality-at-large: base 2 (value can be either 0 o 1)
             // - preferential (*bordas*): question.max + 1
             // - cummulative: question.extra_options.cumulative_number_of_checkboxes + 1
-            let answerBase = 2;
+            var answerBase = 2;
             switch (this.question.tally_type) {
               case "plurality-at-large":
                 answerBase = 2;
