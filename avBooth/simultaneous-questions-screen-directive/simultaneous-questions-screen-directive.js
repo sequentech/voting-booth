@@ -61,7 +61,7 @@ angular.module('avBooth')
           }
         );
 
-        function getErrorsChecker(softIgnoreMin)
+        function getErrorsChecker(checkerTypeFlag)
         {
           return [
             {
@@ -70,9 +70,10 @@ angular.module('avBooth')
               append: {key: "qtitle", value: "$value.title"},
               prefix: "avBooth.errors.question-",
               checks: [
-                // raise if vote is blank if not softIgnoreMin
+                // raise if vote is blank if not checkerTypeFlag
                 {
                   check: "lambda",
+           
                   appendOnErrorLambda: function (question) 
                   {
                     return {
@@ -87,14 +88,14 @@ angular.module('avBooth')
                       return true;
                     }
                     return (
-                      (softIgnoreMin && !question.deselectedAtLeastOnce) ||
+                      (checkerTypeFlag === "soft" && !question.deselectedAtLeastOnce) ||
                       scope.numSelectedOptions(question) > 0
                     );
                   },
                   postfix: "-blank"
                 },
-                // raise if numSelectedOptions < min, but not if blank, and not
-                // if softIgnoreMin
+                // raise if numSelectedOptions < min, but not if blank, and
+                // checkerTypeFlag is normal
                 {
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
@@ -108,12 +109,16 @@ angular.module('avBooth')
                   {
                     if (
                       question.extra_options.invalid_vote_policy === 'allowed' ||
-                      scope.numSelectedOptions(question) === 0
+                      scope.numSelectedOptions(question) === 0 ||
+                      (
+                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        checkerTypeFlag === "show-stoppers"
+                      )
                     ) {
                       return true;
                     }
                     return (
-                      (softIgnoreMin && !question.deselectedAtLeastOnce) ||
+                      (checkerTypeFlag === "normal" && !question.deselectedAtLeastOnce) ||
                       scope.numSelectedOptions(question) >= question.min
                     );
                   },
@@ -131,8 +136,13 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
-                    if (question.extra_options.invalid_vote_policy === 'allowed')
-                    {
+                    if (
+                      question.extra_options.invalid_vote_policy === 'allowed' || 
+                      (
+                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        checkerTypeFlag === "show-stoppers"
+                      )
+                    ) {
                       return true;
                     }
                     return scope.numSelectedOptions(question) <= question.max;
@@ -149,7 +159,7 @@ angular.module('avBooth')
          */
         function updateErrors() 
         {
-          var errorChecks = getErrorsChecker(true);
+          var errorChecks = getErrorsChecker("soft");
           scope.errors = [];
           CheckerService({
             checks: errorChecks,
@@ -162,6 +172,7 @@ angular.module('avBooth')
               });
             }
           });
+          
         }
 
         // add categories to questions, and other initialization stuff
@@ -305,12 +316,111 @@ angular.module('avBooth')
           });
         });
 
+        // Object to store check selected by question. 
+        scope.cumulativeChecks = { };
+        groupQuestions.forEach(
+          function(question) 
+          {
+            var num = question.extra_options.cumulative_number_of_checkboxes;
+            scope.cumulativeChecks[question.title] = {};
+            question.answers.forEach(
+              function(answer)
+              {
+                scope.cumulativeChecks[question.title][answer.id] = Array
+                  .apply(
+                    null, 
+                    Array(num)
+                  )
+                  .map(
+                    function (_value, index) 
+                    {
+                      return answer.selected >= index;
+                    }
+                  );
+              }
+            );
+          }
+        );
+
+        scope.deselectAllCumulative = function(question, option)
+        {
+          var num = question.extra_options.cumulative_number_of_checkboxes;
+          for (var index = 0; index < num; index++)
+          {
+            scope.cumulativeChecks[question.title][option.id][index] = false;
+          }
+        };
+
+        scope.toggleSelectItemCumulative = function(question, option, index) 
+        {
+          window.s = scope;
+
+          // toggle the current value in the scope
+          var value = scope.cumulativeChecks[question.title][option.id][index];
+          scope.cumulativeChecks[question.title][option.id][index] = !value;
+
+          // flag to updateErrors that it can start showing the "not enough
+          // options selected error", as the voter already deselected an 
+          // option
+          if (value) 
+          {
+            question.deselectedAtLeastOnce = true;
+          }
+
+          var currentAnswerChecks = scope.cumulativeChecks[question.title][option.id]
+            .reduce(
+              function(accumulator, check) 
+              {
+                return check ? accumulator + 1 : accumulator;
+              }, 
+              0
+            );
+
+          // if option is selected, then simply deselect it
+          if (option.selected > -1 && currentAnswerChecks === 0)
+          {
+            option.selected = -1;
+          }
+          // select option
+          else
+          {
+            // if max options selectable is 1 and invalid votes are not allowed, 
+            // deselect any other and select this
+            if (
+              question.max === 1 &&
+              (
+                !question.extra_options.invalid_vote_policy ||
+                question.extra_options.invalid_vote_policy === 'not-allowed'
+              )
+            ) {
+              _.each(
+                question.answers, 
+                function (element)
+                {
+                  if (element !== option)
+                  {
+                    scope.deselectAllCumulative(question, element);
+                    element.selected = -1;
+                  }
+                }
+              );
+            }
+            option.selected = currentAnswerChecks - 1;
+          }
+          updateErrors();
+        };
+
         /**
          * Flips/toggles the selection state of a question's option, selecting
          * or deselecting it.
          */
         scope.toggleSelectItem = function(question, option)
         {
+          if (question.tally_type === "cumulative") 
+          {
+            return false;
+          }
+
           // if option is selected, then simply deselect it
           if (option.selected > -1)
           {
@@ -356,11 +466,25 @@ angular.module('avBooth')
          */
         scope.numSelectedOptions = function (question)
         {
-          return _.filter(
-            question.answers,
-            function (element) {
-              return element.selected > -1;
-            }).length;
+          if (question.tally_type === "cumulative") 
+          {
+            return question.answers.reduce(
+              function (accumulator, answer)
+              {
+                return accumulator + answer.selected + 1;
+              },
+              0
+            );
+          }
+          else 
+          {
+            return _.filter(
+              question.answers,
+              function (element) {
+                return element.selected > -1;
+              }
+            ).length;
+          }
         };
       
         /**
@@ -376,7 +500,7 @@ angular.module('avBooth')
         scope.questionNext = function()
         {
           // calculate errors that might render the vote invalid or blank
-          var errorChecks = getErrorsChecker(false);
+          var errorChecks = getErrorsChecker("normal");
           var errors = [];
           CheckerService({
             checks: errorChecks,
@@ -384,6 +508,19 @@ angular.module('avBooth')
             onError: function (errorKey, errorData) 
             {
               errors.push({
+                data: errorData,
+                key: errorKey
+              });
+            }
+          });
+          var showStopperErrorChecks = getErrorsChecker("show-stoppers");
+          var showStopperErrors = [];
+          CheckerService({
+            checks: showStopperErrorChecks,
+            data: scope.election,
+            onError: function (errorKey, errorData) 
+            {
+              showStopperErrors.push({
                 data: errorData,
                 key: errorKey
               });
@@ -404,7 +541,9 @@ angular.module('avBooth')
                     errors: errors,
                     header: "avBooth.invalidAnswers.header",
                     body: "avBooth.invalidAnswers.body",
-                    continue: "avBooth.invalidAnswers.continue",
+                    continue: (
+                      showStopperErrors.length === 0 ? "avBooth.invalidAnswers.continue" : undefined
+                    ),
                     cancel: "avBooth.invalidAnswers.cancel"
                   };
                 }
