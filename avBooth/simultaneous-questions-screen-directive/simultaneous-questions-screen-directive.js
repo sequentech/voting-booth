@@ -307,22 +307,33 @@ angular.module('avBooth')
 
         // Object to store check selected by question
         scope.cumulativeChecks = { };
-        groupQuestions.forEach(function(q) {
-          var n = q.extra_options.cumulative_number_of_checkboxes;
-          scope.cumulativeChecks[q.title] = {};
-          q.answers.forEach(function(a) {
-            scope.cumulativeChecks[q.title][a.id] = Array.apply(null, Array(n));
-          });
-        });
+        groupQuestions.forEach(
+          function(question) 
+          {
+            var num = question.extra_options.cumulative_number_of_checkboxes;
+            scope.cumulativeChecks[question.title] = {};
+            question.answers.forEach(
+              function(answer) {
+                scope.cumulativeChecks[question.title][answer.id] = Array.apply(
+                  null, 
+                  Array(num)
+                );
+              }
+            );
+          }
+        );
 
-        scope.deselectAllCumulative = function(question, option) {
+        scope.deselectAllCumulative = function(question, option)
+        {
           var n = question.extra_options.cumulative_number_of_checkboxes;
-          for (var i=0; i<n; i++) {
+          for (var i=0; i<n; i++)
+          {
             scope.cumulativeChecks[question.title][option.id][i] = false;
           }
         };
 
-        scope.toggleSelectItemCumulative = function(question, option, index) {
+        scope.toggleSelectItemCumulative = function(question, option, index) 
+        {
           window.s = scope;
 
           // toggle the current value in the scope
@@ -344,8 +355,10 @@ angular.module('avBooth')
           {
             // if max options selectable is 1, deselect any other and select
             // this
-            if (question.max === 1) {
-              _.each(question.answers, function (element) {
+            if (question.max === 1)
+            {
+              _.each(question.answers, function (element)
+              {
                 if (element !== option)
                 {
                   scope.deselectAllCumulative(question, element);
@@ -354,12 +367,17 @@ angular.module('avBooth')
               });
             }
 
-            var numSelected = _.filter(question.answers, function (element) {
-              return element.selected > -1;
-            }).length;
+            var numSelected = _.filter(
+              question.answers, 
+              function (element) 
+              {
+                return element.selected > -1;
+              }
+            ).length;
 
             // can't select more, flash info
-            if (numSelected > parseInt(question.max, 10)) {
+            if (numSelected > parseInt(question.max, 10)) 
+            {
               scope.deselectAllCumulative(question, option);
               return;
             }

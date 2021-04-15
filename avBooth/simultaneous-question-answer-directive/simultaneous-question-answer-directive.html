@@ -32,7 +32,7 @@
           role="checkbox"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
-          ng-repeat="check in cumulative_checks"
+          ng-repeat="check in answer_cumulative_checks"
           ng-keydown="toggleSelectItemCumulative(question, answer, check)"
           ng-click="toggleSelectItemCumulative(question, answer, check)"
           ng-class="{
