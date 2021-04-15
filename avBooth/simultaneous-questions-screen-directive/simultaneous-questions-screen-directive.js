@@ -316,7 +316,7 @@ angular.module('avBooth')
           });
         });
 
-        // Object to store check selected by question
+        // Object to store check selected by question. 
         scope.cumulativeChecks = { };
         groupQuestions.forEach(
           function(question) 
@@ -324,11 +324,19 @@ angular.module('avBooth')
             var num = question.extra_options.cumulative_number_of_checkboxes;
             scope.cumulativeChecks[question.title] = {};
             question.answers.forEach(
-              function(answer) {
-                scope.cumulativeChecks[question.title][answer.id] = Array.apply(
-                  null, 
-                  Array(num)
-                );
+              function(answer)
+              {
+                scope.cumulativeChecks[question.title][answer.id] = Array
+                  .apply(
+                    null, 
+                    Array(num)
+                  )
+                  .map(
+                    function (_value, index) 
+                    {
+                      return answer.selected + 1 >= index;
+                    }
+                  );
               }
             );
           }
