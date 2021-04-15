@@ -27,7 +27,13 @@
         <!-- show cumulative checkboxes -->
         <span
           class="glyphicon cumulative-glyphicon"
+          tabindex="0"
+          ng-space-click
+          role="checkbox"
+          aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
+          aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-repeat="check in cumulative_checks"
+          ng-keydown="toggleSelectItemCumulative(question, answer, check)"
           ng-click="toggleSelectItemCumulative(question, answer, check)"
           ng-class="{
             'glyphicon-unchecked': !isCheckSelected(answer, check),

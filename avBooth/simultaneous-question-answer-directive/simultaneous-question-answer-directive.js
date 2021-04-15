@@ -43,6 +43,11 @@ angular.module('avBooth')
       function link(scope, _element, _attrs)
       {
         scope.isCategoryList = hasUrl(scope.answer.urls, 'isCategoryList', 'true');
+
+        scope.isCheckSelected = function(answer, check)
+        {
+          return scope.cumulativeChecks[scope.question.title][answer.id][check];
+        };
       }
 
       return {
@@ -51,7 +56,9 @@ angular.module('avBooth')
         scope: {
           question: '=',
           answer: '=',
-          toggleSelectItem: '='
+          toggleSelectItem: '=',
+          toggleSelectItemCumulative: '=',
+          cumulativeChecks: '='
         },
         templateUrl: 'avBooth/simultaneous-question-answer-directive/simultaneous-question-answer-directive.html'
       };
