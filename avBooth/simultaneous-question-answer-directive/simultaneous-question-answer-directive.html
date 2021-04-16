@@ -4,7 +4,6 @@
 >
   <div
     tabindex="0"
-    ng-space-click
     role="checkbox"
     aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
     aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
@@ -27,7 +26,6 @@
         <span
           class="glyphicon cumulative-glyphicon"
           tabindex="0"
-          ng-space-click
           role="checkbox"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
