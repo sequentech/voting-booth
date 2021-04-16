@@ -88,8 +88,17 @@ angular.module('avBooth')
                       return true;
                     }
                     return (
-                      (checkerTypeFlag === "soft" && !question.deselectedAtLeastOnce) ||
-                      scope.numSelectedOptions(question) > 0
+                      (
+                        checkerTypeFlag === "soft" && 
+                        !question.deselectedAtLeastOnce
+                      ) ||
+                      (
+                        scope.numSelectedOptions(question) > 0
+                      ) ||
+                      (
+                        checkerTypeFlag === "show-stoppers" && 
+                        question.extra_options.invalid_vote_policy !== 'not-allowed'
+                      )
                     );
                   },
                   postfix: "-blank"
@@ -353,8 +362,6 @@ angular.module('avBooth')
 
         scope.toggleSelectItemCumulative = function(question, option, index) 
         {
-          window.s = scope;
-
           // toggle the current value in the scope
           var value = scope.cumulativeChecks[question.title][option.id][index];
           scope.cumulativeChecks[question.title][option.id][index] = !value;
