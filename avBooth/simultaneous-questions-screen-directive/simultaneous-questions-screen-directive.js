@@ -88,8 +88,17 @@ angular.module('avBooth')
                       return true;
                     }
                     return (
-                      (checkerTypeFlag === "soft" && !question.deselectedAtLeastOnce) ||
-                      scope.numSelectedOptions(question) > 0
+                      (
+                        checkerTypeFlag === "soft" && 
+                        !question.deselectedAtLeastOnce
+                      ) ||
+                      (
+                        scope.numSelectedOptions(question) > 0
+                      ) ||
+                      (
+                        checkerTypeFlag === "show-stoppers" && 
+                        question.extra_options.invalid_vote_policy !== 'not-allowed'
+                      )
                     );
                   },
                   postfix: "-blank"
@@ -148,6 +157,41 @@ angular.module('avBooth')
                     return scope.numSelectedOptions(question) <= question.max;
                   },
                   postfix: "-max"
+                },
+                // raise if panachage is disabled
+                {
+                  check: "lambda",
+                  postfix: "-panachage",
+                  validator: function (question) 
+                  {
+                    if (
+                      question.extra_options.enable_panachage === undefined ||
+                      question.extra_options.enable_panachage === true ||
+                      question.extra_options.invalid_vote_policy === 'allowed' || 
+                      (
+                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        checkerTypeFlag === "show-stoppers"
+                      )
+                    ) {
+                      return true;
+                    }
+
+                    return _.uniq(
+                      question.answers
+                      .filter(
+                        function (answer)
+                        {
+                          return answer.selected !== -1;
+                        }
+                      )
+                      .map(
+                        function (answer)
+                        {
+                          return answer.category;
+                        }
+                      )
+                    ).length <= 1;
+                  },
                 },
               ]
             }
@@ -353,8 +397,6 @@ angular.module('avBooth')
 
         scope.toggleSelectItemCumulative = function(question, option, index) 
         {
-          window.s = scope;
-
           // toggle the current value in the scope
           var value = scope.cumulativeChecks[question.title][option.id][index];
           scope.cumulativeChecks[question.title][option.id][index] = !value;
