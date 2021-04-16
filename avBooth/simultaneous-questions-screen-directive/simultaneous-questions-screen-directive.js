@@ -181,7 +181,7 @@ angular.module('avBooth')
           {
             // add index to the question
             question.index = index;
-            
+
             var filteredAnswers = _.filter(
               question.answers,
               function (answer)
@@ -531,6 +531,8 @@ angular.module('avBooth')
           if (errors.length > 0)
           {
             $modal.open({
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
               templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
               controller: "InvalidAnswersController",
               size: 'md',

@@ -96,7 +96,10 @@
               </a>
             </span>
           </div>
-          <div class="text-center" ng-if="!nextElection">
+          <div 
+            class="text-center" 
+            ng-if="!nextElection && (!election.presentation || !election.presentation.extra_options || !election.presentation.extra_options.success_screen__redirect_to_login)"
+          >
             <span>
               <a
                 tabindex="0"
