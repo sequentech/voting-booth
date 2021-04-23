@@ -373,7 +373,13 @@ angular.module('avBooth')
       // simply redirect to login
       function simpleRedirectToLogin()
       {
-        $window.location.href = "/election/" + scope.election.id + "/public/login";
+        var extra = scope.election.presentation.extra_options;
+        var redirectUrl = "/election/" + scope.election.id + "/public/login";
+        if (!!extra && !!extra.success_screen__redirect__url)
+        {
+          redirectUrl = extra.success_screen__redirect__url;
+        }
+        $window.location.href = redirectUrl;
       }
 
       // Returns the logout url if any from the appropiate openidprovider
