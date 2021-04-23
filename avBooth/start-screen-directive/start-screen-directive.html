@@ -25,15 +25,41 @@
 
       <div 
         class="hidden-xs col-sm-4 text-center center-col"
+        ng-if="election.logo_url"
       >
         <div
           class="powered-by"
-          ng-if="election.logo_url"
           ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
         </div>
       </div>
 
-      <div class="col-xs-6 col-sm-4 text-right">
+      <div class="col-xs-6 col-sm-4 text-right" ng-if="election.logo_url">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          role="link"
+          tabindex="0"
+          ng-if="documentation.show_help"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()">
+        </span>
+        <span
+          ng-if="documentation.show_help"
+          role="link"
+          tabindex="0"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()" 
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          role="menuitem"
+          av-change-lang
+        >
+        </span>
+      </div>
+
+      <div class="col-xs-6 text-right" ng-if="!election.logo_url">
         <span
           class="glyphicon glyphicon-question-sign"
           role="link"
