@@ -61,6 +61,16 @@
     margin-top: -300px;
   }
 
+  @media (min-width: 768px) and (max-width: 992px) {
+    .busy-img-central, #div-id-one img, #div-id-two img {
+      height: 230px;
+    }
+
+    #div-id-two img {
+      margin-top: -230px;
+    }
+  }
+
   .step-waiting {
     color: black;
   }
@@ -106,6 +116,12 @@
     font-size: 14pt;
     line-height: 16pt;
     padding: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .bullet-title, .step-description {
+      text-align: center;
+    }
   }
 
   @media (min-width: 400px) {
