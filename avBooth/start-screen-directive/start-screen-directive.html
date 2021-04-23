@@ -6,24 +6,25 @@
 >
   <div class="container">
     <div class="row avb-top-navbar">
-      <div class="col-xs-4">
-        <span ng-if="election.logo_url">
+      <div class="col-xs-6 col-sm-4" ng-if="election.logo_url">
+        <span>
           <img
             alt="Logo Image"
             class="logo-img" 
             ng-src="{{election.logo_url}}"
           />
         </span>
+      </div>
+      <div class="col-xs-6" ng-if="!election.logo_url">
         <span 
           class="powered-by"
           ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
-          ng-if="!election.logo_url"
         >
         </span>
       </div>
 
       <div 
-        class="col-xs-4 text-center center-col"
+        class="hidden-xs col-sm-4 text-center center-col"
       >
         <div
           class="powered-by"
@@ -32,7 +33,7 @@
         </div>
       </div>
 
-      <div class="col-xs-offset-2 col-xs-2 text-right">
+      <div class="col-xs-4 text-right">
         <span
           class="glyphicon glyphicon-question-sign"
           role="link"
