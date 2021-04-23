@@ -87,12 +87,12 @@
     <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
       <div
         ng-if="!election.presentation.extra_options || !election.presentation.extra_options.disable_voting_booth_audit_ballot"
-        class="col-xs-12">
+        class="col-xs-12 locator-text-click-audit">
         <p>
-          <span ng-i18next>
+          <span class="review-ballot-hash-text" ng-i18next>
             [html:i18next]({ballotHash: stateData.ballotHash})avBooth.reviewBallotHashText
           </span>
-          (<a
+          &nbsp;(<a
             tabindex="0"
             ng-space-click
             ng-i18next="avBooth.auditTheBallot"
