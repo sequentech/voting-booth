@@ -502,7 +502,15 @@ angular.module('avBooth')
         }
       }
 
-      scope.closeWindow = function () {
+      scope.finish = function ()
+      {
+        var extra = scope.election.presentation.extra_options;
+        if (!!extra && !!extra.success_screen__redirect__url) 
+        {
+          scope.redirectToLogin();
+          return;
+        }
+
         try {
           $window.close();
         } finally {
