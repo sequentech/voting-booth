@@ -100,18 +100,13 @@ angular.module('avBooth')
 
         function getTitleSubtitleColumn() 
         {
-          return !ConfigService.organization.orgSubtitle ? [
+          return [
             {
-              text: ConfigService.organization.orgName,
-              style: 'h1'
-            }
-          ] : [
-            {
-              text: ConfigService.organization.orgSubtitle,
+              text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_header || ConfigService.organization.orgSubtitle,
               style: 'h1'
             },
             {
-              text: ConfigService.organization.orgName || "",
+              text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_subheader || ConfigService.organization.orgName || "",
               style: 'h2'
             },
           ];
@@ -135,11 +130,11 @@ angular.module('avBooth')
                 ]
               },
               {
-                text: $i18next('avBooth.ballotTicket.h3'),
+                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_h3 || $i18next('avBooth.ballotTicket.h3'),
                 style: 'h3'
               },
               {
-                text: $i18next('avBooth.ballotTicket.h4'),
+                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_h4 || $i18next('avBooth.ballotTicket.h4'),
                 style: 'h4'
               },
               {
@@ -330,14 +325,11 @@ angular.module('avBooth')
 
         var images = {};
 
-        if (
-          ConfigService.organization.orgBigLogo !== undefined && 
-          angular.isString(ConfigService.organization.orgBigLogo) &&
-          ConfigService.organization.orgBigLogo.length > 0
-        ) {
+        if (scope.election.logo_url || ConfigService.organization.orgBigLogo)
+        {
           $http({
             method: 'GET',
-            url: ConfigService.organization.orgBigLogo,
+            url: scope.election.logo_url || ConfigService.organization.orgBigLogo,
             headers: {
               'Content-Type': 'image/png'
             },
