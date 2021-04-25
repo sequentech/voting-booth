@@ -98,6 +98,25 @@ angular.module('avBooth')
             reader.readAsDataURL(blob);
         }
 
+        function getTitleSubtitleColumn() 
+        {
+          return !ConfigService.organization.orgSubtitle ? [
+            {
+              text: ConfigService.organization.orgName,
+              style: 'h1'
+            }
+          ] : [
+            {
+              text: ConfigService.organization.orgSubtitle,
+              style: 'h1'
+            },
+            {
+              text: ConfigService.organization.orgName || "",
+              style: 'h2'
+            },
+          ];
+        }
+
         function download(images) 
         {
           var docDefinition = {
@@ -106,27 +125,13 @@ angular.module('avBooth')
 
             },
             content: [
-              {
+              isEmptyImage(images, 'logo') ? getTitleSubtitleColumn() : {
                 columns: [
                   {
                     image: 'logo',
-                    fit: isEmptyImage(images, 'logo') ? [1, 1] : [200, 200]
+                    fit: [200, 200]
                   },
-                  !ConfigService.organization.orgSubtitle ? [
-                    {
-                      text: ConfigService.organization.orgName,
-                      style: 'h1'
-                    }
-                  ] : [
-                    {
-                      text: ConfigService.organization.orgSubtitle,
-                      style: 'h1'
-                    },
-                    {
-                      text: ConfigService.organization.orgName || "",
-                      style: 'h2'
-                    },
-                  ]
+                  getTitleSubtitleColumn()
                 ]
               },
               {
