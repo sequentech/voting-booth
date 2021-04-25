@@ -306,21 +306,29 @@ angular.module('avBooth')
 
         var images = {};
 
-        $http({
-          method: 'GET',
-          url: ConfigService.organization.orgBigLogo,
-          headers: {
-            'Content-Type': 'image/png'
-          },
-          responseType: 'blob' 
-        }).then(
-          function onSuccess(response) {
-            addImageBlob(images, 'logo', download, response.data);
-          },
-          function onError() {
-            addEmptyImage(images, 'logo', download);
-          }
-        );
+        if (
+          ConfigService.organization.orgBigLogo !== undefined && 
+          angular.isString(ConfigService.organization.orgBigLogo) &&
+          ConfigService.organization.orgBigLogo.length > 0
+        ) {
+          $http({
+            method: 'GET',
+            url: ConfigService.organization.orgBigLogo,
+            headers: {
+              'Content-Type': 'image/png'
+            },
+            responseType: 'blob' 
+          }).then(
+            function onSuccess(response) {
+              addImageBlob(images, 'logo', download, response.data);
+            },
+            function onError() {
+              addEmptyImage(images, 'logo', download);
+            }
+          );
+        } else {
+          addEmptyImage(images, 'logo', download);
+        }
       }
 
       scope.downloadBallotTicket = function () {
