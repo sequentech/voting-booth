@@ -79,9 +79,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <div 
-          ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker">
-          <span
+        <div>
+          <span 
+            ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
             class="ballot-locator-text"
             ng-i18next>
             [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: "/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash, url: organization.orgUrl, name: organization.orgName})avBooth.successBallotHash
