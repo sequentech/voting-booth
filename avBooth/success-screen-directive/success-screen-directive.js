@@ -326,14 +326,14 @@ angular.module('avBooth')
         var images = {};
 
         if (
-          scope.election.extra_options && scope.election.extra_options.success_screen__ballot_ticket__logo_url ||
+          scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_url ||
           scope.election.logo_url ||
           ConfigService.organization.orgBigLogo
         ) {
           $http({
             method: 'GET',
             url: (
-              scope.election.extra_options && scope.election.extra_options.success_screen__ballot_ticket__logo_url || 
+              scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_url || 
               scope.election.logo_url || 
               ConfigService.organization.orgBigLogo
             ),
