@@ -327,8 +327,8 @@ angular.module('avBooth')
 
         if (
           scope.election.extra_options && scope.election.extra_options.success_screen__ballot_ticket__logo_url ||
-          scope.election.logo_url 
-          || ConfigService.organization.orgBigLogo
+          scope.election.logo_url ||
+          ConfigService.organization.orgBigLogo
         ) {
           $http({
             method: 'GET',
