@@ -325,11 +325,18 @@ angular.module('avBooth')
 
         var images = {};
 
-        if (scope.election.logo_url || ConfigService.organization.orgBigLogo)
-        {
+        if (
+          scope.election.extra_options && scope.election.extra_options.success_screen__ballot_ticket__logo_url ||
+          scope.election.logo_url 
+          || ConfigService.organization.orgBigLogo
+        ) {
           $http({
             method: 'GET',
-            url: scope.election.logo_url || ConfigService.organization.orgBigLogo,
+            url: (
+              scope.election.extra_options && scope.election.extra_options.success_screen__ballot_ticket__logo_url || 
+              scope.election.logo_url || 
+              ConfigService.organization.orgBigLogo
+            ),
             headers: {
               'Content-Type': 'image/png'
             },
