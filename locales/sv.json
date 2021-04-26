@@ -147,13 +147,12 @@
     "helpTextViewCell": "Klicka på cellen för att välja den",
     "randomizeColumn": "Slumpmässig ordning",
     "firstCandidateOfMany": "__name__ och andra",
-    "numCandidatesSelected": "__name__ och andra",
     "numCandidatesSelected": "(valda __selected__ av sammanlagt __total__ kandidater)",
     "cannotSelectAll": "För att välja alla dessa måste du först ta bort några alternativ.",
     "totalsQuestionColumn": "(valda __selected__ av sammanlagt __count__ alternativ)",
 
     "reviewBallotHashText": "Kontrollkoden för din röst är: __ballotHash__",
-    "auditTheBallot": "Kontrollera din röst",
+    "auditTheBallot": "(Kontrollera din röst)",
 
     "auditBallotTitle": "Kontrollera rösten du gett",
     "auditBallotSubtitle": "",

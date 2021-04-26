@@ -149,7 +149,7 @@
     "castOrCancelTitle": "Envia el vot",
     "castOrCancelSubtitle": "El seu vot està xifrat, ja podeu enviar-lo a l'urna electrònica perquè sigui degudamet registrat. Alternativament, podeu auditar que hagi estat xifrat correctament.",
     "reviewBallotHashText": "El localitzador del seu vot és: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "Auditi el vot",
+    "auditTheBallot": "(Auditi el vot)",
 
     "auditBallotTitle": "Auditi el vot",
     "auditBallotSubtitle": "",

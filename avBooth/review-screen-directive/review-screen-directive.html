@@ -92,12 +92,13 @@
           <span class="review-ballot-hash-text" ng-i18next>
             [html:i18next]({ballotHash: stateData.ballotHash})avBooth.reviewBallotHashText
           </span>
-          &nbsp;(<a
+          &nbsp;<a
             tabindex="0"
+            class="review-ballot-link"
             ng-space-click
             ng-i18next="avBooth.auditTheBallot"
             ng-click="confirmAudit()">
-          </a>)
+          </a>
         </p>
       </div>
       <div class="col-xs-12 no-padding">

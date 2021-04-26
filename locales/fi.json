@@ -149,13 +149,12 @@
     "helpTextViewCell": "Klikkaa solua valitaksesi sen",
     "randomizeColumn": "Satunnainen järjestys",
     "firstCandidateOfMany": "__name__ ja muut",
-    "numCandidatesSelected": "__name__ ja muut",
     "numCandidatesSelected": "(valittuna __selected__ yhteensä __total__ ehdokkaasta)",
     "cannotSelectAll": "Valitaksesi kaikki nämä, sinun pitää poistaa ensin joitain valintoja.",
     "totalsQuestionColumn": "(Valittuna __selected__ yhteensä __count__ vaihtoehdosta)",
 
     "reviewBallotHashText": "Äänesi seurantakoodi on: __ballotHash__",
-    "auditTheBallot": "Tee äänentarkistus",
+    "auditTheBallot": "(Tee äänentarkistus)",
 
     "auditBallotTitle": "Tarkasta antamasi ääni",
     "auditBallotSubtitle": "",
