@@ -72,40 +72,69 @@ angular.module('avBooth')
       /**
        * Creates a ballot ticket in PDF and opens it in a new tab
        */
-      function createBallotTicket() {
+      function createBallotTicket() 
+      {
         scope.pdf.fileName = 'ticket_' + scope.election.id + '_' + scope.stateData.ballotHash + '.pdf';
 
-        function download(images) {
+        function addEmptyImage(images, name, callback) 
+        {
+          // empty 1px image
+          images[name] = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6fwYAAtMBznRijrsAAAAASUVORK5CYII=';
+          callback(images);
+        }
+
+        function isEmptyImage(images, name) 
+        {
+          return images[name] === 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6fwYAAtMBznRijrsAAAAASUVORK5CYII=';
+        }
+
+        function addImageBlob(images, name, callback, blob) {
+            // blob data to URL
+            var reader = new FileReader();
+            reader.onload = function(event) {
+              images[name] = event.target.result;
+              callback(images);
+            };
+            reader.readAsDataURL(blob);
+        }
+
+        function getTitleSubtitleColumn() 
+        {
+          return [
+            {
+              text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_header || ConfigService.organization.orgName,
+              style: 'h1'
+            },
+            {
+              text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_subheader || ConfigService.organization.orgSubtitle || "",
+              style: 'h2'
+            },
+          ];
+        }
+
+        function download(images) 
+        {
           var docDefinition = {
             info: {
               title: scope.pdf.fileName,
 
             },
             content: [
-              {
+              isEmptyImage(images, 'logo') ? getTitleSubtitleColumn() : {
                 columns: [
                   {
                     image: 'logo',
-                    fit: [250, 250]
+                    fit: [200, 200]
                   },
-                  [
-                    {
-                      text: ConfigService.organization.orgSubtitle || ConfigService.organization.orgName,
-                      style: 'h1'
-                    },
-                    {
-                      text: ConfigService.organization.orgSubtitle && ConfigService.organization.orgName || "",
-                      style: 'h2'
-                    },
-                  ]
+                  getTitleSubtitleColumn()
                 ]
               },
               {
-                text: $i18next('avBooth.ballotTicket.h3'),
+                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h3 || $i18next('avBooth.ballotTicket.h3'),
                 style: 'h3'
               },
               {
-                text: $i18next('avBooth.ballotTicket.h4'),
+                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h4 || $i18next('avBooth.ballotTicket.h4'),
                 style: 'h4'
               },
               {
@@ -229,7 +258,10 @@ angular.module('avBooth')
           };
 
           // add link
-          if (!scope.election.presentation.extra_options || !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker) {
+          if (
+            !scope.election.presentation.extra_options || 
+            !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker
+          ) {
             docDefinition.content.push(
               {
                 columns: [
@@ -250,7 +282,10 @@ angular.module('avBooth')
           }
 
           // add qr code
-          if (!scope.election.presentation.extra_options || !scope.election.presentation.extra_options.success_screen__hide_qr_code) {
+          if (
+            !scope.election.presentation.extra_options || 
+            !scope.election.presentation.extra_options.success_screen__hide_qr_code
+          ) {
             docDefinition.content.push(
               {
                 text: $i18next('avBooth.ballotTicket.qrCode'),
@@ -264,7 +299,7 @@ angular.module('avBooth')
                   },
                   {
                     qr: scope.ballotTrackerUrl,
-                    fit: 200
+                    fit: 180
                   },
                   {
                     text: '',
@@ -288,39 +323,35 @@ angular.module('avBooth')
           scope.pdf.value = PdfMakeService.createPdf(docDefinition);
         }
 
-        function addEmptyImage(images, name, callback) {
-          // empty 1px image
-          images[name] = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6fwYAAtMBznRijrsAAAAASUVORK5CYII=';
-          callback(images);
-        }
-
-        function addImageBlob(images, name, callback, blob) {
-            // blob data to URL
-            var reader = new FileReader();
-            reader.onload = function(event) {
-              images[name] = event.target.result;
-              callback(images);
-            };
-            reader.readAsDataURL(blob);
-        }
-
         var images = {};
 
-        $http({
-          method: 'GET',
-          url: ConfigService.organization.orgBigLogo,
-          headers: {
-            'Content-Type': 'image/png'
-          },
-          responseType: 'blob' 
-        }).then(
-          function onSuccess(response) {
-            addImageBlob(images, 'logo', download, response.data);
-          },
-          function onError() {
-            addEmptyImage(images, 'logo', download);
-          }
-        );
+        if (
+          scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_url ||
+          scope.election.logo_url ||
+          ConfigService.organization.orgBigLogo
+        ) {
+          $http({
+            method: 'GET',
+            url: (
+              scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_url || 
+              scope.election.logo_url || 
+              ConfigService.organization.orgBigLogo
+            ),
+            headers: {
+              'Content-Type': 'image/png'
+            },
+            responseType: 'blob' 
+          }).then(
+            function onSuccess(response) {
+              addImageBlob(images, 'logo', download, response.data);
+            },
+            function onError() {
+              addEmptyImage(images, 'logo', download);
+            }
+          );
+        } else {
+          addEmptyImage(images, 'logo', download);
+        }
       }
 
       scope.downloadBallotTicket = function () {

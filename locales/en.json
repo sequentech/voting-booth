@@ -172,13 +172,12 @@
     "helpTextViewCell": "Click in a cell to select it all",
     "randomizeColumn": "Sort randomly",
     "firstCandidateOfMany": "__name__ and others",
-    "numCandidatesSelected": "__name__ and others",
     "numCandidatesSelected": "(__selected__ of __total__ selected)",
     "cannotSelectAll": "To select all those options you have to desect some first",
     "totalsQuestionColumn": "(__selected__ of __count__ selected)",
 
     "reviewBallotHashText": "Your ballot tracker id is: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "Audit the ballot",
+    "auditTheBallot": "(Audit the ballot)",
 
     "auditBallotTitle": "Audit your Ballot",
     "auditBallotSubtitle": "",

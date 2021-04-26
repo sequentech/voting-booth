@@ -27,11 +27,23 @@
   .locator-text-click-audit {
     padding: 10px;
 
-    .review-ballot-hash-text {
+    .review-ballot-hash-text, .review-ballot-link {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       display: block;
+    }
+
+    .review-ballot-link {
+      padding-left: 5px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .locator-text-click-audit {
+      .review-ballot-hash-text, .review-ballot-link {
+        display: inline-block !important;
+      }
     }
   }
 
