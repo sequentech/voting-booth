@@ -130,11 +130,11 @@ angular.module('avBooth')
                 ]
               },
               {
-                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_h3 || $i18next('avBooth.ballotTicket.h3'),
+                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h3 || $i18next('avBooth.ballotTicket.h3'),
                 style: 'h3'
               },
               {
-                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_h4 || $i18next('avBooth.ballotTicket.h4'),
+                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h4 || $i18next('avBooth.ballotTicket.h4'),
                 style: 'h4'
               },
               {
