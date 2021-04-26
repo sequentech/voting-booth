@@ -68,7 +68,7 @@
 <div class="container-fluid warning-demo" ng-if="isDemo">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <div class="col-xs-12 text-center">
         <p ng-i18next="[html]avBooth.thisisADemoNotification"></p>
       </div>
     </div>
@@ -114,7 +114,7 @@
 
           &nbsp;
           <span
-            ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker || !election.presentation.extra_options.success_screen__hide_qr_code">
+            ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker && election.presentation.extra_options.success_screen__hide_qr_code !== true">
             <span ng-i18next>
               avBooth.successBallotQrCode
             </span>
@@ -129,7 +129,7 @@
             class="btn btn-primary btn-login"
             tabindex="0"
             ng-click="downloadBallotTicket()"
-            ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker || !election.presentation.extra_options.success_screen__hide_download_ballot_ticket"
+            ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker && election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
             target="_blank"
             ng-i18next>
             avBooth.downloadBallotTicket
