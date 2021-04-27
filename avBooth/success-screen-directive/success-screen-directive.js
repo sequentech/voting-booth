@@ -40,6 +40,9 @@ angular.module('avBooth')
         scope.buttonsInfo = [];
 
         var data = scope.election.presentation.share_text;
+        if (!data) {
+          return;
+        }
         for(var i = 0, length = data.length; i < length; i++) {
           var p = data[i];
           var buttonInfo = {
@@ -88,6 +91,11 @@ angular.module('avBooth')
           return images[name] === 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6fwYAAtMBznRijrsAAAAASUVORK5CYII=';
         }
 
+        function isSvgImage(images, name)
+        {
+          return images[name] !== undefined && !images[name].startsWith('data:image');
+        }
+
         function addImageBlob(images, name, callback, blob) {
             // blob data to URL
             var reader = new FileReader();
@@ -96,6 +104,16 @@ angular.module('avBooth')
               callback(images);
             };
             reader.readAsDataURL(blob);
+        }
+
+        function addSvgImage(images, name, callback, blob) {
+            // blob data to text
+            var reader = new FileReader();
+            reader.onload = function(event) {
+              images[name] = event.target.result;
+              callback(images);
+            };
+            reader.readAsText(blob);
         }
 
         function getTitleSubtitleColumn() 
@@ -122,7 +140,10 @@ angular.module('avBooth')
             content: [
               isEmptyImage(images, 'logo') ? getTitleSubtitleColumn() : {
                 columns: [
-                  {
+                  isSvgImage(images, 'logo') ? {
+                    svg: images['logo'],
+                    fit: [200, 200]
+                  } : {
                     image: 'logo',
                     fit: [200, 200]
                   },
@@ -343,7 +364,13 @@ angular.module('avBooth')
             responseType: 'blob' 
           }).then(
             function onSuccess(response) {
-              addImageBlob(images, 'logo', download, response.data);
+              // this seems like a svg, add it as such
+              if (response.data && response.data.type === 'text/html') 
+              {
+                addSvgImage(images, 'logo', download, response.data);
+              } else {
+                addImageBlob(images, 'logo', download, response.data);
+              }
             },
             function onError() {
               addEmptyImage(images, 'logo', download);
