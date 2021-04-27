@@ -217,7 +217,9 @@ var avConfigData = {
   tos: {
     text:"",
     title: ""
-  }
+  },
+
+  browserUpdate: { required: {e:15,f:36,o:65,s:7,c:50}, insecure:true, api: "2021.04" },
 };
 
 angular.module('avConfig', [])

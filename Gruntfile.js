@@ -227,6 +227,7 @@ module.exports = function (grunt) {
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-core-view/blob/master/README.md -->'},
             {selector:'body',html:'<script src="/booth/lib-v20.2.0.min.js"></script>'},
             {selector:'body',html:'<script src="/booth/avConfig-v20.2.0.js"></script>'},
+            {selector:'body',html:'<script src="/booth/browserUpdate-v20.2.0.js"></script>'},
             {selector:'body',html:'<script src="/booth/avThemes-v20.2.0.js"></script>'},
             {selector:'body',html:'<script src="/booth/app-v20.2.0.min.js"></script>'},
             {selector:'body',html:'<script src="/booth/avPlugins-v20.2.0.js"></script>'},
@@ -263,6 +264,7 @@ module.exports = function (grunt) {
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>'],
           'dist/avConfig-v20.2.0.js': ['avConfig.js'],
+          'dist/browserUpdate-v20.2.0.js': ['browserUpdate.js'],
           'dist/avThemes-v20.2.0.js': ['node_modules/agora-gui-common/dist/avThemes-v20.2.0.js'],
           'dist/avPlugins-v20.2.0.js': ['plugins/**/*.js']
         }
@@ -454,6 +456,7 @@ module.exports = function (grunt) {
         files.concat(grunt.config('dom_munger.data.libjs'));
         files.push('node_modules/angular-mocks/angular-mocks.js');
         files.push('avConfig.js');
+        files.push('browserUpdate.js');
         files.push('avThemes.js');
         files.push('avWidgets.js');
         files.concat(grunt.config('dom_munger.data.appjs'));
