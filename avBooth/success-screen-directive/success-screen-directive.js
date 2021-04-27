@@ -365,7 +365,10 @@ angular.module('avBooth')
           }).then(
             function onSuccess(response) {
               // this seems like a svg, add it as such
-              if (response.data && response.data.type === 'text/html') 
+              if (!response.data || !response.data.type.startsWith('image/'))
+              {
+                addEmptyImage(images, 'logo', download);
+              } else if (response.data.type.startsWith('image/svg')) 
               {
                 addSvgImage(images, 'logo', download, response.data);
               } else {
