@@ -215,6 +215,10 @@
       "editAction": "Edit ballot"
     },
 
+    "simultaneousQuestions": {
+      "skipQuestion": "Skip question(s)"
+    },
+
     "pairwiseBeta": {
       "web": "Web",
       "warning": "Click to choose. __count__ of __max__ comparison done.",

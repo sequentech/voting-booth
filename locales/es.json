@@ -204,6 +204,10 @@
       "editAction": "Cambiar papeleta"
     },
 
+    "simultaneousQuestions": {
+      "skipQuestion": "Saltar pregunta(s)"
+    },
+
     "pairwiseBeta": {
       "web": "Web",
       "warning": "Clic para seleccionar. __count__ de __max__ comparaciones realizadas.",
