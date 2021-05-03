@@ -16,7 +16,7 @@
         <span 
           class="glyphicon"
           aria-hidden="true"
-          ng-if="question.tally_type === 'plurality-at-large'"
+          ng-if="!!isInvalidVoteAnswer || question.tally_type === 'plurality-at-large'"
           ng-class="{
             'glyphicon-unchecked': answer.selected === -1,
             'glyphicon-check': answer.selected > -1
@@ -30,7 +30,7 @@
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-repeat="check in answer_cumulative_checks"
-          ng-if="question.tally_type === 'cumulative'"
+          ng-if="!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
           ng-click="toggleSelectItemCumulative(question, answer, check)"
           ng-class="{
             'glyphicon-unchecked': !isCheckSelected(answer, check),
