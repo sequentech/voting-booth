@@ -101,12 +101,39 @@
           </a>
         </p>
       </div>
-      <div class="col-xs-12 no-padding">
+      <div 
+        ng-if="(
+          !election.presentation.extra_options || 
+          !election.presentation.extra_options.review_screen__split_cast_edit
+        )"
+        class="col-xs-12 no-padding"
+      >
         <button
           id="continue-btn"
           class="btn btn-block btn-lg btn-success btn-plain"
           ng-i18next="avBooth.castTheBallot"
           ng-click="next()">
+        </button>
+      </div>
+      <div 
+        ng-if="election.presentation.extra_options.review_screen__split_cast_edit === true"
+        class="col-xs-6 no-padding"
+      >
+        <button
+          id="continue-btn"
+          class="btn btn-block btn-lg btn-success btn-plain continue-action"
+          ng-i18next="avBooth.castTheBallot"
+          ng-click="next()">
+        </button>
+      </div>
+      <div 
+        ng-if="election.presentation.extra_options.review_screen__split_cast_edit === true"
+        class="col-xs-6 no-padding"
+      >
+        <button
+          class="btn btn-block btn-lg btn-plain edit-action"
+          ng-i18next="avBooth.reviewScreen.editAction"
+          ng-click="goToQuestion(0, false)">
         </button>
       </div>
     </div>

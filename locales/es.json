@@ -200,7 +200,8 @@
     "openOptionLink": "Abrir enlace en nueva pestaña",
 
     "reviewScreen": {
-      "pair": "__one__ > __two__"
+      "pair": "__one__ > __two__",
+      "editAction": "Cambiar papeleta"
     },
 
     "pairwiseBeta": {

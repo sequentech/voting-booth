@@ -211,7 +211,8 @@
     "openOptionLink": "Open link in a new tab",
 
     "reviewScreen": {
-      "pair": "__one__ > __two__"
+      "pair": "__one__ > __two__",
+      "editAction": "Edit ballot"
     },
 
     "pairwiseBeta": {
