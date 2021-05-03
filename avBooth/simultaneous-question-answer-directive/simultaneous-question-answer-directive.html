@@ -27,14 +27,28 @@
           class="glyphicon cumulative-glyphicon"
           tabindex="0"
           role="checkbox"
-          aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
+          ng-if="!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-repeat="check in answer_cumulative_checks"
-          ng-if="question.tally_type === 'cumulative'"
+          aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           ng-click="toggleSelectItemCumulative(question, answer, check)"
           ng-class="{
             'glyphicon-unchecked': !isCheckSelected(answer, check),
             'glyphicon-check': isCheckSelected(answer, check)
+          }"
+        ></span>
+        <!-- show checkbox for invalid -->
+        <span
+          class="glyphicon cumulative-glyphicon"
+          tabindex="0"
+          role="checkbox"
+          aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
+          aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
+          ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
+          ng-click="toggleSelectItemCumulative(question, answer, 0)"
+          ng-class="{
+            'glyphicon-unchecked': !isCheckSelected(answer, 0),
+            'glyphicon-check': isCheckSelected(answer, 0)
           }"
         ></span>
       </div>
