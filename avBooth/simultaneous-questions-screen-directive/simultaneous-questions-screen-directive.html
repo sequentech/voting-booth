@@ -207,8 +207,8 @@
       <div class="col-xs-2">
         <span
           class="skip-question text-right"
-          ng-if="election.presentation.extra_options.show_skip_question_button"
-          ng-click="next()"
+          ng-if="showSkipQuestionButton"
+          ng-click="skipQuestion()"
           ng-i18next="avBooth.simultaneousQuestions.skipQuestion"
           >
         </span>
