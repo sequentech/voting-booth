@@ -26,6 +26,8 @@ angular.module('avBooth')
     'avbSimultaneousQuestionsScreen',
     function(
       $modal,
+      $cookies,
+      $window,
       ConfigService,
       CheckerService
     ) {
@@ -219,6 +221,56 @@ angular.module('avBooth')
           
         }
 
+        /**
+         * Skip this question(s) (election) and go to the next.
+         */
+        function skipQuestion()
+        {
+          // cookies log out from this election
+          var postfix = "_authevent_" + scope.election.id;
+          $cookies.remove("authevent_" + postfix);
+          $cookies.remove("userid" + postfix);
+          $cookies.remove("user" + postfix);
+          $cookies.remove("auth" + postfix);
+          $cookies.remove("isAdmin" + postfix);
+          $cookies.remove("isAdmin" + postfix);
+
+          // Remove current election from the credentials array. As the
+          // credentials array is in natural order, the next election inside
+          // the filtered array will be the next election in which this user
+          // can vote, if any.
+          var filtered = _.filter(
+            scope.credentials,
+            function (electionCredential) {
+              return (
+                electionCredential.electionId.toString() !== scope.electionId
+              );
+            }
+          );
+
+          var nextElection = filtered[0];
+          var options = {};
+          if (ConfigService.cookies && ConfigService.cookies.expires) 
+          {
+            options.expires = new Date();
+            options.expires.setMinutes(
+              options.expires.getMinutes() + ConfigService.cookies.expires
+            );
+          }
+          $cookies.put(
+            "vote_permission_tokens",
+            JSON.stringify(filtered),
+            options
+          );
+
+          // Stop warning the user about reloading/leaving the page, as the vote
+          // has been cast already;
+          $window.onbeforeunload = null;
+    
+          // Finally go to the next election
+          $window.location.href = "/booth/" + nextElection.electionId + "/vote";
+        }
+
         // add categories to questions, and other initialization stuff
         groupQuestions.forEach(
           function(question, index) 
@@ -359,6 +411,7 @@ angular.module('avBooth')
             }
           });
         });
+        
 
         // Object to store check selected by question. 
         scope.cumulativeChecks = { };
@@ -528,6 +581,38 @@ angular.module('avBooth')
             ).length;
           }
         };
+        scope.skipQuestion = skipQuestion;
+
+
+        /**
+         * Detects if skip button should be shown
+         */
+        function showSkipQuestionButton()
+        {
+          if (
+            !scope.election.presentation.extra_options ||
+            !scope.election.presentation.extra_options.show_skip_question_button ||
+            !scope.credentials ||
+            scope.credentials.length <= 1
+          ) {
+            return false;
+          }
+           // Remove current election from the credentials array. As the
+          // credentials array is in natural order, the next election inside
+          // the filtered array will be the next election in which this user
+          // can vote, if any.
+          var filtered = _.filter(
+            scope.credentials,
+            function (electionCredential) {
+              return (
+                electionCredential.electionId.toString() !== scope.electionId
+              );
+            }
+          );
+           return filtered.length > 0;
+        }
+
+        scope.showSkipQuestionButton = showSkipQuestionButton();
       
         /**
          * Focus on Continue button after closing modal.
