@@ -429,6 +429,19 @@ angular.module('avBooth')
 
         scope.organization = ConfigService.organization;
         scope.errors = [];
+        
+        // reset selection on initialization
+        _.each(scope.election.questions, function(question)
+        {
+          _.each(question.answers, function (answer)
+          {
+            if (answer.selected === undefined)
+            {
+              answer.selected = -1;
+            }
+          });
+        });
+        
 
         // Object to store check selected by question. 
         scope.cumulativeChecks = { };
