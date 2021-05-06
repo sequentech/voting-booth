@@ -25,6 +25,12 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
   },
   "avBooth": {
+    "errors": {
+      "question-lambda-blank": "Votación '__qtitle__': seleccionó 0 candidaturas. Voto en blanco.",
+      "question-lambda-min": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, menos que el mínimo de __min__. Voto inválido.",
+      "question-lambda-max": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, más que el máximo de __max__. Voto inválido.",
+      "question-lambda-panachage": "Votación '__qtitle__': seleccionó opciones de múltiples listas, pero no está permitido. Voto inválido."
+    },
     "legal": {
         "title": "Termes legals",
         "contact": "contacte"

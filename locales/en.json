@@ -35,10 +35,10 @@
   },
   "avBooth": {
     "errors": {
-      "question-lambda-blank": "Question '__qtitle__': selected zero options. It would be counted as a blank vote.",
-      "question-lambda-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__. It would be counted as invalid.",
-      "question-lambda-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__. It would be counted as invalid.",
-      "question-lambda-panachage": "Question '__qtitle__': selected options from multiple lists, but it is not allowed. It would be counted as invalid."
+      "question-lambda-blank": "Question '__qtitle__': selected zero options. Blank vote.",
+      "question-lambda-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__. Invalid vote.",
+      "question-lambda-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__. Invalid vote.",
+      "question-lambda-panachage": "Question '__qtitle__': selected options from multiple lists, but it is not allowed. Invalid vote."
     },
     "invalidAnswers": {
       "header": "Invalid or blank vote",

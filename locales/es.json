@@ -35,6 +35,12 @@
     }
   },
   "avBooth": {
+    "errors": {
+      "question-lambda-blank": "Votación '__qtitle__': seleccionó 0 candidaturas. Voto en blanco.",
+      "question-lambda-min": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, menos que el mínimo de __min__. Voto inválido.",
+      "question-lambda-max": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, más que el máximo de __max__. Voto inválido.",
+      "question-lambda-panachage": "Votación '__qtitle__': seleccionó opciones de múltiples listas, pero no está permitido. Voto inválido."
+    },
     "legal": {
         "title": "Términos legales",
         "contact": "contacto"
