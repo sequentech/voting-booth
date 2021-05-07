@@ -53,6 +53,7 @@
     "qrcode-generator": "^1.4.4"
   },
   "resolutions": {
+    "**/lodash": "^4.17.21",
     "**/underscore": "1.12.1",
     "**/xmlhttprequest-ssl": "1.6.2",
     "**/socket.io": "2.4.0",
