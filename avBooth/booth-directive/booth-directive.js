@@ -144,6 +144,11 @@ angular.module('avBooth')
             sorted: true,
             ordered: true
           },
+          "cumulative": {
+            state: stateEnum.simultaneousQuestionsScreen,
+            sorted: true,
+            ordered: true
+          }
         };
         return map[question.tally_type];
       }
