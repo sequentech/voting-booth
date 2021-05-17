@@ -77,15 +77,7 @@ angular.module('avBooth')
           },
           "cumulative": function ()
           {
-            return scope
-              .cumulativeChecks[question.title][answer.id]
-              .reduce(
-                function(accumulator, check) 
-                {
-                  return check ? accumulator + 1 : accumulator;
-                }, 
-                0
-              );
+            return answer.selected + 1;
           }
         }[question.tally_type]();
       };
