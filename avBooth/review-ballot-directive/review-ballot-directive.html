@@ -5,36 +5,47 @@
   ng-click="goToQuestion($index, true)">
 
   <!-- title -->
-  <h3 aria-level="2" class="text-brand-success">
+  <h3 aria-level="2" class="text-brand-success question-title">
     {{$index + 1}}. {{question.title}}
     <div class="pull-right">
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
     </div>
   </h3>
+  <p
+    class="question-description"
+    ng-if="question.extra_options.review_screen__show_question_description && question.description" 
+    ng-bind-html="question.description | addTargetBlank"
+  ></p>
 
   <!-- Selected items line -->
   <p
+    class="selected-items"
     ng-if="!question.isPairWise && (question.answers | avbSelectedOptions).length < 2"
     ng-i18next="avBooth.selectedOptionFollow">
   </p>
   <p
+    class="selected-items"
     ng-if="!question.isPairWise && (question.answers | avbSelectedOptions).length >= 2"
     ng-i18next="[i18next]({num: (question.answers | avbSelectedOptions).length})avBooth.selectedOptionsFollow">
   </p>
   <p
+    class="selected-items"
     ng-if="question.isPairWise && question.min > 1"
     ng-i18next="[i18next]({num: question.selection.length})avBooth.selectedOptionsFollow">
   </p>
 
   <!-- items list -->
-  <ul ng-if="question.isPairWise">
+  <ul ng-if="question.isPairWise" class="item-list-pairwise">
     <li
       ng-repeat="pair in question.selection"
       class="animate-repeat selected-answer" ng-i18next>
         [html:i18next]({one: pair[0].text, two: pair[1].text})avBooth.reviewScreen.pair
     </li>
   </ul>
-  <ul ng-if="!question.isPairWise && !mapQuestion(question).ordered">
+  <ul 
+    class="item-list-unordered"
+    ng-if="!question.isPairWise && !mapQuestion(question).ordered"
+  >
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
       class="animate-repeat selected-answer">
@@ -50,7 +61,10 @@
       ng-i18next="avBooth.emptyAnswer">
     </li>
   </ul>
-  <ol ng-if="!question.isPairWise && mapQuestion(question).ordered">
+  <ol 
+    class="item-list-ordered"
+    ng-if="!question.isPairWise && mapQuestion(question).ordered"
+  >
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
       class="animate-repeat selected-answer">

@@ -74,6 +74,10 @@ angular.module('avBooth')
           "desborda": function()
           {
             return 80 - answer.selected;
+          },
+          "cumulative": function ()
+          {
+            return answer.selected + 1;
           }
         }[question.tally_type]();
       };
