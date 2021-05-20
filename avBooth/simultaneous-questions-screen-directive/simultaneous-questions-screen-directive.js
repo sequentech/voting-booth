@@ -322,7 +322,7 @@ angular.module('avBooth')
             );
 
             // filter write-ins
-            question.writeIns =  = _.filter(
+            question.writeIns = _.filter(
               question.answers,
               function (answer)
               {
