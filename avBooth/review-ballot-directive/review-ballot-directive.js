@@ -37,7 +37,7 @@ angular.module('avBooth')
           question.invalidVoteAnswer && 
           question.invalidVoteAnswer.selected !== -1
         );
-      }
+      };
 
       /**
        * @returns number of points this ballot is giving to this option
