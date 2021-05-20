@@ -321,6 +321,17 @@ angular.module('avBooth')
               (categories.length === 1 && categories[0].title === '')
             );
 
+            // filter write-ins
+            question.writeIns =  = _.filter(
+              question.answers,
+              function (answer)
+              {
+                return (
+                  hasUrl(answer.urls, 'isWriteIn', 'true')
+                ); 
+              }
+            );
+
             // set a sane default for columns sizes
             if (!angular.isDefined(question.extra_options)) 
             {

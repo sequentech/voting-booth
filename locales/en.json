@@ -144,6 +144,7 @@
     "statusVerifyingQuestion": "Verifying the encrypted answers to question __questionNum__, please wait (__percentage__% completed)",
     "sendingBallot": "Sending the ballot to the server, please wait (__percentage__% completed)",
     "emptyAnswer": "<blank vote>",
+    "invalidAnswer": "Ballot marked as invalid",
 
     "successTitle": "Vote cast successfully",
     "successSubheader": "You have correctly cast your ballot and it's now being kept in our electronic ballot box.",

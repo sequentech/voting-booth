@@ -31,6 +31,14 @@ angular.module('avBooth')
           !!question.extra_options.show_points;
       };
 
+      scope.markedAsInvalid = function (question)
+      {
+        return (
+          question.invalidVoteAnswer && 
+          question.invalidVoteAnswer.selected !== -1
+        );
+      }
+
       /**
        * @returns number of points this ballot is giving to this option
        */

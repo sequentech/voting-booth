@@ -43,6 +43,7 @@ angular.module('avBooth')
       function link(scope, _element, _attrs)
       {
         scope.isCategoryList = hasUrl(scope.answer.urls, 'isCategoryList', 'true');
+        scope.isWriteIn = hasUrl(scope.answer.urls, 'isWriteIn', 'true');
 
         scope.isCheckSelected = function(answer, check)
         {

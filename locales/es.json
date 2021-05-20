@@ -133,6 +133,7 @@
     "castTheBallot": "Enviar el voto",
     "changeAnswerToQuestion": "cambiar",
     "emptyAnswer": "<voto en blanco>",
+    "invalidAnswer": "Voto marcado como inválido",
 
     "statusExecutingSanityChecks": "Verificando que el navegador es capaz de codificar el voto, por favor espere (__percentage__% completado)",
     "statusEncryptingQuestion": "Cifrando respuestas a la pregunta __questionNum__, por favor espere (__percentage__% completado)",
