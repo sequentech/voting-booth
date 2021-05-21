@@ -487,24 +487,24 @@ angular
                   );
                 }
               ).length;
-              var numberOfWriteInStrings = 0;
+              var numWriteInStrings = 0;
               for (var index2 = numberOfNormalAnswers + 1; index2 < choices.length; index2++)
               {
                 if (choices[index2] === 0) 
                 {
-                  numberOfWriteInStrings += 1;
+                  numWriteInStrings += 1;
                 }
               }
-              const writeInAnswers = _.filter(
+              const numWriteInAnswers = _.filter(
                 this.question.answers,
                 function (answer)
                 {
                   return hasUrl(answer.urls, 'isWriteIn', 'true');
                 }
-              );
+              ).length;
 
               // add the missing zeros
-              for (var index3 = 0; index3 < (writeInAnswers - numberOfWriteInStrings); index3++)
+              for (var index3 = 0; index3 < (numWriteInAnswers - numWriteInStrings); index3++)
               {
                 bases.push(256);
                 choices.push(0);
