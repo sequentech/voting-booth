@@ -487,10 +487,10 @@ angular
                   );
                 }
               );
-              const numberOfWriteInStrings = 0;
-              for (var index = numberOfNormalAnswers + 1; index < choices.length; index++)
+              var numberOfWriteInStrings = 0;
+              for (var index2 = numberOfNormalAnswers + 1; index2 < choices.length; index2++)
               {
-                if (choices[index] === 0) 
+                if (choices[index2] === 0) 
                 {
                   numberOfWriteInStrings += 1;
                 }
@@ -504,7 +504,7 @@ angular
               );
 
               // add the missing zeros
-              for (var index = 0; index < (writeInAnswers - numberOfWriteInStrings); index++)
+              for (var index3 = 0; index3 < (writeInAnswers - numberOfWriteInStrings); index3++)
               {
                 bases.push(256);
                 choices.push(0);
