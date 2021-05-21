@@ -471,17 +471,6 @@ angular
 
               // ensure that for each write-in answer there is a \0 char at the
               // end
-              const numberOfNormalAnswers = _.filter(
-                this.question.answers,
-                function (answer)
-                {
-                  return (
-                    !hasUrl(answer.urls, 'isWriteIn', 'true') &&
-                    !hasUrl(answer.urls, 'invalidVoteFlag', 'true')
-                  );
-                }
-              ).length;
-              
               const numWriteInAnswers = _.filter(
                 this.question.answers,
                 function (answer)
