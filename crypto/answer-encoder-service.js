@@ -463,12 +463,6 @@ angular
               this.question.extra_options &&
               this.question.extra_options.allow_writeins
             ) {
-              // add last \0 in the choices if needed
-              if (bases.length < choices.length)
-              {
-                choices.push(0);
-              }
-
               // make the number of bases equal to the number of choices
               for (var index = bases.length + 1; index <= choices.length; index++)
               {
