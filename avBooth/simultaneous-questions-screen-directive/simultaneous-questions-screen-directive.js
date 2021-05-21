@@ -284,8 +284,7 @@ angular.module('avBooth')
               {
                 return (
                   !hasUrl(answer.urls, 'invalidVoteFlag', 'true') &&
-                  !hasUrl(answer.urls, 'isCategoryList', 'true') &&
-                  !hasUrl(answer.urls, 'isWriteIn', 'true')
+                  !hasUrl(answer.urls, 'isCategoryList', 'true')
                 ); 
               }
             );
