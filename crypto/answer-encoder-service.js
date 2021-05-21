@@ -463,16 +463,54 @@ angular
               this.question.extra_options &&
               this.question.extra_options.allow_writeins
             ) {
-              // add missing byte bases and last \0 in the choices
+              // add last \0 in the choices if needed
               if (bases.length < choices.length)
               {
                 choices.push(0);
               }
 
+              // make the number of bases equal to the number of choices
               for (var index = bases.length + 1; index <= choices.length; index++)
               {
                 bases.push(256);
               }
+
+              // ensure that for each write-in answer there is a \0 char at the
+              // end
+              const numberOfNormalAnswers = _.filter(
+                this.question.answers,
+                function (answer)
+                {
+                  return (
+                    !hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                    !hasUrl(answer.urls, 'invalidVoteFlag', 'true')
+                  );
+                }
+              );
+              const numberOfWriteInStrings = 0;
+              for (var index = numberOfNormalAnswers + 1; index < choices.length; index++)
+              {
+                if (choices[index] === 0) 
+                {
+                  numberOfWriteInStrings += 1;
+                }
+              }
+              const writeInAnswers = _.filter(
+                this.question.answers,
+                function (answer)
+                {
+                  return hasUrl(answer.urls, 'isWriteIn', 'true');
+                }
+              );
+
+              // add the missing zeros
+              for (var index = 0; index < (writeInAnswers - numberOfWriteInStrings); index++)
+              {
+                bases.push(256);
+                choices.push(0);
+              }
+
+              
             }
             return {
               choices: choices,
@@ -742,17 +780,7 @@ angular
                 }
               );
 
-              // add any missing empty strings at the end, this is normal when
-              // decoding
-              if (writeInsRawBytesArray.length < writeInAnswers.length)
-              {
-                for (var index = writeInsRawBytesArray.length; index < writeInAnswers.length; index++)
-                {
-                  writeInsRawBytesArray.push([]);
-                }
-
-              }
-              else if (writeInsRawBytesArray.length > writeInAnswers.length)
+              if (writeInsRawBytesArray.length !== writeInAnswers.length)
               {
                 throw new Error(
                   "Invalid Ballot: invalid number of write-in bytes," +
