@@ -444,6 +444,7 @@ angular
           decodeFromBigInt: function(bigIntBallot)
           {
             var bases = this.getBases();
+            const basesLength = bases.length;
             const bigIntBases = _.map(
               bases,
               function (intValue)
@@ -480,7 +481,7 @@ angular
               ).length;
 
               var numWriteInStrings = 0;
-              const writeInsTextStartIndex = this.getBases().length - numWriteInAnswers;
+              const writeInsTextStartIndex = basesLength - numWriteInAnswers;
               for (var index2 = writeInsTextStartIndex; index2 < choices.length; index2++)
               {
                 if (choices[index2] === 0) 
