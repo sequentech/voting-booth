@@ -486,7 +486,7 @@ angular
                     !hasUrl(answer.urls, 'invalidVoteFlag', 'true')
                   );
                 }
-              );
+              ).length;
               var numberOfWriteInStrings = 0;
               for (var index2 = numberOfNormalAnswers + 1; index2 < choices.length; index2++)
               {
