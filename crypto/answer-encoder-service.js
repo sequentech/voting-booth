@@ -487,14 +487,7 @@ angular
                   );
                 }
               ).length;
-              var numWriteInStrings = 0;
-              for (var index2 = numberOfNormalAnswers + 1; index2 < choices.length; index2++)
-              {
-                if (choices[index2] === 0) 
-                {
-                  numWriteInStrings += 1;
-                }
-              }
+              
               const numWriteInAnswers = _.filter(
                 this.question.answers,
                 function (answer)
@@ -502,6 +495,16 @@ angular
                   return hasUrl(answer.urls, 'isWriteIn', 'true');
                 }
               ).length;
+
+              var numWriteInStrings = 0;
+              const writeInsTextStartIndex = this.getBases().length - numWriteInAnswers;
+              for (var index2 = writeInsTextStartIndex; index2 < choices.length; index2++)
+              {
+                if (choices[index2] === 0) 
+                {
+                  numWriteInStrings += 1;
+                }
+              }
 
               // add the missing zeros
               for (var index3 = 0; index3 < (numWriteInAnswers - numWriteInStrings); index3++)
