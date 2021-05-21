@@ -741,7 +741,18 @@ angular
                   }
                 }
               );
-              if (writeInsRawBytesArray.length !== writeInAnswers.length)
+
+              // add any missing empty strings at the end, this is normal when
+              // decoding
+              if (writeInsRawBytesArray.length < writeInAnswers.length)
+              {
+                for (var index = writeInsRawBytesArray.length; index < writeInAnswers.length; index++)
+                {
+                  writeInsRawBytesArray.push([]);
+                }
+
+              }
+              else if (writeInsRawBytesArray.length > writeInAnswers.length)
               {
                 throw new Error(
                   "Invalid Ballot: invalid number of write-in bytes," +
