@@ -99,7 +99,7 @@ angular.module('avBooth')
           return {
             state: stateEnum.simultaneousQuestionsScreen,
             sorted: false,
-            ordered: true
+            ordered: false
           };
         }
 
@@ -147,7 +147,7 @@ angular.module('avBooth')
           "cumulative": {
             state: stateEnum.simultaneousQuestionsScreen,
             sorted: false,
-            ordered: true
+            ordered: false
           }
         };
         return map[question.tally_type];
