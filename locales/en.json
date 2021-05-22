@@ -61,6 +61,8 @@
     "planchaSelect": "select all",
     "planchaDeselect": "deselect all",
     "showSelectedOptionPoints": "(__points__ points)",
+    "showSelectedOptionPointsWriteIn": "(__points__ points, write-in)",
+    "showWriteIn": "(write-in)",
     "warnBallotParity": {
       "header": "Papeleta no paritaria",
       "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
