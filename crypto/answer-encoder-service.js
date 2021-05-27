@@ -741,7 +741,13 @@ angular
               }
 
               // 6.1. Slice the choices to get only the bytes related to the write ins
-              const writeInRawBytes = rawBallot.choices.slice(question.answers.length);
+              var writeInsStartIndex;
+              if (angular.isDefined(invalidVoteAnswer)) {
+                writeInsStartIndex = question.answers.length;
+              } else {
+                writeInsStartIndex = question.answers.length + 1;
+              }
+              const writeInRawBytes = rawBallot.choices.slice(writeInsStartIndex);
 
               // 6.2. Split the write-in bytes arrays in multiple sub-arrays
               // using byte \0 as a separator.
