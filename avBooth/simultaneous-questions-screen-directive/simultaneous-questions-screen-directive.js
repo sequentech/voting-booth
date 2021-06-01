@@ -190,7 +190,7 @@ angular.module('avBooth')
                     // Try to find the repeated writeIns, excluding empty
                     // write-ins
                     const nonZeroWriteInAnswers = _.filter(
-                      question.answer,
+                      question.answers,
                       function (answer) 
                       {
                         return (
@@ -230,7 +230,7 @@ angular.module('avBooth')
                     );
                     return numBytes.bytesLeft >= 0;
                   },
-                  postfix: "-max"
+                  postfix: "-writein-length"
                 },
                 // raise if panachage is disabled
                 {
