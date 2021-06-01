@@ -81,7 +81,11 @@
       </div>
 
       <!-- show write-in text input if applicable -->
-      <div ng-if="isWriteIn" class="vertilize-col answer-texts write-in">
+      <div 
+        ng-if="isWriteIn" 
+        class="vertilize-col answer-texts write-in"
+        ng-class="{has-warning: (question.writeInBytesLeft.bytesLeft >= 0 && question.writeInBytesLeft.bytesLeft < 10), has-error: question.writeInBytesLeft.bytesLeft < 0}"
+      >
         <input 
           type="text"
           autocomplete="off"
@@ -89,6 +93,11 @@
           av-debounce="500"
           ng-model="answer.text"
         />
+        <div 
+          class="bytes-left help-block"
+        >
+          {{question.writeInBytesLeft.bytesLeft}} / {{question.writeInBytesLeft.maxWriteInBytes}}
+        </div>
       </div>
 
       <!-- Show URL link -->

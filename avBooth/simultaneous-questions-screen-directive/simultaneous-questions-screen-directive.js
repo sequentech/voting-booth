@@ -213,13 +213,9 @@ angular.module('avBooth')
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
                   {
-                    const codec = AnswerEncoderService(question);
-                    const numBytes = codec.numWriteInBytesLeft(
-                      new BigIntService(question.publicKey.q, 10)
-                    );
                     return {
-                      max: numBytes.maxWriteInBytes,
-                      extra_bytes: -numBytes.bytesLeft
+                      max: question.writeInBytesLeft.maxWriteInBytes,
+                      extra_bytes: -question.writeInBytesLeft.bytesLeft
                     };
                   },
                   validator: function (question) 
@@ -228,6 +224,7 @@ angular.module('avBooth')
                     const numBytes = codec.numWriteInBytesLeft(
                       new BigIntService(question.publicKey.q, 10)
                     );
+                    question.writeInBytesLeft = numBytes;
                     return numBytes.bytesLeft >= 0;
                   },
                   postfix: "-writein-length"
