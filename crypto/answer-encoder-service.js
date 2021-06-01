@@ -1020,7 +1020,10 @@ angular
             // the difference between the number of bases used for encoding the
             // ballot and the number of bases used to encode the modulus is the
             // number of byte bases left
-            return maxBaseLength - encodedRawBallot.bases.length;
+            return {
+              maxWriteInBytes: maxBaseLength - bases.length,
+              bytesLeft: maxBaseLength - encodedRawBallot.bases.length
+            };
           }
         };
 

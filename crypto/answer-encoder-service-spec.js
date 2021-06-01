@@ -950,9 +950,11 @@ describe(
           else
           {
             expect(
-              codec.numWriteInBytesLeft(
-                new BigInt(element.modulus, 10)
-              )
+              codec
+                .numWriteInBytesLeft(
+                  new BigInt(element.modulus, 10)
+                )
+                .bytesLeft
             ).toBe(element.bytesLeft);
           }
         }

@@ -29,7 +29,9 @@ angular.module('avBooth')
       $cookies,
       $window,
       ConfigService,
-      CheckerService
+      CheckerService,
+      AnswerEncoderService,
+      BigIntService
     ) {
       var simultaneousQuestionsLayout = "simultaneous-questions";
 
@@ -60,6 +62,16 @@ angular.module('avBooth')
           function (question) 
           {
             return question.layout === simultaneousQuestionsLayout;
+          }
+        );
+
+        // set some data like the pub key of each question
+        _.each(
+          scope.election.questions,
+          function (question, index)
+          {
+            question.natural_order_index = index;
+            question.publicKey = scope.pubkeys[index];
           }
         );
 
@@ -157,6 +169,66 @@ angular.module('avBooth')
                       return true;
                     }
                     return scope.numSelectedOptions(question) <= question.max;
+                  },
+                  postfix: "-max"
+                },
+                // raise if multiple write-ins with the same text value
+                {
+                  check: "lambda",
+                  validator: function (question) 
+                  {
+                    if (
+                      question.extra_options.invalid_vote_policy === 'allowed' || 
+                      (
+                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        checkerTypeFlag === "show-stoppers"
+                      )
+                    ) {
+                      return true;
+                    }
+
+                    // Try to find the repeated writeIns, excluding empty
+                    // write-ins
+                    const nonZeroWriteInAnswers = _.filter(
+                      question.answer,
+                      function (answer) 
+                      {
+                        return (
+                          answer.text.length > 0 &&
+                          hasUrl(answer, 'isWriteIn', 'true')
+                        );
+                      }
+                    );
+                    const uniqWriteInTexts = _.uniq(
+                      _.pluck(nonZeroWriteInAnswers, 'text')
+                    );
+                    return (
+                      nonZeroWriteInAnswers.length === uniqWriteInTexts.length
+                    );
+                  },
+                  postfix: "-repeated-writeins"
+                },
+                // raise if write-in texts are too large and overflow
+                {
+                  check: "lambda",
+                  appendOnErrorLambda: function (question) 
+                  {
+                    const codec = AnswerEncoderService(question);
+                    const numBytes = codec.numWriteInBytesLeft(
+                      new BigIntService(question.publicKey.q, 10)
+                    );
+                    return {
+                      max: numBytes.maxWriteInBytes,
+                      extra_bytes: -numBytes.bytesLeft
+                    };
+                  },
+                  validator: function (question) 
+                  {
+                    const codec = AnswerEncoderService(question);
+                    const numBytes = codec.numWriteInBytesLeft(
+                      new BigIntService(question.publicKey.q, 10)
+                    );
+                    return numBytes.bytesLeft >= 0;
                   },
                   postfix: "-max"
                 },
