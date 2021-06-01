@@ -292,6 +292,7 @@ angular.module('avBooth')
           });
           
         }
+        scope.updateErrors = updateErrors;
 
         /**
          * Skip this question(s) (election) and go to the next.
