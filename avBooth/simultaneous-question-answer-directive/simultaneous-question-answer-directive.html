@@ -97,7 +97,7 @@
         <div 
           class="bytes-left help-block"
         >
-          {{question.writeInBytesLeft.bytesLeft}} / {{question.writeInBytesLeft.maxWriteInBytes}}
+          {{(question.writeInBytesLeft.maxWriteInBytes - question.writeInBytesLeft.bytesLeft)}} / {{question.writeInBytesLeft.maxWriteInBytes}}
         </div>
       </div>
 
