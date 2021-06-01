@@ -195,7 +195,7 @@ angular.module('avBooth')
                       {
                         return (
                           answer.text.length > 0 &&
-                          hasUrl(answer, 'isWriteIn', 'true')
+                          hasUrl(answer.urls, 'isWriteIn', 'true')
                         );
                       }
                     );
