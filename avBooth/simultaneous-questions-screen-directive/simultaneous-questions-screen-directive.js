@@ -229,6 +229,49 @@ angular.module('avBooth')
                   },
                   postfix: "-writein-length"
                 },
+                // raise warning if write-in is provided but not voted
+                {
+                  check: "lambda",
+                  appendOnErrorLambda: function (question) 
+                  {
+                    const unvotedNonEmptyWriteIns = _.filter(
+                      question.answers,
+                      function (answer) 
+                      {
+                        return (
+                          answer.text.length > 0 &&
+                          hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                          answer.selected === -1
+                        );
+                      }
+                    );
+                    const writeInTexts = _.pluck(unvotedNonEmptyWriteIns, 'text');
+                    return {
+                      write_ins: writeInTexts.join(', ')
+                    };
+                  },
+                  validator: function (question) 
+                  {
+                    if (checkerTypeFlag === "show-stoppers") 
+                    {
+                      return true;
+                    }
+
+                    const unvotedNonEmptyWriteIns = _.filter(
+                      question.answers,
+                      function (answer) 
+                      {
+                        return (
+                          answer.text.length > 0 &&
+                          hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                          answer.selected === -1
+                        );
+                      }
+                    );
+                    return unvotedNonEmptyWriteIns.length === 0;
+                  },
+                  postfix: "-duplicated-writeins"
+                },
                 // raise if panachage is disabled
                 {
                   check: "lambda",

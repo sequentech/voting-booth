@@ -40,7 +40,8 @@
       "question-lambda-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__. Invalid vote.",
       "question-lambda-panachage": "Question '__qtitle__': selected options from multiple lists, but it is not allowed. Invalid vote.",
       "question-lambda-repeated-writeins": "Question '__qtitle__': repeated write-in names. Invalid vote.",
-      "question-lambda-writein-length": "Question '__qtitle__': write-ins exceed by __extra_bytes__ maximum of __max__ chars."
+      "question-lambda-writein-length": "Question '__qtitle__': write-ins exceed by __extra_bytes__ the maximum of __max__ chars. Requires fixing.",
+      "question-lambda-duplicated-writeins": "Question '__qtitle__': write-ins provided but not voted: __write_ins__. Atypical."
     },
     "invalidAnswers": {
       "header": "Invalid or blank vote",
