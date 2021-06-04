@@ -64,7 +64,10 @@
       </div>
 
       <!-- show answer texts -->
-      <div class="vertilize-col vert-align-top answer-texts">
+      <div 
+        ng-if="!isWriteIn" 
+        class="vertilize-col vert-align-top answer-texts"
+      >
         <label 
           id="question_{{question.index}}_answer_{{answer.id}}"
           class="answer-text" 
@@ -77,10 +80,31 @@
         ></p>
       </div>
 
+      <!-- show write-in text input if applicable -->
+      <div 
+        ng-if="isWriteIn" 
+        class="vertilize-col answer-texts write-in"
+        ng-class="{'has-warning': (question.writeInBytesLeft.bytesLeft >= 0 && question.writeInBytesLeft.bytesLeft < 10), 'has-error': question.writeInBytesLeft.bytesLeft < 0}"
+      >
+        <input 
+          type="text"
+          class="form-control"
+          autocomplete="off"
+          aria-label="write-in"
+          av-debounce="500"
+          ng-model="answer.text"
+        />
+        <div 
+          class="bytes-left help-block"
+        >
+          {{(question.writeInBytesLeft.maxWriteInBytes - question.writeInBytesLeft.bytesLeft)}} / {{question.writeInBytesLeft.maxWriteInBytes}}
+        </div>
+      </div>
+
       <!-- Show URL link -->
       <div 
         class="vertilize-col vert-align-top answer-links"
-        ng-if="!!answer.urlsObject.URL"
+        ng-if="!!answer.urlsObject.URL && !isWriteIn"
       >
         <a
           class="btn btn-default btn-right"

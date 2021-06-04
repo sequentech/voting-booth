@@ -56,6 +56,9 @@
     "planchaSelect": "seleccionar todos",
     "planchaDeselect": "deseleccionar todos",
     "showSelectedOptionPoints": "(__points__ puntos)",
+    "showSelectedOptionPoints": "(__points__ puntos)",
+    "showSelectedOptionPointsWriteIn": "(__points__ puntos, write-in)",
+    "showWriteIn": "(write-in)",
     "warnBallotParity": {
       "header": "Papeleta no paritaria",
       "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
@@ -133,6 +136,7 @@
     "castTheBallot": "Enviar el voto",
     "changeAnswerToQuestion": "cambiar",
     "emptyAnswer": "<voto en blanco>",
+    "invalidAnswer": "Voto marcado como inválido",
 
     "statusExecutingSanityChecks": "Verificando que el navegador es capaz de codificar el voto, por favor espere (__percentage__% completado)",
     "statusEncryptingQuestion": "Cifrando respuestas a la pregunta __questionNum__, por favor espere (__percentage__% completado)",

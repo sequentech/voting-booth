@@ -98,8 +98,8 @@ angular.module('avBooth')
         } else if  (question.layout === "simultaneous-questions") {
           return {
             state: stateEnum.simultaneousQuestionsScreen,
-            sorted: true,
-            ordered: true
+            sorted: false,
+            ordered: false
           };
         }
 
@@ -146,8 +146,8 @@ angular.module('avBooth')
           },
           "cumulative": {
             state: stateEnum.simultaneousQuestionsScreen,
-            sorted: true,
-            ordered: true
+            sorted: false,
+            ordered: false
           }
         };
         return map[question.tally_type];

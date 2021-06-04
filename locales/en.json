@@ -38,7 +38,9 @@
       "question-lambda-blank": "Question '__qtitle__': selected zero options. Blank vote.",
       "question-lambda-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__. Invalid vote.",
       "question-lambda-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__. Invalid vote.",
-      "question-lambda-panachage": "Question '__qtitle__': selected options from multiple lists, but it is not allowed. Invalid vote."
+      "question-lambda-panachage": "Question '__qtitle__': selected options from multiple lists, but it is not allowed. Invalid vote.",
+      "question-lambda-repeated-writeins": "Question '__qtitle__': repeated write-in names. Invalid vote.",
+      "question-lambda-writein-length": "Question '__qtitle__': write-ins exceed by __extra_bytes__ maximum of __max__ chars."
     },
     "invalidAnswers": {
       "header": "Invalid or blank vote",
@@ -61,6 +63,8 @@
     "planchaSelect": "select all",
     "planchaDeselect": "deselect all",
     "showSelectedOptionPoints": "(__points__ points)",
+    "showSelectedOptionPointsWriteIn": "(__points__ points, write-in)",
+    "showWriteIn": "(write-in)",
     "warnBallotParity": {
       "header": "Papeleta no paritaria",
       "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
@@ -144,6 +148,7 @@
     "statusVerifyingQuestion": "Verifying the encrypted answers to question __questionNum__, please wait (__percentage__% completed)",
     "sendingBallot": "Sending the ballot to the server, please wait (__percentage__% completed)",
     "emptyAnswer": "<blank vote>",
+    "invalidAnswer": "Ballot marked as invalid",
 
     "successTitle": "Vote cast successfully",
     "successSubheader": "You have correctly cast your ballot and it's now being kept in our electronic ballot box.",

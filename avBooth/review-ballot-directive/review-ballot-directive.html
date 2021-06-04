@@ -48,12 +48,27 @@
   >
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
+      ng-class="{'striked-text': markedAsInvalid(question)}"
+      ng-if="!question.invalidVoteAnswer || answer.id !== question.invalidVoteAnswer.id"
       class="animate-repeat selected-answer">
         <span ng-bind-html="answer.text"></span>
         <span
-          ng-if="showPoints(question)"
+          ng-if="showPoints(question) && !isWriteIn(answer)"
           ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
         </span>
+        <span
+          ng-if="showPoints(question) && isWriteIn(answer)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPointsWriteIn">
+        </span>
+        <span
+          ng-if="!showPoints(question) && isWriteIn(answer)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showWriteIn">
+        </span>
+    </li>
+    <li
+      class="invalid-answer"
+      ng-if="markedAsInvalid(question)"
+      ng-i18next="avBooth.invalidAnswer">
     </li>
     <li
       class="empty-answer"
@@ -67,12 +82,27 @@
   >
     <li
       ng-repeat="answer in question.answers | avbSelectedOptions"
+      ng-if="!question.invalidVoteAnswer || answer.id !== question.invalidVoteAnswer.id"
+      ng-class="{'striked-text': markedAsInvalid(question)}"
       class="animate-repeat selected-answer">
         <span ng-bind-html="answer.text"></span>
         <span
-          ng-if="showPoints(question)"
+          ng-if="showPoints(question) && !isWriteIn(answer)"
           ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
         </span>
+        <span
+          ng-if="showPoints(question) && isWriteIn(answer)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPointsWriteIn">
+        </span>
+        <span
+          ng-if="!showPoints(question) && isWriteIn(answer)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showWriteIn">
+        </span>
+    </li>
+    <li
+      class="invalid-answer"
+      ng-if="markedAsInvalid(question)"
+      ng-i18next="avBooth.invalidAnswer">
     </li>
     <li
       class="empty-answer"

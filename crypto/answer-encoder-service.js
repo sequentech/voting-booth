@@ -444,6 +444,7 @@ angular
           decodeFromBigInt: function(bigIntBallot)
           {
             var bases = this.getBases();
+            const basesLength = bases.length;
             const bigIntBases = _.map(
               bases,
               function (intValue)
@@ -463,16 +464,40 @@ angular
               this.question.extra_options &&
               this.question.extra_options.allow_writeins
             ) {
-              // add missing byte bases and last \0 in the choices
-              if (bases.length < choices.length)
-              {
-                choices.push(0);
-              }
-
+              // make the number of bases equal to the number of choices
               for (var index = bases.length + 1; index <= choices.length; index++)
               {
                 bases.push(256);
               }
+
+              // ensure that for each write-in answer there is a \0 char at the
+              // end
+              const numWriteInAnswers = _.filter(
+                this.question.answers,
+                function (answer)
+                {
+                  return hasUrl(answer.urls, 'isWriteIn', 'true');
+                }
+              ).length;
+
+              var numWriteInStrings = 0;
+              const writeInsTextStartIndex = basesLength - numWriteInAnswers;
+              for (var index2 = writeInsTextStartIndex; index2 < choices.length; index2++)
+              {
+                if (choices[index2] === 0) 
+                {
+                  numWriteInStrings += 1;
+                }
+              }
+
+              // add the missing zeros
+              for (var index3 = 0; index3 < (numWriteInAnswers - numWriteInStrings); index3++)
+              {
+                bases.push(256);
+                choices.push(0);
+              }
+
+              
             }
             return {
               choices: choices,
@@ -716,7 +741,13 @@ angular
               }
 
               // 6.1. Slice the choices to get only the bytes related to the write ins
-              const writeInRawBytes = rawBallot.choices.slice(question.answers.length);
+              var writeInsStartIndex;
+              if (angular.isDefined(invalidVoteAnswer)) {
+                writeInsStartIndex = question.answers.length;
+              } else {
+                writeInsStartIndex = question.answers.length + 1;
+              }
+              const writeInRawBytes = rawBallot.choices.slice(writeInsStartIndex);
 
               // 6.2. Split the write-in bytes arrays in multiple sub-arrays
               // using byte \0 as a separator.
@@ -741,6 +772,7 @@ angular
                   }
                 }
               );
+
               if (writeInsRawBytesArray.length !== writeInAnswers.length)
               {
                 throw new Error(
@@ -988,7 +1020,10 @@ angular
             // the difference between the number of bases used for encoding the
             // ballot and the number of bases used to encode the modulus is the
             // number of byte bases left
-            return maxBaseLength - encodedRawBallot.bases.length;
+            return {
+              maxWriteInBytes: maxBaseLength - bases.length,
+              bytesLeft: maxBaseLength - encodedRawBallot.bases.length
+            };
           }
         };
 

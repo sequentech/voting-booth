@@ -25,10 +25,40 @@ angular.module('avBooth')
   {
     var link = function(scope, element, attrs)
     {
+      /**
+       * @returns true if the url with the specific title and url appears in the
+       * urls list.
+       */
+      function hasUrl(urls, title, url)
+      {
+        const u = _.find(
+          urls,
+          function(urlObject)
+          {
+            return urlObject.title === title && urlObject.url === url;
+          }
+        );
+
+        return !!u;
+      }
+
       scope.showPoints = function (question)
       {
         return angular.isDefined(question.extra_options) &&
           !!question.extra_options.show_points;
+      };
+
+      scope.isWriteIn = function (answer)
+      {
+        return hasUrl(answer.urls, 'isWriteIn', 'true');
+      };
+
+      scope.markedAsInvalid = function (question)
+      {
+        return (
+          question.invalidVoteAnswer && 
+          question.invalidVoteAnswer.selected !== -1
+        );
       };
 
       /**

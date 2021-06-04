@@ -43,6 +43,18 @@ angular.module('avBooth')
       function link(scope, _element, _attrs)
       {
         scope.isCategoryList = hasUrl(scope.answer.urls, 'isCategoryList', 'true');
+        scope.isWriteIn = hasUrl(scope.answer.urls, 'isWriteIn', 'true');
+
+        if (scope.isWriteIn && scope.writeInTextChange) 
+        {
+          scope.$watch(
+            "answer.text",
+            function () 
+            {
+              scope.writeInTextChange();
+            }
+          );
+        }
 
         scope.isCheckSelected = function(answer, check)
         {
@@ -67,7 +79,8 @@ angular.module('avBooth')
           toggleSelectItem: '=',
           toggleSelectItemCumulative: '=',
           cumulativeChecks: '=',
-          isInvalidVoteAnswer: '='
+          isInvalidVoteAnswer: '=',
+          writeInTextChange: '='
         },
         templateUrl: 'avBooth/simultaneous-question-answer-directive/simultaneous-question-answer-directive.html'
       };

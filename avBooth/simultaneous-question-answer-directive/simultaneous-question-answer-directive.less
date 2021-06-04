@@ -58,7 +58,26 @@
     .answer-texts {
       box-sizing: border-box;
       padding-left: 10px;
+      padding-right: 10px;
       width: 100%;
+
+      &.write-in {
+        input {
+          width: 100%;
+        }
+        .bytes-left.help-block {
+          display: block;
+          position: absolute;
+          padding: 0;
+          margin: 0;
+          bottom: -5px;
+          right: 20px;
+          font-size: 12px;
+          background: white;
+        }
+      }
+
+      
 
       .answer-text {
         font-size: 18px;
