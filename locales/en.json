@@ -42,7 +42,7 @@
       "question-lambda-repeated-writeins": "Question '__qtitle__': repeated write-in names. Invalid vote.",
       "question-lambda-writein-length": "Question '__qtitle__': write-ins exceed by __extra_bytes__ the maximum of __max__ chars. Requires fixing.",
       "question-lambda-writeins-not-voted": "Question '__qtitle__': write-ins provided but not voted: __write_ins__. Atypical.",
-      "question-lambda-writeins-not-provided": "Question '__qtitle__': write-ins voted but no text provided: __write_ins__. Atypical."
+      "question-lambda-writeins-not-provided": "Question '__qtitle__': selected some write-ins but no name provided. Atypical."
     },
     "invalidAnswers": {
       "header": "Invalid or blank vote",

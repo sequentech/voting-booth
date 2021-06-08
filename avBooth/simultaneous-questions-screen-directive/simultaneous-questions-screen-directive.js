@@ -272,27 +272,9 @@ angular.module('avBooth')
                   },
                   postfix: "-writeins-not-voted"
                 },
-                // raise warning if write-in is voted but not provided
+                // raise warning if write-in is voted but no text provided
                 {
                   check: "lambda",
-                  appendOnErrorLambda: function (question) 
-                  {
-                    const votedEmptyWriteIns = _.filter(
-                      question.answers,
-                      function (answer) 
-                      {
-                        return (
-                          answer.text.length === 0 &&
-                          hasUrl(answer.urls, 'isWriteIn', 'true') &&
-                          answer.selected !== -1
-                        );
-                      }
-                    );
-                    const writeInTexts = _.pluck(votedEmptyWriteIns, 'text');
-                    return {
-                      write_ins: writeInTexts.join(', ')
-                    };
-                  },
                   validator: function (question) 
                   {
                     if (checkerTypeFlag === "show-stoppers") 
