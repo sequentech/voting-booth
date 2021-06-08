@@ -469,7 +469,7 @@ angular.module('avBooth')
               }
             );
 
-            // set a sane default for columns sizes
+            // set a sane default for columns sizes and invalid_vote_policy
             if (!angular.isDefined(question.extra_options)) 
             {
               question.extra_options = {};
@@ -481,6 +481,10 @@ angular.module('avBooth')
             if (!angular.isDefined(question.extra_options.answer_group_columns_size)) 
             {
               question.extra_options.answer_group_columns_size = 6;
+            }
+            if (!angular.isDefined(question.extra_options.invalid_vote_policy))
+            {
+              question.extra_options.invalid_vote_policy = 'warn';
             }
 
             // convert each answer url list to a map
@@ -631,10 +635,7 @@ angular.module('avBooth')
             // deselect any other and select this
             if (
               question.max === 1 &&
-              (
-                !question.extra_options.invalid_vote_policy ||
-                question.extra_options.invalid_vote_policy === 'not-allowed'
-              )
+              question.extra_options.invalid_vote_policy === 'not-allowed'
             ) {
               _.each(
                 question.answers, 
@@ -682,10 +683,7 @@ angular.module('avBooth')
             // not-allowed)
             if (
               question.max === 1 &&
-              (
-                !question.extra_options.invalid_vote_policy ||
-                question.extra_options.invalid_vote_policy === 'not-allowed'
-              )
+              question.extra_options.invalid_vote_policy === 'not-allowed'
             ) {
               _.each(
                 question.answers, 
