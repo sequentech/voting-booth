@@ -270,7 +270,50 @@ angular.module('avBooth')
                     );
                     return unvotedNonEmptyWriteIns.length === 0;
                   },
-                  postfix: "-duplicated-writeins"
+                  postfix: "-writeins-not-voted"
+                },
+                // raise warning if write-in is voted but not provided
+                {
+                  check: "lambda",
+                  appendOnErrorLambda: function (question) 
+                  {
+                    const votedEmptyWriteIns = _.filter(
+                      question.answers,
+                      function (answer) 
+                      {
+                        return (
+                          answer.text.length === 0 &&
+                          hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                          answer.selected !== -1
+                        );
+                      }
+                    );
+                    const writeInTexts = _.pluck(votedEmptyWriteIns, 'text');
+                    return {
+                      write_ins: writeInTexts.join(', ')
+                    };
+                  },
+                  validator: function (question) 
+                  {
+                    if (checkerTypeFlag === "show-stoppers") 
+                    {
+                      return true;
+                    }
+
+                    const votedEmptyWriteIns = _.filter(
+                      question.answers,
+                      function (answer) 
+                      {
+                        return (
+                          answer.text.length === 0 &&
+                          hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                          answer.selected !== -1
+                        );
+                      }
+                    );
+                    return votedEmptyWriteIns.length === 0;
+                  },
+                  postfix: "-writeins-not-provided"
                 },
                 // raise if panachage is disabled
                 {
