@@ -8,7 +8,7 @@
     aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
     aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
     class="opt vertilize-wrapper"
-    ng-click="toggleSelectItem(question, answer)"
+    ng-click="!isWriteIn && toggleSelectItem(question, answer)"
   >
     <div class="vertilize">
       <!-- show checkbox icon -->
@@ -17,6 +17,7 @@
           class="glyphicon"
           aria-hidden="true"
           ng-if="question.tally_type === 'plurality-at-large'"
+          ng-click="isWriteIn && toggleSelectItem(question, answer)"
           ng-class="{
             'glyphicon-unchecked': answer.selected === -1,
             'glyphicon-check': answer.selected > -1

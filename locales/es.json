@@ -127,7 +127,7 @@
     "helpTitle": "Ayuda",
     "helpText": "",
     "goBack": "Volver a la cabina",
-    "selectedOptionsFollow": "Las __num__ opciones que ha seleccinado son:",
+    "selectedOptionsFollow": "Las __num__ opciones que ha seleccionado son:",
     "selectedOptionFollow": "La opción que ha seleccionado es:",
 
     "errorElectionUrl": "La dirección introducida tiene un formato erróneo",

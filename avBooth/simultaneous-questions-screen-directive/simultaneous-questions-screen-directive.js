@@ -182,7 +182,9 @@ angular.module('avBooth')
                       (
                         question.extra_options.invalid_vote_policy === 'warn' &&
                         checkerTypeFlag === "show-stoppers"
-                      )
+                      ) ||
+                      !question.extra_options ||
+                      !question.extra_options.allow_writeins
                     ) {
                       return true;
                     }
@@ -220,6 +222,13 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
+                    if (
+                      !question.extra_options ||
+                      !question.extra_options.allow_writeins
+                    ) {
+                      return true;
+                    }
+
                     const codec = AnswerEncoderService(question);
                     const numBytes = codec.numWriteInBytesLeft(
                       new BigIntService(question.publicKey.q, 10)
@@ -228,6 +237,82 @@ angular.module('avBooth')
                     return numBytes.bytesLeft >= 0;
                   },
                   postfix: "-writein-length"
+                },
+                // raise warning if write-in is provided but not voted
+                {
+                  check: "lambda",
+                  appendOnErrorLambda: function (question) 
+                  {
+                    const unvotedNonEmptyWriteIns = _.filter(
+                      question.answers,
+                      function (answer) 
+                      {
+                        return (
+                          answer.text.length > 0 &&
+                          hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                          answer.selected === -1
+                        );
+                      }
+                    );
+                    const writeInTexts = _.pluck(unvotedNonEmptyWriteIns, 'text');
+                    return {
+                      write_ins: writeInTexts.join(', ')
+                    };
+                  },
+                  validator: function (question) 
+                  {
+                    if (
+                      checkerTypeFlag === "show-stoppers" ||
+                      !question.extra_options ||
+                      !question.extra_options.allow_writeins
+                    ) 
+                    {
+                      return true;
+                    }
+
+                    const unvotedNonEmptyWriteIns = _.filter(
+                      question.answers,
+                      function (answer) 
+                      {
+                        return (
+                          answer.text.length > 0 &&
+                          hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                          answer.selected === -1
+                        );
+                      }
+                    );
+                    return unvotedNonEmptyWriteIns.length === 0;
+                  },
+                  postfix: "-writeins-not-voted"
+                },
+                // raise warning if write-in is voted but no text provided
+                {
+                  check: "lambda",
+                  validator: function (question) 
+                  {
+                    if (
+                      checkerTypeFlag === "show-stoppers" ||
+                      !question.extra_options ||
+                      !question.extra_options.allow_writeins
+                    ) 
+                    {
+                      return true;
+                    }
+
+                    const votedEmptyWriteIns = _.filter(
+                      question.answers,
+                      function (answer) 
+                      {
+                        return (
+                          answer.text.length === 0 &&
+                          hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                          answer.selected !== -1
+                        );
+                      }
+                    );
+                    return votedEmptyWriteIns.length === 0;
+                  },
+                  postfix: "-writeins-not-provided"
                 },
                 // raise if panachage is disabled
                 {
@@ -401,7 +486,7 @@ angular.module('avBooth')
               }
             );
 
-            // set a sane default for columns sizes
+            // set a sane default for columns sizes and invalid_vote_policy
             if (!angular.isDefined(question.extra_options)) 
             {
               question.extra_options = {};
@@ -413,6 +498,10 @@ angular.module('avBooth')
             if (!angular.isDefined(question.extra_options.answer_group_columns_size)) 
             {
               question.extra_options.answer_group_columns_size = 6;
+            }
+            if (!angular.isDefined(question.extra_options.invalid_vote_policy))
+            {
+              question.extra_options.invalid_vote_policy = 'warn';
             }
 
             // convert each answer url list to a map
@@ -563,10 +652,7 @@ angular.module('avBooth')
             // deselect any other and select this
             if (
               question.max === 1 &&
-              (
-                !question.extra_options.invalid_vote_policy ||
-                question.extra_options.invalid_vote_policy === 'not-allowed'
-              )
+              question.extra_options.invalid_vote_policy === 'not-allowed'
             ) {
               _.each(
                 question.answers, 
@@ -614,10 +700,7 @@ angular.module('avBooth')
             // not-allowed)
             if (
               question.max === 1 &&
-              (
-                !question.extra_options.invalid_vote_policy ||
-                question.extra_options.invalid_vote_policy === 'not-allowed'
-              )
+              question.extra_options.invalid_vote_policy === 'not-allowed'
             ) {
               _.each(
                 question.answers, 
