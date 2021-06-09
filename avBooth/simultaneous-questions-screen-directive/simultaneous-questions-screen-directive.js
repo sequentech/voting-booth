@@ -182,7 +182,9 @@ angular.module('avBooth')
                       (
                         question.extra_options.invalid_vote_policy === 'warn' &&
                         checkerTypeFlag === "show-stoppers"
-                      )
+                      ) ||
+                      !question.extra_options ||
+                      !question.extra_options.allow_writeins
                     ) {
                       return true;
                     }
@@ -220,6 +222,13 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
+                    if (
+                      !question.extra_options ||
+                      !question.extra_options.allow_writeins
+                    ) {
+                      return true;
+                    }
+
                     const codec = AnswerEncoderService(question);
                     const numBytes = codec.numWriteInBytesLeft(
                       new BigIntService(question.publicKey.q, 10)
@@ -252,7 +261,11 @@ angular.module('avBooth')
                   },
                   validator: function (question) 
                   {
-                    if (checkerTypeFlag === "show-stoppers") 
+                    if (
+                      checkerTypeFlag === "show-stoppers" ||
+                      !question.extra_options ||
+                      !question.extra_options.allow_writeins
+                    ) 
                     {
                       return true;
                     }
@@ -277,7 +290,11 @@ angular.module('avBooth')
                   check: "lambda",
                   validator: function (question) 
                   {
-                    if (checkerTypeFlag === "show-stoppers") 
+                    if (
+                      checkerTypeFlag === "show-stoppers" ||
+                      !question.extra_options ||
+                      !question.extra_options.allow_writeins
+                    ) 
                     {
                       return true;
                     }
