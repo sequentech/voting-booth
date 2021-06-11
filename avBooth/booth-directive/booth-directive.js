@@ -509,11 +509,11 @@ angular.module('avBooth')
 
       // Try to read and process voting credentials from $cookies
       function readVoteCredentials() {
-        var credentialsStr = $cookies.get("vote_permission_tokens");
+        var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
         if (!credentialsStr) {
           return;
         } else {
-          $cookies.remove("vote_permission_tokens");
+          $window.sessionStorage.removeItem("vote_permission_tokens");
         }
         scope.credentials = [];
         var currentElectionCredentials = null;

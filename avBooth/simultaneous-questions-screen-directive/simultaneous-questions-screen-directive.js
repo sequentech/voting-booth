@@ -404,18 +404,9 @@ angular.module('avBooth')
           );
 
           var nextElection = filtered[0];
-          var options = {};
-          if (ConfigService.cookies && ConfigService.cookies.expires) 
-          {
-            options.expires = new Date();
-            options.expires.setMinutes(
-              options.expires.getMinutes() + ConfigService.cookies.expires
-            );
-          }
-          $cookies.put(
+          $window.sessionStorage.setItem(
             "vote_permission_tokens",
-            JSON.stringify(filtered),
-            options
+            JSON.stringify(filtered)
           );
 
           // Stop warning the user about reloading/leaving the page, as the vote
