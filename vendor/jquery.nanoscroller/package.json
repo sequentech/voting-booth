@@ -1,0 +1,9 @@
+{
+  "name": "jquery.nanoscroller",
+  "license": "MIT",
+  "version": "0.8.4",
+  "author": {
+    "name": "2014 James Florentino",
+    "url": "http://jamesflorentino.github.com/nanoScrollerJS/"
+  }
+}

@@ -1,18 +1,24 @@
 {
   "name": "agora-gui-booth",
   "version": "20.2.0",
+  "license": "AGPL-3.0-only",
   "browsers": [
     "ie >= 8",
     "ff > 4",
     "last 8 versions"
   ],
+  "author": {
+    "name": "Agora Voting SL and others",
+    "email": "legal@nvotes.com",
+    "url": "https://nvotes.com"
+  },
   "devDependencies": {
     "@lodder/grunt-postcss": "^3.0.0",
     "angular-local-storage": "^0.7.1",
     "angular-mocks": "~1.4",
     "autoprefixer": "^10.2.3",
     "bootstrap": "3.4.1",
-    "dragdroptouch": "https://github.com/Bernardo-Castilho/dragdroptouch.git#master",
+    "dragdroptouch": "https://github.com/Bernardo-Castilho/dragdroptouch.git#058f0eca96e57ad695f0d5dd2d7bd492ef1c4e47",
     "font-awesome": "~4.3",
     "grunt": "^1.0.4",
     "grunt-angular-templates": "^1.2.0",
