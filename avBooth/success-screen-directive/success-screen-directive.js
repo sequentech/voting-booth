@@ -412,6 +412,25 @@ angular.module('avBooth')
         }
       }
 
+      // Count the number of elections skipped
+      function skippedCount() 
+      {
+        var count = 0;
+        for (var i = 0; i < scope.credentials.length; i++)
+        {
+          var electionCredential = scope.credentials[i];
+          if (electionCredential.skipped)
+          {
+            count += 1;
+          }
+          if (electionCredential.electionId.toString() === scope.electionId) 
+          {
+            break;
+          }
+        }
+        return count;
+      }
+
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
       scope.showDocOnVoteCast = ConfigService.showDocOnVoteCast;
@@ -586,6 +605,8 @@ angular.module('avBooth')
       scope.goToNextElection = function () {
         $window.location.href = "/booth/" + scope.nextElection.electionId + "/vote";
       };
+
+      scope.skippedCount = skippedCount();
 
       scope.redirectingToUri = false;
       handleCookiesAndRedirects();
