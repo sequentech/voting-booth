@@ -140,6 +140,11 @@
           ng-i18next>
           [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
         </p>
+        <p
+          ng-if="skippedCount > 0"
+          ng-i18next>
+          [html:i18next]({count: skippedCount})avBooth.successSkippedCount
+        </p>
         <div class="text-center" ng-if="!nextElection && !!election.presentation.extra_options.success_screen__redirect_to_login">
           <span>
             <a

@@ -390,23 +390,39 @@ angular.module('avBooth')
           $cookies.remove("isAdmin" + postfix);
           $cookies.remove("isAdmin" + postfix);
 
-          // Remove current election from the credentials array. As the
-          // credentials array is in natural order, the next election inside
-          // the filtered array will be the next election in which this user
-          // can vote, if any.
-          var filtered = _.filter(
+          // Mark current election as skipped in the credentials array. As the
+          // credentials array is in natural order, the next election that is
+          // not skipped inside the filtered array will be the next election in 
+          // which this user can vote (if any).
+          var skippedCredentials = _.map(
             scope.credentials,
-            function (electionCredential) {
-              return (
-                electionCredential.electionId.toString() !== scope.electionId
-              );
+            function (electionCredential)
+            {
+              if  (
+                electionCredential.electionId.toString() === scope.electionId
+              ) {
+                return Object.assign(
+                  {},
+                  electionCredential,
+                  {skipped: true}
+                );
+              } else {
+                return electionCredential;
+              }
+            }
+          );
+          var filtered = _.filter(
+            skippedCredentials,
+            function (electionCredential)
+            {
+              return !electionCredential.skipped;
             }
           );
 
           var nextElection = filtered[0];
           $window.sessionStorage.setItem(
             "vote_permission_tokens",
-            JSON.stringify(filtered)
+            JSON.stringify(skippedCredentials)
           );
 
           // Stop warning the user about reloading/leaving the page, as the vote
@@ -759,7 +775,8 @@ angular.module('avBooth')
             scope.credentials,
             function (electionCredential) {
               return (
-                electionCredential.electionId.toString() !== scope.electionId
+                electionCredential.electionId.toString() !== scope.electionId &&
+                !electionCredential.skipped
               );
             }
           );

@@ -412,6 +412,17 @@ angular.module('avBooth')
         }
       }
 
+      function skippedCount() {
+
+        return _.filter(
+          scope.credentials,
+          function (electionCredential)
+          {
+            return !electionCredential.skipped;
+          }
+        ).length;
+      }
+
       var text = $interpolate(ConfigService.success.text);
       scope.organization = ConfigService.organization;
       scope.showDocOnVoteCast = ConfigService.showDocOnVoteCast;
@@ -586,6 +597,8 @@ angular.module('avBooth')
       scope.goToNextElection = function () {
         $window.location.href = "/booth/" + scope.nextElection.electionId + "/vote";
       };
+
+      scope.skippedCount = skippedCount();
 
       scope.redirectingToUri = false;
       handleCookiesAndRedirects();
