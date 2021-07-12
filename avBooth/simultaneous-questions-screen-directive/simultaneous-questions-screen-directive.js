@@ -751,7 +751,34 @@ angular.module('avBooth')
             ).length;
           }
         };
-        scope.skipQuestion = skipQuestion;
+
+        scope.skipQuestion = function() 
+        {
+          $modal.open({
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+            controller: "InvalidAnswersController",
+            size: 'md',
+            resolve: {
+              errors: function() { return []; },
+              data: function() {
+                return {
+                  errors: [],
+                  header: "avBooth.simultaneousQuestions.skipQuestionModal.header",
+                  body: "avBooth.simultaneousQuestions.skipQuestionModal.body",
+                  continue: "avBooth.simultaneousQuestions.skipQuestionModal.confirm",
+                  cancel: "avCommon.cancel"
+                };
+              }
+            }
+          }).result.then(
+            function ()
+            {
+              skipQuestion();
+            }
+          );
+        };
 
 
         /**
