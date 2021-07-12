@@ -412,15 +412,23 @@ angular.module('avBooth')
         }
       }
 
-      function skippedCount() {
-
-        return _.filter(
-          scope.credentials,
-          function (electionCredential)
+      // Count the number of elections skipped
+      function skippedCount() 
+      {
+        var count = 0;
+        for (var i = 0; i < scope.credentials.length; i++)
+        {
+          var electionCredential = scope.credentials[i];
+          if (electionCredential.skipped)
           {
-            return !electionCredential.skipped;
+            count += 1;
           }
-        ).length;
+          if (electionCredential.electionId.toString() === scope.electionId) 
+          {
+            break;
+          }
+        }
+        return count;
       }
 
       var text = $interpolate(ConfigService.success.text);
