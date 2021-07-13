@@ -227,7 +227,7 @@
       "skipQuestion": "Skip question(s)",
       "skipQuestionModal": {
         "header": "Do you want to skip this question(s)?",
-        "body": "Please confirm that you want t skip this question(s). You can vote in the elections by logging in again.",
+        "body": "Please confirm that you want to skip this question(s). You can vote in the skipped question(s) by logging in again.",
         "confirm": "Confirm and SKIP this question(s)"
       }
     },
