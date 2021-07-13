@@ -541,12 +541,13 @@ angular.module('avBooth')
           // Remove current election from the credentials array. As the
           // credentials array is in natural order, the next election inside
           // the filtered array will be the next election in which this user
-          // can vote, if any.
+          // can vote, if any. Skipped elections also removed.
           var filtered = _.filter(
             scope.credentials,
             function (electionCredential) {
               return (
-                electionCredential.electionId.toString() !== scope.electionId
+                electionCredential.electionId.toString() !== scope.electionId &&
+                !electionCredential.skipped
               );
             }
           );
