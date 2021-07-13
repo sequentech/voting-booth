@@ -118,7 +118,7 @@ angular.module('avBooth')
                   postfix: "-blank"
                 },
                 // raise if numSelectedOptions < min, but not if blank, and
-                // checkerTypeFlag is normal
+                // checkerTypeFlag is normal and invalidVoteAnswer is not set
                 {
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
@@ -134,6 +134,10 @@ angular.module('avBooth')
                       question.extra_options.invalid_vote_policy === 'allowed' ||
                       scope.numSelectedOptions(question) === 0 ||
                       (
+                        question.invalidVoteAnswer && 
+                        question.invalidVoteAnswer.selected > -1
+                      ) ||
+                      (
                         question.extra_options.invalid_vote_policy === 'warn' &&
                         checkerTypeFlag === "show-stoppers"
                       )
@@ -147,7 +151,8 @@ angular.module('avBooth')
                   },
                   postfix: "-min"
                 },
-                // raise if numSelectedOptions > max
+                // raise if numSelectedOptions > max and invalidVoteAnswer is 
+                // not selected
                 {
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
@@ -162,6 +167,10 @@ angular.module('avBooth')
                     if (
                       question.extra_options.invalid_vote_policy === 'allowed' || 
                       (
+                        question.invalidVoteAnswer && 
+                        question.invalidVoteAnswer.selected > -1
+                      ) ||
+                      (
                         question.extra_options.invalid_vote_policy === 'warn' &&
                         checkerTypeFlag === "show-stoppers"
                       )
@@ -172,12 +181,17 @@ angular.module('avBooth')
                   },
                   postfix: "-max"
                 },
-                // raise if multiple write-ins with the same text value
+                // raise if multiple write-ins with the same text value and
+                // invalidVoteAnswer is not selected
                 {
                   check: "lambda",
                   validator: function (question) 
                   {
                     if (
+                      (
+                        question.invalidVoteAnswer && 
+                        question.invalidVoteAnswer.selected > -1
+                      ) ||
                       question.extra_options.invalid_vote_policy === 'allowed' || 
                       (
                         question.extra_options.invalid_vote_policy === 'warn' &&
@@ -210,7 +224,8 @@ angular.module('avBooth')
                   },
                   postfix: "-repeated-writeins"
                 },
-                // raise if write-in texts are too large and overflow
+                // raise if write-in texts are too large and overflow and
+                // invalidVoteAnswer is not selected
                 {
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
@@ -223,6 +238,10 @@ angular.module('avBooth')
                   validator: function (question) 
                   {
                     if (
+                      (
+                        question.invalidVoteAnswer && 
+                        question.invalidVoteAnswer.selected > -1
+                      ) ||
                       !question.extra_options ||
                       !question.extra_options.allow_writeins
                     ) {
@@ -238,7 +257,8 @@ angular.module('avBooth')
                   },
                   postfix: "-writein-length"
                 },
-                // raise warning if write-in is provided but not voted
+                // raise warning if write-in is provided but not voted and
+                // invalidVoteAnswer is not selected
                 {
                   check: "lambda",
                   appendOnErrorLambda: function (question) 
@@ -262,6 +282,10 @@ angular.module('avBooth')
                   validator: function (question) 
                   {
                     if (
+                      (
+                        question.invalidVoteAnswer && 
+                        question.invalidVoteAnswer.selected > -1
+                      ) ||
                       checkerTypeFlag === "show-stoppers" ||
                       !question.extra_options ||
                       !question.extra_options.allow_writeins
@@ -285,12 +309,17 @@ angular.module('avBooth')
                   },
                   postfix: "-writeins-not-voted"
                 },
-                // raise warning if write-in is voted but no text provided
+                // raise warning if write-in is voted but no text provided and
+                // invalidVoteAnswer is not selected
                 {
                   check: "lambda",
                   validator: function (question) 
                   {
                     if (
+                      (
+                        question.invalidVoteAnswer && 
+                        question.invalidVoteAnswer.selected > -1
+                      ) ||
                       checkerTypeFlag === "show-stoppers" ||
                       !question.extra_options ||
                       !question.extra_options.allow_writeins
@@ -314,13 +343,18 @@ angular.module('avBooth')
                   },
                   postfix: "-writeins-not-provided"
                 },
-                // raise if panachage is disabled
+                // raise if panachage is disabled and invalidVoteAnswer is not
+                // selected
                 {
                   check: "lambda",
                   postfix: "-panachage",
                   validator: function (question) 
                   {
                     if (
+                      (
+                        question.invalidVoteAnswer && 
+                        question.invalidVoteAnswer.selected > -1
+                      ) ||
                       question.extra_options.enable_panachage === undefined ||
                       question.extra_options.enable_panachage === true ||
                       question.extra_options.invalid_vote_policy === 'allowed' || 
