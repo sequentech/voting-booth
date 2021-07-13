@@ -449,7 +449,18 @@ angular.module('avBooth')
                   scope.election.questions, function () { return []; }
                 );
 
-                if (scope.election.presentation.extra_options && scope.election.presentation.extra_options.start_screen__skip)
+                // skip start screen if start_screen__skip is set to true or
+                // if we are not in the first election of the credentials
+                if (
+                  (
+                    scope.election.presentation.extra_options && 
+                    scope.election.presentation.extra_options.start_screen__skip
+                  ) ||
+                  (
+                    !!scope.currentElectionCredentials &&
+                    !scope.currentElectionCredentials.isFirst
+                  )
+                )
                 {
                   goToQuestion(0, false);
                 } else {
@@ -565,10 +576,11 @@ angular.module('avBooth')
           showError($i18next("avBooth.errorLoadingElection"));
           return;
         }
-        
+
         // set scope.voterId and scope.authorizationHeader
         scope.voterId = voterId;
         scope.authorizationHeader = currentElectionCredentials.token;
+        scope.currentElectionCredentials = currentElectionCredentials;
         scope.isDemo = false;
       }
 
