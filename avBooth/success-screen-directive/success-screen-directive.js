@@ -572,7 +572,7 @@ angular.module('avBooth')
             scope.nextElection = filtered[0];
             $window.sessionStorage.setItem(
               "vote_permission_tokens", 
-              JSON.stringify(filtered)
+              JSON.stringify(mappedCredentials)
             );
           } else {
             $window.sessionStorage.removeItem("vote_permission_tokens");
