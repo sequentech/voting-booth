@@ -449,7 +449,7 @@ angular.module('avBooth')
             skippedCredentials,
             function (electionCredential)
             {
-              return !electionCredential.skipped;
+              return !electionCredential.skipped && !electionCredential.voted;
             }
           );
 

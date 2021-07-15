@@ -542,13 +542,28 @@ angular.module('avBooth')
           // credentials array is in natural order, the next election inside
           // the filtered array will be the next election in which this user
           // can vote, if any. Skipped elections also removed.
-          var filtered = _.filter(
+          var mappedCredentials = _.map(
             scope.credentials,
-            function (electionCredential) {
-              return (
-                electionCredential.electionId.toString() !== scope.electionId &&
-                !electionCredential.skipped
-              );
+            function (electionCredential)
+            {
+              if  (
+                electionCredential.electionId.toString() === scope.electionId
+              ) {
+                return Object.assign(
+                  {},
+                  electionCredential,
+                  {voted: true}
+                );
+              } else {
+                return electionCredential;
+              }
+            }
+          );
+          var filtered = _.filter(
+            mappedCredentials,
+            function (electionCredential)
+            {
+              return !electionCredential.skipped && !electionCredential.voted;
             }
           );
 
@@ -559,6 +574,8 @@ angular.module('avBooth')
               "vote_permission_tokens", 
               JSON.stringify(filtered)
             );
+          } else {
+            $window.sessionStorage.removeItem("vote_permission_tokens");
           }
         }
 
