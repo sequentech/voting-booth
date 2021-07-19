@@ -210,7 +210,6 @@ module.exports = function (grunt) {
         options: {
           read:[
             {selector:'script[class="libnocompat"]',attribute:'src',writeto:'libnocompatjs'},
-            {selector:'script[class="libcompat"]',attribute:'src',writeto:'libcompatjs'},
             {selector:'script[class="lib"]',attribute:'src',writeto:'libjs'},
             {selector:'script[class="app"]',attribute:'src',writeto:'appjs'},
             {selector:'link[rel="stylesheet"][data-concat!="false"]',attribute:'href',writeto:'appcss'}
@@ -223,8 +222,8 @@ module.exports = function (grunt) {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
             {selector:'body',html:'<%= variables.booth_html_body_include %>'},
-            {selector:'body',html:'<!--[if lte IE 8]><script src="/booth/libcompat-v20.2.0.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/booth/libnocompat-v20.2.0.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/booth/libnocompat-v20.2.0.min.js"></script><!--<![endif]-->'},
-            {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-core-view/blob/master/README.md -->'},
+            {selector:'body',html:'<script src="/booth/libnocompat-v20.2.0.min.js"></script>'},
+            {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-gui-booth/blob/master/README.md -->'},
             {selector:'body',html:'<script src="/booth/lib-v20.2.0.min.js"></script>'},
             {selector:'body',html:'<script src="/booth/avConfig-v20.2.0.js"></script>'},
             {selector:'body',html:'<script src="/booth/avThemes-v20.2.0.js"></script>'},
@@ -252,10 +251,6 @@ module.exports = function (grunt) {
     concat: {
       main: {
         files: {
-          'temp/libcompat.js': [
-            'node_modules/agora-gui-common/dist/libcompat-v20.2.0.js',
-            '<%= dom_munger.data.libcompatjs %>'
-          ],
           'temp/libnocompat.js': [
             'node_modules/agora-gui-common/dist/libnocompat-v20.2.0.js',
             '<%= dom_munger.data.libnocompatjs %>'
@@ -315,7 +310,6 @@ module.exports = function (grunt) {
         'temp/app.js':['temp/app.js'],
         'temp/lib.js': ['temp/lib.js'],
         'temp/libnocompat.js': ['temp/libnocompat.js'],
-        'temp/libcompat.js': ['temp/libcompat.js']
         }
       }
     },
@@ -330,7 +324,6 @@ module.exports = function (grunt) {
           'dist/app-v20.2.0.min.js': 'temp/app.js',
           'dist/lib-v20.2.0.min.js': 'temp/lib.js',
           'dist/libnocompat-v20.2.0.min.js': 'temp/libnocompat.js',
-          'dist/libcompat-v20.2.0.min.js': 'temp/libcompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
           "dist/locales/moment/en.js": "node_modules/moment/locale/en-gb.js",

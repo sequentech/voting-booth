@@ -1,0 +1,9 @@
+{
+  "name": "helios-crypto",
+  "license": "Apache-2.0",
+  "version": "20.2.0",
+  "author": {
+    "name": "Ben Adida, Olivier Pereira, Olivier de Marneffe, Emily Stark, Mike Hamburg, Tom Wu, and Dan Boneh for SJCL and integration of javascript crypto., Nicholas Chang-Fong and Aleksander Essex for security reports and fixes., Shirley Chaves, Marco Ciotola",
+    "url": "https://github.com/benadida/helios-server"
+  }
+}

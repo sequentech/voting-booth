@@ -1088,9 +1088,9 @@ domutils@1.5:
     dom-serializer "0"
     domelementtype "1"
 
-"dragdroptouch@https://github.com/Bernardo-Castilho/dragdroptouch.git#master":
-  version "0.0.0"
-  resolved "https://github.com/Bernardo-Castilho/dragdroptouch.git#63e4a9a7e5b833240808402512fc008d772bac44"
+"dragdroptouch@https://github.com/Bernardo-Castilho/dragdroptouch.git#058f0eca96e57ad695f0d5dd2d7bd492ef1c4e47":
+  version "1.0.0"
+  resolved "https://github.com/Bernardo-Castilho/dragdroptouch.git#058f0eca96e57ad695f0d5dd2d7bd492ef1c4e47"
 
 duplexer2@~0.1.4:
   version "0.1.4"
