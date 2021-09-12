@@ -1,6 +1,6 @@
 {
   "name": "agora-gui-booth",
-  "version" : "4.0.0-beta.1",
+  "version" : "4.0.0",
   "license": "AGPL-3.0-only",
   "browsers": [
     "ie >= 8",
