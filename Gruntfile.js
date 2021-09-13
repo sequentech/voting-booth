@@ -19,7 +19,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '20.2.0';
+var AV_CONFIG_VERSION = 'master';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -63,7 +63,7 @@ module.exports = function (grunt) {
             grunt.log.error('No avConfig.js file found');
             done(false);
         } else {
-            var match = data.toString().match(/AV_CONFIG_VERSION = [\'\"]([\w\.]*)[\'\"];/);
+            var match = data.toString().match(/AV_CONFIG_VERSION = [\'\"]([\w\-\.]*)[\'\"];/);
             if (!match) {
                 grunt.log.error('Invalid avConfig.js version');
             } else {
@@ -222,13 +222,13 @@ module.exports = function (grunt) {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
             {selector:'body',html:'<%= variables.booth_html_body_include %>'},
-            {selector:'body',html:'<script src="/booth/libnocompat-v20.2.0.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/libnocompat-vmaster.min.js"></script>'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-gui-booth/blob/master/README.md -->'},
-            {selector:'body',html:'<script src="/booth/lib-v20.2.0.min.js"></script>'},
-            {selector:'body',html:'<script src="/booth/avConfig-v20.2.0.js"></script>'},
-            {selector:'body',html:'<script src="/booth/avThemes-v20.2.0.js"></script>'},
-            {selector:'body',html:'<script src="/booth/app-v20.2.0.min.js"></script>'},
-            {selector:'body',html:'<script src="/booth/avPlugins-v20.2.0.js"></script>'},
+            {selector:'body',html:'<script src="/booth/lib-vmaster.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/avConfig-vmaster.js"></script>'},
+            {selector:'body',html:'<script src="/booth/avThemes-vmaster.js"></script>'},
+            {selector:'body',html:'<script src="/booth/app-vmaster.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/avPlugins-vmaster.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/booth/" href="/booth/themes/default/app.min.css">'}
           ]
         },
@@ -257,9 +257,9 @@ module.exports = function (grunt) {
           ],
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>'],
-          'dist/avConfig-v20.2.0.js': ['avConfig.js'],
-          'dist/avThemes-v20.2.0.js': ['node_modules/agora-gui-common/dist/avThemes-v20.2.0.js'],
-          'dist/avPlugins-v20.2.0.js': ['plugins/**/*.js']
+          'dist/avConfig-vmaster.js': ['avConfig.js'],
+          'dist/avThemes-vmaster.js': ['node_modules/agora-gui-common/dist/avThemes-vmaster.js'],
+          'dist/avPlugins-vmaster.js': ['plugins/**/*.js']
         }
       }
     },
@@ -321,9 +321,9 @@ module.exports = function (grunt) {
           beautify: true
         },
         files: {
-          'dist/app-v20.2.0.min.js': 'temp/app.js',
-          'dist/lib-v20.2.0.min.js': 'temp/lib.js',
-          'dist/libnocompat-v20.2.0.min.js': 'temp/libnocompat.js',
+          'dist/app-vmaster.min.js': 'temp/app.js',
+          'dist/lib-vmaster.min.js': 'temp/lib.js',
+          'dist/libnocompat-vmaster.min.js': 'temp/libnocompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
           "dist/locales/moment/en.js": "node_modules/moment/locale/en-gb.js",
