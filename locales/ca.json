@@ -26,10 +26,14 @@
   },
   "avBooth": {
     "errors": {
-      "question-lambda-blank": "Votación '__qtitle__': seleccionó 0 candidaturas. Voto en blanco.",
-      "question-lambda-min": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, menos que el mínimo de __min__. Voto inválido.",
-      "question-lambda-max": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, más que el máximo de __max__. Voto inválido.",
-      "question-lambda-panachage": "Votación '__qtitle__': seleccionó opciones de múltiples listas, pero no está permitido. Voto inválido."
+      "question-lambda-blank": "Votació '__qtitle__': va seleccionar 0 candidatures. Vot en blanc.",
+      "question-lambda-min": "Votació '__qtitle__': va seleccionar __num_selected__ candidatures, menys que el mínim de __min__. Vot invàlid.",
+      "question-lambda-max": "Votació '__qtitle__': va seleccionar __num_selected__ candidaturas, más que el máximo de __max__. Vot invàlid.",
+      "question-lambda-panachage": "Votació '__qtitle__': va seleccionar opcions a les diverses llistes, però no està permès. Vot invàlid.",
+      "question-lambda-repeated-writeins": "Votació '__qtitle__': noms d'escriptura repetits. Vot invàlid.",
+      "question-lambda-writein-length": "Votació '__qtitle__': noms d'escriptura superades en __extra_bytes__ el màxim de __max__ caràcters. Requereix una reparació.",
+      "question-lambda-writeins-not-voted": "Votació '__qtitle__': noms d'escriptura proporcionades però no votades: __write_ins__. Atípic.",
+      "question-lambda-writeins-not-provided": "Votació '__qtitle__': ha seleccionat alguns noms d'escriptura però no s'ha proporcionat cap nom. Atípic."
     },
     "legal": {
         "title": "Termes legals",
@@ -39,6 +43,12 @@
       "header": "Realment vols auditar la teva papereta?",
       "body": "L'auditoria de la papereta l'invalidarà i hauràs d'iniciar el procés de votació de nou si desitges emetre el teu vot. El procés d'auditoria de la papereta permet verificar que està codificada correctament. Fer aquest procés requereix que uns coneixements tècnics importants, pel que no es recomana si no saps el que estàs fent. <br/> <br/> <strong> Si el que desitja és emetre el seu vot, en <u>Cancel·la</u> per tornar a la pantalla de revisió de votació. </strong>",
       "confirm": "Sí, vull INVALIDAR meu papereta per AUDITAR"
+    },
+    "invalidAnswers": {
+      "header": "Vot no vàlid o en blanc",
+      "body": "Algunes de les respostes poden fer que la papereta en una o més preguntes no sigui vàlida o en blanc:",
+      "continue": "Acceptar i continuar",
+      "cancel": "Tornar i revisar"
     },
     "planchaSelect": "seleccionar-ho tot",
     "planchaDeselect": "deseleccionar-ho tot",
@@ -167,7 +177,20 @@
     "successBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Podeu fer servir el localitzador per verificar que el vostre vot ha quedat registrat <strong><a href=\"__ballotLocatorUrl__\" target=\"_blank\"> en aquesta adreça</a></strong>.",
     "successBallotQrCode": "Pots verificar que el teu vot ha quedat enregistrat mitjançant el següent codi QR:",
     "successNoBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
-    "downloadBallotTicket": "Descargar ticket en PDF",
+    "downloadBallotTicket": "Descarregar confirmació en PDF",
+    "ballotTicket": {
+      "h3": "Confirmació del vot",
+      "h4": "El vostre vot s'ha emès correctament. Aquest document justifica la seva emissió.",
+      "tracker": "Localitzador de l'vot:",
+      "title": "Títol de la votació:",
+      "id": "Id de la votació:",
+      "voterId": "Id de l'votant:",
+      "created": "Data de registre de l'vot:",
+      "link": "Ballot tracker link:",
+      "linkClickHere": "clic aquí",
+      "qrCode": "Podeu també utilitzar el codi QR i accedir a l'enllaç per localitzar el vot:",
+      "isDemo": "Aquest justificant de vot va ser generat en una cabina de votació de prova. Aquest vot NO va ser emès."
+    },
     "relatedLinksText": "Per a més informació sobre la votació:",
     "circleOptionExternalLink": "Mostra'n els detalls",
     "voteInBlank": "Vota en blanc",
