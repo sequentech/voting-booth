@@ -198,9 +198,9 @@
     "successBallotQrCode": "You can verify your ballot has been correctly cast using the following QR Code:",
     "successNoBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "successSkippedCount": "You skipped __count__ elections. You can vote in the elections by logging in again.",
-    "downloadBallotTicket": "Download ballot ticket PDF",
+    "downloadBallotTicket": "Download confirmation PDF",
     "ballotTicket": {
-      "h3": "Vote receipt",
+      "h3": "Vote confirmation",
       "h4": "Your vote has been cast correctly. This document justifies its issuance.",
       "tracker": "Ballot tracker:",
       "title": "Election title:",
