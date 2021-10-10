@@ -59,16 +59,15 @@
     "qrcode-generator": "^1.4.4"
   },
   "resolutions": {
-    "**/lodash": "^4.17.21",
     "**/underscore": "1.12.1",
     "**/xmlhttprequest-ssl": "1.6.2",
     "**/socket.io": "2.4.0",
-    "**/ws": "7.2.1",
     "**/lodash": "^4.17.19",
     "**/minimist": "1.2.5",
     "**/yargs-parser": "13.1.2",
     "**/cheerio": "0.12.3",
     "**/cheerio-select": "0.0.3",
-    "**/ws": "7.4.6"
+    "**/ws": "7.4.6",
+    "**/nth-check": "2.0.1"
   }
 }
