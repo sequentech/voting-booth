@@ -25,6 +25,23 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
   },
   "avBooth": {
+    "demoModeModal": {
+      "header": "Cabina de votació de demo",
+      "body": "Està ingressant a una cabina de votació de demostració. <strong>El seu vot NO s'emetrà</strong>. Aquesta cabina de votació només té finalitats demostratius.",
+      "confirm": "Accepto que el meu vot NO s'emetrà"
+    },
+    "hashForVoteNotCastModal": {
+      "header": "Vot no emès",
+      "body": "Està a punt de copiar el localitzador de el vot, però <strong>el seu vot encara no s'ha emès</strong>. Si voleu buscar el localitzador de el vot, no el trobarà. Qual la raó per la que vam mostrar el localitzador de l'vot en aquest moment és perquè pugui auditar la correcció de l'vot xifrat abans d'emetre'l. Si aquesta és la raó per la qual vol copiar el localitzador de l'vot, procedeixi a copiar-lo i després auditi el seu vot.",
+      "confirm": "Accepto que el meu vot NO ha estat emès",
+      "cancel": "Cancel"
+    },
+    "successDemoVoteNotCastModal": {
+      "header": "Cabina de votació de demo",
+      "body": "Aquesta és una cabina de votació de demostració. <strong>El seu vot NO s'ha emès</strong>. Aquesta cabina de votació només té finalitats demostratius. Qual per tant, el localitzador del seu vot no el trobarà. Per emetre el seu vot, seguiu el procediment d'autenticació corresponent.",
+      "confirm": "Accepto que el meu vot NO es va emetre",
+      "cancel": "Cancel"
+    },
     "errors": {
       "question-lambda-blank": "Votació '__qtitle__': va seleccionar 0 candidatures. Vot en blanc.",
       "question-lambda-min": "Votació '__qtitle__': va seleccionar __num_selected__ candidatures, menys que el mínim de __min__. Vot invàlid.",

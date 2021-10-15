@@ -66,7 +66,8 @@ angular.module('avBooth')
                 errors: [],
                 header: "avBooth.hashForVoteNotCastModal.header",
                 body: "avBooth.hashForVoteNotCastModal.body",
-                continue: "avBooth.hashForVoteNotCastModal.confirm"
+                continue: "avBooth.hashForVoteNotCastModal.confirm",
+                cancel: "avBooth.hashForVoteNotCastModal.cancel"
               };
             }
           }

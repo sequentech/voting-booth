@@ -416,6 +416,9 @@ angular.module('avBooth')
       // Count the number of elections skipped
       function skippedCount() 
       {
+        if (!scope.credentials) {
+          return;
+        }
         var count = 0;
         for (var i = 0; i < scope.credentials.length; i++)
         {
@@ -651,7 +654,8 @@ angular.module('avBooth')
                 errors: [],
                 header: "avBooth.successDemoVoteNotCastModal.header",
                 body: "avBooth.successDemoVoteNotCastModal.body",
-                continue: "avBooth.successDemoVoteNotCastModal.confirm"
+                continue: "avBooth.successDemoVoteNotCastModal.confirm",
+                cancel: "avBooth.successDemoVoteNotCastModal.cancel"
               };
             }
           }
