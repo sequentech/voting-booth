@@ -636,6 +636,14 @@ angular.module('avBooth')
       // shows warning when clicking anything related to the demo voting booth
       // saying that this is a demo booth so ballot tracker won't work
       scope.ballotHashClicked = false;
+      scope.getBallotLocatorUrl = function () {
+        return (
+          !scope.ballotHashClicked && scope.isDemo ? "#" : ("/election/" + scope.election.id + "/public/ballot-locator/" + scope.stateData.ballotHash)
+        );
+      };
+      scope.getBallotLocatorTarget = function () {
+        return (!scope.ballotHashClicked && scope.isDemo ? "" : "_blank");
+      };
       scope.ballotHashWarning = function ()
       {
         if (!scope.isDemo || scope.ballotHashClicked) {

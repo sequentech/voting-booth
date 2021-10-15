@@ -85,7 +85,7 @@
             ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
             class="ballot-locator-text"
             ng-i18next>
-            [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: (!ballotHashClicked && isDemo ? "#" : ("/election/" +election.id + "/public/ballot-locator/" + stateData.ballotHash)), url: organization.orgUrl, name: organization.orgName, target: (!ballotHashClicked && isDemo ? "" : "_blank")})avBooth.successBallotHash
+            [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: getBallotLocatorUrl(), url: organization.orgUrl, name: organization.orgName, target: getBallotLocatorTarget()})avBooth.successBallotHash
           </span> 
 
           <div class="text-center" ng-if="!!nextElection">
