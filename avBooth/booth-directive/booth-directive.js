@@ -17,7 +17,7 @@
 
 angular.module('avBooth')
   .directive('avBooth', function(
-    $cookies,
+    $modal,
     $http,
     $i18next,
     $timeout,
@@ -449,6 +449,30 @@ angular.module('avBooth')
                   scope.election.questions, function () { return []; }
                 );
 
+
+                // If it's a demo booth and we are at this stage, ensure to
+                // show the modal "this is a demo booth" warning
+                if (scope.isDemo) {
+                  $modal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+                    controller: "InvalidAnswersController",
+                    size: 'md',
+                    resolve: {
+                      errors: function() { return []; },
+                      data: function() {
+                        return {
+                          errors: [],
+                          header: "avBooth.demoModeModal.header",
+                          body: "avBooth.demoModeModal.body",
+                          continue: "avBooth.demoModeModal.confirm"
+                        };
+                      }
+                    }
+                  });
+                }
+
                 // skip start screen if start_screen__skip is set to true or
                 // if we are not in the first election of the credentials
                 if (
@@ -518,7 +542,7 @@ angular.module('avBooth')
         scope.authorizationReceiverErrorHandler = errorCallback;
       }
 
-      // Try to read and process voting credentials from $cookies
+      // Try to read and process voting credentials
       function readVoteCredentials() {
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
         if (!credentialsStr) {

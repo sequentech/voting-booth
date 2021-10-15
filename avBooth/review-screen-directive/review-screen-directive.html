@@ -89,7 +89,7 @@
         ng-if="!election.presentation.extra_options || !election.presentation.extra_options.disable_voting_booth_audit_ballot"
         class="col-xs-12 locator-text-click-audit">
         <p>
-          <span class="review-ballot-hash-text" ng-i18next>
+          <span ng-click="ballotHashWarning()" class="review-ballot-hash-text" ng-i18next>
             [html:i18next]({ballotHash: stateData.ballotHash})avBooth.reviewBallotHashText
           </span>
           <a
