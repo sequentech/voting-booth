@@ -39,6 +39,12 @@
       "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. It's for demonstration purpposes only.",
       "confirm": "Confirm, I accept my vote will NOT be cast"
     },
+    "hashForVoteNotCastModal": {
+      "header": "Vote has not been cast yet",
+      "body": "You are about to copy the ballot hash, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the ballot hash at this stage is to be able to audit the correctness of the ballot before casting it. If that's why you want to copy the hash, please proceed to copy the hash of the vote and then do audit the vote.",
+      "confirm": "Confirm, I accept my vote has NOT been cast yet",
+      "cancel": "Cancel"
+    },
     "errors": {
       "question-lambda-blank": "Question '__qtitle__': selected zero options. Blank vote.",
       "question-lambda-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__. Invalid vote.",
