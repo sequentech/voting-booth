@@ -35,14 +35,20 @@
   },
   "avBooth": {
     "demoModeModal": {
-      "header": "Demo Voting Booth",
-      "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. It's for demonstration purpposes only.",
+      "header": "Demo voting booth",
+      "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. It's for demonstration purposes only.",
       "confirm": "Confirm, I accept my vote will NOT be cast"
     },
     "hashForVoteNotCastModal": {
       "header": "Vote has not been cast yet",
       "body": "You are about to copy the ballot hash, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the ballot hash at this stage is to be able to audit the correctness of the ballot before casting it. If that's why you want to copy the hash, please proceed to copy the hash of the vote and then do audit the vote.",
-      "confirm": "Confirm, I accept my vote has NOT been cast yet",
+      "confirm": "Confirm, I accept my vote has NOT been cast",
+      "cancel": "Cancel"
+    },
+    "successDemoVoteNotCastModal": {
+      "header": "Demo voting booth",
+      "body": "This is a demo voting booth.<strong>Your vote has NOT been cast</strong>. It's for demonstration purposes only.<br><br>Thus, the ballot tracker will not work. To cast a real vote, please follow the appropiate authentication procedure.",
+      "confirm": "Confirm, I accept my vote has NOT been cast",
       "cancel": "Cancel"
     },
     "errors": {

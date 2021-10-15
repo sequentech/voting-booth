@@ -29,6 +29,7 @@ angular.module('avBooth')
       moment,
       $interpolate, 
       $window,
+      $modal,
       $i18next,
       $http,
       $cookies)
@@ -628,6 +629,39 @@ angular.module('avBooth')
 
       scope.redirectingToUri = false;
       handleCookiesAndRedirects();
+
+      // shows warning when clicking anything related to the demo voting booth
+      // saying that this is a demo booth so ballot tracker won't work
+      scope.ballotHashClicked = false;
+      scope.ballotHashWarning = function ()
+      {
+        if (!scope.isDemo || scope.ballotHashClicked) {
+          return false;
+        }
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.successDemoVoteNotCastModal.header",
+                body: "avBooth.successDemoVoteNotCastModal.body",
+                continue: "avBooth.successDemoVoteNotCastModal.confirm"
+              };
+            }
+          }
+        }).result.then(
+          function ()
+          {
+            scope.ballotHashClicked = true;
+          }
+        );
+      };
     }
 
       return {

@@ -76,7 +76,7 @@ angular.module('avBooth')
             scope.ballotHashClicked = true;
           }
         );
-      }
+      };
 
       scope.audit = function() {
         scope.stateData.auditClicked = true;
