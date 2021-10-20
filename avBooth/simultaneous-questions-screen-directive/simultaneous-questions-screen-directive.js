@@ -112,6 +112,11 @@ angular.module('avBooth')
                       (
                         checkerTypeFlag === "show-stoppers" && 
                         question.extra_options.invalid_vote_policy !== 'not-allowed'
+                      ) ||
+                      (
+                        checkerTypeFlag === "show-stoppers" &&
+                        question.extra_options.invalid_vote_policy === 'not-allowed' &&
+                        question.min === 0
                       )
                     );
                   },
