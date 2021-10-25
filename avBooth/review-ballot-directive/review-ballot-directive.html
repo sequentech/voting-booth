@@ -6,7 +6,8 @@
 
   <!-- title -->
   <h3 aria-level="2" class="text-brand-success question-title">
-    {{$index + 1}}. {{question.title}}
+    <span>{{$index + 1}}.</span>
+    <span class="title-text" ng-bind-html="question.title"></span>
     <div class="pull-right">
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
     </div>
