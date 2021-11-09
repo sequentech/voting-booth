@@ -436,6 +436,25 @@ angular.module('avBooth')
 
                 scope.election = angular.fromJson(response.data.payload.configuration);
 
+                // if demo booth is disabled and this is a demo booth, redirect
+                // to the login page
+                if (
+                  scope.election.presentation &&
+                  scope.election.presentation.extra_options && 
+                  scope.election.presentation.extra_options.disable__demo_voting_booth &&
+                  scope.isDemo
+                ) {
+
+                  // Stop warning the user about reloading/leaving the page
+                  // as no vote is in the process
+                  $window.onbeforeunload = null;
+                  var redirectUrl = "/election/" + scope.election.id + "/public/login";
+
+                  // change to public/login page
+                  $window.location.href = redirectUrl;
+                  return;
+                }
+
                 // global variables
                 $window.isDemo = scope.isDemo;
                 $window.election = scope.election;
