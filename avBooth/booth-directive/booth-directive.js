@@ -444,7 +444,13 @@ angular.module('avBooth')
                   scope.election.presentation.extra_options.disable__demo_voting_booth &&
                   scope.isDemo
                 ) {
+
+                  // Stop warning the user about reloading/leaving the page
+                  // as no vote is in the process
+                  $window.onbeforeunload = null;
                   var redirectUrl = "/election/" + scope.election.id + "/public/login";
+
+                  // change to public/login page
                   $window.location.href = redirectUrl;
                   return;
                 }
