@@ -34,6 +34,16 @@
     }
   },
   "avBooth": {
+    "electionChooser": {
+      "cannotVote": {
+        "title": "Success!",
+        "description": "You have voted in all the elections you can in this electoral process."
+      },
+      "canVote": {
+        "title": "Choose an election vote",
+        "description": "Disabled elections means you have already voted or you don't have permission to vote."
+      }
+    },
     "demoModeModal": {
       "header": "Demo voting booth",
       "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",

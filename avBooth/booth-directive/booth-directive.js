@@ -55,6 +55,7 @@ angular.module('avBooth')
 
       // possible values of the election state scope variable
       var stateEnum = {
+        electionChooserScreen: 'electionChooserScreen',
         receivingElection: 'receivingElection',
         errorScreen: 'errorScreen',
         helpScreen: 'helpScreen',
@@ -291,7 +292,9 @@ angular.module('avBooth')
           stateEnum.pcandidatesElectionScreen,
           stateEnum.simultaneousQuestionsScreen,
         ];
-        if (scope.state === stateEnum.startScreen)
+        if (scope.state === stateEnum.electionChooserScreen) {
+          scope.setState(stateEnum.startScreen, {});
+        } else if (scope.state === stateEnum.startScreen)
         {
           goToQuestion(0, false);
 
@@ -492,10 +495,16 @@ angular.module('avBooth')
                   });
                 }
 
+                // If there are children elections, then show the election
+                // chooser
+                if (scope.election.children_election_info) {
+                  scope.parentElection = angular.copy(scope.election);
+                  scope.setState(stateEnum.electionChooserScreen, {});
                 // skip start screen if start_screen__skip is set to true or
                 // if we are not in the first election of the credentials
-                if (
+                } else if (
                   (
+                    !scope.election.election.children_election_info &&
                     scope.election.presentation.extra_options && 
                     scope.election.presentation.extra_options.start_screen__skip
                   ) ||
@@ -641,6 +650,7 @@ angular.module('avBooth')
         goToQuestion: goToQuestion,
         setAuthorizationReceiver: setAuthorizationReceiver,
         mapQuestion: mapQuestion,
+        retrieveElectionConfig: retrieveElectionConfig,
         next: next,
 
         // stateData stores information used by the directive being shown.

@@ -556,7 +556,10 @@ angular.module('avBooth')
                 return Object.assign(
                   {},
                   electionCredential,
-                  {voted: true}
+                  {
+                    voted: true,
+                    numSuccessfulLogins: electionCredential.numSuccessfulLogins + 1
+                  }
                 );
               } else {
                 return electionCredential;
@@ -567,7 +570,11 @@ angular.module('avBooth')
             mappedCredentials,
             function (electionCredential)
             {
-              return !electionCredential.skipped && !electionCredential.voted;
+              return (
+                !electionCredential.skipped && 
+                !electionCredential.voted &&
+                electionCredential.numSuccessfulLogins <= electionCredential.numSuccessfulLoginsAllowed
+              );
             }
           );
 
@@ -625,7 +632,7 @@ angular.module('avBooth')
 
       // redirects to next election
       scope.goToNextElection = function () {
-        $window.location.href = "/booth/" + scope.nextElection.electionId + "/vote";
+        scope.setState(scope.stateEnum.electionChooserScreen, {});
       };
 
       scope.skippedCount = skippedCount();
