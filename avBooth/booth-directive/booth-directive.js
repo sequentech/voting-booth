@@ -450,6 +450,10 @@ angular.module('avBooth')
         }
         scope.credentials = [];
         var currentElectionCredentials = null;
+
+        if (scope.isVirtual) {
+          return;
+        }
         try {
           scope.credentials = JSON.parse(credentialsStr);
           currentElectionCredentials = _.find(
@@ -466,7 +470,8 @@ angular.module('avBooth')
         }
 
         // credentials for current election should have been found
-        if (!currentElectionCredentials && !scope.isVirtual) {
+        if (!currentElectionCredentials)
+        {
           showError($i18next("avBooth.errorLoadingElection"));
           return;
         }
