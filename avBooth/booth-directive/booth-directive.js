@@ -18,6 +18,7 @@
 angular.module('avBooth')
   .directive('avBooth', function(
     $modal,
+    $cookies,
     $http,
     $i18next,
     $timeout,
@@ -38,11 +39,23 @@ angular.module('avBooth')
 
       // when we are not inside an iframe and voter id is not set, this is a
       // demo booth
-      scope.isDemo = !InsideIframeService() && !scope.voterId;
+      scope.isDemo = (attrs.isDemo === "true");
       scope.documentation = ConfigService.documentation;
 
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
+
+      function redirectToLogin() {
+        // Stop warning the user about reloading/leaving the page
+        // as no vote is in the process
+        $window.onbeforeunload = null;
+        var electionId =  (scope.parentId) ? scope.parentId : scope.electionId;
+        var redirectUrl = "/election/" + electionId + "/public/login";
+
+        // change to public/login page
+        $window.location.href = redirectUrl;
+        return;
+      }
 
       function updateWidth() {
         $timeout.cancel(timeoutWidth);
@@ -53,8 +66,20 @@ angular.module('avBooth')
         }, 100);
       }
 
+      function checkCookies(electionId) {
+        if (scope.isDemo || InsideIframeService()) {
+          return;
+        }
+
+        var cookie = $cookies.get("authevent_" + electionId);
+        if (!cookie) {
+          redirectToLogin();
+        }
+      }
+
       // possible values of the election state scope variable
       var stateEnum = {
+        electionChooserScreen: 'electionChooserScreen',
         receivingElection: 'receivingElection',
         errorScreen: 'errorScreen',
         helpScreen: 'helpScreen',
@@ -76,6 +101,10 @@ angular.module('avBooth')
 
       // override state if in debug mode and it's provided via query param
       function setState(newState, newStateData) {
+        if (scope.state === stateEnum.errorScreen) {
+          console.log("state in an error state, new state change: " + newState);
+          return;
+        }
         console.log("setting state to " + newState);
         scope.state = newState;
         scope.stateData = newStateData;
@@ -291,7 +320,9 @@ angular.module('avBooth')
           stateEnum.pcandidatesElectionScreen,
           stateEnum.simultaneousQuestionsScreen,
         ];
-        if (scope.state === stateEnum.startScreen)
+        if (scope.state === stateEnum.electionChooserScreen) {
+          scope.setState(stateEnum.startScreen, {});
+        } else if (scope.state === stateEnum.startScreen)
         {
           goToQuestion(0, false);
 
@@ -424,155 +455,25 @@ angular.module('avBooth')
           scope.stateData.oldState.data);
       }
 
-      function retrieveElectionConfig() {
-        try {
-          $http.get(scope.baseUrl + "election/" + scope.electionId)
-            .then(
-              function onSuccess(response) {
-                if (!scope.isDemo && response.data.payload.state !== "started") {
-                  showError($i18next("avBooth.errorElectionIsNotOpen"));
-                  return;
-                }
-
-                scope.election = angular.fromJson(response.data.payload.configuration);
-
-                // if demo booth is disabled and this is a demo booth, redirect
-                // to the login page
-                if (
-                  scope.election.presentation &&
-                  scope.election.presentation.extra_options && 
-                  scope.election.presentation.extra_options.disable__demo_voting_booth &&
-                  scope.isDemo
-                ) {
-
-                  // Stop warning the user about reloading/leaving the page
-                  // as no vote is in the process
-                  $window.onbeforeunload = null;
-                  var redirectUrl = "/election/" + scope.election.id + "/public/login";
-
-                  // change to public/login page
-                  $window.location.href = redirectUrl;
-                  return;
-                }
-
-                // global variables
-                $window.isDemo = scope.isDemo;
-                $window.election = scope.election;
-
-                // index questions
-                _.each(scope.election.questions, function(q, num) { q.num = num; });
-
-                scope.pubkeys = angular.fromJson(response.data.payload.pks);
-                // initialize ballotClearText as a list of lists
-                scope.ballotClearText = _.map(
-                  scope.election.questions, function () { return []; }
-                );
-
-
-                // If it's a demo booth and we are at this stage, ensure to
-                // show the modal "this is a demo booth" warning
-                if (scope.isDemo) {
-                  $modal.open({
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
-                    controller: "InvalidAnswersController",
-                    size: 'md',
-                    resolve: {
-                      errors: function() { return []; },
-                      data: function() {
-                        return {
-                          errors: [],
-                          header: "avBooth.demoModeModal.header",
-                          body: "avBooth.demoModeModal.body",
-                          continue: "avBooth.demoModeModal.confirm"
-                        };
-                      }
-                    }
-                  });
-                }
-
-                // skip start screen if start_screen__skip is set to true or
-                // if we are not in the first election of the credentials
-                if (
-                  (
-                    scope.election.presentation.extra_options && 
-                    scope.election.presentation.extra_options.start_screen__skip
-                  ) ||
-                  (
-                    !!scope.currentElectionCredentials &&
-                    !scope.currentElectionCredentials.isFirst
-                  )
-                )
-                {
-                  goToQuestion(0, false);
-                } else {
-                  scope.setState(stateEnum.startScreen, {});
-                }
-              },
-              // on error, like parse error or 404
-              function onError(response) {
-                showError($i18next("avBooth.errorLoadingElection"));
-              }
-            );
-
-          Authmethod.viewEvent(scope.electionId)
-            .then(
-              function onSuccess(response) {
-                if (response.data.status === "ok") {
-                  scope.authEvent = response.data.events;
-                }
-              }
-            );
-        } catch (error) {
-          showError($i18next("avBooth.errorLoadingElection"));
-        }
-      }
-
-      // Function that receives and processes authorization token when this
-      // this token is sent by a parent window when we are inside an iframe
-      function avPostAuthorization(event, errorHandler) {
-        var action = "avPostAuthorization:";
-        if (event.data.substr(0, action.length) !== action) {
-          return;
-        }
-
-        var khmacStr = event.data.substr(action.length, event.data.length);
-        var khmac = HmacService.checkKhmac(khmacStr);
-        if (!khmac) {
-          scope.authorizationReceiverErrorHandler();
-          showError($i18next("avBooth.errorLoadingElection"));
-          return;
-        }
-        scope.authorizationHeader = khmacStr;
-        var splitMessage = khmac.message.split(":");
-
-        if (splitMessage.length < 4) {
-          scope.authorizationReceiverErrorHandler();
-          return;
-        }
-        scope.voterId = splitMessage[0];
-        scope.authorizationReceiver();
-        scope.authorizationReceiver = null;
-      }
-
-      function setAuthorizationReceiver(callback, errorCallback) {
-        scope.authorizationReceiver = callback;
-        scope.authorizationReceiverErrorHandler = errorCallback;
-      }
-
       // Try to read and process voting credentials
       function readVoteCredentials() {
+        if (scope.isDemo) {
+          return;
+        }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
         if (!credentialsStr) {
-          return;
-        } else {
-          $window.sessionStorage.removeItem("vote_permission_tokens");
+          redirectToLogin();
         }
         scope.credentials = [];
         var currentElectionCredentials = null;
+
         try {
           scope.credentials = JSON.parse(credentialsStr);
+
+          // if it's virtual, there's no current election credentials
+          if (scope.isVirtual) {
+            return;
+          }
           currentElectionCredentials = _.find(
             scope.credentials,
             function (electionCredential) {
@@ -587,7 +488,8 @@ angular.module('avBooth')
         }
 
         // credentials for current election should have been found
-        if (!currentElectionCredentials) {
+        if (!currentElectionCredentials)
+        {
           showError($i18next("avBooth.errorLoadingElection"));
           return;
         }
@@ -627,6 +529,196 @@ angular.module('avBooth')
         scope.isDemo = false;
       }
 
+      function retrieveElectionConfig(electionId) {
+        if (electionId) {
+          scope.electionId = electionId;
+        }
+        var agoraElectionsRetrieved = false;
+        var authapiRetrieved = false;
+        scope.isVirtual = false;
+        var hasAuthapiError = false;
+
+        function execIfAllRetrieved(callback)
+        {
+          if (!agoraElectionsRetrieved || !authapiRetrieved) {
+            return;
+          }
+          callback();
+        }
+        try {
+
+          $http.get(scope.baseUrl + "election/" + scope.electionId)
+            .then(
+              function onSuccess(response) {
+                if (!scope.isDemo && response.data.payload.state !== "started") {
+                  showError($i18next("avBooth.errorElectionIsNotOpen"));
+                  return;
+                }
+
+                scope.election = angular.fromJson(response.data.payload.configuration);
+
+                // if demo booth is disabled and this is a demo booth, redirect
+                // to the login page
+                if (
+                  scope.election.presentation &&
+                  scope.election.presentation.extra_options && 
+                  scope.election.presentation.extra_options.disable__demo_voting_booth &&
+                  scope.isDemo
+                ) {
+                  redirectToLogin();
+                  return;
+                }
+
+                // global variables
+                $window.isDemo = scope.isDemo;
+                $window.election = scope.election;
+
+                // index questions
+                _.each(
+                  scope.election.questions,
+                  function(q, num) { q.num = num; }
+                );
+
+                scope.pubkeys = angular.fromJson(response.data.payload.pks);
+                // initialize ballotClearText as a list of lists
+                scope.ballotClearText = _.map(
+                  scope.election.questions, function () { return []; }
+                );
+
+                // If it's a demo booth and we are at this stage, ensure to
+                // show the modal "this is a demo booth" warning
+                if (scope.isDemo) {
+                  $modal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+                    controller: "InvalidAnswersController",
+                    size: 'md',
+                    resolve: {
+                      errors: function() { return []; },
+                      data: function() {
+                        return {
+                          errors: [],
+                          header: "avBooth.demoModeModal.header",
+                          body: "avBooth.demoModeModal.body",
+                          continue: "avBooth.demoModeModal.confirm"
+                        };
+                      }
+                    }
+                  });
+                }
+
+                // If there are children elections, then show the election
+                // chooser
+                scope.isVirtual = response.data.payload.virtual;
+
+                // process vote credentials
+                readVoteCredentials();
+
+                if (scope.isVirtual) {
+                  if (hasAuthapiError) {
+                    showError($i18next("avBooth.errorLoadingElection"));
+                    return;
+                  }
+                  agoraElectionsRetrieved = true;
+                  execIfAllRetrieved(function () {
+                    if (!scope.parentAuthEvent) {
+                      scope.parentAuthEvent = angular.copy(scope.authEvent);
+                      scope.parentId = scope.parentAuthEvent.id;
+                    }
+                    checkCookies(scope.parentId);
+                    scope.setState(stateEnum.electionChooserScreen, {});
+                  });
+                // skip start screen if start_screen__skip is set to true or
+                // if we are not in the first election of the credentials
+                } else if (
+                  (
+                    !response.data.payload.virtual &&
+                    scope.election.presentation.extra_options && 
+                    scope.election.presentation.extra_options.start_screen__skip
+                  ) ||
+                  (
+                    !!scope.currentElectionCredentials &&
+                    !scope.currentElectionCredentials.isFirst
+                  )
+                )
+                {
+                  checkCookies(scope.electionId);
+                  goToQuestion(0, false);
+                } else {
+                  checkCookies(scope.electionId);
+                  scope.setState(stateEnum.startScreen, {});
+                }
+              },
+              // on error, like parse error or 404
+              function onError(response) {
+                showError($i18next("avBooth.errorLoadingElection"));
+              }
+            );
+
+          Authmethod.viewEvent(scope.electionId)
+            .then(
+              function onSuccess(response) {
+                authapiRetrieved = true;
+                if (response.data.status === "ok") {
+                  scope.authEvent = response.data.events;
+                }
+                execIfAllRetrieved(function () {
+                  if (scope.isVirtual) {
+                    if (!scope.parentAuthEvent) {
+                      scope.parentAuthEvent = angular.copy(
+                        response.data.events
+                      );
+                      scope.parentId = scope.parentAuthEvent.id;
+                      checkCookies(scope.parentId);
+                    }
+                    scope.setState(stateEnum.electionChooserScreen, {});
+                  } else {
+                    checkCookies(scope.electionId);
+                  }
+                });
+              },
+              function onError () {
+                hasAuthapiError = true;
+              }
+            );
+        } catch (error) {
+          showError($i18next("avBooth.errorLoadingElection"));
+        }
+      }
+
+      // Function that receives and processes authorization token when this
+      // this token is sent by a parent window when we are inside an iframe
+      function avPostAuthorization(event, errorHandler) {
+        var action = "avPostAuthorization:";
+        if (event.data.substr(0, action.length) !== action) {
+          return;
+        }
+
+        var khmacStr = event.data.substr(action.length, event.data.length);
+        var khmac = HmacService.checkKhmac(khmacStr);
+        if (!khmac) {
+          scope.authorizationReceiverErrorHandler();
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+        scope.authorizationHeader = khmacStr;
+        var splitMessage = khmac.message.split(":");
+
+        if (splitMessage.length < 4) {
+          scope.authorizationReceiverErrorHandler();
+          return;
+        }
+        scope.voterId = splitMessage[0];
+        scope.authorizationReceiver();
+        scope.authorizationReceiver = null;
+      }
+
+      function setAuthorizationReceiver(callback, errorCallback) {
+        scope.authorizationReceiver = callback;
+        scope.authorizationReceiverErrorHandler = errorCallback;
+      }
+
       //////////////////// Initialization part ////////////////////
 
       // init scope vars
@@ -641,7 +733,9 @@ angular.module('avBooth')
         goToQuestion: goToQuestion,
         setAuthorizationReceiver: setAuthorizationReceiver,
         mapQuestion: mapQuestion,
+        retrieveElectionConfig: retrieveElectionConfig,
         next: next,
+        redirectToLogin: redirectToLogin,
 
         // stateData stores information used by the directive being shown.
         // Its content depends on the current state.
@@ -657,10 +751,8 @@ angular.module('avBooth')
         // convert config to JSON
         config: angular.fromJson(scope.configStr),
 
-        // Variable that stablishes if the election is a demo or not. True
-        // by default if not inside an iframe but it's changed if the $cookies 
-        // var receives valid voting credencials.
-        isDemo: !InsideIframeService(),
+        // Variable that stablishes if the election is a demo or not.
+        isDemo: (attrs.isDemo === "true"),
 
         // By default no voterId is set
         voterId: '',
@@ -674,9 +766,6 @@ angular.module('avBooth')
         updateWidth();
       });
       updateWidth();
-
-      // process vote credentials
-      readVoteCredentials();
 
       // set the initial state
       setState(stateEnum.receivingElection, {});

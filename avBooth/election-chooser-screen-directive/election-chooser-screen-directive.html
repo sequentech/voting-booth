@@ -1,0 +1,157 @@
+<!-- top navbar -->
+<nav 
+  class="navbar start-screen navbar-default navbar-fixed-top"
+  av-affix-top=".navbar-unfixed-top"
+  role="navigation"
+>
+  <div class="container">
+    <div class="row avb-top-navbar">
+      <div class="col-xs-6 col-sm-4" ng-if="election.logo_url">
+        <span>
+          <img
+            alt="Logo Image"
+            class="logo-img" 
+            ng-src="{{election.logo_url}}"
+          />
+        </span>
+      </div>
+      <div class="col-xs-6" ng-if="!election.logo_url">
+        <span 
+          class="powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+        >
+        </span>
+      </div>
+
+      <div 
+        class="hidden-xs col-sm-4 text-center center-col"
+        ng-if="election.logo_url"
+      >
+        <div
+          class="powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 text-right" ng-if="election.logo_url">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          role="link"
+          tabindex="0"
+          ng-if="documentation.show_help"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()">
+        </span>
+        <span
+          ng-if="documentation.show_help"
+          role="link"
+          tabindex="0"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()" 
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          role="menuitem"
+          av-change-lang
+        >
+        </span>
+      </div>
+
+      <div class="col-xs-6 text-right" ng-if="!election.logo_url">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          role="link"
+          tabindex="0"
+          ng-if="documentation.show_help"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()">
+        </span>
+        <span
+          ng-if="documentation.show_help"
+          role="link"
+          tabindex="0"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()" 
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          role="menuitem"
+          av-change-lang
+        >
+        </span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrapper-unfixed">
+  <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-start-screen] #avb-toggle">
+    <div class="container">
+      <div class="hidden unfixed-top-height"></div>
+      <h1>
+        {{election.presentation.extra_options.public_title || election.title}}
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div id="avb-toggle" class="text-center item-block hidden">
+  <span class="glyphicon glyphicon-play"></span>
+</div>
+
+<div class="container-fluid warning-demo" ng-if="isDemo">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p ng-i18next="[html]avBooth.thisisADemoNotification"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content avb-content election-chooser-screen">
+    <div class="container">
+      <div class="row text-center">
+        <div class="election-description">
+          <p
+            class="election-description"
+            ng-bind-html="election.description | addTargetBlank"
+          ></p>
+        </div>
+        <div
+          ng-if="!canVote && hasVoted"
+          class="padded col-xs-12 cannot-vote"
+        >
+          <h3 ng-i18next>avBooth.electionChooser.hasVoted.title</h3>
+          <p ng-i18next="avBooth.electionChooser.hasVoted.description"></p>
+        </div>
+        <div
+          ng-if="!canVote && !hasVoted"
+          class="padded col-xs-12 cannot-vote"
+        >
+          <h3 ng-i18next>avBooth.electionChooser.cannotVote.title</h3>
+          <p ng-i18next="avBooth.electionChooser.cannotVote.description"></p>
+        </div>
+        <div
+          ng-if="canVote"
+          class="padded col-xs-12 can-vote"
+        >
+          <h3 ng-i18next>avBooth.electionChooser.canVote.title</h3>
+          <p ng-i18next="avBooth.electionChooser.canVote.description"></p>
+        </div>
+        <div
+          ng-if="canVote"
+          av-children-elections
+          mode="toggle-and-callback"
+          callback="chooseElection(electionId)"
+          parent-election-id="{{parentAuthEvent.id}}"
+          hide-parent="true"
+          children-election-info="childrenElectionInfo"
+        ></div>
+      </div>
+  </div>
+</div>
