@@ -707,7 +707,7 @@ angular.module('avBooth')
         // Variable that stablishes if the election is a demo or not. True
         // by default if not inside an iframe but it's changed if the $cookies 
         // var receives valid voting credencials.
-        isDemo: !InsideIframeService(),
+        isDemo: (attrs.isDemo === "true"),
 
         // By default no voterId is set
         voterId: '',
