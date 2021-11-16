@@ -605,10 +605,15 @@ angular.module('avBooth')
       // Try to read and process voting credentials
       function readVoteCredentials() {
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
-        if (!credentialsStr) {
+        if (!credentialsStr && !scope.isDemo) {
+          // Stop warning the user about reloading/leaving the page
+          // as no vote is in the process
+          $window.onbeforeunload = null;
+          var redirectUrl = "/election/" + scope.electionId + "/public/login";
+
+          // change to public/login page
+          $window.location.href = redirectUrl;
           return;
-        } else {
-          $window.sessionStorage.removeItem("vote_permission_tokens");
         }
         scope.credentials = [];
         var currentElectionCredentials = null;
