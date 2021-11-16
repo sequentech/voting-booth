@@ -85,7 +85,7 @@ angular.module('avBooth')
             scope.retrieveElection();
         }
 
-        scope.childrenInfo = generateChildrenInfo();
+        scope.childrenElectionInfo = generateChildrenInfo();
         scope.chooseElection = chooseElection;
     }
 
