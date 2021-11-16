@@ -450,26 +450,13 @@ angular.module('avBooth')
               }
             }
           );
-          var filtered = _.filter(
-            skippedCredentials,
-            function (electionCredential)
-            {
-              return !electionCredential.skipped && !electionCredential.voted;
-            }
-          );
-
-          var nextElection = filtered[0];
           $window.sessionStorage.setItem(
             "vote_permission_tokens",
             JSON.stringify(skippedCredentials)
           );
 
-          // Stop warning the user about reloading/leaving the page, as the vote
-          // has been cast already;
-          $window.onbeforeunload = null;
-    
-          // Finally go to the next election
-          $window.location.href = "/booth/" + nextElection.electionId + "/vote";
+          // Go to the election chooser
+          scope.setState(scope.stateEnum.electionChooserScreen, {});
         }
 
         // add categories to questions, and other initialization stuff

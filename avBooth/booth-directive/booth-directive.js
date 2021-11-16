@@ -44,6 +44,17 @@ angular.module('avBooth')
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
 
+      function redirectToLogin() {
+        // Stop warning the user about reloading/leaving the page
+        // as no vote is in the process
+        $window.onbeforeunload = null;
+        var redirectUrl = "/election/" + scope.electionId + "/public/login";
+
+        // change to public/login page
+        $window.location.href = redirectUrl;
+        return;
+      }
+
       function updateWidth() {
         $timeout.cancel(timeoutWidth);
         timeoutWidth = $timeout(function() {
@@ -77,6 +88,10 @@ angular.module('avBooth')
 
       // override state if in debug mode and it's provided via query param
       function setState(newState, newStateData) {
+        if (scope.state === stateEnum.errorScreen) {
+          console.log("state in an error state, new state change: " + newState);
+          return;
+        }
         console.log("setting state to " + newState);
         scope.state = newState;
         scope.stateData = newStateData;
@@ -427,6 +442,70 @@ angular.module('avBooth')
           scope.stateData.oldState.data);
       }
 
+      // Try to read and process voting credentials
+      function readVoteCredentials() {
+        var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
+        if (!credentialsStr && !scope.isDemo) {
+          redirectToLogin();
+        }
+        scope.credentials = [];
+        var currentElectionCredentials = null;
+        try {
+          scope.credentials = JSON.parse(credentialsStr);
+          currentElectionCredentials = _.find(
+            scope.credentials,
+            function (electionCredential) {
+              return (
+                electionCredential.electionId.toString() === scope.electionId
+              );
+            }
+          );
+        } catch (error) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+
+        // credentials for current election should have been found
+        if (!currentElectionCredentials && !scope.isVirtual) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+
+        // token should be valid
+        var hmac = HmacService.checkKhmac(currentElectionCredentials.token);
+        if (!hmac) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+
+        // verify message, which should be of the format
+        // "userid:vote:AuthEvent:1110:134234111"
+        var splitMessage = hmac.message.split(':');
+        if (splitMessage.length !== 5) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+        var voterId = splitMessage[0];
+        var objectType = splitMessage[1];
+        var objectId = splitMessage[2];
+        var action = splitMessage[3];
+        // timestamp has already been validated so we don't validate it again
+        if (
+          isNaN(parseInt(objectId, 10)) ||
+          action !== 'vote' ||
+          objectType !== 'AuthEvent'
+        ) {
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+
+        // set scope.voterId and scope.authorizationHeader
+        scope.voterId = voterId;
+        scope.authorizationHeader = currentElectionCredentials.token;
+        scope.currentElectionCredentials = currentElectionCredentials;
+        scope.isDemo = false;
+      }
+
       function retrieveElectionConfig() {
         var agoraElectionsRetrieved = false;
         var authapiRetrieved = false;
@@ -460,14 +539,7 @@ angular.module('avBooth')
                   scope.election.presentation.extra_options.disable__demo_voting_booth &&
                   scope.isDemo
                 ) {
-
-                  // Stop warning the user about reloading/leaving the page
-                  // as no vote is in the process
-                  $window.onbeforeunload = null;
-                  var redirectUrl = "/election/" + scope.election.id + "/public/login";
-
-                  // change to public/login page
-                  $window.location.href = redirectUrl;
+                  redirectToLogin();
                   return;
                 }
 
@@ -512,6 +584,11 @@ angular.module('avBooth')
 
                 // If there are children elections, then show the election
                 // chooser
+                scope.isVirtual = response.data.payload.virtual;
+
+                // process vote credentials
+                readVoteCredentials();
+
                 if (response.data.payload.virtual) {
                   if (hasAuthapiError) {
                     showError($i18next("avBooth.errorLoadingElection"));
@@ -609,77 +686,6 @@ angular.module('avBooth')
         scope.authorizationReceiverErrorHandler = errorCallback;
       }
 
-      // Try to read and process voting credentials
-      function readVoteCredentials() {
-        var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
-        if (!credentialsStr && !scope.isDemo) {
-          // Stop warning the user about reloading/leaving the page
-          // as no vote is in the process
-          $window.onbeforeunload = null;
-          var redirectUrl = "/election/" + scope.electionId + "/public/login";
-
-          // change to public/login page
-          $window.location.href = redirectUrl;
-          return;
-        }
-        scope.credentials = [];
-        var currentElectionCredentials = null;
-        try {
-          scope.credentials = JSON.parse(credentialsStr);
-          currentElectionCredentials = _.find(
-            scope.credentials,
-            function (electionCredential) {
-              return (
-                electionCredential.electionId.toString() === scope.electionId
-              );
-            }
-          );
-        } catch (error) {
-          showError($i18next("avBooth.errorLoadingElection"));
-          return;
-        }
-
-        // credentials for current election should have been found
-        if (!currentElectionCredentials) {
-          showError($i18next("avBooth.errorLoadingElection"));
-          return;
-        }
-
-        // token should be valid
-        var hmac = HmacService.checkKhmac(currentElectionCredentials.token);
-        if (!hmac) {
-          showError($i18next("avBooth.errorLoadingElection"));
-          return;
-        }
-
-        // verify message, which should be of the format
-        // "userid:vote:AuthEvent:1110:134234111"
-        var splitMessage = hmac.message.split(':');
-        if (splitMessage.length !== 5) {
-          showError($i18next("avBooth.errorLoadingElection"));
-          return;
-        }
-        var voterId = splitMessage[0];
-        var objectType = splitMessage[1];
-        var objectId = splitMessage[2];
-        var action = splitMessage[3];
-        // timestamp has already been validated so we don't validate it again
-        if (
-          isNaN(parseInt(objectId, 10)) ||
-          action !== 'vote' ||
-          objectType !== 'AuthEvent'
-        ) {
-          showError($i18next("avBooth.errorLoadingElection"));
-          return;
-        }
-
-        // set scope.voterId and scope.authorizationHeader
-        scope.voterId = voterId;
-        scope.authorizationHeader = currentElectionCredentials.token;
-        scope.currentElectionCredentials = currentElectionCredentials;
-        scope.isDemo = false;
-      }
-
       //////////////////// Initialization part ////////////////////
 
       // init scope vars
@@ -696,6 +702,7 @@ angular.module('avBooth')
         mapQuestion: mapQuestion,
         retrieveElectionConfig: retrieveElectionConfig,
         next: next,
+        redirectToLogin: redirectToLogin,
 
         // stateData stores information used by the directive being shown.
         // Its content depends on the current state.
@@ -711,9 +718,7 @@ angular.module('avBooth')
         // convert config to JSON
         config: angular.fromJson(scope.configStr),
 
-        // Variable that stablishes if the election is a demo or not. True
-        // by default if not inside an iframe but it's changed if the $cookies 
-        // var receives valid voting credencials.
+        // Variable that stablishes if the election is a demo or not.
         isDemo: (attrs.isDemo === "true"),
 
         // By default no voterId is set
@@ -728,9 +733,6 @@ angular.module('avBooth')
         updateWidth();
       });
       updateWidth();
-
-      // process vote credentials
-      readVoteCredentials();
 
       // set the initial state
       setState(stateEnum.receivingElection, {});

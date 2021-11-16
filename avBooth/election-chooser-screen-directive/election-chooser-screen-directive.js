@@ -38,6 +38,7 @@ angular.module('avBooth')
                 scope.parentAuthEvent.children_election_info
             );
             scope.canVote = false;
+            scope.hasVoted = false;
             childrenInfo.presentation.categories = _.map(
                 childrenInfo.presentation.categories,
                 function (category) {
@@ -50,11 +51,14 @@ angular.module('avBooth')
                             if (
                                 !!elCredentials &&
                                 (
-                                    elCredentials.numSuccessfulLogins <
-                                    elCredentials.numSuccessfulLoginsAllowed
+                                    elCredentials.numSuccessfulLogins < elCredentials.numSuccessfulLoginsAllowed ||
+                                    elCredentials.numSuccessfulLoginsAllowed === 0
                                 )
                             ) {
                                 scope.canVote = true;
+                            }
+                            if (elCredentials.numSuccessfulLogins > 0) {
+                                scope.hasVoted = true;
                             }
                             return Object.assign(
                                 {},
@@ -65,7 +69,8 @@ angular.module('avBooth')
                                         !elCredentials ||
                                         (
                                             elCredentials.numSuccessfulLogins >= 
-                                            elCredentials.numSuccessfulLoginsAllowed
+                                            elCredentials.numSuccessfulLoginsAllowed &&
+                                            elCredentials.numSuccessfulLoginsAllowed > 0
                                         )
                                     )
                                 }

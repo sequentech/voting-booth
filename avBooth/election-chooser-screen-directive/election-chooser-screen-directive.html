@@ -118,7 +118,14 @@
     <div class="container">
       <div class="row text-center">
         <div
-          ng-if="!canVote"
+          ng-if="!canVote && hasVoted"
+          class="padded col-xs-12 cannot-vote"
+        >
+          <h2 ng-i18next>avBooth.electionChooser.hasVoted.title</h2>
+          <p ng-i18next="avBooth.electionChooser.hasVoted.description"></p>
+        </div>
+        <div
+          ng-if="!canVote && !hasVoted"
           class="padded col-xs-12 cannot-vote"
         >
           <h2 ng-i18next>avBooth.electionChooser.cannotVote.title</h2>

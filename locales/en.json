@@ -35,9 +35,13 @@
   },
   "avBooth": {
     "electionChooser": {
-      "cannotVote": {
+      "hasVoted": {
         "title": "Success!",
         "description": "You have voted in all the elections you can in this electoral process."
+      },
+      "cannotVote": {
+        "title": "No credentials",
+        "description": "For some reason you are correctly logged in but have not been granted credentials to vote. Please consult with election organizators."
       },
       "canVote": {
         "title": "Choose an election vote",
