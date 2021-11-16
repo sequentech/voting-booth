@@ -38,7 +38,7 @@ angular.module('avBooth')
 
       // when we are not inside an iframe and voter id is not set, this is a
       // demo booth
-      scope.isDemo = !InsideIframeService() && !scope.voterId;
+      scope.isDemo = attrs.isDemo;
       scope.documentation = ConfigService.documentation;
 
       // This is used to enable custom css overriding

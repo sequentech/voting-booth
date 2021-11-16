@@ -101,6 +101,14 @@ angular.module('agora-gui-booth').config(
         templateUrl: 'avBooth/booth.html',
         controller: "BoothController"
       })
+      .state('election.booth-demo', {
+        url: '/:id/demo-vote',
+        templateUrl: 'avBooth/booth.html',
+        controller: "BoothController",
+        params: {
+          isDemo: true
+        }
+      })
       .state('election.public.show.home.simple', {
         template: '<div ave-simple-question></div>'
       })

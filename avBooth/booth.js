@@ -41,6 +41,7 @@ angular
       $cookies,
       InsideIframeService
     ) {
+      $scope.isDemo = $stateParams.isDemo || false;
       $scope.electionId = $stateParams.id;
       $scope.baseUrl = ConfigService.baseUrl;
       $scope.config = $filter('json')(ConfigService);
