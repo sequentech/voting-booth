@@ -81,7 +81,6 @@ angular.module('avBooth')
 
         function chooseElection(election) {
             scope.electionId = election.event_id;
-            scope.cannotVote = cannotVote;
             scope.setState(scope.stateEnum.receivingElection, {});
             scope.retrieveElection();
         }
