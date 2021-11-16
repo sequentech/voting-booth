@@ -476,14 +476,16 @@ angular.module('avBooth')
                 $window.election = scope.election;
 
                 // index questions
-                _.each(scope.election.questions, function(q, num) { q.num = num; });
+                _.each(
+                  scope.election.questions,
+                  function(q, num) { q.num = num; }
+                );
 
                 scope.pubkeys = angular.fromJson(response.data.payload.pks);
                 // initialize ballotClearText as a list of lists
                 scope.ballotClearText = _.map(
                   scope.election.questions, function () { return []; }
                 );
-
 
                 // If it's a demo booth and we are at this stage, ensure to
                 // show the modal "this is a demo booth" warning
@@ -510,7 +512,7 @@ angular.module('avBooth')
 
                 // If there are children elections, then show the election
                 // chooser
-                if (response.data.virtual) {
+                if (response.data.payload.virtual) {
                   if (hasAuthapiError) {
                     showError($i18next("avBooth.errorLoadingElection"));
                     return;
@@ -524,7 +526,7 @@ angular.module('avBooth')
                 // if we are not in the first election of the credentials
                 } else if (
                   (
-                    !response.data.virtual &&
+                    !response.data.payload.virtual &&
                     scope.election.presentation.extra_options && 
                     scope.election.presentation.extra_options.start_screen__skip
                   ) ||
@@ -552,14 +554,16 @@ angular.module('avBooth')
                 if (response.data.status === "ok") {
                   scope.authEvent = response.data.events;
                 }
-                if (isVirtual) {
-                  if (!scope.parentAuthEvent) {
-                    scope.parentAuthEvent = angular.copy(response.data.events);
-                  }
-                  execIfAllRetrieved(function () {
+                execIfAllRetrieved(function () {
+                  if (isVirtual) {
+                    if (!scope.parentAuthEvent) {
+                      scope.parentAuthEvent = angular.copy(
+                        response.data.events
+                      );
+                    }
                     scope.setState(stateEnum.electionChooserScreen, {});
-                  });
-                }
+                  }
+                });
               },
               function onError () {
                 hasAuthapiError = true;
