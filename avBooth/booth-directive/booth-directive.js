@@ -513,7 +513,10 @@ angular.module('avBooth')
         scope.isDemo = false;
       }
 
-      function retrieveElectionConfig() {
+      function retrieveElectionConfig(electionId) {
+        if (electionId) {
+          scope.electionId = electionId;
+        }
         var agoraElectionsRetrieved = false;
         var authapiRetrieved = false;
         scope.isVirtual = false;
