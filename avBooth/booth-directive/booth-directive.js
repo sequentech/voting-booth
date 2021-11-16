@@ -520,6 +520,9 @@ angular.module('avBooth')
                   agoraElectionsRetrieved = true;
                   isVirtual = true;
                   execIfAllRetrieved(function () {
+                    if (!scope.parentAuthEvent) {
+                      scope.parentAuthEvent = angular.copy(scope.authEvent);
+                    }
                     scope.setState(stateEnum.electionChooserScreen, {});
                   });
                 // skip start screen if start_screen__skip is set to true or
