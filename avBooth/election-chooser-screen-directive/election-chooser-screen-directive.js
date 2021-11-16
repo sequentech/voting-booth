@@ -24,18 +24,6 @@ angular.module('avBooth')
   .directive('avbElectionChooserScreen',  function() {
 
     function link(scope, element, attrs) {
-        function canVote() {
-            return _.find(
-                scope.credentials,
-                function (credentials) {
-                    return (
-                        credentials.numSuccessfulLogins <= 
-                        credentials.numSuccessfulLoginsAllowed
-                    );
-                }
-            ) !== undefined;
-        }
-
         function findElectionCredentials(electionId, credentials) {
             return _.find(
                 credentials,
@@ -49,6 +37,7 @@ angular.module('avBooth')
             var childrenInfo = angular.copy(
                 scope.parentAuthEvent.children_election_info
             );
+            scope.canVote = false;
             childrenInfo.presentation.categories = _.map(
                 childrenInfo.presentation.categories,
                 function (category) {
@@ -58,6 +47,15 @@ angular.module('avBooth')
                             var elCredentials = findElectionCredentials(
                                 election.event_id, scope.credentials
                             );
+                            if (
+                                !!elCredentials &&
+                                (
+                                    elCredentials.numSuccessfulLogins <
+                                    elCredentials.numSuccessfulLoginsAllowed
+                                )
+                            ) {
+                                scope.canVote = true;
+                            }
                             return Object.assign(
                                 {},
                                 election,
@@ -85,7 +83,6 @@ angular.module('avBooth')
             scope.retrieveElection();
         }
 
-        scope.canVote = canVote;
         scope.childrenElectionInfo = generateChildrenInfo();
         scope.chooseElection = chooseElection;
     }
