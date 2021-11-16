@@ -18,6 +18,7 @@
 angular.module('avBooth')
   .directive('avBooth', function(
     $modal,
+    $cookies,
     $http,
     $i18next,
     $timeout,
@@ -48,7 +49,8 @@ angular.module('avBooth')
         // Stop warning the user about reloading/leaving the page
         // as no vote is in the process
         $window.onbeforeunload = null;
-        var redirectUrl = "/election/" + scope.electionId + "/public/login";
+        var electionId =  (scope.parentId) ? scope.parentId : scope.electionId;
+        var redirectUrl = "/election/" + electionId + "/public/login";
 
         // change to public/login page
         $window.location.href = redirectUrl;
@@ -62,6 +64,17 @@ angular.module('avBooth')
           console.log("scope.windowWidth = " + scope.windowWidth);
           scope.$apply();
         }, 100);
+      }
+
+      function checkCookies(electionId) {
+        if (scope.isDemo || InsideIframeService()) {
+          return;
+        }
+
+        var cookie = $cookies.get("authevent_" + electionId);
+        if (!cookie) {
+          redirectToLogin();
+        }
       }
 
       // possible values of the election state scope variable
@@ -608,7 +621,9 @@ angular.module('avBooth')
                   execIfAllRetrieved(function () {
                     if (!scope.parentAuthEvent) {
                       scope.parentAuthEvent = angular.copy(scope.authEvent);
+                      scope.parentId = scope.parentAuthEvent.id;
                     }
+                    checkCookies(scope.parentId);
                     scope.setState(stateEnum.electionChooserScreen, {});
                   });
                 // skip start screen if start_screen__skip is set to true or
@@ -625,8 +640,10 @@ angular.module('avBooth')
                   )
                 )
                 {
+                  checkCookies(scope.electionId);
                   goToQuestion(0, false);
                 } else {
+                  checkCookies(scope.electionId);
                   scope.setState(stateEnum.startScreen, {});
                 }
               },
@@ -649,8 +666,12 @@ angular.module('avBooth')
                       scope.parentAuthEvent = angular.copy(
                         response.data.events
                       );
+                      scope.parentId = scope.parentAuthEvent.id;
+                      checkCookies(scope.parentId);
                     }
                     scope.setState(stateEnum.electionChooserScreen, {});
+                  } else {
+                    checkCookies(scope.electionId);
                   }
                 });
               },
