@@ -86,7 +86,7 @@ angular.module('avBooth')
 
         function chooseElection(electionId) {
             scope.setState(scope.stateEnum.receivingElection, {});
-            scope.retrieveElectionConfig(electionId);
+            scope.retrieveElectionConfig(electionId + "");
         }
 
         scope.childrenElectionInfo = generateChildrenInfo();
