@@ -95,7 +95,6 @@
       <h1>
         {{election.presentation.extra_options.public_title || election.title}}
       </h1>
-      <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
     </div>
   </div>
 </div>
@@ -117,25 +116,31 @@
 <div class="content avb-content election-chooser-screen">
     <div class="container">
       <div class="row text-center">
+        <div class="election-description">
+          <p
+            class="election-description"
+            ng-bind-html="election.description | addTargetBlank"
+          ></p>
+        </div>
         <div
           ng-if="!canVote && hasVoted"
           class="padded col-xs-12 cannot-vote"
         >
-          <h2 ng-i18next>avBooth.electionChooser.hasVoted.title</h2>
+          <h3 ng-i18next>avBooth.electionChooser.hasVoted.title</h3>
           <p ng-i18next="avBooth.electionChooser.hasVoted.description"></p>
         </div>
         <div
           ng-if="!canVote && !hasVoted"
           class="padded col-xs-12 cannot-vote"
         >
-          <h2 ng-i18next>avBooth.electionChooser.cannotVote.title</h2>
+          <h3 ng-i18next>avBooth.electionChooser.cannotVote.title</h3>
           <p ng-i18next="avBooth.electionChooser.cannotVote.description"></p>
         </div>
         <div
           ng-if="canVote"
           class="padded col-xs-12 can-vote"
         >
-          <h2 ng-i18next>avBooth.electionChooser.canVote.title</h2>
+          <h3 ng-i18next>avBooth.electionChooser.canVote.title</h3>
           <p ng-i18next="avBooth.electionChooser.canVote.description"></p>
         </div>
         <div

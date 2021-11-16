@@ -50,6 +50,7 @@ angular.module('avBooth')
                             );
                             if (
                                 !!elCredentials &&
+                                !!elCredentials.token &&
                                 (
                                     elCredentials.numSuccessfulLogins < elCredentials.numSuccessfulLoginsAllowed ||
                                     elCredentials.numSuccessfulLoginsAllowed === 0
@@ -67,6 +68,7 @@ angular.module('avBooth')
                                 {
                                     disabled: (
                                         !elCredentials ||
+                                        !(elCredentials.token) ||
                                         (
                                             elCredentials.numSuccessfulLogins >= 
                                             elCredentials.numSuccessfulLoginsAllowed &&
