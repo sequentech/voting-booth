@@ -573,6 +573,7 @@ angular.module('avBooth')
               return (
                 !electionCredential.skipped && 
                 !electionCredential.voted &&
+                !!electionCredential.token &&
                 electionCredential.numSuccessfulLogins <= electionCredential.numSuccessfulLoginsAllowed
               );
             }
