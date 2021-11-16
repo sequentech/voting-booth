@@ -457,8 +457,11 @@ angular.module('avBooth')
 
       // Try to read and process voting credentials
       function readVoteCredentials() {
+        if (scope.isDemo) {
+          return;
+        }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
-        if (!credentialsStr && !scope.isDemo) {
+        if (!credentialsStr) {
           redirectToLogin();
         }
         scope.credentials = [];
