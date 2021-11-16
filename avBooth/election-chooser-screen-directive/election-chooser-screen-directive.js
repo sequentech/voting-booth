@@ -24,7 +24,7 @@ angular.module('avBooth')
   .directive('avbElectionChooserScreen',  function() {
 
     function link(scope, element, attrs) {
-        function cannotVote() {
+        function canVote() {
             return _.find(
                 scope.credentials,
                 function (credentials) {
@@ -33,7 +33,7 @@ angular.module('avBooth')
                         credentials.numSuccessfulLoginsAllowed
                     );
                 }
-            ) === undefined;
+            ) !== undefined;
         }
 
         function findElectionCredentials(electionId, credentials) {
@@ -86,6 +86,7 @@ angular.module('avBooth')
             scope.retrieveElection();
         }
 
+        scope.canVote = canVote;
         scope.childrenElectionInfo = generateChildrenInfo();
         scope.chooseElection = chooseElection;
     }
