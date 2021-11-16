@@ -47,7 +47,7 @@ angular.module('avBooth')
 
         function generateChildrenInfo() {
             var childrenInfo = angular.copy(
-                scope.parentElection.children_election_info
+                scope.parentAuthEvent.children_election_info
             );
             childrenInfo.presentation.categories = _.map(
                 childrenInfo.presentation.categories,

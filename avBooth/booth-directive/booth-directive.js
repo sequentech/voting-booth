@@ -428,7 +428,20 @@ angular.module('avBooth')
       }
 
       function retrieveElectionConfig() {
+        var agoraElectionsRetrieved = false;
+        var authapiRetrieved = false;
+        var isVirtual = false;
+        var hasAuthapiError = false;
+
+        function execIfAllRetrieved(callback)
+        {
+          if (!agoraElectionsRetrieved || !authapiRetrieved) {
+            return;
+          }
+          callback();
+        }
         try {
+
           $http.get(scope.baseUrl + "election/" + scope.electionId)
             .then(
               function onSuccess(response) {
@@ -497,14 +510,21 @@ angular.module('avBooth')
 
                 // If there are children elections, then show the election
                 // chooser
-                if (scope.election.children_election_info) {
-                  scope.parentElection = angular.copy(scope.election);
-                  scope.setState(stateEnum.electionChooserScreen, {});
+                if (response.data.virtual) {
+                  if (hasAuthapiError) {
+                    showError($i18next("avBooth.errorLoadingElection"));
+                    return;
+                  }
+                  agoraElectionsRetrieved = true;
+                  isVirtual = true;
+                  execIfAllRetrieved(function () {
+                    scope.setState(stateEnum.electionChooserScreen, {});
+                  });
                 // skip start screen if start_screen__skip is set to true or
                 // if we are not in the first election of the credentials
                 } else if (
                   (
-                    !scope.election.election.children_election_info &&
+                    !response.data.virtual &&
                     scope.election.presentation.extra_options && 
                     scope.election.presentation.extra_options.start_screen__skip
                   ) ||
@@ -528,9 +548,21 @@ angular.module('avBooth')
           Authmethod.viewEvent(scope.electionId)
             .then(
               function onSuccess(response) {
+                authapiRetrieved = true;
                 if (response.data.status === "ok") {
                   scope.authEvent = response.data.events;
                 }
+                if (isVirtual) {
+                  if (!scope.parentAuthEvent) {
+                    scope.parentAuthEvent = angular.copy(response.data.events);
+                  }
+                  execIfAllRetrieved(function () {
+                    scope.setState(stateEnum.electionChooserScreen, {});
+                  });
+                }
+              },
+              function onError () {
+                hasAuthapiError = true;
               }
             );
         } catch (error) {
