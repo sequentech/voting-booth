@@ -451,11 +451,13 @@ angular.module('avBooth')
         scope.credentials = [];
         var currentElectionCredentials = null;
 
-        if (scope.isVirtual) {
-          return;
-        }
         try {
           scope.credentials = JSON.parse(credentialsStr);
+
+          // if it's virtual, there's no current election credentials
+          if (scope.isVirtual) {
+            return;
+          }
           currentElectionCredentials = _.find(
             scope.credentials,
             function (electionCredential) {
