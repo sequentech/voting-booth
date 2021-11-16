@@ -76,6 +76,7 @@ angular.module('avBooth')
                     );
                     return category;
                 });
+            return childrenInfo;
         }
 
         function chooseElection(election) {
