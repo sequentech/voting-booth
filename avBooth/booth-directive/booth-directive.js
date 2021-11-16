@@ -516,7 +516,7 @@ angular.module('avBooth')
       function retrieveElectionConfig() {
         var agoraElectionsRetrieved = false;
         var authapiRetrieved = false;
-        var isVirtual = false;
+        scope.isVirtual = false;
         var hasAuthapiError = false;
 
         function execIfAllRetrieved(callback)
@@ -596,13 +596,12 @@ angular.module('avBooth')
                 // process vote credentials
                 readVoteCredentials();
 
-                if (response.data.payload.virtual) {
+                if (scope.isVirtual) {
                   if (hasAuthapiError) {
                     showError($i18next("avBooth.errorLoadingElection"));
                     return;
                   }
                   agoraElectionsRetrieved = true;
-                  isVirtual = true;
                   execIfAllRetrieved(function () {
                     if (!scope.parentAuthEvent) {
                       scope.parentAuthEvent = angular.copy(scope.authEvent);
@@ -642,7 +641,7 @@ angular.module('avBooth')
                   scope.authEvent = response.data.events;
                 }
                 execIfAllRetrieved(function () {
-                  if (isVirtual) {
+                  if (scope.isVirtual) {
                     if (!scope.parentAuthEvent) {
                       scope.parentAuthEvent = angular.copy(
                         response.data.events
