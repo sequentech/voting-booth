@@ -59,7 +59,10 @@ angular.module('avBooth')
                             ) {
                                 scope.canVote = true;
                             }
-                            if (elCredentials.numSuccessfulLogins > 0) {
+                            if (
+                                elCredentials && 
+                                elCredentials.numSuccessfulLogins > 0
+                            ) {
                                 scope.hasVoted = true;
                             }
                             return Object.assign(
