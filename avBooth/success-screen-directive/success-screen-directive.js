@@ -539,6 +539,7 @@ angular.module('avBooth')
         $cookies.remove("auth" + postfix);
         $cookies.remove("isAdmin" + postfix);
         $cookies.remove("isAdmin" + postfix);
+        scope.hasNextElection = scope.isDemo;
 
         // Process vote_permission_tokens
         if (scope.credentials && scope.credentials.length > 0) {
@@ -581,7 +582,7 @@ angular.module('avBooth')
 
           // If there are more elections to vote, set next election.
           if (filtered.length > 0) {
-            scope.nextElection = filtered[0];
+            scope.hasNextElection = true;
             $window.sessionStorage.setItem(
               "vote_permission_tokens", 
               JSON.stringify(mappedCredentials)
@@ -600,7 +601,7 @@ angular.module('avBooth')
         var extra = scope.election.presentation.extra_options;
         // Automatic redirect to login if configured to do so
         if (
-          !scope.nextElection &&
+          !scope.hasNextElection &&
           !!extra &&
           extra.success_screen__redirect_to_login__auto_seconds &&
           angular.isNumber(

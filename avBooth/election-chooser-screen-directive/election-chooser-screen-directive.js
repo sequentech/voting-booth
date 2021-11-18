@@ -37,7 +37,8 @@ angular.module('avBooth')
             var childrenInfo = angular.copy(
                 scope.parentAuthEvent.children_election_info
             );
-            scope.canVote = false;
+            // if it's a demo, yes, allow voting by default
+            scope.canVote = scope.isDemo;
             scope.hasVoted = false;
             childrenInfo.presentation.categories = _.map(
                 childrenInfo.presentation.categories,
@@ -58,7 +59,10 @@ angular.module('avBooth')
                             ) {
                                 scope.canVote = true;
                             }
-                            if (elCredentials.numSuccessfulLogins > 0) {
+                            if (
+                                elCredentials && 
+                                elCredentials.numSuccessfulLogins > 0
+                            ) {
                                 scope.hasVoted = true;
                             }
                             return Object.assign(
@@ -67,12 +71,15 @@ angular.module('avBooth')
                                 elCredentials || {},
                                 {
                                     disabled: (
-                                        !elCredentials ||
-                                        !(elCredentials.token) ||
+                                        !scope.isDemo &&
                                         (
-                                            elCredentials.numSuccessfulLogins >= 
-                                            elCredentials.numSuccessfulLoginsAllowed &&
-                                            elCredentials.numSuccessfulLoginsAllowed > 0
+                                            !elCredentials ||
+                                            !(elCredentials.token) ||
+                                            (
+                                                elCredentials.numSuccessfulLogins >= 
+                                                elCredentials.numSuccessfulLoginsAllowed &&
+                                                elCredentials.numSuccessfulLoginsAllowed > 0
+                                            )
                                         )
                                     )
                                 }
