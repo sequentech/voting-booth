@@ -571,6 +571,7 @@ angular.module('avBooth')
             function (electionCredential)
             {
               return (
+                scope.isDemo ||
                 !electionCredential.skipped && 
                 !electionCredential.voted &&
                 !!electionCredential.token &&
