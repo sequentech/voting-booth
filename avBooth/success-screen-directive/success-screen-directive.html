@@ -88,7 +88,7 @@
             [html:i18next]({ballotHash: stateData.ballotHash, ballotLocatorUrl: getBallotLocatorUrl(), url: organization.orgUrl, name: organization.orgName, target: getBallotLocatorTarget()})avBooth.successBallotHash
           </span> 
 
-          <div class="text-center" ng-if="!!nextElection">
+          <div class="text-center" ng-if="hasNextElection">
             <span>
               <a
                 tabindex="0"
@@ -100,7 +100,7 @@
           </div>
           <div 
             class="text-center" 
-            ng-if="!nextElection && (!election.presentation || !election.presentation.extra_options || !election.presentation.extra_options.success_screen__redirect_to_login)"
+            ng-if="!hasNextElection && (!election.presentation || !election.presentation.extra_options || !election.presentation.extra_options.success_screen__redirect_to_login)"
           >
             <span>
               <a
@@ -148,7 +148,7 @@
           ng-i18next>
           [html:i18next]({count: skippedCount})avBooth.successSkippedCount
         </p>
-        <div class="text-center" ng-if="!nextElection && !!election.presentation.extra_options.success_screen__redirect_to_login">
+        <div class="text-center" ng-if="!hasNextElection && !!election.presentation.extra_options.success_screen__redirect_to_login">
           <span>
             <a
               tabindex="0"
