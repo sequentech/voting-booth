@@ -44,8 +44,8 @@
         "description": "For some reason you are correctly logged in but have not been granted credentials to vote. Please consult with election organizators."
       },
       "canVote": {
-        "title": "Choose an election vote",
-        "description": "Disabled elections means you have already voted or you don't have permission to vote."
+        "title": "Choose an election to vote",
+        "description": "Note: disabled elections mean you have already voted or you don't have permission to vote."
       }
     },
     "demoModeModal": {
