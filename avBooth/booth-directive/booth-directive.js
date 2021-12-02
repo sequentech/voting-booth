@@ -67,7 +67,7 @@ angular.module('avBooth')
       }
 
       function checkCookies(electionId) {
-        if (scope.isDemo || InsideIframeService()) {
+        if (scope.isDemo || InsideIframeService() || !!scope.parentId) {
           return;
         }
 
@@ -457,7 +457,7 @@ angular.module('avBooth')
 
       // Try to read and process voting credentials
       function readVoteCredentials() {
-        if (scope.isDemo) {
+        if (scope.isDemo || InsideIframeService()) {
           return;
         }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
