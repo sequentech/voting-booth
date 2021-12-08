@@ -567,6 +567,7 @@ angular.module('avBooth')
               }
             }
           );
+          scope.credentials = mappedCredentials;
           var filtered = _.filter(
             mappedCredentials,
             function (electionCredential)
