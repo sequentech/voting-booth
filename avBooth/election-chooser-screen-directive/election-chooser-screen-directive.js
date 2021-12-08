@@ -21,7 +21,7 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbElectionChooserScreen',  function() {
+  .directive('avbElectionChooserScreen',  function($window) {
 
     function link(scope, element, attrs) {
         function findElectionCredentials(electionId, credentials) {
@@ -37,6 +37,12 @@ angular.module('avBooth')
             var childrenInfo = angular.copy(
                 scope.parentAuthEvent.children_election_info
             );
+
+            // need to reload in case this changed in success screen..
+            var credentials = [];
+            var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
+            credentials = JSON.parse(credentialsStr);
+
             // if it's a demo, yes, allow voting by default
             scope.canVote = scope.isDemo;
             scope.hasVoted = false;
@@ -47,7 +53,7 @@ angular.module('avBooth')
                         category.events,
                         function (election) {
                             var elCredentials = findElectionCredentials(
-                                election.event_id, scope.credentials
+                                election.event_id, credentials
                             );
                             if (
                                 !!elCredentials &&
