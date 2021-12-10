@@ -115,7 +115,7 @@ angular.module('avBooth')
                 var elCredentials = findElectionCredentials(
                     electionId, scope.credentials
                 );
-                if (!elCredentials.disabled) {
+                if (calculateCanVote(elCredentials)) {
                     chooseElection(electionId);
                     return;
                 }
