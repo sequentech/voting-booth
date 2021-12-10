@@ -44,15 +44,20 @@ angular.module('avBooth')
             );
         }
 
+        function getElectionCredentials() {
+            // need to reload in case this changed in success screen..
+            var credentials = [];
+            var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
+            return JSON.parse(credentialsStr);
+        }
+
         function generateChildrenInfo() {
             var childrenInfo = angular.copy(
                 scope.parentAuthEvent.children_election_info
             );
 
             // need to reload in case this changed in success screen..
-            var credentials = [];
-            var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
-            credentials = JSON.parse(credentialsStr);
+            var credentials = getElectionCredentials();
 
             // if it's a demo, yes, allow voting by default
             scope.canVote = scope.isDemo;
@@ -109,11 +114,13 @@ angular.module('avBooth')
         // if election chooser is disabled and can vote, then go to the first
         // election in which it can vote
         if (disableElectionChooser && scope.canVote) {
+            var credentials = getElectionCredentials();
             var orderedElectionIds = scope.childrenElectionInfo.natural_order;
             for (var i = 0; i < orderedElectionIds.length; i++) {
                 var electionId = orderedElectionIds[i];
                 var elCredentials = findElectionCredentials(
-                    electionId, scope.credentials
+                    electionId,
+                    credentials
                 );
                 if (calculateCanVote(elCredentials)) {
                     chooseElection(electionId);
