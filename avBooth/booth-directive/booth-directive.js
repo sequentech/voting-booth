@@ -186,7 +186,7 @@ angular.module('avBooth')
         $cookies.remove("isAdmin" + postfix);
         $window.sessionStorage.removeItem("vote_permission_tokens");
 
-        logoutAndRedirect(/* dontClose = */ true);
+        closeAndFinish(/* dontClose = */ true);
       }
 
       function checkCookies(electionId) {
