@@ -45,18 +45,6 @@ angular.module('avBooth')
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
 
-      function redirectToLogin() {
-        // Stop warning the user about reloading/leaving the page
-        // as no vote is in the process
-        $window.onbeforeunload = null;
-        var electionId =  (scope.parentId) ? scope.parentId : scope.electionId;
-        var redirectUrl = "/election/" + electionId + "/public/login";
-
-        // change to public/login page
-        $window.location.href = redirectUrl;
-        return;
-      }
-
       function updateWidth() {
         $timeout.cancel(timeoutWidth);
         timeoutWidth = $timeout(function() {
@@ -64,6 +52,141 @@ angular.module('avBooth')
           console.log("scope.windowWidth = " + scope.windowWidth);
           scope.$apply();
         }, 100);
+      }
+
+      // Returns the logout url if any from the appropiate openidprovider
+      // TODO: logout asumes that you are using the first provider, so it
+      // basically supports only one provider
+      function getLogoutUri()
+      {
+        if (
+          ConfigService.openIDConnectProviders.length === 0 || 
+          !ConfigService.openIDConnectProviders[0].logout_uri
+        ) {
+          return false;
+        }
+
+        var election = (
+          (!!scope.parentElection) ?
+          scope.parentElection :
+          scope.election
+        );
+
+        var uri = ConfigService.openIDConnectProviders[0].logout_uri;
+        uri = uri.replace("__EVENT_ID__", "" + election.id);
+
+        var postfix = "_authevent_" + election.id;
+        if (!!$cookies.get("id_token_" + postfix))
+        {
+          uri = uri.replace("__ID_TOKEN__", $cookies.get("id_token_" + postfix));
+        // if __ID_TOKEN__ is there but we cannot replace it, we need to
+        // directly redirect to the login, otherwise the URI might show an
+        // error 500
+        } else if (uri.indexOf("__ID_TOKEN__") > -1)
+        {
+          uri = "/election/" + election.id + "/public/login";
+        }
+
+        return uri;
+      }
+
+      // simply redirect to login
+      function simpleRedirectToLogin()
+      {
+        var election = (
+          (!!scope.parentElection) ?
+          scope.parentElection :
+          scope.election
+        );
+        var extra = election.presentation.extra_options;
+        var redirectUrl = "/election/" + election.id + "/public/login";
+        if (!!extra && !!extra.success_screen__redirect__url)
+        {
+          redirectUrl = extra.success_screen__redirect__url;
+        }
+        $window.location.href = redirectUrl;
+      }
+
+      // (maybe logout, in openid when there's a logout_uri and) redirect to login
+      function redirectToLogin()
+      {
+        if (scope.redirectingToUri)
+        {
+          return;
+        }
+        // Stop warning the user about reloading/leaving the page
+        // as no vote is in the process
+        $window.onbeforeunload = null;
+        var election = (
+          (!!scope.parentElection) ?
+          scope.parentElection :
+          scope.election
+        );
+        scope.redirectingToUri = true;
+
+        if (
+          election.auth_method !== 'openid-connect' || 
+          !getLogoutUri()
+        ) {
+          simpleRedirectToLogin();
+          return;
+        }
+
+        // OpenID connect cookies
+        try {
+          var postfix = "_authevent_" + election.id;
+          var uri = getLogoutUri();
+          $cookies.remove("id_token_" + postfix);
+          $window.location.href = uri;
+        } catch (_e) {
+          simpleRedirectToLogin();
+          return;
+        }
+      }
+
+      function closeAndFinish(dontClose) 
+      {
+        var election = (
+          (!!scope.parentElection) ?
+          scope.parentElection :
+          scope.election
+        );
+        var extra = election.presentation.extra_options;
+        if (!!extra && !!extra.success_screen__redirect__url) 
+        {
+          redirectToLogin();
+          return;
+        }
+
+        if (!!dontClose) {
+          redirectToLogin();
+        } else {
+          try {
+            $window.close();
+          } finally {
+            redirectToLogin();
+          }
+        }
+      }
+
+      // log out and redirect
+      function logoutAndRedirect() {
+        var election = (
+          (!!scope.parentElection) ?
+          scope.parentElection :
+          scope.election
+        );
+
+        var postfix = "_authevent_" + election.id;
+        $cookies.remove("authevent_" + postfix);
+        $cookies.remove("userid" + postfix);
+        $cookies.remove("user" + postfix);
+        $cookies.remove("auth" + postfix);
+        $cookies.remove("isAdmin" + postfix);
+        $cookies.remove("isAdmin" + postfix);
+        $window.sessionStorage.removeItem("vote_permission_tokens");
+
+        closeAndFinish(/* dontClose = */ true);
       }
 
       function checkCookies(electionId) {
@@ -624,6 +747,7 @@ angular.module('avBooth')
                   execIfAllRetrieved(function () {
                     if (!scope.parentAuthEvent) {
                       scope.parentAuthEvent = angular.copy(scope.authEvent);
+                      scope.parentElection = angular.copy(scope.election);
                       scope.parentId = scope.parentAuthEvent.id;
                     }
                     checkCookies(scope.parentId);
@@ -669,6 +793,7 @@ angular.module('avBooth')
                       scope.parentAuthEvent = angular.copy(
                         response.data.events
                       );
+                      scope.parentElection = angular.copy(scope.election);
                       scope.parentId = scope.parentAuthEvent.id;
                       checkCookies(scope.parentId);
                     }
@@ -728,6 +853,10 @@ angular.module('avBooth')
         stateEnum: stateEnum,
         stateChange: 0,
         showError: showError,
+        logoutAndRedirect: logoutAndRedirect,
+        getLogoutUri: getLogoutUri,
+        simpleRedirectToLogin: simpleRedirectToLogin,
+        closeAndFinish: closeAndFinish,
         launchHelp: launchHelp,
         backFromHelp: backFromHelp,
         goToQuestion: goToQuestion,

@@ -454,81 +454,6 @@ angular.module('avBooth')
 
       generateButtonsInfo();
 
-      // simply redirect to login
-      function simpleRedirectToLogin()
-      {
-        var extra = scope.election.presentation.extra_options;
-        var redirectUrl = "/election/" + scope.election.id + "/public/login";
-        if (!!extra && !!extra.success_screen__redirect__url)
-        {
-          redirectUrl = extra.success_screen__redirect__url;
-        }
-        $window.location.href = redirectUrl;
-      }
-
-      // Returns the logout url if any from the appropiate openidprovider
-      // TODO: logout asumes that you are using the first provider, so it
-      // basically supports only one provider
-      function getLogoutUri()
-      {
-        if (ConfigService.openIDConnectProviders.length === 0 || !ConfigService.openIDConnectProviders[0].logout_uri)
-        {
-          return false;
-        }
-
-        var uri = ConfigService.openIDConnectProviders[0].logout_uri;
-        uri = uri.replace("__EVENT_ID__", "" + scope.election.id);
-
-        var postfix = "_authevent_" + scope.election.id;
-        if (!!$cookies.get("id_token_" + postfix))
-        {
-          uri = uri.replace("__ID_TOKEN__", $cookies.get("id_token_" + postfix));
-        // if __ID_TOKEN__ is there but we cannot replace it, we need to
-        // directly redirect to the login, otherwise the URI might show an
-        // error 500
-        } else if (uri.indexOf("__ID_TOKEN__") > -1)
-        {
-          uri = "/election/" + scope.election.id + "/public/login";
-        }
-
-        return uri;
-      }
-
-      // (maybe logout, in openid when there's a logout_uri and) redirect to login
-      scope.redirectToLogin = function()
-      {
-        if (scope.redirectingToUri)
-        {
-          return;
-        }
-        scope.redirectingToUri = true;
-
-        Authmethod.viewEvent(scope.election.id)
-          .then(
-            function onSuccess(response)
-            {
-              if (
-                response.data.status !== "ok" || 
-                !response.data.events || 
-                response.data.events.auth_method !== 'openid-connect' || 
-                !getLogoutUri()
-              ) {
-                simpleRedirectToLogin();
-                return;
-              }
-
-              var postfix = "_authevent_" + scope.election.id;
-              var uri = getLogoutUri();
-              $cookies.remove("id_token_" + postfix);
-              $window.location.href = uri;
-            },
-            function onError(response)
-            {
-              simpleRedirectToLogin();
-            }
-          );
-      };
-
       // deletes and modifies cookies and launch redirects when appropiate
       function handleCookiesAndRedirects() {
         // cookies log out
@@ -615,22 +540,6 @@ angular.module('avBooth')
           );
         }
       }
-
-      scope.finish = function ()
-      {
-        var extra = scope.election.presentation.extra_options;
-        if (!!extra && !!extra.success_screen__redirect__url) 
-        {
-          scope.redirectToLogin();
-          return;
-        }
-
-        try {
-          $window.close();
-        } finally {
-          scope.redirectToLogin();
-        }
-      };
 
       // redirects to next election
       scope.goToNextElection = function () {
