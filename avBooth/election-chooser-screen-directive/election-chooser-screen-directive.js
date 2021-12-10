@@ -33,6 +33,17 @@ angular.module('avBooth')
             );
         }
 
+        function calculateCanVote(elCredentials) {
+            return (
+                !!elCredentials &&
+                !!elCredentials.token &&
+                (
+                    elCredentials.numSuccessfulLogins < elCredentials.numSuccessfulLoginsAllowed ||
+                    elCredentials.numSuccessfulLoginsAllowed === 0
+                )
+            );
+        }
+
         function generateChildrenInfo() {
             var childrenInfo = angular.copy(
                 scope.parentAuthEvent.children_election_info
@@ -55,14 +66,7 @@ angular.module('avBooth')
                             var elCredentials = findElectionCredentials(
                                 election.event_id, credentials
                             );
-                            if (
-                                !!elCredentials &&
-                                !!elCredentials.token &&
-                                (
-                                    elCredentials.numSuccessfulLogins < elCredentials.numSuccessfulLoginsAllowed ||
-                                    elCredentials.numSuccessfulLoginsAllowed === 0
-                                )
-                            ) {
+                            if (calculateCanVote(elCredentials)) {
                                 scope.canVote = true;
                             }
                             if (
@@ -78,15 +82,7 @@ angular.module('avBooth')
                                 {
                                     disabled: (
                                         !scope.isDemo &&
-                                        (
-                                            !elCredentials ||
-                                            !(elCredentials.token) ||
-                                            (
-                                                elCredentials.numSuccessfulLogins >= 
-                                                elCredentials.numSuccessfulLoginsAllowed &&
-                                                elCredentials.numSuccessfulLoginsAllowed > 0
-                                            )
-                                        )
+                                        !calculateCanVote(elCredentials)
                                     )
                                 }
                             );
@@ -103,6 +99,28 @@ angular.module('avBooth')
         }
 
         scope.childrenElectionInfo = generateChildrenInfo();
+        var disableElectionChooser = (
+            scope.election &&
+            scope.election.presentation &&
+            scope.election.presentation.extra_options &&
+            !!scope.election.presentation.extra_options.disable__election_chooser_screen
+        );
+
+        // if election chooser is disabled and can vote, then go to the first
+        // election in which it can vote
+        if (disableElectionChooser && scope.canVote) {
+            var orderedElectionIds = scope.childrenElectionInfo.natural_order;
+            for (var i = 0; i < orderedElectionIds.length; i++) {
+                var electionId = orderedElectionIds[i];
+                var elCredentials = findElectionCredentials(
+                    electionId, scope.credentials
+                );
+                if (!elCredentials.disabled) {
+                    chooseElection(electionId);
+                    return;
+                }
+            }
+        }
         scope.chooseElection = chooseElection;
     }
 
