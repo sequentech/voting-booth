@@ -21,9 +21,10 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbElectionChooserScreen',  function($window) {
+  .directive('avbElectionChooserScreen',  function($window, $cookies) {
 
     function link(scope, element, attrs) {
+        scope.showSkippedElections = false;
         function findElectionCredentials(electionId, credentials) {
             return _.find(
                 credentials,
@@ -32,7 +33,6 @@ angular.module('avBooth')
                 }
             );
         }
-        scope.showSkippedElections = false;
 
         function calculateCanVote(elCredentials) {
             return (
@@ -108,40 +108,45 @@ angular.module('avBooth')
         }
 
         scope.childrenElectionInfo = generateChildrenInfo();
-        var disableElectionChooser = (
-            scope.parentElection &&
-            scope.parentElection.presentation &&
-            scope.parentElection.presentation.extra_options &&
-            !!scope.parentElection.presentation.extra_options.disable__election_chooser_screen
-        );
 
-        // if election chooser is disabled and can vote, then go to the first
-        // election in which it can vote
-        if (disableElectionChooser && scope.canVote) {
-            var credentials = getElectionCredentials();
-            var orderedElectionIds = scope.childrenElectionInfo.natural_order;
-            for (var i = 0; i < orderedElectionIds.length; i++) {
-                var electionId = orderedElectionIds[i];
-                var elCredentials = findElectionCredentials(
-                    electionId,
-                    credentials
-                );
-                if (
-                    !elCredentials.skipped &&
-                    !elCredentials.voted &&
-                    calculateCanVote(elCredentials)
-                ) {
-                    chooseElection(electionId);
-                    return;
+        function checkDisabled() {
+            var disableElectionChooser = (
+                scope.parentElection &&
+                scope.parentElection.presentation &&
+                scope.parentElection.presentation.extra_options &&
+                !!scope.parentElection.presentation.extra_options.disable__election_chooser_screen
+            );
+
+            // if election chooser is disabled and can vote, then go to the first
+            // election in which it can vote
+            if (disableElectionChooser && scope.canVote) {
+                var credentials = getElectionCredentials();
+                var orderedElectionIds = scope.childrenElectionInfo.natural_order;
+                for (var i = 0; i < orderedElectionIds.length; i++) {
+                    var electionId = orderedElectionIds[i];
+                    var elCredentials = findElectionCredentials(
+                        electionId,
+                        credentials
+                    );
+                    if (
+                        !elCredentials.skipped &&
+                        !elCredentials.voted &&
+                        calculateCanVote(elCredentials)
+                    ) {
+                        chooseElection(electionId);
+                        return;
+                    }
+                }
+                // If redirected to no election but there are skipped elections, it
+                // means that the voter can re-login to vote again so we set the
+                // showSkippedElections flag
+                if (scope.skippedElections.length > 0) {
+                    scope.showSkippedElections = true;
                 }
             }
-            // If redirected to no election but there are skipped elections, it
-            // means that the voter can re-login to vote again so we set the
-            // showSkippedElections flag
-            if (scope.skippedElections.length > 0) {
-                scope.showSkippedElections = true;
-            }
         }
+
+        checkDisabled();
         scope.chooseElection = chooseElection;
     }
 
