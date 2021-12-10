@@ -809,28 +809,11 @@ angular.module('avBooth')
          */
         function showSkipQuestionButton()
         {
-          if (
-            !scope.election.presentation.extra_options ||
-            !scope.election.presentation.extra_options.show_skip_question_button ||
-            !scope.credentials ||
-            scope.credentials.length <= 1
-          ) {
-            return false;
-          }
-           // Remove current election from the credentials array. As the
-          // credentials array is in natural order, the next election inside
-          // the filtered array will be the next election in which this user
-          // can vote, if any.
-          var filtered = _.filter(
-            scope.credentials,
-            function (electionCredential) {
-              return (
-                electionCredential.electionId.toString() !== scope.electionId &&
-                !electionCredential.skipped
-              );
-            }
+          return (
+            scope.election.presentation &&
+            scope.election.presentation.extra_options &&
+            scope.election.presentation.extra_options.show_skip_question_button
           );
-           return filtered.length > 0;
         }
 
         scope.showSkipQuestionButton = showSkipQuestionButton();
