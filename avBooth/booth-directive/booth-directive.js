@@ -624,6 +624,7 @@ angular.module('avBooth')
                   execIfAllRetrieved(function () {
                     if (!scope.parentAuthEvent) {
                       scope.parentAuthEvent = angular.copy(scope.authEvent);
+                      scope.parentElection = angular.copy(scope.election);
                       scope.parentId = scope.parentAuthEvent.id;
                     }
                     checkCookies(scope.parentId);
@@ -669,6 +670,7 @@ angular.module('avBooth')
                       scope.parentAuthEvent = angular.copy(
                         response.data.events
                       );
+                      scope.parentElection = angular.copy(scope.election);
                       scope.parentId = scope.parentAuthEvent.id;
                       checkCookies(scope.parentId);
                     }

@@ -105,10 +105,10 @@ angular.module('avBooth')
 
         scope.childrenElectionInfo = generateChildrenInfo();
         var disableElectionChooser = (
-            scope.election &&
-            scope.election.presentation &&
-            scope.election.presentation.extra_options &&
-            !!scope.election.presentation.extra_options.disable__election_chooser_screen
+            scope.parentElection &&
+            scope.parentElection.presentation &&
+            scope.parentElection.presentation.extra_options &&
+            !!scope.parentElection.presentation.extra_options.disable__election_chooser_screen
         );
 
         // if election chooser is disabled and can vote, then go to the first
