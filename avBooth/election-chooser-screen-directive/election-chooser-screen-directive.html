@@ -124,7 +124,7 @@
         </div>
         <div
           ng-if="showSkippedElections || (!canVote && hasVoted)"
-          class="padded col-xs-12 cannot-vote"
+          class="padded col-md-6 col-md-offset-3 cannot-vote col-xs-12"
         >
           <h3 ng-i18next>avBooth.electionChooser.hasVoted.title</h3>
           <p
@@ -163,14 +163,16 @@
           children-election-info="childrenElectionInfo"
         ></div>
       </div>
-      <span>
+      <p
+        class="text-center"
+      >
         <a
           tabindex="0"
           ng-click="logoutAndRedirect()"
           target="_top"
-          class="close-window-btn btn btn-primary btn-login" ng-i18next>
+          class="logout-btn btn btn-default" ng-i18next>
           avBooth.logout
         </a>
-      </span>
+      </p>
   </div>
 </div>
