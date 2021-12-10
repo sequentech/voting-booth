@@ -32,6 +32,7 @@ angular.module('avBooth')
                 }
             );
         }
+        scope.showSkippedElections = false;
 
         function calculateCanVote(elCredentials) {
             return (
@@ -62,6 +63,7 @@ angular.module('avBooth')
             // if it's a demo, yes, allow voting by default
             scope.canVote = scope.isDemo;
             scope.hasVoted = false;
+            scope.skippedElections = [];
             childrenInfo.presentation.categories = _.map(
                 childrenInfo.presentation.categories,
                 function (category) {
@@ -71,7 +73,8 @@ angular.module('avBooth')
                             var elCredentials = findElectionCredentials(
                                 election.event_id, credentials
                             );
-                            if (calculateCanVote(elCredentials)) {
+                            var canVote = calculateCanVote(elCredentials);
+                            if (canVote) {
                                 scope.canVote = true;
                             }
                             if (
@@ -80,17 +83,18 @@ angular.module('avBooth')
                             ) {
                                 scope.hasVoted = true;
                             }
-                            return Object.assign(
+                            var retValue = Object.assign(
                                 {},
                                 election,
                                 elCredentials || {},
                                 {
-                                    disabled: (
-                                        !scope.isDemo &&
-                                        !calculateCanVote(elCredentials)
-                                    )
+                                    disabled: (!scope.isDemo && !canVote)
                                 }
                             );
+                            if (!!retValue.skipped) {
+                                scope.skippedElections.push(retValue);
+                            }
+                            return retValue;
                         }
                     );
                     return category;
@@ -130,6 +134,12 @@ angular.module('avBooth')
                     chooseElection(electionId);
                     return;
                 }
+            }
+            // If redirected to no election but there are skipped elections, it
+            // means that the voter can re-login to vote again so we set the
+            // showSkippedElections flag
+            if (scope.skippedElections.length > 0) {
+                scope.showSkippedElections = true;
             }
         }
         scope.chooseElection = chooseElection;

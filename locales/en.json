@@ -37,7 +37,8 @@
     "electionChooser": {
       "hasVoted": {
         "title": "Success!",
-        "description": "You have voted in all the elections you can in this electoral process."
+        "description": "You have voted in all the elections you can in this electoral process.",
+        "hasSkipped": "You skipped some elections and voted in all the others. To vote in skipped elections, login again and you will be able to vote in them. The skipped elections are:"
       },
       "cannotVote": {
         "title": "No credentials",
