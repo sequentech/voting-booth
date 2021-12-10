@@ -124,7 +124,7 @@ angular.module('avBooth')
                 );
                 if (
                     !elCredentials.skipped &&
-                    !elCrdentials.voted &&
+                    !elCredentials.voted &&
                     calculateCanVote(elCredentials)
                 ) {
                     chooseElection(electionId);
