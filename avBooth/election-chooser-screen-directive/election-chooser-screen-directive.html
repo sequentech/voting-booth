@@ -123,28 +123,38 @@
           ></p>
         </div>
         <div
-          ng-if="!canVote && hasVoted"
-          class="padded col-xs-12 cannot-vote"
+          ng-if="showSkippedElections || (!canVote && hasVoted)"
+          class="padded col-md-6 col-md-offset-3 cannot-vote col-xs-12"
         >
           <h3 ng-i18next>avBooth.electionChooser.hasVoted.title</h3>
-          <p ng-i18next="avBooth.electionChooser.hasVoted.description"></p>
+          <p
+            ng-if="skippedElections.length === 0"
+            ng-i18next="avBooth.electionChooser.hasVoted.description"
+          ></p>
+
+          <div ng-if="skippedElections.length > 0">
+            <p ng-i18next="avBooth.electionChooser.hasVoted.hasSkipped"></p>
+            <ul>
+              <li ng-repeat="el in skippedElections">{{el.title}}</li>
+            </ul>
+          </div>
         </div>
         <div
-          ng-if="!canVote && !hasVoted"
+          ng-if="!showSkippedElections && (!canVote && !hasVoted)"
           class="padded col-xs-12 cannot-vote"
         >
           <h3 ng-i18next>avBooth.electionChooser.cannotVote.title</h3>
           <p ng-i18next="avBooth.electionChooser.cannotVote.description"></p>
         </div>
         <div
-          ng-if="canVote"
+          ng-if="!showSkippedElections && canVote"
           class="padded col-xs-12 can-vote"
         >
           <h3 ng-i18next>avBooth.electionChooser.canVote.title</h3>
           <p ng-i18next="avBooth.electionChooser.canVote.description"></p>
         </div>
         <div
-          ng-if="canVote"
+          ng-if="!showSkippedElections && canVote"
           av-children-elections
           mode="toggle-and-callback"
           callback="chooseElection(electionId)"
@@ -153,5 +163,16 @@
           children-election-info="childrenElectionInfo"
         ></div>
       </div>
+      <p
+        class="text-center"
+      >
+        <a
+          tabindex="0"
+          ng-click="logoutAndRedirect()"
+          target="_top"
+          class="logout-btn btn btn-default" ng-i18next>
+          avBooth.logout
+        </a>
+      </p>
   </div>
 </div>
