@@ -23,9 +23,32 @@
  */
 angular.module('avBooth')
   .filter('avbSelectedOptions', function() {
+      /**
+       * @returns true if the url with the specific title and url appears in the
+       * urls list.
+       */
+       function hasUrl(urls, title, url)
+       {
+         const u = _.find(
+           urls,
+           function(urlObject)
+           {
+             return urlObject.title === title && urlObject.url === url;
+           }
+         );
+ 
+         return !!u;
+       }
+
     return function(optionList) {
       var filtered = _.filter(optionList, function (option) {
-          return option.selected > -1 || option.isSelected === true;
+          return (
+            !hasUrl(option.urls, 'invalidVoteFlag', 'true') &&
+            (
+              option.selected > -1 ||
+              option.isSelected === true
+            )
+          );
       });
 
       if (filtered.length === 0) {
