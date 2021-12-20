@@ -43,8 +43,8 @@ angular.module('avBooth')
     return function(optionList) {
       var filtered = _.filter(optionList, function (option) {
           return (
-            !hasUrl(option.urls, 'invalidVoteFlag', 'true')
-            && (
+            !hasUrl(option.urls, 'invalidVoteFlag', 'true') &&
+            (
               option.selected > -1 ||
               option.isSelected === true
             )
