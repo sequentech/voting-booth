@@ -18,14 +18,18 @@
 /*
  * Directive that shows the booth header.
  */
-angular.module('avBooth')
-  .directive('avbBoothHeader', function() {
-
-    var link = function(_scope, _element, _attrs) {
-    };
-    return {
-      restrict: 'AE',
-      link: link,
-      templateUrl: 'avBooth/booth-header-directive/booth-header-directive.html'
-    };
-  });
+angular
+  .module('avBooth')
+  .directive(
+    'avbBoothHeader',
+    function()
+    {
+      var link = function(_scope, _element, _attrs) {
+      };
+      return {
+        restrict: 'AE',
+        link: link,
+        templateUrl: 'avBooth/booth-header-directive/booth-header-directive.html'
+      };
+    }
+  );
