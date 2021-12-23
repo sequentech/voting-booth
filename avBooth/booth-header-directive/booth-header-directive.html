@@ -1,0 +1,112 @@
+<!-- top navbar -->
+<nav 
+  class="navbar start-screen navbar-default navbar-fixed-top"
+  av-affix-top=".navbar-unfixed-top"
+  role="navigation"
+>
+  <div class="container">
+    <div class="row avb-top-navbar">
+      <div class="col-xs-6 col-sm-4" ng-if="election.logo_url">
+        <span>
+          <img
+            alt="Logo Image"
+            class="logo-img" 
+            ng-src="{{election.logo_url}}"
+          />
+        </span>
+      </div>
+      <div class="col-xs-6" ng-if="!election.logo_url">
+        <span 
+          class="powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
+        >
+        </span>
+      </div>
+
+      <div 
+        class="hidden-xs col-sm-4 text-center center-col"
+        ng-if="election.logo_url"
+      >
+        <div
+          class="powered-by"
+          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-4 text-right" ng-if="election.logo_url">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          role="link"
+          tabindex="0"
+          ng-if="documentation.show_help"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()">
+        </span>
+        <span
+          ng-if="documentation.show_help"
+          role="link"
+          tabindex="0"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()" 
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <span 
+          class="dropdown left-padding"
+          role="menuitem"
+          av-change-lang
+        >
+        </span>
+      </div>
+
+      <div class="col-xs-6 text-right" ng-if="!election.logo_url">
+        <span
+          class="glyphicon glyphicon-question-sign"
+          role="link"
+          tabindex="0"
+          ng-if="documentation.show_help"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()">
+        </span>
+        <span
+          ng-if="documentation.show_help"
+          role="link"
+          tabindex="0"
+          ng-keyup="launchHelp()"
+          ng-click="launchHelp()" 
+          ng-i18next="avBooth.helpTitle"
+        >
+        </span>
+        <a
+          target="_top"
+          tabindex="0"
+          class="log-out-button"
+          ng-click="logoutAndRedirect()"
+        >
+          <span class="glyphicon glyphicon-off"></span>
+          <span ng-i18next>avBooth.logout</span>
+        </a>
+        <span 
+          class="dropdown left-padding"
+          role="menuitem"
+          av-change-lang
+        >
+        </span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="avb-toggle" class="text-center item-block hidden">
+  <span class="glyphicon glyphicon-play"></span>
+</div>
+
+<div class="container-fluid warning-demo" ng-if="isDemo">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p ng-i18next="[html]avBooth.thisisADemoNotification"></p>
+      </div>
+    </div>
+  </div>
+</div>
