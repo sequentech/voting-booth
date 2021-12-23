@@ -77,15 +77,13 @@
           ng-i18next="avBooth.helpTitle"
         >
         </span>
-        <span
-          tabindex="0"
-          role="link"
-          ng-keyup="logoutAndRedirect()"
-          ng-click="logoutAndRedirect()"
+        <a
           target="_top"
-          class="glyphicon glyphicon-off" ng-i18next>
+          tabindex="0"
+          ng-click="logoutAndRedirect()"
+          ng-i18next>
           avBooth.logout
-        </span>
+        </a>
         <span 
           class="dropdown left-padding"
           role="menuitem"
