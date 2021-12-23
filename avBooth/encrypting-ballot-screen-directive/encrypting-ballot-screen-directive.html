@@ -1,28 +1,5 @@
-<nav 
-  class="navbar start-screen navbar-default navbar-fixed-top"
-  av-affix-top=".navbar-unfixed-top"
-  role="navigation"
->
-  <div class="container">
-    <div class="row avb-top-navbar">
-      <div class="col-xs-12">
-        <span ng-if="election.logo_url">
-          <img
-            alt="Logo Image"
-            class="logo-img" 
-            ng-src="{{election.logo_url}}"
-          />
-        </span>
-        <span 
-          class="powered-by"
-          ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy"
-          ng-if="!election.logo_url"
-        >
-        </span>
-      </div>
-    </div>
-  </div>
-</nav>
+<!-- top navbar -->
+<div avb-booth-header></div>
 
 <div class="wrapper-unfixed" ng-if="imagesPreloaded">
   <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-encrypting-ballot-screen] #avb-toggle">
@@ -32,7 +9,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="busy-gui container" ng-if="imagesPreloaded">
   <div class="col-sm-offset-3 col-sm-6 margin-tb-15 hidden-xs">
