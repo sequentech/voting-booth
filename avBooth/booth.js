@@ -16,13 +16,15 @@
 **/
 
 angular.module(
- 'avBooth', 
- ['ui.bootstrap',
- 'ui.utils',
- 'ui.router',
- 'ngAnimate',
- 'avUi'
-]);
+  'avBooth', 
+  [
+    'ui.bootstrap',
+    'ui.utils',
+    'ui.router',
+    'ngAnimate',
+    'avUi'
+  ]
+);
 
 angular.module('avBooth').config(function($stateProvider) {
     /* Add New States Above */
