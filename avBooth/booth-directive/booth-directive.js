@@ -189,6 +189,12 @@ angular.module('avBooth')
         closeAndFinish(/* dontClose = */ true);
       }
 
+      // After cookies expires, redirect to login. But only if cookies do
+      // expire.
+      if (ConfigService.cookies.expires) {
+        setTimeout(logoutAndRedirect, 60*1000*ConfigService.cookies.expires);
+      }
+
       function checkCookies(electionId) {
         if (scope.isDemo || InsideIframeService() || !!scope.parentId) {
           return;
