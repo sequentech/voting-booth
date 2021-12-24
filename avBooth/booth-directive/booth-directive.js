@@ -189,6 +189,29 @@ angular.module('avBooth')
         closeAndFinish(/* dontClose = */ true);
       }
 
+      // After cookies expires, redirect to login. But only if cookies do
+      // expire.
+      function autoredirectToLoginAfterTimeout() {
+        var election = (
+          (!!scope.parentElection) ?
+          scope.parentElection :
+          scope.election
+        );
+
+        if (
+          ConfigService.cookies.expires &&
+          (
+            !election ||
+            !election.presentation ||
+            !election.presentation.extra_options ||
+            !election.presentation.extra_options.booth_log_out__disable
+          )
+        ) {
+          setTimeout(logoutAndRedirect, 60*1000*ConfigService.cookies.expires);
+        }
+      }
+      autoredirectToLoginAfterTimeout();
+
       function checkCookies(electionId) {
         if (scope.isDemo || InsideIframeService() || !!scope.parentId) {
           return;

@@ -24,7 +24,21 @@ angular
     'avbBoothHeader',
     function()
     {
-      var link = function(_scope, _element, _attrs) {
+      var link = function(scope, _element, _attrs) {
+        scope.enableLogOut = function () {
+          var election = (
+            (!!scope.parentElection) ?
+            scope.parentElection :
+            scope.election
+          );
+  
+          return (
+            !election ||
+            !election.presentation ||
+            !election.presentation.extra_options ||
+            !election.presentation.extra_options.booth_log_out__disable
+          );
+        };
       };
       return {
         restrict: 'AE',
