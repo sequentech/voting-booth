@@ -22,9 +22,10 @@ angular
   .module('avBooth')
   .directive(
     'avbBoothHeader',
-    function()
+    function(ConfigService, $modal, $i18next)
     {
       var link = function(scope, _element, _attrs) {
+        scope.configService = ConfigService;
         scope.enableLogOut = function () {
           var election = (
             (!!scope.parentElection) ?
@@ -38,6 +39,49 @@ angular
             !election.presentation.extra_options ||
             !election.presentation.extra_options.booth_log_out__disable
           );
+        };
+
+        scope.showVersionModal = function () {
+          $modal
+            .open({
+              templateUrl: "avBooth/confirm-modal-controller/confirm-modal-controller.html",
+              controller: "ConfirmModal",
+              size: 'lg',
+              resolve: {
+                data: function () {
+                  var versionList = (
+                    "<li><strong>Main Version (agora-dev-box):</strong> " +
+                    ConfigService.mainVersion +
+                    "<br/></li>"
+                  );
+                  _.each(
+                    ConfigService.repoVersions,
+                    function (repo) {
+                      versionList.append(
+                        "<li><strong>" +
+                        repo.repoName +
+                        ":</strong> " +
+                        repo.repoVersion +
+                        "</li>"
+                      );
+                    }
+                  );
+                  var body = $i18next(
+                    'avBooth.showVersionModal.body',
+                    {
+                      versionList: versionList
+                    }
+                  );
+                  return {
+                    i18n: {
+                      header: $i18next('avBooth.showVersionModal.header'),
+                      body: body,
+                      confirmButton: $i18next('avBooth.showVersionModal.confirmButton')
+                    }
+                  };
+                },
+              }
+            });
         };
       };
       return {
