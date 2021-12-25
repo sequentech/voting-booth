@@ -41,7 +41,7 @@ angular
           );
         };
 
-        scope.showVersionModal = function () {
+        scope.showVersionsModal = function () {
           $modal
             .open({
               templateUrl: "avBooth/confirm-modal-controller/confirm-modal-controller.html",
