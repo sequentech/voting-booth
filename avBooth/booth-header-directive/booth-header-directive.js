@@ -78,7 +78,7 @@ angular
                       body: body,
                       confirmButton: $i18next('avBooth.showVersionModal.confirmButton'),
                     },
-                    hideCancelButton: false
+                    hideCancelButton: true
                   };
                 },
               }
