@@ -35,6 +35,12 @@
   },
   "avBooth": {
     "logout": "Log out",
+    "showVersion": "Version: __version__",
+    "showVersionModal": {
+      "header": "Version Information",
+      "body": "Version information of the repositories used in this deployment:<br><br><ul>__versionList__</ul>",
+      "confirmButton": "Close"
+    },
     "electionChooser": {
       "hasVoted": {
         "title": "Success!",

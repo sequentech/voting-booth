@@ -1,0 +1,36 @@
+<div class="confirm-modal-controller">
+    <div class="modal-header dialog-header-warning">
+        <h4 class="modal-title">
+            <span class="glyphicon glyphicon-warning-sign">
+            </span>
+            <span class="title" ng-bind-html="data.i18n.header">
+            </span>
+            <button
+                type="button"
+                class="close pull-right"
+                ng-click="cancel()"
+            >×</button>
+        </h4>
+    </div>
+    <div class="modal-body">
+        <p>
+            <span class="body-data" ng-bind-html="data.i18n.body">
+            </span>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button
+            class="btn btn-success"
+            ng-click="ok()"
+        >
+            {{ data.i18n.confirmButton }}
+        </button>
+        <button 
+            class="btn btn-cancel"
+            ng-click="cancel()"
+            ng-if="!data.hideCancelButton"
+            ng-i18next="avCommon.cancel">
+            avCommon.cancel
+        </button>
+    </div>
+</div>

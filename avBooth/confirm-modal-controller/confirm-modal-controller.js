@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-booth.
- * Copyright (C) 2015-2021 Sequent Tech Inc <legal@sequentech.io>
+ * Copyright (C) 2021 Sequent Tech Inc <legal@sequentech.io>
 
  * agora-gui-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -14,8 +14,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
-[avb-booth-header] {
-    .log-out-button, .config-version {
-        margin-right: 20px;
-    }
-}
+
+angular.module('avBooth')
+  .controller('ConfirmModal',
+    function($scope, $modalInstance, data) {
+      $scope.data = data;
+
+      $scope.ok = function () {
+        $modalInstance.close(data.closingData);
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    });

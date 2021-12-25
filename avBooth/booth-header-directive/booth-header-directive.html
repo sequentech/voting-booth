@@ -78,6 +78,15 @@
         >
         </span>
         <a
+          ng-if="!!configService.mainVersion"
+          target="_top"
+          tabindex="0"
+          class="config-version"
+          ng-click="showVersionsModal()"
+          ng-i18next="[i18next]({version: configService.mainVersion})avBooth.showVersion"
+        >
+        </a>
+        <a
           ng-if="enableLogOut()"
           target="_top"
           tabindex="0"
