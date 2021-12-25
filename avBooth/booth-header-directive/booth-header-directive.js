@@ -57,7 +57,7 @@ angular
                   _.each(
                     ConfigService.repoVersions,
                     function (repo) {
-                      versionList.append(
+                      versionList += (
                         "<li><strong>" +
                         repo.repoName +
                         ":</strong> " +
