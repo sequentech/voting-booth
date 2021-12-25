@@ -25,7 +25,11 @@
         >
             {{ data.i18n.confirmButton }}
         </button>
-        <button class="btn btn-cancel" ng-click="cancel()" ng-i18next>
+        <button 
+            class="btn btn-cancel"
+            ng-click="cancel()"
+            ng-if="!data.hideCancelButton"
+            ng-i18next="avCommon.cancel">
             avCommon.cancel
         </button>
     </div>

@@ -52,7 +52,7 @@ angular
                   var versionList = (
                     "<li><strong>Main Version (agora-dev-box):</strong> " +
                     ConfigService.mainVersion +
-                    "<br/></li>"
+                    "<br><br></li>"
                   );
                   _.each(
                     ConfigService.repoVersions,
@@ -76,8 +76,9 @@ angular
                     i18n: {
                       header: $i18next('avBooth.showVersionModal.header'),
                       body: body,
-                      confirmButton: $i18next('avBooth.showVersionModal.confirmButton')
-                    }
+                      confirmButton: $i18next('avBooth.showVersionModal.confirmButton'),
+                    },
+                    hideCancelButton: false
                   };
                 },
               }
