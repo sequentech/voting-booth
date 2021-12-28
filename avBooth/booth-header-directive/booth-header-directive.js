@@ -22,7 +22,7 @@ angular
   .module('avBooth')
   .directive(
     'avbBoothHeader',
-    function(ConfigService, $modal, $i18next)
+    function(ConfigService, ShowVersionsModalService)
     {
       var link = function(scope, _element, _attrs) {
         scope.configService = ConfigService;
@@ -41,49 +41,7 @@ angular
           );
         };
 
-        scope.showVersionsModal = function () {
-          $modal
-            .open({
-              templateUrl: "avBooth/confirm-modal-controller/confirm-modal-controller.html",
-              controller: "ConfirmModal",
-              size: 'lg',
-              resolve: {
-                data: function () {
-                  var versionList = (
-                    "<li><strong>Main Version (agora-dev-box):</strong> " +
-                    ConfigService.mainVersion +
-                    "<br><br></li>"
-                  );
-                  _.each(
-                    ConfigService.repoVersions,
-                    function (repo) {
-                      versionList += (
-                        "<li><strong>" +
-                        repo.repoName +
-                        ":</strong> " +
-                        repo.repoVersion +
-                        "</li>"
-                      );
-                    }
-                  );
-                  var body = $i18next(
-                    'avBooth.showVersionModal.body',
-                    {
-                      versionList: versionList
-                    }
-                  );
-                  return {
-                    i18n: {
-                      header: $i18next('avBooth.showVersionModal.header'),
-                      body: body,
-                      confirmButton: $i18next('avBooth.showVersionModal.confirmButton'),
-                    },
-                    hideCancelButton: true
-                  };
-                },
-              }
-            });
-        };
+        scope.showVersionsModal = ShowVersionsModalService;
       };
       return {
         restrict: 'AE',
