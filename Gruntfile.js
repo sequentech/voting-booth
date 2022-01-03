@@ -19,7 +19,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '5.0.1';
+var AV_CONFIG_VERSION = '5.0.2';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -222,13 +222,13 @@ module.exports = function (grunt) {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
             {selector:'body',html:'<%= variables.booth_html_body_include %>'},
-            {selector:'body',html:'<script src="/booth/libnocompat-v5.0.1.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/libnocompat-v5.0.2.min.js"></script>'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-gui-booth/blob/master/README.md -->'},
-            {selector:'body',html:'<script src="/booth/lib-v5.0.1.min.js"></script>'},
-            {selector:'body',html:'<script src="/booth/avConfig-v5.0.1.js"></script>'},
-            {selector:'body',html:'<script src="/booth/avThemes-v5.0.1.js"></script>'},
-            {selector:'body',html:'<script src="/booth/app-v5.0.1.min.js"></script>'},
-            {selector:'body',html:'<script src="/booth/avPlugins-v5.0.1.js"></script>'},
+            {selector:'body',html:'<script src="/booth/lib-v5.0.2.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/avConfig-v5.0.2.js"></script>'},
+            {selector:'body',html:'<script src="/booth/avThemes-v5.0.2.js"></script>'},
+            {selector:'body',html:'<script src="/booth/app-v5.0.2.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/avPlugins-v5.0.2.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/booth/" href="/booth/themes/default/app.min.css">'}
           ]
         },
@@ -257,9 +257,9 @@ module.exports = function (grunt) {
           ],
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>'],
-          'dist/avConfig-v5.0.1.js': ['avConfig.js'],
-          'dist/avThemes-v5.0.1.js': ['node_modules/agora-gui-common/dist/avThemes-v5.0.1.js'],
-          'dist/avPlugins-v5.0.1.js': ['plugins/**/*.js']
+          'dist/avConfig-v5.0.2.js': ['avConfig.js'],
+          'dist/avThemes-v5.0.2.js': ['node_modules/agora-gui-common/dist/avThemes-v5.0.2.js'],
+          'dist/avPlugins-v5.0.2.js': ['plugins/**/*.js']
         }
       }
     },
@@ -321,9 +321,9 @@ module.exports = function (grunt) {
           beautify: true
         },
         files: {
-          'dist/app-v5.0.1.min.js': 'temp/app.js',
-          'dist/lib-v5.0.1.min.js': 'temp/lib.js',
-          'dist/libnocompat-v5.0.1.min.js': 'temp/libnocompat.js',
+          'dist/app-v5.0.2.min.js': 'temp/app.js',
+          'dist/lib-v5.0.2.min.js': 'temp/lib.js',
+          'dist/libnocompat-v5.0.2.min.js': 'temp/libnocompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
           "dist/locales/moment/en.js": "node_modules/moment/locale/en-gb.js",
