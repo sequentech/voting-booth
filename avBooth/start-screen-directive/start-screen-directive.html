@@ -93,7 +93,12 @@
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
       <h1>
-        {{election.presentation.extra_options.public_title || election.title}}
+        {{
+          parentElection.presentation.extra_options.public_title ||
+          parentElection.title ||
+          election.presentation.extra_options.public_title ||
+          election.title
+        }}
       </h1>
       <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
     </div>
