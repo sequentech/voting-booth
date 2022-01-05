@@ -119,9 +119,25 @@ angular.module('avBooth')
 
             // if election chooser is disabled and can vote, then go to the first
             // election in which it can vote
-            if (disableElectionChooser && scope.canVote && !scope.isDemo) {
+            if (disableElectionChooser && scope.canVote) {
+                var orderedElectionIds = scope
+                    .childrenElectionInfo
+                    .natural_order;
+                // If it's a demo booth, do not rely on election credentials
+                if (scope.isDemo) {
+                    scope.increaseDemoElectionIndex();
+                    if (scope.demoElectionIndex < orderedElectionIds.length) {
+                        chooseElection(
+                            orderedElectionIds[scope.demoElectionIndex]
+                        );
+                    } else {
+                        scope.hasVoted = true;
+                        scope.canVote = false;
+                    }
+                    return;
+                }
+
                 var credentials = getElectionCredentials();
-                var orderedElectionIds = scope.childrenElectionInfo.natural_order;
                 for (var i = 0; i < orderedElectionIds.length; i++) {
                     var electionId = orderedElectionIds[i];
                     var elCredentials = findElectionCredentials(
