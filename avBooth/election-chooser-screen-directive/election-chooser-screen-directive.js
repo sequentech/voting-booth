@@ -130,6 +130,9 @@ angular.module('avBooth')
                         chooseElection(
                             orderedElectionIds[scope.demoElectionIndex]
                         );
+                    } else {
+                        scope.hasVoted = true;
+                        scope.canVote = false;
                     }
                     return;
                 }
