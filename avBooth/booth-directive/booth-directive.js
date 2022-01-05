@@ -884,6 +884,10 @@ angular.module('avBooth')
         // Variable that stablishes if the election is a demo or not.
         isDemo: (attrs.isDemo === "true"),
 
+        // In case of parent-election, which children election should be loading
+        // currently is set here
+        demoElectionIndex: -1,
+
         // By default no voterId is set
         voterId: '',
 
