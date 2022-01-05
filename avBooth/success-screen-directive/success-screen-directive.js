@@ -464,11 +464,10 @@ angular.module('avBooth')
         $cookies.remove("auth" + postfix);
         $cookies.remove("isAdmin" + postfix);
         $cookies.remove("isAdmin" + postfix);
-        var naturalOrder = scope.childrenElectionInfo.natural_order.length;
         scope.hasNextElection = (
           scope.isDemo &&
           scope.parentElection && 
-          scope.demoElectionIndex + 1 < naturalOrder.length
+          scope.demoElectionIndex + 1 < scope.parentAuthEvent.children_election_info.natural_order.length.length
         );
 
         // Process vote_permission_tokens
