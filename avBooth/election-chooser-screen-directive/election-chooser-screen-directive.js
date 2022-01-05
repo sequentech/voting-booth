@@ -125,9 +125,8 @@ angular.module('avBooth')
                     .natural_order;
                 // If it's a demo booth, do not rely on election credentials
                 if (scope.isDemo) {
-                    scope.demoNaturalIndex = scope.demoNaturalIndex || -1;
-                    scope.demoNaturalIndex++;
-                    chooseElection(orderedElectionIds[scope.demoNaturalIndex]);
+                    scope.demoElectionIndex++;
+                    chooseElection(orderedElectionIds[scope.demoElectionIndex]);
                     return;
                 }
 
