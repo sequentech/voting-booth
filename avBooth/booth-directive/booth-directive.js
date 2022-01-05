@@ -845,6 +845,10 @@ angular.module('avBooth')
         scope.authorizationReceiverErrorHandler = errorCallback;
       }
 
+      function increaseDemoElectionIndex() {
+        scope.demoElectionIndex += 1;
+      }
+
       //////////////////// Initialization part ////////////////////
 
       // init scope vars
@@ -887,6 +891,7 @@ angular.module('avBooth')
         // In case of parent-election, which children election should be loading
         // currently is set here
         demoElectionIndex: -1,
+        increaseDemoElectionIndex: increaseDemoElectionIndex,
 
         // By default no voterId is set
         voterId: '',
