@@ -755,7 +755,8 @@ angular.module('avBooth')
                     scope.setState(stateEnum.electionChooserScreen, {});
                   });
                 // skip start screen if start_screen__skip is set to true or
-                // if we are not in the first election of the credentials
+                // if we are not in the first election of the credentials or
+                // we are not in the first election in a demo booth
                 } else if (
                   (
                     !response.data.payload.virtual &&
@@ -765,6 +766,9 @@ angular.module('avBooth')
                   (
                     !!scope.currentElectionCredentials &&
                     !scope.currentElectionCredentials.isFirst
+                  ) || (
+                    scope.isDemo &&
+                    scope.demoElectionIndex >= 0
                   )
                 )
                 {
