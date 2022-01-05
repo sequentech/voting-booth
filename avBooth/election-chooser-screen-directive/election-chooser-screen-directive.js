@@ -126,7 +126,11 @@ angular.module('avBooth')
                 // If it's a demo booth, do not rely on election credentials
                 if (scope.isDemo) {
                     scope.increaseDemoElectionIndex();
-                    chooseElection(orderedElectionIds[scope.demoElectionIndex]);
+                    if (scope.demoElectionIndex < orderedElectionIds.length) {
+                        chooseElection(
+                            orderedElectionIds[scope.demoElectionIndex]
+                        );
+                    }
                     return;
                 }
 
