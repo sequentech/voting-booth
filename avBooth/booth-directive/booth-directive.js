@@ -710,7 +710,8 @@ angular.module('avBooth')
 
                 // If it's a demo booth and we are at this stage, ensure to
                 // show the modal "this is a demo booth" warning
-                if (scope.isDemo) {
+                if (scope.isDemo && !scope.shownIsDemoModal) {
+                  scope.shownIsDemoModal = true;
                   $modal.open({
                     ariaLabelledBy: 'modal-title',
                     ariaDescribedBy: 'modal-body',
