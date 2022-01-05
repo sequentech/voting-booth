@@ -467,7 +467,7 @@ angular.module('avBooth')
         scope.hasNextElection = (
           scope.isDemo &&
           scope.parentElection && 
-          scope.demoElectionIndex + 1 < scope.parentAuthEvent.children_election_info.natural_order.length.length
+          scope.demoElectionIndex + 1 < scope.parentAuthEvent.children_election_info.natural_order.length
         );
 
         // Process vote_permission_tokens
