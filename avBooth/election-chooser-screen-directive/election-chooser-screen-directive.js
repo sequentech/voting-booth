@@ -119,7 +119,7 @@ angular.module('avBooth')
 
             // if election chooser is disabled and can vote, then go to the first
             // election in which it can vote
-            if (disableElectionChooser && scope.canVote && !scope.isDemo) {
+            if (disableElectionChooser && scope.canVote) {
                 var credentials = getElectionCredentials();
                 var orderedElectionIds = scope.childrenElectionInfo.natural_order;
                 for (var i = 0; i < orderedElectionIds.length; i++) {
