@@ -710,7 +710,8 @@ angular.module('avBooth')
 
                 // If it's a demo booth and we are at this stage, ensure to
                 // show the modal "this is a demo booth" warning
-                if (scope.isDemo) {
+                if (scope.isDemo && !scope.shownIsDemoModal) {
+                  scope.shownIsDemoModal = true;
                   $modal.open({
                     ariaLabelledBy: 'modal-title',
                     ariaDescribedBy: 'modal-body',
@@ -754,7 +755,8 @@ angular.module('avBooth')
                     scope.setState(stateEnum.electionChooserScreen, {});
                   });
                 // skip start screen if start_screen__skip is set to true or
-                // if we are not in the first election of the credentials
+                // if we are not in the first election of the credentials or
+                // we are not in the first election in a demo booth
                 } else if (
                   (
                     !response.data.payload.virtual &&
@@ -764,6 +766,9 @@ angular.module('avBooth')
                   (
                     !!scope.currentElectionCredentials &&
                     !scope.currentElectionCredentials.isFirst
+                  ) || (
+                    scope.isDemo &&
+                    scope.demoElectionIndex > 0
                   )
                 )
                 {
@@ -844,6 +849,10 @@ angular.module('avBooth')
         scope.authorizationReceiverErrorHandler = errorCallback;
       }
 
+      function increaseDemoElectionIndex() {
+        scope.demoElectionIndex += 1;
+      }
+
       //////////////////// Initialization part ////////////////////
 
       // init scope vars
@@ -882,6 +891,11 @@ angular.module('avBooth')
 
         // Variable that stablishes if the election is a demo or not.
         isDemo: (attrs.isDemo === "true"),
+
+        // In case of parent-election, which children election should be loading
+        // currently is set here
+        demoElectionIndex: -1,
+        increaseDemoElectionIndex: increaseDemoElectionIndex,
 
         // By default no voterId is set
         voterId: '',
