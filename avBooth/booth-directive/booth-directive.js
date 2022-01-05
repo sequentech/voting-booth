@@ -768,7 +768,7 @@ angular.module('avBooth')
                     !scope.currentElectionCredentials.isFirst
                   ) || (
                     scope.isDemo &&
-                    scope.demoElectionIndex >= 0
+                    scope.demoElectionIndex > 0
                   )
                 )
                 {
