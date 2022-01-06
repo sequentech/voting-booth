@@ -759,7 +759,10 @@ angular.module('avBooth')
             return question.answers.reduce(
               function (accumulator, answer)
               {
-                if (answer.id === scope.invalidVoteAnswer.id) {
+                if (
+                  scope.invalidVoteAnswer &&
+                  answer.id === scope.invalidVoteAnswer.id
+                ) {
                   return accumulator;
                 } else {
                   return accumulator + answer.selected + 1;
