@@ -213,11 +213,12 @@ angular.module('avBooth')
       autoredirectToLoginAfterTimeout();
 
       function checkCookies(electionId) {
-        if (scope.isDemo || InsideIframeService() || !!scope.parentId) {
+        if (scope.isDemo || InsideIframeService()) {
           return;
         }
 
-        var cookie = $cookies.get("authevent_" + electionId);
+        var idToCheck = (!!scope.parentId) ? scope.parentId : electionId;
+        var cookie = $cookies.get("authevent_" + idToCheck);
         if (!cookie) {
           redirectToLogin();
         }
