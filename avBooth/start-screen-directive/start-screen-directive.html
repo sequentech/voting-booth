@@ -94,13 +94,17 @@
       <div class="hidden unfixed-top-height"></div>
       <h1>
         {{
-          parentElection.presentation.extra_options.public_title ||
-          parentElection.title ||
-          election.presentation.extra_options.public_title ||
-          election.title
+          !!parentElection && (
+            parentElection.presentation.extra_options.public_title ||
+            parentElection.title
+          ) ||
+          !parentElection && (
+            election.presentation.extra_options.public_title ||
+            election.title
+          )
         }}
       </h1>
-      <p class="description" ng-bind-html="(parentElection.description || election.description) | addTargetBlank"></p>
+      <p class="description" ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description)) | addTargetBlank"></p>
     </div>
   </div>
 </div>
