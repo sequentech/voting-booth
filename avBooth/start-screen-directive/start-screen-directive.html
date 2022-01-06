@@ -100,7 +100,7 @@
           election.title
         }}
       </h1>
-      <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
+      <p class="description" ng-bind-html="(parentElection.description || election.description) | addTargetBlank"></p>
     </div>
   </div>
 </div>
