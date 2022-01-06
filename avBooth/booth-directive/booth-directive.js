@@ -91,7 +91,7 @@ angular.module('avBooth')
       }
 
       // simply redirect to login
-      function simpleRedirectToLogin()
+      function simpleRedirectToLogin(isSuccess)
       {
         var election = (
           (!!scope.parentElection) ?
@@ -100,7 +100,7 @@ angular.module('avBooth')
         );
         var extra = election.presentation.extra_options;
         var redirectUrl = "/election/" + election.id + "/public/login";
-        if (!!extra && !!extra.success_screen__redirect__url)
+        if (isSuccess && !!extra && !!extra.success_screen__redirect__url)
         {
           redirectUrl = extra.success_screen__redirect__url;
         }
@@ -108,7 +108,7 @@ angular.module('avBooth')
       }
 
       // (maybe logout, in openid when there's a logout_uri and) redirect to login
-      function redirectToLogin()
+      function redirectToLogin(isSuccess)
       {
         if (scope.redirectingToUri)
         {
@@ -128,7 +128,7 @@ angular.module('avBooth')
           election.auth_method !== 'openid-connect' || 
           !getLogoutUri()
         ) {
-          simpleRedirectToLogin();
+          simpleRedirectToLogin(isSuccess);
           return;
         }
 
@@ -139,12 +139,12 @@ angular.module('avBooth')
           $cookies.remove("id_token_" + postfix);
           $window.location.href = uri;
         } catch (_e) {
-          simpleRedirectToLogin();
+          simpleRedirectToLogin(isSuccess);
           return;
         }
       }
 
-      function closeAndFinish(dontClose) 
+      function closeAndFinish(dontClose, isSuccess) 
       {
         var election = (
           (!!scope.parentElection) ?
@@ -152,25 +152,25 @@ angular.module('avBooth')
           scope.election
         );
         var extra = election.presentation.extra_options;
-        if (!!extra && !!extra.success_screen__redirect__url) 
+        if (isSuccess || !!extra && !!extra.success_screen__redirect__url) 
         {
-          redirectToLogin();
+          redirectToLogin(isSuccess);
           return;
         }
 
         if (!!dontClose) {
-          redirectToLogin();
+          redirectToLogin(isSuccess);
         } else {
           try {
             $window.close();
           } finally {
-            redirectToLogin();
+            redirectToLogin(isSuccess);
           }
         }
       }
 
       // log out and redirect
-      function logoutAndRedirect() {
+      function logoutAndRedirect(isSuccess) {
         var election = (
           (!!scope.parentElection) ?
           scope.parentElection :
@@ -186,7 +186,7 @@ angular.module('avBooth')
         $cookies.remove("isAdmin" + postfix);
         $window.sessionStorage.removeItem("vote_permission_tokens");
 
-        closeAndFinish(/* dontClose = */ true);
+        closeAndFinish(/* dontClose = */ true, /* isSusccess */ isSuccess);
       }
 
       // After cookies expires, redirect to login. But only if cookies do
@@ -207,7 +207,10 @@ angular.module('avBooth')
             !election.presentation.extra_options.booth_log_out__disable
           )
         ) {
-          setTimeout(logoutAndRedirect, 60*1000*ConfigService.cookies.expires);
+          setTimeout(
+            function () { logoutAndRedirect( /* isSuccess */ false); },
+            60*1000*ConfigService.cookies.expires
+          );
         }
       }
       autoredirectToLoginAfterTimeout();
@@ -220,7 +223,7 @@ angular.module('avBooth')
         var idToCheck = (!!scope.parentId) ? scope.parentId : electionId;
         var cookie = $cookies.get("authevent_" + idToCheck);
         if (!cookie) {
-          redirectToLogin();
+          redirectToLogin(/*isSuccess*/ false);
         }
       }
 
@@ -609,7 +612,7 @@ angular.module('avBooth')
         }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
         if (!credentialsStr) {
-          redirectToLogin();
+          redirectToLogin(/* isSuccess */ false);
         }
         scope.credentials = [];
         var currentElectionCredentials = null;
@@ -712,7 +715,7 @@ angular.module('avBooth')
                   scope.election.presentation.extra_options.disable__demo_voting_booth &&
                   scope.isDemo
                 ) {
-                  redirectToLogin();
+                  redirectToLogin(/* isSuccess */ false);
                   return;
                 }
 
