@@ -128,7 +128,7 @@
         <div class="election-description">
           <p
             class="election-description"
-            ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description)) | addTargetBlank"
+            ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description) || '') | addTargetBlank"
           ></p>
         </div>
         <div

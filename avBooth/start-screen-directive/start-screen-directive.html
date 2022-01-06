@@ -104,7 +104,7 @@
           )
         }}
       </h1>
-      <p class="description" ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description)) | addTargetBlank"></p>
+      <p class="description" ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description) || '') | addTargetBlank"></p>
     </div>
   </div>
 </div>
