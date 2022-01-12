@@ -133,6 +133,26 @@ angular.module('avBooth')
 
         function download(images) 
         {
+          var ballotTrackerRow = (
+            scope.election.presentation.extra_options &&
+            scope.election.presentation.extra_options.success_screen__hide_ballot_tracker
+          ) ?
+          {} :
+          {
+            columns: [
+              {
+                text: $i18next('avBooth.ballotTicket.tracker'),
+                style: 'cell',
+                width: '40%'
+              },
+              {
+                text: scope.stateData.ballotHash.substr(0, 32) + ' ' + scope.stateData.ballotHash.substr(32, 32),
+                style: 'cell',
+                width: '*'
+              }
+            ]
+          };
+
           var docDefinition = {
             info: {
               title: scope.pdf.fileName,
@@ -159,20 +179,7 @@ angular.module('avBooth')
                 text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h4 || $i18next('avBooth.ballotTicket.h4'),
                 style: 'h4'
               },
-              {
-                columns: [
-                  {
-                    text: $i18next('avBooth.ballotTicket.tracker'),
-                    style: 'cell',
-                    width: '40%'
-                  },
-                  {
-                    text: scope.stateData.ballotHash.substr(0, 32) + ' ' + scope.stateData.ballotHash.substr(32, 32),
-                    style: 'cell',
-                    width: '*'
-                  }
-                ]
-              },
+              ballotTrackerRow,
               {
                 columns: [
                   {
