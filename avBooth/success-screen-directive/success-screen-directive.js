@@ -395,7 +395,7 @@ angular.module('avBooth')
       function generateQrCode() {
         if (
           !scope.election.presentation.extra_options || 
-          !scope.election.presentation.extra_options.success_screen__hide_ballot_tracker
+          !scope.election.presentation.extra_options.success_screen__hide_qr_code
         ) {
           var typeNumber = 0;
           var errorCorrectionLevel = 'L';
