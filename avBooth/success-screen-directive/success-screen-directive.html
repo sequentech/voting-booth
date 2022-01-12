@@ -115,7 +115,7 @@
 
           &nbsp;
           <span
-            ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker && election.presentation.extra_options.success_screen__hide_qr_code !== true">
+            ng-if="election.presentation.extra_options.success_screen__hide_qr_code !== true">
             <span ng-i18next>
               avBooth.successBallotQrCode
             </span>
@@ -130,7 +130,7 @@
             class="btn btn-primary btn-login"
             tabindex="0"
             ng-click="downloadBallotTicket()"
-            ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker && election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
+            ng-if="election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
             target="_blank"
             ng-i18next>
             avBooth.downloadBallotTicket
