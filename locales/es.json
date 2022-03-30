@@ -215,7 +215,7 @@
       "id": "Id de la votación:",
       "voterId": "Id del votante:",
       "created": "Fecha de registro del voto:",
-      "link": "Enllaç per localitzar el vot:",
+      "link": "Enlace para localizar el voto:",
       "linkClickHere": "clic aquí",
       "qrCode": "Puede usar el siguiente código QR y acceder al enlace para localizar el voto:",
       "isDemo": "Este justificante de voto fue generado en una cabina de votación de prueba. Este voto NO fue emitido."
