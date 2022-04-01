@@ -17,7 +17,7 @@
   "tally_error": "virhe äänten laskennassa",
 
   "app": {
-    "name": "Agora Voting"
+    "name": "Sequent Tech"
   },
   "avCommon": {
     "cancel": "Keskeytä",
@@ -158,7 +158,7 @@
 
     "auditBallotTitle": "Tarkasta antamasi ääni",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>Äänen seurantakoodi on: <code>__ballotHash__</code></p><p><strong>Äänen tarkastusprosessi vaati jonkin verran teknistä osaamista. Jos mielummin vain äänestät uudelleen korvaten aiemman äänen, klikkaa äänestysnappia alla.</strong></p><p>Äänen tarkastamiseksi sinun pitää:</p><ol><li>Kopioi ja tallenna alla oleva äänesi salattu muoto tiedostoon (klikkaa valitaksesi):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Noudata täällä kuvattuja vaiheita <a href=\"https://github.com/agoravoting/agora-airgap/blob/master/README.md\" target=\"_blank\">, jos haluat todentaa, että ääni on salattu ja tallennettu oikein</a>.</li></ol><p>Turvallisuussyistä tarkistettua ääntä ei voida enää ottaa huomioon ääntenlaskennassa. Se poistetaan sähköisestä vaaliuurnasta tarkastamisen yhteydessä. Tarkastamisen jälkeen on siis aloitettava äänestys alusta.</p>",
+    "auditBallotText": "<p>Äänen seurantakoodi on: <code>__ballotHash__</code></p><p><strong>Äänen tarkastusprosessi vaati jonkin verran teknistä osaamista. Jos mielummin vain äänestät uudelleen korvaten aiemman äänen, klikkaa äänestysnappia alla.</strong></p><p>Äänen tarkastamiseksi sinun pitää:</p><ol><li>Kopioi ja tallenna alla oleva äänesi salattu muoto tiedostoon (klikkaa valitaksesi):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Noudata täällä kuvattuja vaiheita <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">, jos haluat todentaa, että ääni on salattu ja tallennettu oikein</a>.</li></ol><p>Turvallisuussyistä tarkistettua ääntä ei voida enää ottaa huomioon ääntenlaskennassa. Se poistetaan sähköisestä vaaliuurnasta tarkastamisen yhteydessä. Tarkastamisen jälkeen on siis aloitettava äänestys alusta.</p>",
     "auditStartAgain": "Aloita äänestys uudelleen alusta",
 
 

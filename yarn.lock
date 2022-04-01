@@ -109,9 +109,9 @@ agent-base@^4.3.0:
   dependencies:
     es6-promisify "^5.0.0"
 
-"agora-gui-common@https://github.com/agoravoting/agora-gui-common.git#master":
+"common-ui@https://github.com/sequentech/common-ui.git#master":
   version "4.0.0"
-  resolved "https://github.com/agoravoting/agora-gui-common.git#149581c0a3c327a5fc197980bb2450d9bbc21fc5"
+  resolved "https://github.com/sequentech/common-ui.git#149581c0a3c327a5fc197980bb2450d9bbc21fc5"
   dependencies:
     browser-update "^3.3.28"
     karma-ng-html2js-preprocessor "^1.0.0"
