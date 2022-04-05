@@ -1,18 +1,18 @@
 /**
- * This file is part of agora-gui-booth.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * This file is part of voting-booth.
+ * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
 
- * agora-gui-booth is free software: you can redistribute it and/or modify
+ * voting-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License.
 
- * agora-gui-booth  is distributed in the hope that it will be useful,
+ * voting-booth  is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
 
  * You should have received a copy of the GNU Affero General Public License
- * along with agora-gui-booth.  If not, see <http://www.gnu.org/licenses/>.
+ * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
 angular.module('avBooth')
@@ -35,7 +35,7 @@ angular.module('avBooth')
       var timeoutWidth;
       var w = angular.element($window);
       $("#theme").attr("href", "booth/themes/" + ConfigService.theme + "/app.min.css");
-      //window.avThemes.change(ConfigService.theme);
+      //window.SequentThemes.change(ConfigService.theme);
 
       // when we are not inside an iframe and voter id is not set, this is a
       // demo booth
@@ -683,14 +683,14 @@ angular.module('avBooth')
         if (electionId) {
           scope.electionId = electionId;
         }
-        var agoraElectionsRetrieved = false;
-        var authapiRetrieved = false;
+        var sequentElectionsRetrieved = false;
+        var iamRetrieved = false;
         scope.isVirtual = false;
         var hasAuthapiError = false;
 
         function execIfAllRetrieved(callback)
         {
-          if (!agoraElectionsRetrieved || !authapiRetrieved) {
+          if (!sequentElectionsRetrieved || !iamRetrieved) {
             return;
           }
           callback();
@@ -771,7 +771,7 @@ angular.module('avBooth')
                     showError($i18next("avBooth.errorLoadingElection"));
                     return;
                   }
-                  agoraElectionsRetrieved = true;
+                  sequentElectionsRetrieved = true;
                   execIfAllRetrieved(function () {
                     if (!scope.parentAuthEvent) {
                       scope.parentAuthEvent = angular.copy(scope.authEvent);
@@ -815,7 +815,7 @@ angular.module('avBooth')
           Authmethod.viewEvent(scope.electionId)
             .then(
               function onSuccess(response) {
-                authapiRetrieved = true;
+                iamRetrieved = true;
                 if (response.data.status === "ok") {
                   scope.authEvent = response.data.events;
                 }

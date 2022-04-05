@@ -1,5 +1,5 @@
 {
-  "name": "agora-gui-booth",
+  "name": "voting-booth",
   "version" : "master",
   "license": "AGPL-3.0-only",
   "browsers": [
@@ -8,9 +8,9 @@
     "last 8 versions"
   ],
   "author": {
-    "name": "Agora Voting SL and others",
-    "email": "legal@nvotes.com",
-    "url": "https://nvotes.com"
+    "name": "Sequent Tech Inc and others",
+    "email": "legal@sequentech.io",
+    "url": "https://sequentech.io"
   },
   "devDependencies": {
     "@lodder/grunt-postcss": "^3.0.0",
@@ -53,7 +53,7 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master",
+    "common-ui": "https://github.com/sequentech/common-ui.git#master",
     "angular-aria": "^1.8.2",
     "pdfmake": "^0.1.65",
     "qrcode-generator": "^1.4.4"
