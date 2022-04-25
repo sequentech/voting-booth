@@ -33,33 +33,10 @@
         </div>
       </div>
 
-      <div class="col-xs-6 col-sm-4 text-right" ng-if="election.logo_url">
-        <span
-          class="glyphicon glyphicon-question-sign"
-          role="link"
-          tabindex="0"
-          ng-if="documentation.show_help"
-          ng-keyup="launchHelp()"
-          ng-click="launchHelp()">
-        </span>
-        <span
-          ng-if="documentation.show_help"
-          role="link"
-          tabindex="0"
-          ng-keyup="launchHelp()"
-          ng-click="launchHelp()" 
-          ng-i18next="avBooth.helpTitle"
-        >
-        </span>
-        <span 
-          class="dropdown left-padding"
-          role="menuitem"
-          av-change-lang
-        >
-        </span>
-      </div>
-
-      <div class="col-xs-6 text-right" ng-if="!election.logo_url">
+      <div
+        class="col-xs-6 text-right"
+        ng-class="{'col-sm-4': !!election.logo_url}"
+      >
         <span
           class="glyphicon glyphicon-question-sign"
           role="link"
