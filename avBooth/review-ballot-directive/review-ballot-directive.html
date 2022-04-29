@@ -73,7 +73,7 @@
     </li>
     <li
       class="empty-answer"
-      ng-if="(question.answers | avbSelectedOptions).length == 0"
+      ng-if="(question.answers | avbSelectedOptions).length == 0 && !markedAsInvalid(question)"
       ng-i18next="avBooth.emptyAnswer">
     </li>
   </ul>
