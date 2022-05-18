@@ -48,7 +48,6 @@ angular.module('avBooth')
         function calculateIsVoter(elCredentials) {
             return (
                 !!elCredentials &&
-                !!elCredentials.token &&
                 elCredentials.numSuccessfulLoginsAllowed !== -1
             );
         }
