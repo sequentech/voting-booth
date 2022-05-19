@@ -45,6 +45,13 @@ angular.module('avBooth')
             );
         }
 
+        function calculateIsVoter(elCredentials) {
+            return (
+                !!elCredentials &&
+                elCredentials.numSuccessfulLoginsAllowed !== -1
+            );
+        }
+
         function getElectionCredentials() {
             // need to reload in case this changed in success screen..
             var credentials = [];
@@ -74,6 +81,7 @@ angular.module('avBooth')
                                 election.event_id, credentials
                             );
                             var canVote = calculateCanVote(elCredentials);
+                            var isVoter = calculateIsVoter(elCredentials);
                             if (canVote) {
                                 scope.canVote = true;
                             }
@@ -88,7 +96,8 @@ angular.module('avBooth')
                                 election,
                                 elCredentials || {},
                                 {
-                                    disabled: (!scope.isDemo && !canVote)
+                                    disabled: (!scope.isDemo && !canVote),
+                                    hidden: (!scope.isDemo && !isVoter)
                                 }
                             );
                             if (!!retValue.skipped) {
