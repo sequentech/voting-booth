@@ -484,13 +484,13 @@ angular.module('avBooth')
               scope.setState(stateEnum.successScreen, {
                 ballotHash: scope.stateData.ballotHash,
                 ballotResponse: {
-                  date: "2020-03-02 13:22:03.035",
+                  date: moment().format(),
                   payload: {
                     election_id: scope.election.id,
-                    voter_id: "2bf885da9bdc0676d90f7d8cc66f",
+                    voter_id: "demo-voter-id",
                     vote: scope.stateData.encryptedBallot,
                     hash: scope.stateData.ballotHash,
-                    created: "2020-03-02T13:22:03.030"
+                    created: moment().format()
                   }
                 }
               });

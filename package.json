@@ -47,7 +47,8 @@
     "karma-mocha-reporter": "~0.2.5",
     "karma-phantomjs-launcher": "^1.0.4",
     "load-grunt-tasks": "^3.5.0",
-    "moment": "2.29.2",
+    "moment": "2.29.3",
+    "moment-timezone": "0.5.34",
     "nanoscroller": "^0.8.7",
     "postcss": "^8.2.4",
     "yarn": "^1.22.0"
