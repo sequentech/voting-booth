@@ -89,6 +89,13 @@
     font-size: 24px;
   }
 
+  .question-title,
+  .election-title,
+  .question-description,
+  .error-list li {
+    word-break: break-all;
+  }
+
   .question-answer-wrapper.col-md-12,
   .question-answer-wrapper.col-md-6,
   .question-answer-wrapper.col-md-4,
@@ -107,5 +114,12 @@
       align-items: flex-end;
       text-align: center;
     }
+  }
+}
+
+@media(max-width: @screen-sm-min) {
+  [avb-simultaneous-questions-screen] [av-affix-bottom] .error-list > ul {
+    overflow-y: scroll;
+    max-height: 60px;
   }
 }

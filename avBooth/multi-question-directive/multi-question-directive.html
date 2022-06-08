@@ -5,11 +5,16 @@
   <div class="navbar-unfixed-top text-center">
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
-      <h1 ng-if="!showingPreset" ng-bind-html="stateData.question.title"></h1>
+      <h1
+        class="question-title"
+        ng-if="!showingPreset"
+        ng-bind-html="stateData.question.title"
+      ></h1>
       <p
         ng-if="!showingPreset"
-        class="description"
-        ng-bind-html="stateData.question.description | addTargetBlank"></p>
+        class="question-description description"
+        ng-bind-html="stateData.question.description | addTargetBlank"
+      ></p>
     </div>
   </div>
 </div>
