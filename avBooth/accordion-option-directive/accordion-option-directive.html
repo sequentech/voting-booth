@@ -22,7 +22,7 @@
   </div>
 
   <span
-    class="label label-default"
+    class="label label-default answer-category"
     ng-if="showCategory && !!option.category">
     {{option.category}}
   </span>
@@ -56,15 +56,15 @@
               {{option.selected + 1}}.
           </span>
           <span>
-              <span ng-bind-html="option.text"></span>
+              <span class="answer-text" ng-bind-html="option.text"></span>
               <span
               ng-if="showPoints && option.selected > -1"
               ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
               </span>
           </span>
           </strong>
-          <p class="details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
-          <p class="details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
+          <p class="answer-description details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
+          <p class="answer-description details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
           </p>
       </div>
     </div>
@@ -84,7 +84,7 @@
   ng-click="!isPreset && toggleSelectItem(option)">
 
   <span
-    class="label label-default"
+    class="label label-default answer-category"
     ng-if="showCategory && !!option.category">
     {{option.category}}
   </span>
@@ -154,15 +154,15 @@
               {{option.selected + 1}}.
           </span>
           <span>
-              <span ng-bind-html="option.text"></span>
+              <span class="answer-text" ng-bind-html="option.text"></span>
               <span
               ng-if="showPoints && option.selected > -1"
               ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
               </span>
           </span>
           </strong>
-          <p class="details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
-          <p class="details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
+          <p class="answer-description details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
+          <p class="answer-description details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
           </p>
       </div>
     </div>

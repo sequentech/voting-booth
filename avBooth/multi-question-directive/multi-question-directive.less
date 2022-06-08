@@ -5,8 +5,13 @@
     font-size: 16px;
   }
 
-  .description {
+  .question-description {
     padding-bottom: 15px;
+  }
+
+  .question-title,
+  .question-description {
+    word-break: break-all;
   }
 
   .filter-input {
@@ -101,5 +106,12 @@
 
   .text-brand-primary {
     color: @av-secondary;
+  }
+}
+
+@media(max-width: @screen-sm-min) {
+  [avb-simultaneous-questions-screen] .affix-bottom .warnings {
+    overflow-y: scroll;
+    max-height: 60px;
   }
 }
