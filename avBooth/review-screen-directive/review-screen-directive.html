@@ -5,10 +5,12 @@
   <div class="navbar-unfixed-top text-center">
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
-      <h1 ng-bind-html="election.presentation.extra_options.public_title || election.title">
+      <h1 
+        class="election-title"
+        ng-bind-html="election.presentation.extra_options.public_title || election.title">
       </h1>
-      <h1 ng-i18next="avBooth.reviewYourBallotTitle"></h1>
-      <p ng-i18next="avBooth.reviewYourBallotText"></p>
+      <h1 class="review-title" ng-i18next="avBooth.reviewYourBallotTitle"></h1>
+      <p class="review-description" ng-i18next="avBooth.reviewYourBallotText"></p>
     </div>
   </div>
 </div>
