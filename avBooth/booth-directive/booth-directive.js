@@ -700,12 +700,21 @@ angular.module('avBooth')
           $http.get(scope.baseUrl + "election/" + scope.electionId)
             .then(
               function onSuccess(response) {
-                if (!scope.isDemo && response.data.payload.state !== "started") {
+                scope.election = angular.fromJson(response.data.payload.configuration);
+                var presentation = scope.election.presentation;
+
+                if (
+                  !scope.isDemo &&
+                  response.data.payload.state !== "started" &&
+                  (
+                    !presentation ||
+                    !presentation.extra_options ||
+                    !presentation.extra_options.allow_voting_end_graceful_period
+                  )
+                ) {
                   showError($i18next("avBooth.errorElectionIsNotOpen"));
                   return;
                 }
-
-                scope.election = angular.fromJson(response.data.payload.configuration);
 
                 // if demo booth is disabled and this is a demo booth, redirect
                 // to the login page
