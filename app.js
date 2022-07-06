@@ -137,8 +137,7 @@ angular.module('voting-booth').config(
 });
 
 angular.module('voting-booth').run(function($http, $rootScope, ConfigService, $window) {
-
-  $rootScope.boothTitle = ConfigService.webTitle;
+  document.title = ConfigService.webTitle;
   $rootScope.safeApply = function(fn) {
     var phase = $rootScope.$$phase;
     if (phase === '$apply' || phase === '$digest') {
