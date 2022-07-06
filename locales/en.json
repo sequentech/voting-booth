@@ -137,11 +137,11 @@
     "couldntSendBallotNotFound":  "The ballot could not be sent. There might be an issue with the connection,  or the server might be temporarily unavailable. If that's the case, please try again later and if the issue persists please contact us.",
 
 
-    "questionSelectedOptionsTitle": "selected options (__count__)",
-    "questionSelectedOptionsTitle_plural": "selected options (__count__)",
-    "questionSelectedOptionsTitleOrdered": "selected options (__count__) in order, drag and drop to reorder it",
-    "questionSelectedOptionsTitleOrdered_plural": "selected options (__count__) in order, drag and drop to reorder it",
-    "questionAvailableOptionsTitle": "available options",
+    "questionSelectedOptionsTitle": "Selected options (__count__)",
+    "questionSelectedOptionsTitle_plural": "Selected options (__count__)",
+    "questionSelectedOptionsTitleOrdered": "Selected options (__count__) in order, drag and drop to reorder it",
+    "questionSelectedOptionsTitleOrdered_plural": "Selected options (__count__) in order, drag and drop to reorder it",
+    "questionAvailableOptionsTitle": "Available options",
     "numOptionsSelected": "__count__ options selected.",
     "numOptionsSelected_plural": "__count__ options selected.",
     "numOptionsSelected_plural_2": "__count__ options selected.",
