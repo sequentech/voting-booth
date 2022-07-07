@@ -642,7 +642,9 @@ angular.module('avBooth')
         // credentials for current election should have been found
         if (!currentElectionCredentials)
         {
-          showError($i18next("avBooth.errorLoadingElection"));
+          if (scope.election) {
+            showError($i18next("avBooth.errorLoadingElection"));
+          }
           return;
         }
 
@@ -698,8 +700,18 @@ angular.module('avBooth')
           callback();
         }
         try {
+          // make it virtual by default, needed by readVoteCredentials
+          scope.isVirtual = false;
 
-          $http.get(scope.baseUrl + "election/" + scope.electionId)
+          // process vote credentials
+          readVoteCredentials();
+
+          $http.get(
+            scope.baseUrl + "election/" + scope.electionId,
+            {
+              headers: {'Authorization': scope.authorizationHeader || null}
+            }
+          )
             .then(
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
@@ -774,7 +786,7 @@ angular.module('avBooth')
                 // chooser
                 scope.isVirtual = response.data.payload.virtual;
 
-                // process vote credentials
+                // re-process vote credentials in case isVirtual changed
                 readVoteCredentials();
 
                 if (scope.isVirtual) {
