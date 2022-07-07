@@ -41,6 +41,7 @@ angular.module('avBooth')
       // demo booth
       scope.isDemo = (attrs.isDemo === "true");
       scope.documentation = ConfigService.documentation;
+      scope.hasSeenStartScreenInThisSession = false;
 
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
@@ -471,6 +472,7 @@ angular.module('avBooth')
           stateEnum.simultaneousQuestionsScreen,
         ];
         if (scope.state === stateEnum.electionChooserScreen) {
+          scope.hasSeenStartScreenInThisSession = true;
           scope.setState(stateEnum.startScreen, {});
         } else if (scope.state === stateEnum.startScreen)
         {
@@ -799,19 +801,14 @@ angular.module('avBooth')
                     scope.election.presentation.extra_options && 
                     scope.election.presentation.extra_options.start_screen__skip
                   ) ||
-                  (
-                    !!scope.currentElectionCredentials &&
-                    !scope.currentElectionCredentials.isFirst
-                  ) || (
-                    scope.isDemo &&
-                    scope.demoElectionIndex > 0
-                  )
+                  scope.hasSeenStartScreenInThisSession
                 )
                 {
                   checkCookies(scope.electionId);
                   goToQuestion(0, false);
                 } else {
                   checkCookies(scope.electionId);
+                  scope.hasSeenStartScreenInThisSession = true;
                   scope.setState(stateEnum.startScreen, {});
                 }
               },
