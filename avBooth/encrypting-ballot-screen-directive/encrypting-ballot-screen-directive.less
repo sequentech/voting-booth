@@ -61,7 +61,17 @@
     margin-top: -300px;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 768px) {
+    .busy-img-central, #div-id-one img, #div-id-two img {
+      height: 160px;
+    }
+
+    #div-id-two img {
+      margin-top: -160px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 992px) {
     .busy-img-central, #div-id-one img, #div-id-two img {
       height: 230px;
     }
@@ -87,7 +97,7 @@
     font-size: 0;
     display: block;
     margin: auto;
-    height: 300px;
+    max-height: 300px;
   }
 
   .step-img {
