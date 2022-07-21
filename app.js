@@ -44,24 +44,30 @@ angular.module(
   'common-ui'
 ]);
 
-angular.module('jm.i18next').config(function ($i18nextProvider, ConfigServiceProvider) {
-  // note that we do not send the language: by default, it will try the language
-  // supported by the web browser
-  $("#no-js").hide();
-
-  $i18nextProvider.options = _.extend(
+angular
+  .module('jm.i18next')
+  .config(
+    function ($i18nextProvider, ConfigServiceProvider)
     {
-      useCookie: true,
-      useLocalStorage: false,
-      fallbackLng: 'en',
-      cookieName: 'lang',
-      detectLngQS: 'lang',
-      lngWhitelist: ['en', 'es', 'gl', 'ca'],
-      resGetPath: '/booth/locales/__lng__.json',
-      defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
-    },
-    ConfigServiceProvider.i18nextInitOptions);
-});
+      // note that we do not send the language: by default, it will try the language
+      // supported by the web browser
+      $("#no-js").hide();
+
+      $i18nextProvider.options = _.extend(
+        {
+          useCookie: true,
+          useLocalStorage: false,
+          fallbackLng: 'en',
+          cookieName: 'lang',
+          detectLngQS: 'lang',
+          lngWhitelist: ['en', 'es', 'gl', 'ca'],
+          resGetPath: '/booth/locales/__lng__.json',
+          defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
+        },
+        ConfigServiceProvider.i18nextInitOptions
+      );
+    }
+  );
 
 angular.module('voting-booth').config(function($sceDelegateProvider, ConfigServiceProvider) {
   $sceDelegateProvider.resourceUrlWhitelist(ConfigServiceProvider.resourceUrlWhitelist);
