@@ -5,13 +5,15 @@
   ng-click="goToQuestion($index, true)">
 
   <!-- title -->
-  <h3 aria-level="2" class="text-brand-success question-title">
-    <span>{{$index + 1}}.</span>
-    <span class="question-title title-text" ng-bind-html="question.title"></span>
-    <div class="pull-right">
+  <div class="title-container">
+    <h3 aria-level="2" class="text-brand-success question-title">
+      <span>{{$index + 1}}.</span>
+      <span class="question-title title-text" ng-bind-html="question.title"></span>
+    </h3>
+    <h3>
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-    </div>
-  </h3>
+    </h3>
+  </div>
   <p
     class="question-description"
     ng-if="question.extra_options.review_screen__show_question_description && question.description" 
