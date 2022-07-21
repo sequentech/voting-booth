@@ -26,7 +26,8 @@ angular.module('avBooth')
     Authmethod,
     ConfigService,
     HmacService,
-    InsideIframeService
+    InsideIframeService,
+    I18nOverride
   ) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
@@ -716,6 +717,15 @@ angular.module('avBooth')
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
                 var presentation = scope.election.presentation;
+
+                // reset $window.i18nOverride
+                if (presentation && presentation.i18n_override)
+                {
+                  I18nOverride(
+                    /* overrides = */ presentation.i18n_override,
+                    /* force = */ false
+                  );
+                }
 
                 if (
                   !scope.isDemo &&
