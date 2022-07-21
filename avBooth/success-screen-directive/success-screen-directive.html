@@ -56,9 +56,9 @@
           &nbsp;
           <span
             ng-if="election.presentation.extra_options.success_screen__hide_qr_code !== true">
-            <span ng-i18next>
+            <div ng-i18next>
               avBooth.successBallotQrCode
-            </span>
+            </div>
             <div 
               class="qr-code text-center"
               ng-bind-html="qrCodeImg">
