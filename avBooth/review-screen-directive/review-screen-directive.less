@@ -25,16 +25,15 @@
   }
 
   .election-title {
-    word-break: break-word;
-    hyphens: auto;
+    word-break: keep-all;
   }
 
   .locator-text-click-audit {
     margin: 20px 0 10px 0;
 
     .review-ballot-hash-text, .review-ballot-link {
+      overflow-wrap: anywhere;
       overflow: hidden;
-      white-space: nowrap;
       text-overflow: ellipsis;
       display: block;
     }
