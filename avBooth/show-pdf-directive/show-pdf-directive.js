@@ -16,18 +16,23 @@
 **/
 
 /*
- * Selected Options directive.
+ * Show PDF directive.
  *
- * Lists the selected options for a question, allowing to change selection.
+ * Shows PDF for election, and enables voting if election is open.
  */
 angular.module('avBooth')
-  .directive('avbShowPdf', function($sce) {
+  .directive('avbShowPdf', function(ConfigService, $sce) {
 
     var link = function(scope, element, attrs) {
+      scope.organization = ConfigService.organization;
       scope.show_pdf = angular.isObject(scope.election.presentation.pdf_url);
       scope.pdf_title = scope.show_pdf? scope.election.presentation.pdf_url.title : '';
       scope.pdf_url = scope.show_pdf? $sce.trustAsResourceUrl(scope.election.presentation.pdf_url.url) : '';
       scope.enable_vote = ["started", "resumed"].includes(scope.electionState);
+      scope.expanded = false;
+      scope.toggleExpand = function () {
+        scope.expanded = !scope.expanded;
+      };
     };
 
     return {
