@@ -21,11 +21,12 @@
     <div class="container">
         <div class="row" ng-if="show_pdf">
           <div class="padded col-xs-12">
-            <h2 ng-bind-html="pdf_url.title"></h2>
+            <h2 ng-bind-html="pdf_title"></h2>
           </div>
         </div>
         <div class="row" ng-if="show_pdf">
-            <iframe src="pdf_url.url"></iframe> 
+            <iframe class="pdf-frame" src="{{ pdf_url }}">
+            </iframe>
         </div>
         <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
           <button

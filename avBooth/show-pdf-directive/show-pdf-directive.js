@@ -21,10 +21,12 @@
  * Lists the selected options for a question, allowing to change selection.
  */
 angular.module('avBooth')
-  .directive('avbShowPdf', function($window, IsService) {
+  .directive('avbShowPdf', function($sce) {
 
     var link = function(scope, element, attrs) {
       scope.show_pdf = angular.isObject(scope.election.presentation.pdf_url);
+      scope.pdf_title = scope.show_pdf? scope.election.presentation.pdf_url.title : '';
+      scope.pdf_url = scope.show_pdf? $sce.trustAsResourceUrl(scope.election.presentation.pdf_url.url) : '';
       scope.enable_vote = ["started", "resumed"].includes(scope.election.state);
       scope.pdf_url = scope.election.presentation.pdf_url;
     };
