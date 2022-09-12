@@ -14,15 +14,15 @@
 </div>
 
 <div class="content avb-content start-screen">
-    <div class="container" ng-if="show_pdf">
-      <div class="row" ng-click="toggleExpand()">
+    <div class="container pdf-container" ng-if="show_pdf">
+      <div class="row pdf-expander" ng-click="toggleExpand()">
         <span
           class="glyphicon glyphicon-chevron-down"
           ng-if="expanded"
           aria-hidden="true">
         </span>
         <span
-          class="glyphicon glyphicon-chevron-up"
+          class="glyphicon glyphicon-chevron-right"
           ng-if="!expanded"
           aria-hidden="true">
         </span>
