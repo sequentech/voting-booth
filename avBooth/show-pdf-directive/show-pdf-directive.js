@@ -23,12 +23,15 @@
 angular.module('avBooth')
   .directive('avbShowPdf', function($window, IsService) {
 
-    var link = function(scope, element, attrs) {};
+    var link = function(scope, element, attrs) {
+      scope.show_pdf = angular.isObject(scope.election.presentation.pdf_url);
+      scope.enable_vote = ["started", "resumed"].includes(scope.election.state);
+      scope.pdf_url = scope.election.presentation.pdf_url;
+    };
 
     return {
       restrict: 'AE',
-      scope: {
-      },
+      scope: true,
       link: link,
       templateUrl: 'avBooth/show-pdf-directive/show-pdf-directive.html'
     };

@@ -1,13 +1,37 @@
 <!-- top navbar -->
 <div avb-booth-header></div>
 
+<div class="wrapper-unfixed">
+  <div class="navbar-unfixed-top text-center">
+    <div class="container">
+      <div class="hidden unfixed-top-height"></div>
+      <h1
+        class="election-title"
+        ng-bind-html="parentElection && (parentElection.presentation.extra_options.public_title || parentElection.title) || !parentElection && (election.presentation.extra_options.public_title || election.title) || ''"
+      ></h1>
+      <p
+        class="election-description description" 
+        ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description) || '') | addTargetBlank"
+      ></p>
+    </div>
+  </div>
+</div>
+
 <div class="content avb-content start-screen">
     <div class="container">
-        <div>Felix was here</div>
+        <div class="row" ng-if="show_pdf">
+          <div class="padded col-xs-12">
+            <h2 ng-bind-html="pdf_url.title"></h2>
+          </div>
+        </div>
+        <div class="row" ng-if="show_pdf">
+            <iframe src="pdf_url.url"></iframe> 
+        </div>
         <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
           <button
             class="btn btn-block btn-lg btn-success-action btn-plain"
             ng-i18next="avBooth.startVoting"
+            ng-disabled="!enable_vote"
             ng-click="next()">
           </button>
         </div>
