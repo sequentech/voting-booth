@@ -731,6 +731,8 @@ angular.module('avBooth')
                   );
                 }
 
+                var showPdf = "true" === window.sessionStorage.getItem("show-pdf");
+
                 if (
                   !scope.isDemo &&
                   response.data.payload.state !== "started" &&
@@ -738,7 +740,8 @@ angular.module('avBooth')
                     !presentation ||
                     !presentation.extra_options ||
                     !presentation.extra_options.allow_voting_end_graceful_period
-                  )
+                  ) &&
+                  !showPdf
                 ) {
                   showError($i18next("avBooth.errorElectionIsNotOpen"));
                   return;
@@ -834,7 +837,6 @@ angular.module('avBooth')
                   goToQuestion(0, false);
                 } else {
                   checkCookies(scope.electionId);
-                  var showPdf = "true" === window.sessionStorage.getItem("show-pdf");
                   if (showPdf) {
                     scope.setState(stateEnum.showPdf, {});
                   } else {
