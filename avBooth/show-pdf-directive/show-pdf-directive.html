@@ -14,37 +14,39 @@
 </div>
 
 <div class="content avb-content start-screen">
+    <div class="container" ng-if="show_pdf">
+      <div class="row" ng-click="toggleExpand()">
+        <span
+          class="glyphicon glyphicon-chevron-down"
+          ng-if="expanded"
+          aria-hidden="true">
+        </span>
+        <span
+          class="glyphicon glyphicon-chevron-up"
+          ng-if="!expanded"
+          aria-hidden="true">
+        </span>
+        Show PDF
+      </div>
+      <div class="row" ng-if="expanded">
+        <div class="padded col-xs-12">
+          <p ng-bind-html="pdf_title"></p>
+        </div>
+      </div>
+      <div class="row" ng-if="expanded">
+          <iframe class="pdf-frame" src="{{ pdf_url }}">
+          </iframe>
+      </div>
+    </div>
     <div class="container">
-        <div class="row" ng-if="show_pdf">
-          <div class="padded col-xs-12">
-            <h2 ng-bind-html="pdf_title"></h2>
-          </div>
-        </div>
-        <div class="row" ng-click="toggleExpand()">
-            <span
-              class="glyphicon glyphicon-chevron-down"
-              ng-if="expanded"
-              aria-hidden="true">
-            </span>
-            <span
-              class="glyphicon glyphicon-chevron-up"
-              ng-if="!expanded"
-              aria-hidden="true">
-            </span>
-            Show PDF
-        </div>
-        <div class="row" ng-if="show_pdf">
-            <iframe class="pdf-frame" src="{{ pdf_url }}">
-            </iframe>
-        </div>
-        <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
-          <button
-            class="btn btn-block btn-lg btn-success-action btn-plain"
-            ng-i18next="avBooth.startVoting"
-            ng-disabled="!enable_vote"
-            ng-click="next()">
-          </button>
-        </div>
+      <div class="row" ng-if="enable_vote">
+        <button
+          class="btn btn-block btn-lg btn-success-action btn-plain"
+          ng-i18next="avBooth.startVoting"
+          ng-click="next()">
+        </button>
+      </div>
+      <div class="row">
         <p
           class="text-center"
         >
@@ -56,5 +58,6 @@
             avBooth.logout
           </a>
         </p>
+      </div>
     </div>
 </div>
