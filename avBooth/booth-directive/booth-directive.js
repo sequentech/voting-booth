@@ -248,7 +248,8 @@ angular.module('avBooth')
         castOrCancelScreen: 'castOrCancelScreen',
         reviewScreen: 'reviewScreen',
         castingBallotScreen: 'castingBallotScreen',
-        successScreen: 'successScreen'
+        successScreen: 'successScreen',
+        showPdf: 'showPdf'
       };
 
       // override state if in debug mode and it's provided via query param
@@ -830,8 +831,13 @@ angular.module('avBooth')
                   goToQuestion(0, false);
                 } else {
                   checkCookies(scope.electionId);
-                  scope.hasSeenStartScreenInThisSession = true;
-                  scope.setState(stateEnum.startScreen, {});
+                  var showPdf = "true" === window.sessionStorage.getItem("show-pdf");
+                  if (showPdf) {
+                    scope.setState(stateEnum.showPdf, {});
+                  } else {
+                    scope.hasSeenStartScreenInThisSession = true;
+                    scope.setState(stateEnum.startScreen, {});
+                  }
                 }
               },
               // on error, like parse error or 404
