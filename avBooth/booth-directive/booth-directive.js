@@ -479,7 +479,6 @@ angular.module('avBooth')
         } else if (scope.state === stateEnum.startScreen)
         {
           goToQuestion(0, false);
-
         } else if (scope.state === stateEnum.reviewScreen)
         {
           if (!scope.stateData.auditClicked) {
@@ -573,6 +572,10 @@ angular.module('avBooth')
                    !scope.stateData.isLastQuestion)
         {
           goToQuestion(scope.stateData.questionNum + 1, false);
+
+        } else if (scope.state === stateEnum.showPdf)
+        {
+          scope.setState(stateEnum.startScreen, {});
         }
       }
 
