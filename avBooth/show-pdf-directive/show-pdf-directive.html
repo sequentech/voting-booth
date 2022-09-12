@@ -33,7 +33,7 @@
           <p ng-bind-html="pdf_title"></p>
         </div>
       </div>
-      <div class="row" ng-if="expanded">
+      <div class="frame-container" ng-if="expanded">
           <iframe class="pdf-frame" src="{{ pdf_url }}">
           </iframe>
       </div>
@@ -45,19 +45,6 @@
           ng-i18next="avBooth.startVoting"
           ng-click="next()">
         </button>
-      </div>
-      <div class="row">
-        <p
-          class="text-center"
-        >
-          <a
-            tabindex="0"
-            ng-click="logoutAndRedirect(false)"
-            target="_top"
-            class="logout-btn btn btn-default" ng-i18next>
-            avBooth.logout
-          </a>
-        </p>
       </div>
     </div>
 </div>
