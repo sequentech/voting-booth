@@ -721,7 +721,7 @@ angular.module('avBooth')
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
                 var presentation = scope.election.presentation;
-                scope.state = response.data.payload.state;
+                scope.electionState = response.data.payload.state;
 
                 // reset $window.i18nOverride
                 if (presentation && presentation.i18n_override)
