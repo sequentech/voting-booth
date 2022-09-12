@@ -26,7 +26,7 @@ angular.module('avBooth')
     var link = function(scope, element, attrs) {
       scope.organization = ConfigService.organization;
       scope.show_pdf = angular.isObject(scope.election.presentation.pdf_url);
-      scope.pdf_title = scope.show_pdf? scope.election.presentation.pdf_url.title : '';
+      scope.pdf_text = scope.show_pdf? scope.election.presentation.pdf_url.title : '';
       scope.pdf_url = scope.show_pdf? $sce.trustAsResourceUrl(scope.election.presentation.pdf_url.url) : '';
       scope.enable_vote = ["started", "resumed"].includes(scope.electionState);
       scope.expanded = false;

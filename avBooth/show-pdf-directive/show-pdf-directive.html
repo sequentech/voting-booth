@@ -26,11 +26,11 @@
           ng-if="!expanded"
           aria-hidden="true">
         </span>
-        Show PDF
+        <span ng-i18next="avBooth.showPdf.showPdfButton"></span>
       </div>
       <div class="row" ng-if="expanded">
         <div class="padded col-xs-12">
-          <p ng-bind-html="pdf_title"></p>
+          <p class="pdf-text" ng-bind-html="pdf_text"></p>
         </div>
       </div>
       <div class="frame-container" ng-if="expanded">

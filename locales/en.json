@@ -35,6 +35,9 @@
   },
   "avBooth": {
     "logout": "Log out",
+    "showPdf": {
+      "showPdfButton": "Show PDF"
+    },
     "electionChooser": {
       "hasVoted": {
         "title": "Success!",
