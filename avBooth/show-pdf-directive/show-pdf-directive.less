@@ -15,11 +15,26 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 [avb-show-pdf] {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .avb-content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 2;
+    }
+
     .pdf-frame {
         width: 100%;
-        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 2;
     }
     .pdf-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 2;
         padding: 0;
         background-color: @av-bg;
         margin-top: 5px;
@@ -40,6 +55,9 @@
         }
     }
     .frame-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 2;
         padding: 8px;
     }
 }
