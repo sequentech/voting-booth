@@ -18,7 +18,7 @@
 </div>
 
 <div class="content avb-content start-screen">
-    <div class="container pdf-container" ng-if="show_pdf">
+    <div class="container pdf-container" ng-class="{'flex-grow': expanded}" ng-if="show_pdf">
       <div class="row pdf-expander" ng-click="toggleExpand()">
         <span
           class="glyphicon glyphicon-chevron-down"
@@ -42,7 +42,7 @@
           </iframe>
       </div>
     </div>
-    <div class="container" ng-if="enable_vote">
+    <div class="container btn-container" ng-if="enable_vote">
       <div class="row" ng-if="!expanded">
         <button
           class="btn btn-block btn-lg btn-success-action btn-plain"
