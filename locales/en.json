@@ -36,7 +36,8 @@
   "avBooth": {
     "logout": "Log out",
     "showPdf": {
-      "showPdfButton": "Show PDF"
+      "showPdfButton": "Show PDF",
+      "pdfTextDescription": "Please read the PDF before voting"
     },
     "electionChooser": {
       "hasVoted": {

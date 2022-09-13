@@ -37,7 +37,8 @@
   "avBooth": {
     "logout": "Cerrar sesión",
     "showPdf": {
-      "showPdfButton": "Mostrar PDF"
+      "showPdfButton": "Mostrar PDF",
+      "pdfTextDescription": "Por favor lea el PDF antes de votar"
     },
     "demoModeModal": {
       "header": "Cabina de votación de demo",
