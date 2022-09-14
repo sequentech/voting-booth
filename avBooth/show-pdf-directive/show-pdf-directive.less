@@ -38,8 +38,10 @@
         background-color: @av-bg;
         margin-top: 5px;
         margin-bottom: 44px;
-        transition: 0.3s linear all;
-        width: 100%;
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
     }
     .btn-container {
         width: 100;
