@@ -21,10 +21,11 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbElectionChooserScreen',  function($window, $cookies) {
+  .directive('avbElectionChooserScreen',  function($window, $cookies, ConfigService) {
 
     function link(scope, element, attrs) {
         scope.showSkippedElections = false;
+        scope.organization = ConfigService.organization;
         function findElectionCredentials(electionId, credentials) {
             return _.find(
                 credentials,
