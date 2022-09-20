@@ -36,6 +36,10 @@
   },
   "avBooth": {
     "logout": "Cerrar sesión",
+    "showPdf": {
+      "showPdfButton": "Mostrar PDF",
+      "pdfTextDescription": "Por favor lea el PDF antes de votar"
+    },
     "demoModeModal": {
       "header": "Cabina de votación de demo",
       "body": "Está ingresando a una cabina de votación de demostración. <strong>Su voto NO se emitirá</strong>. Esta cabina de votación solo tiene fines demostrativos.",

@@ -1,0 +1,61 @@
+<!-- top navbar -->
+<div avb-booth-header></div>
+
+<div class="wrapper-unfixed">
+  <div class="navbar-unfixed-top text-center">
+    <div class="container">
+      <div class="hidden unfixed-top-height"></div>
+      <h1
+        class="election-title"
+        ng-bind-html="parentElection && (parentElection.presentation.extra_options.public_title || parentElection.title) || !parentElection && (election.presentation.extra_options.public_title || election.title) || ''"
+      ></h1>
+      <p
+        class="pdf-text-description description" 
+        ng-i18next="avBooth.showPdf.pdfTextDescription"
+      ></p>
+    </div>
+  </div>
+</div>
+
+<div class="content avb-content start-screen">
+    <div class="container pdf-container" ng-class="{'flex-grow': expanded}" ng-if="show_pdf">
+      <div class="row pdf-expander" ng-click="toggleExpand()">
+        <span
+          class="glyphicon glyphicon-chevron-down"
+          ng-if="expanded"
+          aria-hidden="true">
+        </span>
+        <span
+          class="glyphicon glyphicon-chevron-right"
+          ng-if="!expanded"
+          aria-hidden="true">
+        </span>
+        <span ng-i18next="avBooth.showPdf.showPdfButton" class="show-pdf-button"></span>
+      </div>
+      <div class="row" ng-if="expanded">
+        <div class="padded col-xs-12">
+          <p class="pdf-text" ng-bind-html="pdf_text"></p>
+        </div>
+      </div>
+      <div class="frame-container" ng-if="expanded">
+          <iframe class="pdf-frame" src="{{ pdf_url }}">
+          </iframe>
+      </div>
+    </div>
+    <div class="container btn-container" ng-if="enable_vote">
+      <div class="row" ng-if="!expanded">
+        <button
+          class="btn btn-block btn-lg btn-success-action btn-plain"
+          ng-i18next="avBooth.startVoting"
+          ng-click="next()">
+        </button>
+      </div>
+      <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768" ng-if="expanded">
+        <button
+          class="btn btn-block btn-lg btn-success-action btn-plain"
+          ng-i18next="avBooth.startVoting"
+          ng-click="next()">
+        </button>
+      </div>
+    </div>
+</div>

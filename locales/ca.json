@@ -30,6 +30,9 @@
       "body": "Està ingressant a una cabina de votació de demostració. <strong>El seu vot NO s'emetrà</strong>. Aquesta cabina de votació només té finalitats demostratius.",
       "confirm": "Accepto que el meu vot NO s'emetrà"
     },
+    "showPdf": {
+      "showPdfButton": "Mostrar PDF"
+    },
     "hashForVoteNotCastModal": {
       "header": "Vot no emès",
       "body": "Està a punt de copiar el localitzador de el vot, però <strong>el seu vot encara no s'ha emès</strong>. Si voleu buscar el localitzador de el vot, no el trobarà. Qual la raó per la que vam mostrar el localitzador de l'vot en aquest moment és perquè pugui auditar la correcció de l'vot xifrat abans d'emetre'l. Si aquesta és la raó per la qual vol copiar el localitzador de l'vot, procedeixi a copiar-lo i després auditi el seu vot.",

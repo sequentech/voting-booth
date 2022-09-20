@@ -248,7 +248,8 @@ angular.module('avBooth')
         castOrCancelScreen: 'castOrCancelScreen',
         reviewScreen: 'reviewScreen',
         castingBallotScreen: 'castingBallotScreen',
-        successScreen: 'successScreen'
+        successScreen: 'successScreen',
+        showPdf: 'showPdf'
       };
 
       // override state if in debug mode and it's provided via query param
@@ -478,7 +479,6 @@ angular.module('avBooth')
         } else if (scope.state === stateEnum.startScreen)
         {
           goToQuestion(0, false);
-
         } else if (scope.state === stateEnum.reviewScreen)
         {
           if (!scope.stateData.auditClicked) {
@@ -572,6 +572,10 @@ angular.module('avBooth')
                    !scope.stateData.isLastQuestion)
         {
           goToQuestion(scope.stateData.questionNum + 1, false);
+
+        } else if (scope.state === stateEnum.showPdf)
+        {
+          scope.setState(stateEnum.startScreen, {});
         }
       }
 
@@ -717,6 +721,7 @@ angular.module('avBooth')
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
                 var presentation = scope.election.presentation;
+                scope.electionState = response.data.payload.state;
 
                 // reset $window.i18nOverride
                 if (presentation && presentation.i18n_override)
@@ -727,6 +732,8 @@ angular.module('avBooth')
                   );
                 }
 
+                var showPdf = "true" === window.sessionStorage.getItem("show-pdf");
+
                 if (
                   !scope.isDemo &&
                   response.data.payload.state !== "started" &&
@@ -734,7 +741,8 @@ angular.module('avBooth')
                     !presentation ||
                     !presentation.extra_options ||
                     !presentation.extra_options.allow_voting_end_graceful_period
-                  )
+                  ) &&
+                  !showPdf
                 ) {
                   showError($i18next("avBooth.errorElectionIsNotOpen"));
                   return;
@@ -830,8 +838,12 @@ angular.module('avBooth')
                   goToQuestion(0, false);
                 } else {
                   checkCookies(scope.electionId);
-                  scope.hasSeenStartScreenInThisSession = true;
-                  scope.setState(stateEnum.startScreen, {});
+                  if (showPdf) {
+                    scope.setState(stateEnum.showPdf, {});
+                  } else {
+                    scope.hasSeenStartScreenInThisSession = true;
+                    scope.setState(stateEnum.startScreen, {});
+                  }
                 }
               },
               // on error, like parse error or 404
