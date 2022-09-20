@@ -1,0 +1,89 @@
+/**
+ * This file is part of voting-booth.
+ * Copyright (C) 2022  Sequent Tech Inc <legal@sequentech.io>
+
+ * voting-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * voting-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+[avb-show-pdf] {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .avb-content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 2;
+    }
+
+    .pdf-frame {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 2;
+    }
+    .pdf-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        background-color: @av-bg;
+        margin-top: 5px;
+        margin-bottom: 44px;
+    }
+
+    @media (max-width: 768px) {
+        .pdf-container, .btn-container {
+            width: 100%;
+        }
+        .navbar-unfixed-top {
+            margin: 0;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        .pdf-text {
+            margin: 0;
+        }
+        .pdf-text-description {
+            margin-bottom: 0;
+        }
+        .wrapper-unfixed::after {
+            background: unset !important;
+        }
+        .pdf-text {
+            padding: 0;
+        }
+    }
+
+    .flex-grow {
+        flex-grow: 2;
+        margin-bottom: 0;
+    }
+    .pdf-text {
+        padding: 8px 0;
+    }
+    .pdf-expander {
+        padding: 10px 15px;
+        margin: 0;
+        font-size: 18px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: darken(@av-bg, 6%);
+        }
+    }
+    .frame-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 2;
+        padding: 8px;
+    }
+}
