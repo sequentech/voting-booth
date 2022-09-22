@@ -21,7 +21,12 @@
  * Shown while the ballot is being encrypted and sent.
  */
 angular.module('avBooth')
-  .directive('avbCastingBallotScreen', function($i18next, CastBallotService, $timeout, $window, InsideIframeService) {
+  .directive('avbCastingBallotScreen', function(
+    $i18next,
+    CastBallotService,
+    $timeout,
+    $window
+  ) {
 
     function link(scope, element, attrs) {
       // moves the title on top of the busy indicator
@@ -93,21 +98,7 @@ angular.module('avBooth')
         CastBallotService(castingInfo);
       }
 
-      if (InsideIframeService()) {
-        scope.setAuthorizationReceiver(castBallot, function() {
-          scope.showError($i18next("avBooth.couldntSendBallotUnauthorized",
-            {msg:"error-receiving-hmac"}));
-        });
-      $window.top.postMessage(
-        "avRequestAuthorization:" +
-        angular.toJson({
-          permission: "vote",
-          object_type: "election",
-          object_id: scope.electionId
-        }), '*');
-      } else {
-        castBallot();
-      }
+      castBallot();
     }
 
     return {
