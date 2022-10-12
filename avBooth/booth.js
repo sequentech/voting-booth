@@ -38,7 +38,10 @@ angular
       $scope, 
       $stateParams, 
       $filter, 
-      ConfigService
+      ConfigService, 
+      $i18next, 
+      $cookies,
+      InsideIframeService
     ) {
       $scope.isDemo = $stateParams.isDemo || false;
       $scope.electionId = $stateParams.id;
