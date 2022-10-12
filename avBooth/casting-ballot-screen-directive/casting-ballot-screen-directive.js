@@ -92,7 +92,8 @@ angular.module('avBooth')
         CastBallotService(castingInfo);
       }
 
-      if (InsideIframeService()) {
+      var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
+      if (!credentialsStr && InsideIframeService()) {
         scope.setAuthorizationReceiver(castBallot, function() {
           scope.showError($i18next("avBooth.couldntSendBallotUnauthorized",
             {msg:"error-receiving-hmac"}));
