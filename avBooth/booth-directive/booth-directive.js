@@ -218,14 +218,18 @@ angular.module('avBooth')
       autoredirectToLoginAfterTimeout();
 
       function checkCookies(electionId) {
-        if (scope.isDemo || InsideIframeService()) {
+        if (scope.isDemo) {
           return;
         }
 
         var idToCheck = (!!scope.parentId) ? scope.parentId : electionId;
         var cookie = $cookies.get("authevent_" + idToCheck);
         if (!cookie) {
-          redirectToLogin(/*isSuccess*/ false);
+          if (InsideIframeService()) {
+            return;
+          } else {
+            redirectToLogin(/*isSuccess*/ false);
+          }
         }
       }
 
@@ -614,12 +618,16 @@ angular.module('avBooth')
 
       // Try to read and process voting credentials
       function readVoteCredentials() {
-        if (scope.isDemo || InsideIframeService()) {
+        if (scope.isDemo) {
           return;
         }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
         if (!credentialsStr) {
-          redirectToLogin(/* isSuccess */ false);
+          if (InsideIframeService()) {
+            return;
+          } else {
+            redirectToLogin(/* isSuccess */ false);
+          }
         }
         scope.credentials = [];
         var currentElectionCredentials = null;
