@@ -225,7 +225,11 @@ angular.module('avBooth')
         var idToCheck = (!!scope.parentId) ? scope.parentId : electionId;
         var cookie = $cookies.get("authevent_" + idToCheck);
         if (!cookie) {
-          redirectToLogin(/*isSuccess*/ false);
+          if (InsideIframeService()) {
+            return;
+          } else {
+            redirectToLogin(/*isSuccess*/ false);
+          }
         }
       }
 
@@ -619,7 +623,11 @@ angular.module('avBooth')
         }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
         if (!credentialsStr) {
-          redirectToLogin(/* isSuccess */ false);
+          if (InsideIframeService()) {
+            return;
+          } else {
+            redirectToLogin(/* isSuccess */ false);
+          }
         }
         scope.credentials = [];
         var currentElectionCredentials = null;
@@ -884,6 +892,38 @@ angular.module('avBooth')
         }
       }
 
+      // Function that receives and processes authorization token when this
+      // this token is sent by a parent window when we are inside an iframe
+      function avPostAuthorization(event, errorHandler) {
+        var action = "avPostAuthorization:";
+        if (event.data.substr(0, action.length) !== action) {
+          return;
+        }
+
+        var khmacStr = event.data.substr(action.length, event.data.length);
+        var khmac = HmacService.checkKhmac(khmacStr);
+        if (!khmac) {
+          scope.authorizationReceiverErrorHandler();
+          showError($i18next("avBooth.errorLoadingElection"));
+          return;
+        }
+        scope.authorizationHeader = khmacStr;
+        var splitMessage = khmac.message.split(":");
+
+        if (splitMessage.length < 4) {
+          scope.authorizationReceiverErrorHandler();
+          return;
+        }
+        scope.voterId = splitMessage[0];
+        scope.authorizationReceiver();
+        scope.authorizationReceiver = null;
+      }
+
+      function setAuthorizationReceiver(callback, errorCallback) {
+        scope.authorizationReceiver = callback;
+        scope.authorizationReceiverErrorHandler = errorCallback;
+      }
+
       function increaseDemoElectionIndex() {
         scope.demoElectionIndex += 1;
       }
@@ -904,6 +944,7 @@ angular.module('avBooth')
         launchHelp: launchHelp,
         backFromHelp: backFromHelp,
         goToQuestion: goToQuestion,
+        setAuthorizationReceiver: setAuthorizationReceiver,
         mapQuestion: mapQuestion,
         retrieveElectionConfig: retrieveElectionConfig,
         next: next,
@@ -946,6 +987,9 @@ angular.module('avBooth')
 
       // set the initial state
       setState(stateEnum.receivingElection, {});
+
+      // allow receival of khmac token by parent window
+      $window.addEventListener('message', avPostAuthorization, false);
 
       // retrieve election config
       retrieveElectionConfig();
