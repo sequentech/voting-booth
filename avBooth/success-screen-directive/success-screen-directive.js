@@ -410,13 +410,6 @@ angular.module('avBooth')
         ) {
           var typeNumber = 0;
           var errorCorrectionLevel = 'L';
-          scope.ballotTrackerUrl = window.location.protocol + 
-            '//' + 
-            window.location.host + 
-            '/election/' + 
-            scope.election.id + 
-            '/public/ballot-locator/' + 
-            scope.stateData.ballotHash;
           var qr = QrCodeService(typeNumber, errorCorrectionLevel);
           qr.addData(scope.ballotTrackerUrl);
           qr.make();
@@ -453,6 +446,14 @@ angular.module('avBooth')
       scope.pdf = {value: null, fileName: ''};
 
       scope.successText = text({electionId: scope.election.id});
+
+      scope.ballotTrackerUrl = window.location.protocol + 
+        '//' + 
+        window.location.host + 
+        '/election/' + 
+        scope.election.id + 
+        '/public/ballot-locator/' + 
+        scope.stateData.ballotHash;
 
       generateQrCode();
 
