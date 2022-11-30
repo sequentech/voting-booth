@@ -44,6 +44,7 @@ angular
       InsideIframeService
     ) {
       $scope.isDemo = $stateParams.isDemo || false;
+      $scope.isPreview = $stateParams.isPreview || false;
       $scope.electionId = $stateParams.id;
       $scope.baseUrl = ConfigService.baseUrl;
       $scope.config = $filter('json')(ConfigService);
