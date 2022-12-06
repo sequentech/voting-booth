@@ -15,8 +15,6 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-const _ = require("angular-mocks/ngMock");
-
 /*
  * Simultaneous questions screen directive.
  *
