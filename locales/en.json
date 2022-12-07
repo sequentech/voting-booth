@@ -59,6 +59,11 @@
       "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
       "confirm": "I accept my vote will NOT be cast"
     },
+    "previewModeModal": {
+      "header": "Live Preview voting booth",
+      "body": "You are entering a live preview voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
+      "confirm": "I accept my vote will NOT be cast"
+    },
     "hashForVoteNotCastModal": {
       "header": "Vote has not been cast",
       "body": "You are about to copy the ballot tracker id, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the ballot tracker id at this stage is to allow you to audit the correctness of the encrypted ballot before casting it. If that's why you want to copy the tracker id, please proceed to copy it and then proceed to audit the vote.",
