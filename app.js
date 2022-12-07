@@ -115,7 +115,7 @@ angular.module('voting-booth').config(
           isDemo: true
         }
       })
-      .state('election.booth-demo', {
+      .state('election.booth-preview', {
         url: '/:id/preview-vote',
         templateUrl: 'avBooth/booth.html',
         controller: "BoothController",
