@@ -65,6 +65,25 @@ angular.module('avBooth')
           }
         );
 
+        scope.showCheckableList = function(question) {
+          return (
+            angular.isDefined(question.extra_options) &&
+            angular.isDefined(question.extra_options.enable_checkable_lists) &&
+            _.contains(
+              ["allow-selecting-candidates-and-lists", "allow-selecting-lists"],
+              question.extra_options.enable_checkable_lists
+            )
+          );
+        };
+
+        scope.isReadOnlyCandidate = function(question) {
+          return (
+            angular.isDefined(question.extra_options) &&
+            angular.isDefined(question.extra_options.enable_checkable_lists) &&
+            "allow-selecting-lists" === question.extra_options.enable_checkable_lists
+          );
+        };
+
         // set some data like the pub key of each question
         _.each(
           scope.election.questions,
@@ -833,25 +852,6 @@ angular.module('avBooth')
         function focusContinueBtn() {
           angular.element.find('#continue-btn')[0].focus();
         }
-
-        scope.showCheckableList = function(question) {
-          return (
-            angular.isDefined(question.extra_options) &&
-            angular.isDefined(question.extra_options.enable_checkable_lists) &&
-            _.contains(
-              ["allow-selecting-candidates-and-lists", "allow-selecting-lists"],
-              question.extra_options.enable_checkable_lists
-            )
-          );
-        };
-
-        scope.isReadOnlyCandidate = function(question) {
-          return (
-            angular.isDefined(question.extra_options) &&
-            angular.isDefined(question.extra_options.enable_checkable_lists) &&
-            "allow-selecting-lists" === question.extra_options.enable_checkable_lists
-          );
-        };
 
         // questionNext calls to scope.next() if user selected enough options.
         // Shows a warning to confirm blank vote in any of the questions before
