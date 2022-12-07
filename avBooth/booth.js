@@ -46,7 +46,7 @@ angular
     ) {
       $scope.isDemo = $stateParams.isDemo || false;
       $scope.previewElection = ($location.search())['preview-election'];
-      $scope.isPreview = $stateParams.isPreview && _.isObject($scope.previewElection) || false;
+      $scope.isPreview = $stateParams.isPreview && _.isString($scope.previewElection) || false;
       $scope.electionId = $stateParams.id;
       $scope.baseUrl = ConfigService.baseUrl;
       $scope.config = $filter('json')(ConfigService);

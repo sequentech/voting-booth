@@ -1016,6 +1016,9 @@ angular.module('avBooth')
         // Variable that stablishes if the election is a live preview or not.
         isPreview: (attrs.isPreview === "true"),
 
+        // Variable that stores the preview election data.
+        previewElection: (attrs.previewElection),
+
         // In case of parent-election, which children election should be loading
         // currently is set here
         demoElectionIndex: -1,
