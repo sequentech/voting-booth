@@ -72,6 +72,8 @@ angular.module('avBooth')
           {
             question.natural_order_index = index;
             question.publicKey = scope.pubkeys[index];
+            question.are_candidates_read_only = scope.isReadOnlyCandidate(question);
+            question.are_lists_checkable = scope.showCheckableList(question);
           }
         );
 
