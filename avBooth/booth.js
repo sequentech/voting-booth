@@ -45,7 +45,8 @@ angular
       InsideIframeService
     ) {
       $scope.isDemo = $stateParams.isDemo || false;
-      $scope.previewElection = ($location.search())['preview-election'];
+      var previewElectionParam = ($location.search())['preview-election'];
+      $scope.previewElection = previewElectionParam && decodeURIComponent(previewElectionParam);
       $scope.isPreview = $stateParams.isPreview && _.isString($scope.previewElection) || false;
       $scope.electionId = $stateParams.id;
       $scope.baseUrl = ConfigService.baseUrl;
