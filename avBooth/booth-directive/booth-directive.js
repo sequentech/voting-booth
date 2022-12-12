@@ -721,6 +721,11 @@ angular.module('avBooth')
           // process vote credentials
           readVoteCredentials();
 
+          let previewElection;
+          if (scope.isPreview) {
+            previewElection = JSON.parse(scope.previewElection);
+          }
+
           let electionPromise;
           if (!scope.isPreview) {
             electionPromise = $http.get(
@@ -735,7 +740,7 @@ angular.module('avBooth')
             deferred.resolve({
               data: {
                 payload: {
-                  configuration: scope.previewElection.ballot_box,
+                  configuration: JSON.stringify(previewElection.ballot_box),
                   state: "started",
                   pks: []
                 }
@@ -915,7 +920,7 @@ angular.module('avBooth')
             deferred.resolve({
               data: {
                 status: "ok",
-                events: scope.previewElection.authapi
+                events: previewElection.authapi
               }
             });
 
