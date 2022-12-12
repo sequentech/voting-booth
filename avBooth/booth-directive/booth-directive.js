@@ -739,11 +739,7 @@ angular.module('avBooth')
 
             deferred.resolve({
               data: {
-                payload: {
-                  configuration: JSON.stringify(previewElection.ballot_box.configuration),
-                  state: "started",
-                  pks: []
-                }
+                payload: previewElection.ballot_box
               }
             });
 
