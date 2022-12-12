@@ -735,7 +735,7 @@ angular.module('avBooth')
             deferred.resolve({
               data: {
                 payload: {
-                  configuration: scope.previewElection,
+                  configuration: scope.previewElection.ballot_box,
                   state: "started",
                   pks: []
                 }
@@ -906,7 +906,23 @@ angular.module('avBooth')
               }
             );
 
-          Authmethod.viewEvent(scope.electionId)
+          let authEventPromise;
+          if (!scope.isPreview) {
+            authEventPromise = Authmethod.viewEvent(scope.electionId);
+          } else {
+            let deferred = $q.defer();
+
+            deferred.resolve({
+              data: {
+                status: "ok",
+                events: scope.previewElection.authapi
+              }
+            });
+
+            authEventPromise = deferred.promise;
+          }
+
+          authEventPromise
             .then(
               function onSuccess(response) {
                 iamRetrieved = true;
@@ -914,7 +930,7 @@ angular.module('avBooth')
                   scope.authEvent = response.data.events;
                 }
                 execIfAllRetrieved(function () {
-                  if (scope.isVirtual) {
+                  if (scope.isVirtual || scope.isPreview) {
                     if (!scope.parentAuthEvent) {
                       scope.parentAuthEvent = angular.copy(
                         response.data.events
