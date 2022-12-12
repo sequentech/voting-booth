@@ -866,7 +866,7 @@ angular.module('avBooth')
                 // re-process vote credentials in case isVirtual changed
                 readVoteCredentials();
 
-                if (scope.isVirtual) {
+                if (scope.isVirtual || scope.isPreview) {
                   if (hasAuthapiError) {
                     showError($i18next("avBooth.errorLoadingElection"));
                     return;
