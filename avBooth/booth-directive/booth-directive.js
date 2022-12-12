@@ -740,7 +740,7 @@ angular.module('avBooth')
             deferred.resolve({
               data: {
                 payload: {
-                  configuration: JSON.stringify(previewElection.ballot_box),
+                  configuration: JSON.stringify(previewElection.ballot_box.configuration),
                   state: "started",
                   pks: []
                 }
@@ -866,7 +866,7 @@ angular.module('avBooth')
                 // re-process vote credentials in case isVirtual changed
                 readVoteCredentials();
 
-                if (scope.isVirtual || scope.isPreview) {
+                if (scope.isVirtual) {
                   if (hasAuthapiError) {
                     showError($i18next("avBooth.errorLoadingElection"));
                     return;
@@ -935,7 +935,7 @@ angular.module('avBooth')
                   scope.authEvent = response.data.events;
                 }
                 execIfAllRetrieved(function () {
-                  if (scope.isVirtual || scope.isPreview) {
+                  if (scope.isVirtual) {
                     if (!scope.parentAuthEvent) {
                       scope.parentAuthEvent = angular.copy(
                         response.data.events
