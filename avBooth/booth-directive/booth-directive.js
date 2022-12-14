@@ -725,8 +725,9 @@ angular.module('avBooth')
           let ballotBoxData;
           let authapiData;
           if (scope.isPreview) {
-            authapiData = ElectionCreation.generateAutheventData(el);
-            ballotBoxData = ElectionCreation.generateElectionData(el);
+            var previewElection = JSON.parse(scope.previewElection);
+            authapiData = ElectionCreation.generateAutheventData(previewElection);
+            ballotBoxData = ElectionCreation.generateElectionData(previewElection);
             authapiData.id = scope.electionId;
             ballotBoxData.id = scope.electionId;
           }
