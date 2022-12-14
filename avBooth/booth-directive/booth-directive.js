@@ -28,6 +28,7 @@ angular.module('avBooth')
     ConfigService,
     HmacService,
     InsideIframeService,
+    ElectionCreation,
     I18nOverride
   ) {
     // we use it as something similar to a controller here
@@ -721,9 +722,13 @@ angular.module('avBooth')
           // process vote credentials
           readVoteCredentials();
 
-          let previewElection;
+          let ballotBoxData;
+          let authapiData;
           if (scope.isPreview) {
-            previewElection = JSON.parse(scope.previewElection);
+            authapiData = ElectionCreation.generateAutheventData(el);
+            ballotBoxData = ElectionCreation.generateElectionData(el);
+            authapiData.id = scope.electionId;
+            ballotBoxData.id = scope.electionId;
           }
 
           let electionPromise;
@@ -739,7 +744,7 @@ angular.module('avBooth')
 
             deferred.resolve({
               data: {
-                payload: previewElection.ballot_box
+                payload: ballotBoxData
               }
             });
 
@@ -916,7 +921,7 @@ angular.module('avBooth')
             deferred.resolve({
               data: {
                 status: "ok",
-                events: previewElection.authapi
+                events: authapiData
               }
             });
 
