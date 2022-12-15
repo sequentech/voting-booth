@@ -727,11 +727,15 @@ angular.module('avBooth')
           if (scope.isPreview) {
             var previewElection = JSON.parse(scope.previewElection);
             var foundElection;
-            if (previewElection.length === 1 || electionId === undefined) {
+            if (electionId === undefined) { 
+              electionId = parseInt(attrs.electionId);
+            }
+
+            if (previewElection.length === 1) {
               foundElection = previewElection[0];
-              foundElection.id = electionId || parseInt(attrs.electionId);
+              foundElection.id = foundElection.id || electionId;
             } else {
-              foundElection = previewElection.find(function (element) { element.id === electionId});
+              foundElection = previewElection.find(function (element) { return element.id === electionId; });
             }
             authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
             ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
