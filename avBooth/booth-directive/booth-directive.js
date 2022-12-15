@@ -726,10 +726,15 @@ angular.module('avBooth')
           let authapiData;
           if (scope.isPreview) {
             var previewElection = JSON.parse(scope.previewElection);
-            authapiData = ElectionCreation.generateAuthapiResponse(previewElection[0]);
-            ballotBoxData = ElectionCreation.generateBallotBoxResponse(previewElection[0]);
-            authapiData.id = scope.electionId;
-            ballotBoxData.id = scope.electionId;
+            var foundElection;
+            if (previewElection.length === 1 || electionId === undefined) {
+              foundElection = previewElection[0];
+              foundElection.id = electionId || parseInt(attrs.electionId);
+            } else {
+              foundElection = previewElection.find(function (element) { element.id === electionId});
+            }
+            authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
+            ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
           }
 
           let electionPromise;
