@@ -733,9 +733,9 @@ angular.module('avBooth')
 
             if (previewElection.length === 1) {
               foundElection = previewElection[0];
-              foundElection.id = foundElection.id || electionId;
+              foundElection.id = foundElection.id || (electionId && parseInt(electionId));
             } else {
-              foundElection = previewElection.find(function (element) { return element.id === electionId; });
+              foundElection = previewElection.find(function (element) { return element.id === parseInt(electionId); });
             }
             authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
             ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
