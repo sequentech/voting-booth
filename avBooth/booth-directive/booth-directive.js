@@ -725,7 +725,7 @@ angular.module('avBooth')
           let ballotBoxData;
           let authapiData;
           if (scope.isPreview) {
-            var previewElection = JSON.parse(scope.previewElection);
+            var previewElection = sessionStorage.getItem(parseInt(attrs.electionId));
             var foundElection;
             if (electionId === undefined) { 
               electionId = parseInt(attrs.electionId);
@@ -1047,9 +1047,6 @@ angular.module('avBooth')
 
         // Variable that stablishes if the election is a live preview or not.
         isPreview: (attrs.isPreview === "true"),
-
-        // Variable that stores the preview election data.
-        previewElection: (attrs.previewElection),
 
         // In case of parent-election, which children election should be loading
         // currently is set here

@@ -41,13 +41,10 @@ angular
       ConfigService, 
       $i18next, 
       $cookies,
-      $location,
       InsideIframeService
     ) {
       $scope.isDemo = $stateParams.isDemo || false;
-      var previewElectionParam = ($location.search())['preview-election'];
-      $scope.previewElection = previewElectionParam && decodeURIComponent(previewElectionParam);
-      $scope.isPreview = $stateParams.isPreview && _.isString($scope.previewElection) || false;
+      $scope.isPreview = $stateParams.isPreview || false;
       $scope.electionId = $stateParams.id;
       $scope.baseUrl = ConfigService.baseUrl;
       $scope.config = $filter('json')(ConfigService);
