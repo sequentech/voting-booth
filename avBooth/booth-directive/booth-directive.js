@@ -725,7 +725,7 @@ angular.module('avBooth')
           let ballotBoxData;
           let authapiData;
           if (scope.isPreview) {
-            var previewElection = sessionStorage.getItem(parseInt(attrs.electionId));
+            var previewElection = JSON.parse(sessionStorage.getItem(parseInt(attrs.electionId)));
             var foundElection;
             if (electionId === undefined) { 
               electionId = parseInt(attrs.electionId);
