@@ -750,15 +750,15 @@ angular.module('avBooth')
               }
             );
           } else {
-            var deferred = $q.defer();
+            var deferredElection = $q.defer();
 
-            deferred.resolve({
+            deferredElection.resolve({
               data: {
                 payload: ballotBoxData
               }
             });
 
-            electionPromise = deferred.promise;
+            electionPromise = deferredElection.promise;
           }
 
           electionPromise
@@ -926,16 +926,16 @@ angular.module('avBooth')
           if (!scope.isPreview) {
             authEventPromise = Authmethod.viewEvent(scope.electionId);
           } else {
-            var deferred = $q.defer();
+            var deferredAuthEvent = $q.defer();
 
-            deferred.resolve({
+            deferredAuthEvent.resolve({
               data: {
                 status: "ok",
                 events: authapiData
               }
             });
 
-            authEventPromise = deferred.promise;
+            authEventPromise = deferredAuthEvent.promise;
           }
 
           authEventPromise
