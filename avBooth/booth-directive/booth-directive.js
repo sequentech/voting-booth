@@ -722,8 +722,8 @@ angular.module('avBooth')
           // process vote credentials
           readVoteCredentials();
 
-          let ballotBoxData;
-          let authapiData;
+          var ballotBoxData;
+          var authapiData;
           if (scope.isPreview) {
             var previewElection = JSON.parse(sessionStorage.getItem(parseInt(attrs.electionId)));
             var foundElection;
@@ -741,7 +741,7 @@ angular.module('avBooth')
             ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
           }
 
-          let electionPromise;
+          var electionPromise;
           if (!scope.isPreview) {
             electionPromise = $http.get(
               scope.baseUrl + "election/" + scope.electionId,
@@ -750,7 +750,7 @@ angular.module('avBooth')
               }
             );
           } else {
-            let deferred = $q.defer();
+            var deferred = $q.defer();
 
             deferred.resolve({
               data: {
@@ -922,11 +922,11 @@ angular.module('avBooth')
               }
             );
 
-          let authEventPromise;
+          var authEventPromise;
           if (!scope.isPreview) {
             authEventPromise = Authmethod.viewEvent(scope.electionId);
           } else {
-            let deferred = $q.defer();
+            var deferred = $q.defer();
 
             deferred.resolve({
               data: {
