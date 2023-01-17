@@ -17,6 +17,7 @@
 
 angular.module('avBooth')
   .directive('avBooth', function(
+    $q,
     $modal,
     $cookies,
     $http,
@@ -27,6 +28,7 @@ angular.module('avBooth')
     ConfigService,
     HmacService,
     InsideIframeService,
+    ElectionCreation,
     I18nOverride
   ) {
     // we use it as something similar to a controller here
@@ -41,6 +43,7 @@ angular.module('avBooth')
       // when we are not inside an iframe and voter id is not set, this is a
       // demo booth
       scope.isDemo = (attrs.isDemo === "true");
+      scope.isPreview = (attrs.isPreview === "true");
       scope.documentation = ConfigService.documentation;
       scope.hasSeenStartScreenInThisSession = false;
 
@@ -218,7 +221,7 @@ angular.module('avBooth')
       autoredirectToLoginAfterTimeout();
 
       function checkCookies(electionId) {
-        if (scope.isDemo) {
+        if (scope.isDemo || scope.isPreview) {
           return;
         }
 
@@ -487,7 +490,7 @@ angular.module('avBooth')
         {
           if (!scope.stateData.auditClicked) {
             // in a demo, we don't send the ballot, we just show as if we had sent it
-            if (scope.isDemo) {
+            if (scope.isDemo || scope.isPreview) {
               scope.setState(stateEnum.successScreen, {
                 ballotHash: scope.stateData.ballotHash,
                 ballotResponse: {
@@ -618,7 +621,7 @@ angular.module('avBooth')
 
       // Try to read and process voting credentials
       function readVoteCredentials() {
-        if (scope.isDemo) {
+        if (scope.isDemo || scope.isPreview) {
           return;
         }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
@@ -719,12 +722,46 @@ angular.module('avBooth')
           // process vote credentials
           readVoteCredentials();
 
-          $http.get(
-            scope.baseUrl + "election/" + scope.electionId,
-            {
-              headers: {'Authorization': scope.authorizationHeader || null}
+          var ballotBoxData;
+          var authapiData;
+          if (scope.isPreview) {
+            var previewElection = JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId)));
+            var foundElection;
+            if (electionId === undefined) { 
+              electionId = parseInt(attrs.electionId);
             }
-          )
+
+            if (previewElection.length === 1) {
+              foundElection = previewElection[0];
+              foundElection.id = foundElection.id || (electionId && parseInt(electionId));
+            } else {
+              foundElection = previewElection.find(function (element) { return element.id === parseInt(electionId); });
+            }
+            authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
+            ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
+          }
+
+          var electionPromise;
+          if (!scope.isPreview) {
+            electionPromise = $http.get(
+              scope.baseUrl + "election/" + scope.electionId,
+              {
+                headers: {'Authorization': scope.authorizationHeader || null}
+              }
+            );
+          } else {
+            var deferredElection = $q.defer();
+
+            deferredElection.resolve({
+              data: {
+                payload: ballotBoxData
+              }
+            });
+
+            electionPromise = deferredElection.promise;
+          }
+
+          electionPromise
             .then(
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
@@ -770,6 +807,7 @@ angular.module('avBooth')
 
                 // global variables
                 $window.isDemo = scope.isDemo;
+                $window.isPreview = scope.isPreview;
                 $window.election = scope.election;
 
                 // index questions
@@ -802,6 +840,30 @@ angular.module('avBooth')
                           header: "avBooth.demoModeModal.header",
                           body: "avBooth.demoModeModal.body",
                           continue: "avBooth.demoModeModal.confirm"
+                        };
+                      }
+                    }
+                  });
+                }
+
+                // If it's a live preview booth and we are at this stage, ensure to
+                // show the modal "this is a live preview booth" warning
+                if (scope.isPreview && !scope.shownIsPreviewModal) {
+                  scope.shownIsPreviewModal = true;
+                  $modal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+                    controller: "InvalidAnswersController",
+                    size: 'md',
+                    resolve: {
+                      errors: function() { return []; },
+                      data: function() {
+                        return {
+                          errors: [],
+                          header: "avBooth.previewModeModal.header",
+                          body: "avBooth.previewModeModal.body",
+                          continue: "avBooth.previewModeModal.confirm"
                         };
                       }
                     }
@@ -860,7 +922,23 @@ angular.module('avBooth')
               }
             );
 
-          Authmethod.viewEvent(scope.electionId)
+          var authEventPromise;
+          if (!scope.isPreview) {
+            authEventPromise = Authmethod.viewEvent(scope.electionId);
+          } else {
+            var deferredAuthEvent = $q.defer();
+
+            deferredAuthEvent.resolve({
+              data: {
+                status: "ok",
+                events: authapiData
+              }
+            });
+
+            authEventPromise = deferredAuthEvent.promise;
+          }
+
+          authEventPromise
             .then(
               function onSuccess(response) {
                 iamRetrieved = true;
@@ -966,6 +1044,12 @@ angular.module('avBooth')
 
         // Variable that stablishes if the election is a demo or not.
         isDemo: (attrs.isDemo === "true"),
+
+        // Variable that stablishes if the election is a live preview or not.
+        isPreview: (attrs.isPreview === "true"),
+
+        // Variable that stores the preview election data.
+        previewElection: (attrs.previewElection),
 
         // In case of parent-election, which children election should be loading
         // currently is set here
