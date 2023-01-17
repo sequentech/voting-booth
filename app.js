@@ -115,6 +115,14 @@ angular.module('voting-booth').config(
           isDemo: true
         }
       })
+      .state('election.booth-preview', {
+        url: '/:id/preview-vote',
+        templateUrl: 'avBooth/booth.html',
+        controller: "BoothController",
+        params: {
+          isPreview: true
+        }
+      })
       .state('election.public.show.home.simple', {
         template: '<div ave-simple-question></div>'
       })
