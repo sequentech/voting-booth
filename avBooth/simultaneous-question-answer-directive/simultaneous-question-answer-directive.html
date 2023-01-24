@@ -3,19 +3,19 @@
   ng-class="{'is-category-list': isCategoryList}"
 >
   <div
-    tabindex="0"
     role="checkbox"
     aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
     aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
     class="opt vertilize-wrapper"
-    ng-click="!isWriteIn && toggleSelectItem(question, answer)"
+    ng-click="!isWriteIn && question.tally_type === 'plurality-at-large' && toggleSelectItem(question, answer)"
   >
     <div class="vertilize">
       <!-- show checkbox icon -->
       <div class="vertilize-col answer-glyphicon">
         <span 
           class="glyphicon"
-          aria-hidden="true"
+          tabindex="0"
+          aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="question.tally_type === 'plurality-at-large'"
           ng-click="isWriteIn && toggleSelectItem(question, answer)"
           ng-class="{
@@ -29,7 +29,7 @@
           tabindex="0"
           role="checkbox"
           ng-if="!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
-          aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
+          aria-label="{{answer.text}} check {{check}}"
           ng-repeat="check in answer_cumulative_checks"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           ng-click="toggleSelectItemCumulative(question, answer, check)"
@@ -44,7 +44,7 @@
           tabindex="0"
           role="checkbox"
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
-          aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
+          aria-label="{{answer.text}} check invalid"
           ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
           ng-click="toggleSelectItemCumulative(question, answer, 0)"
           ng-class="{
