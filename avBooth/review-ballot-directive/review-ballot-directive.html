@@ -2,6 +2,7 @@
   class="question padded"
   ng-repeat="question in election.questions"
   ng-if="!question.disabled && question.disabled !== true"
+  aria-label="{{ editActionText }}"
   ng-click="goToQuestion($index, true)">
 
   <!-- title -->
