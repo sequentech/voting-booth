@@ -45,6 +45,11 @@
       "body": "Está ingresando a una cabina de votación de demostración. <strong>Su voto NO se emitirá</strong>. Esta cabina de votación solo tiene fines demostrativos.",
       "confirm": "Acepto que mi voto NO se emitirá"
     },
+    "logoutWarnModal": {
+      "header": "La sesión caducará",
+      "body": "Tu sesión va a caducar. En un minuto serás redirigido si no has terminado de emitir tu voto.",
+      "confirm": "Cerrar"
+    },
     "previewModeModal": {
       "header": "Previsualización de cabina de votación",
       "body": "Está ingresando a una cabina de votación de demostración. <strong>Su voto NO se emitirá</strong>. Esta cabina de votación solo tiene fines demostrativos.",

@@ -54,6 +54,11 @@
         "description": "Note: disabled elections mean you have already voted or you don't have permission to vote."
       }
     },
+    "logoutWarnModal": {
+      "header": "Session will expire",
+      "body": "Your session is about to expire. In one minute you will be redirected if you haven't finished casting your vote.",
+      "confirm": "Close"
+    },
     "demoModeModal": {
       "header": "Demo voting booth",
       "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
