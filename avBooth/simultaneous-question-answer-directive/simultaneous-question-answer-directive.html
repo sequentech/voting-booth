@@ -30,7 +30,7 @@
           tabindex="0"
           role="checkbox"
           ng-if="!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
-          aria-label="{{answer.text}} check {{check + 1}}"
+          aria-label="{{answer.text}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
           ng-repeat="check in answer_cumulative_checks"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           ng-click="toggleSelectItemCumulative(question, answer, check)"
