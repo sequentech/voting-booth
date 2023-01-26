@@ -269,7 +269,8 @@
       "castTitle": "emitido",
       "castDescription": "usando un canal seguro y verificando su identidad",
       "anonymizedTitle": "anonimizado",
-      "anonymizedDescription": "para que el recuento no revele el sentido de su voto"
+      "anonymizedDescription": "para que el recuento no revele el sentido de su voto",
+      "description": "Su voto está siendo cifrado para que nadie pueda saber qué opciones escogió"
     },
 
     "tooFewAnswers": {
