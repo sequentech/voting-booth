@@ -21,7 +21,7 @@
  * Shows a list with question and user answers.
  */
 angular.module('avBooth')
-  .directive('avbReviewBallot', function()
+  .directive('avbReviewBallot', function($i18next)
   {
     var link = function(scope, element, attrs)
     {
@@ -111,6 +111,8 @@ angular.module('avBooth')
           }
         }[question.tally_type]();
       };
+
+      scope.editActionText = $i18next('avBooth.reviewScreen.editAction');
     };
 
     return {

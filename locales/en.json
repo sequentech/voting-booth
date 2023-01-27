@@ -21,6 +21,7 @@
   },
   "avCommon": {
     "cancel": "Cancel",
+    "changeLanguageMenu": "Change Language",
     "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Tweet this election!",
     "votingSystem": "Voting System",
@@ -49,6 +50,11 @@
         "title": "Choose an election to vote",
         "description": "Note: disabled elections mean you have already voted or you don't have permission to vote."
       }
+    },
+    "logoutWarnModal": {
+      "header": "Session will expire",
+      "body": "Your session is about to expire. In one minute you will be redirected if you haven't finished casting your vote.",
+      "confirm": "Close"
     },
     "demoModeModal": {
       "header": "Demo voting booth",
@@ -284,7 +290,8 @@
       "castTitle": "cast",
       "castDescription": "using a secure channel and verifying your identity",
       "anonymizedTitle": "anonymized",
-      "anonymizedDescription": "so that the tally does not reveal which way you voted"
+      "anonymizedDescription": "so that the tally does not reveal which way you voted",
+      "description": "Your ballot is being encrypted so that nobody can know what options you chose"
     },
 
     "tooFewAnswers": {

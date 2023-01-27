@@ -2,6 +2,7 @@
   class="question padded"
   ng-repeat="question in election.questions"
   ng-if="!question.disabled && question.disabled !== true"
+  aria-label="{{ editActionText }}"
   ng-click="goToQuestion($index, true)">
 
   <!-- title -->
@@ -10,9 +11,9 @@
       <span>{{$index + 1}}.</span>
       <span class="question-title title-text" ng-bind-html="question.title"></span>
     </h3>
-    <h3>
+    <span class="edit-btn">
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-    </h3>
+    </span>
   </div>
   <p
     class="question-description"
