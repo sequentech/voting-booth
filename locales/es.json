@@ -69,6 +69,7 @@
       "cancel": "Cancelar"
     },
     "errors": {
+      "question-lambda-invalid": "Votación '__qtitle__': Voto inválido.",
       "question-lambda-blank": "Votación '__qtitle__': seleccionó 0 candidaturas. Voto en blanco.",
       "question-lambda-min": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, menos que el mínimo de __min__. Voto inválido.",
       "question-lambda-max": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, más que el máximo de __max__. Voto inválido.",
