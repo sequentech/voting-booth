@@ -122,6 +122,19 @@ angular.module('avBooth')
                   },
                   postfix: "-blank"
                 },
+                // raise if vote is explicitly invalid if not checkerTypeFlag
+                {
+                  check: "lambda",
+                  validator: function (question)
+                  {
+                    return !(
+                      checkerTypeFlag === "warn-invalid-implicit-and-explicit" &&
+                      question.invalidVoteAnswer &&
+                      question.invalidVoteAnswer.selected > -1
+                    )
+                  },
+                  postfix: "-invalid"
+                },
                 // raise if numSelectedOptions < min, but not if blank, and
                 // checkerTypeFlag is normal and invalidVoteAnswer is not set
                 {
