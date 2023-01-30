@@ -70,11 +70,11 @@
         ng-if="!isWriteIn" 
         class="vertilize-col vert-align-top answer-texts"
       >
-        <label 
+        <span 
           id="question_{{question.index}}_answer_{{answer.id}}"
           class="answer-text" 
           ng-bind-html="answer.text"
-        ></label>
+        ></span>
         <p
           ng-if="answer.details && answer.details.length > 1"
           class="answer-details"
