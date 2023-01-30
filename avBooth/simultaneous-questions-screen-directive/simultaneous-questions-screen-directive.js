@@ -131,7 +131,7 @@ angular.module('avBooth')
                       checkerTypeFlag === "warn-invalid-implicit-and-explicit" &&
                       question.invalidVoteAnswer &&
                       question.invalidVoteAnswer.selected > -1
-                    )
+                    );
                   },
                   postfix: "-invalid"
                 },
