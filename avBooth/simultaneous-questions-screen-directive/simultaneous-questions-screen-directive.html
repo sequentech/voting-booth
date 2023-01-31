@@ -26,7 +26,7 @@
       </div>
 
       <div 
-        class="invalid-vote-col col-xs-12"
+        class="invalid-vote-col col-xs-8 col-xs-offset-2"
         ng-if="!!question.invalidVoteAnswer"
       >
         <div 
@@ -43,14 +43,8 @@
 
       <div class="categories">
         <div
-            class="category"
+            class="category col-xs-8 col-xs-offset-2"
             ng-repeat="category in question.categories"
-            ng-class="{
-              'col-md-12': (question.extra_options.answer_group_columns_size === 12),
-              'col-md-6': (question.extra_options.answer_group_columns_size === 6),
-              'col-md-4': (question.extra_options.answer_group_columns_size === 4),
-              'col-md-3': (question.extra_options.answer_group_columns_size === 3)
-            }"
         >
           <h4 class="category-heading" ng-if="question.hasCategories && category.title.length > 0">
             <div
