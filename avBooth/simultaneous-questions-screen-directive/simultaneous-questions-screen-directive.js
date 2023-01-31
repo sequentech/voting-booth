@@ -128,7 +128,7 @@ angular.module('avBooth')
                   validator: function (question)
                   {
                     return !(
-                      checkerTypeFlag === "normal" &&
+                      (checkerTypeFlag === "normal" || checkerTypeFlag === "soft") &&
                       question.extra_options.invalid_vote_policy === "warn-invalid-implicit-and-explicit" &&
                       question.invalidVoteAnswer &&
                       question.invalidVoteAnswer.selected > -1
