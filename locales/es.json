@@ -21,6 +21,7 @@
   },
   "avCommon": {
     "cancel": "Cancelar",
+    "changeLanguageMenu": "Cambiar idioma",
     "poweredBy": "Funciona con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Twittea esta votación!",
     "votingSystem": "Sistema de Voto",
@@ -40,6 +41,11 @@
       "header": "Cabina de votación de demo",
       "body": "Está ingresando a una cabina de votación de demostración. <strong>Su voto NO se emitirá</strong>. Esta cabina de votación solo tiene fines demostrativos.",
       "confirm": "Acepto que mi voto NO se emitirá"
+    },
+    "logoutWarnModal": {
+      "header": "La sesión caducará",
+      "body": "Tu sesión va a caducar. En un minuto serás redirigido si no has terminado de emitir tu voto.",
+      "confirm": "Cerrar"
     },
     "hashForVoteNotCastModal": {
       "header": "Voto no emitido",
@@ -254,7 +260,8 @@
       "castTitle": "emitido",
       "castDescription": "usando un canal seguro y verificando su identidad",
       "anonymizedTitle": "anonimizado",
-      "anonymizedDescription": "para que el recuento no revele el sentido de su voto"
+      "anonymizedDescription": "para que el recuento no revele el sentido de su voto",
+      "description": "Su voto está siendo cifrado para que nadie pueda saber qué opciones escogió"
     },
 
     "tooFewAnswers": {

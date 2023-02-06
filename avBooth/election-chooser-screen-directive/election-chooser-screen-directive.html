@@ -24,7 +24,7 @@
           ng-if="showSkippedElections || (!canVote && hasVoted)"
           class="padded col-md-6 col-md-offset-3 cannot-vote col-xs-12"
         >
-          <h3 ng-i18next>avBooth.electionChooser.hasVoted.title</h3>
+          <h2 ng-i18next>avBooth.electionChooser.hasVoted.title</h2>
           <p
             ng-if="skippedElections.length === 0"
             ng-i18next="avBooth.electionChooser.hasVoted.description"
@@ -41,14 +41,14 @@
           ng-if="!showSkippedElections && (!canVote && !hasVoted)"
           class="padded col-xs-12 cannot-vote"
         >
-          <h3 ng-i18next>avBooth.electionChooser.cannotVote.title</h3>
+          <h2 ng-i18next>avBooth.electionChooser.cannotVote.title</h2>
           <p ng-i18next="avBooth.electionChooser.cannotVote.description"></p>
         </div>
         <div
           ng-if="!showSkippedElections && canVote"
           class="padded col-xs-12 can-vote"
         >
-          <h3 ng-i18next>avBooth.electionChooser.canVote.title</h3>
+          <h2 ng-i18next>avBooth.electionChooser.canVote.title</h2>
           <p ng-i18next="avBooth.electionChooser.canVote.description"></p>
         </div>
         <div

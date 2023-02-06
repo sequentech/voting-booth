@@ -194,6 +194,11 @@ angular.module('avBooth')
       // After cookies expires, redirect to login. But only if cookies do
       // expire.
       function autoredirectToLoginAfterTimeout() {
+        // demo and live preview don't need to expire
+        if (scope.isDemo || scope.isPreview) {
+          return;
+        }
+
         var election = (
           (!!scope.parentElection) ?
           scope.parentElection :
@@ -209,10 +214,36 @@ angular.module('avBooth')
             !election.presentation.extra_options.booth_log_out__disable
           )
         ) {
+          var minutes = ConfigService.cookies.expires;
           setTimeout(
             function () { logoutAndRedirect( /* isSuccess */ false); },
-            60*1000*ConfigService.cookies.expires
+            60*1000*minutes
           );
+
+          setTimeout(
+            function () {
+              $modal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+                controller: "InvalidAnswersController",
+                size: 'sm',
+                resolve: {
+                  errors: function() { return []; },
+                  data: function() {
+                    return {
+                      errors: [],
+                      header: "avBooth.logoutWarnModal.header",
+                      body: "avBooth.logoutWarnModal.body",
+                      continue: "avBooth.logoutWarnModal.confirm"
+                    };
+                  }
+                }
+              });
+            },
+            60*1000*(minutes - 1)
+          );
+
         }
       }
       autoredirectToLoginAfterTimeout();
