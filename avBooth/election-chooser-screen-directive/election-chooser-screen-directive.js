@@ -69,7 +69,7 @@ angular.module('avBooth')
             var credentials = getElectionCredentials();
 
             // if it's a demo, yes, allow voting by default
-            scope.canVote = scope.isDemo;
+            scope.canVote = scope.isDemo || scope.isPreview;
             scope.hasVoted = false;
             scope.skippedElections = [];
             childrenInfo.presentation.categories = _.map(
@@ -97,8 +97,8 @@ angular.module('avBooth')
                                 election,
                                 elCredentials || {},
                                 {
-                                    disabled: (!scope.isDemo && !canVote),
-                                    hidden: (!scope.isDemo && !isVoter)
+                                    disabled: (!scope.isDemo && !scope.isPreview && !canVote),
+                                    hidden: (!scope.isDemo && !scope.isPreview && !isVoter)
                                 }
                             );
                             if (!!retValue.skipped) {

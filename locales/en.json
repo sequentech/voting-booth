@@ -21,6 +21,7 @@
   },
   "avCommon": {
     "cancel": "Cancel",
+    "changeLanguageMenu": "Change Language",
     "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Tweet this election!",
     "votingSystem": "Voting System",
@@ -54,9 +55,19 @@
         "description": "Note: disabled elections mean you have already voted or you don't have permission to vote."
       }
     },
+    "logoutWarnModal": {
+      "header": "Session will expire",
+      "body": "Your session is about to expire. In one minute you will be redirected if you haven't finished casting your vote.",
+      "confirm": "Close"
+    },
     "demoModeModal": {
       "header": "Demo voting booth",
       "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
+      "confirm": "I accept my vote will NOT be cast"
+    },
+    "previewModeModal": {
+      "header": "Live Preview voting booth",
+      "body": "You are entering a live preview voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
       "confirm": "I accept my vote will NOT be cast"
     },
     "hashForVoteNotCastModal": {
@@ -230,6 +241,8 @@
 
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
+
+    "thisisAPreviewNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Preview voting booth, votes issued from this booth will not count.",
     "successBallotHash": "You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>You can use your ballot tracker to verify that your ballot has been correctly cast <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">using this address</a></strong>.",
     "qrCodeAlt": "QR Code",
     "successBallotQrCode": "You can verify your ballot has been correctly cast using the following QR Code:",
@@ -288,7 +301,8 @@
       "castTitle": "cast",
       "castDescription": "using a secure channel and verifying your identity",
       "anonymizedTitle": "anonymized",
-      "anonymizedDescription": "so that the tally does not reveal which way you voted"
+      "anonymizedDescription": "so that the tally does not reveal which way you voted",
+      "description": "Your ballot is being encrypted so that nobody can know what options you chose"
     },
 
     "tooFewAnswers": {

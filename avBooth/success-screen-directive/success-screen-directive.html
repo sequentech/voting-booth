@@ -30,12 +30,12 @@
 
           <div class="text-center" ng-if="hasNextElection">
             <span>
-              <a
+              <button
                 tabindex="0"
                 ng-click="goToNextElection()"
                 class="btn btn-primary btn-login" ng-i18next>
                 avBooth.goToNextElection
-              </a>
+              </button>
             </span>
           </div>
           <div 
@@ -43,13 +43,13 @@
             ng-if="!hasNextElection && (!election.presentation || !election.presentation.extra_options || !election.presentation.extra_options.success_screen__redirect_to_login)"
           >
             <span>
-              <a
+              <button
                 tabindex="0"
                 ng-click="closeAndFinish(false, true)"
 		            target="_top"
                 class="close-window-btn btn btn-primary btn-login" ng-i18next>
                 avBooth.closeWindow
-              </a>
+              </button>
             </span>
           </div>
 
@@ -66,7 +66,7 @@
           </span>
         </div>
         <div class="text-center download-ticket">
-          <a
+          <button
             class="btn btn-primary btn-login"
             tabindex="0"
             ng-click="downloadBallotTicket()"
@@ -74,7 +74,7 @@
             target="_blank"
             ng-i18next>
             avBooth.downloadBallotTicket
-          </a>
+          </button>
         </div>
         <p
           class="text-center"
@@ -90,12 +90,12 @@
         </p>
         <div class="text-center" ng-if="!hasNextElection && !!election.presentation.extra_options.success_screen__redirect_to_login">
           <span>
-            <a
+            <button
               tabindex="0"
               ng-click="redirectToLogin(true)"
               class="btn btn-primary btn-login">
               {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
-            </a>
+            </button>
           </span>
         </div>
         <div class="text-center" ng-if="!!election.presentation.share_text">

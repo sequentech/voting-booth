@@ -21,6 +21,7 @@
   },
   "avCommon": {
     "cancel": "Cancelar",
+    "changeLanguageMenu": "Cambiar idioma",
     "poweredBy": "Funciona con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Twittea esta votación!",
     "votingSystem": "Sistema de Voto",
@@ -42,6 +43,16 @@
     },
     "demoModeModal": {
       "header": "Cabina de votación de demo",
+      "body": "Está ingresando a una cabina de votación de demostración. <strong>Su voto NO se emitirá</strong>. Esta cabina de votación solo tiene fines demostrativos.",
+      "confirm": "Acepto que mi voto NO se emitirá"
+    },
+    "logoutWarnModal": {
+      "header": "La sesión caducará",
+      "body": "Tu sesión va a caducar. En un minuto serás redirigido si no has terminado de emitir tu voto.",
+      "confirm": "Cerrar"
+    },
+    "previewModeModal": {
+      "header": "Previsualización de cabina de votación",
       "body": "Está ingresando a una cabina de votación de demostración. <strong>Su voto NO se emitirá</strong>. Esta cabina de votación solo tiene fines demostrativos.",
       "confirm": "Acepto que mi voto NO se emitirá"
     },
@@ -206,6 +217,7 @@
     "auditStartAgain": "Comenzar el proceso de voto de nuevo",
 
     "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de prueba, los votos emitidos aquí no cuentan.",
+    "thisisAPreviewNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de previsualización, los votos emitidos aquí no cuentan.",
     "successBallotHash": "Ha emitido su voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de su voto es:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>Puede usar su localizador para verificar que su voto ha quedado registrado en <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">esta dirección</a></strong>.",
     "qrCodeAlt": "Código QR",
     "successBallotQrCode": "Puede verificar que su voto ha quedado registrado mediante el siguiente código QR:",
@@ -258,7 +270,8 @@
       "castTitle": "emitido",
       "castDescription": "usando un canal seguro y verificando su identidad",
       "anonymizedTitle": "anonimizado",
-      "anonymizedDescription": "para que el recuento no revele el sentido de su voto"
+      "anonymizedDescription": "para que el recuento no revele el sentido de su voto",
+      "description": "Su voto está siendo cifrado para que nadie pueda saber qué opciones escogió"
     },
 
     "tooFewAnswers": {
