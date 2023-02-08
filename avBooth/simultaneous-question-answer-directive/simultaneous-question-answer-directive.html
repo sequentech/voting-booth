@@ -1,6 +1,6 @@
 <div
   class="question-answer"
-  ng-class="{'is-category-list': isCategoryList}"
+  ng-class="{'is-category-list': isCategoryList, 'read-only': readOnly()}"
 >
   <div
     role="checkbox"
@@ -8,7 +8,7 @@
     aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
     aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
     class="opt vertilize-wrapper"
-    ng-click="!isWriteIn && question.tally_type === 'plurality-at-large' && toggleSelectItem(question, answer)"
+    ng-click="!readOnly() && !isWriteIn && toggleSelectItem(question, answer) && question.tally_type === 'plurality-at-large'"
   >
     <div class="vertilize">
       <!-- show checkbox icon -->
@@ -18,7 +18,7 @@
           tabindex="0"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="question.tally_type === 'plurality-at-large'"
-          ng-click="isWriteIn && toggleSelectItem(question, answer)"
+          ng-click="!readOnly() && isWriteIn && toggleSelectItem(question, answer)"
           ng-class="{
             'glyphicon-unchecked': answer.selected === -1,
             'glyphicon-check': answer.selected > -1
@@ -33,7 +33,7 @@
           aria-label="{{answer.text}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
           ng-repeat="check in answer_cumulative_checks"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
-          ng-click="toggleSelectItemCumulative(question, answer, check)"
+          ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, check)"
           ng-class="{
             'glyphicon-unchecked': !isCheckSelected(answer, check),
             'glyphicon-check': isCheckSelected(answer, check)
@@ -47,7 +47,7 @@
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
           aria-label="{{answer.text}} check invalid"
           ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
-          ng-click="toggleSelectItemCumulative(question, answer, 0)"
+          ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, 0)"
           ng-class="{
             'glyphicon-unchecked': !isCheckSelected(answer, 0),
             'glyphicon-check': isCheckSelected(answer, 0)

@@ -65,6 +65,25 @@ angular.module('avBooth')
           }
         );
 
+        scope.showCheckableList = function(question) {
+          return (
+            angular.isDefined(question.extra_options) &&
+            angular.isDefined(question.extra_options.enable_checkable_lists) &&
+            _.contains(
+              ["allow-selecting-candidates-and-lists", "allow-selecting-lists"],
+              question.extra_options.enable_checkable_lists
+            )
+          );
+        };
+
+        scope.isReadOnlyCandidate = function(question) {
+          return (
+            angular.isDefined(question.extra_options) &&
+            angular.isDefined(question.extra_options.enable_checkable_lists) &&
+            "allow-selecting-lists" === question.extra_options.enable_checkable_lists
+          );
+        };
+
         // set some data like the pub key of each question
         _.each(
           scope.election.questions,
@@ -72,6 +91,8 @@ angular.module('avBooth')
           {
             question.natural_order_index = index;
             question.publicKey = scope.pubkeys[index];
+            question.are_candidates_read_only = scope.isReadOnlyCandidate(question);
+            question.are_lists_checkable = scope.showCheckableList(question);
           }
         );
 
