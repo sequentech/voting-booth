@@ -80,7 +80,8 @@ angular.module('avBooth')
           toggleSelectItemCumulative: '=',
           cumulativeChecks: '=',
           isInvalidVoteAnswer: '=',
-          writeInTextChange: '='
+          writeInTextChange: '=',
+          readOnly: '&'
         },
         templateUrl: 'avBooth/simultaneous-question-answer-directive/simultaneous-question-answer-directive.html'
       };
