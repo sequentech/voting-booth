@@ -149,7 +149,7 @@ angular.module('avBooth')
                   validator: function (question)
                   {
                     return !(
-                      checkerTypeFlag === "normal" &&
+                      (checkerTypeFlag === "normal" || checkerTypeFlag === "soft") &&
                       question.extra_options.invalid_vote_policy === "warn-invalid-implicit-and-explicit" &&
                       question.invalidVoteAnswer &&
                       question.invalidVoteAnswer.selected > -1
@@ -178,7 +178,10 @@ angular.module('avBooth')
                         question.invalidVoteAnswer.selected > -1
                       ) ||
                       (
-                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        (
+                          question.extra_options.invalid_vote_policy === 'warn' ||
+                          question.extra_options.invalid_vote_policy === "warn-invalid-implicit-and-explicit"
+                        ) &&
                         checkerTypeFlag === "show-stoppers"
                       )
                     ) {
@@ -211,7 +214,10 @@ angular.module('avBooth')
                         question.invalidVoteAnswer.selected > -1
                       ) ||
                       (
-                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        (
+                          question.extra_options.invalid_vote_policy === 'warn' || 
+                          question.extra_options.invalid_vote_policy === "warn-invalid-implicit-and-explicit"
+                        ) &&
                         checkerTypeFlag === "show-stoppers"
                       )
                     ) {
@@ -234,7 +240,10 @@ angular.module('avBooth')
                       ) ||
                       question.extra_options.invalid_vote_policy === 'allowed' || 
                       (
-                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        (
+                          question.extra_options.invalid_vote_policy === 'warn' ||
+                          question.extra_options.invalid_vote_policy === "warn-invalid-implicit-and-explicit"
+                        ) &&
                         checkerTypeFlag === "show-stoppers"
                       ) ||
                       !question.extra_options ||
@@ -399,7 +408,10 @@ angular.module('avBooth')
                       question.extra_options.enable_panachage === true ||
                       question.extra_options.invalid_vote_policy === 'allowed' || 
                       (
-                        question.extra_options.invalid_vote_policy === 'warn' &&
+                        (
+                          question.extra_options.invalid_vote_policy === 'warn' ||
+                          question.extra_options.invalid_vote_policy === "warn-invalid-implicit-and-explicit"
+                        ) &&
                         checkerTypeFlag === "show-stoppers"
                       )
                     ) {
