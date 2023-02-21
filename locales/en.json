@@ -83,6 +83,7 @@
       "cancel": "Cancel"
     },
     "errors": {
+      "question-lambda-invalid": "Question '__qtitle__': Invalid vote.",
       "question-lambda-blank": "Question '__qtitle__': selected zero options. Blank vote.",
       "question-lambda-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__. Invalid vote.",
       "question-lambda-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__. Invalid vote.",
