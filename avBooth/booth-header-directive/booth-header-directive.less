@@ -18,4 +18,22 @@
     .log-out-button, .config-version {
         margin-right: 20px;
     }
+
+    .header-container {
+        flex-direction: row;
+        align-items: center;
+        background-color: @av-primary;
+        padding: 54px 85px;
+        display: flex;
+    }
+
+    @media(max-width: @screen-sm-max) {
+        .header-container, .footer-container {
+            padding: 54px 30px;
+        }
+
+        .version {
+            margin-top: 10px;
+        }
+    }
 }

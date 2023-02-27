@@ -287,7 +287,8 @@ angular.module('avBooth')
         reviewScreen: 'reviewScreen',
         castingBallotScreen: 'castingBallotScreen',
         successScreen: 'successScreen',
-        showPdf: 'showPdf'
+        showPdf: 'showPdf',
+        multiQuestionV2: 'multiQuestionV2'
       };
 
       // override state if in debug mode and it's provided via query param
@@ -319,6 +320,12 @@ angular.module('avBooth')
           return {
             state: stateEnum.simultaneousQuestionsScreen,
             sorted: false,
+            ordered: false
+          };
+        } else if  (question.layout === "multi-question-v2") {
+          return {
+            state: stateEnum.multiQuestionV2,
+            sorted: true,
             ordered: false
           };
         }
