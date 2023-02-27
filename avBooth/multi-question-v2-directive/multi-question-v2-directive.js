@@ -425,6 +425,6 @@ angular.module('avBooth')
     return {
       restrict: 'AE',
       link: link,
-      templateUrl: 'avBooth/multi-question-directive/multi-question-directive.html'
+      templateUrl: 'avBooth/multi-question-v2-directive/multi-question-v2-directive.html'
     };
   });
