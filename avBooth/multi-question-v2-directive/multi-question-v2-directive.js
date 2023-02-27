@@ -21,7 +21,7 @@
  * Shows a question and its possible answers to the user.
  */
 angular.module('avBooth')
-  .directive('avbMultiQuestion', function($modal, ConfigService) {
+  .directive('avbMultiQuestionV2', function($modal, ConfigService) {
 
     var link = function(scope, element, attrs) {
       scope.stateData.affixIsSet = false;
