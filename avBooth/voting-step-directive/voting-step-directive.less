@@ -18,19 +18,33 @@
     .voting-steps {
         padding-top: 55px;
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
     }
 
     .step-number {
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 24px;
         height: 24px;
+        border-radius: 4px;
+    }
 
+    .step-number-selected {
         background: @av-secondary-contrast;
         color: @av-primary;
-        border-radius: 4px;
+    }
+
+    .step-number-unselected {
+        color: @av-secondary-contrast;
+        opacity: 50%;
+        stroke-opacity: 50%;
+        border: 1px solid @av-secondary-contrast;
     }
 
     .step-separator {
