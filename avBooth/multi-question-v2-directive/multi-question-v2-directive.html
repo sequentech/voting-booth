@@ -1,47 +1,49 @@
-<!-- top navbar -->
-<div avb-booth-header></div>
+<div class="absolute-full-screen">
+  <!-- top navbar -->
+  <div avb-booth-header></div>
 
-<div class="booth-profile">
-  <div avb-voting-step></div>
-  <div class="election-header">
-    <h3 class="election-title">Election Title</h3>
-    <i class="pull-right fa fa-lg fa-question-circle"></i>
-  </div>
-  <p class="election-description">
-    Election description
-  </p>
-  <div class="notifications"></div>
-  <div class="question">
-    <h3>Question title</h3>
-    <div
-      class="text-brand-warning"
-      id="selectMoreOptsWarning"
-      ng-i18next="[i18next]({min: stateData.question.min})avBooth.selectMoreOpts">
+  <div class="booth-profile">
+    <div avb-voting-step></div>
+    <div class="election-header">
+      <h3 class="election-title">Election Title</h3>
+      <i class="pull-right fa fa-lg fa-question-circle"></i>
     </div>
-    <div class="options">
-      <div avb-available-options
-        layout="stateData.question.layout"
-        max="stateData.question.max"
-        min="stateData.question.min"
-        question="stateData.question"
-        filter="{{stateData.filter}}"
-        ng-class="{hidden: stateData.affixDropDownShown}">
+    <p class="election-description">
+      Election description
+    </p>
+    <div class="notifications"></div>
+    <div class="question">
+      <h3>Question title</h3>
+      <div
+        class="text-brand-warning"
+        id="selectMoreOptsWarning"
+        ng-i18next="[i18next]({min: stateData.question.min})avBooth.selectMoreOpts">
+      </div>
+      <div class="options">
+        <div avb-available-options
+          layout="stateData.question.layout"
+          max="stateData.question.max"
+          min="stateData.question.min"
+          question="stateData.question"
+          filter="{{stateData.filter}}"
+          ng-class="{hidden: stateData.affixDropDownShown}">
+        </div>
       </div>
     </div>
+    <div class="actions row">
+      <button
+        class="btn btn-lg btn-cancel btn-plain col-xs-12 col-sm-4"
+      >
+        Clear selection
+      </button>
+      <button
+        class="btn btn-lg btn-success-action btn-plain col-xs-12 col-sm-4 col-sm-offset-4"
+        ng-click="presetNext()">
+        Next
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
   </div>
-  <div class="actions row">
-    <button
-      class="btn btn-lg btn-cancel btn-plain col-xs-12 col-sm-4"
-    >
-      Clear selection
-    </button>
-    <button
-      class="btn btn-lg btn-success-action btn-plain col-xs-12 col-sm-4 col-sm-offset-4"
-      ng-click="presetNext()">
-      Next
-      <i class="fa fa-chevron-right"></i>
-    </button>
-  </div>
-</div>
 
-<div avb-booth-footer></div>
+  <div avb-booth-footer></div>
+</div>
