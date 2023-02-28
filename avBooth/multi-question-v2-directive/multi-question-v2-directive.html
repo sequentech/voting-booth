@@ -5,7 +5,7 @@
   <div avb-voting-step></div>
   <div class="election-header">
     <h3 class="election-title">Election Title</h3>
-    <i class="pull-right fa fa-question-circle"></i>
+    <i class="pull-right fa fa-lg fa-question-circle"></i>
   </div>
   <p class="election-description">
     Election description
@@ -29,16 +29,17 @@
       </div>
     </div>
   </div>
-  <div class="actions">
+  <div class="actions row">
     <button
-      class="btn btn-block btn-lg btn-success-action btn-plain"
-      ng-i18next="avBooth.continueButton"
-      ng-click="presetNext()">
+      class="btn btn-block btn-lg btn-cancel btn-plain col-xs-12 col-sm-4"
+    >
+      Clear selection
     </button>
     <button
-      class="btn btn-block btn-lg btn-success-action btn-plain"
-      ng-i18next="avBooth.continueButton"
+      class="btn btn-block btn-lg btn-success-action btn-plain col-xs-12 col-sm-4 col-sm-offset-4"
       ng-click="presetNext()">
+      Next
+      <i class="pull-right fa fa-chevron-right"></i>
     </button>
   </div>
 </div>
