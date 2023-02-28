@@ -1,4 +1,46 @@
 <!-- top navbar -->
 <div avb-booth-header></div>
 
+<div avb-voting-step></div>
+<div class="title">
+  <div>
+    <h3>Election Title</h3>
+    <p>
+      Election description
+    </p>
+  </div>
+  <i class="fa fa-times-circle"></i>
+</div>
+<div class="notifications"></div>
+<div class="question">
+  <h3>Question title</h3>
+  <span
+    class="text-brand-warning"
+    id="selectMoreOptsWarning"
+    ng-i18next="[i18next]({min: stateData.question.min})avBooth.selectMoreOpts">
+  </span>
+  <div class="options">
+    <div avb-available-options
+      layout="stateData.question.layout"
+      max="stateData.question.max"
+      min="stateData.question.min"
+      question="stateData.question"
+      filter="{{stateData.filter}}"
+      ng-class="{hidden: stateData.affixDropDownShown}">
+    </div>
+  </div>
+</div>
+<div class="actions">
+  <button
+    class="btn btn-block btn-lg btn-success-action btn-plain"
+    ng-i18next="avBooth.continueButton"
+    ng-click="presetNext()">
+  </button>
+  <button
+    class="btn btn-block btn-lg btn-success-action btn-plain"
+    ng-i18next="avBooth.continueButton"
+    ng-click="presetNext()">
+  </button>
+</div>
+
 <div avb-booth-footer></div>
