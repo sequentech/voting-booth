@@ -806,7 +806,7 @@ angular.module('avBooth')
                 var presentation = scope.election.presentation;
 
                 if (presentation.theme && presentation.theme !== ConfigService.theme) {
-                  $("#theme").attr("href", "booth/themes/" + ConfigService.theme + "/app.min.css");
+                  $("#theme").attr("href", "booth/themes/" + presentation.theme + "/app.min.css");
                   ConfigService.theme = presentation.theme;
                 }
 
