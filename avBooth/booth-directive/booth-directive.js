@@ -804,6 +804,12 @@ angular.module('avBooth')
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
                 var presentation = scope.election.presentation;
+
+                if (presentation.theme && presentation.theme !== ConfigService.theme) {
+                  $("#theme").attr("href", "booth/themes/" + ConfigService.theme + "/app.min.css");
+                  ConfigService.theme = presentation.theme;
+                }
+
                 scope.electionState = response.data.payload.state;
 
                 // reset $window.i18nOverride
