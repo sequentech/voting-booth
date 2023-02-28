@@ -4,7 +4,7 @@
   av-affix-top=".navbar-unfixed-top"
   role="navigation"
 >
-    <div class="header-container">
+    <div class="header-container booth-profile">
         <div class="col-xs-6">
             <span ng-if="election.logo_url">
               <img
@@ -29,7 +29,7 @@
               ng-click="logoutAndRedirect()"
             >
               <span class="glyphicon glyphicon-off"></span>
-              <span ng-i18next>avBooth.logout</span>
+              <span class="logout-text" ng-i18next>avBooth.logout</span>
             </a>
         </div>
     </div>
@@ -39,22 +39,18 @@
   <span class="glyphicon glyphicon-play"></span>
 </div>
 
-<div class="container-fluid warning-demo" ng-if="isDemo">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <p ng-i18next="[html]avBooth.thisisADemoNotification"></p>
-      </div>
+<div class="booth-profile warning-demo" ng-if="isDemo">
+  <div class="row">
+    <div class="col-xs-12">
+      <p ng-i18next="[html]avBooth.thisisADemoNotification"></p>
     </div>
   </div>
 </div>
 
-<div class="container-fluid warning-demo" ng-if="isPreview">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <p ng-i18next="[html]avBooth.thisisAPreviewNotification"></p>
-      </div>
+<div class="booth-profile warning-demo" ng-if="isPreview">
+  <div class="row">
+    <div class="col-xs-12">
+      <p ng-i18next="[html]avBooth.thisisAPreviewNotification"></p>
     </div>
   </div>
 </div>
