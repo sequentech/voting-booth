@@ -16,6 +16,7 @@
 **/
 [avb-voting-step] {
     .voting-steps {
+        padding-top: 55px;
         width: 100%;
     }
 
@@ -24,8 +25,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 4px;
-        gap: 8px;
+        width: 24px;
+        height: 24px;
 
         background: @av-secondary-contrast;
         color: @av-primary;
@@ -36,10 +37,13 @@
         border: 1px dashed @av-secondary;
         flex: none;
         flex-grow: 1;
+        height: 0px;
     }
 
     .a-voting-step {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        gap: 10px;
     }
 }
