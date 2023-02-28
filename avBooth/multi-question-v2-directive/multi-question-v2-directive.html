@@ -2,7 +2,7 @@
   <!-- top navbar -->
   <div avb-booth-header></div>
 
-  <div class="booth-profile">
+  <div class="booth-profile election-container">
     <div avb-voting-step></div>
     <div class="election-header">
       <h3 class="election-title">Election Title</h3>
@@ -30,18 +30,20 @@
         </div>
       </div>
     </div>
-    <div class="actions row">
-      <button
-        class="btn btn-lg btn-cancel btn-plain col-xs-12 col-sm-4"
-      >
-        Clear selection
-      </button>
-      <button
-        class="btn btn-lg btn-success-action btn-plain col-xs-12 col-sm-4 col-sm-offset-4"
-        ng-click="presetNext()">
-        Next
-        <i class="fa fa-chevron-right"></i>
-      </button>
+    <div class="actions">
+      <div class="row">
+        <button
+          class="btn btn-lg btn-cancel btn-plain col-xs-12 col-sm-4"
+        >
+          Clear selection
+        </button>
+        <button
+          class="btn btn-lg btn-success-action btn-plain col-xs-12 col-sm-4 col-sm-offset-4"
+          ng-click="presetNext()">
+          Next
+          <i class="fa fa-chevron-right"></i>
+        </button>
+      </div>
     </div>
   </div>
 
