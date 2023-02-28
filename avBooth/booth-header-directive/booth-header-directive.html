@@ -14,23 +14,23 @@
               />
             </span>
         </div>
-        <a
-          ng-if="enableLogOut()"
-          target="_top"
-          tabindex="0"
-          class="log-out-button"
-          ng-click="logoutAndRedirect()"
-        >
-          <span class="glyphicon glyphicon-off"></span>
-          <span ng-i18next>avBooth.logout</span>
-        </a>
         <div class="col-xs-6 header-right">
             <span
-                class="dropdown pull-right"
+                class="dropdown"
                 role="menuitem"
                 av-change-lang
             >
             </span>
+            <a
+              ng-if="enableLogOut()"
+              target="_top"
+              tabindex="0"
+              class="log-out-button"
+              ng-click="logoutAndRedirect()"
+            >
+              <span class="glyphicon glyphicon-off"></span>
+              <span ng-i18next>avBooth.logout</span>
+            </a>
         </div>
     </div>
 </nav>
