@@ -5,22 +5,122 @@
   <div class="booth-profile election-container">
     <div avb-voting-step></div>
     <div class="election-header">
-      <h3 class="election-title">Election Title</h3>
+      <h1
+        class="election-title"
+        ng-bind-html="election.presentation.extra_options.public_title || election.title"
+      ></h1>
       <i class="pull-right fa fa-lg fa-question-circle"></i>
     </div>
-    <p class="election-description">
-      Election description
+    <p
+      ng-if="election.description"
+      class="election-description"
+      ng-bind-html="election.description | addTargetBlank">
     </p>
     <div class="notifications"></div>
-    <div class="question">
-      <h3>Question title</h3>
+    <div class="question" ng-repeat="question in groupQuestions">
+      <h2 class="question-title text-center" aria-level="2" ng-bind-html="question.title">
+      </h2>
+      <p
+        class="question-description"
+        ng-if="question.description"
+        ng-bind-html="question.description | addTargetBlank">
+      </p>
       <div
         class="text-brand-warning"
         id="selectMoreOptsWarning"
         ng-i18next="[i18next]({min: stateData.question.min})avBooth.selectMoreOpts">
       </div>
-      <div class="options">
+      <!-- QUESTION OPTIONS START -->
+      <div 
+        class="invalid-vote-col col-xs-12"
+        ng-if="!!question.invalidVoteAnswer"
+      >
+        <div 
+          avb-simultaneous-question-answer
+          answer="question.invalidVoteAnswer"
+          question="question"
+          is-invalid-vote-answer="true"
+          toggle-select-item="toggleSelectItem"
+          toggle-select-item-cumulative="toggleSelectItemCumulative"
+          cumulative-checks="cumulativeChecks"
+        >
+        </div>
       </div>
+
+      <div class="categories">
+        <div
+            class="category"
+            ng-repeat="category in question.categories"
+            ng-class="{
+              'col-md-12': (question.extra_options.answer_group_columns_size === 12),
+              'col-md-6': (question.extra_options.answer_group_columns_size === 6),
+              'col-md-4': (question.extra_options.answer_group_columns_size === 4),
+              'col-md-3': (question.extra_options.answer_group_columns_size === 3)
+            }"
+        >
+          <h4 class="category-heading" ng-if="question.hasCategories && category.title.length > 0">
+            <div
+              ng-if="question.are_lists_checkable && category.categoryAnswer" 
+            >
+              <div 
+                avb-simultaneous-question-answer
+                answer="category.categoryAnswer"
+                question="question"
+                toggle-select-item="toggleSelectItem"
+                toggle-select-item-cumulative="toggleSelectItemCumulative"
+                cumulative-checks="cumulativeChecks"
+                read-only="false"
+              >
+              </div>
+            </div>
+
+            <div
+              ng-if="!question.are_lists_checkable || !category.categoryAnswer"
+              class="list-checks"
+            >
+              {{ category.title }}
+            </div>
+          </h4>
+          <div class="category-body">
+            <div 
+              class="question-answers text-left"
+            >
+              <div 
+                ng-repeat="answer in category.answers"
+                class="question-answer-wrapper"
+                ng-class="{
+                  'col-md-12': (question.extra_options.answer_columns_size === 12),
+                  'col-md-6': (question.extra_options.answer_columns_size === 6),
+                  'col-md-4': (question.extra_options.answer_columns_size === 4),
+                  'col-md-3': (question.extra_options.answer_columns_size === 3)
+                }"
+              >
+                <div 
+                  avb-simultaneous-question-answer
+                  answer="answer"
+                  question="question"
+                  toggle-select-item="toggleSelectItem"
+                  toggle-select-item-cumulative="toggleSelectItemCumulative"
+                  cumulative-checks="cumulativeChecks"
+                  write-in-text-change="updateErrors"
+                  read-only="question.are_candidates_read_only"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div 
+        class="question-separator-dots"
+      >
+        <span 
+          ng-i18next="[i18next]({qnum: $index+1, qtotal: groupQuestions.length})avBooth.questionNumber"
+        ></span>
+      </div> 
+
+      <!-- QUESTION OPTIONS END -->
+
     </div>
     <div class="actions">
       <div class="row">
