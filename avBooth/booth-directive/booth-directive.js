@@ -288,7 +288,7 @@ angular.module('avBooth')
         castingBallotScreen: 'castingBallotScreen',
         successScreen: 'successScreen',
         showPdf: 'showPdf',
-        multiQuestionV2: 'multiQuestionV2'
+        simultaneousQuestionsV2Screen: 'simultaneousQuestionsV2Screen'
       };
 
       // override state if in debug mode and it's provided via query param
@@ -322,9 +322,9 @@ angular.module('avBooth')
             sorted: false,
             ordered: false
           };
-        } else if  (question.layout === "multi-question-v2") {
+        } else if  (question.layout === "simultaneous-questions-v2") {
           return {
-            state: stateEnum.multiQuestionV2,
+            state: stateEnum.simultaneousQuestionsV2Screen,
             sorted: true,
             ordered: false
           };
