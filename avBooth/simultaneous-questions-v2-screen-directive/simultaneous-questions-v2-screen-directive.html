@@ -30,6 +30,19 @@
         id="num-options-limits"
         ng-i18next="[html:i18next]({min: stateData.question.min, max: stateData.question.max})avBooth.numOptionsLimits">
       </div>
+      <div
+        class="text-warning input-error error-list"
+      >
+        <ul ng-if="errors.length > 0" role="alert">
+          <li
+            class="error"
+            ng-repeat="error in errors"
+            data-i18n="{{error.data}}"
+            ng-i18next>
+            [html:i18next]({{error.data}}){{error.key}}
+          </li>
+        </ul>
+      </div>
 
       <!-- QUESTION OPTIONS START -->
 
