@@ -51,12 +51,7 @@
         <div
             class="category"
             ng-repeat="category in question.categories"
-            ng-class="{
-              'col-md-12': (question.extra_options.answer_group_columns_size === 12),
-              'col-md-6': (question.extra_options.answer_group_columns_size === 6),
-              'col-md-4': (question.extra_options.answer_group_columns_size === 4),
-              'col-md-3': (question.extra_options.answer_group_columns_size === 3)
-            }"
+            class="col-md-12"
         >
           <h4 class="category-heading" ng-if="question.hasCategories && category.title.length > 0">
             <div
@@ -110,14 +105,6 @@
           </div>
         </div>
       </div>
-
-      <div 
-        class="question-separator-dots"
-      >
-        <span 
-          ng-i18next="[i18next]({qnum: $index+1, qtotal: groupQuestions.length})avBooth.questionNumber"
-        ></span>
-      </div> 
 
       <!-- QUESTION OPTIONS END -->
 
