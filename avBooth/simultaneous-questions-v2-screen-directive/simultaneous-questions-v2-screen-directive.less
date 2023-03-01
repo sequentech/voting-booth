@@ -88,10 +88,21 @@
     text-align: right; padding-right: 20px;
   }
 
-  @media (min-width: 768px) {
-    .category.col-md-12, .invalid-vote-col {
-        margin-left: 16.66666667%;
-        width: 66.66666667%;
+  .input-warn {
+    display: block;
+    min-height: 69px;
+
+    .warn-box {
+      background-color: @av-error-bg;
+      color: @av-warning-color;
+      padding: 14.5px 17px;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+    }
+
+    .glyphicon-warning-sign {
+      margin-top: 4px;
     }
   }
 }
