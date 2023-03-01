@@ -20,7 +20,7 @@
  */
 angular.module('avBooth')
   .directive(
-    'avbSimultaneousQuestionAnswer',
+    'avbSimultaneousQuestionAnswerV2',
     function() 
     {
       /**
