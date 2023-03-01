@@ -162,7 +162,7 @@
     "numOptionsSelected_plural": "__count__ options selected.",
     "numOptionsSelected_plural_2": "__count__ options selected.",
     "noOptionsSelected": "No option selected.",
-    "numOptionsLimits": "Select between __min__ and __max__ options.",
+    "numOptionsLimits": "Select <b>between __min__ and __max__</b> options.",
     "filterOptionsPlaceholder": "filter..",
     "noResults": "no results found..",
     "numSelectedOptionsSmall": "__count__ selected",

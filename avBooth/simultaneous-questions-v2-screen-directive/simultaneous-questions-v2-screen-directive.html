@@ -27,25 +27,11 @@
       </p>
       <div
         class="text-brand-warning"
-        id="selectMoreOptsWarning"
-        ng-i18next="[i18next]({min: stateData.question.min})avBooth.selectMoreOpts">
+        id="num-options-limits"
+        ng-i18next="[i18next]({min: stateData.question.min, max: stateData.question.max})avBooth.numOptionsLimits">
       </div>
+
       <!-- QUESTION OPTIONS START -->
-      <div 
-        class="invalid-vote-col col-xs-12"
-        ng-if="!!question.invalidVoteAnswer"
-      >
-        <div 
-          avb-simultaneous-question-answer
-          answer="question.invalidVoteAnswer"
-          question="question"
-          is-invalid-vote-answer="true"
-          toggle-select-item="toggleSelectItem"
-          toggle-select-item-cumulative="toggleSelectItemCumulative"
-          cumulative-checks="cumulativeChecks"
-        >
-        </div>
-      </div>
 
       <div class="categories">
         <div
@@ -98,6 +84,22 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div 
+        class="invalid-vote-col col-xs-12"
+        ng-if="!!question.invalidVoteAnswer"
+      >
+        <div 
+          avb-simultaneous-question-answer
+          answer="question.invalidVoteAnswer"
+          question="question"
+          is-invalid-vote-answer="true"
+          toggle-select-item="toggleSelectItem"
+          toggle-select-item-cumulative="toggleSelectItemCumulative"
+          cumulative-checks="cumulativeChecks"
+        >
         </div>
       </div>
 

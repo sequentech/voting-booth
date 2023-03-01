@@ -34,11 +34,20 @@
   }
 
   // answer styles
+  .invalid-vote-col .opt {
+    background-color: @av-primary;
+
+    &:hover {
+      background-color: @gray-lighter;
+    }
+  }
+
   .opt {
     font-size: 20px;
     text-align: left;
     width: 100%;
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     cursor: pointer;
     display: inline-block;
 
