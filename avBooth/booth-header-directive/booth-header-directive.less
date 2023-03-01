@@ -15,13 +15,29 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 [avb-booth-header] {
+    top: -92px;
+    position: sticky;
+    z-index: 10;
+
+    .header-navbar {
+        height: 139px;
+        display: flex;
+        position: sticky;
+        align-items: center;
+        background-color: @av-primary;
+        top: -92px;
+    }
+
     .header-container {
         flex-direction: row;
         align-items: center;
-        background-color: @av-primary;
-        padding-top: 54px;
-        padding-bottom: 54px;
         display: flex;
+        height: 47px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        padding-top: 8px;
+        padding-bottom: 8px;
     }
 
     .header-left {
