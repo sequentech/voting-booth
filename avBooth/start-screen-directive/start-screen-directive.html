@@ -1,69 +1,71 @@
-<!-- top navbar -->
-<div avb-booth-header></div>
+<div class="absolute-full-screen">
+  <!-- top navbar -->
+  <div avb-booth-header></div>
 
-<div class="wrapper-unfixed">
-  <div class="navbar-unfixed-top text-center">
-    <div class="container">
-      <div class="hidden unfixed-top-height"></div>
-      <h1
-        class="election-title"
-        ng-bind-html="parentElection && (parentElection.presentation.extra_options.public_title || parentElection.title) || !parentElection && (election.presentation.extra_options.public_title || election.title) || ''"
-      ></h1>
-      <p
-        class="election-description description" 
-        ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description) || '') | addTargetBlank"
-      ></p>
+  <div class="wrapper-unfixed">
+    <div class="navbar-unfixed-top text-center">
+      <div class="container">
+        <div class="hidden unfixed-top-height"></div>
+        <h1
+          class="election-title"
+          ng-bind-html="parentElection && (parentElection.presentation.extra_options.public_title || parentElection.title) || !parentElection && (election.presentation.extra_options.public_title || election.title) || ''"
+        ></h1>
+        <p
+          class="election-description description" 
+          ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description) || '') | addTargetBlank"
+        ></p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="content avb-content start-screen">
-  <div class="container">
-    <div class="row">
-      <div class="padded col-xs-12">
-        <h2 ng-i18next>avBooth.instructionsTitle</h2>
-        <p ng-i18next="avBooth.stepsToVote"></p>
+  <div class="content avb-content start-screen">
+    <div class="container">
+      <div class="row">
+        <div class="padded col-xs-12">
+          <h2 ng-i18next>avBooth.instructionsTitle</h2>
+          <p ng-i18next="avBooth.stepsToVote"></p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="padded col-xs-12 col-sm-4">
-        <h2 class="text-brand-success" ng-i18next="avBooth.selectOptionsTitle"></h2>
-        <p ng-i18next="avBooth.selectOptionsText"></p>
+      <div class="row">
+        <div class="padded col-xs-12 col-sm-4">
+          <h2 class="text-brand-success" ng-i18next="avBooth.selectOptionsTitle"></h2>
+          <p ng-i18next="avBooth.selectOptionsText"></p>
+        </div>
+        <div class="padded col-xs-12 col-sm-4">
+          <h2 class="text-brand-success" ng-i18next="avBooth.reviewOptionsTitle"></h2>
+          <p ng-i18next="avBooth.reviewOptionsText"></p>
+        </div>
+        <div class="padded col-xs-12 col-sm-4">
+          <h2 class="text-brand-success" ng-i18next="avBooth.emitBallotTitle"></h2>
+          <p ng-i18next="avBooth.emitBallotText"></p>
+        </div>
       </div>
-      <div class="padded col-xs-12 col-sm-4">
-        <h2 class="text-brand-success" ng-i18next="avBooth.reviewOptionsTitle"></h2>
-        <p ng-i18next="avBooth.reviewOptionsText"></p>
-      </div>
-      <div class="padded col-xs-12 col-sm-4">
-        <h2 class="text-brand-success" ng-i18next="avBooth.emitBallotTitle"></h2>
-        <p ng-i18next="avBooth.emitBallotText"></p>
-      </div>
-    </div>
-    <div class="row" ng-if="tosTitle">
-      <div class="padded col-xs-12">
-        <h4>{{tosTitle}}</h4>
-        <div class="tos-text" ng-bind-html="tosText"></div>
-      </div>
-    </div>
-
-    <div class="row" ng-if="legal">
-      <div class="padded col-xs-12 legal-terms">
-        <!-- Legal terms -->
-        <h4 ng-i18next="avBooth.legal.title"></h4>
-        <span ng-if="extra_data.name" ng-i18next>{{extra_data.name}}, </span>
-        <span ng-if="extra_data.org" ng-i18next>{{extra_data.org}} </span>
-        <span ng-if="extra_data.nif" ng-i18next>({{extra_data.nif}}). </span>
-        <a ng-if="extra_data.contact" href="mailto:{{extra_data.contact}}"><span ng-i18next>avBooth.legal.contact</span>: {{ extra_data.contact }}</a>
-        <!-- End legal terms -->
+      <div class="row" ng-if="tosTitle">
+        <div class="padded col-xs-12">
+          <h4>{{tosTitle}}</h4>
+          <div class="tos-text" ng-bind-html="tosText"></div>
+        </div>
       </div>
 
-    </div>
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
-      <button
-        class="btn btn-block btn-lg btn-success-action btn-plain"
-        ng-i18next="avBooth.startVoting"
-        ng-click="next()">
-      </button>
+      <div class="row" ng-if="legal">
+        <div class="padded col-xs-12 legal-terms">
+          <!-- Legal terms -->
+          <h4 ng-i18next="avBooth.legal.title"></h4>
+          <span ng-if="extra_data.name" ng-i18next>{{extra_data.name}}, </span>
+          <span ng-if="extra_data.org" ng-i18next>{{extra_data.org}} </span>
+          <span ng-if="extra_data.nif" ng-i18next>({{extra_data.nif}}). </span>
+          <a ng-if="extra_data.contact" href="mailto:{{extra_data.contact}}"><span ng-i18next>avBooth.legal.contact</span>: {{ extra_data.contact }}</a>
+          <!-- End legal terms -->
+        </div>
+
+      </div>
+      <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+        <button
+          class="btn btn-block btn-lg btn-success-action btn-plain"
+          ng-i18next="avBooth.startVoting"
+          ng-click="next()">
+        </button>
+      </div>
     </div>
   </div>
 </div>
