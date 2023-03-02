@@ -130,9 +130,11 @@
           Clear selection
         </button>
         <button
+          id="continue-btn"
           class="btn btn-lg btn-success-action btn-plain col-xs-12 col-sm-4 col-sm-offset-4"
-          ng-click="presetNext()">
-          Next
+          ng-i18next
+          ng-click="questionNext()">
+          {{nextButtonText}}
           <i class="fa fa-chevron-right"></i>
         </button>
       </div>
