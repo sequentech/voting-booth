@@ -26,7 +26,7 @@
         ng-bind-html="question.description | addTargetBlank">
       </p>
       <div
-        class="text-warning input-error error-list"
+        class="text-warning input-error error-list options-profile"
       >
         <div class="input-warn" ng-repeat="error in errors" ng-if="errors.length > 0">
           <div class="warn-box">
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div
-        class="text-brand-warning"
+        class="text-brand-warning options-profile"
         id="num-options-limits"
         ng-i18next="[html:i18next]({min: stateData.question.min, max: stateData.question.max})avBooth.numOptionsLimits">
       </div>
@@ -80,7 +80,7 @@
           </h4>
           <div class="category-body">
             <div 
-              class="question-answers text-left"
+              class="question-answers text-left options-profile"
             >
               <div 
                 ng-repeat="answer in category.answers"
@@ -104,7 +104,7 @@
       </div>
 
       <div 
-        class="invalid-vote-col"
+        class="invalid-vote-col options-profile"
         ng-if="!!question.invalidVoteAnswer"
       >
         <div 
