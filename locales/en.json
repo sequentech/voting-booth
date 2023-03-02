@@ -283,7 +283,7 @@
       },
       "informationModal": {
         "header": "Information: Ballot screen",
-        "body": "This screen show  the contest you are elegible to vote . You can make your section by activate the checkbox on the Candidate/Answer right.  To  reset  your selections, click “<b>Clear selection</b>” button, to move to next step , click “<b>Next</b>” button bellow .",
+        "body": "This screen show the contest you are elegible to vote. You can make your section by activate the checkbox on the Candidate/Answer right. To reset your selections, click “<b>Clear selection</b>” button, to move to next step, click “<b>Next</b>” button bellow.",
         "confirm": "OK"
       }
     },

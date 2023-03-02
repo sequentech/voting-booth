@@ -848,7 +848,7 @@ angular.module('avBooth')
                 };
               }
             }
-          })
+          });
         };
 
         scope.skipQuestion = function() 
