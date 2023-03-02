@@ -108,7 +108,7 @@
         ng-if="!!question.invalidVoteAnswer"
       >
         <div 
-          avb-simultaneous-question-answer
+          avb-simultaneous-question-answer-v2
           answer="question.invalidVoteAnswer"
           question="question"
           is-invalid-vote-answer="true"
@@ -125,9 +125,11 @@
     <div class="actions">
       <div class="row">
         <button
+          id="clear-selection-btn"
           class="btn btn-lg btn-cancel btn-plain col-xs-12 col-sm-4"
+          ng-i18next="avBooth.clearSelection"
+          ng-click="clearSelection()"
         >
-          Clear selection
         </button>
         <button
           id="continue-btn"

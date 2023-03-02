@@ -941,6 +941,21 @@ angular.module('avBooth')
 
           scope.next();
         };
+
+        scope.clearSelection = function () {
+          _.each(
+            scope.groupQuestions,
+            function (question) {
+              _.each(
+                question.answers,
+                function (answer) {
+                  scope.deselectAllCumulative(question, answer);
+                  answer.selected = -1;
+                }
+              );
+            }
+          );
+        };
       };
 
       return {
