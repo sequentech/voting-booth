@@ -194,7 +194,8 @@
       "header": "Selecciona más opciones",
       "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
       "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
-    }
+    },
+    "clearSelection": "Borrar selección"
   },
   "avElection": {
     "resultsLoadingText": "Cargando resultados",

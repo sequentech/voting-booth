@@ -256,7 +256,8 @@
       "confirm": "Sí, marca tota la llista",
       "cancel": "No",
       "doNotShowAgain": "No em mostris més això"
-    }
+    },
+    "clearSelection": "Esborrar selecció"
   },
   "avElection": {
     "resultsLoadingText": "Carregant resultats",

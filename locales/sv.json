@@ -199,6 +199,7 @@
       "header": "Välj flera alternativ",
       "body": "Du har inte valt tillräckligt med alternativ för denna fråga:",
       "question": "Fråga ’__title__’: du har valt __selected__ alternativ, men den förutsätter minst __min__ alternativ"
-    }
+    },
+    "clearSelection": "Rensa val"
   }
 }

@@ -287,7 +287,8 @@
       "confirm": "SI, seleccionar",
       "cancel": "NO",
       "doNotShowAgain": "No mostrar esto de nuevo"
-    }
+    },
+    "clearSelection": "Borrar selección"
   },
   "avElection": {
     "resultsLoadingText": "Cargando resultados",

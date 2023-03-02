@@ -202,6 +202,7 @@
       "header": "Valitse useampi vaihtoehto",
       "body": "Et ole valinnut tarpeeksi montaa vaihtoehtoa tähän kysymykseen:",
       "question": "Kysymys '__title__': teit __selected__ valintaa, mutta siinä edellytetään vähintään __min__ valintaa"
-    }
+    },
+    "clearSelection": "Tyhjennä valinta"
   }
 }
