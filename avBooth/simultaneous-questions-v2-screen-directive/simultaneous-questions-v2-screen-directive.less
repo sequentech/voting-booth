@@ -37,6 +37,7 @@
 
   .text-brand-warning {
     margin-top: 40px;
+    padding: 0 42px;
     b {
       color: @av-secondary-contrast;
     }
@@ -94,7 +95,6 @@
 
     .warn-box {
       background-color: @av-error-bg;
-      color: @av-warning-color;
       padding: 14.5px 17px;
       display: flex;
       flex-direction: row;
@@ -102,7 +102,15 @@
     }
 
     .glyphicon-warning-sign {
-      margin-top: 4px;
+      margin-top: 3px;
     }
+  }
+
+  .text-warning.input-error.error-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 8px 0;
+    padding: 0 42px;
   }
 }

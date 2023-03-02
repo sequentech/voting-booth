@@ -46,6 +46,18 @@
             </div>
           </div>
         </div>
+        <div class="input-warn" ng-repeat="error in errors">
+          <div class="warn-box">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            <div
+              class="warn-text"
+              role="alert"
+              data-i18n="{{error.data}}"
+              ng-i18next>
+              [html:i18next]({{error.data}}){{error.key}}
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- QUESTION OPTIONS START -->
