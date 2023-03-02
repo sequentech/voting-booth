@@ -36,8 +36,28 @@
         width: 100%;
         position: sticky;
         top: 0;
-        padding-top: 8px;
-        padding-bottom: 8px;
+
+        .col-xs-6.header-left {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .dropdown, .log-out-button {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        [av-change-lang]:hover, .log-out-button:hover {
+            background-color: @av-secondary-contrast;
+            color: @av-primary !important;
+        }
+        
+        [av-change-lang] span:hover,
+        [av-change-lang] .fa.fa-language:hover,
+        .logout-text:hover,
+        .glyphicon.glyphicon-off:hover {
+            color: @av-primary;
+        }
     }
 
     .header-left {
