@@ -844,7 +844,8 @@ angular.module('avBooth')
                   errors: [],
                   header: "avBooth.simultaneousQuestions.informationModal.header",
                   body: "avBooth.simultaneousQuestions.informationModal.body",
-                  continue: "avBooth.simultaneousQuestions.informationModal.confirm"
+                  continue: "avBooth.simultaneousQuestions.informationModal.confirm",
+                  kind: "info"
                 };
               }
             }

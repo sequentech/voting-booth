@@ -7,7 +7,15 @@
 >
   <div class="modal-header dialog-header-warning">
     <h4 class="modal-title" id="modal-title">
-      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true">
+      <i
+        class="fa fa-lg fa-info-circle"
+        ng-if="data.kind === 'info'"
+        aria-hidden="true">
+      </i>
+      <span
+        class="glyphicon glyphicon-warning-sign"
+        ng-if="data.kind === 'warn' || !data.kind"
+        aria-hidden="true">
       </span>
       <span class="title" ng-i18next>
         {{data.header}}
