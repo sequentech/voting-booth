@@ -9,7 +9,7 @@
         class="election-title"
         ng-bind-html="election.presentation.extra_options.public_title || election.title"
       ></h1>
-      <i class="pull-right fa fa-lg fa-question-circle"></i>
+      <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
     </div>
     <p
       ng-if="election.description"

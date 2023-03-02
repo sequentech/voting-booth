@@ -829,6 +829,28 @@ angular.module('avBooth')
           }
         };
 
+        scope.showHelp = function()
+        {
+          $modal.open({
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+            controller: "InvalidAnswersController",
+            size: 'md',
+            resolve: {
+              errors: function() { return []; },
+              data: function() {
+                return {
+                  errors: [],
+                  header: "avBooth.simultaneousQuestions.informationModal.header",
+                  body: "avBooth.simultaneousQuestions.informationModal.body",
+                  continue: "avBooth.simultaneousQuestions.informationModal.confirm"
+                };
+              }
+            }
+          })
+        };
+
         scope.skipQuestion = function() 
         {
           $modal.open({
