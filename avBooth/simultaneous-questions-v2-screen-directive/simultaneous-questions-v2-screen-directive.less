@@ -23,8 +23,12 @@
     }
   }
 
-  .text-brand-warning b{
+  .text-brand-warning {
+    margin-bottom: 4px;
+
+    b {
       color: @av-secondary-contrast;
+    }
   }
 
   .actions {
@@ -63,5 +67,9 @@
     min-height: 60px;
     max-height: 174px;
     overflow-y: auto;
+
+    @media(max-width: @screen-sm-max) {
+      min-height: 74px;
+    }
   }
 }
