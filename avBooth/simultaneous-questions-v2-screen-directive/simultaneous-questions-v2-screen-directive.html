@@ -127,16 +127,18 @@
         <button
           id="clear-selection-btn"
           class="btn btn-lg btn-cancel btn-plain col-xs-4"
-          ng-i18next="avBooth.clearSelection"
           ng-click="clearSelection()"
         >
+          <span ng-i18next="avBooth.clearSelection"></span>
         </button>
         <button
           id="continue-btn"
           class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
           ng-click="questionNext()">
-          {{ nextButtonText | i18next }}
-          <i class="fa fa-chevron-right"></i>
+          <span>
+            {{ nextButtonText | i18next }}
+            <i class="fa fa-chevron-right"></i>
+          </span>
         </button>
       </div>
     </div>

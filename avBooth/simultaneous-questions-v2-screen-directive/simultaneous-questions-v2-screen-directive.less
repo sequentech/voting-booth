@@ -34,6 +34,15 @@
     justify-content: flex-end;
     margin-bottom: 19px;
 
+    .btn-lg {
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      span {
+        white-space: nowrap;
+      }
+    }
+
     @media(max-width: @screen-sm-max) {
       .btn-lg {
         font-size: unset;
