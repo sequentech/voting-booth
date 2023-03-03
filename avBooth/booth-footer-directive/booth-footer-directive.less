@@ -23,6 +23,11 @@
         padding-top: 30px;
         padding-bottom: 30px;
         background-color: @av-primary;
+
+        @media(max-width: @screen-sm-max) {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
     }
 
     .powered-by {
@@ -33,6 +38,11 @@
     .version {
         display: flex;
         justify-content: right;
+        padding-right: 0;
+
+        @media(max-width: @screen-sm-max) {
+            justify-content: center;
+        }
     }
 
     .container-fluid {
