@@ -39,9 +39,9 @@
   <span class="glyphicon glyphicon-play"></span>
 </div>
 
-<div class="input-warn warning-demo">
+<div class="input-warn warning-demo"  ng-if="isDemo">
   <div class="warn-box">
-    <span class="glyphicon glyphicon-warning-sign"></span>
+    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
     <div
       class="warn-text"
       role="alert"
@@ -50,10 +50,13 @@
   </div>
 </div>
 
-<div class="booth-profile warning-demo" ng-if="isPreview">
-  <div class="row">
-    <div class="col-xs-12">
-      <p ng-i18next="[html]avBooth.thisisAPreviewNotification"></p>
+<div class="input-warn warning-demo"  ng-if="isPreview">
+  <div class="warn-box">
+    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+    <div
+      class="warn-text"
+      role="alert"
+      ng-i18next="[html]avBooth.thisisAPreviewNotification">
     </div>
   </div>
 </div>

@@ -196,7 +196,7 @@
     "auditStartAgain": "Comenceu de nou el procés de vot",
 
 
-    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Atenció!</strong> Cabina de votació de prova, els vots emesos aquí no compten.",
+    "thisisADemoNotification": "<strong>Atenció!</strong> Cabina de votació de prova, els vots emesos aquí no compten.",
     "successBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>Podeu fer servir el localitzador per verificar que el vostre vot ha quedat registrat <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\"> en aquesta adreça</a></strong>.",
     "successBallotQrCode": "Pots verificar que el teu vot ha quedat enregistrat mitjançant el següent codi QR:",
     "successNoBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",

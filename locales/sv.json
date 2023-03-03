@@ -160,7 +160,7 @@
     "auditStartAgain": "Börja rösta på nytt från början",
 
 
-    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Varning!</strong> Det här är en presentationssida för röstningen. Röster som ges här räknas inte.",
+    "thisisADemoNotification": "<strong>Varning!</strong> Det här är en presentationssida för röstningen. Röster som ges här räknas inte.",
     "successBallotHash": "Din röst har lagrats i <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-tjänstens elektroniska valurna. Kontrollnumret för din röst:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Du kan använda kontrollnumret för att kontrollera att din röst säkert har lagrats på servern i <a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>den här adressen</strong></a>.",
     "successBallotQrCode": "Du kan verifiera att din röst har registrerats med följande QR-kod:",
     "relatedLinksText": "Läs mer om röstningen här:",
