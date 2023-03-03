@@ -99,5 +99,14 @@
         bottom: 0;
         left: 50%;
         transform: translate(-50%, 50%);
+
+        @media(max-width: @screen-sm-min) {
+            position: unset;
+            bottom: unset;
+            left: unset;
+            transform: unset;
+            margin-right: auto;
+            margin-left: auto;
+        }
     }
 }
