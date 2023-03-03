@@ -17,6 +17,10 @@
 
   .btn-success-action > .fa-chevron-right {
     padding-left: 39px;
+
+    @media(max-width: @screen-sm-max) {
+      padding-left: unset;
+    }
   }
 
   .text-brand-warning b{
@@ -29,6 +33,13 @@
     flex-direction: column;
     justify-content: flex-end;
     margin-bottom: 19px;
+
+    @media(max-width: @screen-sm-max) {
+      .btn-lg {
+        font-size: unset;
+        line-height: unset;
+      }
+    }
   }
 
   .question {
