@@ -1,17 +1,19 @@
-<div class="container footer-container row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4 powered-by">
-        <span ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
-        </span>
-    </div>
-    <div class="col-xs-12 col-sm-4 version">
-        <a
-            ng-if="!!configService.mainVersion"
-            target="_top"
-            tabindex="0"
-            class="config-version"
-            ng-click="showVersionsModal()"
-            ng-i18next="[i18next]({version: configService.mainVersion})avCommon.showVersion"
-        >
-        </a>
+<div class="hidden" ng-cloak av-affix-bottom>
+    <div class="container footer-container row">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4 powered-by">
+            <span ng-i18next="[html:i18next]({url: organization.orgUrl, name: organization.orgName})avCommon.poweredBy">
+            </span>
+        </div>
+        <div class="col-xs-12 col-sm-4 version">
+            <a
+                ng-if="!!configService.mainVersion"
+                target="_top"
+                tabindex="0"
+                class="config-version"
+                ng-click="showVersionsModal()"
+                ng-i18next="[i18next]({version: configService.mainVersion})avCommon.showVersion"
+            >
+            </a>
+        </div>
     </div>
 </div>
