@@ -1,148 +1,146 @@
-<div class="absolute-full-screen">
-  <!-- top navbar -->
-  <div avb-booth-header></div>
+<!-- top navbar -->
+<div avb-booth-header></div>
 
-  <div class="container election-container">
-    <div avb-voting-step></div>
-    <div class="election-header">
-      <h1
-        class="election-title"
-        ng-bind-html="election.presentation.extra_options.public_title || election.title"
-      ></h1>
-      <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
-    </div>
+<div class="container election-container">
+  <div avb-voting-step></div>
+  <div class="election-header">
+    <h1
+      class="election-title"
+      ng-bind-html="election.presentation.extra_options.public_title || election.title"
+    ></h1>
+    <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
+  </div>
+  <p
+    ng-if="election.description"
+    class="election-description"
+    ng-bind-html="election.description | addTargetBlank">
+  </p>
+  <div class="notifications"></div>
+  <div class="question" ng-repeat="question in groupQuestions">
+    <h2 class="question-title" aria-level="2" ng-bind-html="question.title">
+    </h2>
     <p
-      ng-if="election.description"
-      class="election-description"
-      ng-bind-html="election.description | addTargetBlank">
+      class="question-description"
+      ng-if="question.description"
+      ng-bind-html="question.description | addTargetBlank">
     </p>
-    <div class="notifications"></div>
-    <div class="question" ng-repeat="question in groupQuestions">
-      <h2 class="question-title" aria-level="2" ng-bind-html="question.title">
-      </h2>
-      <p
-        class="question-description"
-        ng-if="question.description"
-        ng-bind-html="question.description | addTargetBlank">
-      </p>
-      <div
-        class="text-warning input-error error-list options-profile"
-      >
-        <div class="input-warn" ng-repeat="error in errors" ng-if="errors.length > 0">
-          <div class="warn-box">
-            <span class="glyphicon glyphicon-warning-sign"></span>
-            <div
-              class="warn-text"
-              role="alert"
-              data-i18n="{{error.data}}"
-              ng-i18next>
-              [html:i18next]({{error.data}}){{error.key}}
-            </div>
+    <div
+      class="text-warning input-error error-list options-profile"
+    >
+      <div class="input-warn" ng-repeat="error in errors" ng-if="errors.length > 0">
+        <div class="warn-box">
+          <span class="glyphicon glyphicon-warning-sign"></span>
+          <div
+            class="warn-text"
+            role="alert"
+            data-i18n="{{error.data}}"
+            ng-i18next>
+            [html:i18next]({{error.data}}){{error.key}}
           </div>
         </div>
       </div>
+    </div>
+    <div
+      class="text-brand-warning options-profile"
+      id="num-options-limits"
+      ng-i18next="[html:i18next]({min: stateData.question.min, max: stateData.question.max})avBooth.numOptionsLimits">
+    </div>
+
+    <!-- QUESTION OPTIONS START -->
+
+    <div class="categories">
       <div
-        class="text-brand-warning options-profile"
-        id="num-options-limits"
-        ng-i18next="[html:i18next]({min: stateData.question.min, max: stateData.question.max})avBooth.numOptionsLimits">
-      </div>
+          class="category"
+          ng-repeat="category in question.categories"
+          class="col-xs-12"
+      >
+        <h4 class="category-heading" ng-if="question.hasCategories && category.title.length > 0">
+          <div
+            ng-if="question.are_lists_checkable && category.categoryAnswer" 
+          >
+            <div 
+              avb-simultaneous-question-answer-v2
+              answer="category.categoryAnswer"
+              question="question"
+              toggle-select-item="toggleSelectItem"
+              toggle-select-item-cumulative="toggleSelectItemCumulative"
+              cumulative-checks="cumulativeChecks"
+              read-only="false"
+            >
+            </div>
+          </div>
 
-      <!-- QUESTION OPTIONS START -->
-
-      <div class="categories">
-        <div
-            class="category"
-            ng-repeat="category in question.categories"
-            class="col-xs-12"
-        >
-          <h4 class="category-heading" ng-if="question.hasCategories && category.title.length > 0">
-            <div
-              ng-if="question.are_lists_checkable && category.categoryAnswer" 
+          <div
+            ng-if="!question.are_lists_checkable || !category.categoryAnswer"
+            class="list-checks"
+          >
+            {{ category.title }}
+          </div>
+        </h4>
+        <div class="category-body">
+          <div 
+            class="question-answers text-left options-profile"
+          >
+            <div 
+              ng-repeat="answer in category.answers"
+              class="question-answer-wrapper"
+              class="col-xs-12"
             >
               <div 
                 avb-simultaneous-question-answer-v2
-                answer="category.categoryAnswer"
+                answer="answer"
                 question="question"
                 toggle-select-item="toggleSelectItem"
                 toggle-select-item-cumulative="toggleSelectItemCumulative"
                 cumulative-checks="cumulativeChecks"
-                read-only="false"
-              >
-              </div>
-            </div>
-
-            <div
-              ng-if="!question.are_lists_checkable || !category.categoryAnswer"
-              class="list-checks"
-            >
-              {{ category.title }}
-            </div>
-          </h4>
-          <div class="category-body">
-            <div 
-              class="question-answers text-left options-profile"
-            >
-              <div 
-                ng-repeat="answer in category.answers"
-                class="question-answer-wrapper"
-                class="col-xs-12"
-              >
-                <div 
-                  avb-simultaneous-question-answer-v2
-                  answer="answer"
-                  question="question"
-                  toggle-select-item="toggleSelectItem"
-                  toggle-select-item-cumulative="toggleSelectItemCumulative"
-                  cumulative-checks="cumulativeChecks"
-                  write-in-text-change="updateErrors"
-                  read-only="question.are_candidates_read_only"
-                ></div>
-              </div>
+                write-in-text-change="updateErrors"
+                read-only="question.are_candidates_read_only"
+              ></div>
             </div>
           </div>
         </div>
       </div>
-
-      <div 
-        class="invalid-vote-col options-profile"
-        ng-if="!!question.invalidVoteAnswer"
-      >
-        <div 
-          avb-simultaneous-question-answer-v2
-          answer="question.invalidVoteAnswer"
-          question="question"
-          is-invalid-vote-answer="true"
-          toggle-select-item="toggleSelectItem"
-          toggle-select-item-cumulative="toggleSelectItemCumulative"
-          cumulative-checks="cumulativeChecks"
-        >
-        </div>
-      </div>
-
-      <!-- QUESTION OPTIONS END -->
-
     </div>
-    <div class="actions">
-      <div class="row">
-        <button
-          id="clear-selection-btn"
-          class="btn btn-lg btn-cancel btn-plain col-xs-4"
-          ng-click="clearSelection()"
-        >
-          <span ng-i18next="avBooth.clearSelection"></span>
-        </button>
-        <button
-          id="continue-btn"
-          class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
-          ng-click="questionNext()">
-          <span>
-            {{ nextButtonText | i18next }}
-            <i class="fa fa-chevron-right"></i>
-          </span>
-        </button>
+
+    <div 
+      class="invalid-vote-col options-profile"
+      ng-if="!!question.invalidVoteAnswer"
+    >
+      <div 
+        avb-simultaneous-question-answer-v2
+        answer="question.invalidVoteAnswer"
+        question="question"
+        is-invalid-vote-answer="true"
+        toggle-select-item="toggleSelectItem"
+        toggle-select-item-cumulative="toggleSelectItemCumulative"
+        cumulative-checks="cumulativeChecks"
+      >
       </div>
+    </div>
+
+    <!-- QUESTION OPTIONS END -->
+
+  </div>
+  <div class="actions">
+    <div class="row">
+      <button
+        id="clear-selection-btn"
+        class="btn btn-lg btn-cancel btn-plain col-xs-4"
+        ng-click="clearSelection()"
+      >
+        <span ng-i18next="avBooth.clearSelection"></span>
+      </button>
+      <button
+        id="continue-btn"
+        class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
+        ng-click="questionNext()">
+        <span>
+          {{ nextButtonText | i18next }}
+          <i class="fa fa-chevron-right"></i>
+        </span>
+      </button>
     </div>
   </div>
-
-  <div avb-booth-footer></div>
 </div>
+
+<div avb-booth-footer></div>
