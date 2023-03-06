@@ -1,26 +1,32 @@
 <!-- top navbar -->
 <div avb-booth-header></div>
 
-<div class="content avb-content">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1
-          class="text-center"
-          ng-bind-html="election.presentation.extra_options.public_title || election.title"
-        ></h1>
-        <div ng-i18next="[html:i18next]({ballotHash: stateData.ballotHash, auditableBallot: auditableBallotStr})avBooth.auditBallotText"></div>
-      </div>
-    </div>
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+<div class="container">
+  <div class="sticky-top">
+    <div avb-voting-step step="audit"></div>
+  </div>
 
-      <div class="col-xs-12 no-padding">
-        <button
-          class="btn btn-block btn-lg btn-success-action btn-plain"
-          ng-i18next="avBooth.auditStartAgain"
-          ng-click="next()">
-        </button>
+  <div class="content avb-content">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1
+            class="text-center"
+            ng-bind-html="election.presentation.extra_options.public_title || election.title"
+          ></h1>
+          <div ng-i18next="[html:i18next]({ballotHash: stateData.ballotHash, auditableBallot: auditableBallotStr})avBooth.auditBallotText"></div>
+        </div>
       </div>
-    </div>
+      <div class="row">
+
+        <div class="col-xs-12 no-padding">
+          <button
+            class="btn btn-block btn-lg btn-success-action btn-plain"
+            ng-i18next="avBooth.auditStartAgain"
+            ng-click="next()">
+          </button>
+        </div>
+      </div>
   </div>
 </div>
+
+<div avb-booth-footer></div>
