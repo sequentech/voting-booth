@@ -1,22 +1,29 @@
 <div class="voting-steps">
-    <div class="step-number step-number-selected">
+    <div class="step-number"
+        ng-class="{'step-number-selected': istep >= 1, 'step-number-unselected': istep < 1}"
+    >
         1
     </div>
-    <span class="step-text">
+    <span class="step-text-selected"
+    >
         Ballot
     </span>
     <div class="step-separator"></div>
-    <div class="step-number step-number-unselected">
+    <div class="step-number"
+        ng-class="{'step-number-selected': istep >= 2, 'step-number-unselected': istep < 2}"
+    >
         2
     </div>
-    <span class="step-text-unselected">
+    <span ng-class="{'step-text-selected': istep >= 2, 'step-text-unselected': istep < 2}">
         Review
     </span>
     <div class="step-separator"></div>
-    <div class="step-number step-number-unselected">
+    <div class="step-number"
+        ng-class="{'step-number-selected': istep >= 3, 'step-number-unselected': istep < 3}"
+    >
         3
     </div>
-    <span class="step-text-unselected">
+    <span ng-class="{'step-text-selected': istep >= 3, 'step-text-unselected': istep < 3}">
         Confirmation
     </span>
 </div>

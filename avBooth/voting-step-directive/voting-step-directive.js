@@ -40,11 +40,14 @@ angular
     {
       function link(scope, element, attrs)
       {
+        scope.istep = parseInt(scope.step);
       }
 
       return {
         restrict: 'AE',
-        scope: true,
+        scope: {
+          step: '=',
+        },
         link: link,
         templateUrl: 'avBooth/voting-step-directive/voting-step-directive.html'
       };

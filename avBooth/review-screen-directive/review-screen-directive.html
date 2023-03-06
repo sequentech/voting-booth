@@ -1,6 +1,12 @@
 <!-- top navbar -->
 <div avb-booth-header></div>
 
+<div class="container">
+  <div class="sticky-top">
+    <div avb-voting-step step="2"></div>
+  </div>
+</div>
+
 <div class="wrapper-unfixed">
   <div class="navbar-unfixed-top text-center">
     <div class="container">
@@ -22,7 +28,7 @@
         <div avb-review-ballot></div>
       </div>
     </div>
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+    <div class="row">
       <div
         ng-if="!election.presentation.extra_options || !election.presentation.extra_options.disable_voting_booth_audit_ballot"
         class="col-xs-12 locator-text-click-audit">
@@ -77,3 +83,5 @@
     </div>
   </div>
 </div>
+
+<div avb-booth-footer></div>
