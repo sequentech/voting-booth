@@ -40,7 +40,9 @@ angular
     {
       function link(scope, element, attrs)
       {
-        scope.istep = parseInt(scope.step);
+        if (undefined === scope.step) {
+          scope.step = attrs.step;
+        }
       }
 
       return {
