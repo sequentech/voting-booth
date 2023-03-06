@@ -60,16 +60,12 @@
   }
 
   .text-warning.input-error.error-list {
+    position: sticky;
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin: 8px 0;
-    min-height: 60px;
     max-height: 174px;
     overflow-y: auto;
-
-    @media(max-width: @screen-sm-max) {
-      min-height: 74px;
-    }
   }
 }
