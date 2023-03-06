@@ -15,7 +15,7 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 [avb-booth-header] {
-    top: -92px;
+    top: -84px;
     position: sticky;
     z-index: 10;
 
@@ -25,16 +25,18 @@
         position: sticky;
         align-items: center;
         background-color: @av-primary;
-        top: -92px;
+        top: -84px;
     }
 
     .header-container {
         flex-direction: row;
         align-items: center;
         display: flex;
-        height: 47px;
+        height: 55px;
         position: sticky;
         top: 0;
+        padding-top: 4px;
+        padding-bottom: 4px;
 
         @media(max-width: @screen-xs-max) {
             width: 100%;
@@ -89,8 +91,8 @@
     }
 
     .glyphicon-off {
-        line-height: 31px;
-        font-size: 29px;
+        line-height: 27px;
+        font-size: 25px;
         vertical-align: -20%;
         margin-right: 10px;
         color: @av-secondary;
