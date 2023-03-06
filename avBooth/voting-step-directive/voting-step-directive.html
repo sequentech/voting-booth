@@ -1,6 +1,6 @@
 <div class="voting-steps">
     <div class="step-number"
-        ng-class="{'step-number-selected': istep >= 1, 'step-number-unselected': istep < 1}"
+        ng-class="{'step-number-selected': istep == 1, 'step-number-unselected': istep != 1}"
     >
         1
     </div>
@@ -10,7 +10,7 @@
     </span>
     <div class="step-separator"></div>
     <div class="step-number"
-        ng-class="{'step-number-selected': istep >= 2, 'step-number-unselected': istep < 2}"
+        ng-class="{'step-number-selected': istep == 2, 'step-number-unselected': istep != 2}"
     >
         2
     </div>
@@ -19,7 +19,7 @@
     </span>
     <div class="step-separator"></div>
     <div class="step-number"
-        ng-class="{'step-number-selected': istep >= 3, 'step-number-unselected': istep < 3}"
+        ng-class="{'step-number-selected': istep == 3, 'step-number-unselected': istep != 3}"
     >
         3
     </div>
