@@ -2,19 +2,21 @@
 <div avb-booth-header></div>
 
 <div class="container election-container">
-  <div avb-voting-step></div>
-  <div
-    class="text-warning input-error error-list options-profile"
-  >
-    <div class="input-warn" ng-repeat="error in errors" ng-if="errors.length > 0">
-      <div class="warn-box">
-        <span class="glyphicon glyphicon-warning-sign"></span>
-        <div
-          class="warn-text"
-          role="alert"
-          data-i18n="{{error.data}}"
-          ng-i18next>
-          [html:i18next]({{error.data}}){{error.key}}
+  <div class="sticky-top">
+    <div avb-voting-step></div>
+    <div
+      class="text-warning input-error error-list options-profile"
+    >
+      <div class="input-warn" ng-repeat="error in errors" ng-if="errors.length > 0">
+        <div class="warn-box">
+          <span class="glyphicon glyphicon-warning-sign"></span>
+          <div
+            class="warn-text"
+            role="alert"
+            data-i18n="{{error.data}}"
+            ng-i18next>
+            [html:i18next]({{error.data}}){{error.key}}
+          </div>
         </div>
       </div>
     </div>

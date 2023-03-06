@@ -60,12 +60,20 @@
   }
 
   .text-warning.input-error.error-list {
-    position: sticky;
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin: 8px 0;
     max-height: 174px;
     overflow-y: auto;
+  }
+
+  .sticky-top {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    z-index: 8;
+    top: 47px;
+    background: white;
   }
 }
