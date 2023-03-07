@@ -6,16 +6,22 @@
     <div avb-voting-step step="3"></div>
   </div>
 
-  <div class="wrapper-unfixed">
-    <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-success-screen] #avb-toggle">
-      <div class="hidden unfixed-top-height"></div>
+  <div class="success-intro">
+    <div class="success-text">
       <h1 class="success-title" ng-i18next="avBooth.successTitle"></h1>
       <p class="success-subheader" ng-i18next="avBooth.successSubheader"></p>
     </div>
+    <div class="success-help">
+      <i class="fa fa-check" ng-click="showHelp()"></i>
+    </div>
   </div>
 
-  <div id="avb-toggle" class="text-center item-block hidden">
-    <span class="glyphicon glyphicon-play"></span>
+  <div class="ballot-idsection">
+    <h2 class="ballot-id-title">Ballot ID</h2>
+    <div class="ballot-id-box">
+      <i class="fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
+      <i class="ballot-id-hash">{{stateData.ballotHash}}</i>
+    </div>
   </div>
 
   <div class="content avb-content">
