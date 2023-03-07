@@ -55,7 +55,7 @@ angular.module('avBooth')
                 header: "avBooth.confirmAuditBallot.header",
                 body: "avBooth.confirmAuditBallot.body",
                 continue: "avBooth.confirmAuditBallot.confirm",
-                cancel: "avBooth.confirmAuditBallot.cancel"
+                cancel: "avCommon.cancel"
               };
             }
           }

@@ -239,9 +239,23 @@ angular.module('avBooth')
         // show null vote warning
         if (scope.stateData.question.presetSelected === null) {
           $modal.open({
-            templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
-            controller: "ConfirmNullVoteController",
-            size: 'md'
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+            controller: "InvalidAnswersController",
+            size: 'md',
+            resolve: {
+              errors: function() { return []; },
+              data: function() {
+                return {
+                  errors: [],
+                  header: "avBooth.confirmNullVote.header",
+                  body: "avBooth.confirmNullVote.body",
+                  continue: "avBooth.confirmNullVote.confirm",
+                  cancel: "avCommon.cancel"
+                };
+              }
+            }
           }).result.then(function () {
             scope.showingPreset = false;
           }, focusContinueBtn);
@@ -369,9 +383,23 @@ angular.module('avBooth')
         if (scope.numSelectedOptions() === 0)
         {
           $modal.open({
-            templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
-            controller: "ConfirmNullVoteController",
-            size: 'md'
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+            controller: "InvalidAnswersController",
+            size: 'md',
+            resolve: {
+              errors: function() { return []; },
+              data: function() {
+                return {
+                  errors: [],
+                  header: "avBooth.confirmNullVote.header",
+                  body: "avBooth.confirmNullVote.body",
+                  continue: "avBooth.confirmNullVote.confirm",
+                  cancel: "avCommon.cancel"
+                };
+              }
+            }
           }).result.then(pipe.continue, focusContinueBtn);
           return;
         }
