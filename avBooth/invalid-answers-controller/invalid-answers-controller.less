@@ -21,6 +21,13 @@
     .modal-footer {
         border: none;
         padding: 15px 48px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .modal-footer .btn+.btn {
+        margin-left:8px
     }
 
     .modal-title {
@@ -41,12 +48,20 @@
     }
 
     .btn {
-        width: 100%;
+        flex-grow: 2;
         padding: 11px;
     }
 
     .btn.btn-success {
         background-color: @av-secondary-contrast;
+
+        &:hover {
+            background-color: @av-primary-contrast;
+        }
+    }
+
+    .btn.btn-warning {
+        background-color: @error-primary-color;
 
         &:hover {
             background-color: @av-primary-contrast;

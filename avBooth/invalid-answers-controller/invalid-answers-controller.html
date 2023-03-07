@@ -49,21 +49,22 @@
   <div class="modal-footer">
     <button 
       tabindex="0"
-      ng-if="data.continue" 
-      class="btn btn-success" 
-      ng-click="ok()" 
-      ng-i18next
-    >
-      {{data.continue}}
-    </button>
-    <button 
-      tabindex="0"
       ng-if="data.cancel" 
       class="btn" 
       ng-click="cancel()" 
       ng-i18next
     >
       {{data.cancel}}
+    </button>
+    <button 
+      tabindex="0"
+      ng-if="data.continue" 
+      class="btn"
+      ng-class="{'btn-success': data.kind === 'info', 'btn-warning': data.kind === 'warn' || !data.kind}" 
+      ng-click="ok()" 
+      ng-i18next
+    >
+      {{data.continue}}
     </button>
   </div>
 </div>
