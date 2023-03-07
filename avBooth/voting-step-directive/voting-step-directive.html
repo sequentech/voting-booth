@@ -4,7 +4,9 @@
     >
         1
     </div>
-    <span class="step-text-selected" ng-i18next>
+    <span class="step-text-selected"
+        ng-class="{'hidden-xs': step != 1}"
+        ng-i18next>
         avBooth.votingSteps.ballot
     </span>
     <div class="step-separator"></div>
@@ -13,7 +15,9 @@
     >
         2
     </div>
-    <span ng-class="{'step-text-selected': step >= 2, 'step-text-unselected': step < 2}" ng-i18next>
+    <span
+        ng-class="{'step-text-selected': step >= 2, 'step-text-unselected': step < 2, 'hidden-xs': step != 2}"
+        ng-i18next>
         avBooth.votingSteps.review
     </span>
     <div class="step-separator"></div>
@@ -22,7 +26,9 @@
     >
         3
     </div>
-    <span ng-class="{'step-text-selected': step >= 3, 'step-text-unselected': step < 3}" ng-i18next>
+    <span
+        ng-class="{'step-text-selected': step >= 3, 'step-text-unselected': step < 3, 'hidden-xs': step != 3}"
+        ng-i18next>
         avBooth.votingSteps.confirmation
     </span>
 </div>
