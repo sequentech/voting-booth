@@ -42,9 +42,23 @@ angular.module('avBooth')
       scope.confirmAudit = function()
       {
         $modal.open({
-          templateUrl: "avBooth/confirm-audit-controller/confirm-audit-controller.html",
-          controller: "ConfirmAuditController",
-          size: 'md'
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.confirmAuditBallot.header",
+                body: "avBooth.confirmAuditBallot.body",
+                continue: "avBooth.confirmAuditBallot.confirm",
+                cancel: "avBooth.confirmAuditBallot.cancel"
+              };
+            }
+          }
         }).result.then(scope.audit, focusContinueBtn);
       };
 
