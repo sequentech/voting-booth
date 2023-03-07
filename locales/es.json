@@ -87,6 +87,18 @@
       "body": "La auditoría de la papeleta lo invalidará y tendrás que iniciar el proceso de votación de nuevo si deseas emitir tu voto. El proceso de auditoría de la papeleta permite verificar que está codificada correctamente. Hacer este proceso requiere que unos conocimientos técnicos importantes, por lo que no se recomienda si no sabes lo que estás haciendo. <br/> <br/><strong>Si lo que desea es emitir su voto, en <u>Cancelar</u> para volver a la pantalla de revisión de votación.</strong>",
       "confirm": "Sí, quiero INVALIDAR mi papeleta para AUDITARLA"
     },
+    "invalidAnswers": {
+      "header": "Voto no válido o en blanco",
+      "body": "Algunas de las respuestas pueden hacer que la papeleta en una o más preguntas no sea válida o en blanco:",
+      "continue": "Aceptar y continuar",
+      "cancel": "Volver y revisar"
+    },
+    "votingSteps": {
+      "ballot": "Papeleta",
+      "review":  "Revisión",
+      "confirmation": "Confirmación",
+      "audit": "Auditar"
+    },
     "planchaSelect": "seleccionar todos",
     "planchaDeselect": "deseleccionar todos",
     "showSelectedOptionPoints": "(__points__ puntos)",

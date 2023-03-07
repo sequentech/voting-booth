@@ -99,6 +99,12 @@
       "continue": "Accept and continue",
       "cancel": "Back and review"
     },
+    "votingSteps": {
+      "ballot": "Ballot",
+      "review":  "Review",
+      "confirmation": "Confirmation",
+      "audit": "Audit"
+    },
     "legal": {
         "title": "Legal terms",
         "contact": "contact"
