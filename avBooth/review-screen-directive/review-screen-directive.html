@@ -81,4 +81,40 @@
 
 </div>
 
-<div avb-booth-footer></div>
+
+<div class="hidden" ng-cloak av-affix-bottom>
+  <div class="container">
+    <div class="actions">
+      <div class="row">
+        <button
+          id="change-selection-btn"
+          class="btn btn-lg btn-canceln btn-plain col-xs-4"
+          ng-click="goToQuestion(0, false)">
+          <span>
+            <i class="fa fa-chevron-left"></i>
+            {{ 'avBooth.reviewScreen.editAction' | i18next }}
+          </span>
+        </button>
+        <button
+          id="audit-ballot-btn"
+          class="btn btn-lg btn-cancel btn-plain col-xs-4"
+          ng-click="confirmAudit()"
+        >
+          <span>
+            <i class="fa fa-fire"></i>
+            {{ 'avBooth.auditTheBallot' | i18next }}
+          </span>
+        </button>
+        <button
+          id="continue-btn"
+          class="btn btn-lg btn-success-action btn-plain col-xs-4"
+          ng-click="next()">
+          <span>
+            {{ 'avBooth.castTheBallot' | i18next }}
+            <i class="fa fa-chevron-right"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

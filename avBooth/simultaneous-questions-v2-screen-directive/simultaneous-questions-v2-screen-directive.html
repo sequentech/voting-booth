@@ -5,7 +5,7 @@
   <div class="sticky-top">
     <div avb-voting-step step="1"></div>
     <div
-      class="text-warning input-error error-list options-profile"
+      class="text-warning input-error error-list"
     >
       <div class="input-warn" ng-repeat="error in errors" ng-if="errors.length > 0">
         <div class="warn-box">
@@ -44,7 +44,7 @@
       ng-bind-html="question.description | addTargetBlank">
     </p>
     <div
-      class="text-brand-warning options-profile"
+      class="text-brand-warning"
       id="num-options-limits"
       ng-i18next="[html:i18next]({min: stateData.question.min, max: stateData.question.max})avBooth.numOptionsLimits">
     </div>
@@ -82,7 +82,7 @@
         </h4>
         <div class="category-body">
           <div 
-            class="question-answers text-left options-profile"
+            class="question-answers text-left"
           >
             <div 
               ng-repeat="answer in category.answers"
@@ -106,7 +106,7 @@
     </div>
 
     <div 
-      class="invalid-vote-col options-profile"
+      class="invalid-vote-col"
       ng-if="!!question.invalidVoteAnswer"
     >
       <div 
@@ -124,26 +124,29 @@
     <!-- QUESTION OPTIONS END -->
 
   </div>
-  <div class="actions">
-    <div class="row">
-      <button
-        id="clear-selection-btn"
-        class="btn btn-lg btn-cancel btn-plain col-xs-4"
-        ng-click="clearSelection()"
-      >
-        <span ng-i18next="avBooth.clearSelection"></span>
-      </button>
-      <button
-        id="continue-btn"
-        class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
-        ng-click="questionNext()">
-        <span>
-          {{ nextButtonText | i18next }}
-          <i class="fa fa-chevron-right"></i>
-        </span>
-      </button>
+</div>
+
+<div class="hidden" ng-cloak av-affix-bottom>
+  <div class="container">
+    <div class="actions">
+      <div class="row">
+        <button
+          id="clear-selection-btn"
+          class="btn btn-lg btn-cancel btn-plain col-xs-4"
+          ng-click="clearSelection()"
+        >
+          <span ng-i18next="avBooth.clearSelection"></span>
+        </button>
+        <button
+          id="continue-btn"
+          class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
+          ng-click="questionNext()">
+          <span>
+            {{ nextButtonText | i18next }}
+            <i class="fa fa-chevron-right"></i>
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
-
-<div avb-booth-footer></div>
