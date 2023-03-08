@@ -22,12 +22,10 @@ angular
   .module('avBooth')
   .directive(
     'avbBoothFooter',
-    function(ConfigService, ShowVersionsModalService)
+    function(ConfigService)
     {
       var link = function(scope, _element, _attrs) {
         scope.configService = ConfigService;
-
-        scope.showVersionsModal = ShowVersionsModalService;
       };
       return {
         restrict: 'AE',

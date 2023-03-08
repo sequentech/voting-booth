@@ -15,6 +15,15 @@
             </span>
         </div>
         <div class="col-xs-8 header-right">
+          <a
+              ng-if="!!configService.mainVersion"
+              target="_top"
+              tabindex="0"
+              class="config-version"
+              ng-click="showVersionsModal()"
+              ng-i18next="[i18next]({version: configService.mainVersion})avCommon.showVersion"
+          >
+          </a>
             <span
                 class="dropdown"
                 role="menuitem"

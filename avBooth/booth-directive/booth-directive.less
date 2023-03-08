@@ -248,10 +248,13 @@
 
   .actions {
     margin-bottom: 19px;
+    display: flex;
+    gap: 85px;
 
     .btn-lg {
       text-overflow: ellipsis;
       overflow: hidden;
+      border-radius: 4px;
 
       span {
         white-space: nowrap;
@@ -263,6 +266,8 @@
     }
 
     @media(max-width: @screen-sm-max) {
+      gap: 15px;
+
       .btn-lg {
         font-size: unset;
         line-height: unset;
