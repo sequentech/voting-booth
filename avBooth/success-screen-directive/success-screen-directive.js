@@ -574,12 +574,9 @@ angular.module('avBooth')
       scope.getBallotLocatorTarget = function () {
         return (!scope.ballotHashClicked && scope.isDemo ? "" : "_blank");
       };
-      scope.ballotHashWarning = function ()
-      {
-        if (!scope.isDemo || scope.ballotHashClicked) {
-          return false;
-        }
-        $modal.open({
+
+      function showVoteNoteCastModal() {
+        return $modal.open({
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
           templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
@@ -597,12 +594,46 @@ angular.module('avBooth')
               };
             }
           }
-        }).result.then(
+        }).result;
+      }
+      scope.ballotHashWarning = function ()
+      {
+        if (!scope.isDemo || scope.ballotHashClicked) {
+          return false;
+        }
+        showVoteNoteCastModal().result.then(
           function ()
           {
             scope.ballotHashClicked = true;
           }
         );
+      };
+
+      scope.showHelp = function()
+      {
+        if (!scope.isDemo || scope.ballotHashClicked) {
+          $modal.open({
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+            controller: "InvalidAnswersController",
+            size: 'md',
+            resolve: {
+              errors: function() { return []; },
+              data: function() {
+                return {
+                  errors: [],
+                  header: "avBooth.successScreen.informationModal.header",
+                  body: "avBooth.successScreen.informationModal.body",
+                  continue: "avBooth.successScreen.informationModal.confirm",
+                  kind: "info"
+                };
+              }
+            }
+          });
+        } else {
+          showVoteNoteCastModal();
+        }
       };
     }
 

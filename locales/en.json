@@ -82,6 +82,16 @@
       "confirm": "I accept my vote has NOT been cast",
       "cancel": "Cancel"
     },
+    "successScreen": {
+      "verifyBallotCastTitle": "Verify that your ballot has been cast",
+      "verifyBallotCastDescription": "You can verify your ballot has been cast correctly at any moment using the following QR code:",
+      "printBallotBtn": "Print",
+      "informationModal": {
+        "header": "Information: Success Screen",
+        "body": "This screen shows that your vote was successfully casted.",
+        "confirm": "OK"
+      }
+    }, 
     "errors": {
       "question-lambda-invalid": "Question '__qtitle__': Invalid vote.",
       "question-lambda-blank": "Question '__qtitle__': selected zero options. Blank vote.",
@@ -289,7 +299,7 @@
       },
       "informationModal": {
         "header": "Information: Ballot screen",
-        "body": "This screen show the contest you are elegible to vote. You can make your section by activate the checkbox on the Candidate/Answer right. To reset your selections, click “<b>Clear selection</b>” button, to move to next step, click “<b>Next</b>” button bellow.",
+        "body": "This screen shows the contest you are elegible to vote. You can make your section by activate the checkbox on the Candidate/Answer right. To reset your selections, click “<b>Clear selection</b>” button, to move to next step, click “<b>Next</b>” button bellow.",
         "confirm": "OK"
       }
     },
