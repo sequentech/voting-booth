@@ -266,6 +266,30 @@
       }
     }
   }
+
+  .btn.btn-success {
+      background-color: @av-secondary-contrast;
+
+      &:hover {
+          background-color: @av-primary-contrast;
+      }
+  }
+
+  .btn.btn-warning {
+      background-color: @error-primary-color;
+      color: @bg-primary;
+      border-color: unset;
+
+      &:hover, &:focus {
+          background-color: @av-primary-contrast;
+          color: @bg-primary;
+          border-color: unset;
+      }
+  }
+
+  .btn.btn-cancel {
+      background-color: @av-error-color;
+  }
 }
 
 @media(min-width: @screen-sm-min) {

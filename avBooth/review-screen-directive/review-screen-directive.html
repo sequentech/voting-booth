@@ -87,7 +87,9 @@
     <div class="actions">
       <button
         id="change-selection-btn"
-        class="btn btn-lg btn-canceln btn-plain col-xs-4"
+        class="btn btn-lg btn-cancel btn-plain col-xs-4"
+        ng-if="election.presentation.extra_options &&
+          election.presentation.extra_options.review_screen__split_cast_edit === true"
         ng-click="goToQuestion(0, false)">
         <span>
           <i class="fa fa-chevron-left"></i>
@@ -96,7 +98,9 @@
       </button>
       <button
         id="audit-ballot-btn"
-        class="btn btn-lg btn-cancel btn-plain col-xs-4"
+        class="btn btn-lg btn-warning btn-plain col-xs-4"
+        ng-class="{'col-xs-offset-4': !election.presentation.extra_options || 
+          !election.presentation.extra_options.review_screen__split_cast_edit}"
         ng-click="confirmAudit()"
       >
         <span>
