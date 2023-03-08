@@ -21,8 +21,15 @@
               tabindex="0"
               class="config-version"
               ng-click="showVersionsModal()"
-              ng-i18next="[i18next]({version: configService.mainVersion})avCommon.showVersion"
           >
+            <span
+              class="hidden-xs"
+              ng-i18next="[i18next]({version: configService.mainVersion})avCommon.showVersion"
+            >
+            </span>
+            <span class="visible-xs-block">
+              {{configService.mainVersion}}
+            </span>
           </a>
             <span
                 class="dropdown"
