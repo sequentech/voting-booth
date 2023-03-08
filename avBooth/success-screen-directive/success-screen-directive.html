@@ -22,6 +22,8 @@
       <i class="fa fa-check"></i>
       <i class="ballot-id-hash">{{stateData.ballotHash}}</i>
     </div>
+    <div class="hidden-xs col-md-6">
+    </div>
   </div>
 
   <span 
@@ -128,24 +130,22 @@
   </div>
 
   <div class="actions">
-    <div class="row">
-      <button
-        id="clear-selection-btn"
-        class="btn btn-lg btn-cancel btn-plain col-xs-4"
-        ng-click="downloadBallotTicket()"
-      >
-        <span ng-i18next="avBooth.downloadBallotTicket"></span>
-      </button>
-      <button
-        id="continue-btn"
-        class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
-        ng-click="closeAndFinish(false, true)">
-        <span ng-i18next>
-          avBooth.closeWindow
-        </span>
+    <button
+      id="clear-selection-btn"
+      class="btn btn-lg btn-cancel btn-plain col-xs-4"
+      ng-click="downloadBallotTicket()"
+    >
+      <span ng-i18next="avBooth.downloadBallotTicket"></span>
+    </button>
+    <button
+      id="continue-btn"
+      class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
+      ng-click="closeAndFinish(false, true)">
+      <span ng-i18next>
+        avBooth.closeWindow
         <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      </span>
+    </button>
   </div>
 </div>
 
