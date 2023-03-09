@@ -152,7 +152,7 @@
     "totalsQuestionColumn": "(valda __selected__ av sammanlagt __count__ alternativ)",
 
     "reviewBallotHashText": "Kontrollkoden för din röst är: __ballotHash__",
-    "auditTheBallot": "(Kontrollera din röst)",
+    "auditTheBallot": "Kontrollera din röst",
 
     "auditBallotTitle": "Kontrollera rösten du gett",
     "auditBallotSubtitle": "",

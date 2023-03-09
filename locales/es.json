@@ -222,7 +222,7 @@
     "castOrCancelTitle": "Enviar el voto",
     "castOrCancelSubtitle": "Su voto está cifrado, ya puede enviarlo a la urna electrónica para que sea debidamente registrado.",
     "reviewBallotHashText": "El localizador de su voto es: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "(Auditar la papeleta)",
+    "auditTheBallot": "Auditar papeleta",
 
     "auditBallotTitle": "Auditar la papeleta",
     "auditBallotSubtitle": "",

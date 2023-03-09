@@ -154,7 +154,7 @@
     "totalsQuestionColumn": "(Valittuna __selected__ yhteensä __count__ vaihtoehdosta)",
 
     "reviewBallotHashText": "Äänesi seurantakoodi on: __ballotHash__",
-    "auditTheBallot": "(Tee äänentarkistus)",
+    "auditTheBallot": "Tee äänentarkistus",
 
     "auditBallotTitle": "Tarkasta antamasi ääni",
     "auditBallotSubtitle": "",

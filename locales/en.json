@@ -249,7 +249,7 @@
     "totalsQuestionColumn": "(__selected__ of __count__ selected)",
 
     "reviewBallotHashText": "Your ballot tracker id is: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "(Audit the ballot)",
+    "auditTheBallot": "Audit ballot",
 
     "auditBallotTitle": "Audit your Ballot",
     "auditBallotSubtitle": "",

@@ -156,7 +156,7 @@
     "castOrCancelTitle": "Enviar o voto",
     "castOrCancelSubtitle": "O teu voto está cifrado, xa podes envialo á urna electrónica para que sexa debidamente rexistrado. Alternativamente, podes auditar que foi correctamente cifrado.",
     "reviewBallotHashText": "O localizador do teu voto é: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "(Auditar a papeleta)",
+    "auditTheBallot": "Auditar papeleta",
 
     "auditBallotTitle": "Auditar a papeleta",
     "auditBallotSubtitle": "",
