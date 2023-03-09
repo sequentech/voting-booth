@@ -24,8 +24,9 @@ angular
     'avbBoothHeader',
     function(ConfigService, ShowVersionsModalService)
     {
-      var link = function(scope, _element, _attrs) {
+      var link = function(scope, _element, attrs) {
         scope.configService = ConfigService;
+        scope.ballotHash = attrs.ballotHash || false;
         scope.enableLogOut = function () {
           var election = (
             (!!scope.parentElection) ?
@@ -46,6 +47,9 @@ angular
       return {
         restrict: 'AE',
         link: link,
+        scope: {
+          ballotHash: '='
+        },
         templateUrl: 'avBooth/booth-header-directive/booth-header-directive.html'
       };
     }
