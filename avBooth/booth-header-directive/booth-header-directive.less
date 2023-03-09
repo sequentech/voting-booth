@@ -129,6 +129,8 @@
 
     .ballot-hash {
         max-width: 512px;
+        margin-right: auto;
+        margin-left: auto;
         .hash-box {
             color: @av-secondary-contrast;
             background-color: @brand-primary;
@@ -138,6 +140,11 @@
             gap: 8px;
             border-radius: 4px;
             border: 1px solid @av-secondary-contrast;
+            align-items: center;
+        }
+
+        .hash-text {
+            overflow-wrap: anywhere;
         }
 
         .fa-check {
