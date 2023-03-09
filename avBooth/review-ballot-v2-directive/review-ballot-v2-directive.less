@@ -1,0 +1,69 @@
+/**
+ * This file is part of voting-booth.
+ * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
+
+ * voting-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * voting-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+[avb-review-ballot] {
+  .question {
+    cursor: pointer;
+    padding-bottom: 10px;
+    background-color: transparent;
+
+    h3 {
+      margin-top: 0;
+      padding-top: 20px;
+    }
+
+    .title-container .edit-btn {
+      margin-top: 0;
+      padding-top: 20px;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .selected-answer,
+    .question-title,
+    .question-description {
+      word-break: keep-all;
+    }
+
+    ul, ol {
+      margin-bottom: 0;
+      padding-bottom: 10px;
+    }
+    
+    &:hover {
+      background-color: @gray-lighter;
+    }
+
+    .empty-answer, .invalid-answer {
+      font-weight: bold;
+    }
+
+    .striked-text {
+      text-decoration: line-through;
+    }
+
+    .question-description {
+      border: 1px solid;
+      padding: 10px;
+    }
+    .title-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}
