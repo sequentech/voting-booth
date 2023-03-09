@@ -81,7 +81,8 @@ angular.module('avBooth')
           cumulativeChecks: '=',
           isInvalidVoteAnswer: '=',
           writeInTextChange: '=',
-          readOnly: '&'
+          readOnly: '&',
+          hideCheck: '&'
         },
         templateUrl: 'avBooth/simultaneous-question-answer-v2-directive/simultaneous-question-answer-v2-directive.html'
       };
