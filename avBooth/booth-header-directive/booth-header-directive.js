@@ -47,9 +47,6 @@ angular
       return {
         restrict: 'AE',
         link: link,
-        scope: {
-          ballotHash: '='
-        },
         templateUrl: 'avBooth/booth-header-directive/booth-header-directive.html'
       };
     }

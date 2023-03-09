@@ -81,8 +81,10 @@
   <div class="hash-box">
     <i class="fa fa-check" aria-hidden="true"></i>
     <div
-      class="hash-text">
-      {{ballotHash}}
+      class="hash-text"
+      ng-i18next="[i18next]({hash: ballotHash})avBooth.reviewScreen.ballotIdMessage"
+      >
     </div>
+    <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
   </div>
 </div>
