@@ -97,6 +97,9 @@ angular.module('avBooth')
         scope.stateData.auditClicked = true;
         scope.next();
       };
+
+      scope.showEditBtn = !!scope.election.presentation.extra_options && !!scope.election.presentation.extra_options.review_screen__split_cast_edit;
+      scope.showAuditBtn = !scope.election.presentation.extra_options || !scope.election.presentation.extra_options.disable_voting_booth_audit_ballot;
     };
     return {
       restrict: 'AE',

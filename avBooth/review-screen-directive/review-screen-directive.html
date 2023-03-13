@@ -1,5 +1,6 @@
 <!-- top navbar -->
-<div avb-booth-header ballot-hash="{{stateData.ballotHash}}"></div>
+<div avb-booth-header
+  ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"></div>
 
 <div class="container">
   <div class="sticky-top">
@@ -12,68 +13,6 @@
   </p>
 
   <div avb-review-ballot-v2></div>
-
-  <div class="content avb-content">
-    <div class="row">
-      <div class="col-xs-12">
-        <div avb-review-ballot></div>
-      </div>
-    </div>
-    <div class="row">
-      <div
-        ng-if="!election.presentation.extra_options || !election.presentation.extra_options.disable_voting_booth_audit_ballot"
-        class="col-xs-12 locator-text-click-audit">
-        <p class="content">
-          <span ng-click="ballotHashWarning()" class="review-ballot-hash-text" ng-i18next>
-            [html:i18next]({ballotHash: stateData.ballotHash})avBooth.reviewBallotHashText
-          </span>
-          <a
-            tabindex="0"
-            class="review-ballot-link"
-            ng-space-click
-            ng-i18next="avBooth.auditTheBallot"
-            ng-click="confirmAudit()">
-          </a>
-        </p>
-      </div>
-      <div 
-        ng-if="(
-          !election.presentation.extra_options || 
-          !election.presentation.extra_options.review_screen__split_cast_edit
-        )"
-        class="col-xs-12 no-padding"
-      >
-        <button
-          id="continue-btn"
-          class="btn btn-block btn-lg btn-success-action btn-plain"
-          ng-i18next="avBooth.castTheBallot"
-          ng-click="next()">
-        </button>
-      </div>
-      <div 
-        ng-if="election.presentation.extra_options.review_screen__split_cast_edit === true"
-        class="col-xs-6 no-padding"
-      >
-        <button
-          id="continue-btn"
-          class="btn btn-block btn-lg btn-success-action btn-plain continue-action"
-          ng-i18next="avBooth.castTheBallot"
-          ng-click="next()">
-        </button>
-      </div>
-      <div 
-        ng-if="election.presentation.extra_options.review_screen__split_cast_edit === true"
-        class="col-xs-6 no-padding"
-      >
-        <button
-          class="btn btn-block btn-lg btn-plain edit-action"
-          ng-i18next="avBooth.reviewScreen.editAction"
-          ng-click="goToQuestion(0, false)">
-        </button>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 
@@ -83,6 +22,7 @@
       <button
         id="change-selection-btn"
         class="btn btn-lg btn-cancel btn-plain col-xs-4"
+        ng-if="showEditBtn"
         ng-click="goToQuestion(0, false)">
         <span>
           <i class="fa fa-chevron-left"></i>
@@ -92,6 +32,7 @@
       <button
         id="audit-ballot-btn"
         class="btn btn-lg btn-warning btn-plain col-xs-4"
+        ng-if="showAuditBtn"
         ng-click="confirmAudit()"
       >
         <span>
@@ -102,6 +43,10 @@
       <button
         id="continue-btn"
         class="btn btn-lg btn-success-action btn-plain col-xs-4"
+        ng-class="{
+          'col-xs-offset-4': (!showEditBtn || !showAuditBtn),
+          'col-xs-offset-8': (!showEditBtn && !showAuditBtn)
+        }"
         ng-click="next()">
         <span>
           {{ 'avBooth.castTheBallot' | i18next }}
