@@ -47,6 +47,11 @@ angular.module('avBooth')
             selection.setBaseAndExtent(obj, 0, obj, 1);
         }
       };
+
+      scope.printBallot = function ()
+      {
+        window.print();
+      };
     };
     return {
       restrict: 'AE',
