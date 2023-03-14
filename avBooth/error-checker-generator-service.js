@@ -16,7 +16,27 @@
 **/
 
 angular.module('avUi')
-  .service('ErrorCheckerGeneratorService', function() {
+  .service('ErrorCheckerGeneratorService', function(
+    AnswerEncoderService,
+    BigIntService
+  ) {
+    /**
+     * @returns true if the url with the specific title and url appears in the
+     * urls list.
+     */
+     function hasUrl(urls, title, url)
+     {
+       const u = _.find(
+         urls,
+         function(urlObject)
+         {
+           return urlObject.title === title && urlObject.url === url;
+         }
+       );
+
+       return !!u;
+     }
+
     /**
      * @returns number of selected options in a question
      */

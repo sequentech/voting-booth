@@ -30,29 +30,9 @@ angular.module('avBooth')
       $window,
       ConfigService,
       CheckerService,
-      ErrorCheckerGeneratorService,
-      AnswerEncoderService,
-      BigIntService
+      ErrorCheckerGeneratorService
     ) {
       var simultaneousQuestionsLayout = "simultaneous-questions-v2";
-
-      /**
-       * @returns true if the url with the specific title and url appears in the
-       * urls list.
-       */
-       function hasUrl(urls, title, url)
-       {
-         const u = _.find(
-           urls,
-           function(urlObject)
-           {
-             return urlObject.title === title && urlObject.url === url;
-           }
-         );
- 
-         return !!u;
-       }
-
 
       var link = function(scope, _element, _attrs)
       {
