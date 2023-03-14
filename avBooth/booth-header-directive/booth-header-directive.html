@@ -55,24 +55,24 @@
   <span class="glyphicon glyphicon-play"></span>
 </div>
 
-<div class="input-warn warning-demo"  ng-if="isDemo">
-  <div class="warn-box">
-    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-    <div
-      class="warn-text"
-      role="alert"
-      ng-i18next="[html]avBooth.thisisADemoNotification">
-    </div>
-  </div>
-</div>
-
 <div
   class="bottom-absolute"
-  ng-if="isPreview || ballotHash"
+  ng-if="isDemo || isPreview || ballotHash"
   ng-class="{
-    'translate-75': isPreview && ballotHash
+    'translate-75': (isPreview || isDemo) && ballotHash
   }"
 >
+  <div class="input-warn warning-demo"  ng-if="isDemo">
+    <div class="warn-box">
+      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+      <div
+        class="warn-text"
+        role="alert"
+        ng-i18next="[html]avBooth.thisisADemoNotification">
+      </div>
+    </div>
+  </div>
+
   <div class="input-warn warning-demo"  ng-if="isPreview">
     <div class="warn-box">
       <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
