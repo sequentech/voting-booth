@@ -120,8 +120,16 @@
         }
     }
 
+    .input-warn.warning-demo {
+        margin-bottom: 10px;
+    }
+
     .translate-75 {
         transform: translate(-50%, 75%);
+
+        @media(max-width: @screen-md-min) {
+            transform: unset;
+        }
     }
 
     .ballot-hash {
