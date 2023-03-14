@@ -46,13 +46,20 @@
         ng-if="!isWriteIn" 
         class="vertilize-col vert-align-top answer-texts"
       >
-        <span 
+        <span
           id="question_{{question.index}}_answer_{{answer.id}}"
+          ng-if="!isBlankVoteAnswer"
           class="answer-text" 
           ng-bind-html="answer.text"
         ></span>
+        <span
+          id="question_{{question.index}}_answer_blank"
+          ng-if="!!isBlankVoteAnswer"
+          class="answer-text"
+          ng-i18next="avBooth.emptyAnswer"
+        ></span>
         <p
-          ng-if="answer.details && answer.details.length > 1"
+          ng-if="!isBlankVoteAnswer && answer.details && answer.details.length > 1"
           class="answer-details"
           ng-bind-html="answer.details | addTargetBlank"
         ></p>
@@ -97,7 +104,7 @@
           class="glyphicon cumulative-glyphicon"
           tabindex="0"
           role="checkbox"
-          ng-if="!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
+          ng-if="!isBlankVoteAnswer && !isInvalidVoteAnswer && question.tally_type === 'cumulative'"
           aria-label="{{answer.text}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
           ng-repeat="check in answer_cumulative_checks"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"

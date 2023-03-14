@@ -80,6 +80,7 @@ angular.module('avBooth')
           toggleSelectItemCumulative: '=',
           cumulativeChecks: '=',
           isInvalidVoteAnswer: '=',
+          isBlankVoteAnswer: '=',
           writeInTextChange: '=',
           readOnly: '&',
           hideCheck: '&'

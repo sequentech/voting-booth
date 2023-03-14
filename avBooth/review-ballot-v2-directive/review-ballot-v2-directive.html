@@ -21,7 +21,7 @@
         class="question-answer-wrapper"
         class="col-xs-12"
       >
-        <div 
+        <div
           avb-simultaneous-question-answer-v2
           answer="answer"
           question="question"
@@ -32,6 +32,31 @@
           hide-check="true"
           read-only="question.are_candidates_read_only"
         ></div>
+      </div>
+      <div
+        avb-simultaneous-question-answer-v2
+        ng-if="!!question.invalidVoteAnswer"
+        answer="question.invalidVoteAnswer"
+        question="question"
+        is-invalid-vote-answer="true"
+        toggle-select-item="toggleSelectItem"
+        toggle-select-item-cumulative="toggleSelectItemCumulative"
+        cumulative-checks="cumulativeChecks"
+        hide-check="true"
+      >
+      </div>
+      <div
+        avb-simultaneous-question-answer-v2
+        ng-if="(question.answers | avbSelectedOptions).length == 0 && !markedAsInvalid(question)"
+        answer="question.answers[0]"
+        question="question"
+        is-invalid-vote-answer="false"
+        is-blank-vote-answer="true"
+        toggle-select-item="toggleSelectItem"
+        toggle-select-item-cumulative="toggleSelectItemCumulative"
+        cumulative-checks="cumulativeChecks"
+        hide-check="true"
+      >
       </div>
     </div>
   </div>
