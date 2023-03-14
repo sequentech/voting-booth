@@ -35,7 +35,7 @@
       </div>
       <div
         avb-simultaneous-question-answer-v2
-        ng-if="!!question.invalidVoteAnswer"
+        ng-if="!!markedAsInvalid(question)"
         answer="question.invalidVoteAnswer"
         question="question"
         is-invalid-vote-answer="true"
