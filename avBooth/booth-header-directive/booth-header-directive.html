@@ -66,25 +66,34 @@
   </div>
 </div>
 
-<div class="input-warn warning-demo"  ng-if="isPreview">
-  <div class="warn-box">
-    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-    <div
-      class="warn-text"
-      role="alert"
-      ng-i18next="[html]avBooth.thisisAPreviewNotification">
+<div
+  class="bottom-absolute"
+  ng-if="isPreview || ballotHash"
+  ng-class="{
+    'translate-75': isPreview && ballotHash
+  }"
+>
+  <div class="input-warn warning-demo"  ng-if="isPreview">
+    <div class="warn-box">
+      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+      <div
+        class="warn-text"
+        role="alert"
+        ng-i18next="[html]avBooth.thisisAPreviewNotification">
+      </div>
+    </div>
+  </div>
+
+  <div class="ballot-hash"  ng-if="ballotHash">
+    <div class="hash-box">
+      <i class="fa fa-check" aria-hidden="true"></i>
+      <div
+        class="hash-text"
+        ng-i18next="[i18next]({hash: ballotHash})avBooth.reviewScreen.ballotIdMessage"
+        >
+      </div>
+      <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
     </div>
   </div>
 </div>
 
-<div class="ballot-hash"  ng-if="ballotHash">
-  <div class="hash-box">
-    <i class="fa fa-check" aria-hidden="true"></i>
-    <div
-      class="hash-text"
-      ng-i18next="[i18next]({hash: ballotHash})avBooth.reviewScreen.ballotIdMessage"
-      >
-    </div>
-    <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
-  </div>
-</div>
