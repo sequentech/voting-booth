@@ -34,6 +34,24 @@ angular.module('avBooth')
     ) {
       var simultaneousQuestionsLayout = "simultaneous-questions-v2";
 
+      /**
+       * @returns true if the url with the specific title and url appears in the
+       * urls list.
+       */
+       function hasUrl(urls, title, url)
+       {
+         const u = _.find(
+           urls,
+           function(urlObject)
+           {
+             return urlObject.title === title && urlObject.url === url;
+           }
+         );
+ 
+         return !!u;
+       }
+
+
       var link = function(scope, _element, _attrs)
       {
         // filter the list of questions to get the list of questions of type

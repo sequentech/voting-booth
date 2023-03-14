@@ -68,7 +68,7 @@ angular.module('avUi')
             }
         ).length;
         }
-    };
+    }
     
     function getErrorsChecker(checkerTypeFlag, invalidVoteAnswer)
     {

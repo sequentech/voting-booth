@@ -147,7 +147,7 @@ angular.module('avBooth')
                   data: errorData,
                   key: errorKey
                 }
-              ]
+              ];
             }
           }
         });
