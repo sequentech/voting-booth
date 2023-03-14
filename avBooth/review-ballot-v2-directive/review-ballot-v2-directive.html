@@ -12,6 +12,25 @@
     </h3>
   </div>
 
+
+  <div
+    class="text-warning input-error error-list"
+    ng-if="question.id in errors"
+  >
+    <div class="input-warn" ng-repeat="error in errors[question.id]" ng-if="errors[question.id].length > 0">
+      <div class="warn-box">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <div
+          class="warn-text"
+          role="alert"
+          data-i18n="{{error.data}}"
+          ng-i18next>
+          [html:i18next]({{error.data}}){{error.key}}
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="category-body">
     <div 
       class="question-answers text-left"

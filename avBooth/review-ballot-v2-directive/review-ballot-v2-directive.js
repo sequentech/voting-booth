@@ -21,7 +21,11 @@
  * Shows a list with question and user answers.
  */
 angular.module('avBooth')
-  .directive('avbReviewBallotV2', function($i18next)
+  .directive('avbReviewBallotV2', function(
+    CheckerService,
+    ErrorCheckerGeneratorService,
+    $i18next
+  )
   {
     var link = function(scope, element, attrs)
     {
@@ -113,6 +117,42 @@ angular.module('avBooth')
       };
 
       scope.editActionText = $i18next('avBooth.reviewScreen.editAction');
+      scope.errors = {};
+
+      function getErrorsChecker(checkerTypeFlag)
+      {
+        return ErrorCheckerGeneratorService(checkerTypeFlag, scope.invalidVoteAnswer);
+      }
+      /**
+       * Updates scope.errors with the errors found in scope.groupQuestions
+       */
+      function updateErrors() 
+      {
+        var errorChecks = getErrorsChecker("soft");
+        scope.errors = {};
+        CheckerService({
+          checks: errorChecks,
+          data: scope.election,
+          onError: function (errorKey, errorData) 
+          {
+            if (!errorData.question_id) {
+              return;
+            }
+            if (!scope.errors) {
+              scope.errors = {};
+            }
+            if (!(errorData.question_id in scope.errors)) {
+              scope.errors[errorData.question_id] = [
+                {
+                  data: errorData,
+                  key: errorKey
+                }
+              ]
+            }
+          }
+        });
+      }
+      updateErrors();
     };
 
     return {
