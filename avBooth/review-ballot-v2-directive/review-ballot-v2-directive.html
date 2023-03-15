@@ -15,9 +15,9 @@
 
   <div
     class="text-warning input-error error-list"
-    ng-if="question.id in errors"
+    ng-if="errors[question.index]"
   >
-    <div class="input-warn" ng-repeat="error in errors[question.id]" ng-if="errors[question.id].length > 0">
+    <div class="input-warn" ng-repeat="error in errors[question.index]" ng-if="errors[question.index].length > 0">
       <div class="warn-box">
         <span class="glyphicon glyphicon-warning-sign"></span>
         <div

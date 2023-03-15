@@ -88,7 +88,7 @@ angular.module('avUi')
                 return {
                   min: question.min,
                   num_selected: numSelectedOptions(question, invalidVoteAnswer),
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question) 
@@ -124,7 +124,7 @@ angular.module('avUi')
               appendOnErrorLambda: function (question)
               {
                 return {
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question)
@@ -147,7 +147,7 @@ angular.module('avUi')
                 return {
                   min: question.min,
                   num_selected: numSelectedOptions(question, invalidVoteAnswer),
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question) 
@@ -185,7 +185,7 @@ angular.module('avUi')
                 return {
                   max: question.max,
                   num_selected: numSelectedOptions(question, invalidVoteAnswer),
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question) 
@@ -217,7 +217,7 @@ angular.module('avUi')
               appendOnErrorLambda: function (question) 
               {
                 return {
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question) 
@@ -271,7 +271,7 @@ angular.module('avUi')
                 return {
                   max: question.writeInBytesLeft.maxWriteInBytes,
                   extra_bytes: -question.writeInBytesLeft.bytesLeft,
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question) 
@@ -316,7 +316,7 @@ angular.module('avUi')
                 const writeInTexts = _.pluck(unvotedNonEmptyWriteIns, 'text');
                 return {
                   write_ins: writeInTexts.join(', '),
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question) 
@@ -356,7 +356,7 @@ angular.module('avUi')
               appendOnErrorLambda: function (question) 
               {
                 return {
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question) 
@@ -397,7 +397,7 @@ angular.module('avUi')
               appendOnErrorLambda: function (question) 
               {
                 return {
-                  question_id: question.id
+                  question_id: question.index
                 };
               },
               validator: function (question) 
