@@ -22,7 +22,7 @@
     hyphens: auto;
     padding: 7px;
     background-color: @brand-primary;
-    color: @av-bg-hover;
+    color: @av-primary-contrast;
     border-radius: 4px;
     display: block;
     overflow-y: scroll;
@@ -44,5 +44,14 @@
 
   .download-container {
     width: 100%;
+  }
+
+  .audit-title {
+    color: lighten(@av-primary-contrast, 45%);
+    padding-bottom: 60px;
+  }
+
+  .input-warn {
+    margin: 40px 0;
   }
 }
