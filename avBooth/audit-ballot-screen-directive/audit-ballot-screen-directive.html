@@ -2,7 +2,7 @@
 <div avb-booth-header
 ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"></div>
 
-<div class="container">
+<div class="container audit-content">
   <div class="sticky-top">
     <div avb-voting-step step="audit"></div>
   </div>
@@ -26,10 +26,13 @@ ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"></div>
                   class="btn btn-lg btn-success-action pull-right"
                   ng-click="downloadBallot()"
                   ng-i18next="avBooth.auditBallotScreen.downloadButton"
-                ></button>
+                >
+                  <i class="download-help fa fa-lg fa-download"></i>
+                  {{ 'avBooth.auditBallotScreen.downloadButton' | i18next }}
+                </button>
               </div>
               <div class="code-container">
-                <i class="copy-icon fa fa-lg fa-clone"></i>
+                <i class="copy-icon fa fa-lg fa-copy"></i>
                 <div class="code" tabindex="0" ng-click="selectDiv($event)">
                   {{ auditableBallotStr }}
                 </div>
