@@ -52,6 +52,7 @@ angular.module('avBooth')
       {
         window.print();
       };
+      scope.showAuditBtn = !scope.election.presentation.extra_options || !scope.election.presentation.extra_options.disable_voting_booth_audit_ballot;
     };
     return {
       restrict: 'AE',
