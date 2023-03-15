@@ -36,6 +36,28 @@
     margin: 4px 0;
   }
 
+  .code-container {
+    position: relative;
+
+    &:hover, &:active {
+      .copy-icon.fa-copy {
+        display: block;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .copy-icon.fa-copy {
+    position: absolute;
+    bottom: 7px;
+    right: 15px;
+    background-color: @av-secondary-contrast;
+    display: none;
+    z-index: 10;
+    font-size: 2em;
+    line-height: 1.15em;
+  }
+
   a {
     color: @av-secondary-contrast;
     font-weight: bold;
@@ -64,12 +86,6 @@
     align-content: center;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .copy-icon.fa-clone {
-    position: absolute;
-    bottom: 7px;
-    right: 7px;
   }
 
   .fa-question-circle {
