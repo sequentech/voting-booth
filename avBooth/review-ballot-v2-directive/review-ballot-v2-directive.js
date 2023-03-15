@@ -135,20 +135,19 @@ angular.module('avBooth')
           data: scope.election,
           onError: function (errorKey, errorData) 
           {
-            if (!errorData.question_id) {
+            if (_.isUndefined(errorData.question_id)) {
               return;
             }
             if (!scope.errors) {
               scope.errors = {};
             }
             if (!(errorData.question_id in scope.errors)) {
-              scope.errors[errorData.question_id] = [
-                {
-                  data: errorData,
-                  key: errorKey
-                }
-              ];
+              scope.errors[errorData.question_id] = [];
             }
+            scope.errors[errorData.question_id].push({
+              data: errorData,
+              key: errorKey
+            });
           }
         });
       }
