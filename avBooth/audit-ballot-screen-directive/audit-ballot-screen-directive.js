@@ -53,6 +53,7 @@ angular.module('avBooth')
         window.print();
       };
       scope.showAuditBtn = !scope.election.presentation.extra_options || !scope.election.presentation.extra_options.disable_voting_booth_audit_ballot;
+      scope.tutorialLink = "https://github.com/sequentech/ballot-verifier/blob/master/README.md";
     };
     return {
       restrict: 'AE',

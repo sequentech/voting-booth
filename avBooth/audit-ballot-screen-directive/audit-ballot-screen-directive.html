@@ -18,20 +18,21 @@ ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"></div>
           <p ng-i18next="avBooth.auditBallotScreen.subtitle"></p>
           <ol>
             <li>
-              <span ng-i18next="avBooth.auditBallotScreen.downloadListTitle"></span>
-              <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
+              <span ng-i18next="[html:i18next]avBooth.auditBallotScreen.downloadListTitle"></span>
+              <i class="fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
               <br/>
               <span ng-i18next="avBooth.auditBallotScreen.downloadSubtitle"></span>
               <button
                 id="download-btn"
                 class="btn btn-lg btn-cancel btn-plain"
                 ng-click="downloadBallot()"
+                ng-i18next="avBooth.auditBallotScreen.downloadButton"
               ></button>
               <div class="code" tabindex="0" ng-click="selectDiv($event)">{{ auditableBallotStr }}</div>
             </li>
             <li>
-              <span ng-i18next="avBooth.auditBallotScreen.tutorialListTitle"></span>
-              <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
+              <span ng-i18next="[html:i18next]({tutorialLink: tutorialLink})avBooth.auditBallotScreen.tutorialListTitle"></span>
+              <i class="fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
             </li>
           </ol>
           <div class="input-warn">
