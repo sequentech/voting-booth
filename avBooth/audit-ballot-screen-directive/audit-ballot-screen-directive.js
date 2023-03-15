@@ -48,6 +48,11 @@ angular.module('avBooth')
         }
       };
 
+      scope.copyToClipboard = function () 
+      {
+        navigator.clipboard.writeText(scope.auditableBallotStr);
+      };
+
       scope.printBallot = function ()
       {
         window.print();

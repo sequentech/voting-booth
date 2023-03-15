@@ -25,9 +25,8 @@ ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"></div>
                   id="download-btn"
                   class="btn btn-lg btn-success-action pull-right"
                   ng-click="downloadBallot()"
-                  ng-i18next="avBooth.auditBallotScreen.downloadButton"
                 >
-                  <i class="download-help fa fa-lg fa-download"></i>
+                  <i class="download-help fa fa-md fa-download"></i>
                   {{ 'avBooth.auditBallotScreen.downloadButton' | i18next }}
                 </button>
               </div>
@@ -45,7 +44,7 @@ ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"></div>
           </ol>
           <div class="input-warn">
             <div class="warn-box">
-              <span class="glyphicon glyphicon-warning-sign"></span>
+              <span class="glyphicon glyphicon-warning-sign" ng-click="copyToClipboard()"></span>
               <div
                 class="warn-text"
                 role="alert"
