@@ -20,7 +20,7 @@
     width: 100%;
     word-break: break-word;
     hyphens: auto;
-    padding: 7px;
+    padding: 15px;
     background-color: @brand-primary;
     color: @av-primary-contrast;
     border-radius: 4px;
@@ -31,6 +31,8 @@
       background: #056ff0;
       color: #fff;
     }
+    border: 1px solid @av-secondary-contrast;
+    position: relative;
   }
 
   a {
@@ -46,12 +48,27 @@
     width: 100%;
   }
 
-  .audit-title {
+  .audit-subtitle {
     color: lighten(@av-primary-contrast, 45%);
     padding-bottom: 60px;
   }
 
   .input-warn {
     margin: 40px 0;
+  }
+
+  .download-container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .copy-icon.fa-clone {
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
   }
 }
