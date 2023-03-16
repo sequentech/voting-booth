@@ -20,6 +20,10 @@
     z-index: 10;
     transition: all 0.3s ease;
 
+    @media(max-width: @screen-xs-max) {
+        top: -24px;
+    }
+
     .header-navbar {
         height: 139px;
         display: flex;
@@ -27,6 +31,11 @@
         align-items: center;
         background-color: @av-primary;
         top: -84px;
+
+        @media(max-width: @screen-xs-max) {
+            height: 79px;
+            top: -24px;
+        }
     }
 
     .header-container {
