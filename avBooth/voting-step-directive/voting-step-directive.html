@@ -1,45 +1,41 @@
-<div class="voting-steps" ng-if="step != 'audit'">
+<div class="voting-steps">
     <div class="step-number"
-        ng-class="{'step-number-selected': step == 1, 'step-number-unselected': step != 1}"
+        ng-class="{'step-number-selected': step === 1, 'step-number-unselected': step !== 1}"
     >
         1
     </div>
     <span class="step-text-selected"
-        ng-class="{'hidden-xs': step != 1}"
+        ng-class="{'hidden-xs': step !== 1}"
         ng-i18next>
         avBooth.votingSteps.ballot
     </span>
     <div class="step-separator"></div>
     <div class="step-number"
-        ng-class="{'step-number-selected': step == 2, 'step-number-unselected': step != 2}"
+        ng-class="{'step-number-selected': step === 2, 'step-number-unselected': step !== 2}"
     >
         2
     </div>
     <span
-        ng-class="{'step-text-selected': step >= 2, 'step-text-unselected': step < 2, 'hidden-xs': step != 2}"
+        ng-class="{'step-text-selected': step >= 2, 'step-text-unselected': step < 2, 'hidden-xs': step !== 2}"
         ng-i18next>
         avBooth.votingSteps.review
     </span>
     <div class="step-separator"></div>
     <div class="step-number"
-        ng-class="{'step-number-selected': step == 3, 'step-number-unselected': step != 3}"
+        ng-class="{'step-number-selected': step === 3, 'step-number-unselected': step !== 3}"
     >
         3
     </div>
     <span
-        ng-class="{'step-text-selected': step >= 3, 'step-text-unselected': step < 3, 'hidden-xs': step != 3}"
+        ng-class="{'step-text-selected': step >= 3, 'step-text-unselected': step < 3, 'hidden-xs': step !== 3}"
         ng-i18next>
         avBooth.votingSteps.confirmation
     </span>
-</div>
-
-<div class="voting-steps" ng-if="step == 'audit'">
-    <div class="step-separator"></div>
-    <div class="step-number step-number-red">
+    <div class="step-separator" ng-if="step === 4"></div>
+    <div class="step-number step-number-red" ng-if="step === 4">
         4
     </div>
-    <span class="step-text-selected" ng-i18next>
+    <span class="step-text-selected" ng-if="step === 4" ng-i18next>
         avBooth.votingSteps.audit
     </span>
-    <div class="step-separator"></div>
 </div>

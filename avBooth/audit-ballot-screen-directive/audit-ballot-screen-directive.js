@@ -21,7 +21,7 @@
  * Shows the auditable ballot to the user and explains how to audit it.
  */
 angular.module('avBooth')
-  .directive('avbAuditBallotScreen', function(DeterministicJsonStringifyService, ConfigService) {
+  .directive('avbAuditBallotScreen', function($window, DeterministicJsonStringifyService, ConfigService) {
     var link = function(scope, element, attrs) {
       scope.auditableBallotStr = DeterministicJsonStringifyService(
         scope.stateData.auditableBallot);
@@ -57,6 +57,13 @@ angular.module('avBooth')
       {
         window.print();
       };
+
+      scope.downloadBallot = function ()
+      {
+        var blob = new $window.Blob([scope.auditableBallotStr], {type: "text/json"});
+        $window.saveAs(blob, scope.election.id + "-ballot"+".json");
+      };
+
       scope.showAuditBtn = !scope.election.presentation.extra_options || !scope.election.presentation.extra_options.disable_voting_booth_audit_ballot;
       scope.tutorialLink = "https://github.com/sequentech/ballot-verifier/blob/master/README.md";
     };
