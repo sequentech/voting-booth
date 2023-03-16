@@ -21,7 +21,7 @@ angular
     'avbWatermark',
     function()
     {
-      function link(_scope, _element, _attrs)
+      function link(scope, _element, attrs)
       {
       }
  
