@@ -1,6 +1,6 @@
 /**
  * This file is part of voting-booth.
- * Copyright (C) 2015-2021 Sequent Tech Inc <legal@sequentech.io>
+ * Copyright (C) 2015-2023 Sequent Tech Inc <legal@sequentech.io>
 
  * voting-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -14,15 +14,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
-[avb-booth-header] {
-    top: -84px;
-    position: sticky;
-    z-index: 10;
-    transition: all 0.3s ease;
 
-    @media(max-width: @screen-xs-max) {
-        top: -24px;
+[avb-booth-header] {
+    .header-container {
+        top: -84px;
+        position: sticky;
+        z-index: 10;
+        transition: all 0.3s ease;
+        @media(max-width: @screen-xs-max) {
+            top: -24px;
+        }
     }
+
+    .hash-margin {
+        margin-bottom: 28px;
+        @media(max-width: @screen-xs-max) {
+            margin-bottom: 0;
+        }
+    }
+
 
     .header-navbar {
         height: 139px;
@@ -152,6 +162,9 @@
 
         .hash-text {
             overflow-wrap: anywhere;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
         .fa-check {

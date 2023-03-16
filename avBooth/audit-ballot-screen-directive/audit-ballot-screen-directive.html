@@ -28,7 +28,7 @@ ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"></div>
                   ng-click="downloadBallot()"
                 >
                   <i class="download-help fa fa-md fa-download"></i>
-                  {{ 'avBooth.auditBallotScreen.downloadButton' | i18next }}
+                  <span class="hidden-xs" ng-i18next="avBooth.auditBallotScreen.downloadButton"></span>
                 </button>
               </div>
               <div class="code-container">

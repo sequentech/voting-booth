@@ -1,55 +1,60 @@
-<!-- top navbar -->
-<nav 
-  class="header-navbar"
-  av-affix-top=".navbar-unfixed-top"
-  role="navigation"
+<div
+  class="header-container"
+  ng-class="{'hash-margin': ballotHash}"
 >
-    <div class="header-container container">
-        <div class="col-xs-4 header-left">
-            <span ng-if="election.logo_url">
-              <img
-                alt="{{election.title}}"
-                class="logo-img" 
-                ng-src="{{election.logo_url}}"
-              />
-            </span>
-        </div>
-        <div class="col-xs-8 header-right">
-          <a
-              ng-if="!!configService.mainVersion"
-              target="_top"
-              tabindex="0"
-              class="config-version"
-              ng-click="showVersionsModal()"
-          >
-            <span
-              class="hidden-xs"
-              ng-i18next="[i18next]({version: configService.mainVersion})avCommon.showVersion"
-            >
-            </span>
-            <span class="visible-xs-block">
-              {{configService.mainVersion}}
-            </span>
-          </a>
-            <span
-                class="dropdown"
-                role="menuitem"
-                av-change-lang
-            >
-            </span>
+  <!-- top navbar -->
+  <nav 
+    class="header-navbar"
+    av-affix-top=".navbar-unfixed-top"
+    role="navigation"
+  >
+      <div class="header-container container">
+          <div class="col-xs-4 header-left">
+              <span ng-if="election.logo_url">
+                <img
+                  alt="{{election.title}}"
+                  class="logo-img" 
+                  ng-src="{{election.logo_url}}"
+                />
+              </span>
+          </div>
+          <div class="col-xs-8 header-right">
             <a
-              ng-if="enableLogOut()"
-              target="_top"
-              tabindex="0"
-              class="log-out-button"
-              ng-click="logoutAndRedirect()"
+                ng-if="!!configService.mainVersion"
+                target="_top"
+                tabindex="0"
+                class="config-version"
+                ng-click="showVersionsModal()"
             >
-              <span class="glyphicon glyphicon-off"></span>
-              <span class="logout-text hidden-xs" ng-i18next>avBooth.logout</span>
+              <span
+                class="hidden-xs"
+                ng-i18next="[i18next]({version: configService.mainVersion})avCommon.showVersion"
+              >
+              </span>
+              <span class="visible-xs-block">
+                {{configService.mainVersion}}
+              </span>
             </a>
-        </div>
-    </div>
-</nav>
+              <span
+                  class="dropdown"
+                  role="menuitem"
+                  av-change-lang
+              >
+              </span>
+              <a
+                ng-if="enableLogOut()"
+                target="_top"
+                tabindex="0"
+                class="log-out-button"
+                ng-click="logoutAndRedirect()"
+              >
+                <span class="glyphicon glyphicon-off"></span>
+                <span class="logout-text hidden-xs" ng-i18next>avBooth.logout</span>
+              </a>
+          </div>
+      </div>
+  </nav>
+</div>
 
 <div id="avb-toggle" class="text-center item-block hidden">
   <span class="glyphicon glyphicon-play"></span>
