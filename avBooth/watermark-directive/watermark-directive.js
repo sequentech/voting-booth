@@ -18,23 +18,17 @@
 angular
   .module('avBooth')
   .directive(
-    'avbVotingStep',
+    'avbWatermark',
     function()
     {
-      function link(scope, element, attrs)
+      function link(_scope, _element, _attrs)
       {
-        if (undefined === scope.step) {
-          scope.step = attrs.step;
-        }
       }
-
+ 
       return {
         restrict: 'AE',
-        scope: {
-          step: '=',
-        },
         link: link,
-        templateUrl: 'avBooth/voting-step-directive/voting-step-directive.html'
+        templateUrl: 'avBooth/watermark-directive/watermark-directive.html'
       };
     }
   );
