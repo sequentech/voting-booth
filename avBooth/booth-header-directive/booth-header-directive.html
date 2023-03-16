@@ -57,12 +57,9 @@
 
 <div
   class="bottom-absolute"
-  ng-if="isDemo || isPreview || ballotHash"
-  ng-class="{
-    'translate-75': (isPreview || isDemo) && ballotHash
-  }"
+  ng-if="ballotHash"
 >
-  <div class="ballot-hash"  ng-if="ballotHash">
+  <div class="ballot-hash">
     <div class="hash-box">
       <i class="fa fa-check" aria-hidden="true"></i>
       <div
