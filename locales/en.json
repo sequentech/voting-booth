@@ -85,6 +85,7 @@
     "successScreen": {
       "verifyBallotCastTitle": "Verify that your ballot has been cast",
       "verifyBallotCastDescription": "You can verify your ballot has been cast correctly at any moment using the following QR code:",
+      "ballotId": "Ballot ID",
       "printBallotBtn": "Print",
       "informationModal": {
         "header": "Information: Success Screen",
@@ -217,8 +218,8 @@
     "emptyAnswer": "<blank vote>",
     "invalidAnswer": "Ballot marked as invalid",
 
-    "successTitle": "Vote cast successfully",
-    "successSubheader": "You have correctly cast your ballot and it's now being kept in our electronic ballot box.",
+    "successTitle": "Your vote has been cast",
+    "successSubheader": "The confirmation code bellow verifies that <strong>your ballot has been cast successfully</strong>. You can use this code to verify that your ballot has been counted..",
 
     "completePacksTitle": "Complete packs",
     "listOfDraftDocuments": "Documents (click to open)",

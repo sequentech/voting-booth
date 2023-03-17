@@ -17,15 +17,12 @@
     </div>
   </div>
 
-  <div class="col-container">
-    <div
-      id="verify-ballot-cast-text"
-      class="col-sm-6 col-xs-12"
-      ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
-    >
-      <h3 ng-i18next="avBooth.successScreen.verifyBallotCastTitle"></h3>
-      <p ng-i18next="avBooth.successScreen.verifyBallotCastDescription"></p>
-
+  <div
+    class="ballot-tracker-container" 
+    ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
+  >
+    <div class="ballot-id-container">
+      <h4 class="ballot-id-title" ng-i18next="avBooth.successScreen.ballotId"></h4>
       <div class="ballot-id-box">
         <i class="fa fa-check"></i>
         <a href="{{getBallotLocatorUrl()}}" target="{{getBallotLocatorTarget()}}">
@@ -33,25 +30,25 @@
         </a>
       </div>
     </div>
-    <div
-      id="hide-ballot-tracker"
-      class="col-sm-6 col-xs-12"
-      ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"
-    >
-      <p
-        class="text-center"
-        ng-i18next>
-        [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
-      </p>
+    <h4 class="verify-ballot-title" ng-i18next="avBooth.successScreen.verifyBallotCastTitle"></h4>
+    <p class="verify-ballot-description" ng-i18next="avBooth.successScreen.verifyBallotCastDescription"></p>
+    <div 
+      class="qr-code text-center"
+      ng-if="election.presentation.extra_options.success_screen__hide_qr_code !== true"
+      ng-bind-html="qrCodeImg">
     </div>
+  </div>
 
-    <div class="col-sm-6 col-xs-12">
-      <div 
-        class="qr-code text-center"
-        ng-if="election.presentation.extra_options.success_screen__hide_qr_code !== true"
-        ng-bind-html="qrCodeImg">
-      </div>
-    </div>
+  <div
+    id="hide-ballot-tracker"
+    class="col-sm-6 col-xs-12"
+    ng-if="!!election.presentation.extra_options.success_screen__hide_ballot_tracker"
+  >
+    <p
+      class="text-center"
+      ng-i18next>
+      [html:i18next]({url: organization.orgUrl, name: organization.orgName})avBooth.successNoBallotHash
+    </p>
   </div>
 
   <p
