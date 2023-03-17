@@ -43,16 +43,17 @@
       .copy-icon.fa-copy {
         display: block;
         cursor: pointer;
+        color: lighten(@av-primary-contrast, 10%);
       }
     }
   }
 
   .copy-icon.fa-copy {
     position: absolute;
-    bottom: 7px;
-    right: 15px;
+    bottom: 8px;
+    right: 12px;
     background-color: @brand-primary;
-    display: none;
+    color: @av-primary-contrast;
     z-index: 10;
     font-size: 2em;
     line-height: 1.15em;
@@ -98,5 +99,9 @@
 
   .fa-question-circle {
     margin-left: 4px;
+  }
+
+  ol {
+    margin-left: -20px;
   }
 }
