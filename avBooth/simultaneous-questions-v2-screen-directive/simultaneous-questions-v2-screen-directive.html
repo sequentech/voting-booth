@@ -131,25 +131,25 @@
   </div>
 </div>
 
-<div class="hidden" ng-cloak av-affix-bottom>
-  <div class="container">
-    <div class="actions">
-      <button
-        id="clear-selection-btn"
-        class="btn btn-lg btn-cancel btn-plain col-xs-4"
-        ng-click="clearSelection()"
-      >
-        <span ng-i18next="avBooth.clearSelection"></span>
-      </button>
-      <button
-        id="continue-btn"
-        class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
-        ng-click="questionNext()">
-        <span>
-          {{ nextButtonText | i18next }}
-          <i class="fa fa-chevron-right"></i>
-        </span>
-      </button>
-    </div>
+<div class="container">
+  <div class="actions">
+    <button
+      id="clear-selection-btn"
+      class="btn btn-lg btn-cancel btn-plain col-xs-4"
+      ng-click="clearSelection()"
+    >
+      <span ng-i18next="avBooth.clearSelection"></span>
+    </button>
+    <button
+      id="continue-btn"
+      class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
+      ng-click="questionNext()">
+      <span>
+        {{ nextButtonText | i18next }}
+        <i class="fa fa-chevron-right"></i>
+      </span>
+    </button>
   </div>
 </div>
+
+<div avb-booth-footer></div>

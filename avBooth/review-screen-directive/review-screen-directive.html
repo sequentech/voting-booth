@@ -18,44 +18,43 @@
   <div avb-review-ballot-v2></div>
 </div>
 
-
-<div class="hidden" ng-cloak av-affix-bottom>
-  <div class="container">
-    <div class="actions">
-      <button
-        id="change-selection-btn"
-        class="btn btn-lg btn-cancel btn-plain col-xs-4"
-        ng-if="showEditBtn"
-        ng-click="goToQuestion(0, false)">
-        <span>
-          <i class="fa fa-chevron-left"></i>
-          {{ 'avBooth.reviewScreen.editAction' | i18next }}
-        </span>
-      </button>
-      <button
-        id="audit-ballot-btn"
-        class="btn btn-lg btn-warning btn-plain col-xs-4"
-        ng-if="showAuditBtn"
-        ng-click="confirmAudit()"
-      >
-        <span>
-          <i class="fa fa-fire"></i>
-          {{ 'avBooth.auditTheBallot' | i18next }}
-        </span>
-      </button>
-      <button
-        id="continue-btn"
-        class="btn btn-lg btn-success-action btn-plain col-xs-4"
-        ng-class="{
-          'col-xs-offset-4': (!showEditBtn || !showAuditBtn),
-          'col-xs-offset-8': (!showEditBtn && !showAuditBtn)
-        }"
-        ng-click="next()">
-        <span>
-          {{ 'avBooth.castTheBallot' | i18next }}
-          <i class="fa fa-chevron-right"></i>
-        </span>
-      </button>
-    </div>
+<div class="container">
+  <div class="actions">
+    <button
+      id="change-selection-btn"
+      class="btn btn-lg btn-cancel btn-plain col-xs-4"
+      ng-if="showEditBtn"
+      ng-click="goToQuestion(0, false)">
+      <span>
+        <i class="fa fa-chevron-left"></i>
+        {{ 'avBooth.reviewScreen.editAction' | i18next }}
+      </span>
+    </button>
+    <button
+      id="audit-ballot-btn"
+      class="btn btn-lg btn-warning btn-plain col-xs-4"
+      ng-if="showAuditBtn"
+      ng-click="confirmAudit()"
+    >
+      <span>
+        <i class="fa fa-fire"></i>
+        {{ 'avBooth.auditTheBallot' | i18next }}
+      </span>
+    </button>
+    <button
+      id="continue-btn"
+      class="btn btn-lg btn-success-action btn-plain col-xs-4"
+      ng-class="{
+        'col-xs-offset-4': (!showEditBtn || !showAuditBtn),
+        'col-xs-offset-8': (!showEditBtn && !showAuditBtn)
+      }"
+      ng-click="next()">
+      <span>
+        {{ 'avBooth.castTheBallot' | i18next }}
+        <i class="fa fa-chevron-right"></i>
+      </span>
+    </button>
   </div>
 </div>
+
+<div avb-booth-footer></div>

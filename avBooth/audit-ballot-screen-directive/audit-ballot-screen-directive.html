@@ -60,27 +60,26 @@
   </div>
 </div>
 
-
-<div class="hidden" ng-cloak av-affix-bottom>
-  <div class="container">
-    <div class="actions">
-      <button
-        id="print-btn"
-        class="btn btn-lg btn-cancel btn-plain col-xs-4"
-        ng-click="printBallot()"
-      >
-        <i class="fa fa-print"></i>
-        {{ 'avBooth.successScreen.printBallotBtn' | i18next }}
-      </button>
-      <button
-        id="start-again-btn"
-        class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
-        ng-click="next()">
-        <span>
-          {{ 'avBooth.auditStartAgain' | i18next }}
-          <i class="fa fa-chevron-right"></i>
-        </span>
-      </button>
-    </div>
+<div class="container">
+  <div class="actions">
+    <button
+      id="print-btn"
+      class="btn btn-lg btn-cancel btn-plain col-xs-4"
+      ng-click="printBallot()"
+    >
+      <i class="fa fa-print"></i>
+      {{ 'avBooth.successScreen.printBallotBtn' | i18next }}
+    </button>
+    <button
+      id="start-again-btn"
+      class="btn btn-lg btn-success-action btn-plain col-xs-4 col-xs-offset-4"
+      ng-click="next()">
+      <span>
+        {{ 'avBooth.auditStartAgain' | i18next }}
+        <i class="fa fa-chevron-right"></i>
+      </span>
+    </button>
   </div>
 </div>
+
+<div avb-booth-footer></div>
