@@ -7,8 +7,9 @@
     <div avb-voting-step step="1"></div>
     <div
       class="text-warning input-error error-list"
+      ng-if="errors.length > 0"
     >
-      <div class="input-warn" ng-repeat="error in errors" ng-if="errors.length > 0">
+      <div class="input-warn" ng-repeat="error in errors">
         <div class="warn-box">
           <span class="glyphicon glyphicon-warning-sign"></span>
           <div
