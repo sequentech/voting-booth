@@ -231,12 +231,19 @@
 
   .sticky-top {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     position: sticky;
     height: 79px;
     z-index: 8;
     top: 0;
     background: @bg-primary;
+  }
+
+  .sticky-top-alt {
+    top: 28px;
+    @media(max-width: @screen-md-min) {
+      top: 55px;
+    }
   }
 
   .actions {
