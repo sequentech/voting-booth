@@ -95,17 +95,21 @@
 
 </div>
 
-<div class="container">
+<div class="container visible-xs download-container">
   <div class="actions">
     <button
       id="download-ballot-btn"
-      class="btn btn-lg btn-opt-action btn-plain col-xs-12 visible-xs"
+      class="btn btn-lg btn-opt-action btn-plain col-xs-12"
       ng-if="election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
       target="_blank"
       ng-click="downloadBallotTicket()"
     >
       <span ng-i18next="avBooth.downloadBallotTicket"></span>
     </button>
+  </div>
+</div>
+<div class="container">
+  <div class="actions">
     <button
       id="print-btn"
       class="btn btn-lg btn-success-action btn-plain col-sm-4 col-xs-6"
