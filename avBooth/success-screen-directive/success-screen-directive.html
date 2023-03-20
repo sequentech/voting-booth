@@ -30,8 +30,38 @@
         </a>
       </div>
     </div>
-    <h4 class="verify-ballot-title" ng-i18next="avBooth.successScreen.verifyBallotCastTitle"></h4>
-    <p class="verify-ballot-description" ng-i18next="avBooth.successScreen.verifyBallotCastDescription"></p>
+
+    
+    <div class="verify-and-links-divider">
+      <div class="verify-container">
+        <h4 class="verify-ballot-title" ng-i18next="avBooth.successScreen.verifyBallotCastTitle"></h4>
+        <p class="verify-ballot-description" ng-i18next="avBooth.successScreen.verifyBallotCastDescription"></p>
+      </div>
+      <div class="links-container">
+        <div class="text-center social-share" ng-if="!!election.presentation.share_text">
+          <span
+            ng-if="!!buttonsInfo"
+            ng-repeat="q in buttonsInfo"
+          >
+            <a
+              tabindex="0"
+              href="{{ q.link }}"
+              target="_blank"
+              class="{{ q.class }}"
+            >
+              <img
+                alt="{{ q.network }}"
+                class="logo-img"
+                ng-src="{{ q.img }}"
+              />
+              {{ q.button_text|truncate:25 }}
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
     <div 
       class="qr-code text-center"
       ng-if="election.presentation.extra_options.success_screen__hide_qr_code !== true"
@@ -65,26 +95,6 @@
         class="btn btn-primary btn-login">
         {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
       </button>
-    </span>
-  </div>
-  <div class="text-center social-share" ng-if="!!election.presentation.share_text">
-    <span
-      ng-if="!!buttonsInfo"
-      ng-repeat="q in buttonsInfo"
-    >
-      <a
-        tabindex="0"
-        href="{{ q.link }}"
-        target="_blank"
-        class="{{ q.class }}"
-      >
-        <img
-          alt="{{ q.network }}"
-          class="logo-img"
-          ng-src="{{ q.img }}"
-        />
-        {{ q.button_text|truncate:25 }}
-      </a>
     </span>
   </div>
 
