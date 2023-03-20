@@ -54,12 +54,28 @@
   .btn-audit {
     background-color: transparent;
 
-    &:hover {
+    &:hover 
+    {
       background-color: @gray-lighter;
     }
   }
 
   .content a {
     font-weight: bold;
+  }
+
+  [avb-review-ballot-v2] {
+    .question {
+      cursor: unset;
+    }
+    
+    &:hover 
+    {
+      background-color: unset;
+    }
+
+    [avb-simultaneous-question-answer-v2] .opt:hover, [avb-simultaneous-questions-v2-screen] .opt:hover {
+      background-color: unset;
+    }
   }
 }
