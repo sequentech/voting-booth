@@ -5,9 +5,10 @@
 <div class="container election-container">
   <div class="sticky-top">
     <div avb-voting-step step="1"></div>
+  </div>
+  <div class="sticky-error" ng-if="errors.length > 0">
     <div
       class="text-warning input-error error-list"
-      ng-if="errors.length > 0"
     >
       <div class="input-warn" ng-repeat="error in errors">
         <div class="warn-box">
