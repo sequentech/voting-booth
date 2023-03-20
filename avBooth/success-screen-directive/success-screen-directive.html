@@ -98,8 +98,17 @@
 <div class="container">
   <div class="actions">
     <button
+      id="download-ballot-btn"
+      class="btn btn-lg btn-opt-action btn-plain col-xs-12 visible-xs"
+      ng-if="election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
+      target="_blank"
+      ng-click="downloadBallotTicket()"
+    >
+      <span ng-i18next="avBooth.downloadBallotTicket"></span>
+    </button>
+    <button
       id="print-btn"
-      class="btn btn-lg btn-opt-action btn-plain col-xs-4"
+      class="btn btn-lg btn-success-action btn-plain col-sm-4 col-xs-6"
       ng-click="printBallot()">
       <span>
         <i class="fa fa-print"></i>
@@ -108,7 +117,7 @@
     </button>
     <button
       id="download-ballot-btn"
-      class="btn btn-lg btn-opt-warn btn-plain col-xs-4"
+      class="btn btn-lg btn-opt-action btn-plain col-sm-4 hidden-xs"
       ng-if="election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
       target="_blank"
       ng-click="downloadBallotTicket()"
@@ -118,8 +127,8 @@
     <button
       id="next-election-btn"
       ng-if="hasNextElection"
-      class="btn btn-lg btn-success-action btn-plain col-xs-4"
-      ng-class="{'col-xs-offset-4': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
+      class="btn btn-lg btn-next-action btn-plain col-sm-4 col-xs-6"
+      ng-class="{'col-sm-offset-4': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
       ng-click="goToNextElection()">
       <span>
         {{ 'avBooth.goToNextElection' | i18next }}
@@ -129,8 +138,8 @@
     <button
       id="close-finish-btn"
       ng-if="!hasNextElection"
-      class="btn btn-lg btn-success-action btn-plain col-xs-4"
-      ng-class="{'col-xs-offset-4': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
+      class="btn btn-lg btn-success-action btn-plain col-sm-4 col-xs-6"
+      ng-class="{'col-sm-offset-4': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
       ng-click="closeAndFinish(false, true)">
       <span ng-i18next="avBooth.closeWindow">
       </span>
