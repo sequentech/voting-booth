@@ -635,11 +635,6 @@ angular.module('avBooth')
           showVoteNoteCastModal();
         }
       };
-
-      scope.printBallot = function ()
-      {
-        window.print();
-      };
     }
 
       return {
