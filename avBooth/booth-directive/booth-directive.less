@@ -259,6 +259,11 @@
     display: flex;
     gap: 85px;
 
+    .actions-extra {
+      margin-top: 19px;
+      margin-bottom: 0;
+    }
+
     .btn-lg {
       text-overflow: ellipsis;
       overflow: hidden;
@@ -280,6 +285,15 @@
       .btn-lg {
         font-size: unset;
         line-height: unset;
+      }
+    }
+
+
+    @media(max-width: @screen-xs-max) {
+      gap: 2px;
+
+      .btn-lg {
+        border-radius: unset;
       }
     }
   }
