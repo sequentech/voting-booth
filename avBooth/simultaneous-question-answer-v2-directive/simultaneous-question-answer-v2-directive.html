@@ -78,6 +78,7 @@
           aria-label="write-in"
           av-debounce="500"
           ng-model="answer.text"
+          ng-readonly="!!hideCheck()"
         />
         <div 
           class="bytes-left help-block"
