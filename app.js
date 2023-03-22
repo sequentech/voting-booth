@@ -66,6 +66,11 @@ angular
         },
         ConfigServiceProvider.i18nextInitOptions
       );
+
+      // Prevent site translation if configured
+      if (ConfigServiceProvider.preventSiteTranslation) {
+        $('html').attr('translate', 'no');
+      }
     }
   );
 
