@@ -605,6 +605,7 @@ angular.module('avBooth')
               );
             }
           );
+          scope.errors = [];
         };
       };
 
