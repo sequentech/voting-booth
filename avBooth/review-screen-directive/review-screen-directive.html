@@ -19,11 +19,26 @@
   <div avb-review-ballot-v2></div>
 </div>
 
+<div class="container visible-xs" ng-if="showAuditBtn">
+  <div class="actions">
+    <button
+      id="audit-ballot-btn"
+      class="btn btn-lg btn-opt-warn btn-plain col-xs-12"
+      ng-click="confirmAudit()"
+    >
+      <span>
+        <i class="fa fa-fire"></i>
+        {{ 'avBooth.auditTheBallot' | i18next }}
+      </span>
+    </button>
+  </div>
+</div>
+
 <div class="container">
   <div class="actions">
     <button
       id="change-selection-btn"
-      class="btn btn-lg btn-success-action btn-plain col-xs-4"
+      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4"
       ng-if="showEditBtn"
       ng-click="goToQuestion(0, false)">
       <span>
@@ -33,7 +48,7 @@
     </button>
     <button
       id="audit-ballot-btn"
-      class="btn btn-lg btn-opt-warn btn-plain col-xs-4"
+      class="btn btn-lg btn-opt-warn btn-plain col-sm-4 hidden-xs"
       ng-if="showAuditBtn"
       ng-click="confirmAudit()"
     >
@@ -44,10 +59,10 @@
     </button>
     <button
       id="continue-btn"
-      class="btn btn-lg btn-next-action btn-plain col-xs-4"
+      class="btn btn-lg btn-next-action btn-plain col-sm-4 col-xs-6"
       ng-class="{
-        'col-xs-offset-4': (!showEditBtn || !showAuditBtn),
-        'col-xs-offset-8': (!showEditBtn && !showAuditBtn)
+        'col-sm-offset-4': (!showEditBtn || !showAuditBtn),
+        'col-sm-offset-8': (!showEditBtn && !showAuditBtn)
       }"
       ng-click="next()">
       <span>
