@@ -69,7 +69,7 @@
       <div 
         ng-if="isWriteIn" 
         class="vertilize-col answer-texts write-in"
-        ng-class="{'has-warning': (question.writeInBytesLeft.bytesLeft >= 0 && question.writeInBytesLeft.bytesLeft < 10), 'has-error': question.writeInBytesLeft.bytesLeft < 0}"
+        ng-class="{'has-warning': (question.writeInBytesLeft.bytesLeft >= 0 && question.writeInBytesLeft.bytesLeft < 10), 'has-error': question.writeInBytesLeft.bytesLeft < 0, 'text-right': !!hideCheck()}"
       >
         <input 
           type="text"
