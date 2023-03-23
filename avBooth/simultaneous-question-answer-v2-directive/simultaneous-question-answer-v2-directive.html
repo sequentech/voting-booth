@@ -78,8 +78,20 @@
           aria-label="write-in"
           av-debounce="500"
           ng-model="answer.text"
-          ng-readonly="!!hideCheck()"
+          ng-if="!hideCheck()"
         />
+
+        <span
+          class="answer-text"
+          ng-i18next="avBooth.showWriteIn"
+          ng-if="!!hideCheck()"
+        ></span>
+
+        <span
+          id="question_{{question.index}}_answer_blank"
+          class="answer-text"
+          ng-if="!!hideCheck()"
+        >{{answer.text}}</span>
         <div 
           class="bytes-left help-block"
         >
