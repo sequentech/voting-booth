@@ -54,9 +54,23 @@
     right: 12px;
     background-color: @brand-primary;
     color: @av-primary-contrast;
-    z-index: 10;
+    z-index: 8;
     font-size: 2em;
     line-height: 1.15em;
+    padding: 0 2px;
+
+    &:hover {
+      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      border: 1px solid @av-primary-contrast;
+    }
+
+    &:focus {
+      color: @av-primary-contrast;
+      background: @brand-primary;
+    }
   }
 
   .audit-content a, .audit-content .warn-text strong {
