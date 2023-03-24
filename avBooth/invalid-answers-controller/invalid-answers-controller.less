@@ -66,7 +66,7 @@
         }
     }
 
-    .btn.btn-warning {
+    .btn-warning-solid {
         background-color: @error-primary-color;
         color: @bg-primary;
         border: none;
@@ -88,7 +88,23 @@
     }
 
     .btn.btn-cancel {
-        background-color: @av-error-color;
+        background-color: @av-bg;
+        color: @av-primary-contrast;
+
+        &:hover {
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+            color: @av-primary-contrast;
+        }
+
+        &:focus {
+            border: 2px solid @state-success-text;
+        }
+
+        &:active {
+            color:  @av-bg;
+            border: 1px solid @av-bg;
+            background-color: @av-primary-contrast;
+        }
     }
 }
 

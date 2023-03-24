@@ -50,7 +50,7 @@
     <button 
       tabindex="0"
       ng-if="data.cancel" 
-      class="btn" 
+      class="btn btn-cancel" 
       ng-click="cancel()" 
       ng-i18next
     >
@@ -60,7 +60,7 @@
       tabindex="0"
       ng-if="data.continue" 
       class="btn"
-      ng-class="{'btn-success': data.kind === 'info', 'btn-warning': data.kind === 'warn' || !data.kind}" 
+      ng-class="{'btn-success': data.kind === 'info', 'btn-warning-solid': data.kind === 'warn' || !data.kind}" 
       ng-click="ok()" 
       ng-i18next
     >
