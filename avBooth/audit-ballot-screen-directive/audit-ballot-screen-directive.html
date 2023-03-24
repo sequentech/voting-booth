@@ -12,7 +12,12 @@
         <div ng-i18next="[html:i18next]({ballotHash: stateData.ballotHash, auditableBallot: auditableBallotStr})avBooth.auditBallotText"></div>
       </div>
     </div>
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+    <div
+      class="row hidden"
+      ng-cloak
+      av-affix-bottom data-force-affix-width="768"
+      data-force-affix="{{ election.presentation.anchor_continue_btn_to_bottom }}"
+    >
 
       <div class="col-xs-12 no-padding">
         <button

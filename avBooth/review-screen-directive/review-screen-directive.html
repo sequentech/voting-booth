@@ -22,7 +22,13 @@
         <div avb-review-ballot></div>
       </div>
     </div>
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+    <div
+      class="row hidden"
+      ng-cloak
+      av-affix-bottom
+      data-force-affix-width="768"
+      data-force-affix="{{ election.presentation.anchor_continue_btn_to_bottom }}"
+    >
       <div
         ng-if="!election.presentation.extra_options || !election.presentation.extra_options.disable_voting_booth_audit_ballot"
         class="col-xs-12 locator-text-click-audit">
