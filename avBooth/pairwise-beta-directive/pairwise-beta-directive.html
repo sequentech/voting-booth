@@ -165,7 +165,9 @@
       class="row hidden"
       ng-cloak
       av-affix-bottom="stateData.affixIsSet"
-      data-force-affix-width="768">
+      data-force-affix-width="768"
+      data-force-affix="{{ election.presentation.anchor_continue_btn_to_bottom }}"
+    >
       <button
         class="btn btn-block btn-lg btn-success-action btn-plain hidden"
         ng-i18next="avBooth.continueButton"
