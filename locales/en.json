@@ -353,10 +353,6 @@
       "cancel": "No",
       "doNotShowAgain": "Do not show this again"
     },
-    "clearSelection": "Clear selection",
-    "watermark": {
-      "demo": "DEMO BOOTH",
-      "preview": "PREVIEW BOOTH"
-    }
+    "clearSelection": "Clear selection"
   }
 }
