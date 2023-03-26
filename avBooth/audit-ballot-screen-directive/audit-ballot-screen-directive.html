@@ -21,7 +21,7 @@
           <ol>
             <li>
               <span class="download-list-title" ng-i18next="[html:i18next]avBooth.auditBallotScreen.downloadListTitle"></span>
-              <i class="download-help fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
+              <i class="download-help fa fa-lg fa-question-circle" ng-click="downloadHelp()"></i>
               <br/>
               <div class="download-container">
                 <span class="download-subtitle" ng-i18next="avBooth.auditBallotScreen.downloadSubtitle"></span>
@@ -35,7 +35,7 @@
                 </button>
               </div>
               <div class="code-container">
-                <i class="copy-icon fa fa-lg fa-copy" ng-click="copyToClipboard()"></i>
+                <i class="copy-icon fa fa-lg fa-copy" ng-click="tutorialHelp()"></i>
                 <div class="code" tabindex="0" ng-click="selectDiv($event)">
                   {{ auditableBallotStr }}
                 </div>

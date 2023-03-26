@@ -87,9 +87,14 @@
       "verifyBallotCastDescription": "You can verify your ballot has been cast correctly at any moment using the following QR code:",
       "ballotId": "Ballot ID",
       "printBallotBtn": "Print",
-      "informationModal": {
+      "ballotCastHelpModal": {
         "header": "Information: Success Screen",
         "body": "This screen shows that your vote was successfully casted.",
+        "confirm": "OK"
+      },
+      "ballotIdHelpModal": {
+        "header": "Information: Ballot Id",
+        "body": "The Ballot ID is a code that lets you find your ballot in the ballot box.",
         "confirm": "OK"
       }
     }, 
@@ -264,7 +269,18 @@
       "downloadButton": "Download",
       "downloadSubtitle": "This is your encrypted ballot",
       "tutorialListTitle": "<strong>Follow the steps on this tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">click here</a>, a new tab will open in your browser).",
-      "auditWarning": "For security reason, when you audit your ballot, it need to be spoiled. To continue with the voting process, you need to click ‘<strong>Start Voting</strong>’ bellow."
+      "auditWarning": "For security reason, when you audit your ballot, it need to be spoiled. To continue with the voting process, you need to click ‘<strong>Start Voting</strong>’ bellow.",
+
+      "downloadHelpModal": {
+        "header": "Copy the Encrypted Ballot",
+        "body": "Download or copy your encrypted ballot. Then use it to audit the ballot and verify its contents.",
+        "confirm": "OK"
+      },
+      "tutorialHelpModal": {
+        "header": "Audit ballot tutorial",
+        "body": "Audit your ballot following the steps shown on the tutorial.",
+        "confirm": "OK"
+      }
     },
 
 
