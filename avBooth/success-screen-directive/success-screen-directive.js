@@ -611,56 +611,48 @@ angular.module('avBooth')
 
       scope.ballotCastHelp = function()
       {
-        if (!scope.isDemo || scope.ballotHashClicked) {
-          $modal.open({
-            ariaLabelledBy: 'modal-title',
-            ariaDescribedBy: 'modal-body',
-            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
-            controller: "InvalidAnswersController",
-            size: 'md',
-            resolve: {
-              errors: function() { return []; },
-              data: function() {
-                return {
-                  errors: [],
-                  header: "avBooth.successScreen.ballotCastHelpModal.header",
-                  body: "avBooth.successScreen.ballotCastHelpModal.body",
-                  continue: "avBooth.successScreen.ballotCastHelpModal.confirm",
-                  kind: "info"
-                };
-              }
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.successScreen.ballotCastHelpModal.header",
+                body: "avBooth.successScreen.ballotCastHelpModal.body",
+                continue: "avBooth.successScreen.ballotCastHelpModal.confirm",
+                kind: "info"
+              };
             }
-          });
-        } else {
-          showVoteNoteCastModal();
-        }
+          }
+        });
       };
 
       scope.ballotIdHelp = function()
       {
-        if (!scope.isDemo || scope.ballotHashClicked) {
-          $modal.open({
-            ariaLabelledBy: 'modal-title',
-            ariaDescribedBy: 'modal-body',
-            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
-            controller: "InvalidAnswersController",
-            size: 'md',
-            resolve: {
-              errors: function() { return []; },
-              data: function() {
-                return {
-                  errors: [],
-                  header: "avBooth.successScreen.ballotIdHelpModal.header",
-                  body: "avBooth.successScreen.ballotIdHelpModal.body",
-                  continue: "avBooth.successScreen.ballotIdHelpModal.confirm",
-                  kind: "info"
-                };
-              }
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.successScreen.ballotIdHelpModal.header",
+                body: "avBooth.successScreen.ballotIdHelpModal.body",
+                continue: "avBooth.successScreen.ballotIdHelpModal.confirm",
+                kind: "info"
+              };
             }
-          });
-        } else {
-          showVoteNoteCastModal();
-        }
+          }
+        });
       };
     }
 
