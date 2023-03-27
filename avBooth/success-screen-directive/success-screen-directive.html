@@ -27,7 +27,7 @@
         <i class="fa fa-check"></i>
         <a href="{{getBallotLocatorUrl()}}" target="{{getBallotLocatorTarget()}}">
           <i class="ballot-id-hash hidden-xs">{{stateData.ballotHash}}</i>
-          <i class="ballot-id-hash visible-xs" ng-i18next="[html]({hash: stateData.ballotHash})avBooth.reviewScreen.ballotIdMessage"></i>
+          <i class="ballot-id-hash visible-xs" ng-i18next="[i18next]({hash: stateData.ballotHash})avBooth.reviewScreen.ballotIdMessage"></i>
         </a>
         <i class="pull-right fa fa-lg fa-question-circle" ng-click="ballotIdHelp()"></i>
       </div>
