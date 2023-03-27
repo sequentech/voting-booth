@@ -9,7 +9,7 @@
 
   <div class="success-intro">
     <div class="success-text">
-      <h1 class="success-title" ng-i18next="avBooth.successTitle"></h1>
+      <h3 class="success-title" ng-i18next="avBooth.successTitle"></h3>
       <p class="success-subheader" ng-i18next="[html:i18next]avBooth.successSubheader"></p>
     </div>
     <div class="success-help">
@@ -22,11 +22,12 @@
     ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
   >
     <div class="ballot-id-container">
-      <h4 class="ballot-id-title" ng-i18next="avBooth.successScreen.ballotId"></h4>
+      <h4 class="ballot-id-title hidden-xs" ng-i18next="avBooth.successScreen.ballotId"></h4>
       <div class="ballot-id-box">
         <i class="fa fa-check"></i>
         <a href="{{getBallotLocatorUrl()}}" target="{{getBallotLocatorTarget()}}">
-          <i class="ballot-id-hash">{{stateData.ballotHash}}</i>
+          <i class="ballot-id-hash hidden-xs">{{stateData.ballotHash}}</i>
+          <i class="ballot-id-hash visible-xs" ng-i18next="[html]({hash: stateData.ballotHash})avBooth.reviewScreen.ballotIdMessage"></i>
         </a>
         <i class="pull-right fa fa-lg fa-question-circle" ng-click="ballotIdHelp()"></i>
       </div>
