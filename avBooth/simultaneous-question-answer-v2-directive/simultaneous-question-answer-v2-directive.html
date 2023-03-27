@@ -22,25 +22,6 @@
         />
       </div>
 
-      <!-- Show URL link -->
-      <div 
-        class="answer-links"
-        ng-if="!!answer.urlsObject.URL && !isWriteIn"
-      >
-        <a
-          class="btn btn-default btn-right"
-          href="{{answer.urlsObject.URL}}"
-          ng-i18next="[alt]avBooth.openOptionLink"
-          target="_blank"
-        >
-          <span class="glyphicon glyphicon-link"></span>
-          <span 
-            class="view-link-text hidden-xs" 
-            ng-i18next="avBooth.dropdownOptionView"
-          ></span>
-        </a>
-      </div>
-
       <!-- show answer texts -->
       <div 
         ng-if="!isWriteIn" 
@@ -63,6 +44,25 @@
           class="answer-details"
           ng-bind-html="answer.details | addTargetBlank"
         ></p>
+      </div>
+
+      <!-- Show URL link -->
+      <div 
+        class="answer-links"
+        ng-if="!!answer.urlsObject.URL && !isWriteIn"
+      >
+        <a
+          class="btn btn-default btn-right"
+          href="{{answer.urlsObject.URL}}"
+          ng-i18next="[alt]avBooth.openOptionLink"
+          target="_blank"
+        >
+          <span class="glyphicon glyphicon-link"></span>
+          <span 
+            class="view-link-text hidden-xs" 
+            ng-i18next="avBooth.dropdownOptionView"
+          ></span>
+        </a>
       </div>
 
       <!-- show write-in text input if applicable -->
