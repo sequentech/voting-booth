@@ -59,23 +59,9 @@
       border: none;
     }
 
-    .answer-glyphicon .glyphicon {
-      font-size: 30px;
-      margin-right: 10px;
-    }
-
-    .glyphicon.cumulative-glyphicon {
+    .cumulative-glyphicon {
       display: inline;
     }
-  
-    .answer-image {
-      img {
-        max-height: 130px;
-        max-width: 130px;
-        padding-right: 10px;
-      }
-    }
-
     .answer-texts {
       box-sizing: border-box;
       padding-right: 10px;
@@ -139,6 +125,7 @@
   .opt .answer-image img { 
     max-height: 64px;
     max-width: 64px;
+    margin-right: 10px;
   }
 
   .vertilize-wrapper .vertilize {
@@ -182,7 +169,10 @@
     align-items: center;
     display: flex;
     margin-left: 8px;
+    width: 74px;
+    flex-shrink: 0;
   }
+
   .vertilize-col.vert-align-top.answer-texts.ng-scope {
     text-align: left;
     padding: 14px 20px 10px 0;

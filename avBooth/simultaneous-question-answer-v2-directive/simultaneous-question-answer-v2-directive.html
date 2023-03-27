@@ -112,7 +112,7 @@
         </span>
         <!-- show cumulative checkboxes -->
         <span
-          class="glyphicon cumulative-glyphicon"
+          class="cumulative-checkbox"
           tabindex="0"
           role="checkbox"
           ng-if="!isBlankVoteAnswer && !isInvalidVoteAnswer && question.tally_type === 'cumulative'"
@@ -120,25 +120,23 @@
           ng-repeat="check in answer_cumulative_checks"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, check)"
-          ng-class="{
-            'glyphicon-unchecked': !isCheckSelected(answer, check),
-            'glyphicon-check': isCheckSelected(answer, check)
-          }"
-        ></span>
+        >
+          <i class="fa fa-lg fa-check" ng-if="isCheckSelected(answer, check)"></i>
+          <div class="unchecked" ng-if="!isCheckSelected(answer, check)"></div>
+        </span>
         <!-- show checkbox for invalid -->
         <span
-          class="glyphicon cumulative-glyphicon"
+          class="cumulative-checkbox"
           tabindex="0"
           role="checkbox"
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
           aria-label="{{answer.text}} check invalid"
           ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
           ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, 0)"
-          ng-class="{
-            'glyphicon-unchecked': !isCheckSelected(answer, 0),
-            'glyphicon-check': isCheckSelected(answer, 0)
-          }"
-        ></span>
+        >
+        <i class="fa fa-lg fa-check" ng-if="isCheckSelected(answer, 0)"></i>
+        <div class="unchecked" ng-if="!isCheckSelected(answer, 0)"></div>
+        </span>
       </div>
     </div>
   </div>
