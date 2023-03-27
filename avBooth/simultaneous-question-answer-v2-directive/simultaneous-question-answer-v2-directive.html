@@ -57,7 +57,7 @@
           ng-i18next="[alt]avBooth.openOptionLink"
           target="_blank"
         >
-          <span class="glyphicon glyphicon-link"></span>
+          <i class="fa fa-lg fa-question-circle"></i>
           <span 
             class="view-link-text hidden-xs" 
             ng-i18next="avBooth.dropdownOptionView"
@@ -101,17 +101,15 @@
 
       <!-- show checkbox icon -->
       <div class="vertilize-col answer-glyphicon" ng-if="!hideCheck()">
-        <span 
-          class="glyphicon"
+        <span
           tabindex="0"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="question.tally_type === 'plurality-at-large'"
           ng-click="!readOnly() && isWriteIn && toggleSelectItem(question, answer)"
-          ng-class="{
-            'glyphicon-unchecked': answer.selected === -1,
-            'glyphicon-check': answer.selected > -1
-          }"
-        ></span>
+        >
+          <i class="fa fa-lg fa-check" ng-if="answer.selected > -1"></i>
+          <div class="unchecked" ng-if="answer.selected === -1"></div>
+        </span>
         <!-- show cumulative checkboxes -->
         <span
           class="glyphicon cumulative-glyphicon"

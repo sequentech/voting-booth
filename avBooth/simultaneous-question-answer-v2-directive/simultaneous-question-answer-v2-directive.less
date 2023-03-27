@@ -129,6 +129,10 @@
         text-decoration: underline;
         background: transparent;
       }
+
+      .fa-question-circle {
+        margin-right: 4px;
+      }
     }
   }
 
@@ -146,9 +150,20 @@
   }
   
   .vertilize-col.answer-glyphicon {
-    background-color: black;
     display: flex;
     align-items: center;
+
+    .fa-check {
+      background-color: @brand-success;
+      color: @bg-primary;
+    }
+
+    .unchecked {
+      border: 2px solid #B8C0CC;
+      border-radius: 2px;
+      width: 23px;
+      height: 23px;
+    }
   }
 
   .opt span.glyphicon.ng-scope {
@@ -159,11 +174,11 @@
   .vertilize-wrapper .vertilize .vertilize-col.answer-image {
     align-items: center;
     display: flex;
-    margin-right: 8px;
+    margin-left: 8px;
   }
   .vertilize-col.vert-align-top.answer-texts.ng-scope {
     text-align: left;
-    padding-right: 20px;
+    padding: 14px 20px 10px 0;
   }
 
   a.btn:focus {
