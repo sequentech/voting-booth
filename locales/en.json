@@ -369,6 +369,7 @@
       "cancel": "No",
       "doNotShowAgain": "Do not show this again"
     },
-    "clearSelection": "Clear selection"
+    "clearSelection": "Clear selection",
+    "typeWriteInPlaceholder": "Type write-in candidate here"
   }
 }
