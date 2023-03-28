@@ -10,7 +10,10 @@
     class="opt vertilize-wrapper"
     ng-click="!readOnly() && !isWriteIn && toggleSelectItem(question, answer) && question.tally_type === 'plurality-at-large'"
   >
-    <div class="vertilize">
+    <div
+      class="vertilize"
+      ng-class="{'hide-check': !!hideCheck()}"
+    >
       
       <!-- show answer image if any -->
       <div class="vertilize-col answer-image">

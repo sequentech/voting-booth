@@ -36,15 +36,6 @@
   // answer styles
   .invalid-vote-col .opt .vertilize {
     background-color: @av-primary;
-
-    &:hover {
-      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    &:active {
-      background-color: @gray-lighter;
-    }
-
   }
 
   .opt {
@@ -56,7 +47,7 @@
     cursor: pointer;
     display: inline-block;
 
-    .vertilize {
+    .vertilize:not(.hide-check) {
       &:hover {
         box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
       }
