@@ -38,8 +38,13 @@
     background-color: @av-primary;
 
     &:hover {
+      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
       background-color: @gray-lighter;
     }
+
   }
 
   .opt {
@@ -51,8 +56,14 @@
     cursor: pointer;
     display: inline-block;
 
-    &:hover {
-      background-color: @gray-lighter;
+    .vertilize {
+      &:hover {
+        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      &:active {
+        background-color: @gray-lighter;
+      }
     }
 
     &:focus {
@@ -90,8 +101,6 @@
           display: block;
         }
       }
-
-      
 
       .answer-text {
         font-size: 18px;
@@ -137,6 +146,10 @@
     min-height: 63px;
     border: 2px solid rgba(0, 0, 0, 0.05);
     border-radius: 10px;
+
+    &:focus {
+      border: 3px solid rgba(0, 0, 0, 0.1);
+    }
   }
   
   .vertilize-col.answer-glyphicon {
