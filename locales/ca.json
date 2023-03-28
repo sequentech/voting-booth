@@ -19,7 +19,7 @@
   },
   "avCommon": {
     "cancel": "Cancela",
-    "poweredBy": "Funciona amb <strong>__name__</strong>",
+    "poweredBy": "Funciona amb <a href=\"__url__\" target=\"_blank\">__name__</a>",
     "shareLink": "¡Tuitgeu aquesta votació!",
     "votingSystem": "Sistema de votació",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
