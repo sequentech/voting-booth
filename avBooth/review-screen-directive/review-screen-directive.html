@@ -1,7 +1,8 @@
 <!-- top navbar -->
 <div avb-common-header
   ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"
-  ng-class="{'hash-margin': showAuditBtn && stateData.ballotHash}" 
+  ng-class="{'hash-margin': showAuditBtn && stateData.ballotHash}"
+  hash-help="ballotHashWarning()"
 ></div>
 <div avb-watermark></div>
 
