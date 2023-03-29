@@ -40,7 +40,7 @@
   <div class="actions">
     <button
       id="change-selection-btn"
-      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4"
+      class="btn btn-lg btn-success-action btn-plain"
       ng-if="showEditBtn"
       ng-click="goToQuestion(0, false)">
       <span>
@@ -50,7 +50,7 @@
     </button>
     <button
       id="audit-ballot-btn"
-      class="btn btn-lg btn-opt-warn btn-plain col-sm-4 hidden-xs"
+      class="btn btn-lg btn-opt-warn btn-plain hidden-xs"
       ng-if="showAuditBtn"
       ng-click="confirmAudit()"
     >
@@ -61,7 +61,7 @@
     </button>
     <button
       id="continue-btn"
-      class="btn btn-lg btn-success-action btn-plain col-sm-4 col-xs-6"
+      class="btn btn-lg btn-success-action btn-plain"
       ng-class="{
         'col-sm-offset-4': (!showEditBtn || !showAuditBtn),
         'col-sm-offset-8': (!showEditBtn && !showAuditBtn)

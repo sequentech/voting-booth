@@ -247,11 +247,18 @@
     margin-bottom: 19px;
     display: flex;
     gap: 85px;
+    justify-content: space-between;
 
     .btn-lg {
       text-overflow: ellipsis;
       overflow: hidden;
       border-radius: 4px;
+      max-width: 200px;
+      flex-grow: 2;
+
+      @media(max-width: @screen-xs-max) {
+        max-width: unset;
+      }
 
       span {
         white-space: nowrap;
