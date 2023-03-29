@@ -112,6 +112,37 @@ angular.module('avBooth')
           }
         });
       };
+
+      scope.ballotHashWarning = function ()
+      {
+        if (scope.ballotHashClicked) {
+          return false;
+        }
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.hashForVoteNotCastModal.header",
+                body: "avBooth.hashForVoteNotCastModal.body",
+                continue: "avBooth.hashForVoteNotCastModal.confirm",
+                cancel: "avBooth.hashForVoteNotCastModal.cancel"
+              };
+            }
+          }
+        }).result.then(
+          function ()
+          {
+            scope.ballotHashClicked = true;
+          }
+        );
+      };
     };
     return {
       restrict: 'AE',
