@@ -81,10 +81,10 @@ angular.module('avBooth')
                 header: "avBooth.hashForVoteNotCastModal.header",
                 body: "avBooth.hashForVoteNotCastModal.body",
                 continue: "avBooth.hashForVoteNotCastModal.confirm",
-                cancel: "avBooth.hashForVoteNotCastModal.cancel"
+                cancel: "avBooth.hashForVoteNotCastModal.cancel",
+                kind: 'info'
               };
-            },
-            kind: 'info'
+            }
           }
         }).result.then(
           function ()
