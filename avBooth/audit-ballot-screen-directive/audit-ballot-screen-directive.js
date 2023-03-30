@@ -134,7 +134,8 @@ angular.module('avBooth')
                 continue: "avBooth.hashForVoteNotCastModal.confirm",
                 cancel: "avBooth.hashForVoteNotCastModal.cancel"
               };
-            }
+            },
+            kind: 'info'
           }
         }).result.then(
           function ()
