@@ -252,18 +252,20 @@
     justify-content: space-between;
 
     .btn-lg {
-      text-overflow: ellipsis;
-      overflow: hidden;
       border-radius: 4px;
       max-width: 200px;
-      flex-grow: 2;
+      flex-basis: 200px;
+      display: flex;
+      justify-content: center;
 
       @media(max-width: @screen-xs-max) {
-        max-width: unset;
+        flex-basis: unset;
       }
 
       span {
         white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
     }
 
