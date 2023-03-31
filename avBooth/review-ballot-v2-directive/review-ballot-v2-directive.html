@@ -52,17 +52,21 @@
           read-only="question.are_candidates_read_only"
         ></div>
       </div>
-      <div
-        avb-simultaneous-question-answer-v2
+      <div 
+        class="invalid-vote-col"
         ng-if="!!markedAsInvalid(question)"
-        answer="question.invalidVoteAnswer"
-        question="question"
-        is-invalid-vote-answer="true"
-        toggle-select-item="toggleSelectItem"
-        toggle-select-item-cumulative="toggleSelectItemCumulative"
-        cumulative-checks="cumulativeChecks"
-        hide-check="true"
       >
+        <div
+          avb-simultaneous-question-answer-v2
+          answer="question.invalidVoteAnswer"
+          question="question"
+          is-invalid-vote-answer="true"
+          toggle-select-item="toggleSelectItem"
+          toggle-select-item-cumulative="toggleSelectItemCumulative"
+          cumulative-checks="cumulativeChecks"
+          hide-check="true"
+        >
+        </div>
       </div>
       <div
         avb-simultaneous-question-answer-v2
