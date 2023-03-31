@@ -194,6 +194,34 @@ angular.module('avBooth')
         closeAndFinish(/* dontClose = */ true, /* isSusccess */ isSuccess);
       }
 
+      function confirmLogoutModal(isSuccess) {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'sm',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.confirmLogoutModal.header",
+                body: "avBooth.confirmLogoutModal.body",
+                continue: "avBooth.confirmLogoutModal.confirm",
+                cancel: "avBooth.confirmLogoutModal.cancel",
+                kind: 'warn'
+              };
+            }
+          }
+        }).result.then(
+          function ()
+          {
+            logoutAndRedirect(isSuccess);
+          }
+        );
+      }
+
       // After cookies expires, redirect to login. But only if cookies do
       // expire.
       function autoredirectToLoginAfterTimeout() {
@@ -1060,6 +1088,7 @@ angular.module('avBooth')
         stateChange: 0,
         showError: showError,
         logoutAndRedirect: logoutAndRedirect,
+        confirmLogoutModal: confirmLogoutModal,
         getLogoutUri: getLogoutUri,
         simpleRedirectToLogin: simpleRedirectToLogin,
         closeAndFinish: closeAndFinish,

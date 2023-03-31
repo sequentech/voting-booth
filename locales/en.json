@@ -60,6 +60,12 @@
       "body": "Your session is about to expire. In one minute you will be redirected if you haven't finished casting your vote.",
       "confirm": "Close"
     },
+    "confirmLogoutModal": {
+      "header": "Are you sure you want to logout?",
+      "body": "You are about to close this application. This action can not be undone.",
+      "confirm": "Logout",
+      "cancel": "Cancel"
+    },
     "demoModeModal": {
       "header": "Demo voting booth",
       "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
