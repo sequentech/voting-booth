@@ -801,7 +801,7 @@ angular.module('avBooth')
             electionPromise
             .then(
               function onSuccess(response) {
-                futureResult.resolve(angular.fromJson(response.data.payload.configuration));
+                futureResult.resolve(angular.fromJson(response.data.payload));
               },
               // on error, like parse error or 404
               function onError(response) {
