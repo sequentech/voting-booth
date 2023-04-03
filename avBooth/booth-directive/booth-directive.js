@@ -765,6 +765,55 @@ angular.module('avBooth')
         scope.isDemo = false;
       }
 
+      function simpleGetElection(electionId) {
+        if (!electionId) {
+          var future = $q.defer();
+          future.reject("invalid election id");
+          return future.promise;
+        }
+
+        var futureResult = $q.defer();
+        try {
+          if (scope.isPreview) {
+            var previewElection = JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId)));
+            var foundElection = previewElection.find(
+              function (element) {return element.id === parseInt(electionId);
+            });
+
+            if (foundElection) {
+              var ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
+              futureResult.resolve({
+                data: {
+                  payload: ballotBoxData
+                }
+              });
+            } else {
+              futureResult.reject("election not found");
+            }
+          } else {
+            var electionPromise = $http.get(
+              scope.baseUrl + "election/" + scope.electionId,
+              {
+                headers: {'Authorization': scope.authorizationHeader || null}
+              }
+            );
+
+            electionPromise
+            .then(
+              function onSuccess(response) {
+                futureResult.resolve(angular.fromJson(response.data.payload.configuration));
+              },
+              // on error, like parse error or 404
+              function onError(response) {
+                futureResult.reject(response);
+              });
+          }
+        } catch (error) {
+          futureResult.resolve(error);
+        }
+        return futureResult.promise;
+      }
+
       function retrieveElectionConfig(electionId) {
         if (electionId) {
           scope.electionId = electionId;
@@ -1098,6 +1147,7 @@ angular.module('avBooth')
         setAuthorizationReceiver: setAuthorizationReceiver,
         mapQuestion: mapQuestion,
         retrieveElectionConfig: retrieveElectionConfig,
+        simpleGetElection: simpleGetElection,
         next: next,
         redirectToLogin: redirectToLogin,
 

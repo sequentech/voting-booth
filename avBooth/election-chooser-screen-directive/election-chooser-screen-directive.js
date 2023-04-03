@@ -112,12 +112,40 @@ angular.module('avBooth')
             return childrenInfo;
         }
 
+        function getChildrenElectionsData() {
+            if (!scope.childrenElectionInfo) {
+                return
+            }
+
+            _.map(
+                scope.childrenElectionInfo.presentation.categories,
+                function (category) {
+                    _.map(
+                        category.events,
+                        function (event) {
+                            scope.simpleGetElection(event.event_id).then(
+                                function (electionData) {
+                                    event.electionData = electionData;
+                                },
+                                function (error) {
+                                    console.log(error);
+                                }
+                            )
+                            
+                        }
+                    );
+                }
+            );
+        }
+
         function chooseElection(electionId) {
             scope.setState(scope.stateEnum.receivingElection, {});
             scope.retrieveElectionConfig(electionId + "");
         }
 
         scope.childrenElectionInfo = generateChildrenInfo();
+        getChildrenElectionsData();
+
 
         function checkDisabled() {
             var disableElectionChooser = (
