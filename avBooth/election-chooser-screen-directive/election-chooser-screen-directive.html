@@ -1,7 +1,34 @@
 <!-- top navbar -->
 <div avb-common-header></div>
+<div avb-watermark></div>
 
-<div class="wrapper-unfixed">
+
+<div class="container">
+  <div class="sticky-top sticky-top-alt">
+    <div avb-voting-step step="2"></div>
+  </div>
+  <div class="sticky-padding"></div>
+
+  <div class="election-chooser-header">
+    <h1 class="election-chooser-title" ng-i18next="avBooth.electionChooserScreen.title">
+    </h1>
+    <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
+  </div>
+
+  <p class="election-chooser-description" ng-i18next="avBooth.electionChooserScreen.description">
+  </p>
+  <div
+    av-children-elections
+    mode="toggle-and-callback"
+    callback="chooseElection(electionId)"
+    parent-election-id="{{parentAuthEvent.id}}"
+    hide-parent="true"
+    children-election-info="childrenElectionInfo"
+  ></div>
+
+</div>
+
+<!--div class="wrapper-unfixed">
   <div class="navbar-unfixed-top text-center">
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
@@ -73,4 +100,6 @@
         </a>
       </p>
   </div>
-</div>
+</div -->
+
+<div avb-common-footer></div>

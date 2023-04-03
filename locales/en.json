@@ -376,6 +376,18 @@
       "doNotShowAgain": "Do not show this again"
     },
     "clearSelection": "Clear selection",
-    "typeWriteInPlaceholder": "Type write-in candidate here"
+    "typeWriteInPlaceholder": "Type write-in candidate here",
+    "electionChooserScreen": {
+      "title": "Election list",
+      "description": "Select the election you want to vote",
+      "voted": "Voted",
+      "notVoted": "Not voted",
+      "openElection": "Open",
+      "closedElection": "Closed",
+      "openDate": "Open: __date__",
+      "closingDate": "Close: __date__",
+      "electionResultsBtn": "Election Results",
+      "clickToVoteBtn": "Click to Vote"
+    }
   }
 }
