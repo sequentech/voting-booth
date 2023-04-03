@@ -792,7 +792,7 @@ angular.module('avBooth')
             }
           } else {
             var electionPromise = $http.get(
-              scope.baseUrl + "election/" + scope.electionId,
+              scope.baseUrl + "election/" + electionId,
               {
                 headers: {'Authorization': scope.authorizationHeader || null}
               }

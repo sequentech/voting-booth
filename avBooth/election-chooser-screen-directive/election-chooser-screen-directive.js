@@ -114,7 +114,7 @@ angular.module('avBooth')
 
         function getChildrenElectionsData() {
             if (!scope.childrenElectionInfo) {
-                return
+                return;
             }
 
             _.map(
@@ -130,8 +130,7 @@ angular.module('avBooth')
                                 function (error) {
                                     console.log(error);
                                 }
-                            )
-                            
+                            );
                         }
                     );
                 }
