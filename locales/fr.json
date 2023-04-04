@@ -1,0 +1,292 @@
+{
+    "yes": "oui",
+    "no": "pas de",
+    "eg": "eg.",
+    "next": "Suivant",
+    "done": "Termin\u00e9",
+    "loading": "Chargement...",
+    "nomore": "Plus d'\u00e9l\u00e9ments",
+    "registered": "enregistr\u00e9",
+    "created": "cr\u00e9\u00e9",
+    "started": "a commenc\u00e9",
+    "stopped": "arr\u00eat\u00e9",
+    "tally_ok": "le d\u00e9compte est fait",
+    "results_ok": "r\u00e9sultats obtenus",
+    "results_pub": "r\u00e9sultats publi\u00e9s",
+    "doing_tally": "faire le d\u00e9compte",
+    "tally_error": "erreur de pointage",
+    "app": {
+        "name": "Sequent Tech"
+    },
+    "avCommon": {
+        "cancel": "Annuler",
+        "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+        "shareLink": "\u00a1Tweet cette \u00e9lection !",
+        "votingSystem": "Syst\u00e8me de vote",
+        "votings": {
+            "plurality-at-large": "Pluralit\u00e9 au sens large",
+            "borda-nauru": "Le comte Borda de Nauru ou Borda Dowdall (1/n)",
+            "borda": "Comte de Borda (traditionnel)",
+            "pairwise-beta": "Par paires (distribution b\u00eata)",
+            "desborda3": "DesBorda3",
+            "desborda2": "DesBorda2",
+            "desborda": "DesBorda"
+        }
+    },
+    "avBooth": {
+        "logout": "D\u00e9connexion",
+        "showPdf": {
+            "showPdfButton": "Afficher le PDF",
+            "pdfTextDescription": "Veuillez lire le PDF avant de voter"
+        },
+        "electionChooser": {
+            "hasVoted": {
+                "title": "Succ\u00e8s !",
+                "description": "Vous avez vot\u00e9 dans toutes les \u00e9lections que vous pouvez dans ce processus \u00e9lectoral.",
+                "hasSkipped": "Vous avez saut\u00e9 certaines \u00e9lections et vot\u00e9 dans toutes les autres. Pour voter dans les \u00e9lections ignor\u00e9es, connectez-vous \u00e0 nouveau et vous pourrez voter dans ces \u00e9lections. Les \u00e9lections saut\u00e9es sont :"
+            },
+            "cannotVote": {
+                "title": "Aucun justificatif",
+                "description": "Pour une raison quelconque, vous \u00eates correctement connect\u00e9 mais vous n'avez pas re\u00e7u les informations d'identification pour voter. Veuillez consulter les organisateurs d'\u00e9lections."
+            },
+            "canVote": {
+                "title": "Choisissez une \u00e9lection pour voter",
+                "description": "Remarque : les \u00e9lections d\u00e9sactiv\u00e9es signifient que vous avez d\u00e9j\u00e0 vot\u00e9 ou que vous n'avez pas la permission de voter."
+            }
+        },
+        "demoModeModal": {
+            "header": "Cabine de vote d\u00e9mo",
+            "body": "Vous entrez dans un isoloir de d\u00e9monstration. <strong>Votre vote ne sera PAS exprim\u00e9</strong>. Cet isoloir est uniquement destin\u00e9 \u00e0 des fins de d\u00e9monstration.",
+            "confirm": "J'accepte que mon vote ne soit PAS exprim\u00e9"
+        },
+        "previewModeModal": {
+            "header": "Cabine de vote Live Preview",
+            "body": "Vous entrez dans un isoloir de vote en direct. <strong>Votre vote ne sera PAS exprim\u00e9</strong>. Cet isoloir est uniquement destin\u00e9 \u00e0 des fins de d\u00e9monstration.",
+            "confirm": "J'accepte que mon vote ne soit PAS exprim\u00e9"
+        },
+        "hashForVoteNotCastModal": {
+            "header": "Le vote n'a pas eu lieu",
+            "body": "Vous \u00eates sur le point de copier l'identifiant de suivi du scrutin, mais <strong>votre vote n'a pas encore \u00e9t\u00e9 exprim\u00e9</strong>. Si vous essayez de suivre le bulletin, vous ne le trouverez pas.<br><br>La raison pour laquelle nous montrons l'identifiant de suivi du bulletin \u00e0 ce stade est de vous permettre de v\u00e9rifier l'exactitude du bulletin crypt\u00e9 avant de le voter. Si c'est la raison pour laquelle vous voulez copier l'identifiant de suivi, veuillez proc\u00e9der \u00e0 sa copie et ensuite proc\u00e9der \u00e0 la v\u00e9rification du vote.",
+            "confirm": "J'accepte que mon vote n'ait PAS \u00e9t\u00e9 exprim\u00e9",
+            "cancel": "Annuler"
+        },
+        "successDemoVoteNotCastModal": {
+            "header": "Cabine de vote d\u00e9mo",
+            "body": "Ceci est un isoloir de d\u00e9monstration.<strong>Votre vote n'a PAS \u00e9t\u00e9 exprim\u00e9</strong>. Cet isoloir est uniquement destin\u00e9 \u00e0 des fins de d\u00e9monstration.<br><br>Donc, le suivi des bulletins ne fonctionnera pas. Pour effectuer un vrai vote, veuillez suivre la proc\u00e9dure d'authentification appropri\u00e9e.",
+            "confirm": "J'accepte que mon vote n'ait PAS \u00e9t\u00e9 exprim\u00e9",
+            "cancel": "Annuler"
+        },
+        "errors": {
+            "question-lambda-blank": "Question '__qtitle__' : aucune option s\u00e9lectionn\u00e9e. Vote blanc.",
+            "question-lambda-min": "Question '__qtitle__' : options __num_selected__ s\u00e9lectionn\u00e9es, inf\u00e9rieures au minimum __min__. Vote invalide.",
+            "question-lambda-max": "Question '__qtitle__' : options __num_selected__ s\u00e9lectionn\u00e9es, plus que le maximum __max__. Vote invalide.",
+            "question-lambda-panachage": "Question '__qtitle__' : a s\u00e9lectionn\u00e9 des options dans plusieurs listes, mais ce n'est pas autoris\u00e9. Vote invalide.",
+            "question-lambda-repeated-writeins": "Question '__qtitle__' : noms de candidats r\u00e9p\u00e9t\u00e9s. Vote invalide.",
+            "question-lambda-writein-length": "Question '__qtitle__' : les entr\u00e9es en \u00e9criture d\u00e9passent de __extra_bytes__ le maximum de __max__ chars. N\u00e9cessite une correction.",
+            "question-lambda-writeins-not-voted": "Question '__qtitle__' : Inscriptions fournies mais non vot\u00e9es : __write_ins__. Atypique.",
+            "question-lambda-writeins-not-provided": "Question '__qtitle__' : a s\u00e9lectionn\u00e9 quelques r\u00e9ponses \u00e9crites mais aucun nom n'a \u00e9t\u00e9 fourni. Atypique."
+        },
+        "invalidAnswers": {
+            "header": "Vote invalide ou blanc",
+            "body": "Certaines de vos r\u00e9ponses peuvent rendre le bulletin d'une ou plusieurs questions invalide ou vide :",
+            "continue": "Accepter et continuer",
+            "cancel": "Retour et r\u00e9vision"
+        },
+        "legal": {
+            "title": "Mentions l\u00e9gales",
+            "contact": "contacter"
+        },
+        "confirmAuditBallot": {
+            "header": "Voulez-vous v\u00e9rifier le bulletin de vote ?",
+            "body": "L'audit du bulletin de vote l'annulera et vous devrez recommencer le processus de vote si vous voulez voter. Le processus d'audit du bulletin vous permet de v\u00e9rifier qu'il est correctement encod\u00e9. Effectuer ce processus n\u00e9cessite que vous ayez des connaissances techniques importantes, nous ne vous le recommandons donc pas si vous ne savez pas ce que vous faites.<br/><br/><strong>Si vous voulez juste voter, cliquez sur <u>Annulation</u> pour revenir \u00e0 l'\u00e9cran de r\u00e9vision du bulletin.</strong>",
+            "confirm": "Oui, je veux D\u00c9CHARGER mon bulletin pour le v\u00e9rifier"
+        },
+        "instructionsTitle": "Instructions",
+        "closeWindow": "Finir et fermer",
+        "goToNextElection": "Aller \u00e0 l'\u00e9lection suivante",
+        "planchaSelect": "s\u00e9lectionnez tout",
+        "planchaDeselect": "d\u00e9s\u00e9lectionner tout",
+        "showSelectedOptionPoints": "(__points__ points)",
+        "showSelectedOptionPointsWriteIn": "(__points__ points, write-in)",
+        "showWriteIn": "(write-in)",
+        "warnBallotParity": {
+            "header": "Papeleta no paritaria",
+            "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selecci\u00f3n est\u00e9 compuesta de forma que detr\u00e1s de una mujer luego va un hombre y as\u00ed sucesivamente.",
+            "continue": "Revisar mi papeleta"
+        },
+        "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Avertissement!</strong>Il s'agit d'une \u00e9lection TEST",
+        "loadingElectionTitle": "Chargement de l'\u00e9lection, veuillez patienter..",
+        "stepNumber": "\u00e9tape __num__ de __total__",
+        "stepAndQuestionNumber": "\u00e9tape __num__ de __total__, question __qnum__ de __qtotal__",
+        "questionNumber": "Question __qnum__ de __qtotal__",
+        "continueButton": "Continuer",
+        "startVoting": "Commencer \u00e0 voter",
+        "stepsToVote": "Vous devez suivre les \u00e9tapes suivantes pour d\u00e9poser votre bulletin de vote :",
+        "selectOptionsTitle": "1. S\u00e9lectionnez vos options",
+        "selectOptionsText": "R\u00e9pondez aux questions \u00e9lectorales une par une au fur et \u00e0 mesure qu'elles sont affich\u00e9es. De cette fa\u00e7on, vous configurerez vos pr\u00e9f\u00e9rences dans votre bulletin de vote.",
+        "reviewOptionsTitle": "2. Consultez votre bulletin de vote",
+        "reviewOptionsText": "Une fois que vous aurez choisi vos pr\u00e9f\u00e9rences, nous proc\u00e9derons \u00e0 leur cryptage et vous verrez appara\u00eetre l'identifiant de suivi du scrutin. Vous recevrez \u00e9galement un r\u00e9sum\u00e9 du contenu de votre vote pour examen.",
+        "emitBallotTitle": "3. D\u00e9posez votre bulletin de vote",
+        "emitBallotText": "Vous pouvez le couler pour qu'il soit correctement enregistr\u00e9. Vous pouvez \u00e9galement v\u00e9rifier que votre bulletin a \u00e9t\u00e9 correctement crypt\u00e9.",
+        "emitBallotTextNoAudit": "Vous pouvez le couler pour qu'il soit correctement enregistr\u00e9.",
+        "errorTitle": "Oups. Quelque chose d'inattendu est arriv\u00e9",
+        "errorHtml": "<p>Le probl\u00e8me suivant est survenu (identifiant __errorId__) : </p><p>__error__</p><p>Si vous pensez devoir nous contacter, vous pouvez le faire en envoyant un courriel \u00e0 <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+        "errorLoadingImages": "Erreur sur l'isoloir. Images non charg\u00e9es.",
+        "errorLoadingElection": "Erreur de chargement de l'\u00e9lection. Cela peut se produire pour de multiples raisons : le lien peut \u00eatre invalide, vous pouvez l'avoir mal tap\u00e9 ou le lien peut avoir \u00e9t\u00e9 mal con\u00e7u. Veuillez r\u00e9essayer de produire le lien. Enfin, le serveur peut \u00eatre temporairement indisponible. Si c'est le cas, r\u00e9essayez plus tard et si le probl\u00e8me persiste, veuillez nous contacter.",
+        "errorLoadingElectionPubKeys": "Erreur de chargement des cl\u00e9s publiques de l'\u00e9lection. Cela peut se produire pour de multiples raisons : le lien peut \u00eatre invalide, vous pouvez l'avoir mal tap\u00e9 ou le lien peut avoir \u00e9t\u00e9 mal con\u00e7u. Veuillez r\u00e9essayer de produire le lien. Enfin, le serveur peut \u00eatre temporairement indisponible. Si c'est le cas, r\u00e9essayez plus tard et si le probl\u00e8me persiste, veuillez nous contacter.",
+        "errorSendingBallot": "Erreur d'envoi du bulletin. Il n'a pas \u00e9t\u00e9 correctement envoy\u00e9. Veuillez r\u00e9essayer dans un autre navigateur Web plus \u00e0 jour, et si le probl\u00e8me persiste, essayez de nous contacter. D\u00e9sol\u00e9 pour ce d\u00e9sagr\u00e9ment.",
+        "errorCastingBallotUnknown": "Erreur non r\u00e9pertori\u00e9e lors du d\u00e9p\u00f4t du bulletin de vote. Veuillez r\u00e9essayer dans un autre navigateur web plus \u00e0 jour, et si le probl\u00e8me persiste, essayez de nous contacter. D\u00e9sol\u00e9 pour ce d\u00e9sagr\u00e9ment.",
+        "errorEncryptingBallotUnknown": "Erreur non catalogu\u00e9e lors du cryptage des bulletins de vote. Veuillez r\u00e9essayer dans un autre navigateur web plus \u00e0 jour, et si le probl\u00e8me persiste, essayez de nous contacter. D\u00e9sol\u00e9 pour ce d\u00e9sagr\u00e9ment.",
+        "errorElectionIsNotOpen": "L'\u00e9lection n'est pas ouverte, vous ne pouvez donc pas voter. D\u00e9sol\u00e9 pour le d\u00e9sagr\u00e9ment.",
+        "errorSendingBallotElectionNotOpen": "Le bulletin n'a pas pu \u00eatre d\u00e9pos\u00e9 car l'\u00e9lection n'est pas ouverte. D\u00e9sol\u00e9 pour ce d\u00e9sagr\u00e9ment.",
+        "couldntSendBallotUnauthorized": "Le vote n'a pas pu \u00eatre effectu\u00e9 car le jeton d'authentification associ\u00e9 \u00e0 ce lien est invalide. Nous sommes d\u00e9sol\u00e9s pour ce d\u00e9sagr\u00e9ment. Si le probl\u00e8me persiste, veuillez essayer de nous contacter.",
+        "errorEncrypting": "Il y a eu un probl\u00e8me lors du cryptage du bulletin et il n'a pas \u00e9t\u00e9 possible de le lancer. Cela est probablement d\u00fb au fait que vous utilisez un navigateur Web obsol\u00e8te non pris en charge par notre logiciel. Veuillez r\u00e9essayer dans un navigateur Web diff\u00e9rent et plus \u00e0 jour, et si le probl\u00e8me persiste, veuillez nous contacter. Nous sommes d\u00e9sol\u00e9s pour ce d\u00e9sagr\u00e9ment.",
+        "errorEncoding": "<p>__msg__</p>Il y a eu un probl\u00e8me lors de l'encodage du bulletin et par cons\u00e9quent votre bulletin n'a pas \u00e9t\u00e9 d\u00e9pos\u00e9. Cela est probablement d\u00fb au fait que vous utilisez un navigateur Web obsol\u00e8te non pris en charge par notre logiciel. Veuillez r\u00e9essayer dans un navigateur Web diff\u00e9rent et plus \u00e0 jour, et si le probl\u00e8me persiste, veuillez nous contacter. Nous sommes d\u00e9sol\u00e9s pour ce d\u00e9sagr\u00e9ment.",
+        "sanityChecksFailed": "Il y a eu un probl\u00e8me lors des v\u00e9rifications automatiques de l'encodage effectu\u00e9es avant le scrutin, et par cons\u00e9quent votre bulletin n'a pas \u00e9t\u00e9 d\u00e9pos\u00e9. Ceci est probablement d\u00fb au fait que vous utilisez un navigateur Web obsol\u00e8te non pris en charge par notre logiciel. Veuillez r\u00e9essayer dans un navigateur Web diff\u00e9rent et plus \u00e0 jour, et si le probl\u00e8me persiste, veuillez nous contacter. Nous sommes d\u00e9sol\u00e9s pour ce d\u00e9sagr\u00e9ment.",
+        "couldntSendBallotNotFound": "Le bulletin n'a pas pu \u00eatre envoy\u00e9. Il se peut qu'il y ait un probl\u00e8me de connexion, ou que le serveur soit temporairement indisponible. Si c'est le cas, veuillez r\u00e9essayer plus tard et si le probl\u00e8me persiste, veuillez nous contacter.",
+        "questionSelectedOptionsTitle": "Options s\u00e9lectionn\u00e9es (__count__)",
+        "questionSelectedOptionsTitle_plural": "Options s\u00e9lectionn\u00e9es (__count__)",
+        "questionSelectedOptionsTitleOrdered": "Options s\u00e9lectionn\u00e9es (__count__) dans l'ordre, glisser-d\u00e9poser pour le r\u00e9organiser",
+        "questionSelectedOptionsTitleOrdered_plural": "Options s\u00e9lectionn\u00e9es (__count__) dans l'ordre, glisser-d\u00e9poser pour le r\u00e9organiser",
+        "questionAvailableOptionsTitle": "Options disponibles",
+        "numOptionsSelected": "__count__ options s\u00e9lectionn\u00e9es.",
+        "numOptionsSelected_plural": "__count__ options s\u00e9lectionn\u00e9es.",
+        "numOptionsSelected_plural_2": "__count__ options s\u00e9lectionn\u00e9es.",
+        "noOptionsSelected": "Aucune option s\u00e9lectionn\u00e9e.",
+        "numOptionsLimits": "Choisissez entre les options __min__ et __max__.",
+        "filterOptionsPlaceholder": "filtre..",
+        "noResults": "aucun r\u00e9sultat trouv\u00e9..",
+        "numSelectedOptionsSmall": "__count__ s\u00e9lectionn\u00e9",
+        "numSelectedOptionsSmall_plural": "__count__ s\u00e9lectionn\u00e9",
+        "selectMoreOpts": "S\u00e9lectionnez au moins __min__ options.",
+        "selectMoreOpts_plural": "S\u00e9lectionnez au moins __min__ options.",
+        "maxSelectedLimitReached_singular": "N'oubliez pas que vous ne pouvez choisir qu'une seule option",
+        "maxSelectedLimitReached": "Le nombre maximum d'options s\u00e9lectionn\u00e9es est atteint (__max__). Pour s\u00e9lectionner une option, il faut d'abord en d\u00e9s\u00e9lectionner une autre.",
+        "maxSelectedLimitTagReached": "Vous ne pouvez pas s\u00e9lectionner plus d'options du type __tagName__ (m\u00e1ximo __max__). Pour en s\u00e9lectionner une, veuillez d'abord en d\u00e9s\u00e9lectionner une autre.",
+        "maxSelectedLimitNoTagReached": "Vous ne pouvez pas s\u00e9lectionner plus d'options qui ne sont pas du type __tagName__ (m\u00e1ximo __max__). Pour en s\u00e9lectionner une, veuillez d'abord en d\u00e9s\u00e9lectionner une autre.",
+        "alreadySelectedDocumentType": "Vous ne pouvez pas s\u00e9lectionner deux documents du m\u00eame type - d\u00e9s\u00e9lectionnez-le d'abord.",
+        "alreadySelectedPack": "Vous avez s\u00e9lectionn\u00e9 une option li\u00e9e \u00e0 d'autres documents. Il n'est pas possible de les s\u00e9lectionner de mani\u00e8re isol\u00e9e.",
+        "cantSelectPack": "Vous avez essay\u00e9 de s\u00e9lectionner une option li\u00e9e qui ne peut pas \u00eatre s\u00e9lectionn\u00e9e isol\u00e9ment, et vous avez d\u00e9j\u00e0 une autre option s\u00e9lectionn\u00e9e.",
+        "tooManyUserUpdates": "Votre bulletin n'a pas pu \u00eatre d\u00e9pos\u00e9 parce que vous avez chang\u00e9 trop de fois lors de cette \u00e9lection. Par cons\u00e9quent, votre dernier bulletin correctement d\u00e9pos\u00e9 est celui qui comptera.",
+        "removeSelectedItem": "cliquez pour d\u00e9s\u00e9lectionner",
+        "removeSelectedItemShort": "d\u00e9s\u00e9lectionner",
+        "dragSelectedItem": "glisser pour d\u00e9placer",
+        "dragSelectedItemShort": "d\u00e9placer",
+        "helpTitle": "Aide",
+        "helpText": "",
+        "goBack": "Retourner au stand",
+        "selectedOptionsFollow": "Les options __num__ que vous avez choisies sont :",
+        "selectedOptionFollow": "L'option que vous avez choisie est :",
+        "errorElectionUrl": "L'adresse introduite a un format erron\u00e9",
+        "reviewYourBallotTitle": "Le bulletin de vote n'a pas encore \u00e9t\u00e9 envoy\u00e9 : examinez-le d'abord",
+        "reviewYourBallotText": "Avant de voter, veuillez examiner le contenu de votre bulletin de vote",
+        "castTheBallot": "D\u00e9posez votre bulletin de vote",
+        "statusExecutingSanityChecks": "V\u00e9rification que le navigateur web est capable d'encoder le bulletin, veuillez patienter (__pourcentage__% compl\u00e9t\u00e9)",
+        "statusEncryptingQuestion": "Cryptage des r\u00e9ponses \u00e0 la question __questionNum__, veuillez patienter (__pourcentage__% compl\u00e9t\u00e9)",
+        "statusVerifyingQuestion": "V\u00e9rification des r\u00e9ponses crypt\u00e9es \u00e0 la question __questionNum__, veuillez patienter (__pourcentage__% compl\u00e9t\u00e9)",
+        "sendingBallot": "Envoi du bulletin au serveur, veuillez patienter (__pourcentage__% termin\u00e9)",
+        "emptyAnswer": "<vote libre>",
+        "invalidAnswer": "Bulletin de vote marqu\u00e9 comme invalide",
+        "successTitle": "Vote effectu\u00e9 avec succ\u00e8s",
+        "successSubheader": "Vous avez correctement vot\u00e9 et votre bulletin est maintenant conserv\u00e9 dans notre urne \u00e9lectronique.",
+        "completePacksTitle": "Packs complets",
+        "listOfDraftDocuments": "Documents (cliquez pour ouvrir)",
+        "selectedDocuments": "Documents (cliquez pour s\u00e9lectionner)",
+        "alreadySelectedAPack": "Vous avez d\u00e9j\u00e0 s\u00e9lectionn\u00e9 un pack. Retirez votre s\u00e9lection pour pouvoir en s\u00e9lectionner un autre",
+        "optionInCategoryAlreadySelected": "Pour pouvoir s\u00e9lectionner un pack, veuillez d\u00e9s\u00e9lectionner tout autre \u00e9l\u00e9ment",
+        "cantSelectNormalOptionPackAlreadySelected": "Pour pouvoir s\u00e9lectionner une option, veuillez d\u00e9s\u00e9lectionner le pack que vous avez choisi",
+        "cantSelectPackNormalOptionAlreadySelected": "Pour pouvoir s\u00e9lectionner un pack, d\u00e9s\u00e9lectionnez les options que vous avez choisies",
+        "packLabel": "voter tous",
+        "accordionCategoryTitle": "Cat\u00e9gorie :",
+        "proposalsTitleClickToSelect": "Options (cliquez pour s\u00e9lectionner) :",
+        "proposalsTitleClickToDeselect": "Options (cliquez pour d\u00e9s\u00e9lectionner) :",
+        "notSelectableCell": "non inclus",
+        "clickToSelectCell": "cliquez pour s\u00e9lectionner",
+        "clickToDeselectCell": "d\u00e9s\u00e9lectionner x",
+        "draftIncludesList": "Inclus __includeList__",
+        "dropdownOptionView": "Plus d'informations",
+        "filterOptionsPlaceholder2": "Rechercher le nom ou le candidat..",
+        "candidatesTitle": "Candidats",
+        "helpTextViewSingleCandidates": "Cliquez dans View pour s\u00e9lectionner des candidats uniques",
+        "helpTextViewCell": "Cliquez dans une cellule pour la s\u00e9lectionner enti\u00e8rement",
+        "randomizeColumn": "Trier au hasard",
+        "firstCandidateOfMany": "__name__ et autres",
+        "numCandidatesSelected": "(__s\u00e9lectionn\u00e9__ de __total__ s\u00e9lectionn\u00e9)",
+        "cannotSelectAll": "Pour s\u00e9lectionner toutes ces options, vous devez d'abord en d\u00e9s\u00e9lectionner quelques-unes",
+        "totalsQuestionColumn": "(__s\u00e9lectionn\u00e9__ de __compte__ s\u00e9lectionn\u00e9)",
+        "reviewBallotHashText": "Votre identifiant de suivi de scrutin est : <strong>__ballotHash__</strong>",
+        "auditTheBallot": "(V\u00e9rifier le bulletin de vote)",
+        "auditBallotTitle": "V\u00e9rifiez votre bulletin de vote",
+        "auditBallotSubtitle": "",
+        "auditBallotText": "<p>L'identifiant de suivi du scrutin est : <code>__ballotHash__</code></p><p><strong>La v\u00e9rification du scrutin n\u00e9cessite quelques connaissances techniques. Si vous ne les avez pas, vous pouvez simplement recommencer le processus de vote en cliquant sur le bouton ci-dessous.</strong></p><p>Pour v\u00e9rifier votre bulletin de vote, vous devez:</p><ol><li>Copier et enregistrer dans un fichier votre bulletin de vote (cliquez pour le s\u00e9lectionner):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Suivre les \u00e9tapes de <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">ce tutoriel pour v\u00e9rifier que le bulletin a \u00e9t\u00e9 correctement crypt\u00e9</a>.</li></ol><p>Pour des raisons de s\u00e9curit\u00e9, si vous v\u00e9rifiez le bulletin, il doit \u00eatre annul\u00e9. Pour poursuivre le processus de vote, vous devez recommencer depuis le d\u00e9but.</p><p>",
+        "auditStartAgain": "Commencez \u00e0 voter depuis le d\u00e9but",
+        "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Avertissement!</strong> Instrument de vote d\u00e9mo, les votes \u00e9mis depuis cet isoloir ne compteront pas.",
+        "thisisAPreviewNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Avertissement!</strong> Pr\u00e9visualisez l'isoloir, les votes \u00e9mis depuis cet isoloir ne compteront pas.",
+        "successBallotHash": "Vous avez d\u00e9pos\u00e9 votre bulletin de vote avec <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. Le traceur de votre bulletin est :<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>Vous pouvez utiliser votre traceur de bulletin pour v\u00e9rifier que votre bulletin a \u00e9t\u00e9 correctement d\u00e9pos\u00e9 <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">en utilisant cette adresse</a></strong>.",
+        "qrCodeAlt": "Code QR",
+        "successBallotQrCode": "Vous pouvez v\u00e9rifier que votre bulletin a \u00e9t\u00e9 correctement d\u00e9pos\u00e9 en utilisant le code QR suivant :",
+        "successNoBallotHash": "F\u00e9licitations ! Vous avez vot\u00e9 avec <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
+        "successSkippedCount": "Vous avez saut\u00e9 les \u00e9lections de __count__. Vous pouvez voter aux \u00e9lections en vous connectant \u00e0 nouveau.",
+        "downloadBallotTicket": "T\u00e9l\u00e9charger la confirmation PDF",
+        "ballotTicket": {
+            "h3": "Confirmation du vote",
+            "h4": "Votre vote a \u00e9t\u00e9 \u00e9mis correctement. Ce document justifie son \u00e9mission.",
+            "tracker": "Suivi des bulletins de vote :",
+            "title": "Titre de l'\u00e9lection :",
+            "id": "Id. d'\u00e9lection :",
+            "voterId": "Identit\u00e9 de l'\u00e9lecteur :",
+            "created": "Date d'enregistrement du bulletin de vote :",
+            "link": "Lien pour le suivi des bulletins de vote :",
+            "linkClickHere": "cliquez ici",
+            "qrCode": "Vous pouvez utiliser le code QR suivant pour acc\u00e9der au lien de suivi des bulletins de vote :",
+            "isDemo": "Ce re\u00e7u de vote a \u00e9t\u00e9 g\u00e9n\u00e9r\u00e9 dans un isoloir de d\u00e9monstration. Le bulletin n'a PAS \u00e9t\u00e9 d\u00e9pos\u00e9."
+        },
+        "relatedLinksText": "Pour plus d'informations sur cette \u00e9lection :",
+        "circleOptionExternalLink": "Voir les d\u00e9tails",
+        "voteInBlank": "Vote blanc",
+        "openOptionLink": "Ouvrir le lien dans un nouvel onglet",
+        "reviewScreen": {
+            "pair": "__un__ > __deux__",
+            "editAction": "Bulletin de vote"
+        },
+        "simultaneousQuestions": {
+            "skipQuestion": "Sauter la ou les questions",
+            "skipQuestionModal": {
+                "header": "Voulez-vous sauter cette ou ces questions ?",
+                "body": "Veuillez confirmer que vous voulez sauter cette (ces) question(s). Vous pouvez voter pour la ou les questions ignor\u00e9es en vous connectant \u00e0 nouveau.",
+                "confirm": "Confirmer et SAUTER cette(ces) question(s)"
+            }
+        },
+        "pairwiseBeta": {
+            "web": "Web",
+            "warning": "Cliquez pour choisir. comparaison __count__ de __max__ effectu\u00e9e.",
+            "warning_plural": "Cliquez pour choisir. __compte__ de __max__ comparaisons effectu\u00e9es."
+        },
+        "confirmNullVote": {
+            "header": "Vote blanc",
+            "body": "Vous n'avez s\u00e9lectionn\u00e9 aucune option dans certaines questions, ce qui \u00e9quivaut \u00e0 un vote en blanc.",
+            "confirm": "Oui, je veux voter en blanc lorsque je ne s\u00e9lectionne aucune option"
+        },
+        "busy": {
+            "title": "Votre bulletin de vote sera...",
+            "encryptedTitle": "crypt\u00e9",
+            "encryptedDescription": "afin que personne ne puisse savoir quelles options vous avez choisies",
+            "castTitle": "couler",
+            "castDescription": "en utilisant un canal s\u00e9curis\u00e9 et en v\u00e9rifiant votre identit\u00e9",
+            "anonymizedTitle": "anonymis\u00e9e",
+            "anonymizedDescription": "afin que le d\u00e9compte ne r\u00e9v\u00e8le pas dans quel sens vous avez vot\u00e9"
+        },
+        "tooFewAnswers": {
+            "header": "Choisissez d'autres options",
+            "body": "Dans les questions suivantes, vous n'avez pas s\u00e9lectionn\u00e9 autant d'options que le nombre minimum requis pour continuer :",
+            "question": "Question '__title__' : vous avez choisi des options __s\u00e9lectionn\u00e9es__, mais vous devez choisir au moins des options __min__"
+        },
+        "selectAllCategory": {
+            "header": "S\u00e9lectionnez toutes les options de la <strong>__cat\u00e9gorie__</strong> ?",
+            "body": "Hey ! Il semble que vous voulez s\u00e9lectionner toutes les options de <strong>__category__</strong>",
+            "confirm": "Oui, s\u00e9lectionnez-les",
+            "cancel": "Non",
+            "doNotShowAgain": "Ne le montrez plus jamais"
+        }
+    }
+}
