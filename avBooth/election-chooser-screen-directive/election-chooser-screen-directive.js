@@ -118,7 +118,7 @@ angular.module('avBooth')
             }
 
             scope.childrenElectionInfo.tick = 0;
-            var promises = _.map(
+            _.map(
                 scope.childrenElectionInfo.presentation.categories,
                 function (category) {
                     _.map(
@@ -128,36 +128,12 @@ angular.module('avBooth')
                                 function (electionData) {
                                     event.electionData = electionData;
                                     scope.childrenElectionInfo.tick = scope.childrenElectionInfo.tick + 1;
-                                },
-                                function (error) {
-                                    console.log(error);
                                 }
                             );
                         }
                     );
                 }
-            ).flat();
-
-            var initialFuture = $q.defer();
-            initialFuture.resolve();
-            var finalFuture = $q.defer();
-            promises.reduce(
-                function (prev, curr) {
-                    return prev.then(
-                        function () {
-                            return curr;
-                        }
-                    );
-                },
-                initialFuture.promise
-            ).then(
-                function () {
-                    finalFuture.resolve(scope.childrenElectionInfo);
-                },
-                function (error) {
-                    finalFuture.reject(error);
-                });
-            return finalFuture.promise;
+            );
         }
 
         function chooseElection(electionId) {
@@ -166,11 +142,7 @@ angular.module('avBooth')
         }
 
         scope.childrenElectionInfo = generateChildrenInfo();
-        scope.isLoaded = false;
-        getChildrenElectionsData()
-        .then(function () {
-            scope.isLoaded = true;
-        });
+        getChildrenElectionsData();
 
 
         function checkDisabled() {
