@@ -21,7 +21,7 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbElectionChooserScreen',  function($window, $cookies, ConfigService) {
+  .directive('avbElectionChooserScreen',  function($window, $cookies, $q, ConfigService) {
 
     function link(scope, element, attrs) {
         scope.showSkippedElections = false;
@@ -117,6 +117,7 @@ angular.module('avBooth')
                 return;
             }
 
+            scope.childrenElectionInfo.tick = 0;
             var promises = _.map(
                 scope.childrenElectionInfo.presentation.categories,
                 function (category) {
@@ -126,6 +127,7 @@ angular.module('avBooth')
                             return scope.simpleGetElection(event.event_id).then(
                                 function (electionData) {
                                     event.electionData = electionData;
+                                    scope.childrenElectionInfo.tick = scope.childrenElectionInfo.tick + 1;
                                 },
                                 function (error) {
                                     console.log(error);
@@ -150,7 +152,7 @@ angular.module('avBooth')
                 initialFuture.promise
             ).then(
                 function () {
-                    finalFuture.resolve(childrenElectionInfo);
+                    finalFuture.resolve(scope.childrenElectionInfo);
                 },
                 function (error) {
                     finalFuture.reject(error);
@@ -164,11 +166,11 @@ angular.module('avBooth')
         }
 
         scope.childrenElectionInfo = generateChildrenInfo();
-        scope.showIt = false;
+        scope.isLoaded = false;
         getChildrenElectionsData()
         .then(function () {
-            scope.showIt = true;
-        })
+            scope.isLoaded = true;
+        });
 
 
         function checkDisabled() {
