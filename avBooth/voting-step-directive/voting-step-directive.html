@@ -1,41 +1,54 @@
 <div class="voting-steps">
     <div class="step-number"
-        ng-class="{'step-number-selected': step === 1, 'step-number-unselected': step !== 1}"
+        ng-if="withElectionList"
+        ng-class="{'step-number-selected': step === 'election-list', 'step-number-unselected': step !== 'election-list'}"
     >
-        1
+        {{getStepNumber('election-list')}}
     </div>
     <span class="step-text-selected"
-        ng-class="{'hidden-xs': step !== 1}"
+        ng-if="withElectionList"
+        ng-class="{'hidden-xs': step !== 'election-list'}"
+        ng-i18next>
+        avBooth.votingSteps.electionList
+    </span>
+    <div class="step-separator" ng-if="withElectionList"></div>
+    <div class="step-number"
+        ng-class="{'step-number-selected': step === 'ballot', 'step-number-unselected': step !== 'ballot'}"
+    >
+        {{getStepNumber('ballot')}}
+    </div>
+    <span class="step-text-selected"
+        ng-class="{'step-text-selected': getStepNumber(step) >= getStepNumber('ballot'), 'step-text-unselected': getStepNumber(step) < getStepNumber('ballot'), 'hidden-xs': step !== 'ballot'}"
         ng-i18next>
         avBooth.votingSteps.ballot
     </span>
     <div class="step-separator"></div>
     <div class="step-number"
-        ng-class="{'step-number-selected': step === 2, 'step-number-unselected': step !== 2}"
+        ng-class="{'step-number-selected': step === 'review', 'step-number-unselected': step !== 'review'}"
     >
-        2
+        {{getStepNumber('review')}}
     </div>
     <span
-        ng-class="{'step-text-selected': step >= 2, 'step-text-unselected': step < 2, 'hidden-xs': step !== 2}"
+        ng-class="{'step-text-selected': getStepNumber(step) >= getStepNumber('review'), 'step-text-unselected': getStepNumber(step) < getStepNumber('review'), 'hidden-xs': step !== 'review'}"
         ng-i18next>
         avBooth.votingSteps.review
     </span>
     <div class="step-separator"></div>
     <div class="step-number"
-        ng-class="{'step-number-selected': step === 3, 'step-number-unselected': step !== 3}"
+        ng-class="{'step-number-selected': step === 'confirmation', 'step-number-unselected': step !== 'confirmation'}"
     >
-        3
+        {{getStepNumber('confirmation')}}
     </div>
     <span
-        ng-class="{'step-text-selected': step >= 3, 'step-text-unselected': step < 3, 'hidden-xs': step !== 3}"
+        ng-class="{'step-text-selected': getStepNumber(step) >= getStepNumber('confirmation'), 'step-text-unselected': getStepNumber(step) < getStepNumber('confirmation'), 'hidden-xs': step !== 'confirmation'}"
         ng-i18next>
         avBooth.votingSteps.confirmation
     </span>
-    <div class="step-separator" ng-if="step === 4"></div>
-    <div class="step-number step-number-red" ng-if="step === 4">
-        4
+    <div class="step-separator" ng-if="step === 'audit'"></div>
+    <div class="step-number step-number-red" ng-if="step === 'audit'">
+        {{getStepNumber('audit')}}
     </div>
-    <span class="step-text-selected" ng-if="step === 4" ng-i18next>
+    <span class="step-text-selected" ng-if="step === 'audit'" ng-i18next>
         avBooth.votingSteps.audit
     </span>
 </div>

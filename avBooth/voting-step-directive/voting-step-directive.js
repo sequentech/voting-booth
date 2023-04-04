@@ -15,6 +15,10 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/*
+ * steps: 'election-list', 'ballot', 'review', 'confirmation'
+ */
+
 angular
   .module('avBooth')
   .directive(
@@ -23,15 +27,27 @@ angular
     {
       function link(scope, element, attrs)
       {
+        var STEP_LIST = ['election-list', 'ballot', 'review', 'confirmation', 'audit'];
+
         if (undefined === scope.step) {
           scope.step = attrs.step;
         }
+
+        scope.initialNumber = 1;
+        if (scope.withElectionList) {
+          scope.initialNumber = 0;
+        }
+
+        scope.getStepNumber = function (step) {
+          return STEP_LIST.indexOf(step) + scope.initialNumber;
+        };
       }
 
       return {
         restrict: 'AE',
         scope: {
           step: '=',
+          withElectionList: '='
         },
         link: link,
         templateUrl: 'avBooth/voting-step-directive/voting-step-directive.html'
