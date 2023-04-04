@@ -122,6 +122,7 @@
       "cancel": "Back and review"
     },
     "votingSteps": {
+      "electionList": "Election List",
       "ballot": "Ballot",
       "review":  "Review",
       "confirmation": "Confirmation",

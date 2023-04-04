@@ -15,10 +15,6 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-/*
- * steps: 'election-list', 'ballot', 'review', 'confirmation'
- */
-
 angular
   .module('avBooth')
   .directive(

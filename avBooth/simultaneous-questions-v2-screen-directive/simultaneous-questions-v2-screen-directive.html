@@ -4,7 +4,7 @@
 
 <div class="container election-container">
   <div class="sticky-top">
-    <div avb-voting-step step="ballot"></div>
+    <div avb-voting-step step="ballot" with-election-list="!!parentAuthEvent"></div>
   </div>
   <div class="sticky-error" ng-if="errors.length > 0">
     <div
