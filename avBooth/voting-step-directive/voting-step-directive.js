@@ -29,9 +29,9 @@ angular
           scope.step = attrs.step;
         }
 
-        scope.initialNumber = 1;
+        scope.initialNumber = 0;
         if (scope.withElectionList) {
-          scope.initialNumber = 0;
+          scope.initialNumber = 1;
         }
 
         scope.getStepNumber = function (step) {
