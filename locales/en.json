@@ -384,8 +384,8 @@
       "notVoted": "Not voted",
       "openElection": "Open",
       "closedElection": "Closed",
-      "openDate": "Open: __date__",
-      "closingDate": "Close: __date__",
+      "openDate": "Open: <b>__date__</b>",
+      "closingDate": "Close: <b>__date__</b>",
       "electionResultsBtn": "Election Results",
       "clickToVoteBtn": "Click to Vote"
     }

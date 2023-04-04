@@ -117,7 +117,6 @@ angular.module('avBooth')
                 return;
             }
 
-            scope.childrenElectionInfo.tick = 0;
             _.map(
                 scope.childrenElectionInfo.presentation.categories,
                 function (category) {
@@ -127,7 +126,7 @@ angular.module('avBooth')
                             return scope.simpleGetElection(event.event_id).then(
                                 function (electionData) {
                                     event.electionData = electionData;
-                                    scope.childrenElectionInfo.tick = scope.childrenElectionInfo.tick + 1;
+                                    scope.apply();
                                 }
                             );
                         }
