@@ -385,10 +385,12 @@
       "notVoted": "Not voted",
       "openElection": "Open",
       "closedElection": "Closed",
+      "scheduledElection": "Scheduled",
       "openDate": "Open: <b>__date__</b>",
       "closingDate": "Close: <b>__date__</b>",
       "electionResultsBtn": "Election Results",
-      "clickToVoteBtn": "Click to Vote"
+      "clickToVoteBtn": "Click to Vote",
+      "electionWebsite": "Election Website"
     }
   }
 }

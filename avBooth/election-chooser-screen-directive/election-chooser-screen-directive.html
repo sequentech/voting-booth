@@ -22,7 +22,11 @@
     callback="chooseElection(electionId)"
     parent-election-id="{{parentAuthEvent.id}}"
     hide-parent="true"
+    can-vote="canVote"
+    has-voted="hasVoted"
     children-election-info="childrenElectionInfo"
+    show-skipped-elections="showSkippedElections"
+    skipped-elections="skippedElections"
   ></div>
 
 </div>
