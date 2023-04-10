@@ -18,6 +18,7 @@
         <p
           class="election-description description" 
           ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description) || '') | addTargetBlank"
+          ng-if="(parentElection && !!parentElection.description) || (!parentElection && !!election.description)"
         ></p>
       </div>
     </div>
