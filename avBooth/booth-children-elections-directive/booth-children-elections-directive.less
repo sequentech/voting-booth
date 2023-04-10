@@ -1,0 +1,149 @@
+[av-booth-children-elections] {
+    .btn-lg {
+        font-size: 18px;
+        margin-top: 14px;
+        margin-bottom: 14px;
+        padding-right: 24px;
+        padding-left: 24px;
+
+        @media(max-width: @screen-sm-max) {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-right: 60px;
+            padding-left: 60px;
+        }
+    }
+
+    .btn-election {
+        border: 2px solid @av-bg;
+        display: flex;
+        flex-direction: row;
+        padding: 19px 38px;
+        align-items: center;
+        gap: 21px;
+        color: @av-primary-contrast;
+
+        @media(max-width: @screen-sm-max) {
+            padding: 27px 18px;
+            flex-direction: column;
+            position: relative;
+            gap: 20px;
+        }
+    }
+
+    .btn-election.btn-election-open {
+        border: 2px solid @state-success-text;
+        background-color: @av-primary;
+
+        &:hover {
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+            background-color: @av-bg;
+        }
+
+        &:active {
+            color: @av-primary-contrast !important;
+            background-color: @bg-primary;
+            border: 1px solid @av-bg;
+        }
+
+        &:focus {
+            color: @av-primary-contrast !important;
+            border: 2px solid @brand-success;
+        }
+    }
+
+    .text-container {
+        flex-grow: 2;
+        text-align: left;
+
+        @media(max-width: @screen-sm-max) {
+            width: 100%;
+            position: relative;
+        }
+    }
+
+    .election-voted {
+        color: @state-success-text;
+    }
+
+    .election-not-voted {
+        color: @error-primary-color;
+    }
+
+    .election-voted, .election-not-voted {
+        @media(max-width: @screen-sm-max) {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+
+    .election-status-open {
+        background-color: @state-success-text;
+        color: @av-primary-contrast;
+    }
+
+    .election-status-closed {
+        background-color: @error-primary-color;
+        color: @bg-primary;
+    }
+
+    .election-status-scheduled {
+        background-color: @av-bg;
+        color: @av-secondary;
+    }
+
+    .election-status-open, .election-status-closed, .election-status-scheduled {
+        font-weight: 700;
+        text-transform: uppercase;
+        min-width: 85px;
+        text-align: center;
+        padding: 0 20px;
+
+        @media(max-width: @screen-sm-max) {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .election-dates {
+        text-align: left;
+        font-size: 16px;
+        margin-right: 35px;
+
+        @media(max-width: @screen-sm-max) {
+            display: flex;
+            gap: 20px;
+            margin-right: 0;
+        }
+    }
+
+    .election-dates-wrapper {
+        @media(max-width: @screen-sm-max) {
+            order: 1;
+        }
+    }
+
+    .category-elections-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    h3.category-title {
+        margin: 30px 0;
+    }
+
+    h4.election-title {
+        margin-top: 0;
+
+        @media(max-width: @screen-sm-max) {
+            margin-right: 60px;
+        }
+    }
+
+    .election-website-link {
+        margin-bottom: -10px;
+    }
+}
