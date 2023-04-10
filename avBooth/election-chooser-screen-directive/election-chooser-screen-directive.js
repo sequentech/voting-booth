@@ -21,7 +21,7 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbElectionChooserScreen',  function($window, $cookies, $q, ConfigService) {
+  .directive('avbElectionChooserScreen',  function($window, $cookies, $q, $modal, ConfigService) {
 
     function link(scope, element, attrs) {
         scope.showSkippedElections = false;
@@ -199,6 +199,28 @@ angular.module('avBooth')
 
         checkDisabled();
         scope.chooseElection = chooseElection;
+
+        scope.showHelp = function () {
+            $modal.open({
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+              controller: "InvalidAnswersController",
+              size: 'md',
+              resolve: {
+                errors: function() { return []; },
+                data: function() {
+                  return {
+                    errors: [],
+                    header: "avBooth.electionChooserScreen.informationModal.header",
+                    body: "avBooth.electionChooserScreen.informationModal.body",
+                    continue: "avBooth.electionChooserScreen.informationModal.confirm",
+                    kind: "info"
+                  };
+                }
+              }
+            });
+        };
     }
 
     return {
