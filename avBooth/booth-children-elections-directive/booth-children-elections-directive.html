@@ -10,7 +10,7 @@
             class="btn-election"
             ng-disabled="election.disabled"
             ng-if="!election.hidden"
-            ng-class="{'selected': selectedElectionId === election.event_id, 'btn btn-election-open': checkElectionStarted(election.electionData) && canVote && !hasVoted}"
+            ng-class="{'selected': selectedElectionId === election.event_id, 'btn-election-open': checkElectionStarted(election.electionData) && canVote && !hasVoted}"
             data-election-id="{{election.event_id}}"
             ng-click="canVote && !hasVoted && click(election)"
         >
