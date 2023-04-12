@@ -42,6 +42,9 @@ angular
             scope.legal = true;
           }
         }
+        scope.fixButtonsToBottom = scope.election &&
+          scope.election.presentation &&
+          scope.election.presentation.anchor_continue_btn_to_bottom || false;
       }
 
       return {

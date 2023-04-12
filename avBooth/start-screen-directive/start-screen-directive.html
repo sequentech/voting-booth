@@ -65,7 +65,7 @@
         </div>
 
       </div>
-      <div class="row" ng-if="false">
+      <div class="row" ng-if="!fixButtonsToBottom">
         <button
           class="btn btn-block btn-lg btn-success-action btn-plain"
           ng-i18next="avBooth.startVoting"
@@ -77,7 +77,9 @@
 
 </div>
 
-<div class="hidden" ng-cloak av-affix-bottom>
+<div avb-common-footer ng-if="!fixButtonsToBottom"></div>
+
+<div class="hidden" ng-cloak av-affix-bottom ng-if="fixButtonsToBottom">
   <div class="row">
     <button
       class="btn btn-block btn-lg btn-success-action btn-plain"
