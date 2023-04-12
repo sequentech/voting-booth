@@ -193,10 +193,10 @@ module.exports = function (grunt) {
             src: ['**'],
             dest: 'dist/themes/fonts/'
           },
-          {
+          /*{
             src: ['node_modules/common-ui/fonts/Manrope-VariableFont_wght.ttf'],
             dest: 'dist/fonts/Manrope-VariableFont_wght.ttf'
-          },
+          },*/
           {
             expand: true,
             cwd: 'node_modules/font-awesome/fonts/',
