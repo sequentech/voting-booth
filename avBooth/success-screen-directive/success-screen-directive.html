@@ -107,7 +107,7 @@
 
 </div>
 
-<div class="container">
+<div class="container" ng-if="!fixToBottom">
   <div class="actions">
     <button
       id="print-btn"
@@ -140,4 +140,38 @@
   </div>
 </div>
 
-<div avb-common-footer></div>
+<div avb-common-footer ng-if="!fixToBottom"></div>
+
+<div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
+  <div class="actions">
+    <button
+      id="print-btn"
+      class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
+      ng-if="election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
+      ng-click="downloadBallotTicket()">
+      <span>
+        <i class="fa fa-print"></i>
+        {{ 'avBooth.successScreen.printBallotBtn' | i18next }}
+      </span>
+    </button>
+    <button
+      id="close-finish-btn"
+      ng-if="!hasNextElection"
+      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
+      ng-class="{'col-xs-offset-6 col-sm-offset-8': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
+      ng-click="closeAndFinish(false, true)">
+      <span ng-i18next="avBooth.closeWindow">
+      </span>
+    </button>
+    <button
+      id="close-finish-btn"
+      ng-if="hasNextElection"
+      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
+      ng-class="{'col-xs-offset-6 col-sm-offset-8': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
+      ng-click="goToNextElection()">
+      <span ng-i18next="avBooth.goToNextElection">
+      </span>
+    </button>
+  </div>
+  <div avb-common-footer float="true"></div>
+</div>

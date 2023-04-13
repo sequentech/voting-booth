@@ -144,6 +144,7 @@ angular.module('avBooth')
           }
         );
       };
+      scope.fixToBottom = scope.checkFixToBottom();
     };
     return {
       restrict: 'AE',
