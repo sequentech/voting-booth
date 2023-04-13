@@ -21,7 +21,7 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbElectionChooserScreen',  function($window, $cookies, $q, $modal, ConfigService) {
+  .directive('avbElectionChooserScreen',  function($window, $timeout, $q, $modal, ConfigService) {
 
     function link(scope, element, attrs) {
         scope.showSkippedElections = false;
@@ -126,7 +126,9 @@ angular.module('avBooth')
                             return scope.simpleGetElection(event.event_id).then(
                                 function (electionData) {
                                     event.electionData = electionData;
-                                    scope.$apply();
+                                    $timeout(function () {
+                                        scope.$apply();
+                                    })
                                 }
                             );
                         }

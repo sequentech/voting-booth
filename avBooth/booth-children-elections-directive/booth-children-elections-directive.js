@@ -97,34 +97,18 @@ angular.module('avUi')
           return !!election && !scope.checkElectionScheduled(election) && !scope.checkElectionStarted(election);
         };
 
-        var textTokens = $window.sessionStorage.getItem("vote_permission_tokens");
-
-        scope.vote_permission_tokens =  textTokens && JSON.parse(textTokens) || [];
-
-        function getElectionData (electionId) {
-          return scope.vote_permission_tokens.find(
-            function (el) {
-              return el.electionId === electionId;
-            }
-          );
-        }
-
-        scope.hasVotedElection = function (electionId) {
-          var electionData = getElectionData(electionId);
-
-          return !!electionData && electionData.numSuccessfulLogins > 0;
+        scope.hasVotedElection = function (election) {
+          return !!election && election.numSuccessfulLogins > 0;
         };
 
-        scope.canVoteElection = function (electionId) {
-          var electionData = getElectionData(electionId);
-
+        scope.canVoteElection = function (election) {
           if (scope.isDemo || scope.isPreview) {
             return true;
           }
 
-          return !!electionData && 
-            ( electionData.numSuccessfulLoginsAllowed === 0 ||
-              electionData.numSuccessfulLogins < electionData.numSuccessfulLoginsAllowed);
+          return !!election && 
+            ( election.numSuccessfulLoginsAllowed === 0 ||
+              election.numSuccessfulLogins < election.numSuccessfulLoginsAllowed);
         };
       }
 
