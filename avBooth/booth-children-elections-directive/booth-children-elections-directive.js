@@ -18,7 +18,7 @@
 angular.module('avUi')
   .directive(
     'avBoothChildrenElections', 
-    function(ConfigService, moment) 
+    function(ConfigService, moment, $window) 
     {
       // we use it as something similar to a controller here
       function link(scope, element, attrs) 
@@ -96,6 +96,36 @@ angular.module('avUi')
         scope.checkElectionClosed = function (election) {
           return !scope.checkElectionScheduled(election) && !scope.checkElectionStarted(election);
         };
+
+        var textTokens = $window.sessionStorage.getItem("vote_permission_tokens");
+
+        scope.vote_permission_tokens =  textTokens && JSON.parse(textTokens) || [];
+
+        function getElectionData (electionId) {
+          return scope.vote_permission_tokens.find(
+            function (el) {
+              return el.electionId === electionId;
+            }
+          );
+        }
+
+        scope.hasVotedElection = function (electionId) {
+          var electionData = getElectionData(electionId);
+
+          return !!electionData && electionData.numSuccessfulLogins > 0;
+        }
+
+        scope.canVoteElection = function (electionId) {
+          var electionData = getElectionData(electionId);
+
+          if (scope.isDemo || scope.isPreview) {
+            return true;
+          }
+
+          return !!electionData && 
+            ( electionData.numSuccessfulLoginsAllowed === 0 ||
+              electionData.numSuccessfulLogins < electionData.numSuccessfulLoginsAllowed);
+        }
       }
 
       return {
