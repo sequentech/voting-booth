@@ -128,7 +128,7 @@ angular.module('avBooth')
                                     event.electionData = electionData;
                                     $timeout(function () {
                                         scope.$apply();
-                                    })
+                                    });
                                 }
                             );
                         }
