@@ -1127,6 +1127,12 @@ angular.module('avBooth')
         scope.demoElectionIndex += 1;
       }
 
+      function checkFixToBottom() {
+        return scope.election &&
+          scope.election.presentation &&
+          scope.election.presentation.anchor_continue_btn_to_bottom || false;
+      }
+
       //////////////////// Initialization part ////////////////////
 
       // init scope vars
@@ -1150,6 +1156,7 @@ angular.module('avBooth')
         simpleGetElection: simpleGetElection,
         next: next,
         redirectToLogin: redirectToLogin,
+        checkFixToBottom: checkFixToBottom,
 
         // stateData stores information used by the directive being shown.
         // Its content depends on the current state.
