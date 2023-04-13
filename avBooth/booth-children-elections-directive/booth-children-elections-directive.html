@@ -10,18 +10,18 @@
             class="btn-election"
             ng-disabled="election.disabled"
             ng-if="!election.hidden"
-            ng-class="{'selected': selectedElectionId === election.event_id, 'btn-election-open': checkElectionStarted(election.electionData) && canVoteElection(election.id)}"
+            ng-class="{'selected': selectedElectionId === election.event_id, 'btn-election-open': checkElectionStarted(election.electionData) && canVoteElection(election)}"
             data-election-id="{{election.event_id}}"
-            ng-click="canVoteElection(election.id) && click(election)"
+            ng-click="canVoteElection(election) && click(election)"
         >
             <div class="text-container">
                 <h4 class="election-title">{{election.title}}</h4>
                 <p class="election-description" ng-if="!!election.description">{{election.description}}</p>
-                <div ng-if="hasVotedElection(election.id)" class="election-voted">
+                <div ng-if="hasVotedElection(election)" class="election-voted">
                     <i class="fa-fw fa fa-check" aria-hidden="true"></i>
                     <span ng-i18next="avBooth.electionChooserScreen.voted"></span>
                 </div>
-                <div ng-if="!hasVotedElection(election.id)" class="election-not-voted">
+                <div ng-if="!hasVotedElection(election)" class="election-not-voted">
                     <i class="fa-fw fa fa-times" aria-hidden="true"></i>
                     <span ng-i18next="avBooth.electionChooserScreen.notVoted"></span>
                 </div>
@@ -87,8 +87,8 @@
     
             <button
                 class="btn btn-lg btn-success-action btn-plain click-to-vote-btn"
-                ng-if="checkElectionStarted(election.electionData) && canVoteElection(election.id)"
-                ng-click="canVoteElection(election.id) && click(election)"
+                ng-if="checkElectionStarted(election.electionData) && canVoteElection(election)"
+                ng-click="canVoteElection(election) && click(election)"
                 ng-i18next="avBooth.electionChooserScreen.clickToVoteBtn">
             </button>
         </div>
