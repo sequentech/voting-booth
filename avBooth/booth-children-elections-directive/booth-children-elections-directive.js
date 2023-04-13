@@ -84,17 +84,17 @@ angular.module('avUi')
         };
 
         scope.checkElectionStarted = function (election) {
-          return ["started", "resumed"].includes(election.state);
+          return !!election && ["started", "resumed"].includes(election.state);
         };
   
         scope.checkElectionScheduled = function (election) {
-          return !scope.checkElectionStarted(election) &&
+          return !!election && !scope.checkElectionStarted(election) &&
             !!election.startDate &&
             new Date(election.startDate) > new Date();
         };
   
         scope.checkElectionClosed = function (election) {
-          return !scope.checkElectionScheduled(election) && !scope.checkElectionStarted(election);
+          return !!election && !scope.checkElectionScheduled(election) && !scope.checkElectionStarted(election);
         };
 
         var textTokens = $window.sessionStorage.getItem("vote_permission_tokens");

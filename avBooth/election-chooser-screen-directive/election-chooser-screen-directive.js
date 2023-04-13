@@ -126,7 +126,7 @@ angular.module('avBooth')
                             return scope.simpleGetElection(event.event_id).then(
                                 function (electionData) {
                                     event.electionData = electionData;
-                                    scope.apply();
+                                    scope.$apply();
                                 }
                             );
                         }
