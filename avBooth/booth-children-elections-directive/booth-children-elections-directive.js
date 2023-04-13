@@ -113,7 +113,7 @@ angular.module('avUi')
           var electionData = getElectionData(electionId);
 
           return !!electionData && electionData.numSuccessfulLogins > 0;
-        }
+        };
 
         scope.canVoteElection = function (electionId) {
           var electionData = getElectionData(electionId);
@@ -125,7 +125,7 @@ angular.module('avUi')
           return !!electionData && 
             ( electionData.numSuccessfulLoginsAllowed === 0 ||
               electionData.numSuccessfulLogins < electionData.numSuccessfulLoginsAllowed);
-        }
+        };
       }
 
       return {
