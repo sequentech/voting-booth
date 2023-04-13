@@ -151,23 +151,25 @@
 <div avb-common-footer ng-if="!fixToBottom"></div>
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
-  <div class="actions">
-    <button
-      id="clear-selection-btn"
-      class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
-      ng-click="clearSelection()"
-    >
-      <span ng-i18next="avBooth.clearSelection"></span>
-    </button>
-    <button
-      id="continue-btn"
-      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
-      ng-click="questionNext()">
-      <span>
-        {{ nextButtonText | i18next }}
-        <i class="fa fa-chevron-right"></i>
-      </span>
-    </button>
+  <div class="container container-fixed">
+    <div class="actions">
+      <button
+        id="clear-selection-btn"
+        class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
+        ng-click="clearSelection()"
+      >
+        <span ng-i18next="avBooth.clearSelection"></span>
+      </button>
+      <button
+        id="continue-btn"
+        class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
+        ng-click="questionNext()">
+        <span>
+          {{ nextButtonText | i18next }}
+          <i class="fa fa-chevron-right"></i>
+        </span>
+      </button>
+    </div>
   </div>
   <div avb-common-footer float="true"></div>
 </div>
