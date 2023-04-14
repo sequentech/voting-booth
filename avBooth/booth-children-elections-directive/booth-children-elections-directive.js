@@ -102,7 +102,7 @@ angular.module('avUi')
         };
 
         scope.canVoteElection = function (election) {
-          if (scope.isDemo || scope.isPreview) {
+          if (scope.canVote) {
             return true;
           }
 
