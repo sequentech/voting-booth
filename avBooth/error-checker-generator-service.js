@@ -16,15 +16,16 @@
 **/
 
 angular.module('avUi')
-  .service('ErrorCheckerGeneratorService', function(
+  .factory('ErrorCheckerGeneratorService', function(
     AnswerEncoderService,
     BigIntService
   ) {
+    var service = {};
     /**
      * @returns true if the url with the specific title and url appears in the
      * urls list.
      */
-     function hasUrl(urls, title, url)
+    service.hasUrl = function (urls, title, url)
      {
        const u = _.find(
          urls,
@@ -35,42 +36,169 @@ angular.module('avUi')
        );
 
        return !!u;
-     }
+     };
 
     /**
      * @returns number of selected options in a question
      */
-    function numSelectedOptions(question, invalidVoteAnswer)
+    service.numSelectedOptions = function (question, invalidVoteAnswer)
     {
         if (question.tally_type === "cumulative") 
         {
-        return question.answers.reduce(
-            function (accumulator, answer)
-            {
-            if (
-                invalidVoteAnswer &&
-                answer.id === invalidVoteAnswer.id
-            ) {
-                return accumulator;
-            } else {
-                return accumulator + answer.selected + 1;
-            }
-            },
-            0
-        );
+          return question.answers.reduce(
+              function (accumulator, answer)
+              {
+              if (
+                  invalidVoteAnswer &&
+                  answer.id === invalidVoteAnswer.id
+              ) {
+                  return accumulator;
+              } else {
+                  return accumulator + answer.selected + 1;
+              }
+              },
+              0
+          );
         }
         else 
         {
-        return _.filter(
-            question.answers,
-            function (element) {
-            return element.selected > -1;
-            }
-        ).length;
+          return _.filter(
+              question.answers,
+              function (element) {
+                return element.selected > -1  || element.isSelected === true;
+              }
+          ).length;
         }
+    };
+
+    service.getTagName = function (question) {
+      // set options' tag
+      var tagName = undefined;
+      if (angular.isDefined(question.extra_options)) {
+        tagName = question.extra_options.restrict_choices_by_tag__name;
+      }
+      return tagName;
+    };
+
+    service.numTaggedSelectedOptions = function (question) {
+      var tagName = getTagName(question);
+      var val = _.filter(
+        question.answers,
+        function (element) {
+          return (element.selected > -1 || element.isSelected === true) &&
+            element.tag === tagName;
+        }).length;
+      return val;
+    };
+
+    service.getTagMax = function (question) {
+      var tagMax = null;
+      if (
+        angular.isDefined(question.extra_options) &&
+        angular.isDefined(question.extra_options.restrict_choices_by_tag__max)
+      ) {
+        tagMax = parseInt(question.extra_options.restrict_choices_by_tag__max, 10);
+      }
+      return tagMax;
+    };
+
+    service.getNoTagMax = function (question) {
+      var noTagMax = null;
+      if (
+        angular.isDefined(question.extra_options) &&
+        angular.isDefined(question.extra_options.restrict_choices_by_no_tag__max)
+      ) {
+        noTagMax = parseInt(question.extra_options.restrict_choices_by_no_tag__max, 10);
+      }
+      return noTagMax;
+    };
+
+    service.getMultiQuestionErrorChecker = function () {
+      return [
+        {
+          check: "array-key-group-chain",
+          key: "questions",
+          append: {key: "qtitle", value: "$value.title"},
+          prefix: "avBooth.errors.question-",
+          checks: [
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question) 
+              {
+                return {
+                    min: question.min
+                };
+              },
+              validator: function (question) 
+              {
+                return !(service.numSelectedOptions(question) < question.min);
+              },
+              postfix: "-min"
+            },
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question) 
+              {
+                return {
+                    max: service.getTagMax(question),
+                    tagName: service.getTagName(question)
+                };
+              },
+              validator: function (question) 
+              {
+                return !(service.numSelectedOptions(question) !== question.max &&
+                  service.numTaggedSelectedOptions(question) === service.getTagMax(question));
+              },
+              postfix: "-max-tag"
+            },
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question) 
+              {
+                return {
+                    max: service.getNoTagMax(question),
+                    tagName: service.getTagName(question)
+                };
+              },
+              validator: function (question) 
+              {
+                return !(service.numSelectedOptions(question) !== question.max &&
+                  scope.numSelectedOptions(question) - service.numTaggedSelectedOptions(question) === service.getNoTagMax(question));
+              },
+              postfix: "-max-notag"
+            },
+            {
+              check: "lambda",
+              validator: function (question) 
+              {
+                return !(service.numSelectedOptions(question) === question.max &&
+                  question.max === 1
+                );
+              },
+              postfix: "-max-reached-singular"
+            },
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question) 
+              {
+                return {
+                    max: question.max
+                };
+              },
+              validator: function (question) 
+              {
+                return !(service.numSelectedOptions(question) === question.max &&
+                  question.max > 1
+                );
+              },
+              postfix: "-max-reached"
+            },
+          ]
+        }
+      ];
     }
     
-    function getErrorsChecker(checkerTypeFlag, invalidVoteAnswer)
+    service.getSimultaneousQuestionsErrorChecker =  function (checkerTypeFlag, invalidVoteAnswer)
     {
       return [
         {
@@ -87,7 +215,7 @@ angular.module('avUi')
               {
                 return {
                   min: question.min,
-                  num_selected: numSelectedOptions(question, invalidVoteAnswer),
+                  num_selected: service.numSelectedOptions(question, invalidVoteAnswer),
                   question_id: question.index
                 };
               },
@@ -103,7 +231,7 @@ angular.module('avUi')
                     !question.deselectedAtLeastOnce
                   ) ||
                   (
-                    numSelectedOptions(question, invalidVoteAnswer) > 0
+                    service.numSelectedOptions(question, invalidVoteAnswer) > 0
                   ) ||
                   (
                     checkerTypeFlag === "show-stoppers" && 
@@ -146,7 +274,7 @@ angular.module('avUi')
               {
                 return {
                   min: question.min,
-                  num_selected: numSelectedOptions(question, invalidVoteAnswer),
+                  num_selected: service.numSelectedOptions(question, invalidVoteAnswer),
                   question_id: question.index
                 };
               },
@@ -154,7 +282,7 @@ angular.module('avUi')
               {
                 if (
                   question.extra_options.invalid_vote_policy === 'allowed' ||
-                  numSelectedOptions(question, invalidVoteAnswer) === 0 ||
+                  service.numSelectedOptions(question, invalidVoteAnswer) === 0 ||
                   (
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
@@ -171,7 +299,7 @@ angular.module('avUi')
                 }
                 return (
                   (checkerTypeFlag === "normal" && !question.deselectedAtLeastOnce) ||
-                  numSelectedOptions(question, invalidVoteAnswer) >= question.min
+                  service.numSelectedOptions(question, invalidVoteAnswer) >= question.min
                 );
               },
               postfix: "-min"
@@ -184,7 +312,7 @@ angular.module('avUi')
               {
                 return {
                   max: question.max,
-                  num_selected: numSelectedOptions(question, invalidVoteAnswer),
+                  num_selected: service.numSelectedOptions(question, invalidVoteAnswer),
                   question_id: question.index
                 };
               },
@@ -206,7 +334,7 @@ angular.module('avUi')
                 ) {
                   return true;
                 }
-                return numSelectedOptions(question, invalidVoteAnswer) <= question.max;
+                return service.numSelectedOptions(question, invalidVoteAnswer) <= question.max;
               },
               postfix: "-max"
             },
@@ -249,7 +377,7 @@ angular.module('avUi')
                   {
                     return (
                       answer.text.length > 0 &&
-                      hasUrl(answer.urls, 'isWriteIn', 'true')
+                      service.hasUrl(answer.urls, 'isWriteIn', 'true')
                     );
                   }
                 );
@@ -308,7 +436,7 @@ angular.module('avUi')
                   {
                     return (
                       answer.text.length > 0 &&
-                      hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
                       answer.selected === -1
                     );
                   }
@@ -340,7 +468,7 @@ angular.module('avUi')
                   {
                     return (
                       answer.text.length > 0 &&
-                      hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
                       answer.selected === -1
                     );
                   }
@@ -380,7 +508,7 @@ angular.module('avUi')
                   {
                     return (
                       answer.text.length === 0 &&
-                      hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
                       answer.selected !== -1
                     );
                   }
@@ -441,6 +569,7 @@ angular.module('avUi')
           ]
         }
       ];
-    }
-    return getErrorsChecker;
+    };
+
+    return service;
   });

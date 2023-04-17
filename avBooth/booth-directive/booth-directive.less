@@ -355,6 +355,22 @@
   .election-description, .question-description {
     text-align: left;
   }
+
+  .text-warning.input-error.error-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 8px;
+    max-height: 164px;
+    overflow-y: auto;
+  }
+
+  .sticky-error {
+    position: sticky;
+    top: 79px;
+    z-index: 8;
+    background: @bg-primary;
+  }
 }
 
 @media(min-width: @screen-sm-min) {
