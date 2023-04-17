@@ -326,6 +326,35 @@
       }
     }
   }
+
+  .election-container {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .election-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .election-title {
+    flex-grow: 2;
+    margin-top: 33px;
+  }
+
+  .election-title, .election-description {
+    color: @grey-darker;
+  }
+
+  .election-title, .question-title {
+    text-align: center;
+  }
+
+  .election-description, .question-description {
+    text-align: left;
+  }
 }
 
 @media(min-width: @screen-sm-min) {
