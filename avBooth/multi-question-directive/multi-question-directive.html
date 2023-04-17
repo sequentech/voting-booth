@@ -10,14 +10,14 @@
 
   <div class="election-header">
     <h1
-      class="election-title"
+      class="question-title"
       ng-if="!showingPreset"
       ng-bind-html="stateData.question.title"
     ></h1>
   </div>
   <p
     ng-if="!showingPreset"
-    class="election-description"
+    class="question-description"
     ng-bind-html="stateData.question.description | addTargetBlank">
   </p>
 
