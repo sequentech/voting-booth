@@ -448,6 +448,8 @@ angular.module('avBooth')
 
         runPipeline(pipes);
       };
+
+      scope.fixToBottom = scope.checkFixToBottom();
     };
 
     return {

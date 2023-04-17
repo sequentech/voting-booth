@@ -1,5 +1,6 @@
 <!-- top navbar -->
 <div avb-common-header></div>
+<div avb-watermark></div>
 
 <div class="wrapper-unfixed">
   <div class="navbar-unfixed-top text-center">
@@ -22,7 +23,7 @@
     </div>
 
     <!-- go back button -->
-    <div class="row hidden" ng-cloak av-affix-bottom data-force-affix-width="768">
+    <div class="row hidden" ng-if="!fixToBottom">
       <button
         class="btn btn-block btn-lg btn-success-action btn-plain"
         ng-i18next="avBooth.goBack"
@@ -30,4 +31,17 @@
       </button>
     </div>
   </div>
+</div>
+
+<div avb-common-footer ng-if="!fixToBottom"></div>
+
+<div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
+  <div class="row">
+    <button
+      class="btn btn-block btn-lg btn-success-action btn-plain"
+      ng-i18next="avBooth.goBack"
+      ng-click="backFromHelp()">
+    </button>
+  </div>
+  <div avb-common-footer float="true"></div>
 </div>
