@@ -138,7 +138,7 @@
         "contact": "contact"
     },
     "confirmAuditBallot": {
-      "header": "Do you want to Audit the ballot?",
+      "header": "Do you want to audit the ballot?",
       "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/><strong>If you just want to cast your ballot, click <u>Cancel</u> to go back to the review ballot screen.</strong>",
       "confirm": "Yes, I want to DISCARD my ballot to audit it"
     },
@@ -236,7 +236,7 @@
     "invalidAnswer": "Ballot marked as invalid",
 
     "successTitle": "Your vote has been cast",
-    "successSubheader": "The confirmation code bellow verifies that <strong>your ballot has been cast successfully</strong>. You can use this code to verify that your ballot has been counted..",
+    "successSubheader": "The confirmation code bellow verifies that <strong>your ballot has been cast successfully</strong>. You can use this code to verify that your ballot has been counted.",
 
     "completePacksTitle": "Complete packs",
     "listOfDraftDocuments": "Documents (click to open)",
