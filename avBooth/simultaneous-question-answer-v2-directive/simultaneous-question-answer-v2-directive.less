@@ -117,14 +117,23 @@
       display: flex;
       align-items: center;
 
-      .btn {
+      .view-link {
         border: none;
-        text-decoration: underline;
         background: transparent;
-      }
+        text-decoration: none;
+        color: @brand-success;
 
-      .fa-question-circle {
-        margin-right: 4px;
+        .view-link-text {
+          text-decoration: underline;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        .fa-info-circle {
+          margin-right: 4px;
+        }
       }
     }
   }
@@ -191,17 +200,5 @@
 
   a.btn:focus {
     color: unset;
-  }
-
-  .view-link {
-    text-decoration: none;
-
-    .view-link-text {
-      text-decoration: underline;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
   }
 }
