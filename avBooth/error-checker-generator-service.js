@@ -73,7 +73,7 @@ angular.module('avUi')
 
     service.getTagName = function (question) {
       // set options' tag
-      var tagName = undefined;
+      var tagName;
       if (angular.isDefined(question.extra_options)) {
         tagName = question.extra_options.restrict_choices_by_tag__name;
       }
@@ -81,7 +81,7 @@ angular.module('avUi')
     };
 
     service.numTaggedSelectedOptions = function (question) {
-      var tagName = getTagName(question);
+      var tagName = service.getTagName(question);
       var val = _.filter(
         question.answers,
         function (element) {
@@ -131,7 +131,7 @@ angular.module('avUi')
               },
               validator: function (question) 
               {
-                return !(service.numSelectedOptions(question) < question.min);
+                return (service.numSelectedOptions(question) >= question.min);
               },
               postfix: "-min"
             },
@@ -163,7 +163,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 return !(service.numSelectedOptions(question) !== question.max &&
-                  scope.numSelectedOptions(question) - service.numTaggedSelectedOptions(question) === service.getNoTagMax(question));
+                service.numSelectedOptions(question) - service.numTaggedSelectedOptions(question) === service.getNoTagMax(question));
               },
               postfix: "-max-notag"
             },
@@ -196,7 +196,7 @@ angular.module('avUi')
           ]
         }
       ];
-    }
+    };
     
     service.getSimultaneousQuestionsErrorChecker =  function (checkerTypeFlag, invalidVoteAnswer)
     {
