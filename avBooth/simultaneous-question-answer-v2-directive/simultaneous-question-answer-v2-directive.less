@@ -116,15 +116,18 @@
     .answer-links {
       display: flex;
       align-items: center;
+      flex-shrink: 0;
 
       .view-link {
         border: none;
         background: transparent;
         text-decoration: none;
         color: @brand-success;
+        font-size: 14px;
 
         .view-link-text {
           text-decoration: underline;
+          font-weight: 600;
 
           &:hover {
             text-decoration: none;
