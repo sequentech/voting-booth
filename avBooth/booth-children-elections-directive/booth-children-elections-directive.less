@@ -147,7 +147,7 @@
         margin-top: 0;
 
         @media(max-width: @screen-sm-max) {
-            margin-right: 60px;
+            margin-right: 80px;
         }
     }
 
@@ -157,5 +157,9 @@
         text-decoration: underline;
         color: @av-primary-contrast;
         opacity: 80%;
+
+        &.visible-xs.visible-sm {
+            text-align: center;
+        }
     }
 }
