@@ -19,7 +19,7 @@
       <div class="vertilize-col answer-image">
         <img
           parent
-          ng-if="!!answer.urlsObject['Image URL'] && !!isBlankVoteAnswer"
+          ng-if="!!answer.urlsObject['Image URL'] && !isBlankVoteAnswer"
           ng-src="{{answer.urlsObject['Image URL']}}"
           alt="{{answer.text}}" 
         />
