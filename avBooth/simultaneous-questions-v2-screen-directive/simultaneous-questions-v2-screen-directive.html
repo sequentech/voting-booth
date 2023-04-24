@@ -49,15 +49,11 @@
 
     <!-- QUESTION OPTIONS START -->
 
-    <div class="categories">
-      <div
-          class="category"
-          ng-repeat="category in question.categories"
-          class="col-xs-12"
-      >
-        <div 
-          avb-simultaneous-questions-category-v2
+    <div class="categories col-xs-12">
+        <div
           ng-if="question.hasCategories && category.title.length > 0"
+          ng-repeat="category in question.categories"
+          avb-simultaneous-questions-category-v2
           question="question"
           category="category"
           toggle-select-item="toggleSelectItem"
@@ -66,7 +62,6 @@
           is-review="false"
         >
         </div>
-      </div>
     </div>
 
     <div 
