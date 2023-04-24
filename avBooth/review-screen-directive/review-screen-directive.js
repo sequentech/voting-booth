@@ -83,7 +83,7 @@ angular.module('avBooth')
             }
           }
         });
-      }
+      };
 
       scope.audit = function() {
         scope.stateData.auditClicked = true;
