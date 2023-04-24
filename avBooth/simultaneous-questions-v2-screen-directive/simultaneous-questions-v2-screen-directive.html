@@ -55,52 +55,16 @@
           ng-repeat="category in question.categories"
           class="col-xs-12"
       >
-        <h4 class="category-heading" ng-if="question.hasCategories && category.title.length > 0">
-          <div
-            ng-if="question.are_lists_checkable && category.categoryAnswer" 
-          >
-            <div 
-              avb-simultaneous-question-answer-v2
-              answer="category.categoryAnswer"
-              question="question"
-              toggle-select-item="toggleSelectItem"
-              toggle-select-item-cumulative="toggleSelectItemCumulative"
-              cumulative-checks="cumulativeChecks"
-              read-only="false"
-              hide-check="false"
-            >
-            </div>
-          </div>
-
-          <div
-            ng-if="!question.are_lists_checkable || !category.categoryAnswer"
-            class="list-checks"
-          >
-            {{ category.title }}
-          </div>
-        </h4>
-        <div class="category-body">
-          <div 
-            class="question-answers text-left"
-          >
-            <div 
-              ng-repeat="answer in category.answers"
-              class="question-answer-wrapper"
-              class="col-xs-12"
-            >
-              <div 
-                avb-simultaneous-question-answer-v2
-                answer="answer"
-                question="question"
-                toggle-select-item="toggleSelectItem"
-                toggle-select-item-cumulative="toggleSelectItemCumulative"
-                cumulative-checks="cumulativeChecks"
-                write-in-text-change="updateErrors"
-                read-only="question.are_candidates_read_only"
-                hide-check="false"
-              ></div>
-            </div>
-          </div>
+        <div 
+          avb-simultaneous-questions-category-v2
+          ng-if="question.hasCategories && category.title.length > 0"
+          question="question"
+          category="category"
+          toggle-select-item="toggleSelectItem"
+          toggle-select-item-cumulative="toggleSelectItemCumulative"
+          cumulative-checks="cumulativeChecks"
+          is-review="false"
+        >
         </div>
       </div>
     </div>
