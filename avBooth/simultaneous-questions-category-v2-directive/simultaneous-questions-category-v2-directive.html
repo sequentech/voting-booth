@@ -1,10 +1,10 @@
 <div
     class="category"
     ng-class="{
-      'col-md-12': (question.extra_options.answer_group_columns_size === 12),
-      'col-md-6': (question.extra_options.answer_group_columns_size === 6),
-      'col-md-4': (question.extra_options.answer_group_columns_size === 4),
-      'col-md-3': (question.extra_options.answer_group_columns_size === 3)
+      'flex-col-12': (question.extra_options.answer_group_columns_size === 12),
+      'flex-col-6': (question.extra_options.answer_group_columns_size === 6),
+      'flex-col-4': (question.extra_options.answer_group_columns_size === 4),
+      'flex-col-3': (question.extra_options.answer_group_columns_size === 3)
     }"
     ng-if="question.hasCategories && category.title.length > 0"
 >

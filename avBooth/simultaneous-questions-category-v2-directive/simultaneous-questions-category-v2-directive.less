@@ -21,6 +21,7 @@
         padding: 0 14px 20px 24px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 5px;
+        width: 100%;
     }
 
     .category-heading {
@@ -41,5 +42,22 @@
     .category-body {
         display: flex;
         flex-direction: row;
+    }
+
+    .flex-col-12 {
+        flex-basis: 100%;
+    }
+    .flex-col-6 {
+        flex-basis: 50%;
+    }
+    .flex-col-4 {
+        flex-basis: 33.3333%;
+    }
+    .flex-col-3 {
+        flex-basis: 25%;
+    }
+
+    ..question-answers.text-left {
+        flex-grow: 2;
     }
 }
