@@ -115,9 +115,6 @@ angular.module('avBooth')
 
       scope.ballotHashWarning = function ()
       {
-        if (scope.ballotHashClicked) {
-          return false;
-        }
         $modal.open({
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
@@ -137,12 +134,7 @@ angular.module('avBooth')
               };
             }
           }
-        }).result.then(
-          function ()
-          {
-            scope.ballotHashClicked = true;
-          }
-        );
+        });
       };
       scope.fixToBottom = scope.checkFixToBottom();
     };

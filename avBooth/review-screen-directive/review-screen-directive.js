@@ -25,7 +25,6 @@ angular.module('avBooth')
 
     var link = function(scope, element, attrs) {
       scope.organization = ConfigService.organization;
-      scope.ballotHashClicked = false;
 
       // used to display pairwise comparison in a different manner
       _.each(scope.election.questions, function (q) {
@@ -64,9 +63,6 @@ angular.module('avBooth')
 
       scope.ballotHashWarning = function ()
       {
-        if (scope.ballotHashClicked) {
-          return false;
-        }
         $modal.open({
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
@@ -86,13 +82,7 @@ angular.module('avBooth')
               };
             }
           }
-        }).result.then(
-          function ()
-          {
-            scope.ballotHashClicked = true;
-          }
-        );
-      };
+        });
 
       scope.audit = function() {
         scope.stateData.auditClicked = true;
