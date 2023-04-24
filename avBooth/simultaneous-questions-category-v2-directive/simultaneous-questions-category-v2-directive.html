@@ -6,7 +6,7 @@
         class="check-title"
         tabindex="0"
         aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
-        ng-click="!isReview && isWriteIn && toggleSelectItem(question, category.categoryAnswer) && question.extra_options.answer_group_columns_size === 12"
+        ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer) && question.extra_options.answer_group_columns_size === 12"
     >
         <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
         <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
@@ -39,7 +39,7 @@
         <span
             tabindex="0"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
-            ng-click="!isReview && isWriteIn && toggleSelectItem(question, category.categoryAnswer) && question.extra_options.answer_group_columns_size < 12"
+            ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer) && question.extra_options.answer_group_columns_size < 12"
         >
             <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
             <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
