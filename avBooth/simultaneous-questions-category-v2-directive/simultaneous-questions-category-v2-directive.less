@@ -66,6 +66,12 @@
         flex-basis: 25%;
     }
 
+    .flex-col-12, .flex-col-6, .flex-col-4, .flex-col-3 {
+        @media(max-width: @screen-sm-max) {
+            flex-basis: 100%;
+        }
+    }
+
     .question-answers.text-left {
         flex-grow: 2;
     }
