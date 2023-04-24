@@ -1,59 +1,48 @@
-<div
-    class="category"
-    ng-class="{
-      'flex-col-12': (question.extra_options.answer_group_columns_size === 12),
-      'flex-col-6': (question.extra_options.answer_group_columns_size === 6),
-      'flex-col-4': (question.extra_options.answer_group_columns_size === 4),
-      'flex-col-3': (question.extra_options.answer_group_columns_size === 3)
-    }"
-    ng-if="question.hasCategories && category.title.length > 0"
->
-    <div class="category-heading-container">
-        <h3 class="category-heading">
-            {{ category.title }}
-        </h3>
+<div class="category-heading-container">
+    <h3 class="category-heading">
+        {{ category.title }}
+    </h3>
+    <span
+        class="check-title"
+        tabindex="0"
+        aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
+        ng-click="!isReview && isWriteIn && toggleSelectItem(question, category.categoryAnswer) && question.extra_options.answer_group_columns_size === 12"
+    >
+        <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
+        <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
+    </span>
+</div>
+<div class="category-body">
+    <div 
+    class="question-answers text-left"
+    >
+        <div 
+            ng-repeat="answer in category.answers"
+            class="question-answer-wrapper"
+            class="col-xs-12"
+        >
+            <div 
+                avb-simultaneous-question-answer-v2
+                answer="answer"
+                question="question"
+                toggle-select-item="toggleSelectItem"
+                toggle-select-item-cumulative="toggleSelectItemCumulative"
+                cumulative-checks="cumulativeChecks"
+                write-in-text-change="updateErrors"
+                read-only="question.are_candidates_read_only"
+                hide-check="false"
+            ></div>
+        </div>
+    </div>
+
+    <div class="vertilize-col answer-glyphicon">
         <span
-            class="check-title"
             tabindex="0"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
-            ng-click="!isReview && isWriteIn && toggleSelectItem(question, category.categoryAnswer) && question.extra_options.answer_group_columns_size === 12"
+            ng-click="!isReview && isWriteIn && toggleSelectItem(question, category.categoryAnswer) && question.extra_options.answer_group_columns_size < 12"
         >
             <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
             <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
         </span>
-    </div>
-    <div class="category-body">
-        <div 
-        class="question-answers text-left"
-        >
-            <div 
-                ng-repeat="answer in category.answers"
-                class="question-answer-wrapper"
-                class="col-xs-12"
-            >
-                <div 
-                    avb-simultaneous-question-answer-v2
-                    answer="answer"
-                    question="question"
-                    toggle-select-item="toggleSelectItem"
-                    toggle-select-item-cumulative="toggleSelectItemCumulative"
-                    cumulative-checks="cumulativeChecks"
-                    write-in-text-change="updateErrors"
-                    read-only="question.are_candidates_read_only"
-                    hide-check="false"
-                ></div>
-            </div>
-        </div>
-
-        <div class="vertilize-col answer-glyphicon">
-            <span
-                tabindex="0"
-                aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
-                ng-click="!isReview && isWriteIn && toggleSelectItem(question, category.categoryAnswer) && question.extra_options.answer_group_columns_size < 12"
-            >
-                <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
-                <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
-            </span>
-        </div>
     </div>
 </div>
