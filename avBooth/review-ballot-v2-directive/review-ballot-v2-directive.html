@@ -38,7 +38,7 @@
       <div class="categories" ng-if="question.hasCategories">
           <div
             ng-repeat="category in question.categories"
-            ng-if="(category.answers | avbSelectedOptions).length > 0"
+            ng-if="(category.answers | avbSelectedOptions).length > 0 || category.categoryAnswer.selected > -1"
             avb-simultaneous-questions-category-v2
             question="question"
             category="category"
