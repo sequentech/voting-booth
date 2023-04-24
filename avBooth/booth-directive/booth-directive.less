@@ -362,6 +362,25 @@
     z-index: 8;
     background: @bg-primary;
   }
+
+  .flex-col-12 {
+    flex-basis: 100%;
+  }
+  .flex-col-6 {
+      flex-basis: 50%;
+  }
+  .flex-col-4 {
+      flex-basis: 33.3333%;
+  }
+  .flex-col-3 {
+      flex-basis: 25%;
+  }
+
+  @media(max-width: @screen-sm-max) {
+      .flex-col-12, .flex-col-6, .flex-col-4, .flex-col-3 {
+              flex-basis: 100%;
+      }
+  }
 }
 
 @media(min-width: @screen-sm-min) {
