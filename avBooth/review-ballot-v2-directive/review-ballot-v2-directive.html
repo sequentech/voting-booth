@@ -35,7 +35,27 @@
     <div 
       class="question-answers text-left"
     >
+      <div class="categories" ng-if="question.hasCategories">
+          <div
+            ng-repeat="category in question.categories"
+            avb-simultaneous-questions-category-v2
+            question="question"
+            category="category"
+            toggle-select-item="toggleSelectItem"
+            toggle-select-item-cumulative="toggleSelectItemCumulative"
+            cumulative-checks="cumulativeChecks"
+            is-review="true"
+            ng-class="{
+              'flex-col-12': (question.extra_options.answer_group_columns_size === 12),
+              'flex-col-6': (question.extra_options.answer_group_columns_size === 6),
+              'flex-col-4': (question.extra_options.answer_group_columns_size === 4),
+              'flex-col-3': (question.extra_options.answer_group_columns_size === 3)
+            }"
+          >
+          </div>
+      </div>
       <div 
+        ng-if="!question.hasCategories"
         ng-repeat="answer in question.answers | avbSelectedOptions"
         class="question-answer-wrapper"
         class="col-xs-12"

@@ -7,7 +7,7 @@
         tabindex="0"
         aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
         ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
-        ng-if="question.extra_options.answer_group_columns_size === 12"
+        ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size === 12"
     >
         <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
         <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
@@ -17,8 +17,27 @@
     <div 
     class="question-answers text-left"
     >
-        <div 
+        <div
+            ng-if="!isReview"
             ng-repeat="answer in category.answers"
+            class="question-answer-wrapper"
+            class="col-xs-12"
+        >
+            <div 
+                avb-simultaneous-question-answer-v2
+                answer="answer"
+                question="question"
+                toggle-select-item="toggleSelectItem"
+                toggle-select-item-cumulative="toggleSelectItemCumulative"
+                cumulative-checks="cumulativeChecks"
+                write-in-text-change="updateErrors"
+                read-only="question.are_candidates_read_only"
+                hide-check="false"
+            ></div>
+        </div>
+        <div
+            ng-if="isReview"
+            ng-repeat="answer in category.answers | avbSelectedOptions"
             class="question-answer-wrapper"
             class="col-xs-12"
         >
@@ -41,7 +60,7 @@
             tabindex="0"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
             ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
-            ng-if="question.extra_options.answer_group_columns_size < 12"
+            ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size < 12"
         >
             <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
             <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
