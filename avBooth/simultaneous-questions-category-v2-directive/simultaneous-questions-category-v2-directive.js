@@ -23,6 +23,9 @@ angular.module('avBooth')
     'avbSimultaneousQuestionsCategoryV2',
     function() 
     {
+      function link(scope, _element, _attrs)
+      {
+      }
 
       return {
         restrict: 'AE',
