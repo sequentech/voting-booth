@@ -167,6 +167,7 @@ angular.module('avBooth')
                 ); 
               }
             );
+            question.filteredAnswers = filteredAnswers;
             var categories = _.groupBy(filteredAnswers, "category");
             categories = _.map(
               _.pairs(categories), 

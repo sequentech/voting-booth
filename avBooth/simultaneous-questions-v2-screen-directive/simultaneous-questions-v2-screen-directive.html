@@ -71,7 +71,7 @@
     <div class="category-body" ng-if="!question.hasCategories">
       <div class="question-answers text-left">
         <div 
-          ng-repeat="answer in question.answers"
+          ng-repeat="answer in question.filteredAnswers"
           class="question-answer-wrapper"
           class="col-xs-12"
         >
