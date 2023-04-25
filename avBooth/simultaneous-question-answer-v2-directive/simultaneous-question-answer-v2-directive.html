@@ -109,7 +109,7 @@
           tabindex="0"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="question.tally_type === 'plurality-at-large'"
-          ng-click="$event.stopPropagation(); !readOnly() && isWriteIn && toggleSelectItem(question, answer)"
+          ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItem(question, answer)"
         >
           <i class="fa fa-lg fa-check" ng-if="answer.selected > -1"></i>
           <div class="unchecked" ng-if="answer.selected === -1"></div>
