@@ -353,7 +353,7 @@ angular.module('avBooth')
           } else {
             // check the first unchecked checkbox
             var checkableIndex = scope.cumulativeChecks[question.title][option.id]
-              .indexOf(function (el) { return !el; });
+              .indexOf(false);
             scope.toggleSelectItemCumulative(question, option, checkableIndex);
           }
         };
