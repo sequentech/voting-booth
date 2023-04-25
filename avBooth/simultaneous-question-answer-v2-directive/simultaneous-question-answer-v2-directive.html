@@ -109,7 +109,7 @@
           tabindex="0"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="question.tally_type === 'plurality-at-large'"
-          ng-click="$event.stopPropagation(); !readOnly() && isWriteIn && toggleSelectItem(question, answer)"
+          ng-click="!readOnly() && isWriteIn && toggleSelectItem(question, answer)"
         >
           <i class="fa fa-lg fa-check" ng-if="answer.selected > -1"></i>
           <div class="unchecked" ng-if="answer.selected === -1"></div>
@@ -135,7 +135,7 @@
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
           aria-label="{{answer.text}} check invalid"
           ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
-          ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItemCumulative(question, answer, 0)"
+          ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, 0)"
         >
         <i class="fa fa-lg fa-check" ng-if="isCheckSelected(answer, 0)"></i>
         <div class="unchecked" ng-if="!isCheckSelected(answer, 0)"></div>
