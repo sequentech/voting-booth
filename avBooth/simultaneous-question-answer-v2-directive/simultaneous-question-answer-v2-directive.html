@@ -82,6 +82,7 @@
           av-debounce="500"
           ng-model="answer.text"
           ng-if="!hideCheck()"
+          ng-click="$event.stopPropagation()"
         />
 
         <span
@@ -108,7 +109,7 @@
           tabindex="0"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="question.tally_type === 'plurality-at-large'"
-          ng-click="!readOnly() && isWriteIn && toggleSelectItem(question, answer)"
+          ng-click="$event.stopPropagation(); !readOnly() && isWriteIn && toggleSelectItem(question, answer)"
         >
           <i class="fa fa-lg fa-check" ng-if="answer.selected > -1"></i>
           <div class="unchecked" ng-if="answer.selected === -1"></div>
@@ -122,7 +123,7 @@
           aria-label="{{answer.text}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
           ng-repeat="check in answer_cumulative_checks"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
-          ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, check)"
+          ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItemCumulative(question, answer, check)"
         >
           <i class="fa fa-lg fa-check" ng-if="isCheckSelected(answer, check)"></i>
           <div class="unchecked" ng-if="!isCheckSelected(answer, check)"></div>
@@ -134,7 +135,7 @@
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
           aria-label="{{answer.text}} check invalid"
           ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
-          ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, 0)"
+          ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItemCumulative(question, answer, 0)"
         >
         <i class="fa fa-lg fa-check" ng-if="isCheckSelected(answer, 0)"></i>
         <div class="unchecked" ng-if="!isCheckSelected(answer, 0)"></div>
