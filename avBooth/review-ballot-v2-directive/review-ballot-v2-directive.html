@@ -75,6 +75,7 @@
       </div>
       <div 
         class="invalid-vote-col"
+        ng-class="{'extra-invalid-vote-space': question.hasCategories}"
         ng-if="!!markedAsInvalid(question)"
       >
         <div
