@@ -253,6 +253,11 @@ angular.module('avBooth')
           }
         );
 
+        scope.isInvalidAnswer = function (answer)
+        {
+          return ErrorCheckerGeneratorService.hasUrl(answer.urls, 'invalidVoteFlag', 'true');
+        };
+
         scope.groupQuestions = groupQuestions;
         var lastGroupQuestionArrayIndex = groupQuestions[groupQuestions.length-1];
         var lastGroupQuestionIndex = lastGroupQuestionArrayIndex.num;
