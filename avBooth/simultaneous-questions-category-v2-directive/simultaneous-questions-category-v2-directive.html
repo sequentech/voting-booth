@@ -2,16 +2,20 @@
     <h3 class="category-heading">
         {{ category.title }}
     </h3>
-    <span
-        class="check-title"
-        tabindex="0"
-        aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
-        ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
+    <div
+        class="vertilize-col answer-glyphicon"    
         ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size < 12"
     >
-        <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
-        <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
-    </span>
+        <span
+            class="check-title"
+            tabindex="0"
+            aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
+            ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
+        >
+            <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
+            <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
+        </span>
+    </div>
 </div>
 <div class="category-body">
     <div 
@@ -65,12 +69,14 @@
         </div>
     </div>
 
-    <div class="vertilize-col answer-glyphicon">
+    <div
+        class="vertilize-col answer-glyphicon"
+        ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size === 12"
+    >
         <span
             tabindex="0"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
             ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
-            ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size === 12"
         >
             <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
             <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
