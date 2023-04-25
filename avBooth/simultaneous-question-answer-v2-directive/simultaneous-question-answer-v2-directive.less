@@ -204,4 +204,28 @@
   a.btn:focus {
     color: unset;
   }
+
+
+
+  .write-in {
+    input {
+      width: 100%;
+    }
+
+    .bytes-left.help-block {
+      display: none;
+      position: absolute;
+      padding: 0;
+      margin: 0;
+      bottom: -5px;
+      right: 20px;
+      font-size: 12px;
+      background: white;
+    }
+
+    &.has-error   .bytes-left.help-block,
+    &.has-warning .bytes-left.help-block {
+      display: block;
+    }
+  }
 }
