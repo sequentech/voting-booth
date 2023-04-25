@@ -71,7 +71,8 @@
     <div class="category-body" ng-if="!question.hasCategories">
       <div class="question-answers text-left">
         <div 
-          ng-repeat="answer in question.filteredAnswers"
+          ng-repeat="answer in question.answers"
+          ng-if="!ErrorCheckerGeneratorService.hasUrl(answer.urls, 'invalidVoteFlag', 'true')"
           class="question-answer-wrapper"
           class="col-xs-12"
         >
