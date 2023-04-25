@@ -7,7 +7,7 @@
         tabindex="0"
         aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
         ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
-        ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size === 12"
+        ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size < 12"
     >
         <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
         <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
@@ -21,7 +21,12 @@
             ng-if="!isReview"
             ng-repeat="answer in category.answers"
             class="question-answer-wrapper"
-            class="col-xs-12"
+            ng-class="{
+              'flex-col-12': (question.extra_options.answer_columns_size === 12),
+              'flex-col-6': (question.extra_options.answer_columns_size === 6),
+              'flex-col-4': (question.extra_options.answer_columns_size === 4),
+              'flex-col-3': (question.extra_options.answer_columns_size === 3)
+            }"
         >
             <div 
                 avb-simultaneous-question-answer-v2
@@ -39,7 +44,12 @@
             ng-if="isReview"
             ng-repeat="answer in category.answers | avbSelectedOptions"
             class="question-answer-wrapper"
-            class="col-xs-12"
+            ng-class="{
+              'flex-col-12': (question.extra_options.answer_columns_size === 12),
+              'flex-col-6': (question.extra_options.answer_columns_size === 6),
+              'flex-col-4': (question.extra_options.answer_columns_size === 4),
+              'flex-col-3': (question.extra_options.answer_columns_size === 3)
+            }"
         >
             <div 
                 avb-simultaneous-question-answer-v2
@@ -50,7 +60,7 @@
                 cumulative-checks="cumulativeChecks"
                 write-in-text-change="updateErrors"
                 read-only="question.are_candidates_read_only"
-                hide-check="false"
+                hide-check="!question.are_lists_checkable"
             ></div>
         </div>
     </div>
@@ -60,7 +70,7 @@
             tabindex="0"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
             ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
-            ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size < 12"
+            ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size === 12"
         >
             <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
             <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
