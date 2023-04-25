@@ -34,23 +34,6 @@ angular.module('avBooth')
     ) {
       var simultaneousQuestionsLayout = "simultaneous-questions-v2";
 
-      /**
-       * @returns true if the url with the specific title and url appears in the
-       * urls list.
-       */
-       function hasUrl(urls, title, url)
-       {
-         const u = _.find(
-           urls,
-           function(urlObject)
-           {
-             return urlObject.title === title && urlObject.url === url;
-           }
-         );
- 
-         return !!u;
-       }
-
 
       var link = function(scope, _element, _attrs)
       {
@@ -178,8 +161,8 @@ angular.module('avBooth')
               function (answer)
               {
                 return (
-                  !hasUrl(answer.urls, 'invalidVoteFlag', 'true') &&
-                  !hasUrl(answer.urls, 'isCategoryList', 'true') &&
+                  !ErrorCheckerGeneratorService.hasUrl(answer.urls, 'invalidVoteFlag', 'true') &&
+                  !ErrorCheckerGeneratorService.hasUrl(answer.urls, 'isCategoryList', 'true') &&
                   !!answer.category
                 ); 
               }
@@ -198,7 +181,7 @@ angular.module('avBooth')
                   {
                     return (
                       answer.text === title &&
-                      hasUrl(answer.urls, 'isCategoryList', 'true')
+                      ErrorCheckerGeneratorService.hasUrl(answer.urls, 'isCategoryList', 'true')
                     );
                   }
                 );
@@ -219,7 +202,7 @@ angular.module('avBooth')
               function (answer)
               {
                 return (
-                  hasUrl(answer.urls, 'isWriteIn', 'true')
+                  ErrorCheckerGeneratorService.hasUrl(answer.urls, 'isWriteIn', 'true')
                 ); 
               }
             );
@@ -264,7 +247,7 @@ angular.module('avBooth')
               question.answers,
               function (answer)
               {
-                return hasUrl(answer.urls, 'invalidVoteFlag', 'true'); 
+                return ErrorCheckerGeneratorService.hasUrl(answer.urls, 'invalidVoteFlag', 'true'); 
               }
             );
           }
@@ -355,6 +338,26 @@ angular.module('avBooth')
           }
         };
 
+        scope.clickOnCumulative = function (question, option)
+        {
+          // number of checkboxes
+          var maxNum = question.extra_options.cumulative_number_of_checkboxes;
+
+          // number of checked checkboxes
+          var numChecks = scope.cumulativeChecks[question.title][option.id]
+            .filter(function (el) { return el; }).length;
+
+          // all checked, next step is to uncheck
+          if (numChecks >= maxNum) {
+            scope.deselectAllCumulative(question, option);
+          } else {
+            // check the first unchecked checkbox
+            var checkableIndex = scope.cumulativeChecks[question.title][option.id]
+              .findIndexOf(function (el) { return !el; });
+            scope.toggleSelectItemCumulative(question, option, checkableIndex);
+          }
+        };
+
         scope.toggleSelectItemCumulative = function(question, option, index) 
         {
           // toggle the current value in the scope
@@ -417,7 +420,8 @@ angular.module('avBooth')
         {
           if (question.tally_type === "cumulative") 
           {
-            return false;
+            scope.clickOnCumulative(question, option);
+            return true;
           }
 
           // if option is selected, then simply deselect it

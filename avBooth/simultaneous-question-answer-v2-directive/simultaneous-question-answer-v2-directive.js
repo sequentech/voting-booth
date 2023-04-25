@@ -21,29 +21,14 @@
 angular.module('avBooth')
   .directive(
     'avbSimultaneousQuestionAnswerV2',
-    function() 
+    function(
+      ErrorCheckerGeneratorService
+    ) 
     {
-      /**
-       * @returns true if the url with the specific title and url appears in the
-       * urls list.
-       */
-      function hasUrl(urls, title, url)
-      {
-        const u = _.find(
-          urls,
-          function(urlObject)
-          {
-            return urlObject.title === title && urlObject.url === url;
-          }
-        );
-
-        return !!u;
-      }
-
       function link(scope, _element, _attrs)
       {
-        scope.isCategoryList = hasUrl(scope.answer.urls, 'isCategoryList', 'true');
-        scope.isWriteIn = hasUrl(scope.answer.urls, 'isWriteIn', 'true');
+        scope.isCategoryList = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isCategoryList', 'true');
+        scope.isWriteIn = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isWriteIn', 'true');
 
         if (scope.isWriteIn && scope.writeInTextChange) 
         {
