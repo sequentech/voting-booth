@@ -15,6 +15,13 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+[avb-simultaneous-questions-v2-screen] [avb-simultaneous-questions-category-v2] .vertilize-wrapper .vertilize {
+    &:hover, &:active {
+        border-color: rgba(0,0,0,.05);
+        box-shadow: none;
+    }
+}
+
 [avb-simultaneous-questions-category-v2] {
     background-color: @av-primary;
     padding: 0 14px 20px 16px;
@@ -26,11 +33,6 @@
         border-color: @bg-primary;
         background-color: @bg-primary;
         box-shadow: 0 5px 5px rgba(0,0,0,.25);
-
-        &:hover, &:active {
-            border-color: rgba(0,0,0,.05);
-            box-shadow: none;
-        }
     }
 
     [avb-simultaneous-question-answer-v2] .opt {
