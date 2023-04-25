@@ -93,6 +93,7 @@
 
     <div 
       class="invalid-vote-col"
+      ng-class="{'extra-invalid-vote-space': question.hasCategories}"
       ng-if="!!question.invalidVoteAnswer"
     >
       <div 
