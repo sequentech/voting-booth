@@ -121,7 +121,7 @@ angular.module('avBooth')
 
       function getErrorsChecker(checkerTypeFlag)
       {
-        return ErrorCheckerGeneratorService(checkerTypeFlag, scope.invalidVoteAnswer);
+        return ErrorCheckerGeneratorService.getSimultaneousQuestionsErrorChecker(checkerTypeFlag, scope.invalidVoteAnswer);
       }
       /**
        * Updates scope.errors with the errors found in scope.groupQuestions
