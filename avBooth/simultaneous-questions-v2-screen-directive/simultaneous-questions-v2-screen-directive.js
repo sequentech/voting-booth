@@ -163,7 +163,11 @@ angular.module('avBooth')
                 return (
                   !ErrorCheckerGeneratorService.hasUrl(answer.urls, 'invalidVoteFlag', 'true') &&
                   !ErrorCheckerGeneratorService.hasUrl(answer.urls, 'isCategoryList', 'true') &&
-                  !!answer.category
+                  !!answer.category &&
+                  (
+                    !ErrorCheckerGeneratorService.hasUrl(answer.urls, 'isWriteIn', 'true') ||
+                    (question.extra_options && question.extra_options.allow_writeins)
+                  )
                 ); 
               }
             );
