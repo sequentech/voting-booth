@@ -36,7 +36,8 @@ angular.module('avBooth')
           toggleSelectItem: '=',
           toggleSelectItemCumulative: '=',
           cumulativeChecks: '=',
-          isReview: '='
+          isReview: '=',
+          writeInTextChange: '='
         },
         templateUrl: 'avBooth/simultaneous-questions-category-v2-directive/simultaneous-questions-category-v2-directive.html'
       };
