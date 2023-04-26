@@ -233,14 +233,14 @@ angular.module('avBooth')
     
               if (!!question.extra_options.shuffle_all_options) {
                 question.categories = _.each( question.categories, function(category) {
-                  category.options = _.shuffle(category.options);
+                  category.answers = _.shuffle(category.answers);
                 });
               } else if (!question.extra_options.shuffle_all_options &&
                           angular.isArray(question.extra_options.shuffle_category_list) &&
                           question.extra_options.shuffle_category_list.length > 0) {
                 question.categories = _.each( question.categories, function(category) {
                   if (-1 !== question.extra_options.shuffle_category_list.indexOf(category.title)) {
-                    category.options = _.shuffle(category.options);
+                    category.answers = _.shuffle(category.answers);
                   }
                 });
               }
