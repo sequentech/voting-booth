@@ -225,6 +225,27 @@ angular.module('avBooth')
               question.extra_options.invalid_vote_policy = 'warn';
             }
 
+            // apply shuffling policy
+            if (angular.isDefined(question.extra_options)) {
+              if(!!question.extra_options.shuffle_categories) {
+                question.categories = _.shuffle(question.categories);
+              }
+    
+              if (!!question.extra_options.shuffle_all_options) {
+                question.categories = _.each( question.categories, function(category) {
+                  category.options = _.shuffle(category.options);
+                });
+              } else if (!question.extra_options.shuffle_all_options &&
+                          angular.isArray(question.extra_options.shuffle_category_list) &&
+                          question.extra_options.shuffle_category_list.length > 0) {
+                question.categories = _.each( question.categories, function(category) {
+                  if (-1 !== question.extra_options.shuffle_category_list.indexOf(category.title)) {
+                    category.options = _.shuffle(category.options);
+                  }
+                });
+              }
+            }
+
             // convert each answer url list to a map
             _.each(
               question.answers,
@@ -252,27 +273,6 @@ angular.module('avBooth')
             );
           }
         );
-
-        // apply shuffling policy
-        if (angular.isDefined(scope.question.extra_options)) {
-          if(!!scope.question.extra_options.shuffle_categories) {
-            scope.categories = _.shuffle(scope.categories);
-          }
-
-          if (!!scope.question.extra_options.shuffle_all_options) {
-            scope.categories = _.each( scope.categories, function(category) {
-              category.options = _.shuffle(category.options);
-            });
-          } else if (!scope.question.extra_options.shuffle_all_options &&
-                      angular.isArray(scope.question.extra_options.shuffle_category_list) &&
-                      scope.question.extra_options.shuffle_category_list.length > 0) {
-            scope.categories = _.each( scope.categories, function(category) {
-              if (-1 !== scope.question.extra_options.shuffle_category_list.indexOf(category.title)) {
-                category.options = _.shuffle(category.options);
-              }
-            });
-          }
-        }
 
         scope.isInvalidAnswer = function (answer)
         {
