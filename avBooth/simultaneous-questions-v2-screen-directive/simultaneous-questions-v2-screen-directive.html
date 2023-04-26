@@ -115,6 +115,15 @@
 </div>
 
 <div class="container" ng-if="!fixToBottom">
+  <div class="skip-question-container text-right" ng-if="showSkipQuestionButton">
+    <span
+      class="skip-question"
+      ng-click="skipQuestion()"
+      ng-i18next="avBooth.simultaneousQuestions.skipQuestion"
+      role="button"
+      tabindex="0">
+    </span>
+  </div>
   <div class="actions">
     <button
       id="clear-selection-btn"
@@ -139,6 +148,14 @@
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
   <div class="container container-fixed">
+    <div class="skip-question-container text-right" ng-if="showSkipQuestionButton">
+      <span
+        class="skip-question"
+        ng-click="skipQuestion()"
+        ng-i18next="avBooth.simultaneousQuestions.skipQuestion"
+        role="button" tabindex="0">
+      </span>
+    </div>
     <div class="actions">
       <button
         id="clear-selection-btn"
