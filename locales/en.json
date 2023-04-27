@@ -94,7 +94,7 @@
       "ballotId": "Ballot ID",
       "printBallotBtn": "Print",
       "ballotCastHelpModal": {
-        "header": "Information: Success Screen",
+        "header": "Information: Confirmation Screen",
         "body": "This screen shows that your vote was successfully casted.",
         "confirm": "OK"
       },
