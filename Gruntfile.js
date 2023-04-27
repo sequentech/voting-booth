@@ -221,6 +221,9 @@ module.exports = function (grunt) {
         options: {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
+            {selector:'head',html:'<link class="favicon" rel="icon" href="/booth/img/cropped-FAV-6-32x32.png" sizes="32x32" />'},
+            {selector:'head',html:'<link class="favicon" rel="icon" href="/booth/img/cropped-FAV-6-192x192.png" sizes="192x192" />'},
+            {selector:'head',html:'<link class="favicon" rel="apple-touch-icon" href="/booth/img/cropped-FAV-6-180x180.png" />'},
             {selector:'body',html:'<%= variables.booth_html_body_include %>'},
             {selector:'body',html:'<script src="/booth/libnocompat-v7.3.0.min.js"></script>'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/sequentech/voting-booth/blob/master/README.md -->'},
