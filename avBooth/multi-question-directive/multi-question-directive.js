@@ -107,6 +107,7 @@ angular.module('avBooth')
             }
           });
           option.selected = -1;
+          scope.stateData.question.deselectedAtLeastOnce = true;
         } else {
           // if max options selectable is 1, deselect any other and select
           // this
@@ -117,6 +118,7 @@ angular.module('avBooth')
               }
             });
             option.selected = 0;
+            scope.stateData.question.deselectedAtLeastOnce = true;
             return;
           }
 
