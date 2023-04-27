@@ -80,7 +80,7 @@ angular.module('avBooth')
 
         function getErrorsChecker(checkerTypeFlag)
         {
-          return ErrorCheckerGeneratorService.getSimultaneousQuestionsErrorChecker(checkerTypeFlag, scope.invalidVoteAnswer);
+          return ErrorCheckerGeneratorService.getErrorChecker(checkerTypeFlag, scope.invalidVoteAnswer);
         }
 
         /**

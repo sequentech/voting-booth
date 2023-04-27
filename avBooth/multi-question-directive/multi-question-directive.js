@@ -58,7 +58,7 @@ angular.module('avBooth')
 
       function getErrorsChecker(checkerTypeFlag)
       {
-        return ErrorCheckerGeneratorService.getMultiQuestionErrorChecker(checkerTypeFlag, scope.invalidVoteAnswer);
+        return ErrorCheckerGeneratorService.getErrorChecker(checkerTypeFlag, scope.invalidVoteAnswer);
       }
 
       /**

@@ -112,93 +112,8 @@ angular.module('avUi')
       }
       return noTagMax;
     };
-
-    service.getMultiQuestionErrorChecker = function () {
-      return [
-        {
-          check: "array-key-group-chain",
-          key: "questions",
-          append: {key: "qtitle", value: "$value.title"},
-          prefix: "avBooth.errors.question-",
-          checks: [
-            {
-              check: "lambda",
-              appendOnErrorLambda: function (question) 
-              {
-                return {
-                    min: question.min
-                };
-              },
-              validator: function (question) 
-              {
-                return (service.numSelectedOptions(question) >= question.min);
-              },
-              postfix: "-min"
-            },
-            {
-              check: "lambda",
-              appendOnErrorLambda: function (question) 
-              {
-                return {
-                    max: service.getTagMax(question),
-                    tagName: service.getTagName(question)
-                };
-              },
-              validator: function (question) 
-              {
-                return !(service.numSelectedOptions(question) !== question.max &&
-                  service.numTaggedSelectedOptions(question) === service.getTagMax(question));
-              },
-              postfix: "-max-tag"
-            },
-            {
-              check: "lambda",
-              appendOnErrorLambda: function (question) 
-              {
-                return {
-                    max: service.getNoTagMax(question),
-                    tagName: service.getTagName(question)
-                };
-              },
-              validator: function (question) 
-              {
-                return !(service.numSelectedOptions(question) !== question.max &&
-                service.numSelectedOptions(question) - service.numTaggedSelectedOptions(question) === service.getNoTagMax(question));
-              },
-              postfix: "-max-notag"
-            },
-            {
-              check: "lambda",
-              validator: function (question) 
-              {
-                return !(service.numSelectedOptions(question) === question.max &&
-                  question.max === 1
-                );
-              },
-              postfix: "-max-reached-singular"
-            },
-            {
-              check: "lambda",
-              appendOnErrorLambda: function (question) 
-              {
-                return {
-                    max: question.max
-                };
-              },
-              validator: function (question) 
-              {
-                return !(service.numSelectedOptions(question) === question.max &&
-                  question.max > 1
-                );
-              },
-              postfix: "-max-reached"
-            },
-          ]
-        }
-      ];
-    };
     
-    service.getSimultaneousQuestionsErrorChecker =  function (checkerTypeFlag, invalidVoteAnswer)
+    service.getErrorChecker =  function (checkerTypeFlag, invalidVoteAnswer)
     {
       return [
         {
@@ -565,6 +480,74 @@ angular.module('avUi')
                   )
                 ).length <= 1;
               },
+            },
+            // accordion errors
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question)
+              {
+                return {
+                    max: service.getTagMax(question),
+                    tagName: service.getTagName(question),
+                    question_id: question.index
+                };
+              },
+              validator: function (question)
+              {
+                return !(question.layout === "accordion" && service.numSelectedOptions(question) !== question.max &&
+                  service.numTaggedSelectedOptions(question) === service.getTagMax(question));
+              },
+              postfix: "-max-tag"
+            },
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question)
+              {
+                return {
+                    max: service.getNoTagMax(question),
+                    tagName: service.getTagName(question),
+                    question_id: question.index
+                };
+              },
+              validator: function (question)
+              {
+                return !(question.layout === "accordion" && service.numSelectedOptions(question) !== question.max &&
+                service.numSelectedOptions(question) - service.numTaggedSelectedOptions(question) === service.getNoTagMax(question));
+              },
+              postfix: "-max-notag"
+            },
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question)
+              {
+                return {
+                    question_id: question.index
+                };
+              },
+              validator: function (question)
+              {
+                return !(question.layout === "accordion" && service.numSelectedOptions(question) === question.max &&
+                  question.max === 1
+                );
+              },
+              postfix: "-max-reached-singular"
+            },
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question)
+              {
+                return {
+                    max: question.max,
+                    question_id: question.index
+                };
+              },
+              validator: function (question)
+              {
+                return !(question.layout === "accordion" && service.numSelectedOptions(question) === question.max &&
+                  question.max > 1
+                );
+              },
+              postfix: "-max-reached"
             },
           ]
         }
