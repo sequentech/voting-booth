@@ -91,6 +91,7 @@ angular.module('avBooth')
           _.each(scope.options, function (element) {
             if (element.selected !== -1) {
               element.selected = -1;
+              scope.question.deselectedAtLeastOnce = true;
             }
           });
         };
@@ -114,6 +115,7 @@ angular.module('avBooth')
               }
             });
             option.selected = -1;
+            scope.question.deselectedAtLeastOnce = true;
 
             // restart lastCategorySelected count
             scope.question.lastCategorySelected = {

@@ -118,7 +118,6 @@ angular.module('avBooth')
               }
             });
             option.selected = 0;
-            scope.stateData.question.deselectedAtLeastOnce = true;
             return;
           }
 
