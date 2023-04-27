@@ -104,6 +104,7 @@ angular.module('avBooth')
           
         }
         scope.updateErrors = updateErrors;
+        scope.errors = [];
 
         /**
          * Skip this question(s) (election) and go to the next.
@@ -318,7 +319,6 @@ angular.module('avBooth')
         }
 
         scope.organization = ConfigService.organization;
-        scope.errors = [];
 
         // reset selection on initialization
         _.each(scope.election.questions, function(question)

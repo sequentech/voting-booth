@@ -131,6 +131,7 @@ angular.module('avBooth')
                 }
               });
               option.selected = 0;
+              scope.updateErrors();
               return;
             }
 
@@ -138,6 +139,7 @@ angular.module('avBooth')
 
             // can't select more, flash info
             if (numSelected === parseInt(scope.max,10)) {
+              scope.updateErrors();
               return;
             }
 
@@ -150,6 +152,7 @@ angular.module('avBooth')
               if ((option.tag === scope.tagName && numTaggedSelected === scope.tagMax) ||
                 (option.tag !== scope.tagName && numSelected - numTaggedSelected === scope.noTagMax))
               {
+                scope.updateErrors();
                 return;
               }
             }
@@ -201,6 +204,7 @@ angular.module('avBooth')
               };
             }
           }
+          scope.updateErrors();
         };
 
         // select all the options in the category and only that category
@@ -274,7 +278,9 @@ angular.module('avBooth')
         autoSelectAnother: '=',
 
         // text used to filter the shown options
-        filter: '@'
+        filter: '@',
+
+        updateErrors: '='
       },
       link: link,
       templateUrl: 'avBooth/available-options-directive/available-options-directive.html'

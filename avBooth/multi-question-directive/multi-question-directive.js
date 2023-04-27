@@ -21,7 +21,13 @@
  * Shows a question and its possible answers to the user.
  */
 angular.module('avBooth')
-  .directive('avbMultiQuestion', function($modal, ConfigService) {
+  .directive('avbMultiQuestion', 
+  function(
+      $modal,
+      ConfigService, 
+      CheckerService,
+      ErrorCheckerGeneratorService
+    ) {
 
     var link = function(scope, element, attrs) {
       scope.stateData.affixIsSet = false;
@@ -29,11 +35,7 @@ angular.module('avBooth')
       scope.hideSelection = false;
       scope.organization = ConfigService.organization;
 
-      scope.getUrl = function(option, title) {
-        return _.filter(option.urls, function (url) {
-          return url.title === title;
-        })[0];
-      };
+      scope.getUrl = ErrorCheckerGeneratorService.hasUrl;
 
       scope.getTag = function(option) {
         var url = scope.getUrl(option, "Tag");
@@ -52,6 +54,35 @@ angular.module('avBooth')
         }
         return url.url.replace("https://sequentech.io/api/gender/", "");
       };
+
+
+      function getErrorsChecker(checkerTypeFlag)
+      {
+        return ErrorCheckerGeneratorService.getMultiQuestionErrorChecker(checkerTypeFlag, scope.invalidVoteAnswer);
+      }
+
+      /**
+       * Updates scope.errors with the errors found in scope.groupQuestions
+       */
+      function updateErrors()
+      {
+        var errorChecks = getErrorsChecker("soft");
+        scope.errors = [];
+        CheckerService({
+          checks: errorChecks,
+          data: scope.election,
+          onError: function (errorKey, errorData)
+          {
+            scope.errors.push({
+              data: errorData,
+              key: errorKey
+            });
+          }
+        });
+      }
+
+      scope.updateErrors = updateErrors;
+      scope.errors = [];
 
       // set options' tag
       scope.tagName = undefined;
