@@ -95,12 +95,12 @@
       "printBallotBtn": "Print",
       "ballotCastHelpModal": {
         "header": "Information: Confirmation Screen",
-        "body": "This screen shows that your vote was successfully casted.",
+        "body": "This screen shows that your vote was successfully cast. The information provided on this page allows you to verify that the ballot has been stored in ballot box , this process can be executed at any time during voting period and after the election has been closed.",
         "confirm": "OK"
       },
       "ballotIdHelpModal": {
         "header": "Information: Ballot Id",
-        "body": "The Ballot ID is a code that lets you find your ballot in the ballot box.",
+        "body": "The Ballot ID is a code that allows you to find your ballot in the ballot box, this ID is unique and doesn't contain information about your selections.",
         "confirm": "OK"
       }
     }, 

@@ -9,11 +9,11 @@
 
   <div class="success-intro">
     <div class="success-text">
-      <h3 class="success-title" ng-i18next="avBooth.successTitle"></h3>
+      <h3 class="success-title" >
+        <span class="success-title-text" ng-i18next="avBooth.successTitle"></span>
+        <i class="fa fa-lg fa-question-circle" ng-click="ballotCastHelp()"></i>
+      </h3>
       <p class="success-subheader" ng-i18next="[html:i18next]avBooth.successSubheader"></p>
-    </div>
-    <div class="success-help">
-      <i class="pull-right fa fa-lg fa-question-circle" ng-click="ballotCastHelp()"></i>
     </div>
   </div>
 

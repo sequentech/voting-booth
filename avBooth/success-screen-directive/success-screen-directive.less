@@ -28,6 +28,12 @@
     word-break: keep-all;
   }
 
+  .success-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   .success-subheader strong {
     color: @av-secondary-contrast;
   }
@@ -89,12 +95,6 @@
     @media(max-width: @screen-xs-max) {
       margin-top: 15px;
     }
-  }
-
-  .success-help {
-    flex-grow: 2;
-    padding-top: 20px;
-    margin-top: 16px;
   }
 
 
@@ -162,5 +162,11 @@
     @media(max-width: @screen-sm-max) {
       justify-content: center;
     }
+  }
+
+  .fa-question-circle {
+    margin-left: 16px;
+    font-size: 18px;
+    line-height: 18px;
   }
 }
