@@ -25,13 +25,13 @@
     </div>
   </div>
 
-  <div class="election-header">
-    <h1
+  <h1 class="election-header">
+    <span
       class="election-title"
       ng-bind-html="election.presentation.extra_options.public_title || election.title"
-    ></h1>
+    ></span>
     <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
-  </div>
+  </h1>
   <p
     ng-if="election.description"
     class="election-description"
