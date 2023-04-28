@@ -78,7 +78,7 @@
     },
     "hashForVoteNotCastModal": {
       "header": "Vote has not been cast",
-      "body": "You are about to copy the ballot tracker id, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the ballot tracker id at this stage is to allow you to audit the correctness of the encrypted ballot before casting it. If that's why you want to copy the tracker id, please proceed to copy it and then proceed to audit the vote.",
+      "body": "This is your ballot tracker id, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the ballot tracker id at this stage is to allow you to audit the correctness of the encrypted ballot before casting it.",
       "confirm": "I accept my vote has NOT been cast",
       "cancel": "Cancel"
     },
@@ -277,20 +277,25 @@
     "auditBallotScreen": {
       "title": "Audit your Ballot",
       "subtitle": "To verify your ballot you will need. to follow the bellow steps:",
-      "downloadListTitle": "<strong>Download or copy the following information.</strong>",
+      "downloadListTitle": "1. Download or copy the following information",
       "downloadButton": "Download",
       "downloadSubtitle": "This is your encrypted ballot",
-      "tutorialListTitle": "<strong>Follow the steps on this tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">click here</a>, a new tab will open in your browser).",
+      "tutorialListTitle": "<strong>Follow the steps on this tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">click here</a>, a new tab will open in your browser)",
       "auditWarning": "For security reason, when you audit your ballot, it need to be spoiled. To continue with the voting process, you need to click ‘<strong>Start Voting</strong>’ bellow.",
 
       "downloadHelpModal": {
         "header": "Copy the Encrypted Ballot",
-        "body": "Download or copy your encrypted ballot. Then use it to audit the ballot and verify its contents.",
+        "body": "You can download or copy your encrypted ballot to audit the ballot and verify the encrypted content contains your selections.",
         "confirm": "OK"
       },
       "tutorialHelpModal": {
         "header": "Audit ballot tutorial",
-        "body": "Audit your ballot following the steps shown on the tutorial.",
+        "body": "To audit your ballot you will need to follow the steps shown in the tutorial, this includes the download of a desktop application used to verify the encrypted ballot independently from the website.",
+        "confirm": "OK"
+      },
+      "titleHelpModal": {
+        "header": "Information: Audit Screen",
+        "body": "This screen offers a comprehensive, step-by-step walkthrough for auditing your ballot and allows you to confirm the encrypted ballot contains your selections.",
         "confirm": "OK"
       }
     },

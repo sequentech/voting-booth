@@ -113,6 +113,30 @@ angular.module('avBooth')
         });
       };
 
+      scope.titleHelp = function()
+      {
+
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.auditBallotScreen.titleHelpModal.header",
+                body: "avBooth.auditBallotScreen.titleHelpModal.body",
+                continue: "avBooth.auditBallotScreen.titleHelpModal.confirm",
+                kind: "info"
+              };
+            }
+          }
+        });
+      };
+
       scope.ballotHashWarning = function ()
       {
         $modal.open({
