@@ -85,6 +85,29 @@ angular.module('avBooth')
         });
       };
 
+      scope.showTitleHelp = function()
+      {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.reviewScreen.informationModal.header",
+                body: "avBooth.reviewScreen.informationModal.body",
+                continue: "avBooth.reviewScreen.informationModal.confirm",
+                kind: "info"
+              };
+            }
+          }
+        });
+      };
+
       scope.audit = function() {
         scope.stateData.auditClicked = true;
         scope.next();
