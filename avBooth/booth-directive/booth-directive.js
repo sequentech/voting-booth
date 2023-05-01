@@ -945,7 +945,8 @@ angular.module('avBooth')
                           errors: [],
                           header: "avBooth.demoModeModal.header",
                           body: "avBooth.demoModeModal.body",
-                          continue: "avBooth.demoModeModal.confirm"
+                          continue: "avBooth.demoModeModal.confirm",
+                          forceAccept: true
                         };
                       }
                     }
@@ -969,7 +970,8 @@ angular.module('avBooth')
                           errors: [],
                           header: "avBooth.previewModeModal.header",
                           body: "avBooth.previewModeModal.body",
-                          continue: "avBooth.previewModeModal.confirm"
+                          continue: "avBooth.previewModeModal.confirm",
+                          forceAccept: true
                         };
                       }
                     }
