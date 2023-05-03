@@ -45,7 +45,7 @@ code {
         color: @bg-primary;
 
         &:hover {
-            background-color: #d0d0d7;
+            background-color: #d0d0d7 !important;
             color: @av-primary;
         }
     }
@@ -62,6 +62,12 @@ code {
     [avb-voting-step] .step-number-selected {
         background-color: @av-primary;
         color: @av-primary-contrast;
+    }
+
+    [avb-voting-step] .step-number-unselected {
+        color: @av-primary;
+        stroke-opacity: 100%;
+        border: 1px solid @av-primary;
     }
 
     .text-warning {

@@ -29,6 +29,23 @@ angular.module('avBooth')
       // used to display pairwise comparison in a different manner
       _.each(scope.election.questions, function (q) {
         q.isPairWise = _.contains(['pairwise-beta'], q.tally_type);
+
+        // convert each answer url list to a map
+        _.each(
+          q.answers,
+          function (answer)
+          {
+            answer.urlsObject = _.object(
+              _.map(
+                answer.urls, 
+                function(url) 
+                {
+                  return [url.title, url.url];
+                }
+              )
+            );
+          }
+        );
       });
       
       /**
