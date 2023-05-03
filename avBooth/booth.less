@@ -36,3 +36,67 @@ code {
 #no-js {
     color: black;
 }
+
+
+/* REMOVE: podemos theme */
+
+[avb-common-header] a, .dropdown {
+    color: @bg-primary;
+
+    &:hover {
+        background-color: #d0d0d7;
+        color: @av-primary;
+    }
+}
+
+[av-booth] .navbar-unfixed-top {
+    background-color: unset;
+    color: unset;
+}
+
+[avb-voting-step] .step-separator {
+    border-color: black;
+}
+
+[avb-voting-step] .step-number-selected {
+    background-color: @av-primary;
+    color: @av-primary-contrast;
+}
+
+[av-booth] {
+    .text-warning {
+        color: @av-primary-contrast;
+    }
+
+    .warn-box {
+        background-color: #8a6d3b;
+    }
+
+    .input-warn .glyphicon-warning-sign {
+        margin-top: 0;
+    }
+}
+
+[avb-common-header] .ballot-hash .hash-box, [avb-success-screen] .ballot-id-box {
+    background-color: @av-secondary-contrast;
+    color: @av-primary-contrast;
+    border-color: @brand-success;
+
+    a {
+        color: @av-primary-contrast;
+    }
+}
+
+[avb-review-screen] .review-ballot-description strong {
+    color: #333;
+}
+
+[avb-review-ballot-v2] .review-ballot-title, .question .question-title {
+    color: #333;
+}
+
+[avb-review-ballot-v2] .opt .answer-texts .answer-text,
+[avb-simultaneous-question-answer-v2] .opt .answer-texts .answer-text,
+[avb-simultaneous-questions-v2-screen] .opt .answer-texts .answer-text {
+    color: black;
+}
