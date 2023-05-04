@@ -16,7 +16,8 @@
     <span class="review-title-text" ng-i18next="avBooth.reviewScreen.title"></span>
     <i class="fa fa-lg fa-question-circle" ng-click="showTitleHelp()"></i>
   </h3>
-  <p class="review-ballot-description" ng-i18next="[html]avBooth.reviewScreen.description">
+  <p class="review-ballot-description" ng-i18next="[html]avBooth.reviewScreen.description" ng-if="showAuditBtn">
+    <p class="review-ballot-description" ng-i18next="[html]avBooth.reviewScreen.descriptionNoAudit" ng-if="!showAuditBtn">
   </p>
 
   <div avb-review-ballot-v2></div>
