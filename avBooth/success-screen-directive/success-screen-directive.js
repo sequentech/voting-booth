@@ -657,7 +657,7 @@ angular.module('avBooth')
       scope.fixToBottom = scope.checkFixToBottom();
 
       scope.showRedirectToLogin = !scope.hasNextElection && !!scope.election.presentation.extra_options.success_screen__redirect_to_login && !!scope.election.presentation.extra_options.success_screen__redirect_to_login__text;
-      scope.hideDownloadBallot = election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true;
+      scope.hideDownloadBallot = scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true;
     }
 
       return {
