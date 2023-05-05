@@ -129,6 +129,7 @@
     <button
       id="redirect-to-login-btn"
       class="btn btn-lg btn-opt-warn btn-plain col-sm-4 hidden-xs"
+      ng-class="{'col-sm-offset-4': hideDownloadBallot}"
       ng-if="showRedirectToLogin"
       ng-click="redirectToLogin(true)"
     >
@@ -140,8 +141,8 @@
     <button
       id="close-finish-btn"
       ng-if="!hasNextElection"
-      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
-      ng-class="{'col-xs-offset-6 col-sm-offset-8': hideDownloadBallot && !showRedirectToLogin, 'col-xs-offset-6 col-sm-offset-4': hideDownloadBallot && showRedirectToLogin}"
+      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4"
+      ng-class="{'col-xs-offset-6': hideDownloadBallot, 'col-sm-offset-8': hideDownloadBallot && !showRedirectToLogin, 'col-sm-offset-4': !hideDownloadBallot && !showRedirectToLogin}"
       ng-click="closeAndFinish(false, true)">
       <span ng-i18next="avBooth.closeWindow">
       </span>
@@ -189,10 +190,22 @@
         </span>
       </button>
       <button
+        id="redirect-to-login-btn"
+        class="btn btn-lg btn-opt-warn btn-plain col-sm-4 hidden-xs"
+        ng-class="{'col-sm-offset-4': hideDownloadBallot}"
+        ng-if="showRedirectToLogin"
+        ng-click="redirectToLogin(true)"
+      >
+        <span>
+          <i class="fa fa-fire"></i>
+          {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
+        </span>
+      </button>
+      <button
         id="close-finish-btn"
         ng-if="!hasNextElection"
-        class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
-        ng-class="{'col-xs-offset-6 col-sm-offset-8': hideDownloadBallot && !showRedirectToLogin, 'col-xs-offset-6 col-sm-offset-4': hideDownloadBallot && showRedirectToLogin}"
+        class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4"
+        ng-class="{'col-xs-offset-6': hideDownloadBallot, 'col-sm-offset-8': hideDownloadBallot && !showRedirectToLogin, 'col-sm-offset-4': !hideDownloadBallot && !showRedirectToLogin}"
         ng-click="closeAndFinish(false, true)">
         <span ng-i18next="avBooth.closeWindow">
         </span>
