@@ -29,8 +29,8 @@
       data-force-affix-width="768"
       data-force-affix="{{ election.presentation.anchor_continue_btn_to_bottom }}"
     >
-      <div class="col-md-offset-2 col-md-8 text-warning input-error error-list col-xs-12">
-        <ul ng-if="election.errors && election.errors.length > 0" role="alert">
+      <div ng-if="election.errors && election.errors.length > 0" class="text-warning input-error error-list col-xs-12">
+        <ul role="alert">
           <li
             class="error"
             ng-repeat="error in election.errors"
