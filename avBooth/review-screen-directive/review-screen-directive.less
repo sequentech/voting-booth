@@ -24,6 +24,10 @@
     padding: 0;
   }
 
+  .error-list li {
+    word-break: keep-all;
+  }
+
   .election-title {
     word-break: keep-all;
   }
@@ -40,6 +44,18 @@
 
     .review-ballot-link {
       padding-left: 5px;
+    }
+  }
+
+  [av-affix-bottom] {
+    max-height: 150px;
+
+    .error-list {
+      min-height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: center;
     }
   }
 
@@ -61,5 +77,12 @@
 
   .content a {
     font-weight: bold;
+  }
+}
+
+@media(max-width: @screen-sm-min) {
+  [avb-review-screen] [av-affix-bottom] .error-list > ul {
+    overflow-y: scroll;
+    max-height: 60px;
   }
 }

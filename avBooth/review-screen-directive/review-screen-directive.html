@@ -29,6 +29,17 @@
       data-force-affix-width="768"
       data-force-affix="{{ election.presentation.anchor_continue_btn_to_bottom }}"
     >
+      <div class="col-md-offset-2 col-md-8 text-warning input-error error-list col-xs-12">
+        <ul ng-if="election.errors && election.errors.length > 0" role="alert">
+          <li
+            class="error"
+            ng-repeat="error in election.errors"
+            data-i18n="{{error.data}}"
+            ng-i18next>
+            [html:i18next]({{error.data}}){{error.key}}
+          </li>
+        </ul>
+      </div>
       <div
         ng-if="!election.presentation.extra_options || !election.presentation.extra_options.disable_voting_booth_audit_ballot"
         class="col-xs-12 locator-text-click-audit">

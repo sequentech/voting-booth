@@ -458,6 +458,7 @@ angular.module('avBooth')
               });
             }
           });
+          election.errors = angular.copy(scope.errors);
           
         }
         scope.updateErrors = updateErrors;
