@@ -23,7 +23,7 @@
   <div avb-review-ballot-v2></div>
 </div>
 
-<div class="container visible-xs" ng-if="showAuditBtn">
+<div class="container visible-xs" ng-if="!fixToBottom && showAuditBtn">
   <div class="actions actions-extra">
     <button
       id="audit-ballot-btn"
@@ -80,6 +80,20 @@
 <div avb-common-footer ng-if="!fixToBottom"></div>
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
+  <div class="container container-fixed visible-xs" ng-if="showAuditBtn">
+    <div class="actions actions-extra">
+      <button
+        id="audit-ballot-btn"
+        class="btn btn-lg btn-opt-warn btn-plain col-xs-12"
+        ng-click="confirmAudit()"
+      >
+        <span>
+          <i class="fa fa-fire"></i>
+          {{ 'avBooth.auditTheBallot' | i18next }}
+        </span>
+      </button>
+    </div>
+  </div>
   <div class="container container-fixed">
     <div class="actions">
       <button

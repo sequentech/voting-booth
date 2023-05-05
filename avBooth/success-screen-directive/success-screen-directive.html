@@ -89,16 +89,6 @@
     ng-i18next>
     [html:i18next]({count: skippedCount})avBooth.successSkippedCount
   </p>
-  <div class="text-center" ng-if="!hasNextElection && !!election.presentation.extra_options.success_screen__redirect_to_login">
-    <span>
-      <button
-        tabindex="0"
-        ng-click="redirectToLogin(true)"
-        class="btn btn-primary btn-login">
-        {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
-      </button>
-    </span>
-  </div>
 
   <div ng-bind-html="successText">
   </div>
@@ -107,12 +97,29 @@
 
 </div>
 
+
+<div class="container visible-xs" ng-if="!fixToBottom && showRedirectToLogin">
+  <div class="actions actions-extra">
+    <button
+      id="redirect-to-login-btn"
+      class="btn btn-lg btn-opt-warn btn-plain col-xs-12"
+      ng-if="showRedirectToLogin"
+      ng-click="redirectToLogin(true)"
+    >
+      <span>
+        <i class="fa fa-fire"></i>
+        {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
+      </span>
+    </button>
+  </div>
+</div>
+
 <div class="container" ng-if="!fixToBottom">
   <div class="actions">
     <button
       id="print-btn"
       class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
-      ng-if="election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
+      ng-if="!hideDownloadBallot"
       ng-click="downloadBallotTicket()">
       <span>
         <i class="fa fa-print"></i>
@@ -120,10 +127,21 @@
       </span>
     </button>
     <button
+      id="redirect-to-login-btn"
+      class="btn btn-lg btn-opt-warn btn-plain col-sm-4 hidden-xs"
+      ng-if="showRedirectToLogin"
+      ng-click="redirectToLogin(true)"
+    >
+      <span>
+        <i class="fa fa-fire"></i>
+        {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
+      </span>
+    </button>
+    <button
       id="close-finish-btn"
       ng-if="!hasNextElection"
       class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
-      ng-class="{'col-xs-offset-6 col-sm-offset-8': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
+      ng-class="{'col-xs-offset-6 col-sm-offset-8': hideDownloadBallot && !showRedirectToLogin, 'col-xs-offset-6 col-sm-offset-4': hideDownloadBallot && showRedirectToLogin}"
       ng-click="closeAndFinish(false, true)">
       <span ng-i18next="avBooth.closeWindow">
       </span>
@@ -132,7 +150,7 @@
       id="close-finish-btn"
       ng-if="hasNextElection"
       class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
-      ng-class="{'col-xs-offset-6 col-sm-offset-8': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
+      ng-class="{'col-xs-offset-6 col-sm-offset-8': hideDownloadBallot}"
       ng-click="goToNextElection()">
       <span ng-i18next="avBooth.goToNextElection">
       </span>
@@ -143,12 +161,27 @@
 <div avb-common-footer ng-if="!fixToBottom"></div>
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
+  <div class="container container-fixed visible-xs" ng-if="showRedirectToLogin">
+    <div class="actions actions-extra">
+      <button
+        id="redirect-to-login-btn"
+        class="btn btn-lg btn-opt-warn btn-plain col-xs-12"
+        ng-if="showRedirectToLogin"
+        ng-click="redirectToLogin(true)"
+      >
+        <span>
+          <i class="fa fa-fire"></i>
+          {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
+        </span>
+      </button>
+    </div>
+  </div>
   <div class="container container-fixed">
     <div class="actions">
       <button
         id="print-btn"
         class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
-        ng-if="election.presentation.extra_options.success_screen__hide_download_ballot_ticket !== true"
+        ng-if="!hideDownloadBallot"
         ng-click="downloadBallotTicket()">
         <span>
           <i class="fa fa-print"></i>
@@ -159,7 +192,7 @@
         id="close-finish-btn"
         ng-if="!hasNextElection"
         class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
-        ng-class="{'col-xs-offset-6 col-sm-offset-8': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
+        ng-class="{'col-xs-offset-6 col-sm-offset-8': hideDownloadBallot && !showRedirectToLogin, 'col-xs-offset-6 col-sm-offset-4': hideDownloadBallot && showRedirectToLogin}"
         ng-click="closeAndFinish(false, true)">
         <span ng-i18next="avBooth.closeWindow">
         </span>
@@ -168,7 +201,7 @@
         id="close-finish-btn"
         ng-if="hasNextElection"
         class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
-        ng-class="{'col-xs-offset-6 col-sm-offset-8': election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true}"
+        ng-class="{'col-xs-offset-6 col-sm-offset-8': hideDownloadBallot}"
         ng-click="goToNextElection()">
         <span ng-i18next="avBooth.goToNextElection">
         </span>
