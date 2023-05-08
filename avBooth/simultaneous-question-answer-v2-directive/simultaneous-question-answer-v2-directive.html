@@ -78,6 +78,7 @@
           type="text"
           class="form-control"
           autocomplete="off"
+          id="question_{{question.index}}_answer_{{answer.id}}"
           ng-i18next="[placeholder]avBooth.typeWriteInPlaceholder;[aria-label]avBooth.typeWriteInPlaceholder"
           av-debounce="500"
           ng-model="answer.text"
