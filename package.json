@@ -59,6 +59,7 @@
     "qrcode-generator": "^1.4.4"
   },
   "resolutions": {
+    "**/engine.io": "6.4.2",
     "**/async": "3.2.2",
     "**/shelljs": ">=0.8.5",
     "**/json-schema": ">=0.4.0",
