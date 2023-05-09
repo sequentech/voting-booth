@@ -371,12 +371,12 @@
 
     "busy": {
       "title": "Your ballot will be...",
-      "encryptedTitle": "encrypted",
-      "encryptedDescription": "so that nobody can know what options you chose",
-      "castTitle": "cast",
-      "castDescription": "using a secure channel and verifying your identity",
-      "anonymizedTitle": "anonymized",
-      "anonymizedDescription": "so that the tally does not reveal which way you voted",
+      "encryptedTitle": "Encrypted",
+      "encryptedDescription": "So that nobody can know what options you chose",
+      "castTitle": "Cast",
+      "castDescription": "Using a secure channel and verifying your identity",
+      "anonymizedTitle": "Anonymized",
+      "anonymizedDescription": "So that the tally does not reveal which way you voted",
       "description": "Your ballot is being encrypted so that nobody can know what options you chose"
     },
 
