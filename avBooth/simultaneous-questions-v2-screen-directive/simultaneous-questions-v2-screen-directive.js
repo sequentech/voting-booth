@@ -380,6 +380,9 @@ angular.module('avBooth')
           // all checked, next step is to uncheck
           if (numChecks >= maxNum) {
             scope.deselectAllCumulative(question, option);
+            question.deselectedAtLeastOnce = true;
+            option.selected = -1;
+            updateErrors();
           } else {
             // check the first unchecked checkbox
             var checkableIndex = scope.cumulativeChecks[question.title][option.id]
