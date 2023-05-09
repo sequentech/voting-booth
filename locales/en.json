@@ -282,6 +282,7 @@
       "downloadSubtitle": "You <strong>Ballot ID</strong> that appears at the top of the screen and your encrypted ballot below:",
       "tutorialListTitle": "<strong>2. Follow the steps on this tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">click here</a>, a new tab will open in your browser)",
       "auditWarning": "For security reason, when you audit your ballot, it need to be spoiled. To continue with the voting process, you need to click ‘<strong>Start Voting</strong>’ bellow.",
+      "startVoting": "Start Voting",
 
       "downloadHelpModal": {
         "header": "Copy the Encrypted Ballot",
