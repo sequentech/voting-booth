@@ -9,10 +9,10 @@
 
   <div class="success-intro">
     <div class="success-text">
-      <h3 class="success-title" >
+      <h1 class="success-title" >
         <span class="success-title-text" ng-i18next="avBooth.successTitle"></span>
         <i class="fa fa-lg fa-question-circle" ng-click="ballotCastHelp()"></i>
-      </h3>
+      </h1>
       <p class="success-subheader" ng-i18next="[html:i18next]avBooth.successSubheader"></p>
     </div>
   </div>
@@ -22,7 +22,7 @@
     ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
   >
     <div class="ballot-id-container">
-      <h4 class="ballot-id-title hidden-xs" ng-i18next="avBooth.successScreen.ballotId"></h4>
+      <h2 class="ballot-id-title hidden-xs" ng-i18next="avBooth.successScreen.ballotId"></h2>
       <div class="ballot-id-box">
         <i class="fa fa-check"></i>
         <a href="{{getBallotLocatorUrl()}}" target="{{getBallotLocatorTarget()}}">
@@ -36,7 +36,7 @@
     
     <div class="verify-and-links-divider">
       <div class="verify-container">
-        <h4 class="verify-ballot-title" ng-i18next="avBooth.successScreen.verifyBallotCastTitle"></h4>
+        <h2 class="verify-ballot-title" ng-i18next="avBooth.successScreen.verifyBallotCastTitle"></h2>
         <p class="verify-ballot-description" ng-i18next="avBooth.successScreen.verifyBallotCastDescription"></p>
       </div>
       <div class="links-container">

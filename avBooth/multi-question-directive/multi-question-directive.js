@@ -38,7 +38,7 @@ angular.module('avBooth')
       scope.getUrl = ErrorCheckerGeneratorService.hasUrl;
 
       scope.getTag = function(option) {
-        var url = scope.getUrl(option, "Tag");
+        var url = option && scope.getUrl(option.urls, "Tag");
         if (!url) {
           return null;
         }
@@ -48,7 +48,7 @@ angular.module('avBooth')
 
       scope.getGender = function(option)
       {
-        var url = scope.getUrl(option, "Gender");
+        var url = option && scope.getUrl(option.urls, "Gender");
         if (!url) {
           return null;
         }
