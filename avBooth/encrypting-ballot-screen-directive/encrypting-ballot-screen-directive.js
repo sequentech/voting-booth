@@ -44,29 +44,29 @@ angular.module('avBooth')
     scope.stepList = [
       {
         state: busyStateEnum[1],
-        centralImgSrc: 'booth/img/options.png'
+        centralImgSrc: 'booth/img/options-b.svg'
       },
       {
         state: busyStateEnum[0],
         title: 'encryptedTitle',
         description: 'encryptedDescription',
-        centralImgSrc: 'booth/img/cast.png'
+        centralImgSrc: 'booth/img/cast-b.svg'
       },
       {
         state: busyStateEnum[0],
         title: 'castTitle',
         description: 'castDescription',
-        centralImgSrc: 'booth/img/encrypted.png'
+        centralImgSrc: 'booth/img/encrypted-b.svg'
       },
       {
         state: busyStateEnum[0],
         title: 'anonymizedTitle',
         description: 'anonymizedDescription',
-        centralImgSrc: 'booth/img/anonymized1.png'
+        centralImgSrc: 'booth/img/anonymized1-b.svg'
       },
       {
         state: busyStateEnum[0],
-        centralImgSrc: 'booth/img/anonymized2.png'
+        centralImgSrc: 'booth/img/anonymized2-b.svg'
       }
     ];
 
