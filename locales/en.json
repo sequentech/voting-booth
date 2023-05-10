@@ -78,13 +78,13 @@
     },
     "hashForVoteNotCastModal": {
       "header": "Vote has not been cast",
-      "body": "This is your ballot tracker id, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the ballot tracker id at this stage is to allow you to audit the correctness of the encrypted ballot before casting it.",
+      "body": "This is your Ballot Tracker ID, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the Ballot Tracker ID at this stage is to allow you to audit the correctness of the encrypted ballot before casting it.",
       "confirm": "I accept my vote has NOT been cast",
       "cancel": "Cancel"
     },
     "successDemoVoteNotCastModal": {
       "header": "Demo voting booth",
-      "body": "This is a demo voting booth.<strong>Your vote has NOT been cast</strong>. This voting booth is for demonstration purposes only.<br><br>Thus, the ballot tracker will not work. To cast a real vote, please follow the appropiate authentication procedure.",
+      "body": "This is a demo voting booth.<strong>Your vote has NOT been cast</strong>. This voting booth is for demonstration purposes only.<br><br>Thus, the Ballot Tracker will not work. To cast a real vote, please follow the appropiate authentication procedure.",
       "confirm": "I accept my vote has NOT been cast",
       "cancel": "Cancel"
     },
@@ -99,7 +99,7 @@
         "confirm": "OK"
       },
       "ballotIdHelpModal": {
-        "header": "Information: Ballot Id",
+        "header": "Information: Ballot ID",
         "body": "The Ballot ID is a code that allows you to find your ballot in the ballot box, this ID is unique and doesn't contain information about your selections.",
         "confirm": "OK"
       }
@@ -266,12 +266,12 @@
     "cannotSelectAll": "To select all those options you have to desect some first",
     "totalsQuestionColumn": "(__selected__ of __count__ selected)",
 
-    "reviewBallotHashText": "Your ballot tracker id is: <strong>__ballotHash__</strong>",
+    "reviewBallotHashText": "Your Ballot Tracker ID is: <strong>__ballotHash__</strong>",
     "auditTheBallot": "Audit ballot",
 
     "auditBallotTitle": "Audit your Ballot",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>The ballot tracker id is: <code>__ballotHash__</code></p><p><strong>The audit of the ballot requires some technical knowledge. If you don't have it, you can simply start again the voting process clicking in the button below.</strong></p><p>To verify your ballot you need to:</p><ol><li>Copy and save to a file your ballot (click to select):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Follow the steps in <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">this tutorial to verify that the ballot was correctly encrypted</a>.</li></ol><p>For security reasons, if you audit the ballot, it needs to be spoiled. To continue the voting process, you need to start from the begining.</p>",
+    "auditBallotText": "<p>The Ballot Tracker ID is: <code>__ballotHash__</code></p><p><strong>The audit of the ballot requires some technical knowledge. If you don't have it, you can simply start again the voting process clicking in the button below.</strong></p><p>To verify your ballot you need to:</p><ol><li>Copy and save to a file your ballot (click to select):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Follow the steps in <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">this tutorial to verify that the ballot was correctly encrypted</a>.</li></ol><p>For security reasons, if you audit the ballot, it needs to be spoiled. To continue the voting process, you need to start from the begining.</p>",
     "auditStartAgain": "Start voting from the begining",
 
     "auditBallotScreen": {
@@ -305,7 +305,7 @@
     "thisisADemoNotification": "<strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
 
     "thisisAPreviewNotification": "<strong>Warning!</strong> Preview voting booth, votes issued from this booth will not count.",
-    "successBallotHash": "You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>You can use your ballot tracker to verify that your ballot has been correctly cast <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">using this address</a></strong>.",
+    "successBallotHash": "You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The Ballot Tracker of your ballot is:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>You can use your Ballot Tracker to verify that your ballot has been correctly cast <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">using this address</a></strong>.",
     "qrCodeAlt": "QR Code",
     "successBallotQrCode": "You can verify your ballot has been correctly cast using the following QR Code:",
     "successNoBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
@@ -314,14 +314,14 @@
     "ballotTicket": {
       "h3": "Vote confirmation",
       "h4": "Your vote has been cast correctly. This document justifies its issuance.",
-      "tracker": "Ballot tracker:",
+      "tracker": "Ballot Tracker:",
       "title": "Election title:",
       "id": "Election Id:",
       "voterId": "Voter Id:",
       "created": "Ballot registration date:",
-      "link": "Ballot tracker link:",
+      "link": "Ballot Tracker Link:",
       "linkClickHere": "click here",
-      "qrCode": "You can use the following QR Code to access the ballot tracker link:",
+      "qrCode": "You can use the following QR Code to access the Ballot Tracker Link:",
       "isDemo": "This vote receipt was generated in a demo voting booth. The ballot was NOT cast."
     },
     "relatedLinksText": "For more information about this election:",
