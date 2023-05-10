@@ -44,29 +44,29 @@ angular.module('avBooth')
     scope.stepList = [
       {
         state: busyStateEnum[1],
-        centralImgSrc: 'booth/img/options-b.svg'
+        centralImgSrc: 'booth/img/options.svg'
       },
       {
         state: busyStateEnum[0],
         title: 'encryptedTitle',
         description: 'encryptedDescription',
-        centralImgSrc: 'booth/img/cast-b.svg'
+        centralImgSrc: 'booth/img/cast.svg'
       },
       {
         state: busyStateEnum[0],
         title: 'castTitle',
         description: 'castDescription',
-        centralImgSrc: 'booth/img/encrypted-b.svg'
+        centralImgSrc: 'booth/img/encrypted.svg'
       },
       {
         state: busyStateEnum[0],
         title: 'anonymizedTitle',
         description: 'anonymizedDescription',
-        centralImgSrc: 'booth/img/anonymized1-b.svg'
+        centralImgSrc: 'booth/img/anonymized1.svg'
       },
       {
         state: busyStateEnum[0],
-        centralImgSrc: 'booth/img/anonymized2-b.svg'
+        centralImgSrc: 'booth/img/anonymized2.svg'
       }
     ];
 
@@ -88,11 +88,11 @@ angular.module('avBooth')
     scope.isImgOneTop = scope.checkIsImgOneTop();
     var busyImageObj = {
        'booth/img/loading.gif': scope.stepImg,
-       'booth/img/options.png': new Image(),
-       'booth/img/cast.png': new Image(),
-       'booth/img/encrypted.png': new Image(),
-       'booth/img/anonymized1.png': new Image(),
-       'booth/img/anonymized2.png': new Image()
+       'booth/img/options.svg': new Image(),
+       'booth/img/cast.svg': new Image(),
+       'booth/img/encrypted.svg': new Image(),
+       'booth/img/anonymized1.svg': new Image(),
+       'booth/img/anonymized2.svg': new Image()
     };
     var busyImageKeys = Object.keys(busyImageObj);
 
