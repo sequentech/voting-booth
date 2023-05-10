@@ -103,7 +103,7 @@
         "body": "The Ballot ID is a code that allows you to find your ballot in the ballot box, this ID is unique and doesn't contain information about your selections.",
         "confirm": "OK"
       }
-    }, 
+    },
     "errors": {
       "question-lambda-invalid": "Question '__qtitle__': Invalid vote.",
       "question-lambda-blank": "Question '__qtitle__': selected zero options. Blank vote.",
@@ -115,8 +115,8 @@
       "question-lambda-writeins-not-voted": "Question '__qtitle__': write-ins provided but not voted: __write_ins__. Atypical.",
       "question-lambda-writeins-not-provided": "Question '__qtitle__': selected some write-ins but no name provided. Atypical.",
 
-      "question-lambda-max-tag": "You cannot select more options of type __tagName__ (máximo __max__). To select one, please deselect another first.",
-      "question-lambda-max-notag": "You cannot select more options not of type __tagName__ (máximo __max__). To select one, please deselect another first.",
+      "question-lambda-max-tag": "You cannot select more options of type __tagName__ (maximum __max__). To select one, please deselect another first.",
+      "question-lambda-max-notag": "You cannot select more options not of type __tagName__ (maximum __max__). To select one, please deselect another first.",
       "question-lambda-max-reached-singular": "Remember that you can only choose one option",
       "question-lambda-max-reached": "Maximum number of selected options reached (__max__). To select an option, deselect another first."
     },
@@ -279,7 +279,7 @@
       "subtitle": "To verify your ballot you will need. to follow the bellow steps:",
       "downloadListTitle": "1. Download or copy the following information",
       "downloadButton": "Download",
-      "downloadSubtitle": "You <strong>Ballot ID</strong> that appears at the top of the screen and your encrypted ballot below:",
+      "downloadSubtitle": "Your <strong>Ballot ID</strong> that appears at the top of the screen and your encrypted ballot below:",
       "tutorialListTitle": "<strong>2. Follow the steps on this tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">click here</a>, a new tab will open in your browser)",
       "auditWarning": "For security reason, when you audit your ballot, it need to be spoiled. To continue with the voting process, you need to click ‘<strong>Start Voting</strong>’ bellow.",
       "startVoting": "Start Voting",
