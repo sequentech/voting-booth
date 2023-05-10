@@ -21,7 +21,7 @@
           parent
           ng-if="!!answer.urlsObject['Image URL'] && !isBlankVoteAnswer"
           ng-src="{{answer.urlsObject['Image URL']}}"
-          alt="{{answer.text}}" 
+          aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
         />
       </div>
 
