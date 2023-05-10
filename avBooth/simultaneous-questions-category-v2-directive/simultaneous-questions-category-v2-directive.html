@@ -63,7 +63,7 @@
                 toggle-select-item-cumulative="toggleSelectItemCumulative"
                 cumulative-checks="cumulativeChecks"
                 read-only="question.are_candidates_read_only"
-                hide-check="!question.are_lists_checkable"
+                hide-check="!question.are_lists_checkable && question.tally_type !== 'cumulative'"
             ></div>
         </div>
     </div>
