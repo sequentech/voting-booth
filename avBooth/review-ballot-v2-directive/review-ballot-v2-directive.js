@@ -123,6 +123,32 @@ angular.module('avBooth')
       {
         return ErrorCheckerGeneratorService.getErrorChecker(checkerTypeFlag, scope.invalidVoteAnswer);
       }
+
+      // Object to store check selected by question. 
+      scope.cumulativeChecks = { };
+      scope.election.questions.forEach(
+        function(question) 
+        {
+          var num = question.extra_options.cumulative_number_of_checkboxes;
+          scope.cumulativeChecks[question.title] = {};
+          question.answers.forEach(
+            function(answer)
+            {
+              scope.cumulativeChecks[question.title][answer.id] = Array
+                .apply(
+                  null, 
+                  Array(num)
+                )
+                .map(
+                  function (_value, index) 
+                  {
+                    return answer.selected >= index;
+                  }
+                );
+            }
+          );
+        }
+      );
       /**
        * Updates scope.errors with the errors found in scope.groupQuestions
        */
