@@ -67,10 +67,14 @@ angular.module('avBooth')
       {
         state: busyStateEnum[0],
         centralImgSrc: 'booth/img/anonymized2.svg'
+      },
+      {
+        state: busyStateEnum[0],
+        centralImgSrc: 'booth/img/finished.svg'
       }
     ];
 
-    scope.bulletList = scope.stepList.slice(1,-1);
+    scope.bulletList = scope.stepList.slice(1,-2);
 
     var updateTimespan = 
       ConfigService.minLoadingTime / (scope.stepList.length);
@@ -92,7 +96,8 @@ angular.module('avBooth')
        'booth/img/cast.svg': new Image(),
        'booth/img/encrypted.svg': new Image(),
        'booth/img/anonymized1.svg': new Image(),
-       'booth/img/anonymized2.svg': new Image()
+       'booth/img/anonymized2.svg': new Image(),
+       'booth/img/finished.svg': new Image()
     };
     var busyImageKeys = Object.keys(busyImageObj);
 
@@ -177,11 +182,13 @@ angular.module('avBooth')
         scope.stepList[scope.fakeStepIndex].state = busyStateEnum[1];
         updateDomImages();
         scope.$apply();
+        /*
         if (scope.fakeStepIndex + 1 < scope.stepList.length || !finishedRealEncryption) {
           $timeout(fakeStateUpdate, updateTimespan);
         } else {
           $timeout(fakeStateUpdate, updateTimespan/5);
-        }
+        }*/
+        $timeout(fakeStateUpdate, updateTimespan);
       } else {
         updateDomImages();
         scope.$apply();
@@ -241,7 +248,7 @@ angular.module('avBooth')
       }
 
       $timeout(encryptBallot, delay);
-      $timeout(fakeStateUpdate, updateTimespan/5);
+      $timeout(fakeStateUpdate, updateTimespan);
     }
 
     return {
