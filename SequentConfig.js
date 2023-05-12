@@ -51,16 +51,20 @@ var SequentConfigData = {
 
   // For admins:
   // Allow editing the json description of the election before creating it
-  // Allowed values: true|false
+  // Allowed values: true | false
   allowEditElectionJson: true,
 
   // Allow admin users registration
-  // Allowed values: true|false
+  // Allowed values: true | false
   allowAdminRegistration: false,
 
   // show the documentation links after successfully casting a vote
-  // allowed values: true| false
+  // allowed values: true | false
   showDocOnVoteCast: false,
+
+  // Prevents site translation using the translation=on html attribute
+  // allowed values: true | false
+  preventSiteTranslation: false,
 
   resourceUrlWhitelist: [
     // Allow same origin resource loads.

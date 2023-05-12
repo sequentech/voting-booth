@@ -225,6 +225,9 @@ module.exports = function (grunt) {
         options: {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
+            {selector:'head',html:'<link class="favicon" rel="icon" href="/booth/img/cropped-FAV-6-32x32.png" sizes="32x32" />'},
+            {selector:'head',html:'<link class="favicon" rel="icon" href="/booth/img/cropped-FAV-6-192x192.png" sizes="192x192" />'},
+            {selector:'head',html:'<link class="favicon" rel="apple-touch-icon" href="/booth/img/cropped-FAV-6-180x180.png" />'},
             {selector:'body',html:'<%= variables.booth_html_body_include %>'},
             {selector:'body',html:'<script src="/booth/libnocompat-vmaster.min.js"></script>'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/sequentech/voting-booth/blob/master/README.md -->'},
@@ -280,6 +283,11 @@ module.exports = function (grunt) {
             "plugins/**/locales/es.json", 
             "node_modules/common-ui/dist/locales/es.json"
           ],
+          "dist/locales/fr.json": [
+            "locales/fr.json", 
+            "plugins/**/locales/fr.json", 
+            "node_modules/common-ui/dist/locales/fr.json"
+          ],
           "dist/locales/gl.json": [
             "locales/gl.json", 
             "plugins/**/locales/gl.json", 
@@ -332,6 +340,7 @@ module.exports = function (grunt) {
 
           "dist/locales/moment/en.js": "node_modules/moment/locale/en-gb.js",
           "dist/locales/moment/es.js": "node_modules/moment/locale/es.js",
+          "dist/locales/moment/fr.js": "node_modules/moment/locale/fr.js",
           "dist/locales/moment/gl.js": "node_modules/moment/locale/gl.js",
           "dist/locales/moment/ca.js": "node_modules/moment/locale/ca.js"
         }
