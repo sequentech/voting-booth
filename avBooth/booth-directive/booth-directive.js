@@ -332,8 +332,8 @@ angular.module('avBooth')
       function mapQuestion(question) {
         if  (question.layout === "simultaneous-questions") {
           return {
-            state: stateEnum.simultaneousQuestionsScreen,
-            sorted: false,
+            state: stateEnum.simultaneousQuestionsV2Screen,
+            sorted: true,
             ordered: false
           };
         } else if  (question.layout === "simultaneous-questions-v2") {
