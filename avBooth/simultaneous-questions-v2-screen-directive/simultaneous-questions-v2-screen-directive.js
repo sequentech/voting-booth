@@ -32,7 +32,7 @@ angular.module('avBooth')
       CheckerService,
       ErrorCheckerGeneratorService
     ) {
-      var simultaneousQuestionsLayout = "simultaneous-questions-v2";
+      var simultaneousQuestionsLayouts = ["simultaneous-questions-v2", "simultaneous-questions"];
 
 
       var link = function(scope, _element, _attrs)
@@ -43,7 +43,7 @@ angular.module('avBooth')
           scope.election.questions,
           function (question) 
           {
-            return question.layout === simultaneousQuestionsLayout;
+            return simultaneousQuestionsLayouts.includes(question.layout);
           }
         );
 
