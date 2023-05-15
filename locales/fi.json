@@ -21,7 +21,7 @@
   },
   "avCommon": {
     "cancel": "Keskeytä",
-    "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "poweredBy": "Powered by <a href=\"__url__\" target=\"_blank\">__name__</a>",
     "shareLink": "¡Twiittaa tästä!",
     "votingSystem": "Äänestysjärjestelmä",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
@@ -154,7 +154,7 @@
     "totalsQuestionColumn": "(Valittuna __selected__ yhteensä __count__ vaihtoehdosta)",
 
     "reviewBallotHashText": "Äänesi seurantakoodi on: __ballotHash__",
-    "auditTheBallot": "(Tee äänentarkistus)",
+    "auditTheBallot": "Tee äänentarkistus",
 
     "auditBallotTitle": "Tarkasta antamasi ääni",
     "auditBallotSubtitle": "",
@@ -162,7 +162,7 @@
     "auditStartAgain": "Aloita äänestys uudelleen alusta",
 
 
-    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Tämä on äänestyksen esittelysivu. Täällä annettuja ääniä ei lasketa.",
+    "thisisADemoNotification": "<strong>Warning!</strong> Tämä on äänestyksen esittelysivu. Täällä annettuja ääniä ei lasketa.",
     "successBallotHash": "Äänesi on tallennettu <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-palvelun sähköiseen vaaliuurnaan. Äänesi tarkistusnunumero:<br/><br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Voit käyttää tarkistusnumeroa varmistaaksi, että äänesi on varmasti <strong><a href=\"__ballotLocatorUrl__\" target=\"_blank\">tallennettu palvelimelle tässä osoitteessa</a></strong>.",
     "successBallotQrCode": "Voit varmistaa, että äänesi on rekisteröity, seuraavalla QR-koodilla:",
     "successNoBallotHash": "Äänesi on tallennettu <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-palvelun sähköiseen vaaliuurnaan.",
@@ -202,6 +202,7 @@
       "header": "Valitse useampi vaihtoehto",
       "body": "Et ole valinnut tarpeeksi montaa vaihtoehtoa tähän kysymykseen:",
       "question": "Kysymys '__title__': teit __selected__ valintaa, mutta siinä edellytetään vähintään __min__ valintaa"
-    }
+    },
+    "clearSelection": "Tyhjennä valinta"
   }
 }

@@ -22,19 +22,6 @@
 }
 
 [av-booth], .basic-booth-layout {
-  .btn-success {
-    background-color: @av-primary-contrast;
-  }
-
-  .logo-img {
-    max-height: 27px;
-    max-width: 400px;
-    width: auto;
-  }
-
-  .btn-success:hover {
-    background-color: darken(@av-primary-contrast, 25%);
-  }
 
   .avb-content > .container {
     padding: 0;
@@ -168,20 +155,6 @@
     }
   }
 
-  .affix-bottom {
-    position: fixed;
-    background-color: white;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .warning-demo {
-    background-color: @btn-warning-bg;
-    color: #4a4a4a;
-    padding-top: 10px;
-  }
-
   .warnings {
     .text-brand-warning {
       display: inline-block;
@@ -211,6 +184,209 @@
         background-color: @av-primary-contrast !important;
       }
     }
+  }
+
+  .input-warn {
+    display: block;
+
+    .warn-box {
+      background-color: @av-error-bg;
+      padding: 17px;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      border-radius: 4px;
+      line-height: 19px;
+    }
+
+    .glyphicon-warning-sign {
+      margin-top: 3px;
+    }
+  }
+
+  .sticky-top {
+    display: flex;
+    align-items: flex-end;
+    position: sticky;
+    height: 48px;
+    z-index: 8;
+    top: 50px;
+    background: @bg-primary;
+    margin-left: -10px;
+    padding-left: 10px;
+    margin-right: -10px;
+    padding-right: 10px;
+  }
+
+  .sticky-top-alt {
+    top: 50px;
+    height: 72px;
+    @media(max-width: @screen-md-min) {
+      top: 92px;
+      height: 48px;
+    }
+  }
+
+  .sticky-padding {
+    width: 100%;
+    position: sticky;
+    height: 20px;
+    background-color: @bg-primary;
+    top: 55px;
+  }
+
+  .actions-extra {
+    margin-top: 19px;
+    margin-bottom: 2px !important;
+  }
+
+  .btn-lg {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .actions {
+    margin-bottom: 19px;
+    display: flex;
+    gap: 85px;
+    justify-content: space-between;
+
+    .btn-lg {
+      border-radius: 4px;
+      flex-basis: 200px;
+      display: flex;
+      justify-content: center;
+
+      @media(max-width: @screen-xs-max) {
+        flex-basis: unset;
+      }
+
+      span {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    .fa {
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+
+    @media(max-width: @screen-sm-max) {
+      gap: 15px;
+
+      .btn-lg {
+        font-size: unset;
+        line-height: unset;
+      }
+    }
+
+
+    @media(max-width: @screen-xs-max) {
+      gap: 2px;
+
+      .btn-lg {
+        border-radius: unset;
+      }
+    }
+  }
+
+  .btn.btn-warning {
+      background-color: @error-primary-color;
+      color: @bg-primary;
+      border-color: unset;
+
+      &:hover, &:focus {
+          background-color: @av-primary-contrast;
+          color: @bg-primary;
+          border-color: unset;
+      }
+  }
+
+  .question-title {
+    margin-bottom: 20px;
+  }
+
+
+  @media(max-width: @screen-xs-max) {
+    .container.container-fixed {
+      padding-right: 0;
+      padding-left: 0;
+
+      .actions {
+        margin-bottom: 1px;
+      }
+    }
+  }
+
+  .election-container {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .election-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 33px;
+    justify-content: center;
+  }
+
+  .election-description {
+    color: @grey-darker;
+  }
+
+  .election-title, .question-title {
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .election-description, .question-description {
+    text-align: left;
+  }
+
+  .text-warning.input-error.error-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 8px;
+    max-height: 164px;
+    overflow-y: auto;
+  }
+
+  .sticky-error {
+    position: sticky;
+    top: 90px;
+    z-index: 8;
+    background: @bg-primary;
+  }
+
+  .flex-col-12 {
+    flex-basis: 100%;
+  }
+  .flex-col-6 {
+      flex-basis: calc(50% - 8px);
+  }
+  .flex-col-4 {
+      flex-basis: calc(33.33% - 16px);
+  }
+  .flex-col-3 {
+      flex-basis:calc(25% - 24px);
+  }
+
+  @media(max-width: @screen-sm-max) {
+      .flex-col-12, .flex-col-6, .flex-col-4, .flex-col-3 {
+              flex-basis: 100%;
+      }
+  }
+
+  .categories {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 }
 

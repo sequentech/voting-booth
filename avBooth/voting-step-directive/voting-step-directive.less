@@ -1,0 +1,74 @@
+/**
+ * This file is part of voting-booth.
+ * Copyright (C) 2023 Sequent Tech Inc <legal@sequentech.io>
+
+ * voting-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * voting-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+[avb-voting-step] {
+    width: 100%;
+    padding: 10px 0;
+
+    .voting-steps {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .step-number {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+    }
+
+    .step-number-selected {
+        background: @brand-success;
+        color: @av-primary;
+    }
+
+    .step-number-unselected {
+        color: @brand-success;
+        opacity: 50%;
+        stroke-opacity: 50%;
+        border: 1px solid @brand-success;
+    }
+
+    .step-number-red {
+        background: @error-primary-color;
+        color: @av-primary;
+    }
+
+    .step-separator {
+        border: 1px dashed @av-secondary;
+        flex: none;
+        flex-grow: 1;
+        height: 0px;
+    }
+
+    .a-voting-step {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .step-text-unselected {
+        opacity: 50%;
+    }
+}

@@ -28,6 +28,8 @@ angular.module('avBooth')
       if (_.isObject(scope.authEvent)) {
         scope.extra.authEvent = scope.authEvent;
       }
+
+      scope.fixToBottom = scope.checkFixToBottom();
     }
     return {
       restrict: 'AE',

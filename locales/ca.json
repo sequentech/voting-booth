@@ -19,7 +19,7 @@
   },
   "avCommon": {
     "cancel": "Cancela",
-    "poweredBy": "Funciona amb <strong>__name__</strong>",
+    "poweredBy": "Funciona amb <a href=\"__url__\" target=\"_blank\">__name__</a>",
     "shareLink": "¡Tuitgeu aquesta votació!",
     "votingSystem": "Sistema de votació",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
@@ -30,22 +30,50 @@
       "body": "Està ingressant a una cabina de votació de demostració. <strong>El seu vot NO s'emetrà</strong>. Aquesta cabina de votació només té finalitats demostratius.",
       "confirm": "Accepto que el meu vot NO s'emetrà"
     },
+    "logoutWarnModal": {
+      "header": "La sessió caducarà",
+      "body": "La teva sessió caducarà. En un minut seràs redirigit si no has acabat d'emetre el teu vot.",
+      "confirm": "Tancar"
+    },
+    "confirmLogoutModal": {
+      "header": "Estàs segur que vols tancar la sessió?",
+      "body": "Estàs a punt de tancar aquesta aplicació. Aquesta acció no es pot desfer.",
+      "confirm": "Tancar sessió",
+      "cancel": "Cancela"
+    },
     "showPdf": {
       "showPdfButton": "Mostrar PDF"
     },
     "hashForVoteNotCastModal": {
       "header": "Vot no emès",
-      "body": "Està a punt de copiar el localitzador de el vot, però <strong>el seu vot encara no s'ha emès</strong>. Si voleu buscar el localitzador de el vot, no el trobarà. Qual la raó per la que vam mostrar el localitzador de l'vot en aquest moment és perquè pugui auditar la correcció de l'vot xifrat abans d'emetre'l. Si aquesta és la raó per la qual vol copiar el localitzador de l'vot, procedeixi a copiar-lo i després auditi el seu vot.",
+      "body": "Està a punt de copiar el Localitzador de el Cot, però <strong>el seu vot encara no s'ha emès</strong>. Si voleu buscar el Localitzador de el Vot, no el trobarà. Qual la raó per la que vam mostrar el Localitzador de l'Vot en aquest moment és perquè pugui auditar la correcció de l'vot xifrat abans d'emetre'l. Si aquesta és la raó per la qual vol copiar el Localitzador de l'Vot, procedeixi a copiar-lo i després auditi el seu vot.",
       "confirm": "Accepto que el meu vot NO ha estat emès",
       "cancel": "Cancel"
     },
     "successDemoVoteNotCastModal": {
       "header": "Cabina de votació de demo",
-      "body": "Aquesta és una cabina de votació de demostració. <strong>El seu vot NO s'ha emès</strong>. Aquesta cabina de votació només té finalitats demostratius. Qual per tant, el localitzador del seu vot no el trobarà. Per emetre el seu vot, seguiu el procediment d'autenticació corresponent.",
+      "body": "Aquesta és una cabina de votació de demostració. <strong>El seu vot NO s'ha emès</strong>. Aquesta cabina de votació només té finalitats demostratius. Qual per tant, el Localitzador del seu Vot no el trobarà. Per emetre el seu vot, seguiu el procediment d'autenticació corresponent.",
       "confirm": "Accepto que el meu vot NO es va emetre",
       "cancel": "Cancel"
     },
+    "successScreen": {
+      "verifyBallotCastTitle": "Comproveu que el vostre vot s'ha emès",
+      "verifyBallotCastDescription": "Podeu comprovar en tot moment que la vostra papereta s'ha emès correctament amb el següent codi QR:",
+      "ballotId": "Localitzador del Vot",
+      "printBallotBtn": "Imprimir",
+      "ballotCastHelpModal": {
+        "header": "Informació: Pantalla de confirmació",
+        "body": "Aquesta pantalla mostra que el vostre vot s'ha emès correctament. La informació proporcionada en aquesta pàgina us permet verificar que la papereta s'ha emmagatzemat a la urna, aquest procés es pot executar en qualsevol moment durant el període de votació i després que l'elecció s'hagi tancat.",
+        "confirm": "D'acord"
+      },
+      "ballotIdHelpModal": {
+        "header": "Informació: Localitzador del Vot",
+        "body": "El Localitzador de la Papereta de Vot és un codi que us permet trobar la vostra papereta a l'urna, aquest localitzador és únic i no conté informació sobre les vostres seleccions.",
+        "confirm": "D'acord"
+      }
+    },
     "errors": {
+      "question-lambda-invalid": "Votació '__qtitle__': Vot invàlid.",
       "question-lambda-blank": "Votació '__qtitle__': va seleccionar 0 candidatures. Vot en blanc.",
       "question-lambda-min": "Votació '__qtitle__': va seleccionar __num_selected__ candidatures, menys que el mínim de __min__. Vot invàlid.",
       "question-lambda-max": "Votació '__qtitle__': va seleccionar __num_selected__ candidaturas, más que el máximo de __max__. Vot invàlid.",
@@ -53,7 +81,12 @@
       "question-lambda-repeated-writeins": "Votació '__qtitle__': noms d'escriptura repetits. Vot invàlid.",
       "question-lambda-writein-length": "Votació '__qtitle__': noms d'escriptura superades en __extra_bytes__ el màxim de __max__ caràcters. Requereix una reparació.",
       "question-lambda-writeins-not-voted": "Votació '__qtitle__': noms d'escriptura proporcionades però no votades: __write_ins__. Atípic.",
-      "question-lambda-writeins-not-provided": "Votació '__qtitle__': ha seleccionat alguns noms d'escriptura però no s'ha proporcionat cap nom. Atípic."
+      "question-lambda-writeins-not-provided": "Votació '__qtitle__': ha seleccionat alguns noms d'escriptura però no s'ha proporcionat cap nom. Atípic.",
+
+      "question-lambda-max-tag": "No pot seleccionar més opcions del tipus __tagName__ (màxim __max__). Per seleccionar una, anul·le primer la selecció d'una altra.",
+      "question-lambda-max-notag": "No pot seleccionar més opcions que no siguin del tipus __tagName__ (màxim __max__). Per seleccionar una, anul·le primer la selecció d'una altra.",
+      "question-lambda-max-reached-singular": "Recordi que només pot triar una opció",
+      "question-lambda-max-reached": "Nombre màxim d'opcions seleccionades assolit (__max__). Per seleccionar una opció, deseleccioni primer una altra."
     },
     "legal": {
         "title": "Termes legals",
@@ -61,7 +94,7 @@
     },
     "instructionsTitle": "Instruccions",
     "goToNextElection": "Anar a la següent votació",
-    "closeWindow": "Finalitzar i tancar",
+    "closeWindow": "Finalitzar",
     "confirmAuditBallot": {
       "header": "Realment vols auditar la teva papereta?",
       "body": "L'auditoria de la papereta l'invalidarà i hauràs d'iniciar el procés de votació de nou si desitges emetre el teu vot. El procés d'auditoria de la papereta permet verificar que està codificada correctament. Fer aquest procés requereix que uns coneixements tècnics importants, pel que no es recomana si no saps el que estàs fent. <br/> <br/> <strong> Si el que desitja és emetre el seu vot, en <u>Cancel·la</u> per tornar a la pantalla de revisió de votació. </strong>",
@@ -72,6 +105,13 @@
       "body": "Algunes de les respostes poden fer que la papereta en una o més preguntes no sigui vàlida o en blanc:",
       "continue": "Acceptar i continuar",
       "cancel": "Tornar i revisar"
+    },
+    "votingSteps": {
+      "electionList": "Llista de Votacions",
+      "ballot": "Papereta",
+      "review":  "Revisió",
+      "confirmation": "Confirmació",
+      "audit": "Auditar"
     },
     "planchaSelect": "seleccionar-ho tot",
     "planchaDeselect": "deseleccionar-ho tot",
@@ -115,7 +155,7 @@
     "numOptionsSelected": "__count__ opcions seleccionades.",
     "numOptionsSelected_plural": "__count__ opcions seleccionades.",
     "noOptionsSelected": "Cap opció seleccionada.",
-    "numOptionsLimits": "Seleccioneu entre __min__ i __max__ opcions.",
+    "numOptionsLimits": "Seleccioneu <b>entre __min__ i __max__ opcions</b>.",
     "filterOptionsPlaceholder": "filtra..",
     "noResults": "el filtre no ha produït resultats.",
     "numSelectedOptionsSmall": "__count__ opció seleccionada",
@@ -124,7 +164,6 @@
     "selectMoreOpts_plural": "Heu de seleccionar almenys __min__ opcions.",
     "maxSelectedLimitReached": "No podeu seleccionar més opcions (màxim __max__). Si voleu canviar el vostre vot, primer heu de deseleccionar la vostra primera elecció.",
     "maxSelectedLimitReached_singular": "Recordeu que només podeu triar una opció",
-    "maxSelectedTagLimitReached": "No podeu seleccionar més opcions de tipo __tagName__ (màxim __max__). Per seleccionar una, deseleccioneu-ne una altra primer.",
     "maxSelectedTagLimitReached": "No podeu seleccionar més opcions que no siguin __tagName__ (màxim __max__). Per seleccionar-ne una, deseleccioneu-ne una altra primer",
     "alreadySelectedDocumentType": "No podeu seleccionar dos documents del mateix tipus, desseleccioneu-los primer abans.",
     "alreadySelectedPack": "Heu seleccionat una opció vinculada a altres documents. No és possible seleccionar-ho de forma aïllada.",
@@ -154,8 +193,8 @@
     "statusVerifyingQuestion": "Verificant el xifrat de les respostes a la pregunta __questionNum__, sisplau espereu (__percentage__% completat)",
     "sendingBallot": "Enviant la papereta xifrada al servidor, sisplau espereu (__percentage__% completat)",
 
-    "successTitle": "Vot emès amb èxit",
-    "successSubheader": "Heu emès correctament el vostre vot i queda custodiat per una urna electrònica",
+    "successTitle": "El seu vot ha estat emès",
+    "successSubheader": "El codi de confirmació que apareix a continuació verifica que <strong>el seu vot s'ha emès correctament</strong>. Pot utilitzar aquest codi per verificar que el seu vot ha estat comptabilitzat.",
 
     "completePacksTitle": "Paquets complets",
     "listOfDraftDocuments": "Documents (cliqui per veure'ls)",
@@ -187,24 +226,50 @@
 
     "castOrCancelTitle": "Envia el vot",
     "castOrCancelSubtitle": "El seu vot està xifrat, ja podeu enviar-lo a l'urna electrònica perquè sigui degudamet registrat. Alternativament, podeu auditar que hagi estat xifrat correctament.",
-    "reviewBallotHashText": "El localitzador del seu vot és: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "(Auditi el vot)",
+    "reviewBallotHashText": "El Localitzador del seu Vot és: <strong>__ballotHash__</strong>",
+    "auditTheBallot": "Auditi vot",
 
     "auditBallotTitle": "Auditi el vot",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>El localitzador del vostre vot és: <code>__ballotHash__</code></p><p><strong>L'auditoria del vot requereix certs coneixements tècnics. Si no els teniu, cal començar de nou el procés d'escollir  l'opció del vostre vot fent clic a baix</strong>.</p><p>Per verificar el vostre vot, necessiteu:</p><ol><li>Copieu i guardeu en un fitxer el vot. Per seleccionar totes aquestes dades, cliqueu sobre la part grisa, el primer codi és el localitzador :<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguiu els passos <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">d'aquest tutorial (CLIQUEU AQUÍ) per verificar que el vot ha estat xifrat correctament</a>.</li></ol><p>Per raons de seguretat, en auditar el vot, el localitzador ha de ser rebutjat. Per continuar el procés de vot, heu de començar el procés de nou.</p>",
+    "auditBallotText": "<p>El Localitzador del vostre Vot és: <code>__ballotHash__</code></p><p><strong>L'auditoria del vot requereix certs coneixements tècnics. Si no els teniu, cal començar de nou el procés d'escollir  l'opció del vostre vot fent clic a baix</strong>.</p><p>Per verificar el vostre vot, necessiteu:</p><ol><li>Copieu i guardeu en un fitxer el vot. Per seleccionar totes aquestes dades, cliqueu sobre la part grisa, el primer codi és el localitzador :<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguiu els passos <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">d'aquest tutorial (CLIQUEU AQUÍ) per verificar que el vot ha estat xifrat correctament</a>.</li></ol><p>Per raons de seguretat, en auditar el vot, el localitzador ha de ser rebutjat. Per continuar el procés de vot, heu de començar el procés de nou.</p>",
     "auditStartAgain": "Comenceu de nou el procés de vot",
+    "auditBallotScreen": {
+      "title": "Audita la teva papereta",
+      "subtitle": "Per verificar la teva papereta hauràs de seguir els següents passos:",
+      "downloadListTitle": "1. Descarrega o copia la següent informació",
+      "downloadButton": "Descarregar",
+      "downloadSubtitle": "El teu <strong>Localitzador de vot</strong> que apareix a la part superior de la pantalla i la teva papereta encriptada a continuació:",
+      "tutorialListTitle": "<strong>2. Segueix els passos d'aquest tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">fes clic aquí</a>, s'obrirà una nova pestanya al teu navegador)",
+      "auditWarning": "Per motius de seguretat, quan auditis la teva papereta, hauràs d'invalidar-la. Per continuar amb el procés de votació, fes clic a '<strong>Iniciar votació</strong>'.",
+      "startVoting": "Iniciar votació",
+
+      "downloadHelpModal": {
+        "header": "Copiar el Vot Xifrat",
+        "body": "Pots descarregar o copiar el teu Vot Xifrat per audit-lo i verificar que el contingut encriptat conté les teves seleccions.",
+        "confirm": "OK"
+      },
+      "tutorialHelpModal": {
+        "header": "Tutorial sobre l'Auditoria del Vot",
+        "body": "Per audit-lo el teu vot hauràs de seguir els passos indicats al tutorial, que inclouen la descarrega d'una aplicació d'escriptori utilitzada per verificar el vot xifrat independentment del lloc web.",
+        "confirm": "OK"
+      },
+      "titleHelpModal": {
+        "header": "Informació: Pantalla d'Auditoria",
+        "body": "Aquesta pantalla ofereix un complet recorregut pas a pas per audit-lo el teu vot i et permet confirmar que la papereta encriptada conté les teves seleccions.",
+        "confirm": "OK"
+      }
+    },
 
 
-    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Atenció!</strong> Cabina de votació de prova, els vots emesos aquí no compten.",
-    "successBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localitzador del vostre vot és:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>Podeu fer servir el localitzador per verificar que el vostre vot ha quedat registrat <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\"> en aquesta adreça</a></strong>.",
+    "thisisADemoNotification": "<strong>Atenció!</strong> Cabina de votació de prova, els vots emesos aquí no compten.",
+    "successBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El Localitzador del vostre Vot és:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>Podeu fer servir el localitzador per verificar que el vostre vot ha quedat registrat <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\"> en aquesta adreça</a></strong>.",
     "successBallotQrCode": "Pots verificar que el teu vot ha quedat enregistrat mitjançant el següent codi QR:",
     "successNoBallotHash": "Heu emès el vostre vot amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
     "downloadBallotTicket": "Descarregar confirmació en PDF",
     "ballotTicket": {
       "h3": "Confirmació del vot",
       "h4": "El vostre vot s'ha emès correctament. Aquest document justifica la seva emissió.",
-      "tracker": "Localitzador de l'vot:",
+      "tracker": "Localitzador de l'Vot:",
       "title": "Títol de la votació:",
       "id": "Id de la votació:",
       "voterId": "Id de l'votant:",
@@ -220,7 +285,30 @@
     "openOptionLink": "Abrir enlace en nueva pestaña",
 
     "reviewScreen": {
-      "pair": "__one__ > __two__"
+      "pair": "__one__ > __two__",
+      "editAction": "Canviar Vot",
+      "title": "Reviseu el Vostre Vot",
+      "description": "Per fer canvis en les seves seleccions, feu clic al botó “<strong>Canviar Selecció</strong>”, per confirmar les seves seleccions, feu clic al botó “<b class=\"green\">Enviar Vot</b>” a continuació, i per auditat la vostra papereta feu clic al botó “<b class=\"red\">Auditar Vot</b>” a continuació. Tingueu en compte que una vegada que envieu la vostra papereta, ja heu votat i no se us emetrà una altra papereta per a aquesta elecció.",
+      "descriptionNoAudit": "Per fer canvis en les seves seleccions, feu clic al botó “<strong>Canviar Selecció</strong>”, per confirmar les seves seleccions, feu clic al botó “<b class=\"green\">Enviar Vot</b>” a continuació. Tingueu en compte que una vegada que envieu la vostra papereta, ja heu votat i no se us emetrà una altra papereta per a aquesta elecció.",
+      "ballotIdMessage": "El Vostre Localitzador de Vot: __hash__",
+      "informationModal": {
+        "header": "Información: Pantalla de revisió",
+        "body": "Aquesta pantalla us permet revisar les vostres seleccions abans d'emetre el vostre vot.",
+        "confirm": "D'acord"
+      }
+    },
+    "simultaneousQuestions": {
+      "skipQuestion": "Saltar pregunta(s)",
+      "skipQuestionModal": {
+        "header": "Vols ometre aquesta(es) pregunta(es)?",
+        "body": "Si us plau, confirma que vols saltar aquesta(es) pregunta(es). Pots votar en les pregunta(es) omesa(es) iniciant sessió de nou.",
+        "confirm": "Confirma i OMET aquesta(es) pregunta(es)"
+      },
+      "informationModal": {
+        "header": "Informació: Pantalla de votació",
+        "body": "Aquesta pantalla mostra la votació en la quals ets elegible per votar. Pots seleccionar la teva secció activant la casella de la dreta Candidat/Resposta. Per a restablir les teves seleccions, fes clic al botó '<b>Esborrar selecció</b>', per passar al següent pas, fes clic al botó '<b>Següent</b>'.",
+        "confirm": "D'acord"
+      }
     },
 
     "pairwiseBeta": {
@@ -237,12 +325,12 @@
 
     "busy": {
       "title": "El teu vot serà...",
-      "encryptedTitle": "xifrat",
-      "encryptedDescription": "perquè ningú puguis saber quines opcions vas escollir",
-      "castTitle": "emès",
-      "castDescription": "fent servir un canal segur i verificant la teva identitat",
-      "anonymizedTitle": "anònim",
-      "anonymizedDescription": "perquè el recompte no revela el sentit del teu vot"
+      "encryptedTitle": "Xifrat",
+      "encryptedDescription": "Perquè ningú puguis saber quines opcions vas escollir",
+      "castTitle": "Emès",
+      "castDescription": "Fent servir un canal segur i verificant la teva identitat",
+      "anonymizedTitle": "Anònim",
+      "anonymizedDescription": "Perquè el recompte no revela el sentit del teu vot"
     },
 
     "tooFewAnswers": {
@@ -256,6 +344,27 @@
       "confirm": "Sí, marca tota la llista",
       "cancel": "No",
       "doNotShowAgain": "No em mostris més això"
+    },
+    "clearSelection": "Esborrar selecció",
+    "typeWriteInPlaceholder": "Escriu aquí el candidat per escrit",
+    "electionChooserScreen": {
+      "title": "Llista de Votacions",
+      "description": "Selecciona la votació que vols votar",
+      "voted": "Votat",
+      "notVoted": "No votat",
+      "openElection": "Oberta",
+      "closedElection": "Tancada",
+      "scheduledElection": "Programada",
+      "openDate": "Oberta: <b>__date__</b>",
+      "closingDate": "Tancada: <b>__date__</b>",
+      "electionResultsBtn": "Resultats de Votació",
+      "clickToVoteBtn": "Fes click per Votar",
+      "electionWebsite": "Lloc web electoral",
+      "informationModal": {
+        "header": "Informació: Llista de Votacions",
+        "body": "Benvingut a la cabina de votació, aquesta pantalla mostra la llista de les eleccions en les quals pots emetre el teu vot. Les eleccions que apareixen en aquesta llista poden estar obertes a votació, programades o tancades. Només podràs accedir a la votació si el període de votació està obert. En el cas que una elecció estigui tancada i el seu administrador electoral hagi publicat el resultat, veuràs un botó \"Resultat electoral\" que et portarà a la pàgina pública de resultats.",
+        "confirm": "D'acord"
+      }
     }
   },
   "avElection": {

@@ -22,7 +22,7 @@
   "avCommon": {
     "cancel": "Cancel",
     "changeLanguageMenu": "Change Language",
-    "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "poweredBy": "Powered by <a href=\"__url__\" target=\"_blank\">__name__</a>",
     "shareLink": "¡Tweet this election!",
     "votingSystem": "Voting System",
     "votings": {
@@ -60,6 +60,12 @@
       "body": "Your session is about to expire. In one minute you will be redirected if you haven't finished casting your vote.",
       "confirm": "Close"
     },
+    "confirmLogoutModal": {
+      "header": "Are you sure you want to logout?",
+      "body": "You are about to close this application. This action can not be undone.",
+      "confirm": "Logout",
+      "cancel": "Cancel"
+    },
     "demoModeModal": {
       "header": "Demo voting booth",
       "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
@@ -72,15 +78,31 @@
     },
     "hashForVoteNotCastModal": {
       "header": "Vote has not been cast",
-      "body": "You are about to copy the ballot tracker id, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the ballot tracker id at this stage is to allow you to audit the correctness of the encrypted ballot before casting it. If that's why you want to copy the tracker id, please proceed to copy it and then proceed to audit the vote.",
+      "body": "This is your Ballot Tracker ID, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the Ballot Tracker ID at this stage is to allow you to audit the correctness of the encrypted ballot before casting it.",
       "confirm": "I accept my vote has NOT been cast",
       "cancel": "Cancel"
     },
     "successDemoVoteNotCastModal": {
       "header": "Demo voting booth",
-      "body": "This is a demo voting booth.<strong>Your vote has NOT been cast</strong>. This voting booth is for demonstration purposes only.<br><br>Thus, the ballot tracker will not work. To cast a real vote, please follow the appropiate authentication procedure.",
+      "body": "This is a demo voting booth.<strong>Your vote has NOT been cast</strong>. This voting booth is for demonstration purposes only.<br><br>Thus, the Ballot Tracker will not work. To cast a real vote, please follow the appropiate authentication procedure.",
       "confirm": "I accept my vote has NOT been cast",
       "cancel": "Cancel"
+    },
+    "successScreen": {
+      "verifyBallotCastTitle": "Verify that your ballot has been cast",
+      "verifyBallotCastDescription": "You can verify your ballot has been cast correctly at any moment using the following QR code:",
+      "ballotId": "Ballot ID",
+      "printBallotBtn": "Print",
+      "ballotCastHelpModal": {
+        "header": "Information: Confirmation Screen",
+        "body": "This screen shows that your vote was successfully cast. The information provided on this page allows you to verify that the ballot has been stored in ballot box , this process can be executed at any time during voting period and after the election has been closed.",
+        "confirm": "OK"
+      },
+      "ballotIdHelpModal": {
+        "header": "Information: Ballot ID",
+        "body": "The Ballot ID is a code that allows you to find your ballot in the ballot box, this ID is unique and doesn't contain information about your selections.",
+        "confirm": "OK"
+      }
     },
     "errors": {
       "question-lambda-invalid": "Question '__qtitle__': Invalid vote.",
@@ -91,7 +113,12 @@
       "question-lambda-repeated-writeins": "Question '__qtitle__': repeated write-in names. Invalid vote.",
       "question-lambda-writein-length": "Question '__qtitle__': write-ins exceed by __extra_bytes__ the maximum of __max__ chars. Requires fixing.",
       "question-lambda-writeins-not-voted": "Question '__qtitle__': write-ins provided but not voted: __write_ins__. Atypical.",
-      "question-lambda-writeins-not-provided": "Question '__qtitle__': selected some write-ins but no name provided. Atypical."
+      "question-lambda-writeins-not-provided": "Question '__qtitle__': selected some write-ins but no name provided. Atypical.",
+
+      "question-lambda-max-tag": "You cannot select more options of type __tagName__ (maximum __max__). To select one, please deselect another first.",
+      "question-lambda-max-notag": "You cannot select more options not of type __tagName__ (maximum __max__). To select one, please deselect another first.",
+      "question-lambda-max-reached-singular": "Remember that you can only choose one option",
+      "question-lambda-max-reached": "Maximum number of selected options reached (__max__). To select an option, deselect another first."
     },
     "invalidAnswers": {
       "header": "Invalid or blank vote",
@@ -99,17 +126,24 @@
       "continue": "Accept and continue",
       "cancel": "Back and review"
     },
+    "votingSteps": {
+      "electionList": "Election List",
+      "ballot": "Ballot",
+      "review":  "Review",
+      "confirmation": "Confirmation",
+      "audit": "Audit"
+    },
     "legal": {
         "title": "Legal terms",
         "contact": "contact"
     },
     "confirmAuditBallot": {
-      "header": "Do you want to Audit the ballot?",
+      "header": "Do you want to audit the ballot?",
       "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/><strong>If you just want to cast your ballot, click <u>Cancel</u> to go back to the review ballot screen.</strong>",
       "confirm": "Yes, I want to DISCARD my ballot to audit it"
     },
     "instructionsTitle": "Instructions",
-    "closeWindow": "Finish and close",
+    "closeWindow": "Finish",
     "goToNextElection": "Go to next election",
     "planchaSelect": "select all",
     "planchaDeselect": "deselect all",
@@ -162,7 +196,7 @@
     "numOptionsSelected_plural": "__count__ options selected.",
     "numOptionsSelected_plural_2": "__count__ options selected.",
     "noOptionsSelected": "No option selected.",
-    "numOptionsLimits": "Select between __min__ and __max__ options.",
+    "numOptionsLimits": "Select <b>between __min__ and __max__</b> options.",
     "filterOptionsPlaceholder": "filter..",
     "noResults": "no results found..",
     "numSelectedOptionsSmall": "__count__ selected",
@@ -201,8 +235,8 @@
     "emptyAnswer": "<blank vote>",
     "invalidAnswer": "Ballot marked as invalid",
 
-    "successTitle": "Vote cast successfully",
-    "successSubheader": "You have correctly cast your ballot and it's now being kept in our electronic ballot box.",
+    "successTitle": "Your vote has been cast",
+    "successSubheader": "The confirmation code bellow verifies that <strong>your ballot has been cast successfully</strong>. You can use this code to verify that your ballot has been counted.",
 
     "completePacksTitle": "Complete packs",
     "listOfDraftDocuments": "Documents (click to open)",
@@ -232,19 +266,46 @@
     "cannotSelectAll": "To select all those options you have to desect some first",
     "totalsQuestionColumn": "(__selected__ of __count__ selected)",
 
-    "reviewBallotHashText": "Your ballot tracker id is: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "(Audit the ballot)",
+    "reviewBallotHashText": "Your Ballot Tracker ID is: <strong>__ballotHash__</strong>",
+    "auditTheBallot": "Audit ballot",
 
     "auditBallotTitle": "Audit your Ballot",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>The ballot tracker id is: <code>__ballotHash__</code></p><p><strong>The audit of the ballot requires some technical knowledge. If you don't have it, you can simply start again the voting process clicking in the button below.</strong></p><p>To verify your ballot you need to:</p><ol><li>Copy and save to a file your ballot (click to select):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Follow the steps in <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">this tutorial to verify that the ballot was correctly encrypted</a>.</li></ol><p>For security reasons, if you audit the ballot, it needs to be spoiled. To continue the voting process, you need to start from the begining.</p>",
+    "auditBallotText": "<p>The Ballot Tracker ID is: <code>__ballotHash__</code></p><p><strong>The audit of the ballot requires some technical knowledge. If you don't have it, you can simply start again the voting process clicking in the button below.</strong></p><p>To verify your ballot you need to:</p><ol><li>Copy and save to a file your ballot (click to select):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Follow the steps in <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">this tutorial to verify that the ballot was correctly encrypted</a>.</li></ol><p>For security reasons, if you audit the ballot, it needs to be spoiled. To continue the voting process, you need to start from the begining.</p>",
     "auditStartAgain": "Start voting from the begining",
 
+    "auditBallotScreen": {
+      "title": "Audit your Ballot",
+      "subtitle": "To verify your ballot you will need. to follow the bellow steps:",
+      "downloadListTitle": "1. Download or copy the following information",
+      "downloadButton": "Download",
+      "downloadSubtitle": "Your <strong>Ballot ID</strong> that appears at the top of the screen and your encrypted ballot below:",
+      "tutorialListTitle": "<strong>2. Follow the steps on this tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">click here</a>, a new tab will open in your browser)",
+      "auditWarning": "For security reason, when you audit your ballot, it need to be spoiled. To continue with the voting process, you need to click ‘<strong>Start Voting</strong>’ bellow.",
+      "startVoting": "Start Voting",
 
-    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
+      "downloadHelpModal": {
+        "header": "Copy the Encrypted Ballot",
+        "body": "You can download or copy your encrypted ballot to audit the ballot and verify the encrypted content contains your selections.",
+        "confirm": "OK"
+      },
+      "tutorialHelpModal": {
+        "header": "Audit ballot tutorial",
+        "body": "To audit your ballot you will need to follow the steps shown in the tutorial, this includes the download of a desktop application used to verify the encrypted ballot independently from the website.",
+        "confirm": "OK"
+      },
+      "titleHelpModal": {
+        "header": "Information: Audit Screen",
+        "body": "This screen offers a comprehensive, step-by-step walkthrough for auditing your ballot and allows you to confirm the encrypted ballot contains your selections.",
+        "confirm": "OK"
+      }
+    },
 
-    "thisisAPreviewNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> Preview voting booth, votes issued from this booth will not count.",
-    "successBallotHash": "You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The ballot tracker of your ballot is:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>You can use your ballot tracker to verify that your ballot has been correctly cast <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">using this address</a></strong>.",
+
+    "thisisADemoNotification": "<strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
+
+    "thisisAPreviewNotification": "<strong>Warning!</strong> Preview voting booth, votes issued from this booth will not count.",
+    "successBallotHash": "You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The Ballot Tracker of your ballot is:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>You can use your Ballot Tracker to verify that your ballot has been correctly cast <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">using this address</a></strong>.",
     "qrCodeAlt": "QR Code",
     "successBallotQrCode": "You can verify your ballot has been correctly cast using the following QR Code:",
     "successNoBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
@@ -253,14 +314,14 @@
     "ballotTicket": {
       "h3": "Vote confirmation",
       "h4": "Your vote has been cast correctly. This document justifies its issuance.",
-      "tracker": "Ballot tracker:",
+      "tracker": "Ballot Tracker:",
       "title": "Election title:",
       "id": "Election Id:",
       "voterId": "Voter Id:",
       "created": "Ballot registration date:",
-      "link": "Ballot tracker link:",
+      "link": "Ballot Tracker Link:",
       "linkClickHere": "click here",
-      "qrCode": "You can use the following QR Code to access the ballot tracker link:",
+      "qrCode": "You can use the following QR Code to access the Ballot Tracker Link:",
       "isDemo": "This vote receipt was generated in a demo voting booth. The ballot was NOT cast."
     },
     "relatedLinksText": "For more information about this election:",
@@ -271,7 +332,16 @@
 
     "reviewScreen": {
       "pair": "__one__ > __two__",
-      "editAction": "Edit ballot"
+      "editAction": "Edit ballot",
+      "title": "Review your ballot",
+      "description": "To make changes in your selections, click “<strong>Change selection</strong>” button, to confirm your selections, click “<b class=\"green\">Submit Ballot</b>” button bellow, and to audit your ballot click the “<b class=\"red\">Audit the Ballot</b>” button bellow. Please note than once you submit your ballot, you have voted and you will not be issued another ballot for this election.",
+      "descriptionNoAudit": "To make changes in your selections, click “<strong>Change selection</strong>” button, to confirm your selections, click “<b class=\"green\">Submit Ballot</b>” button bellow. Please note than once you submit your ballot, you have voted and you will not be issued another ballot for this election.",
+      "ballotIdMessage": "Your Ballot ID: __hash__",
+      "informationModal": {
+        "header": "Information: Review Screen",
+        "body": "This screen allows you to review your selections before casting your ballot.",
+        "confirm": "OK"
+      }
     },
 
     "simultaneousQuestions": {
@@ -280,6 +350,11 @@
         "header": "Do you want to skip this question(s)?",
         "body": "Please confirm that you want to skip this question(s). You can vote in the skipped question(s) by logging in again.",
         "confirm": "Confirm and SKIP this question(s)"
+      },
+      "informationModal": {
+        "header": "Information: Ballot screen",
+        "body": "This screen shows the contest you are elegible to vote. You can make your section by activate the checkbox on the Candidate/Answer right. To reset your selections, click “<b>Clear selection</b>” button, to move to next step, click “<b>Next</b>” button bellow.",
+        "confirm": "OK"
       }
     },
 
@@ -297,12 +372,12 @@
 
     "busy": {
       "title": "Your ballot will be...",
-      "encryptedTitle": "encrypted",
-      "encryptedDescription": "so that nobody can know what options you chose",
-      "castTitle": "cast",
-      "castDescription": "using a secure channel and verifying your identity",
-      "anonymizedTitle": "anonymized",
-      "anonymizedDescription": "so that the tally does not reveal which way you voted",
+      "encryptedTitle": "Encrypted",
+      "encryptedDescription": "So that nobody can know what options you chose",
+      "castTitle": "Cast",
+      "castDescription": "Using a secure channel and verifying your identity",
+      "anonymizedTitle": "Anonymized",
+      "anonymizedDescription": "So that the tally does not reveal which way you voted",
       "description": "Your ballot is being encrypted so that nobody can know what options you chose"
     },
 
@@ -317,6 +392,27 @@
       "confirm": "Yes, Select them",
       "cancel": "No",
       "doNotShowAgain": "Do not show this again"
+    },
+    "clearSelection": "Clear selection",
+    "typeWriteInPlaceholder": "Type write-in candidate here",
+    "electionChooserScreen": {
+      "title": "Election list",
+      "description": "Select the election you want to vote",
+      "voted": "Voted",
+      "notVoted": "Not voted",
+      "openElection": "Open",
+      "closedElection": "Closed",
+      "scheduledElection": "Scheduled",
+      "openDate": "Open: <b>__date__</b>",
+      "closingDate": "Close: <b>__date__</b>",
+      "electionResultsBtn": "Election Results",
+      "clickToVoteBtn": "Click to Vote",
+      "electionWebsite": "Election Website",
+      "informationModal": {
+        "header": "Information: Election List",
+        "body": "Welcome to the Voting Booth, this screen shows the list of elections you can cast a ballot. Elections displayed in this list can be open to voting, scheduled, or closed. You will be able to access the ballot only if the voting period is open. In the case an election is closed and your election administrator has published the result you will see an \"Election Result\" button that will take you to the public result page.",
+        "confirm": "OK"
+      }
     }
   }
 }

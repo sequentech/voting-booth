@@ -1,31 +1,110 @@
 <!-- top navbar -->
-<div avb-booth-header></div>
+<div avb-common-header
+  ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"
+  ng-class="{'hash-margin': showAuditBtn && stateData.ballotHash}"
+  hash-help="ballotHashWarning()"
+></div>
+<div avb-watermark></div>
 
-<div class="content avb-content">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1
-          class="text-center"
-          ng-bind-html="election.presentation.extra_options.public_title || election.title"
-        ></h1>
-        <div ng-i18next="[html:i18next]({ballotHash: stateData.ballotHash, auditableBallot: auditableBallotStr})avBooth.auditBallotText"></div>
+<div class="container audit-content">
+  <div class="sticky-top sticky-top-alt content">
+    <div avb-voting-step step="audit" with-election-list="!!parentAuthEvent"></div>
+  </div>
+  <div class="sticky-padding"></div>
+  <div class="content avb-content">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-left audit-title">
+            <span ng-i18next="avBooth.auditBallotScreen.title"></span>
+            <i class="title-help fa fa-lg fa-question-circle" ng-click="titleHelp()"></i>
+          </h1>
+          <p class="audit-subtitle" ng-i18next="avBooth.auditBallotScreen.subtitle"></p>
+              <h2 class="download-list-title" >
+                <span ng-i18next="[html:i18next]avBooth.auditBallotScreen.downloadListTitle"></span>
+                <i class="download-help fa fa-lg fa-question-circle" ng-click="downloadHelp()"></i>
+              </h2>
+              <div class="download-container">
+                <span class="download-subtitle" ng-i18next="[html:i18next]avBooth.auditBallotScreen.downloadSubtitle"></span>
+                <button
+                  id="download-btn"
+                  class="btn btn-lg btn-success-action pull-right"
+                  ng-click="downloadBallot()"
+                >
+                  <i class="download-help fa fa-md fa-download"></i>
+                  <span class="hidden-xs" ng-i18next="avBooth.auditBallotScreen.downloadButton"></span>
+                </button>
+              </div>
+              <div class="code-container">
+                <i class="copy-icon fa fa-lg fa-copy" ng-click="copyToClipboard()"></i>
+                <div class="code" tabindex="0" ng-click="selectDiv($event)">
+                  {{ auditableBallotStr }}
+                </div>
+              </div>
+
+              <h2 class="tutorial-text">
+                <span ng-i18next="[html:i18next]({tutorialLink: tutorialLink})avBooth.auditBallotScreen.tutorialListTitle"></span>
+                <i class="tutorial-help fa fa-lg fa-question-circle" ng-click="tutorialHelp()"></i>
+              </h2>
+          <div class="input-warn">
+            <div class="warn-box">
+              <span class="glyphicon glyphicon-warning-sign"></span>
+              <div
+                class="warn-text"
+                role="alert"
+                ng-i18next="[html:i18next]avBooth.auditBallotScreen.auditWarning">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div
-      class="row hidden"
-      ng-cloak
-      av-affix-bottom data-force-affix-width="768"
-      data-force-affix="{{ election.presentation.anchor_continue_btn_to_bottom }}"
+  </div>
+</div>
+
+<div class="container" ng-if="!fixToBottom">
+  <div class="actions">
+    <button
+      id="print-btn"
+      class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
+      ng-click="printBallot()"
     >
+      <i class="fa fa-print"></i>
+      {{ 'avBooth.successScreen.printBallotBtn' | i18next }}
+    </button>
+    <button
+      id="start-again-btn"
+      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
+      ng-click="next()">
+      <span>
+        {{ 'avBooth.auditBallotScreen.startVoting' | i18next }}
+        <i class="fa fa-chevron-right"></i>
+      </span>
+    </button>
+  </div>
+</div>
 
-      <div class="col-xs-12 no-padding">
-        <button
-          class="btn btn-block btn-lg btn-success-action btn-plain"
-          ng-i18next="avBooth.auditStartAgain"
-          ng-click="next()">
-        </button>
-      </div>
+<div avb-common-footer ng-if="!fixToBottom"></div>
+
+<div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
+  <div class="container container-fixed">
+    <div class="actions">
+      <button
+        id="print-btn"
+        class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
+        ng-click="printBallot()"
+      >
+        <i class="fa fa-print"></i>
+        {{ 'avBooth.successScreen.printBallotBtn' | i18next }}
+      </button>
+      <button
+        id="start-again-btn"
+        class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
+        ng-click="next()">
+        <span>
+          {{ 'avBooth.auditBallotScreen.startVoting' | i18next }}
+          <i class="fa fa-chevron-right"></i>
+        </span>
+      </button>
     </div>
   </div>
+  <div avb-common-footer float="true"></div>
 </div>

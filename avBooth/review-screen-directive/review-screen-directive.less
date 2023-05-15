@@ -24,8 +24,14 @@
     padding: 0;
   }
 
-  .error-list li {
-    word-break: keep-all;
+  .review-ballot-title {
+    margin-top: 20px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    color: @av-secondary;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .election-title {
@@ -70,7 +76,8 @@
   .btn-audit {
     background-color: transparent;
 
-    &:hover {
+    &:hover 
+    {
       background-color: @gray-lighter;
     }
   }
@@ -78,11 +85,57 @@
   .content a {
     font-weight: bold;
   }
-}
 
-@media(max-width: @screen-sm-min) {
-  [avb-review-screen] [av-affix-bottom] .error-list > ul {
-    overflow-y: scroll;
-    max-height: 60px;
+  [avb-review-ballot-v2] {
+    .question {
+      cursor: unset;
+      background-color: unset;
+    }
+    
+    &:hover 
+    {
+      cursor: unset;
+      background-color: unset;
+    }
+
+    [avb-simultaneous-question-answer-v2] .opt:hover {
+      cursor: unset;
+      background-color: unset;
+    }
+
+    [avb-simultaneous-questions-category-v2] {
+      margin-bottom: 10px;
+    }
+  }
+
+  .review-ballot-description {
+    color: @grey-darker;
+
+    strong {
+      color: @av-primary-contrast;
+    }
+
+    .green {
+      color: @av-secondary-contrast;
+    }
+
+    .red {
+      color: @error-primary-color;
+    }
+  }
+
+  .fa-question-circle {
+    margin-left: 16px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .text-warning.input-error.error-list {
+    margin-bottom: 8px;
+    margin-top: 0 !important;
   }
 }

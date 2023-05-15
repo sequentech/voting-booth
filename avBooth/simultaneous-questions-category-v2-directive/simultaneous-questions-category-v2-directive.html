@@ -1,0 +1,84 @@
+<div class="category-heading-container">
+    <h3 class="category-heading">
+        {{ category.title }}
+    </h3>
+    <div
+        class="vertilize-col answer-glyphicon"    
+        ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size < 12"
+    >
+        <span
+            class="check-title"
+            tabindex="0"
+            aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
+            ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
+        >
+            <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
+            <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
+        </span>
+    </div>
+</div>
+<div class="category-body">
+    <div 
+    class="question-answers text-left"
+    >
+        <div
+            ng-if="!isReview"
+            ng-repeat="answer in category.answers"
+            class="question-answer-wrapper"
+            ng-class="{
+              'flex-col-12': (question.extra_options.answer_columns_size === 12),
+              'flex-col-6': (question.extra_options.answer_columns_size === 6),
+              'flex-col-4': (question.extra_options.answer_columns_size === 4),
+              'flex-col-3': (question.extra_options.answer_columns_size === 3)
+            }"
+        >
+            <div 
+                avb-simultaneous-question-answer-v2
+                answer="answer"
+                question="question"
+                toggle-select-item="toggleSelectItem"
+                toggle-select-item-cumulative="toggleSelectItemCumulative"
+                cumulative-checks="cumulativeChecks"
+                write-in-text-change="writeInTextChange"
+                read-only="question.are_candidates_read_only"
+                hide-check="false"
+            ></div>
+        </div>
+        <div
+            ng-if="isReview"
+            ng-repeat="answer in category.answers | avbSelectedOptions"
+            class="question-answer-wrapper"
+            ng-class="{
+              'flex-col-12': (question.extra_options.answer_columns_size === 12),
+              'flex-col-6': (question.extra_options.answer_columns_size === 6),
+              'flex-col-4': (question.extra_options.answer_columns_size === 4),
+              'flex-col-3': (question.extra_options.answer_columns_size === 3)
+            }"
+        >
+            <div 
+                avb-simultaneous-question-answer-v2
+                answer="answer"
+                question="question"
+                toggle-select-item="toggleSelectItem"
+                toggle-select-item-cumulative="toggleSelectItemCumulative"
+                cumulative-checks="cumulativeChecks"
+                read-only="true"
+                hide-check="!question.are_lists_checkable && question.tally_type !== 'cumulative'"
+            ></div>
+        </div>
+    </div>
+
+    <div
+        class="vertilize-col answer-glyphicon"
+        ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size === 12"
+    >
+        <span
+            tabindex="0"
+            aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
+            ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
+        >
+            <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
+            <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
+        </span>
+    </div>
+</div>

@@ -1,76 +1,34 @@
 <!-- top navbar -->
-<div avb-booth-header></div>
+<div avb-common-header></div>
+<div avb-watermark></div>
 
-<div class="wrapper-unfixed">
-  <div class="navbar-unfixed-top text-center">
-    <div class="container">
-      <div class="hidden unfixed-top-height"></div>
-      <h1 class="election-title" ng-bind-html="parentElection && (parentElection.presentation.extra_options.public_title || parentElection.title) || !parentElection && (election.presentation.extra_options.public_title || election.title) || ''">
-      </h1>
-    </div>
+<div class="container">
+  <div class="sticky-top">
+    <div avb-voting-step step="'election-list'" with-election-list="true"></div>
   </div>
+  <div class="sticky-padding"></div>
+
+  <h1 class="election-chooser-header">
+    <span class="election-chooser-title" ng-i18next="avBooth.electionChooserScreen.title">
+    </span>
+    <i class="fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
+  </h1>
+
+  <p class="election-chooser-description" ng-i18next="avBooth.electionChooserScreen.description">
+  </p>
+  <div
+    av-booth-children-elections
+    mode="toggle-and-callback"
+    callback="chooseElection(electionId)"
+    parent-election-id="{{parentAuthEvent.id}}"
+    hide-parent="true"
+    can-vote="canVote"
+    has-voted="hasVoted"
+    children-election-info="childrenElectionInfo"
+    show-skipped-elections="showSkippedElections"
+    skipped-elections="skippedElections"
+  ></div>
+
 </div>
 
-<div class="content avb-content election-chooser-screen">
-    <div class="container">
-      <div class="row text-center">
-        <div class="election-description">
-          <p
-            class="election-description"
-            ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description) || '') | addTargetBlank"
-          ></p>
-        </div>
-        <div
-          ng-if="showSkippedElections || (!canVote && hasVoted)"
-          class="padded col-md-6 col-md-offset-3 cannot-vote col-xs-12"
-        >
-          <h2 ng-i18next>avBooth.electionChooser.hasVoted.title</h2>
-          <p
-            ng-if="skippedElections.length === 0"
-            ng-i18next="avBooth.electionChooser.hasVoted.description"
-          ></p>
-
-          <div ng-if="skippedElections.length > 0">
-            <p ng-i18next="avBooth.electionChooser.hasVoted.hasSkipped"></p>
-            <ul>
-              <li ng-repeat="el in skippedElections">{{el.title}}</li>
-            </ul>
-          </div>
-        </div>
-        <div
-          ng-if="!showSkippedElections && (!canVote && !hasVoted)"
-          class="padded col-xs-12 cannot-vote"
-        >
-          <h2 ng-i18next>avBooth.electionChooser.cannotVote.title</h2>
-          <p ng-i18next="avBooth.electionChooser.cannotVote.description"></p>
-        </div>
-        <div
-          ng-if="!showSkippedElections && canVote"
-          class="padded col-xs-12 can-vote"
-        >
-          <h2 ng-i18next>avBooth.electionChooser.canVote.title</h2>
-          <p ng-i18next="avBooth.electionChooser.canVote.description"></p>
-        </div>
-        <div
-          ng-if="!showSkippedElections && canVote"
-          av-children-elections
-          mode="toggle-and-callback"
-          callback="chooseElection(electionId)"
-          parent-election-id="{{parentAuthEvent.id}}"
-          hide-parent="true"
-          children-election-info="childrenElectionInfo"
-        ></div>
-      </div>
-      <p
-        class="text-center"
-      >
-        <a
-          tabindex="0"
-          ng-click="logoutAndRedirect(showSkippedElections || (!canVote && hasVoted))"
-          target="_top"
-          class="logout-btn btn btn-default" ng-i18next>
-          avBooth.logout
-        </a>
-      </p>
-  </div>
-</div>
+<div avb-common-footer></div>

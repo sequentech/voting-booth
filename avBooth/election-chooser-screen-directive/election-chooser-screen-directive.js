@@ -21,7 +21,7 @@
  * Shows the steps to the user.
  */
 angular.module('avBooth')
-  .directive('avbElectionChooserScreen',  function($window, $cookies, ConfigService) {
+  .directive('avbElectionChooserScreen',  function($window, $timeout, $q, $modal, ConfigService) {
 
     function link(scope, element, attrs) {
         scope.showSkippedElections = false;
@@ -112,12 +112,39 @@ angular.module('avBooth')
             return childrenInfo;
         }
 
+        function getChildrenElectionsData() {
+            if (!scope.childrenElectionInfo) {
+                return;
+            }
+
+            _.map(
+                scope.childrenElectionInfo.presentation.categories,
+                function (category) {
+                    _.map(
+                        category.events,
+                        function (event) {
+                            return scope.simpleGetElection(event.event_id).then(
+                                function (electionData) {
+                                    event.electionData = electionData;
+                                    $timeout(function () {
+                                        scope.$apply();
+                                    });
+                                }
+                            );
+                        }
+                    );
+                }
+            );
+        }
+
         function chooseElection(electionId) {
             scope.setState(scope.stateEnum.receivingElection, {});
             scope.retrieveElectionConfig(electionId + "");
         }
 
         scope.childrenElectionInfo = generateChildrenInfo();
+        getChildrenElectionsData();
+
 
         function checkDisabled() {
             var disableElectionChooser = (
@@ -174,6 +201,28 @@ angular.module('avBooth')
 
         checkDisabled();
         scope.chooseElection = chooseElection;
+
+        scope.showHelp = function () {
+            $modal.open({
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+              controller: "InvalidAnswersController",
+              size: 'md',
+              resolve: {
+                errors: function() { return []; },
+                data: function() {
+                  return {
+                    errors: [],
+                    header: "avBooth.electionChooserScreen.informationModal.header",
+                    body: "avBooth.electionChooserScreen.informationModal.body",
+                    continue: "avBooth.electionChooserScreen.informationModal.confirm",
+                    kind: "info"
+                  };
+                }
+              }
+            });
+        };
     }
 
     return {

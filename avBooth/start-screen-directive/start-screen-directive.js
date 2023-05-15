@@ -42,6 +42,8 @@ angular
             scope.legal = true;
           }
         }
+
+        scope.fixToBottom = scope.checkFixToBottom();
       }
 
       return {

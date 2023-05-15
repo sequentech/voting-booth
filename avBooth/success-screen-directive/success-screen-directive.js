@@ -1,6 +1,6 @@
 /**
  * This file is part of voting-booth.
- * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
+ * Copyright (C) 2015-2023  Sequent Tech Inc <legal@sequentech.io>
 
  * voting-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -574,12 +574,9 @@ angular.module('avBooth')
       scope.getBallotLocatorTarget = function () {
         return (!scope.ballotHashClicked && scope.isDemo ? "" : "_blank");
       };
-      scope.ballotHashWarning = function ()
-      {
-        if (!scope.isDemo || scope.ballotHashClicked) {
-          return false;
-        }
-        $modal.open({
+
+      function showVoteNoteCastModal() {
+        return $modal.open({
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
           templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
@@ -597,13 +594,70 @@ angular.module('avBooth')
               };
             }
           }
-        }).result.then(
+        }).result;
+      }
+      scope.ballotHashWarning = function ()
+      {
+        if (!scope.isDemo || scope.ballotHashClicked) {
+          return false;
+        }
+        showVoteNoteCastModal().result.then(
           function ()
           {
             scope.ballotHashClicked = true;
           }
         );
       };
+
+      scope.ballotCastHelp = function()
+      {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.successScreen.ballotCastHelpModal.header",
+                body: "avBooth.successScreen.ballotCastHelpModal.body",
+                continue: "avBooth.successScreen.ballotCastHelpModal.confirm",
+                kind: "info"
+              };
+            }
+          }
+        });
+      };
+
+      scope.ballotIdHelp = function()
+      {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.successScreen.ballotIdHelpModal.header",
+                body: "avBooth.successScreen.ballotIdHelpModal.body",
+                continue: "avBooth.successScreen.ballotIdHelpModal.confirm",
+                kind: "info"
+              };
+            }
+          }
+        });
+      };
+      scope.fixToBottom = scope.checkFixToBottom();
+
+      scope.showRedirectToLogin = !scope.hasNextElection && !!scope.election.presentation.extra_options.success_screen__redirect_to_login && !!scope.election.presentation.extra_options.success_screen__redirect_to_login__text;
+      scope.hideDownloadBallot = scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true;
     }
 
       return {

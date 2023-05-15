@@ -1,96 +1,136 @@
 <!-- top navbar -->
-<div avb-booth-header></div>
+<div avb-common-header
+  ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"
+  ng-class="{'hash-margin': showAuditBtn && stateData.ballotHash}"
+  hash-help="ballotHashWarning()"
+></div>
+<div avb-watermark></div>
 
-<div class="wrapper-unfixed">
-  <div class="navbar-unfixed-top text-center">
-    <div class="container">
-      <div class="hidden unfixed-top-height"></div>
-      <h1 
-        class="election-title"
-        ng-bind-html="election.presentation.extra_options.public_title || election.title">
-      </h1>
-      <h1 class="review-title" ng-i18next="avBooth.reviewYourBallotTitle"></h1>
-      <p class="review-description" ng-i18next="avBooth.reviewYourBallotText"></p>
-    </div>
+<div class="container">
+  <div class="sticky-top sticky-top-alt">
+    <div avb-voting-step step="review" with-election-list="!!parentAuthEvent"></div>
+  </div>
+  <div class="sticky-padding"></div>
+
+  <h1 class="review-ballot-title">
+    <span class="review-title-text" ng-i18next="avBooth.reviewScreen.title"></span>
+    <i class="fa fa-lg fa-question-circle" ng-click="showTitleHelp()"></i>
+  </h1>
+  <p class="review-ballot-description" ng-i18next="[html]avBooth.reviewScreen.description" ng-if="showAuditBtn">
+    <p class="review-ballot-description" ng-i18next="[html]avBooth.reviewScreen.descriptionNoAudit" ng-if="!showAuditBtn">
+  </p>
+
+  <div avb-review-ballot-v2></div>
+</div>
+
+<div class="container visible-xs" ng-if="!fixToBottom && showAuditBtn">
+  <div class="actions actions-extra">
+    <button
+      id="audit-ballot-btn"
+      class="btn btn-lg btn-opt-warn btn-plain col-xs-12"
+      ng-click="confirmAudit()"
+    >
+      <span>
+        <i class="fa fa-fire"></i>
+        {{ 'avBooth.auditTheBallot' | i18next }}
+      </span>
+    </button>
   </div>
 </div>
 
-<div class="content avb-content">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div avb-review-ballot></div>
-      </div>
-    </div>
-    <div
-      class="row hidden"
-      ng-cloak
-      av-affix-bottom
-      data-force-affix-width="768"
-      data-force-affix="{{ election.presentation.anchor_continue_btn_to_bottom }}"
+<div class="container" ng-if="!fixToBottom">
+  <div class="actions">
+    <button
+      id="change-selection-btn"
+      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4"
+      ng-if="showEditBtn"
+      ng-click="goToQuestion(0, false)">
+      <span>
+        <i class="fa fa-chevron-left"></i>
+        {{ 'avBooth.reviewScreen.editAction' | i18next }}
+      </span>
+    </button>
+    <button
+      id="audit-ballot-btn"
+      class="btn btn-lg btn-opt-warn btn-plain col-sm-4 hidden-xs"
+      ng-if="showAuditBtn"
+      ng-click="confirmAudit()"
     >
-      <div ng-if="election.errors && election.errors.length > 0" class="text-warning input-error error-list col-xs-12">
-        <ul role="alert">
-          <li
-            class="error"
-            ng-repeat="error in election.errors"
-            data-i18n="{{error.data}}"
-            ng-i18next>
-            [html:i18next]({{error.data}}){{error.key}}
-          </li>
-        </ul>
-      </div>
-      <div
-        ng-if="!election.presentation.extra_options || !election.presentation.extra_options.disable_voting_booth_audit_ballot"
-        class="col-xs-12 locator-text-click-audit">
-        <p class="content">
-          <span ng-click="ballotHashWarning()" class="review-ballot-hash-text" ng-i18next>
-            [html:i18next]({ballotHash: stateData.ballotHash})avBooth.reviewBallotHashText
-          </span>
-          <a
-            tabindex="0"
-            class="review-ballot-link"
-            ng-space-click
-            ng-i18next="avBooth.auditTheBallot"
-            ng-click="confirmAudit()">
-          </a>
-        </p>
-      </div>
-      <div 
-        ng-if="(
-          !election.presentation.extra_options || 
-          !election.presentation.extra_options.review_screen__split_cast_edit
-        )"
-        class="col-xs-12 no-padding"
+      <span>
+        <i class="fa fa-fire"></i>
+        {{ 'avBooth.auditTheBallot' | i18next }}
+      </span>
+    </button>
+    <button
+      id="continue-btn"
+      class="btn btn-lg btn-success-action btn-plain col-sm-4 col-xs-6"
+      ng-class="{
+        'col-sm-offset-4': (!showEditBtn || !showAuditBtn),
+        'col-sm-offset-8': (!showEditBtn && !showAuditBtn)
+      }"
+      ng-click="next()">
+      <span>
+        {{ 'avBooth.castTheBallot' | i18next }}
+        <i class="fa fa-chevron-right"></i>
+      </span>
+    </button>
+  </div>
+</div>
+
+<div avb-common-footer ng-if="!fixToBottom"></div>
+
+<div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
+  <div class="container container-fixed visible-xs" ng-if="showAuditBtn">
+    <div class="actions actions-extra">
+      <button
+        id="audit-ballot-btn"
+        class="btn btn-lg btn-opt-warn btn-plain col-xs-12"
+        ng-click="confirmAudit()"
       >
-        <button
-          id="continue-btn"
-          class="btn btn-block btn-lg btn-success-action btn-plain"
-          ng-i18next="avBooth.castTheBallot"
-          ng-click="next()">
-        </button>
-      </div>
-      <div 
-        ng-if="election.presentation.extra_options.review_screen__split_cast_edit === true"
-        class="col-xs-6 no-padding"
-      >
-        <button
-          id="continue-btn"
-          class="btn btn-block btn-lg btn-success-action btn-plain continue-action"
-          ng-i18next="avBooth.castTheBallot"
-          ng-click="next()">
-        </button>
-      </div>
-      <div 
-        ng-if="election.presentation.extra_options.review_screen__split_cast_edit === true"
-        class="col-xs-6 no-padding"
-      >
-        <button
-          class="btn btn-block btn-lg btn-plain edit-action"
-          ng-i18next="avBooth.reviewScreen.editAction"
-          ng-click="goToQuestion(0, false)">
-        </button>
-      </div>
+        <span>
+          <i class="fa fa-fire"></i>
+          {{ 'avBooth.auditTheBallot' | i18next }}
+        </span>
+      </button>
     </div>
   </div>
+  <div class="container container-fixed">
+    <div class="actions">
+      <button
+        id="change-selection-btn"
+        class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4"
+        ng-if="showEditBtn"
+        ng-click="goToQuestion(0, false)">
+        <span>
+          <i class="fa fa-chevron-left"></i>
+          {{ 'avBooth.reviewScreen.editAction' | i18next }}
+        </span>
+      </button>
+      <button
+        id="audit-ballot-btn"
+        class="btn btn-lg btn-opt-warn btn-plain col-sm-4 hidden-xs"
+        ng-if="showAuditBtn"
+        ng-click="confirmAudit()"
+      >
+        <span>
+          <i class="fa fa-fire"></i>
+          {{ 'avBooth.auditTheBallot' | i18next }}
+        </span>
+      </button>
+      <button
+        id="continue-btn"
+        class="btn btn-lg btn-success-action btn-plain col-sm-4 col-xs-6"
+        ng-class="{
+          'col-sm-offset-4': (!showEditBtn || !showAuditBtn),
+          'col-sm-offset-8': (!showEditBtn && !showAuditBtn)
+        }"
+        ng-click="next()">
+        <span>
+          {{ 'avBooth.castTheBallot' | i18next }}
+          <i class="fa fa-chevron-right"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div avb-common-footer float="true"></div>
 </div>

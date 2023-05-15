@@ -1,19 +1,30 @@
 [avb-election-chooser-screen] {
-    .btn[disabled] {
-        background-color: lighten(@gray-light, 40%) !important;
+    .election-chooser-description {
+        font-size: 16px;
     }
 
-    .logout-btn {
-        margin: 25px;
+    .election-chooser-title {
         font-weight: bold;
     }
 
-    .election-title,
-    .election-description {
-        word-break: keep-all;
+    h1.election-chooser-header {
+        font-size: 24px;
     }
 
-    h2 {
-        font-size: 24px;
+    .election-chooser-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 16px;
+
+        .fa-question-circle {
+            margin-left: 22px;
+        }
+    }
+
+    .fa-question-circle {
+        margin-left: 16px;
+        font-size: 18px;
+        line-height: 18px;
     }
 }

@@ -1,0 +1,180 @@
+<!-- top navbar -->
+<div avb-common-header></div>
+<div avb-watermark></div>
+
+<div class="container election-container">
+  <div class="sticky-top">
+    <div avb-voting-step step="ballot" with-election-list="!!parentAuthEvent"></div>
+  </div>
+  <div class="sticky-error" ng-if="errors.length > 0">
+    <div
+      class="text-warning input-error error-list"
+    >
+      <div class="input-warn" ng-repeat="error in errors">
+        <div class="warn-box">
+          <span class="glyphicon glyphicon-warning-sign"></span>
+          <div
+            class="warn-text"
+            role="alert"
+            data-i18n="{{error.data}}"
+            ng-i18next>
+            [html:i18next]({{error.data}}){{error.key}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="election-header">
+    <span
+      class="election-title"
+      ng-bind-html="election.presentation.extra_options.public_title || election.title"
+    ></span>
+    <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
+  </h1>
+  <p
+    ng-if="election.description"
+    class="election-description"
+    ng-bind-html="election.description | addTargetBlank">
+  </p>
+  <div class="notifications"></div>
+  <div class="question" ng-repeat="question in groupQuestions">
+    <h2 class="question-title" aria-level="2" ng-bind-html="question.title">
+    </h2>
+    <p
+      class="question-description"
+      ng-if="question.description"
+      ng-bind-html="question.description | addTargetBlank">
+    </p>
+
+    <!-- QUESTION OPTIONS START -->
+
+    <div class="categories" ng-if="question.hasCategories">
+        <div
+          ng-repeat="category in question.categories"
+          avb-simultaneous-questions-category-v2
+          question="question"
+          category="category"
+          toggle-select-item="toggleSelectItem"
+          toggle-select-item-cumulative="toggleSelectItemCumulative"
+          cumulative-checks="cumulativeChecks"
+          write-in-text-change="updateErrors"
+          is-review="false"
+          ng-class="{
+            'flex-col-12': (question.extra_options.answer_group_columns_size === 12),
+            'flex-col-6': (question.extra_options.answer_group_columns_size === 6),
+            'flex-col-4': (question.extra_options.answer_group_columns_size === 4),
+            'flex-col-3': (question.extra_options.answer_group_columns_size === 3)
+          }"
+        >
+        </div>
+    </div>
+    <div class="category-body" ng-if="!question.hasCategories">
+      <div class="question-answers text-left">
+        <div 
+          ng-repeat="answer in question.answers"
+          ng-if="!isInvalidAnswer(answer)"
+          class="question-answer-wrapper"
+          class="col-xs-12"
+        >
+          <div 
+            avb-simultaneous-question-answer-v2
+            answer="answer"
+            question="question"
+            toggle-select-item="toggleSelectItem"
+            toggle-select-item-cumulative="toggleSelectItemCumulative"
+            cumulative-checks="cumulativeChecks"
+            write-in-text-change="updateErrors"
+            read-only="question.are_candidates_read_only"
+            hide-check="false"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div 
+      class="invalid-vote-col"
+      ng-class="{'extra-invalid-vote-space': question.hasCategories}"
+      ng-if="!!question.invalidVoteAnswer"
+    >
+      <div 
+        avb-simultaneous-question-answer-v2
+        answer="question.invalidVoteAnswer"
+        question="question"
+        is-invalid-vote-answer="true"
+        toggle-select-item="toggleSelectItem"
+        toggle-select-item-cumulative="toggleSelectItemCumulative"
+        cumulative-checks="cumulativeChecks"
+        hide-check="false"
+      >
+      </div>
+    </div>
+
+    <!-- QUESTION OPTIONS END -->
+
+  </div>
+</div>
+
+<div class="container" ng-if="!fixToBottom">
+  <div class="skip-question-container text-right" ng-if="showSkipQuestionButton">
+    <span
+      class="skip-question"
+      ng-click="skipQuestion()"
+      ng-i18next="avBooth.simultaneousQuestions.skipQuestion"
+      role="button"
+      tabindex="0">
+    </span>
+  </div>
+  <div class="actions">
+    <button
+      id="clear-selection-btn"
+      class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
+      ng-click="clearSelection()"
+    >
+      <span ng-i18next="avBooth.clearSelection"></span>
+    </button>
+    <button
+      id="continue-btn"
+      class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
+      ng-click="questionNext()">
+      <span>
+        {{ nextButtonText | i18next }}
+        <i class="fa fa-chevron-right"></i>
+      </span>
+    </button>
+  </div>
+</div>
+
+<div avb-common-footer ng-if="!fixToBottom"></div>
+
+<div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
+  <div class="container container-fixed">
+    <div class="skip-question-container text-right" ng-if="showSkipQuestionButton">
+      <span
+        class="skip-question"
+        ng-click="skipQuestion()"
+        ng-i18next="avBooth.simultaneousQuestions.skipQuestion"
+        role="button" tabindex="0">
+      </span>
+    </div>
+    <div class="actions">
+      <button
+        id="clear-selection-btn"
+        class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
+        ng-click="clearSelection()"
+      >
+        <span ng-i18next="avBooth.clearSelection"></span>
+      </button>
+      <button
+        id="continue-btn"
+        class="btn btn-lg btn-success-action btn-plain col-xs-6 col-sm-4 col-sm-offset-4"
+        ng-click="questionNext()">
+        <span>
+          {{ nextButtonText | i18next }}
+          <i class="fa fa-chevron-right"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div avb-common-footer float="true"></div>
+</div>

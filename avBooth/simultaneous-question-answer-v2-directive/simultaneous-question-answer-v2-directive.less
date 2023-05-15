@@ -1,0 +1,238 @@
+/**
+ * This file is part of voting-booth.
+ * Copyright (C) 2021-2023  Sequent Tech Inc <legal@sequentech.io>
+
+ * voting-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * voting-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+[avb-simultaneous-questions-v2-screen], [avb-review-ballot-v2], [avb-simultaneous-question-answer-v2] {
+  .is-category-list .answer-text {
+    text-decoration: underline;
+  }
+
+  .question-answer.read-only {
+    .opt {
+      cursor:default;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  // answer styles
+  .invalid-vote-col .opt .vertilize {
+    background-color: @av-primary;
+  }
+
+  .opt {
+    font-size: 20px;
+    text-align: left;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    display: inline-block;
+
+    .vertilize:not(.is-read-only) {
+      &:hover {
+        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      &:active {
+        background-color: @gray-lighter;
+      }
+    }
+
+    &:focus {
+      border: none;
+    }
+
+    .vertilize.is-read-only .cumulative-checkbox {
+      cursor: unset;
+    }
+
+    .cumulative-checkbox {
+      margin-left: 12px;
+    }
+
+    .answer-texts {
+      box-sizing: border-box;
+      padding-right: 10px;
+      width: 100%;
+      margin: auto 0;
+
+      &.write-in {
+        input {
+          width: 100%;
+        }
+
+        .bytes-left.help-block {
+          display: none;
+          position: absolute;
+          padding: 0;
+          margin: 0;
+          bottom: -5px;
+          right: 20px;
+          font-size: 12px;
+          background: white;
+        }
+
+        &.has-error   .bytes-left.help-block,
+        &.has-warning .bytes-left.help-block {
+          display: block;
+        }
+      }
+
+      .answer-text {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: bold;
+        word-break: keep-all;
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        color: @av-secondary;
+      }
+
+      .answer-details {
+        font-size: 14px;
+        line-height: 19px;
+        word-break: keep-all;
+        margin: 0;
+        color: @text-description;
+        padding-bottom: 8px;
+      }
+    }
+
+    .answer-links {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding-left: 10px;
+
+      .view-link {
+        border: none;
+        background: transparent;
+        text-decoration: none;
+        color: @brand-success;
+        font-size: 14px;
+
+        .view-link-text {
+          text-decoration: underline;
+          font-weight: 600;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        .fa-info-circle {
+          margin-right: 4px;
+
+          @media(max-width: @screen-sm-max) {
+            margin-right: 26px;
+          }
+        }
+      }
+    }
+  }
+
+  .opt .answer-image img { 
+    max-height: 64px;
+    max-width: 64px;
+    margin: 8px 10px 8px 0;
+  }
+
+  .vertilize-wrapper .vertilize {
+    display: flex;
+    align-items: stretch;
+    min-height: 80px;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 0 8px;
+
+    &:focus {
+      border: 3px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .vertilize-col.answer-glyphicon {
+    display: flex;
+    align-items: center;
+    padding: 28px 6px 28px 14px;
+
+    .fa-check {
+      background-color: @brand-success;
+      color: @bg-primary;
+      width: 23px;
+      height: 23px;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .unchecked {
+      border: 2px solid #B8C0CC;
+      border-radius: 2px;
+      width: 23px;
+      height: 23px;
+    }
+  }
+
+  .opt span.glyphicon.ng-scope {
+    margin: 16px;
+    color: white;
+  }
+
+  .vertilize-wrapper .vertilize .vertilize-col.answer-image {
+    align-items: center;
+    display: flex;
+    width: 74px;
+    flex-shrink: 0;
+  }
+
+  .vertilize-col.vert-align-top.answer-texts.ng-scope {
+    text-align: left;
+    padding: 8px 20px 8px 0;
+  }
+
+  a.btn:focus {
+    color: unset;
+  }
+
+
+
+  .write-in {
+    input {
+      width: 100%;
+    }
+
+    .bytes-left.help-block {
+      display: none;
+      position: absolute;
+      padding: 0;
+      margin: 0;
+      bottom: -5px;
+      right: 20px;
+      font-size: 12px;
+      background: white;
+    }
+
+    &.has-error   .bytes-left.help-block,
+    &.has-warning .bytes-left.help-block {
+      display: block;
+    }
+  }
+}

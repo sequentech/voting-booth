@@ -1,0 +1,64 @@
+.invalid-answers-controller {
+    display: flex;
+    flex-direction: column;
+
+    .modal-header {
+        background-color: @av-primary;
+        padding: 7px 13px;
+        border: none;
+        color: @av-secondary;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .modal-header .modal-title .title,
+    .modal-header .modal-title .fa.fa-info-circle {
+        color: @av-secondary;
+    }
+
+    .modal-header .close {
+        margin-top: unset;
+    }
+
+    .modal-footer {
+        border: none;
+        padding: 15px 48px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .modal-footer .btn+.btn {
+        margin-left:8px
+    }
+
+    .modal-title {
+        font-size: 16px;
+        flex-grow: 2;
+    }
+
+    .glyphicon.glyphicon-warning-sign {
+        color: @error-primary-color;
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 16px 48px 0 48px;
+    }
+
+    ul {
+        padding-left: 14px;
+    }
+
+    .btn {
+        flex-grow: 2;
+        padding: 11px;
+    }
+}
+
+.modal-content {
+    border: 2px solid @av-primary-contrast;
+    margin-top: -7vh;
+}

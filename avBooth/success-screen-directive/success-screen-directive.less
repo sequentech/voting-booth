@@ -28,8 +28,23 @@
     word-break: keep-all;
   }
 
+  .success-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  .success-subheader strong {
+    color: @av-secondary-contrast;
+  }
+
+  .success-subheader, .verify-ballot-description {
+    color: @grey-darker;
+  }
+
   .social-net-img {
-      max-height: 48px;
+      max-height: 30px;
       max-width: 150px;
       width: auto;
   }
@@ -72,4 +87,100 @@
     }
   }
 
+  .success-intro {
+    display: flex;
+    flex-direction: row;
+    padding-top: 0;
+    width: 100%;
+    margin-top: 50px;
+    @media(max-width: @screen-xs-max) {
+      margin-top: 15px;
+    }
+  }
+
+
+  .ballot-id-box {
+    background-color: @brand-primary;
+    color: @av-secondary;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+  }
+
+  .ballot-id-hash {
+    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+    display: block;
+  }
+
+  .qr-code img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .ballot-id-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin: 25px 0;
+    align-items: center;
+  }
+
+  .verify-ballot-description {
+    margin-bottom: 15px;
+  }
+
+  .ballot-id-title {
+    flex-shrink: 0;
+  }
+
+  .verify-ballot-title, .ballot-id-title {
+    font-weight: bold;
+  }
+
+  .verify-and-links-divider {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .verify-container {
+    margin-right: 10px;
+  }
+
+  .links-container {
+    flex-grow: 1;
+  }
+
+  .social-share {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+
+    @media(max-width: @screen-sm-max) {
+      justify-content: center;
+    }
+  }
+
+  .fa-question-circle {
+    margin-left: 16px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

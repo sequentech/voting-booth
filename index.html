@@ -63,31 +63,29 @@
   <script src="avBooth/ahoram-primaries-option-directive/ahoram-primaries-option-directive.js" class="app"></script>
   <script src="avBooth/ahoram-primaries-selected-option-directive/ahoram-primaries-selected-option-directive.js" class="app"></script>
   <script src="avBooth/2questions-conditional-screen-directive/2questions-conditional-screen-directive.js" class="app"></script>
-  <script src="avBooth/conditional-accordion-screen-directive/conditional-accordion-screen-directive.js" class="app"></script>
-  <script src="avBooth/booth-header-directive/booth-header-directive.js" class="app"></script>
+  <script src="avBooth/voting-step-directive/voting-step-directive.js" class="app"></script>
   <script src="avBooth/accordion-option-directive/accordion-option-directive.js" class="app"></script>
   <script src="avBooth/election-chooser-screen-directive/election-chooser-screen-directive.js" class="app"></script>
   <script src="avBooth/accordion-options-directive/accordion-options-directive.js" class="app"></script>
   <script src="avBooth/available-options-directive/available-options-directive.js" class="app"></script>
   <script src="avBooth/audit-ballot-screen-directive/audit-ballot-screen-directive.js" class="app"></script>
-  <script src="avBooth/confirm-audit-controller/confirm-audit-controller.js" class="app"></script>
-  <script src="avBooth/confirm-null-vote-controller/confirm-null-vote-controller.js" class="app"></script>
   <script src="avBooth/booth-directive/booth-directive.js" class="app"></script>
   <script src="avBooth/busy-directive/busy-directive.js" class="app"></script>
   <script src="avBooth/casting-ballot-screen-directive/casting-ballot-screen-directive.js" class="app"></script>
+  <script src="avBooth/booth-children-elections-directive/booth-children-elections-directive.js" class="app"></script>
   <script src="avBooth/encrypting-ballot-screen-directive/encrypting-ballot-screen-directive.js" class="app"></script>
   <script src="avBooth/encrypting-ballot-screen-directive/step-img-directive.js" class="app"></script>
   <script src="avBooth/error-screen-directive/error-screen-directive.js" class="app"></script>
   <script src="avBooth/help-screen-directive/help-screen-directive.js" class="app"></script>
   <script src="avBooth/multi-question-directive/multi-question-directive.js" class="app"></script>
   <script src="avBooth/simultaneous-question-answer-directive/simultaneous-question-answer-directive.js" class="app"></script>
+  <script src="avBooth/simultaneous-question-answer-v2-directive/simultaneous-question-answer-v2-directive.js" class="app"></script>
   <script src="avBooth/simultaneous-questions-screen-directive/simultaneous-questions-screen-directive.js" class="app"></script>
-  <script src="avBooth/pcandidates-election-screen-directive/pcandidates-election-screen-directive.js" class="app"></script>
-  <script src="avBooth/pcandidates-rows-directive/pcandidates-rows-directive.js" class="app"></script>
-  <script src="avBooth/pcandidates-row-directive/pcandidates-row-directive.js" class="app"></script>
-  <script src="avBooth/pcandidates-cell-directive/pcandidates-cell-directive.js" class="app"></script>
+  <script src="avBooth/simultaneous-questions-v2-screen-directive/simultaneous-questions-v2-screen-directive.js" class="app"></script>
+  <script src="avBooth/simultaneous-questions-category-v2-directive/simultaneous-questions-category-v2-directive.js" class="app"></script>
   <script src="avBooth/pairwise-beta-directive/pairwise-beta-directive.js" class="app"></script>
   <script src="avBooth/review-ballot-directive/review-ballot-directive.js" class="app"></script>
+  <script src="avBooth/review-ballot-v2-directive/review-ballot-v2-directive.js" class="app"></script>
   <script src="avBooth/review-screen-directive/review-screen-directive.js" class="app"></script>
   <script src="avBooth/selected-options-directive/selected-options-directive.js" class="app"></script>
   <script src="avBooth/select-all-category-controller/select-all-category-controller.js" class="app"></script>
@@ -98,8 +96,10 @@
   <script src="avBooth/invalid-answers-controller/invalid-answers-controller.js" class="app"></script>
   <script src="avBooth/circle-option-directive/circle-option-directive.js" class="app"></script>
   <script src="avBooth/warn-ballot-parity-controller/warn-ballot-parity-controller.js" class="app"></script>
+  <script src="avBooth/watermark-directive/watermark-directive.js" class="app"></script>
   <script src="avBooth/selected-options-filter.js" class="app"></script>
   <script src="avBooth/count-selected-options-filter.js" class="app"></script>
+  <script src="avBooth/error-checker-generator-service.js" class="app"></script>
   <script src="avBooth/has-selected-options-filter.js" class="app"></script>
   <script src="avBooth/show-pdf-directive/show-pdf-directive.js" class="app"></script>
 
@@ -122,7 +122,7 @@
     Page is taking some time to load, wait a moment please. If it takes too long, please check that you have javascript activated, try with another browser or contact us.
   </div>
 
-  <div id="unsupported-browser">
+  <div id="unsupported-browser" style="display: none;">
     For security reasons, your browser is unsupported. Please use a newer web browser (if you are using Internet Explorer, use version 9 or newer).
   </div>
 

@@ -194,6 +194,34 @@ angular.module('avBooth')
         closeAndFinish(/* dontClose = */ true, /* isSusccess */ isSuccess);
       }
 
+      function confirmLogoutModal(isSuccess) {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'sm',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.confirmLogoutModal.header",
+                body: "avBooth.confirmLogoutModal.body",
+                continue: "avBooth.confirmLogoutModal.confirm",
+                cancel: "avBooth.confirmLogoutModal.cancel",
+                kind: 'warn'
+              };
+            }
+          }
+        }).result.then(
+          function ()
+          {
+            logoutAndRedirect(isSuccess);
+          }
+        );
+      }
+
       // After cookies expires, redirect to login. But only if cookies do
       // expire.
       function autoredirectToLoginAfterTimeout() {
@@ -278,16 +306,15 @@ angular.module('avBooth')
         pairwiseBeta: 'pairwiseBeta',
         draftsElectionScreen: 'draftsElectionScreen',
         auditBallotScreen: 'auditBallotScreen',
-        pcandidatesElectionScreen: 'pcandidatesElectionScreen',
         "2questionsConditionalScreen": '2questionsConditionalScreen',
         simultaneousQuestionsScreen: 'simultaneousQuestionsScreen',
-        conditionalAccordionScreen: 'conditionalAccordionScreen',
         encryptingBallotScreen: 'encryptingBallotScreen',
         castOrCancelScreen: 'castOrCancelScreen',
         reviewScreen: 'reviewScreen',
         castingBallotScreen: 'castingBallotScreen',
         successScreen: 'successScreen',
-        showPdf: 'showPdf'
+        showPdf: 'showPdf',
+        simultaneousQuestionsV2Screen: 'simultaneousQuestionsV2Screen'
       };
 
       // override state if in debug mode and it's provided via query param
@@ -303,22 +330,16 @@ angular.module('avBooth')
       }
 
       function mapQuestion(question) {
-        if (question.layout === "conditional-accordion") {
+        if  (question.layout === "simultaneous-questions") {
           return {
-            state: stateEnum.conditionalAccordionScreen,
+            state: stateEnum.simultaneousQuestionsV2Screen,
             sorted: true,
-            ordered: true
+            ordered: false
           };
-        } else if  (question.layout === "pcandidates-election") {
+        } else if  (question.layout === "simultaneous-questions-v2") {
           return {
-            state: stateEnum.pcandidatesElectionScreen,
+            state: stateEnum.simultaneousQuestionsV2Screen,
             sorted: true,
-            ordered: true
-          };
-        } else if  (question.layout === "simultaneous-questions") {
-          return {
-            state: stateEnum.simultaneousQuestionsScreen,
-            sorted: false,
             ordered: false
           };
         }
@@ -508,7 +529,6 @@ angular.module('avBooth')
       function next() {
         var questionStates = [
           stateEnum.multiQuestion,
-          stateEnum.pcandidatesElectionScreen,
           stateEnum.simultaneousQuestionsScreen,
         ];
         if (scope.state === stateEnum.electionChooserScreen) {
@@ -730,6 +750,55 @@ angular.module('avBooth')
         scope.isDemo = false;
       }
 
+      function simpleGetElection(electionId) {
+        if (!electionId) {
+          var future = $q.defer();
+          future.reject("invalid election id");
+          return future.promise;
+        }
+
+        var futureResult = $q.defer();
+        try {
+          if (scope.isPreview) {
+            var previewElection = JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId)));
+            var foundElection = previewElection.find(
+              function (element) {return element.id === parseInt(electionId);
+            });
+
+            if (foundElection) {
+              var ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
+              futureResult.resolve({
+                data: {
+                  payload: ballotBoxData
+                }
+              });
+            } else {
+              futureResult.reject("election not found");
+            }
+          } else {
+            var electionPromise = $http.get(
+              scope.baseUrl + "election/" + electionId,
+              {
+                headers: {'Authorization': scope.authorizationHeader || null}
+              }
+            );
+
+            electionPromise
+            .then(
+              function onSuccess(response) {
+                futureResult.resolve(angular.fromJson(response.data.payload));
+              },
+              // on error, like parse error or 404
+              function onError(response) {
+                futureResult.reject(response);
+              });
+          }
+        } catch (error) {
+          futureResult.resolve(error);
+        }
+        return futureResult.promise;
+      }
+
       function retrieveElectionConfig(electionId) {
         if (electionId) {
           scope.electionId = electionId;
@@ -797,6 +866,12 @@ angular.module('avBooth')
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
                 var presentation = scope.election.presentation;
+
+                if (presentation.theme && presentation.theme !== ConfigService.theme) {
+                  $("#theme").attr("href", "booth/themes/" + presentation.theme + "/app.min.css");
+                  ConfigService.theme = presentation.theme;
+                }
+
                 scope.electionState = response.data.payload.state;
 
                 // reset $window.i18nOverride
@@ -870,7 +945,8 @@ angular.module('avBooth')
                           errors: [],
                           header: "avBooth.demoModeModal.header",
                           body: "avBooth.demoModeModal.body",
-                          continue: "avBooth.demoModeModal.confirm"
+                          continue: "avBooth.demoModeModal.confirm",
+                          forceAccept: true
                         };
                       }
                     }
@@ -894,7 +970,8 @@ angular.module('avBooth')
                           errors: [],
                           header: "avBooth.previewModeModal.header",
                           body: "avBooth.previewModeModal.body",
-                          continue: "avBooth.previewModeModal.confirm"
+                          continue: "avBooth.previewModeModal.confirm",
+                          forceAccept: true
                         };
                       }
                     }
@@ -1037,6 +1114,12 @@ angular.module('avBooth')
         scope.demoElectionIndex += 1;
       }
 
+      function checkFixToBottom() {
+        return scope.election &&
+          scope.election.presentation &&
+          scope.election.presentation.anchor_continue_btn_to_bottom || false;
+      }
+
       //////////////////// Initialization part ////////////////////
 
       // init scope vars
@@ -1047,6 +1130,7 @@ angular.module('avBooth')
         stateChange: 0,
         showError: showError,
         logoutAndRedirect: logoutAndRedirect,
+        confirmLogoutModal: confirmLogoutModal,
         getLogoutUri: getLogoutUri,
         simpleRedirectToLogin: simpleRedirectToLogin,
         closeAndFinish: closeAndFinish,
@@ -1056,8 +1140,10 @@ angular.module('avBooth')
         setAuthorizationReceiver: setAuthorizationReceiver,
         mapQuestion: mapQuestion,
         retrieveElectionConfig: retrieveElectionConfig,
+        simpleGetElection: simpleGetElection,
         next: next,
         redirectToLogin: redirectToLogin,
+        checkFixToBottom: checkFixToBottom,
 
         // stateData stores information used by the directive being shown.
         // Its content depends on the current state.

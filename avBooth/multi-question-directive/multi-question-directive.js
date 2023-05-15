@@ -21,7 +21,13 @@
  * Shows a question and its possible answers to the user.
  */
 angular.module('avBooth')
-  .directive('avbMultiQuestion', function($modal, ConfigService) {
+  .directive('avbMultiQuestion', 
+  function(
+      $modal,
+      ConfigService, 
+      CheckerService,
+      ErrorCheckerGeneratorService
+    ) {
 
     var link = function(scope, element, attrs) {
       scope.stateData.affixIsSet = false;
@@ -29,14 +35,10 @@ angular.module('avBooth')
       scope.hideSelection = false;
       scope.organization = ConfigService.organization;
 
-      scope.getUrl = function(option, title) {
-        return _.filter(option.urls, function (url) {
-          return url.title === title;
-        })[0];
-      };
+      scope.getUrl = ErrorCheckerGeneratorService.hasUrl;
 
       scope.getTag = function(option) {
-        var url = scope.getUrl(option, "Tag");
+        var url = option && scope.getUrl(option.urls, "Tag");
         if (!url) {
           return null;
         }
@@ -46,12 +48,41 @@ angular.module('avBooth')
 
       scope.getGender = function(option)
       {
-        var url = scope.getUrl(option, "Gender");
+        var url = option && scope.getUrl(option.urls, "Gender");
         if (!url) {
           return null;
         }
         return url.url.replace("https://sequentech.io/api/gender/", "");
       };
+
+
+      function getErrorsChecker(checkerTypeFlag)
+      {
+        return ErrorCheckerGeneratorService.getErrorChecker(checkerTypeFlag, scope.invalidVoteAnswer);
+      }
+
+      /**
+       * Updates scope.errors with the errors found in scope.groupQuestions
+       */
+      function updateErrors()
+      {
+        var errorChecks = getErrorsChecker("soft");
+        scope.errors = [];
+        CheckerService({
+          checks: errorChecks,
+          data: scope.election,
+          onError: function (errorKey, errorData)
+          {
+            scope.errors.push({
+              data: errorData,
+              key: errorKey
+            });
+          }
+        });
+      }
+
+      scope.updateErrors = updateErrors;
+      scope.errors = [];
 
       // set options' tag
       scope.tagName = undefined;
@@ -76,6 +107,7 @@ angular.module('avBooth')
             }
           });
           option.selected = -1;
+          scope.stateData.question.deselectedAtLeastOnce = true;
         } else {
           // if max options selectable is 1, deselect any other and select
           // this
@@ -239,9 +271,23 @@ angular.module('avBooth')
         // show null vote warning
         if (scope.stateData.question.presetSelected === null) {
           $modal.open({
-            templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
-            controller: "ConfirmNullVoteController",
-            size: 'md'
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+            controller: "InvalidAnswersController",
+            size: 'md',
+            resolve: {
+              errors: function() { return []; },
+              data: function() {
+                return {
+                  errors: [],
+                  header: "avBooth.confirmNullVote.header",
+                  body: "avBooth.confirmNullVote.body",
+                  continue: "avBooth.confirmNullVote.confirm",
+                  cancel: "avCommon.cancel"
+                };
+              }
+            }
           }).result.then(function () {
             scope.showingPreset = false;
           }, focusContinueBtn);
@@ -369,9 +415,23 @@ angular.module('avBooth')
         if (scope.numSelectedOptions() === 0)
         {
           $modal.open({
-            templateUrl: "avBooth/confirm-null-vote-controller/confirm-null-vote-controller.html",
-            controller: "ConfirmNullVoteController",
-            size: 'md'
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+            controller: "InvalidAnswersController",
+            size: 'md',
+            resolve: {
+              errors: function() { return []; },
+              data: function() {
+                return {
+                  errors: [],
+                  header: "avBooth.confirmNullVote.header",
+                  body: "avBooth.confirmNullVote.body",
+                  continue: "avBooth.confirmNullVote.confirm",
+                  cancel: "avCommon.cancel"
+                };
+              }
+            }
           }).result.then(pipe.continue, focusContinueBtn);
           return;
         }
@@ -420,6 +480,8 @@ angular.module('avBooth')
 
         runPipeline(pipes);
       };
+
+      scope.fixToBottom = scope.checkFixToBottom();
     };
 
     return {

@@ -1,6 +1,6 @@
 /**
  * This file is part of voting-booth.
- * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
+ * Copyright (C) 2015-2023  Sequent Tech Inc <legal@sequentech.io>
 
  * voting-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,7 @@
  * Shows the auditable ballot to the user and explains how to audit it.
  */
 angular.module('avBooth')
-  .directive('avbAuditBallotScreen', function(DeterministicJsonStringifyService, ConfigService) {
+  .directive('avbAuditBallotScreen', function($window, $modal, DeterministicJsonStringifyService, ConfigService) {
     var link = function(scope, element, attrs) {
       scope.auditableBallotStr = DeterministicJsonStringifyService(
         scope.stateData.auditableBallot);
@@ -47,6 +47,120 @@ angular.module('avBooth')
             selection.setBaseAndExtent(obj, 0, obj, 1);
         }
       };
+
+      scope.copyToClipboard = function () 
+      {
+        navigator.clipboard.writeText(scope.auditableBallotStr);
+      };
+
+      scope.printBallot = function ()
+      {
+        window.print();
+      };
+
+      scope.downloadBallot = function ()
+      {
+        var blob = new $window.Blob([scope.auditableBallotStr], {type: "text/json"});
+        $window.saveAs(blob, scope.election.id + "-ballot"+".json");
+      };
+
+      scope.showAuditBtn = !scope.election.presentation.extra_options || !scope.election.presentation.extra_options.disable_voting_booth_audit_ballot;
+      scope.tutorialLink = "https://github.com/sequentech/ballot-verifier/blob/master/README.md";
+
+      scope.downloadHelp = function()
+      {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.auditBallotScreen.downloadHelpModal.header",
+                body: "avBooth.auditBallotScreen.downloadHelpModal.body",
+                continue: "avBooth.auditBallotScreen.downloadHelpModal.confirm",
+                kind: "info"
+              };
+            }
+          }
+        });
+      };
+
+      scope.tutorialHelp = function()
+      {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.auditBallotScreen.tutorialHelpModal.header",
+                body: "avBooth.auditBallotScreen.tutorialHelpModal.body",
+                continue: "avBooth.auditBallotScreen.tutorialHelpModal.confirm",
+                kind: "info"
+              };
+            }
+          }
+        });
+      };
+
+      scope.titleHelp = function()
+      {
+
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.auditBallotScreen.titleHelpModal.header",
+                body: "avBooth.auditBallotScreen.titleHelpModal.body",
+                continue: "avBooth.auditBallotScreen.titleHelpModal.confirm",
+                kind: "info"
+              };
+            }
+          }
+        });
+      };
+
+      scope.ballotHashWarning = function ()
+      {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.hashForVoteNotCastModal.header",
+                body: "avBooth.hashForVoteNotCastModal.body",
+                continue: "avBooth.hashForVoteNotCastModal.confirm",
+                cancel: "avBooth.hashForVoteNotCastModal.cancel",
+                kind: 'info'
+              };
+            }
+          }
+        });
+      };
+      scope.fixToBottom = scope.checkFixToBottom();
     };
     return {
       restrict: 'AE',

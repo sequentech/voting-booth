@@ -25,11 +25,27 @@ angular.module('avBooth')
 
     var link = function(scope, element, attrs) {
       scope.organization = ConfigService.organization;
-      scope.ballotHashClicked = false;
 
       // used to display pairwise comparison in a different manner
       _.each(scope.election.questions, function (q) {
         q.isPairWise = _.contains(['pairwise-beta'], q.tally_type);
+
+        // convert each answer url list to a map
+        _.each(
+          q.answers,
+          function (answer)
+          {
+            answer.urlsObject = _.object(
+              _.map(
+                answer.urls, 
+                function(url) 
+                {
+                  return [url.title, url.url];
+                }
+              )
+            );
+          }
+        );
       });
       
       /**
@@ -42,17 +58,28 @@ angular.module('avBooth')
       scope.confirmAudit = function()
       {
         $modal.open({
-          templateUrl: "avBooth/confirm-audit-controller/confirm-audit-controller.html",
-          controller: "ConfirmAuditController",
-          size: 'md'
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.confirmAuditBallot.header",
+                body: "avBooth.confirmAuditBallot.body",
+                continue: "avBooth.confirmAuditBallot.confirm",
+                cancel: "avCommon.cancel"
+              };
+            }
+          }
         }).result.then(scope.audit, focusContinueBtn);
       };
 
       scope.ballotHashWarning = function ()
       {
-        if (scope.ballotHashClicked) {
-          return false;
-        }
         $modal.open({
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
@@ -67,22 +94,45 @@ angular.module('avBooth')
                 header: "avBooth.hashForVoteNotCastModal.header",
                 body: "avBooth.hashForVoteNotCastModal.body",
                 continue: "avBooth.hashForVoteNotCastModal.confirm",
-                cancel: "avBooth.hashForVoteNotCastModal.cancel"
+                cancel: "avBooth.hashForVoteNotCastModal.cancel",
+                kind: 'info'
               };
             }
           }
-        }).result.then(
-          function ()
-          {
-            scope.ballotHashClicked = true;
+        });
+      };
+
+      scope.showTitleHelp = function()
+      {
+        $modal.open({
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+          controller: "InvalidAnswersController",
+          size: 'md',
+          resolve: {
+            errors: function() { return []; },
+            data: function() {
+              return {
+                errors: [],
+                header: "avBooth.reviewScreen.informationModal.header",
+                body: "avBooth.reviewScreen.informationModal.body",
+                continue: "avBooth.reviewScreen.informationModal.confirm",
+                kind: "info"
+              };
+            }
           }
-        );
+        });
       };
 
       scope.audit = function() {
         scope.stateData.auditClicked = true;
         scope.next();
       };
+      scope.fixToBottom = scope.checkFixToBottom();
+
+      scope.showEditBtn = !scope.election.presentation.extra_options || false !== scope.election.presentation.extra_options.review_screen__split_cast_edit;
+      scope.showAuditBtn = !scope.election.presentation.extra_options || !scope.election.presentation.extra_options.disable_voting_booth_audit_ballot;
     };
     return {
       restrict: 'AE',

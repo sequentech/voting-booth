@@ -21,7 +21,7 @@
   },
   "avCommon": {
     "cancel": "Avbryt",
-    "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "poweredBy": "Powered by <a href=\"__url__\" target=\"_blank\">__name__</a>",
     "shareLink": "Tweeta om det här!",
     "votingSystem": "Röstningssystem",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
@@ -152,7 +152,7 @@
     "totalsQuestionColumn": "(valda __selected__ av sammanlagt __count__ alternativ)",
 
     "reviewBallotHashText": "Kontrollkoden för din röst är: __ballotHash__",
-    "auditTheBallot": "(Kontrollera din röst)",
+    "auditTheBallot": "Kontrollera din röst",
 
     "auditBallotTitle": "Kontrollera rösten du gett",
     "auditBallotSubtitle": "",
@@ -160,7 +160,7 @@
     "auditStartAgain": "Börja rösta på nytt från början",
 
 
-    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Varning!</strong> Det här är en presentationssida för röstningen. Röster som ges här räknas inte.",
+    "thisisADemoNotification": "<strong>Varning!</strong> Det här är en presentationssida för röstningen. Röster som ges här räknas inte.",
     "successBallotHash": "Din röst har lagrats i <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>-tjänstens elektroniska valurna. Kontrollnumret för din röst:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Du kan använda kontrollnumret för att kontrollera att din röst säkert har lagrats på servern i <a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>den här adressen</strong></a>.",
     "successBallotQrCode": "Du kan verifiera att din röst har registrerats med följande QR-kod:",
     "relatedLinksText": "Läs mer om röstningen här:",
@@ -199,6 +199,7 @@
       "header": "Välj flera alternativ",
       "body": "Du har inte valt tillräckligt med alternativ för denna fråga:",
       "question": "Fråga ’__title__’: du har valt __selected__ alternativ, men den förutsätter minst __min__ alternativ"
-    }
+    },
+    "clearSelection": "Rensa val"
   }
 }

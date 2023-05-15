@@ -1,0 +1,151 @@
+<div
+  class="question"
+  ng-repeat="question in election.questions"
+  ng-if="!question.disabled && question.disabled !== true"
+  aria-label="{{ editActionText }}">
+
+  <!-- title -->
+  <div class="title-container">
+    <h1 aria-level="2" class="text-brand-success question-title">
+      <span>{{$index + 1}}.</span>
+      <span class="question-title title-text" ng-bind-html="question.title"></span>
+    </h1>
+  </div>
+
+  <p
+    class="question-description"
+    ng-if="question.extra_options.review_screen__show_question_description && question.description" 
+    ng-bind-html="question.description | addTargetBlank"
+  >
+  </p>
+
+  <div
+    class="text-warning input-error error-list"
+    ng-if="errors[question.index]"
+  >
+    <div class="input-warn" ng-repeat="error in errors[question.index]" ng-if="errors[question.index].length > 0">
+      <div class="warn-box">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <div
+          class="warn-text"
+          role="alert"
+          data-i18n="{{error.data}}"
+          ng-i18next>
+          [html:i18next]({{error.data}}){{error.key}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-body">
+    <div 
+      class="question-answers text-left"
+    >
+      <div class="categories" ng-if="question.hasCategories">
+          <div
+            ng-repeat="category in question.categories"
+            ng-if="(category.answers | avbSelectedOptions).length > 0 || category.categoryAnswer.selected > -1"
+            avb-simultaneous-questions-category-v2
+            question="question"
+            category="category"
+            toggle-select-item="toggleSelectItem"
+            toggle-select-item-cumulative="toggleSelectItemCumulative"
+            cumulative-checks="cumulativeChecks"
+            is-review="true"
+            ng-class="{
+              'flex-col-12': (question.extra_options.answer_group_columns_size === 12),
+              'flex-col-6': (question.extra_options.answer_group_columns_size === 6),
+              'flex-col-4': (question.extra_options.answer_group_columns_size === 4),
+              'flex-col-3': (question.extra_options.answer_group_columns_size === 3)
+            }"
+          >
+          </div>
+      </div>
+      <div 
+        ng-if="!question.hasCategories"
+        ng-repeat="answer in question.answers | avbSelectedOptions"
+        class="question-answer-wrapper"
+        class="col-xs-12"
+      >
+        <div
+          avb-simultaneous-question-answer-v2
+          answer="answer"
+          question="question"
+          toggle-select-item=""
+          toggle-select-item-cumulative=""
+          cumulative-checks="cumulativeChecks"
+          write-in-text-change=""
+          hide-check="question.tally_type !== 'cumulative'"
+          read-only="true"
+        ></div>
+      </div>
+      <div 
+        class="invalid-vote-col"
+        ng-class="{'extra-invalid-vote-space': question.hasCategories}"
+        ng-if="!!markedAsInvalid(question)"
+      >
+        <div
+          avb-simultaneous-question-answer-v2
+          answer="question.invalidVoteAnswer"
+          question="question"
+          is-invalid-vote-answer="true"
+          toggle-select-item="toggleSelectItem"
+          toggle-select-item-cumulative="toggleSelectItemCumulative"
+          cumulative-checks="cumulativeChecks"
+          hide-check="true"
+          read-only="true"
+        >
+        </div>
+      </div>
+      <div
+        avb-simultaneous-question-answer-v2
+        ng-if="(question.answers | avbSelectedOptions).length == 0 && !markedAsInvalid(question)"
+        answer="question.answers[0]"
+        question="question"
+        is-invalid-vote-answer="false"
+        is-blank-vote-answer="true"
+        toggle-select-item="toggleSelectItem"
+        toggle-select-item-cumulative="toggleSelectItemCumulative"
+        cumulative-checks="cumulativeChecks"
+        hide-check="true"
+        read-only="true"
+      >
+      </div>
+    </div>
+  </div>
+
+  <ol 
+    class="item-list-ordered"
+    ng-if="!question.isPairWise && mapQuestion(question).ordered"
+  >
+    <li
+      ng-repeat="answer in question.answers | avbSelectedOptions"
+      ng-if="!question.invalidVoteAnswer || answer.id !== question.invalidVoteAnswer.id"
+      ng-class="{'striked-text': markedAsInvalid(question)}"
+      class="animate-repeat selected-answer">
+        <span ng-bind-html="answer.text"></span>
+        <span
+          ng-if="showPoints(question) && !isWriteIn(answer)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
+        </span>
+        <span
+          ng-if="showPoints(question) && isWriteIn(answer)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPointsWriteIn">
+        </span>
+        <span
+          ng-if="!showPoints(question) && isWriteIn(answer)"
+          ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showWriteIn">
+        </span>
+    </li>
+    <li
+      class="invalid-answer"
+      ng-if="markedAsInvalid(question)"
+      ng-i18next="avBooth.invalidAnswer">
+    </li>
+    <li
+      class="empty-answer"
+      ng-if="(question.answers | avbSelectedOptions).length == 0"
+      ng-i18next="avBooth.emptyAnswer">
+    </li>
+  </ol>
+</div>

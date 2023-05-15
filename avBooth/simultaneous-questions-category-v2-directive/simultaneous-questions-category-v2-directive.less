@@ -1,0 +1,76 @@
+/**
+ * This file is part of voting-booth.
+ * Copyright (C) 2023  Sequent Tech Inc <legal@sequentech.io>
+
+ * voting-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * voting-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+[avb-simultaneous-questions-v2-screen] [avb-simultaneous-questions-category-v2] .vertilize-wrapper .vertilize {
+    &:hover, &:active {
+        border-color: rgba(0,0,0,.05);
+        box-shadow: none;
+    }
+}
+
+[avb-simultaneous-questions-category-v2] {
+    background-color: @av-primary;
+    padding: 0 14px 20px 16px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    width: 100%;
+
+    [avb-simultaneous-question-answer-v2] .vertilize-wrapper .vertilize {
+        border-color: @bg-primary;
+        background-color: @bg-primary;
+        box-shadow: 0 5px 5px rgba(0,0,0,.25);
+    }
+
+    [avb-simultaneous-question-answer-v2] .opt {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .category-heading {
+        margin-top: 10px;
+        margin-bottom: 26px;
+        flex-shrink: 0;
+        flex-grow: 2;
+        text-align: center;
+    }
+
+    .category-heading-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+        align-items: center;
+
+        .vertilize-col.answer-glyphicon {
+            justify-content: right;
+            padding: 10px 6px 26px 0;
+        }
+    }
+
+    .category-body {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .question-answers.text-left {
+        flex-grow: 2;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+}

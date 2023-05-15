@@ -19,7 +19,7 @@
   },
   "avCommon": {
     "cancel": "Cancel",
-    "poweredBy": "Funciona amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "poweredBy": "Funciona amb <a href=\"__url__\" target=\"_blank\">__name__</a>",
     "shareLink": "Comparte en Twitter que xa votaches nas primarias de En Marea",
     "votingSystem": "Voting System",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda3": "DesBorda3", "desborda2": "DesBorda2", "desborda": "DesBorda"}
@@ -156,7 +156,7 @@
     "castOrCancelTitle": "Enviar o voto",
     "castOrCancelSubtitle": "O teu voto está cifrado, xa podes envialo á urna electrónica para que sexa debidamente rexistrado. Alternativamente, podes auditar que foi correctamente cifrado.",
     "reviewBallotHashText": "O localizador do teu voto é: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "(Auditar a papeleta)",
+    "auditTheBallot": "Auditar papeleta",
 
     "auditBallotTitle": "Auditar a papeleta",
     "auditBallotSubtitle": "",
@@ -164,7 +164,7 @@
     "auditStartAgain": "Comezar o proceso de voto de novo",
 
 
-    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de proba, os votos emitidos aquí non contan.",
+    "thisisADemoNotification": "<strong>¡Atención!</strong> Cabina de votación de proba, os votos emitidos aquí non contan.",
     "successBallotHash": "Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. O localizador do teu voto é:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>__ballotHash__</strong></a><br/><br/>Podes usar o teu localizador para verificar que o teu voto quedou rexistrado <a href=\"__ballotLocatorUrl__\" target=\"_blank\"><strong>neste enderezo</strong></a>.",
     "successBallotQrCode": "Podes comprobar que o seu voto foi rexistrado usando o seguinte código QR:",
     "successNoBallotHash": "Emitiches o teu voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. ",
@@ -194,7 +194,8 @@
       "header": "Selecciona más opciones",
       "body": "En las siguientes preguntas no has seleccionado tantas opciones como el mínimo necesario para continuar:",
       "question": "Pregunta '__title__': seleccionaste __selected__ opciones, pero necesitas seleccionar al menos __min__ opciones"
-    }
+    },
+    "clearSelection": "Borrar selección"
   },
   "avElection": {
     "resultsLoadingText": "Cargando resultados",

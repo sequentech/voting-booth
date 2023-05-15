@@ -1,0 +1,147 @@
+<div
+  class="question-answer"
+  ng-class="{'is-category-list': isCategoryList, 'read-only': readOnly()}"
+>
+  <div
+    role="checkbox"
+    tabindex="-1"
+    aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
+    aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
+    class="opt vertilize-wrapper"
+    ng-click="!readOnly() && ['plurality-at-large', 'cumulative'].includes(question.tally_type) && toggleSelectItem(question, answer)"
+  >
+    <div
+      class="vertilize"
+      ng-class="{'is-read-only': !!readOnly()}"
+    >
+      
+      <!-- show answer image if any -->
+      <div class="vertilize-col answer-image">
+        <img
+          parent
+          ng-if="!!answer.urlsObject['Image URL'] && !isBlankVoteAnswer"
+          ng-src="{{answer.urlsObject['Image URL']}}"
+          aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
+        />
+      </div>
+
+      <!-- show answer texts -->
+      <div 
+        ng-if="!isWriteIn" 
+        class="vertilize-col vert-align-top answer-texts"
+      >
+        <span
+          id="question_{{question.index}}_answer_{{answer.id}}"
+          ng-if="!isBlankVoteAnswer"
+          class="answer-text" 
+          ng-bind-html="answer.text"
+        ></span>
+        <span
+          id="question_{{question.index}}_answer_blank"
+          ng-if="!!isBlankVoteAnswer"
+          class="answer-text"
+          ng-i18next="avBooth.emptyAnswer"
+        ></span>
+        <p
+          ng-if="!isBlankVoteAnswer && answer.details && answer.details.length > 1"
+          class="answer-details"
+          ng-bind-html="answer.details | addTargetBlank"
+        ></p>
+      </div>
+
+      <!-- Show URL link -->
+      <div 
+        class="answer-links"
+        ng-if="!!answer.urlsObject.URL && !isWriteIn"
+      >
+        <a
+          class="view-link"
+          href="{{answer.urlsObject.URL}}"
+          ng-i18next="[alt]avBooth.openOptionLink"
+          target="_blank"
+        >
+          <i class="fa fa-lg fa-info-circle"></i>
+          <span 
+            class="view-link-text hidden-xs" 
+            ng-i18next="avBooth.dropdownOptionView"
+          ></span>
+        </a>
+      </div>
+
+      <!-- show write-in text input if applicable -->
+      <div 
+        ng-if="isWriteIn" 
+        class="vertilize-col answer-texts write-in"
+        ng-class="{'has-warning': (question.writeInBytesLeft.bytesLeft >= 0 && question.writeInBytesLeft.bytesLeft < 10), 'has-error': question.writeInBytesLeft.bytesLeft < 0, 'text-left': !!hideCheck()}"
+      >
+        <input 
+          type="text"
+          class="form-control"
+          autocomplete="off"
+          id="question_{{question.index}}_answer_{{answer.id}}"
+          ng-i18next="[placeholder]avBooth.typeWriteInPlaceholder;[aria-label]avBooth.typeWriteInPlaceholder"
+          av-debounce="500"
+          ng-model="answer.text"
+          ng-if="!hideCheck()"
+          ng-click="$event.stopPropagation()"
+        />
+
+        <span
+          class="answer-text"
+          ng-i18next="avBooth.showWriteIn"
+          ng-if="!!hideCheck()"
+        ></span>
+
+        <span
+          id="question_{{question.index}}_answer_blank"
+          class="answer-text"
+          ng-if="!!hideCheck()"
+        >{{answer.text}}</span>
+        <div 
+          class="bytes-left help-block"
+        >
+          {{(question.writeInBytesLeft.maxWriteInBytes - question.writeInBytesLeft.bytesLeft)}} / {{question.writeInBytesLeft.maxWriteInBytes}}
+        </div>
+      </div>
+
+      <!-- show checkbox icon -->
+      <div class="vertilize-col answer-glyphicon" ng-if="!hideCheck()">
+        <span
+          tabindex="0"
+          aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
+          ng-if="question.tally_type === 'plurality-at-large'"
+          ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItem(question, answer)"
+        >
+          <i class="fa fa-lg fa-check" ng-if="answer.selected > -1"></i>
+          <div class="unchecked" ng-if="answer.selected === -1"></div>
+        </span>
+        <!-- show cumulative checkboxes -->
+        <span
+          class="cumulative-checkbox"
+          tabindex="0"
+          role="checkbox"
+          ng-if="!isBlankVoteAnswer && !isInvalidVoteAnswer && question.tally_type === 'cumulative'"
+          aria-label="{{answer.text}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
+          ng-repeat="check in answer_cumulative_checks"
+          aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
+          ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItemCumulative(question, answer, check)"
+        >
+          <i class="fa fa-lg fa-check" ng-if="isCheckSelected(answer, check)"></i>
+          <div class="unchecked" ng-if="!isCheckSelected(answer, check)"></div>
+        </span>
+        <!-- show checkbox for invalid -->
+        <span
+          tabindex="0"
+          role="checkbox"
+          aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
+          aria-label="{{answer.text}} check invalid"
+          ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
+          ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, 0)"
+        >
+        <i class="fa fa-lg fa-check" ng-if="isCheckSelected(answer, 0)"></i>
+        <div class="unchecked" ng-if="!isCheckSelected(answer, 0)"></div>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

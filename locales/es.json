@@ -22,7 +22,7 @@
   "avCommon": {
     "cancel": "Cancelar",
     "changeLanguageMenu": "Cambiar idioma",
-    "poweredBy": "Funciona con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "poweredBy": "Funciona con <a href=\"__url__\" target=\"_blank\">__name__</a>",
     "shareLink": "¡Twittea esta votación!",
     "votingSystem": "Sistema de Voto",
     "votings": {
@@ -51,6 +51,12 @@
       "body": "Tu sesión va a caducar. En un minuto serás redirigido si no has terminado de emitir tu voto.",
       "confirm": "Cerrar"
     },
+    "confirmLogoutModal": {
+      "header": "¿Seguro que quiere cerrar la sesión?",
+      "body": "Está a punto de cerrar esta aplicación. Esta acción no se puede deshacer.",
+      "confirm": "Cerrar sesión",
+      "cancel": "Cancelar"
+    },
     "previewModeModal": {
       "header": "Previsualización de cabina de votación",
       "body": "Está ingresando a una cabina de votación de demostración. <strong>Su voto NO se emitirá</strong>. Esta cabina de votación solo tiene fines demostrativos.",
@@ -58,22 +64,47 @@
     },
     "hashForVoteNotCastModal": {
       "header": "Voto no emitido",
-      "body": "Está a punto de copiar el localizador del voto, pero <strong>su voto aún no se ha emitido</strong>. Si intenta buscar el localizador del voto, no lo encontrará. <br> <br> La razón por la que mostramos el localizador del voto en este momento es para que pueda auditar la corrección del voto cifrado antes de emitirlo. Si esa es la razón por la que desea copiar el localizador del voto, proceda a copiarlo y luego audite su voto.",
+      "body": "Está a punto de copiar el Localizador del Voto, pero <strong>su voto aún no se ha emitido</strong>. Si intenta buscar el Localizador del Voto, no lo encontrará. <br> <br> La razón por la que mostramos el Localizador del Voto en este momento es para que pueda auditar la corrección del voto cifrado antes de emitirlo. Si esa es la razón por la que desea copiar el Localizador del Voto, proceda a copiarlo y luego audite su voto.",
       "confirm": "Acepto que mi voto NO ha sido emitido",
       "cancel": "Cancelar"
     },
     "successDemoVoteNotCastModal": {
       "header": "Cabina de votación de demo",
-      "body": "Esta es una cabina de votación de demostración. <strong>Su voto NO se ha emitido </strong>. Esta cabina de votación solo tiene fines demostrativos. <br><br> Por lo tanto, el localizador de su voto no lo encontrará. Para emitir su voto, siga el procedimiento de autenticación correspondiente.",
+      "body": "Esta es una cabina de votación de demostración. <strong>Su voto NO se ha emitido </strong>. Esta cabina de votación solo tiene fines demostrativos. <br><br> Por lo tanto, el Localizador de su Voto no lo encontrará. Para emitir su voto, siga el procedimiento de autenticación correspondiente.",
       "confirm": "Acepto que mi voto NO se emitió",
       "cancel": "Cancelar"
+    },
+    "successScreen": {
+      "verifyBallotCastTitle": "Compruebe que su voto ha sido emitido",
+      "verifyBallotCastDescription": "Puede comprobar en todo momento que su papeleta se ha emitido correctamente utilizando el siguiente código QR:",
+      "ballotId": "Localizador del Voto",
+      "printBallotBtn": "Imprimir",
+      "ballotCastHelpModal": {
+        "header": "Información: Pantalla de confirmación",
+        "body": "Esta pantalla muestra que su voto se ha emitido correctamente. La información proporcionada en esta página le permite verificar que la papeleta ha sido almacenada en la urna , este proceso puede ser ejecutado en cualquier momento durante el periodo de votación y después de que la elección haya sido cerrada.",
+        "confirm": "OK"
+      },
+      "ballotIdHelpModal": {
+        "header": "Información: Localizador del Voto",
+        "body": "El Localizador del Voto de papeleta es un código que le permite encontrar su papeleta en la urna, este Localizador es único y no contiene información sobre sus selecciones.",
+        "confirm": "OK"
+      }
     },
     "errors": {
       "question-lambda-invalid": "Votación '__qtitle__': Voto inválido.",
       "question-lambda-blank": "Votación '__qtitle__': seleccionó 0 candidaturas. Voto en blanco.",
       "question-lambda-min": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, menos que el mínimo de __min__. Voto inválido.",
       "question-lambda-max": "Votación '__qtitle__': seleccionó __num_selected__ candidaturas, más que el máximo de __max__. Voto inválido.",
-      "question-lambda-panachage": "Votación '__qtitle__': seleccionó opciones de múltiples listas, pero no está permitido. Voto inválido."
+      "question-lambda-panachage": "Votación '__qtitle__': seleccionó opciones de múltiples listas, pero no está permitido. Voto inválido.",
+      "question-lambda-repeated-writeins": "Votación '__qtitle__': nombres de write-in repetidos. Voto inválid.",
+      "question-lambda-writein-length": "Votación '__qtitle__': write-ins excedieron por __extra_bytes__ el máximo de __max__ caracteres. Requiere reparación.",
+      "question-lambda-writeins-not-voted": "Votación '__qtitle__': write-ins provistos pero no votados: __write_ins__. Atípico.",
+      "question-lambda-writeins-not-provided": "Votación '__qtitle__': seleccionados algunos write-ins pero sin nombre provisto. Atípico.",
+
+      "question-lambda-max-tag": "No puede seleccionar más opciones del tipo __tagName__ (máximo __max__). Para seleccionar una, anule primero la selección de otra.",
+      "question-lambda-max-notag": "No puede seleccionar más opciones que no sean del tipo __tagName__ (máximo __max__). Para seleccionar una, anule primero la selección de otra.",
+      "question-lambda-max-reached-singular": "Recuerde que sólo puede elegir una opción",
+      "question-lambda-max-reached": "Número máximo de opciones seleccionadas alcanzado  (__max__). Para seleccionar una opción, deseleccione primero otra."
     },
     "legal": {
         "title": "Términos legales",
@@ -81,11 +112,24 @@
     },
     "instructionsTitle": "Instrucciones",
     "goToNextElection": "Ir a la siguiente votación",
-    "closeWindow": "Finalizar y cerrar",
+    "closeWindow": "Finalizar",
     "confirmAuditBallot": {
-      "header": "¿Realmente quieres auditar tu papeleta?",
+      "header": "¿Realmente quiere Auditar tu papeleta?",
       "body": "La auditoría de la papeleta lo invalidará y tendrás que iniciar el proceso de votación de nuevo si deseas emitir tu voto. El proceso de auditoría de la papeleta permite verificar que está codificada correctamente. Hacer este proceso requiere que unos conocimientos técnicos importantes, por lo que no se recomienda si no sabes lo que estás haciendo. <br/> <br/><strong>Si lo que desea es emitir su voto, en <u>Cancelar</u> para volver a la pantalla de revisión de votación.</strong>",
       "confirm": "Sí, quiero INVALIDAR mi papeleta para AUDITARLA"
+    },
+    "invalidAnswers": {
+      "header": "Voto no válido o en blanco",
+      "body": "Algunas de las respuestas pueden hacer que la papeleta en una o más preguntas no sea válida o en blanco:",
+      "continue": "Aceptar y continuar",
+      "cancel": "Volver y revisar"
+    },
+    "votingSteps": {
+      "electionList": "Lista de Votaciones",
+      "ballot": "Papeleta",
+      "review":  "Revisión",
+      "confirmation": "Confirmación",
+      "audit": "Auditar"
     },
     "planchaSelect": "seleccionar todos",
     "planchaDeselect": "deseleccionar todos",
@@ -137,7 +181,7 @@
     "numOptionsSelected": "__count__ opciones seleccionadas.",
     "numOptionsSelected_plural": "__count__ opciones seleccionadas.",
     "noOptionsSelected": "Ninguna opción seleccionada.",
-    "numOptionsLimits": "Seleccione entre __min__ y __max__.",
+    "numOptionsLimits": "Seleccione <b>entre __min__ y __max__</b>.",
     "filterOptionsPlaceholder": "filtrar..",
     "noResults": "el filtro no produjo resultados.",
     "numSelectedOptionsSmall": "__count__ opciones seleccionadas",
@@ -176,8 +220,8 @@
     "statusVerifyingQuestion": "Verificando el cifrado de las respuestas a la pregunta __questionNum__, por favor espere (__percentage__% completado)",
     "sendingBallot": "Enviando la papeleta cifrada al servidor, por favor espere (__percentage__% completado)",
 
-    "successTitle": "Voto emitido con éxito",
-    "successSubheader": "Ha emitido correctamente su voto y queda custodiado por la urna electrónica.",
+    "successTitle": "Su voto ha sido emitido",
+    "successSubheader": "El código de confirmación que aparece a continuación verifica que <strong>su voto se ha emitido correctamente</strong>. Puede utilizar este código para verificar que su voto ha sido contabilizado.",
 
     "completePacksTitle": "Packs completos",
     "listOfDraftDocuments": "Documentos (clic para ver)",
@@ -209,17 +253,43 @@
 
     "castOrCancelTitle": "Enviar el voto",
     "castOrCancelSubtitle": "Su voto está cifrado, ya puede enviarlo a la urna electrónica para que sea debidamente registrado.",
-    "reviewBallotHashText": "El localizador de su voto es: <strong>__ballotHash__</strong>",
-    "auditTheBallot": "(Auditar la papeleta)",
+    "reviewBallotHashText": "El Localizador de su Voto es: <strong>__ballotHash__</strong>",
+    "auditTheBallot": "Auditar papeleta",
 
     "auditBallotTitle": "Auditar la papeleta",
     "auditBallotSubtitle": "",
-    "auditBallotText": "<p>El localizador de su voto es: <code>__ballotHash__</code></p><p><strong>La auditoría de la papeleta requiere ciertos conocimientos técnicos. Si no los tiene, puede simplemente comenzar de nuevo el proceso de voto haciendo clic abajo</strong>.</p><p>Para verificar su voto, necesita:</p><ol><li>Copiar y guardar en un fichero la papeleta (clic para seleccionar):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir los pasos de <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que la papeleta fue cifrada correctamente</a>.</li></ol><p>Por razones de seguridad, al auditar el voto, el ha de ser desechado. Para continuar el proceso de voto, debe comenzar el proceso de nuevo.</p>",
+    "auditBallotText": "<p>El Localizador de su Voto es: <code>__ballotHash__</code></p><p><strong>La auditoría de la papeleta requiere ciertos conocimientos técnicos. Si no los tiene, puede simplemente comenzar de nuevo el proceso de voto haciendo clic abajo</strong>.</p><p>Para verificar su voto, necesita:</p><ol><li>Copiar y guardar en un fichero la papeleta (clic para seleccionar):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Seguir los pasos de <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">este tutorial para verificar que la papeleta fue cifrada correctamente</a>.</li></ol><p>Por razones de seguridad, al auditar el voto, el ha de ser desechado. Para continuar el proceso de voto, debe comenzar el proceso de nuevo.</p>",
     "auditStartAgain": "Comenzar el proceso de voto de nuevo",
 
-    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de prueba, los votos emitidos aquí no cuentan.",
-    "thisisAPreviewNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Cabina de votación de previsualización, los votos emitidos aquí no cuentan.",
-    "successBallotHash": "Ha emitido su voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El localizador de su voto es:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>Puede usar su localizador para verificar que su voto ha quedado registrado en <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">esta dirección</a></strong>.",
+    "auditBallotScreen": {
+      "title": "Audite su Papeleta",
+      "subtitle": "Para verificar su papeleta deberá seguir los siguientes pasos:",
+      "downloadListTitle": "1. Descargue o copie la siguiente información",
+      "downloadButton": "Descargar",
+      "downloadSubtitle": "Tu <strong>Localizador del Voto</strong> que aparece en la parte superior de la pantalla y tu papeleta encriptada a continuación:",
+      "tutorialListTitle": "<strong>2.  Siga los pasos de este tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">haga clic aquí</a>, se abrirá una nueva pestaña en su navegador)",
+      "auditWarning": "Por motivos de seguridad, cuando audite su papeleta, deberá invalidarla. Para continuar con el proceso de votación, haga clic en ‘<strong>Iniciar votación</strong>’.",
+      "startVoting": "Iniciar votación",
+
+      "downloadHelpModal": {
+        "header": "Copiar el Voto Cifrado",
+        "body": "Puede descargar o copiar su Voto Cifrado para auditarlo y verificar que el contenido encriptado contiene sus selecciones.",
+        "confirm": "OK"
+      },
+      "tutorialHelpModal": {
+        "header": "Tutorial sobre la Auditoría del Voto",
+        "body": "Para auditar su voto deberá seguir los pasos indicados en el tutorial, que incluyen la descarga de una aplicación de escritorio utilizada para verificar el voto cifrado independientemente del sitio web.",
+        "confirm": "OK"
+      },
+      "titleHelpModal": {
+        "header": "Información: Pantalla de Auditoría",
+        "body": "Esta pantalla ofrece un completo recorrido paso a paso para auditar su papeleta y le permite confirmar que la papeleta encriptada contiene sus selecciones.",
+        "confirm": "OK"
+      }
+    },
+    "thisisADemoNotification": "<strong>¡Atención!</strong> Cabina de votación de prueba, los votos emitidos aquí no cuentan.",
+    "thisisAPreviewNotification": "<strong>¡Atención!</strong> Cabina de votación de previsualización, los votos emitidos aquí no cuentan.",
+    "successBallotHash": "Ha emitido su voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. El Localizador de su Voto es:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>Puede usar su localizador para verificar que su voto ha quedado registrado en <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">esta dirección</a></strong>.",
     "qrCodeAlt": "Código QR",
     "successBallotQrCode": "Puede verificar que su voto ha quedado registrado mediante el siguiente código QR:",
     "successNoBallotHash": "Ha emitido su voto con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
@@ -227,12 +297,12 @@
     "ballotTicket": {
       "h3": "Confirmación de voto",
       "h4": "Su voto ha sido emitido correctamente. Este documento justifica la emisión del mismo.",
-      "tracker": "Localizador del voto:",
+      "tracker": "Localizador del Voto:",
       "title": "Título de la votación:",
       "id": "Id de la votación:",
       "voterId": "Id del votante:",
       "created": "Fecha de registro del voto:",
-      "link": "Enlace para localizar el voto:",
+      "link": "Enlace para Localizar el Voto:",
       "linkClickHere": "clic aquí",
       "qrCode": "Puede usar el siguiente código QR y acceder al enlace para localizar el voto:",
       "isDemo": "Este justificante de voto fue generado en una cabina de votación de prueba. Este voto NO fue emitido."
@@ -245,11 +315,30 @@
 
     "reviewScreen": {
       "pair": "__one__ > __two__",
-      "editAction": "Cambiar papeleta"
+      "editAction": "Cambiar Voto",
+      "title": "Revise su Voto",
+      "description": "Para realizar cambios en sus selecciones, haga clic en el botón “<strong>Cambiar selección</strong>”, para confirmar sus selecciones, haga clic en el botón “<b class=\"green\">Enviar Voto</b>” a continuación, y para auditar su papeleta haga clic en el botón “<b class=\"red\">Auditar Voto</b>” a continuación. Tenga en cuenta que una vez que envíe su papeleta, ya ha votado y no se le emitirá otra papeleta para esta elección.",
+      "descriptionNoAudit": "Para realizar cambios en sus selecciones, haga clic en el botón “<strong>Cambiar selección</strong>”, para confirmar sus selecciones, haga clic en el botón “<b class=\"green\">Enviar Voto</b>” a continuación. Tenga en cuenta que una vez que envíe su papeleta, ya ha votado y no se le emitirá otra papeleta para esta elección.",
+      "ballotIdMessage": "Su Localizador de Voto: __hash__",
+      "informationModal": {
+        "header": "Información: Pantalla de revisión",
+        "body": "Esta pantalla le permite revisar sus selecciones antes de emitir su voto.",
+        "confirm": "OK"
+      }
     },
 
     "simultaneousQuestions": {
-      "skipQuestion": "Saltar pregunta(s)"
+      "skipQuestion": "Saltar pregunta(s)",
+      "skipQuestionModal": {
+        "header": "¿Desea omitir esta(s) pregunta(s)?",
+        "body": "Por favor, confirme que desea saltarse esta(s) pregunta(s). Puede votar en la(s) pregunta(s) omitida(s) iniciando sesión de nuevo.",
+        "confirm": "Confirme y OMITA esta(s) pregunta(s)"
+      },
+      "informationModal": {
+        "header": "Información: Pantalla de votación",
+        "body": "Esta pantalla muestra la votación en la que usted es elegible para votar. Puede seleccionar su sección activando la casilla de la derecha Candidato/Respuesta. Para restablecer sus selecciones, haga clic en el botón “<b>Borrar selección</b>”, para pasar al siguiente paso, haga clic en el botón “<b>Siguiente</b>”.",
+        "confirm": "OK"
+      }
     },
 
     "pairwiseBeta": {
@@ -266,12 +355,12 @@
 
     "busy": {
       "title": "Su voto será...",
-      "encryptedTitle": "cifrado",
-      "encryptedDescription": "para que nadie pueda saber qué opciones escogió",
-      "castTitle": "emitido",
-      "castDescription": "usando un canal seguro y verificando su identidad",
-      "anonymizedTitle": "anonimizado",
-      "anonymizedDescription": "para que el recuento no revele el sentido de su voto",
+      "encryptedTitle": "Cifrado",
+      "encryptedDescription": "Para que nadie pueda saber qué opciones escogió",
+      "castTitle": "Emitido",
+      "castDescription": "Usando un canal seguro y verificando su identidad",
+      "anonymizedTitle": "Anonimizado",
+      "anonymizedDescription": "Para que el recuento no revele el sentido de su voto",
       "description": "Su voto está siendo cifrado para que nadie pueda saber qué opciones escogió"
     },
 
@@ -287,6 +376,27 @@
       "confirm": "SI, seleccionar",
       "cancel": "NO",
       "doNotShowAgain": "No mostrar esto de nuevo"
+    },
+    "clearSelection": "Borrar selección",
+    "typeWriteInPlaceholder": "Escriba aquí el candidato por escrito",
+    "electionChooserScreen": {
+      "title": "Lista de Votaciones",
+      "description": "Seleccione la votación que desea votar",
+      "voted": "Votado",
+      "notVoted": "No votado",
+      "openElection": "Abierta",
+      "closedElection": "Cerrada",
+      "scheduledElection": "Programada",
+      "openDate": "Abierta: <b>__date__</b>",
+      "closingDate": "Cerrada: <b>__date__</b>",
+      "electionResultsBtn": "Resultados de Votación",
+      "clickToVoteBtn": "Haga click para Votar",
+      "electionWebsite": "Sitio web electoral",
+      "informationModal": {
+        "header": "Información: Lista de Votaciones",
+        "body": "Bienvenido a la cabina de votación, esta pantalla muestra la lista de elecciones en las que puede emitir su voto. Las elecciones que aparecen en esta lista pueden estar abiertas a votación, programadas o cerradas. Sólo podrá acceder a la votación si el periodo de votación está abierto. En el caso de que una elección esté cerrada y su administrador electoral haya publicado el resultado, verá un botón \"Resultado electoral\" que le llevará a la página pública de resultados.",
+        "confirm": "OK"
+      }
     }
   },
   "avElection": {
