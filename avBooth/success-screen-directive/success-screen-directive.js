@@ -496,7 +496,8 @@ angular.module('avBooth')
                   electionCredential,
                   {
                     voted: true,
-                    numSuccessfulLogins: electionCredential.numSuccessfulLogins + 1
+                    numSuccessfulLogins: electionCredential.numSuccessfulLogins + 1,
+                    skipped: false,
                   }
                 );
               } else {
