@@ -253,7 +253,7 @@ angular.module('avCrypto')
           id: election.id,
           configuration: election,
           state: electionState,
-          pks: pubkeys,
+          pks: JSON.stringify(pubkeys),
           virtual: isVirtual,
         };
         var ballot = {
