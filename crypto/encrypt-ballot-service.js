@@ -255,6 +255,10 @@ angular.module('avCrypto')
           state: electionState,
           pks: JSON.stringify(pubkeys),
           virtual: isVirtual,
+          tallyAllowed: true,
+          publicCandidates: true,
+          trusteeKeysState: []
+
         };
         var ballot = {
           "proofs": [],
