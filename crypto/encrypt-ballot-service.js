@@ -247,13 +247,21 @@ angular.module('avCrypto')
         return ballot;
       }
 
-      function formatAuditableBallot(election, answers) 
+      function formatAuditableBallot(election, answers, electionState, pubkeys, isVirtual) 
       {
+        var electionConfig = {
+          id: election.id,
+          configuration: election,
+          state: electionState,
+          pks: pubkeys,
+          virtual: isVirtual,
+        };
         var ballot = {
           "proofs": [],
           "choices": [],
           "issue_date": moment().format("DD/MM/YYYY"),
-          "election_url": ConfigService.baseUrl + "election/" + election.id
+          //"election_url": ConfigService.baseUrl + "election/" + election.id
+          "config": electionConfig
         };
         for (var i = 0; i < election.questions.length; i++) 
         {
@@ -283,7 +291,8 @@ angular.module('avCrypto')
         {
           // ballot generated
           var ballot = formatBallot(data.election, answers);
-          var auditData = formatAuditableBallot(data.election, answers);
+          var auditData = formatAuditableBallot(
+            data.election, answers, data.electionState, data.pubkeys, data.isVirtual);
           var ballotStr = stringify(ballot);
 
           // generate ballot hash

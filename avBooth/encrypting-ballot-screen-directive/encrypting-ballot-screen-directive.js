@@ -200,6 +200,8 @@ angular.module('avBooth')
         var encryptionInfo = {
           election: scope.election,
           pubkeys: scope.pubkeys,
+          electionState: scope.electionState,
+          isVirtual: scope.isVirtual,
           statusUpdate: statusUpdateFunc,
 
           // on success, we first then try to submit, then once submitted we
