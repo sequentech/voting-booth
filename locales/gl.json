@@ -32,6 +32,11 @@
     "showPdf": {
       "showPdfButton": "Mostrar PDF"
     },
+    "countdownTooltip": {
+      "title": "A túa sesión vai expirar.",
+      "contentMins": "Tes _minutos_ __minutos__ para emitir o teu voto.",
+      "contentSecs": "Tes __segundos__ segundos para emitir o teu voto."
+    },
     "confirmAuditBallot": {
       "header": "¿Realmente quieres auditar tu papeleta?",
       "body": "La auditoría de la papeleta lo invalidará y tendrás que iniciar el proceso de votación de nuevo si deseas emitir tu voto. El proceso de auditoría de la papeleta permite verificar que está codificada correctamente. Hacer este proceso requiere que unos conocimientos técnicos importantes, por lo que no se recomienda si no sabes lo que estás haciendo. <br/> <br/><strong>Si lo que desea es emitir su voto, en <u>Cancelar</u> para volver a la pantalla de revisión de votación.</strong>",

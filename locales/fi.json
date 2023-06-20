@@ -44,6 +44,11 @@
       "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selección esté compuesta de forma que detrás de una mujer luego va un hombre y así sucesivamente.",
       "continue": "Revisar mi papeleta"
     },
+    "countdownTooltip": {
+      "title": "Istunnon vanhenemisaika lähestyy.",
+      "contentMins": "Sinulla on __mins__ minuuttia aikaa äänestyksen tekemiseen.",
+      "contentSecs": "Sinulla on __secs__ sekuntia aikaa äänestyksen tekemiseen."
+    },
     "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>HUOM!</strong> Tämä on testiäänestys",
     "loadingElectionTitle": "Vaalin tiedot latautuu. Odota, kiitos... ",
     "stepNumber": "vaihe __num__ yhteensä __total__ vaiheesta",

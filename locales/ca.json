@@ -44,6 +44,11 @@
     "showPdf": {
       "showPdfButton": "Mostrar PDF"
     },
+    "countdownTooltip": {
+      "title": "La teva sessió expirarà.",
+      "contentMins": "Tens _minutos_ __minuts__ per a emetre el teu vot.", 
+      "contentSecs": "Tens __segons__ segons per a emetre el teu vot."
+    },
     "hashForVoteNotCastModal": {
       "header": "Vot no emès",
       "body": "Està a punt de copiar el Localitzador de el Cot, però <strong>el seu vot encara no s'ha emès</strong>. Si voleu buscar el Localitzador de el Vot, no el trobarà. Qual la raó per la que vam mostrar el Localitzador de l'Vot en aquest moment és perquè pugui auditar la correcció de l'vot xifrat abans d'emetre'l. Si aquesta és la raó per la qual vol copiar el Localitzador de l'Vot, procedeixi a copiar-lo i després auditi el seu vot.",
