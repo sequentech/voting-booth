@@ -423,7 +423,6 @@
 
     "authorities": {
       "loading": "Carregant autoritats..",
-      "loading": "Error carregant autoritats.",
       "title": "Autoritats de votació",
       "intro": "Les autoritats de la votació juguen un paper fonamental. La fortalesa del sistema de seguretat usat en aquesta votació resideix en un sistema de seguretat compartida anàleg als apoderats/ades i interventors/es en les eleccions tradicionals, on la clau xifrada de la votació es genera de forma distribuïda per un conjunt d'autoritats independents de la votació, que vetllen pel secret del vot i són les que executen el recompte. Són les següents:"
     },

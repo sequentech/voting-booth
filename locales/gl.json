@@ -254,7 +254,6 @@
 
     "authorities": {
       "loading": "Cargando autoridades..",
-      "loading": "Erro cargando autoridades.",
       "title": "Autoridades de votación",
       "intro": "As autoridades da votación xogan un papel fundamental. A fortaleza do sistema de seguridade usado nesta votación reside nun sistema de seguridade compartida análogo aos apoderados e interventores nas eleccións tradicionais, onde a clave cifrada da votación xérase de forma distribuída por un conxunto de autoridades independentes da votación, que velan polo segredo do voto e son as que executan o reconto. Son as seguintes:"
     },
