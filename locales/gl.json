@@ -34,8 +34,8 @@
     },
     "countdownTooltip": {
       "title": "A túa sesión vai expirar.",
-      "contentMins": "Tes _minutos_ __minutos__ para emitir o teu voto.",
-      "contentSecs": "Tes __segundos__ segundos para emitir o teu voto."
+      "contentMins": "Tes __mins__ minutos para emitir o teu voto.",
+      "contentSecs": "Tes __secs__ segundos para emitir o teu voto."
     },
     "confirmAuditBallot": {
       "header": "¿Realmente quieres auditar tu papeleta?",

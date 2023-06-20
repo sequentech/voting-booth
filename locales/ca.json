@@ -46,8 +46,8 @@
     },
     "countdownTooltip": {
       "title": "La teva sessió expirarà.",
-      "contentMins": "Tens _minutos_ __minuts__ per a emetre el teu vot.", 
-      "contentSecs": "Tens __segons__ segons per a emetre el teu vot."
+      "contentMins": "Tens __mins__ minuts per a emetre el teu vot.", 
+      "contentSecs": "Tens __secs__ segons per a emetre el teu vot."
     },
     "hashForVoteNotCastModal": {
       "header": "Vot no emès",
