@@ -1120,6 +1120,8 @@ angular.module('avBooth')
           scope.election.presentation.anchor_continue_btn_to_bottom || false;
       }
 
+      var initialTimeMs = Date.now();
+
       //////////////////// Initialization part ////////////////////
 
       // init scope vars
@@ -1144,6 +1146,7 @@ angular.module('avBooth')
         next: next,
         redirectToLogin: redirectToLogin,
         checkFixToBottom: checkFixToBottom,
+        initialTimeMs: initialTimeMs,
 
         // stateData stores information used by the directive being shown.
         // Its content depends on the current state.
