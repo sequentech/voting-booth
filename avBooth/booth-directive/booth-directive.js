@@ -670,13 +670,6 @@ angular.module('avBooth')
           scope.stateData.oldState.data);
       }
 
-      var startTimeMs = Date.now();
-
-      function getSessionStartTime() {
-        readVoteCredentials();
-        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || startTimeMs;
-      }
-
       // Try to read and process voting credentials
       function readVoteCredentials() {
         if (scope.isDemo || scope.isPreview) {
@@ -755,6 +748,13 @@ angular.module('avBooth')
         scope.authorizationHeader = currentElectionCredentials.token;
         scope.currentElectionCredentials = currentElectionCredentials;
         scope.isDemo = false;
+      }
+
+      var startTimeMs = Date.now();
+
+      function getSessionStartTime() {
+        readVoteCredentials();
+        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || startTimeMs;
       }
 
       function simpleGetElection(electionId) {
