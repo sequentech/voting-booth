@@ -278,7 +278,7 @@ angular.module('avBooth')
             );
 
             if (question.invalidVoteAnswer) {
-              var top = ErrorCheckerGeneratorService.hasUrl(answer.urls, 'position', 'top');
+              var top = ErrorCheckerGeneratorService.hasUrl(question.invalidVoteAnswer.urls, 'position', 'top');
               question.invalidVoteAnswer.position = top ? 'top' : 'bottom';
             }
           }
