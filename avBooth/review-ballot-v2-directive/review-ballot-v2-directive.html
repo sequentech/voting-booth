@@ -44,7 +44,7 @@
       <div 
         class="invalid-vote-col"
         ng-class="{'extra-invalid-vote-space': question.hasCategories}"
-        ng-if="!!markedAsInvalid(question) && 'top' === question.invalidVoteAnswer.location"
+        ng-if="!!markedAsInvalid(question) && 'top' === question.invalidVoteAnswer.position"
       >
         <div
           avb-simultaneous-question-answer-v2
@@ -100,7 +100,7 @@
       <div 
         class="invalid-vote-col"
         ng-class="{'extra-invalid-vote-space': question.hasCategories}"
-        ng-if="!!markedAsInvalid(question) && 'bottom' === question.invalidVoteAnswer.location"
+        ng-if="!!markedAsInvalid(question) && 'bottom' === question.invalidVoteAnswer.position"
       >
         <div
           avb-simultaneous-question-answer-v2

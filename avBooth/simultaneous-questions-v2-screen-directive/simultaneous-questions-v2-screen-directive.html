@@ -52,7 +52,7 @@
     <div 
       class="invalid-vote-col"
       ng-class="{'extra-invalid-vote-space': question.hasCategories}"
-      ng-if="!!question.invalidVoteAnswer && 'top' === question.invalidVoteAnswer.location"
+      ng-if="!!question.invalidVoteAnswer && 'top' === question.invalidVoteAnswer.position"
     >
       <div 
         avb-simultaneous-question-answer-v2
@@ -113,7 +113,7 @@
     <div 
       class="invalid-vote-col"
       ng-class="{'extra-invalid-vote-space': question.hasCategories}"
-      ng-if="!!question.invalidVoteAnswer && 'bottom' === question.invalidVoteAnswer.location"
+      ng-if="!!question.invalidVoteAnswer && 'bottom' === question.invalidVoteAnswer.position"
     >
       <div 
         avb-simultaneous-question-answer-v2
