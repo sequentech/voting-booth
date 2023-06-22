@@ -276,6 +276,11 @@ angular.module('avBooth')
                 return ErrorCheckerGeneratorService.hasUrl(answer.urls, 'invalidVoteFlag', 'true'); 
               }
             );
+
+            if (question.invalidVoteAnswer) {
+              var top = ErrorCheckerGeneratorService.hasUrl(answer.urls, 'position', 'top');
+              question.invalidVoteAnswer.position = top ? 'top' : 'bottom';
+            }
           }
         );
 

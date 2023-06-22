@@ -49,6 +49,24 @@
 
     <!-- QUESTION OPTIONS START -->
 
+    <div 
+      class="invalid-vote-col"
+      ng-class="{'extra-invalid-vote-space': question.hasCategories}"
+      ng-if="!!question.invalidVoteAnswer && 'top' === question.invalidVoteAnswer.location"
+    >
+      <div 
+        avb-simultaneous-question-answer-v2
+        answer="question.invalidVoteAnswer"
+        question="question"
+        is-invalid-vote-answer="true"
+        toggle-select-item="toggleSelectItem"
+        toggle-select-item-cumulative="toggleSelectItemCumulative"
+        cumulative-checks="cumulativeChecks"
+        hide-check="false"
+      >
+      </div>
+    </div>
+
     <div class="categories" ng-if="question.hasCategories">
         <div
           ng-repeat="category in question.categories"
@@ -95,7 +113,7 @@
     <div 
       class="invalid-vote-col"
       ng-class="{'extra-invalid-vote-space': question.hasCategories}"
-      ng-if="!!question.invalidVoteAnswer"
+      ng-if="!!question.invalidVoteAnswer && 'bottom' === question.invalidVoteAnswer.location"
     >
       <div 
         avb-simultaneous-question-answer-v2
