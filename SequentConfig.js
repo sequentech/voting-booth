@@ -227,22 +227,12 @@ var SequentConfigData = {
 angular
   .module("SequentConfig", [])
   .factory("ConfigService", function ($location) {
-    SequentConfigData.publicURL =
-      $location.protocol() +
-      "://" +
-      $location.host +
-      SequentConfigData.publicURL;
-    SequentConfigData.electionsAPI =
-      $location.protocol() +
-      "://" +
-      $location.host +
-      SequentConfigData.electionsAPI;
-    SequentConfigData.dnieUrl =
-      $location.protocol() + "://" + $location.host + SequentConfigData.dnieUrl;
-    SequentConfigData.authAPI =
-      $location.protocol() + "://" + $location.host + SequentConfigData.authAPI;
-    SequentConfigData.baseUrl =
-      $location.protocol() + "://" + $location.host + SequentConfigData.baseUrl;
+    baseUrl = $location.protocol() + "://" + $location.host;
+    SequentConfigData.publicURL = baseUrl + SequentConfigData.publicURL;
+    SequentConfigData.electionsAPI = baseUrl + SequentConfigData.electionsAPI;
+    SequentConfigData.dnieUrl = baseUrl + SequentConfigData.dnieUrl;
+    SequentConfigData.authAPI = baseUrl + SequentConfigData.authAPI;
+    SequentConfigData.baseUrl = baseUrl + SequentConfigData.baseUrl;
     return SequentConfigData;
   });
 
