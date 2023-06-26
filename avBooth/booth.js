@@ -15,41 +15,39 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-angular.module(
-  'avBooth', 
-  [
-    'ui.bootstrap',
-    'ui.utils',
-    'ui.router',
-    'ngAnimate',
-    'avUi'
-  ]
-);
+angular.module("avBooth", [
+  "ui.bootstrap",
+  "ui.utils",
+  "ui.router",
+  "ngAnimate",
+  "avUi",
+]);
 
-angular.module('avBooth').config(function($stateProvider) {
-    /* Add New States Above */
+angular.module("avBooth").config(function ($stateProvider) {
+  /* Add New States Above */
 });
 
 angular
-  .module('avBooth')
+  .module("avBooth")
   .controller(
-    'BoothController',
-    function(
-      $scope, 
-      $stateParams, 
-      $filter, 
-      ConfigService, 
-      $i18next, 
+    "BoothController",
+    function (
+      $scope,
+      $stateParams,
+      $filter,
+      ConfigService,
+      $i18next,
       $cookies,
       $location,
       InsideIframeService
     ) {
       $scope.isDemo = $stateParams.isDemo || false;
-      var previewElectionParam = ($location.search())['preview-election'];
-      $scope.previewElection = previewElectionParam && decodeURIComponent(previewElectionParam);
+      var previewElectionParam = $location.search()["preview-election"];
+      $scope.previewElection =
+        previewElectionParam && decodeURIComponent(previewElectionParam);
       $scope.isPreview = $stateParams.isPreview || false;
       $scope.electionId = $stateParams.id;
       $scope.baseUrl = ConfigService.baseUrl;
-      $scope.config = $filter('json')(ConfigService);
+      $scope.config = $filter("json")(ConfigService);
     }
   );
