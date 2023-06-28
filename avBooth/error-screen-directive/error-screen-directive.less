@@ -23,12 +23,10 @@
         flex-direction: row;
         color: lighten(@grey-darker, 40%);
         height: 380px;
+        position: relative;
 
         @media(max-width: @screen-sm-max) {
             height: 300px;
-        }
-        @media(max-width: @screen-xs-max) {
-            height: 250px;
         }
 
         .error-code {
@@ -49,12 +47,7 @@
 
             @media(max-width: @screen-sm-max) {
                 h1 {
-                    font-size: 200px;
-                }
-            }
-            @media(max-width: @screen-xs-max) {
-                h1 {
-                    font-size: 100px;
+                    font-size: 130px;
                 }
             }
         }
