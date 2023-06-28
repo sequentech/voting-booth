@@ -24,7 +24,7 @@ angular
   .module('avBooth')
   .directive(
     'avbStartScreen',
-    function(ConfigService)
+    function(ConfigService, $i18next)
     {
       function link(scope, element, attrs)
       {
@@ -42,6 +42,10 @@ angular
             scope.legal = true;
           }
         }
+
+        scope.goToError = function () {
+          scope.showError($i18next("avBooth.errorSendingBallot"))
+        };
 
         scope.fixToBottom = scope.checkFixToBottom();
       }
