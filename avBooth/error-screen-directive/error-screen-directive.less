@@ -29,6 +29,14 @@
             height: 300px;
         }
 
+        @media(max-width: @screen-xs-max) {
+            height: 180px;
+
+            img.error-img {
+                width: 300px;
+            }
+        }
+
         .error-code {
             position: absolute;
             top: 0;
@@ -48,6 +56,14 @@
             @media(max-width: @screen-sm-max) {
                 h1 {
                     font-size: 130px;
+                }
+            }
+
+            @media(max-width: @screen-xs-max) {
+                align-items: unset;
+
+                h1 {
+                    font-size: 70px;
                 }
             }
         }
