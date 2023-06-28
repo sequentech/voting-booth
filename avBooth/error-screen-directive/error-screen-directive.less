@@ -1,0 +1,59 @@
+/**
+ * This file is part of voting-booth.
+ * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
+
+ * voting-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * voting-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+[avb-error-screen] {
+    .img-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: row;
+        color: lighten(@grey-darker, 20%);;
+        height: 380px;
+
+        h1.error-code {
+            font-size: 300px;
+            position: absolute;
+            font-weight: bold;
+        }
+
+        img.error-img {
+            z-index: 10;
+        }
+    }
+
+    .block-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h3.error-code-text {
+            color: @grey-darker;
+            padding-bottom: 16px;
+        }
+
+        p.error-description {
+            text-align: center;
+            padding-bottom: 49px;
+        }
+
+        .btn-success-action {
+            min-width: 200px;
+            height: 48px;
+        }
+    }
+}
