@@ -36,6 +36,11 @@
       "body": "Ifall du kontrollerar din röst annulleras din tidigare röst och du måste lagra en ny. Kontrollen ger dit möjligheten att se till att din röst verkligen har registrerats i den elektroniska valurnan. Att göra detta kräver tekniskt kunnande, så undvik att göra det ifall du inte är säker på vad du gör. <br/><br/><strong>Ifall du enbart vill lagra din röst, klicka på <u>Avbryt</u> för att återgå till vyn över röstens sammandrag.</strong>",
       "confirm": "Ja, jag är säker på att jag vill ANNULLERA min tidigare röst för att kontrollera den"
     },
+    "countdownTooltip": {
+      "title": "Din session kommer att gå ut.",
+      "contentMins": "Du har __mins__ minuter kvar att rösta.",
+      "contentSecs": "Du har __secs__ sekunder kvar att rösta."
+    },
     "planchaSelect": "välj alla",
     "planchaDeselect": "ta bort alla val",
     "showSelectedOptionPoints": "(__points__ points)",

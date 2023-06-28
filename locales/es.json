@@ -41,6 +41,11 @@
       "showPdfButton": "Mostrar PDF",
       "pdfTextDescription": "Por favor lea el PDF antes de votar"
     },
+    "countdownTooltip": {
+      "title": "Tu sesión va a expirar.",
+      "contentMins": "Tienes __mins__ minutos para emitir tu voto.",
+      "contentSecs": "Tienes __secs__ segundos para emitir tu voto."
+    },
     "demoModeModal": {
       "header": "Cabina de votación de demo",
       "body": "Está ingresando a una cabina de votación de demostración. <strong>Su voto NO se emitirá</strong>. Esta cabina de votación solo tiene fines demostrativos.",

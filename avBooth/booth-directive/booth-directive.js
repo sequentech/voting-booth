@@ -222,63 +222,6 @@ angular.module('avBooth')
         );
       }
 
-      // After cookies expires, redirect to login. But only if cookies do
-      // expire.
-      function autoredirectToLoginAfterTimeout() {
-        // demo and live preview don't need to expire
-        if (scope.isDemo || scope.isPreview) {
-          return;
-        }
-
-        var election = (
-          (!!scope.parentElection) ?
-          scope.parentElection :
-          scope.election
-        );
-
-        if (
-          ConfigService.cookies.expires &&
-          (
-            !election ||
-            !election.presentation ||
-            !election.presentation.extra_options ||
-            !election.presentation.extra_options.booth_log_out__disable
-          )
-        ) {
-          var minutes = ConfigService.cookies.expires;
-          setTimeout(
-            function () { logoutAndRedirect( /* isSuccess */ false); },
-            60*1000*minutes
-          );
-
-          setTimeout(
-            function () {
-              $modal.open({
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
-                controller: "InvalidAnswersController",
-                size: 'sm',
-                resolve: {
-                  errors: function() { return []; },
-                  data: function() {
-                    return {
-                      errors: [],
-                      header: "avBooth.logoutWarnModal.header",
-                      body: "avBooth.logoutWarnModal.body",
-                      continue: "avBooth.logoutWarnModal.confirm"
-                    };
-                  }
-                }
-              });
-            },
-            60*1000*(minutes - 1)
-          );
-
-        }
-      }
-      autoredirectToLoginAfterTimeout();
-
       function checkCookies(electionId) {
         if (scope.isDemo || scope.isPreview) {
           return;
@@ -750,6 +693,78 @@ angular.module('avBooth')
         scope.isDemo = false;
       }
 
+      var startTimeMs = Date.now();
+
+      function getSessionStartTime() {
+        readVoteCredentials();
+        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || startTimeMs;
+      }
+
+      // After cookies expires, redirect to login. But only if cookies do
+      // expire.
+      function autoredirectToLoginAfterTimeout() {
+        // demo and live preview don't need to expire
+        if (scope.isDemo || scope.isPreview) {
+          return;
+        }
+
+        var election = (
+          (!!scope.parentElection) ?
+          scope.parentElection :
+          scope.election
+        );
+
+        if (
+          ConfigService.authTokenExpirationSeconds &&
+          (
+            !election ||
+            !election.presentation ||
+            !election.presentation.extra_options ||
+            !election.presentation.extra_options.booth_log_out__disable
+          )
+        ) {
+
+          var logoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
+
+          setTimeout(
+            function () { logoutAndRedirect( /* isSuccess */ false); },
+            Math.max(logoutTimeMs - Date.now(), 0)
+          );
+
+          var modalTimeMs = logoutTimeMs - 60 * 1000;
+
+          if (modalTimeMs < Date.now()) {
+            return;
+          }
+
+          setTimeout(
+            function () {
+              $modal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: "avBooth/invalid-answers-controller/invalid-answers-controller.html",
+                controller: "InvalidAnswersController",
+                size: 'sm',
+                resolve: {
+                  errors: function() { return []; },
+                  data: function() {
+                    return {
+                      errors: [],
+                      header: "avBooth.logoutWarnModal.header",
+                      body: "avBooth.logoutWarnModal.body",
+                      continue: "avBooth.logoutWarnModal.confirm"
+                    };
+                  }
+                }
+              });
+            },
+            modalTimeMs - Date.now()
+          );
+
+        }
+      }
+      autoredirectToLoginAfterTimeout();
+
       function simpleGetElection(electionId) {
         if (!electionId) {
           var future = $q.defer();
@@ -1144,6 +1159,7 @@ angular.module('avBooth')
         next: next,
         redirectToLogin: redirectToLogin,
         checkFixToBottom: checkFixToBottom,
+        getSessionStartTime: getSessionStartTime,
 
         // stateData stores information used by the directive being shown.
         // Its content depends on the current state.
