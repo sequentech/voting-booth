@@ -21,13 +21,42 @@
         justify-content: center;
         align-items: flex-end;
         flex-direction: row;
-        color: lighten(@grey-darker, 20%);;
+        color: lighten(@grey-darker, 40%);
         height: 380px;
 
-        h1.error-code {
-            font-size: 300px;
+        @media(max-width: @screen-sm-max) {
+            height: 300px;
+        }
+        @media(max-width: @screen-xs-max) {
+            height: 250px;
+        }
+
+        .error-code {
             position: absolute;
-            font-weight: bold;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            h1 {
+                font-size: 300px;
+                font-weight: bold;
+            }
+
+            @media(max-width: @screen-sm-max) {
+                h1 {
+                    font-size: 200px;
+                }
+            }
+            @media(max-width: @screen-xs-max) {
+                h1 {
+                    font-size: 100px;
+                }
+            }
         }
 
         img.error-img {
@@ -44,6 +73,8 @@
         h3.error-code-text {
             color: @grey-darker;
             padding-bottom: 16px;
+            padding-top: 51px;
+            font-weight: bold;
         }
 
         p.error-description {
@@ -54,6 +85,7 @@
         .btn-success-action {
             min-width: 200px;
             height: 48px;
+            border-radius: 4px;
         }
     }
 }
