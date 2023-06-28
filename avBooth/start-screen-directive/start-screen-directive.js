@@ -44,7 +44,7 @@ angular
         }
 
         scope.goToError = function () {
-          scope.showError($i18next("avBooth.errorSendingBallot"))
+          scope.showError($i18next("avBooth.errorSendingBallot"));
         };
 
         scope.fixToBottom = scope.checkFixToBottom();
