@@ -665,7 +665,6 @@ angular.module('avBooth')
         !!scope.election.presentation.extra_options.success_screen__redirect_to_login__text;
       scope.hideDownloadBallot = hasExtraOptions &&
         scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true;
-      scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true;
     }
 
       return {
