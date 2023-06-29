@@ -38,7 +38,7 @@ angular.module('avBooth')
       var link = function(scope, _element, _attrs)
       {
         // records if the page has been scrolled to the bottom
-        scope.scrolledTo = {bottom: false};
+        scope.scrolledToBottom = false;
 
         // record when scrolled to bottom
         function checkScrollToBottom() {
@@ -48,8 +48,9 @@ angular.module('avBooth')
           // if scrolled to bottom, stop recording events as it's not needed 
           // anymore
           if(currentScroll + modifier >= documentHeight) {
-            scope.scrolledTo.bottom = true;
+            scope.scrolledToBottom = true;
             $window.removeEventListener('scroll', checkScrollToBottom);
+            scope.$apply();
           }
         }
         $window.addEventListener('scroll', checkScrollToBottom);
