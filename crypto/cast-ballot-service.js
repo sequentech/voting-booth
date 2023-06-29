@@ -108,7 +108,7 @@ angular.module('avCrypto')
           },
           function(response) {
             console.log("Error casting ballot: " + stringify(response.data) + " with code " + response.status);
-            var errorCode = response.data && response.data.error || "UNEXPECTED_ERROR";
+            var errorCode = response.data && response.data.payload && response.data.payload.error || "UNEXPECTED_ERROR";
             data.error(errorCode, response.status);
             /*if (response.status === 401) {
               data.error("couldntSendBallotUnauthorized", stringify(response.data));
