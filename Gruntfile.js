@@ -19,7 +19,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var SEQUENT_CONFIG_VERSION = '8.0.0';
+var SEQUENT_CONFIG_VERSION = 'master';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
