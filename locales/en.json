@@ -45,7 +45,7 @@
       "500": "Internal Server Error",
       "identifier": "The following problem arised (identifier __errorId__):",
       "help": "If you think that you need to contact us, you can do so sending an email to <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
-      "backButton": "Go Back",
+      "backButton": "Go Back"
     },
     "electionChooser": {
       "hasVoted": {
