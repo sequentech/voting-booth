@@ -64,7 +64,8 @@
         "VALIDATION_ERROR": "Validation error",
         "ELECTION_NOT_FOUND": "Election not found",
         "UNEXPECTED_ERROR": "Unexpected error"
-      },
+      }
+    },
     "countdownTooltip": {
       "title": "Your session is going to expire.",
       "contentMins": "You have __mins__ minutes left to cast your vote.",
