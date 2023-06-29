@@ -32,7 +32,7 @@ angular.module('avBooth')
       scope.errorCodeTranslation = "avBooth.errorScreen." + scope.errorCode;
 
       scope.goBack = function () {
-        scope.setState(scope.stateEnum.startScreen, {})
+        scope.setState(scope.stateEnum.startScreen, {});
       };
     }
     return {
