@@ -41,11 +41,26 @@
       "pdfTextDescription": "Please read the PDF before voting"
     },
     "errorScreen": {
+      "400": "Bad Request",
+      "401": "Unauthorized",
       "404": "Not Found",
       "500": "Internal Server Error",
+      "502": "Bad Gateway",
       "identifier": "The following problem arised (identifier __errorId__):",
       "help": "If you think that you need to contact us, you can do so sending an email to <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
-      "backButton": "Go Back"
+      "backButton": "Go Back",
+      "codes": {
+        "MISSING_USER_CREDENTIALS": "Missing user credentials",
+        "MALFORMED_USER_CREDENTIALS": "Malformed user credentials",
+        "INVALID_USER_CREDENTIALS": "Invalid user credentials",
+        "MALFORMED_VOTE": "Malformed vote",
+        "MAX_REVOTES_REACHED": "Maximum number of votes for the user reached",
+        "PK_ERROR": "Error reading public key",
+        "ELECTION_NOT_OPEN": "The electoral process has not started yet",
+        "VALIDATION_ERROR": "Validation error",
+        "ELECTION_NOT_FOUND": "Election not found",
+        "UNEXPECTED_ERROR": "Unexpected error"
+      }
     },
     "electionChooser": {
       "hasVoted": {

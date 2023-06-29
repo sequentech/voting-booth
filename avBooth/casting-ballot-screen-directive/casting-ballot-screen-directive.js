@@ -64,8 +64,9 @@ angular.module('avBooth')
           },
 
           // on error, try to deal with it
-          error: function (status, message) {
-            if (status === "couldntSendBallot") {
+          error: function (errorCode, httpCode) {
+            scope.showError("avBooth.errorScreen.codes." + (errorCode || "UNEXPECTED_ERROR"), undefined, httpCode)
+            /*if (status === "couldntSendBallot") {
               // TODO show "try again" button somehow if it's a network problem.
               // hopefully, without having to encrypt again the ballot
               scope.showError("avBooth.errorSendingBallot",
@@ -85,7 +86,7 @@ angular.module('avBooth')
             } else {
               scope.showError("avBooth.errorSendingBallotUnknown",
                 {msg:message});
-            }
+            }*/
           },
           verify: false,
         };
