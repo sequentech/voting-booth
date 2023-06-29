@@ -37,6 +37,28 @@ angular.module('avBooth')
 
       var link = function(scope, _element, _attrs)
       {
+        // records if the page has been scrolled to the bottom
+        scope.scrolledToBottom = false;
+
+        // record when scrolled to bottom
+        function checkScrollToBottom() {
+          var documentHeight = document.body.scrollHeight;
+          var currentScroll = window.scrollY + window.innerHeight;
+          var modifier = 0;
+          // if scrolled to bottom, stop recording events as it's not needed 
+          // anymore
+          if(currentScroll + modifier >= documentHeight) {
+            scope.scrolledToBottom = true;
+            $window.removeEventListener('scroll', checkScrollToBottom);
+            
+            // Trigger a refresh. Needed to do it manually since we modified a
+            // scope variable (`scope.scrolledToBottom`) from within an event
+            // listener
+            scope.$apply();
+          }
+        }
+        $window.addEventListener('scroll', checkScrollToBottom);
+
         // filter the list of questions to get the list of questions of type
         // "simultaneous-questions-v2"
         var groupQuestions = _.filter(
