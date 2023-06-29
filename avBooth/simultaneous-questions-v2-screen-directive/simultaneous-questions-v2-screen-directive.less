@@ -53,9 +53,17 @@
     position: relative;
   }
 
+  #continue-btn:hover~.continue-custom-tooltip {
+    display: block;
+    opacity: 1;
+  }
+
   .continue-custom-tooltip {
+    display: none;
     position: absolute;
-    bottom: 90%;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+    bottom: 93%;
     right: 40px;
     z-index: -1;
     width: 231px;
@@ -79,6 +87,7 @@
     }
 
     .tooltip-inner {
+        box-shadow: 0 5px 5px rgba(0,0,0,.15);
         background-color: #CCE5FF;
         margin-top: -9px;
         font-size: 12px;
