@@ -50,6 +50,10 @@ angular.module('avBooth')
           if(currentScroll + modifier >= documentHeight) {
             scope.scrolledToBottom = true;
             $window.removeEventListener('scroll', checkScrollToBottom);
+            
+            // Trigger a refresh. Needed to do it manually since we modified a
+            // scope variable (`scope.scrolledToBottom`) from within an event
+            // listener
             scope.$apply();
           }
         }
