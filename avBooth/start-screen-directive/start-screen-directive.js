@@ -43,10 +43,6 @@ angular
           }
         }
 
-        scope.goToError = function () {
-          scope.showError("avBooth.errorSendingBallot", undefined, 500);
-        };
-
         scope.fixToBottom = scope.checkFixToBottom();
       }
 

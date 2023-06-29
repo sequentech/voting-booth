@@ -657,8 +657,15 @@ angular.module('avBooth')
       };
       scope.fixToBottom = scope.checkFixToBottom();
 
-      scope.showRedirectToLogin = !scope.hasNextElection && !!scope.election.presentation.extra_options.success_screen__redirect_to_login && !!scope.election.presentation.extra_options.success_screen__redirect_to_login__text;
-      scope.hideDownloadBallot = scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true;
+      var hasExtraOptions = !!scope.election.presentation &&
+        !!scope.election.presentation.extra_options;
+      scope.showRedirectToLogin = !scope.hasNextElection &&
+        hasExtraOptions &&
+        !!scope.election.presentation.extra_options.success_screen__redirect_to_login &&
+        !!scope.election.presentation.extra_options.success_screen__redirect_to_login__text;
+      scope.hideDownloadBallot = hasExtraOptions &&
+        scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true;
+      scope.election.presentation.extra_options.success_screen__hide_download_ballot_ticket === true;
     }
 
       return {
