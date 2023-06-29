@@ -36,6 +36,10 @@
   },
   "avBooth": {
     "logout": "Log out",
+    "scrolledToBottom": {
+      "title": "Scroll down to enable this button",
+      "description": "Please review all candidates and contests by scrolling to the end of the ballot."
+    },
     "showPdf": {
       "showPdfButton": "Show PDF",
       "pdfTextDescription": "Please read the PDF before voting"
@@ -60,7 +64,11 @@
         "VALIDATION_ERROR": "Validation error",
         "ELECTION_NOT_FOUND": "Election not found",
         "UNEXPECTED_ERROR": "Unexpected error"
-      }
+      },
+    "countdownTooltip": {
+      "title": "Your session is going to expire.",
+      "contentMins": "You have __mins__ minutes left to cast your vote.",
+      "contentSecs": "You have __secs__ seconds left to cast your vote."
     },
     "electionChooser": {
       "hasVoted": {

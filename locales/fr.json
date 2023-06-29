@@ -39,6 +39,11 @@
             "showPdfButton": "Afficher le PDF",
             "pdfTextDescription": "Veuillez lire le PDF avant de voter"
         },
+        "countdownTooltip": {
+          "title": "Votre session expire bientôt.",
+          "contentMins": "Il vous reste __mins__ minutes pour voter.",
+          "contentSecs": "Il vous reste __secs__ secondes pour voter."
+        },
         "electionChooser": {
             "hasVoted": {
                 "title": "Succ\u00e8s !",
