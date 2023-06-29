@@ -5,7 +5,7 @@
 <div class="container">
   <div class="img-wrapper">
     <div class="error-code">
-      <h1>500</h1>
+      <h1>{{errorCode}}</h1>
     </div>
     <img
       alt="Error Image"
@@ -15,38 +15,16 @@
   </div>
   
   <div class="block-wrapper">
-    <h3 class="error-code-text">Internal Server Error</h3>
-    <p class="error-description">
-      Description of the question lorem ipsum lorem ipsum 
-      lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-      ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-      lorem ipsum lorem ipsum 
+    <h3 class="error-code-text" ng-i18next>{{errorCodeTranslation}}</h3>
+    <p ng-i18next="[html:i18next]({errorId: errorId})avBooth.errorScreen.identifier"></p>
+    <p class="error-description" ng-i18next>
+      {{stateData.error}}
     </p>
+    <p ng-i18next="[html:i18next]({email: config.contact.email})avBooth.errorScreen.help"></p>
     <button
-      class="btn btn-lg btn-success-action">
-      Go Back
+      class="btn btn-lg btn-success-action" ng-i18next>
+      avBooth.errorScreen.backButton
     </button>
-  </div>
-</div>
-
-<div class="wrapper-unfixed">
-  <div class="navbar-unfixed-top text-center" av-collapsing=".unfixed-top-height" data-toggle-selector="[avb-error-screen] #avb-toggle">
-    <div class="container">
-      <div class="hidden unfixed-top-height"></div>
-      <h1 ng-i18next="avBooth.errorTitle"></h1>
-    </div>
-  </div>
-</div>
-
-<div id="avb-toggle" class="text-center item-block hidden">
-  <span class="glyphicon glyphicon-play"></span>
-</div>
-
-<div class="content avb-content">
-  <div class="container">
-    <p>{{statusData.error}}</p>
-    <span ng-i18next="[html:i18next]({email: config.contact.email, error: stateData.error, errorId: errorId})avBooth.errorHtml">
-    </span>
   </div>
 </div>
 

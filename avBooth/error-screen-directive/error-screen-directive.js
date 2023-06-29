@@ -27,6 +27,13 @@ angular.module('avBooth')
       } catch(e) {
         scope.errorId = "generic";
       }
+
+      var codeTranslationMap = {
+        404: "avBooth.errorScreen.404",
+        500: "avBooth.errorScreen.500",
+      };
+      scope.errorCode = scope.stateData.errorCode || 404;
+      scope.errorCodeTranslation = codeTranslationMap[scope.errorCode];
     }
     return {
       restrict: 'AE',

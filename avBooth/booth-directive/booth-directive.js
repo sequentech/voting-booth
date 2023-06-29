@@ -638,12 +638,18 @@ angular.module('avBooth')
       }
 
       // shows the error string
-      function showError(error) {
+      function showError(errorTranslation, translationData, errorCode) {
         if (scope.state === stateEnum.errorScreen) {
           console.log("already in an error state, new error appeared: " + error);
           return;
         }
-        scope.setState(stateEnum.errorScreen, {error: error});
+        scope.setState(
+          stateEnum.errorScreen,
+          {
+            error: errorTranslation,
+            errorData: translationData,
+            errorCode: errorCode
+        });
       }
 
       function launchHelp() {
