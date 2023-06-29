@@ -41,6 +41,29 @@
       "showPdfButton": "Mostrar PDF",
       "pdfTextDescription": "Por favor lea el PDF antes de votar"
     },
+    "errorScreen": {
+      "400": "Solicitud equivocada",
+      "401": "No autorizado",
+      "403": "Prohibido",
+      "404": "No encontrado",
+      "500": "Error interno del servidor",
+      "502": "Puerta de enlace incorrecta",
+      "identifier": "Se ha producido el siguiente problema (identificador __errorId__):",
+      "help": "Si cree que tiene que contactar con nosotros, puede hacerlo enviando un correo electrónico a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
+      "backButton": "Volver",
+      "codes": {
+        "MISSING_USER_CREDENTIALS": "Faltan credenciales de usuario",
+        "MALFORMED_USER_CREDENTIALS": "Credenciales de usuario mal formateadas",
+        "INVALID_USER_CREDENTIALS": "Credenciales de usuario no válidas",
+        "MALFORMED_VOTE": "Voto mal formateado",
+        "MAX_REVOTES_REACHED": "Número máximo de votos para el usuario alcanzado",
+        "PK_ERROR": "Error al leer la clave pública",
+        "ELECTION_NOT_OPEN": "El proceso electoral aún no ha comenzado",
+        "VALIDATION_ERROR": "Error de validación",
+        "ELECTION_NOT_FOUND": "Elección no encontrada",
+        "UNEXPECTED_ERROR": "Error inesperado"
+      }
+    },
     "countdownTooltip": {
       "title": "Tu sesión va a expirar.",
       "contentMins": "Tienes __mins__ minutos para emitir tu voto.",

@@ -44,6 +44,29 @@
     "showPdf": {
       "showPdfButton": "Mostrar PDF"
     },
+    "errorScreen": {
+      "400": "Sol·licitud incorrecta",
+      "401": "No autoritzat",
+      "403": "Prohibit",
+      "404": "No trobat",
+      "500": "Error de servidor intern",
+      "502": "Porta envaïda",
+      "identifier": "El següent problema s'ha produït (identificador __errorId__):",
+      "help": "Si creus que necessites contactar amb nosaltres, pots fer-ho enviant un correu electrònic a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
+      "backButton": "Tornar enrere",
+      "codes": {
+        "MISSING_USER_CREDENTIALS": "Dades d'accés d'usuari inexistents",
+        "MALFORMED_USER_CREDENTIALS": "Dades d'accés d'usuari malformades",
+        "INVALID_USER_CREDENTIALS": "Dades d'accés d'usuari invàlides",
+        "MALFORMED_VOTE": "Vot malformat",
+        "MAX_REVOTES_REACHED": "S'ha arribat a la quantitat màxima de vots per l'usuari",
+        "PK_ERROR": "Error en llegir la clau pública",
+        "ELECTION_NOT_OPEN": "El procés electoral encara no ha començat",
+        "VALIDATION_ERROR": "Error de validació",
+        "ELECTION_NOT_FOUND": "Elecció no trobada",
+        "UNEXPECTED_ERROR": "Error inesperat"
+      }
+    },
     "countdownTooltip": {
       "title": "La teva sessió expirarà.",
       "contentMins": "Tens __mins__ minuts per a emetre el teu vot.", 

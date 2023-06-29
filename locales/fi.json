@@ -36,6 +36,29 @@
       "body": "Äänesi tarkistaminen mitätöi aikaisemman äänen ja joudut tallentamaan uuden äänen. Tarkastaminen antaa sinulle mahdollisuuden varmistaa, että äänesi on aidosti kirjautunut sähköiseen vaaliuurnaan. Tämän tekeminen edellyttää teknistä osaamista, joten älä tee tätä, ellet ole varma, mitä olet tekemässä. <br/><br/><strong>Jos haluat vain tallentaa äänesi, klikkaa <u>Keskeytä</u> siirtyäksesi takaisin äänen yhteenvetonäkymään. </strong>",
       "confirm": "Kyllä, olen varma, että haluan MITÄTÖIDÄ aikaisemman ääneni tarkastaakseni sen"
     },
+    "errorScreen": {
+      "400": "Virheellinen pyyntö",
+      "401": "Kirjautuminen epäonnistui",
+      "403": "Kielletty",
+      "404": "Ei löydetty",
+      "500": "Palvelimen sisäinen virhe",
+      "502": "Virheellinen reittilaite",
+      "identifier": "Seuraava ongelma ilmeni (tunniste __errorId__):",
+      "help": "Jos ajattelet tarvitsevasi apua, voit ottaa meihin yhteyttä lähettämällä sähköpostia osoitteeseen <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
+      "backButton": "Palaa takaisin",
+      "codes": {
+        "MISSING_USER_CREDENTIALS": "Käyttäjätunnukset puuttuvat",
+        "MALFORMED_USER_CREDENTIALS": "Muodostettu väärin käyttäjätunnukset",
+        "INVALID_USER_CREDENTIALS": "Virheelliset käyttäjätunnukset",
+        "MALFORMED_VOTE": "Muodostettu väärin ääni",
+        "MAX_REVOTES_REACHED": "Käyttäjälle annettujen äänien maksimiluku saavutettu",
+        "PK_ERROR": "Virhe julkisen avaimen lukemisessa",
+        "ELECTION_NOT_OPEN": "Vaaliprosessi ei ole vielä käynnissä",
+        "VALIDATION_ERROR": "Vahvistusvirhe",
+        "ELECTION_NOT_FOUND": "Vaalia ei löydy",
+        "UNEXPECTED_ERROR": "Odottamaton virhe"
+      }
+    },
     "planchaSelect": "valitse kaikki",
     "planchaDeselect": "poista kaikki valinnat",
     "showSelectedOptionPoints": "(__points__ points)",
