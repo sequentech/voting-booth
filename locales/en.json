@@ -36,6 +36,10 @@
   },
   "avBooth": {
     "logout": "Log out",
+    "scrolledToBottom": {
+      "title": "Scroll down to enable this button",
+      "description": "Please review all candidates and contests by scrolling to the end of the ballot."
+    },
     "showPdf": {
       "showPdfButton": "Show PDF",
       "pdfTextDescription": "Please read the PDF before voting"
