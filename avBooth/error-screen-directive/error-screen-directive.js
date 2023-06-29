@@ -28,12 +28,12 @@ angular.module('avBooth')
         scope.errorId = "generic";
       }
 
-      var codeTranslationMap = {
-        404: "avBooth.errorScreen.404",
-        500: "avBooth.errorScreen.500",
-      };
       scope.errorCode = scope.stateData.errorCode || 500;
-      scope.errorCodeTranslation = codeTranslationMap[scope.errorCode] || codeTranslationMap[500];
+      scope.errorCodeTranslation = "avBooth.errorScreen." + scope.errorCode;
+
+      scope.goBack = function () {
+        scope.setState(scope.stateEnum.startScreen, {})
+      };
     }
     return {
       restrict: 'AE',
