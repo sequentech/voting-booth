@@ -68,23 +68,23 @@ angular.module('avBooth')
             if (status === "couldntSendBallot") {
               // TODO show "try again" button somehow if it's a network problem.
               // hopefully, without having to encrypt again the ballot
-              scope.showError($i18next("avBooth.errorSendingBallot",
-                {msg:message}));
+              scope.showError("avBooth.errorSendingBallot",
+                {msg:message});
             } else if (status === "couldntSendBallotNotFound") {
-              scope.showError($i18next("avBooth.couldntSendBallotNotFound",
-                {msg:message}));
+              scope.showError("avBooth.couldntSendBallotNotFound",
+                {msg:message});
             } else if (status === "couldntSendBallotUnauthorized") {
-              scope.showError($i18next("avBooth.couldntSendBallotUnauthorized",
-                {msg:message}));
+              scope.showError("avBooth.couldntSendBallotUnauthorized",
+                {msg:message});
             } else if (status === "tooManyUserUpdates") {
-              scope.showError($i18next("avBooth.tooManyUserUpdates",
-                {msg:message}));
+              scope.showError("avBooth.tooManyUserUpdates",
+                {msg:message});
             } else if (status === "errorSendingBallotElectionNotOpen") {
-              scope.showError($i18next("avBooth.errorSendingBallotElectionNotOpen",
-                {msg:message}));
+              scope.showError("avBooth.errorSendingBallotElectionNotOpen",
+                {msg:message});
             } else {
-              scope.showError($i18next("avBooth.errorSendingBallotUnknown",
-                {msg:message}));
+              scope.showError("avBooth.errorSendingBallotUnknown",
+                {msg:message});
             }
           },
           verify: false,
@@ -95,8 +95,8 @@ angular.module('avBooth')
       var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
       if (!credentialsStr && InsideIframeService()) {
         scope.setAuthorizationReceiver(castBallot, function() {
-          scope.showError($i18next("avBooth.couldntSendBallotUnauthorized",
-            {msg:"error-receiving-hmac"}));
+          scope.showError("avBooth.couldntSendBallotUnauthorized",
+            {msg:"error-receiving-hmac"});
         });
       $window.top.postMessage(
         "avRequestAuthorization:" +

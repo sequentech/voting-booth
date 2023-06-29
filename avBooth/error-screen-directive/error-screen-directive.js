@@ -32,8 +32,8 @@ angular.module('avBooth')
         404: "avBooth.errorScreen.404",
         500: "avBooth.errorScreen.500",
       };
-      scope.errorCode = scope.stateData.errorCode || 404;
-      scope.errorCodeTranslation = codeTranslationMap[scope.errorCode];
+      scope.errorCode = scope.stateData.errorCode || 500;
+      scope.errorCodeTranslation = codeTranslationMap[scope.errorCode] || codeTranslationMap[500];
     }
     return {
       restrict: 'AE',

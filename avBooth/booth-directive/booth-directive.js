@@ -708,7 +708,7 @@ angular.module('avBooth')
             }
           );
         } catch (error) {
-          showError($i18next("avBooth.errorLoadingElection"));
+          showError("avBooth.errorLoadingElection");
           return;
         }
 
@@ -716,7 +716,7 @@ angular.module('avBooth')
         if (!currentElectionCredentials)
         {
           if (scope.election) {
-            showError($i18next("avBooth.errorLoadingElection"));
+            showError("avBooth.errorLoadingElection");
           }
           return;
         }
@@ -724,7 +724,7 @@ angular.module('avBooth')
         // token should be valid
         var hmac = HmacService.checkKhmac(currentElectionCredentials.token);
         if (!hmac) {
-          showError($i18next("avBooth.errorLoadingElection"));
+          showError("avBooth.errorLoadingElection");
           return;
         }
 
@@ -732,7 +732,7 @@ angular.module('avBooth')
         // "userid:vote:AuthEvent:1110:134234111"
         var splitMessage = hmac.message.split(':');
         if (splitMessage.length !== 5) {
-          showError($i18next("avBooth.errorLoadingElection"));
+          showError("avBooth.errorLoadingElection");
           return;
         }
         var voterId = splitMessage[0];
@@ -745,7 +745,7 @@ angular.module('avBooth')
           action !== 'vote' ||
           objectType !== 'AuthEvent'
         ) {
-          showError($i18next("avBooth.errorLoadingElection"));
+          showError("avBooth.errorLoadingElection");
           return;
         }
 
@@ -901,7 +901,7 @@ angular.module('avBooth')
                   ) &&
                   !showPdf
                 ) {
-                  showError($i18next("avBooth.errorElectionIsNotOpen"));
+                  showError("avBooth.errorElectionIsNotOpen");
                   return;
                 }
 
@@ -993,7 +993,7 @@ angular.module('avBooth')
 
                 if (scope.isVirtual) {
                   if (hasAuthapiError) {
-                    showError($i18next("avBooth.errorLoadingElection"));
+                    showError("avBooth.errorLoadingElection");
                     return;
                   }
                   sequentElectionsRetrieved = true;
@@ -1032,7 +1032,7 @@ angular.module('avBooth')
               },
               // on error, like parse error or 404
               function onError(response) {
-                showError($i18next("avBooth.errorLoadingElection"));
+                showError("avBooth.errorLoadingElection", undefined, response.status);
               }
             );
 
@@ -1080,7 +1080,7 @@ angular.module('avBooth')
               }
             );
         } catch (error) {
-          showError($i18next("avBooth.errorLoadingElection"));
+          showError("avBooth.errorLoadingElection");
         }
       }
 
@@ -1096,7 +1096,7 @@ angular.module('avBooth')
         var khmac = HmacService.checkKhmac(khmacStr);
         if (!khmac) {
           scope.authorizationReceiverErrorHandler();
-          showError($i18next("avBooth.errorLoadingElection"));
+          showError("avBooth.errorLoadingElection");
           return;
         }
         scope.authorizationHeader = khmacStr;
