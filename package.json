@@ -1,6 +1,6 @@
 {
   "name": "voting-booth",
-  "version" : "8.0.0",
+  "version" : "master",
   "license": "AGPL-3.0-only",
   "browsers": [
     "ie >= 8",
@@ -53,7 +53,7 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "common-ui": "https://github.com/sequentech/common-ui.git#8.0.0",
+    "common-ui": "https://github.com/sequentech/common-ui.git#master",
     "angular-aria": "^1.8.2",
     "pdfmake": "^0.1.65",
     "qrcode-generator": "^1.4.4"
