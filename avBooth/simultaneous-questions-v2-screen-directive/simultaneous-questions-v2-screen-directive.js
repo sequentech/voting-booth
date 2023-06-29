@@ -37,6 +37,9 @@ angular.module('avBooth')
 
       var link = function(scope, _element, _attrs)
       {
+        // records if the page has been scrolled to the bottom
+        scope.scrolledToBottom = false;
+
         // filter the list of questions to get the list of questions of type
         // "simultaneous-questions-v2"
         var groupQuestions = _.filter(
