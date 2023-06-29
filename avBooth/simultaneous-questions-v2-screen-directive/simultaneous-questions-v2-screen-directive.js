@@ -40,6 +40,18 @@ angular.module('avBooth')
         // records if the page has been scrolled to the bottom
         scope.scrolledToBottom = false;
 
+        // record when scrolled to bottom
+        function checkScrollToBottom() {
+          var documentHeight = document.body.scrollHeight;
+          var currentScroll = window.scrollY + window.innerHeight;
+          var modifier = 0;
+          if(currentScroll + modifier > documentHeight) {
+            scope.scrolledToBottom = true;
+            $window.removeEventListener('scroll', checkScrollToBottom);
+          }
+        }
+        $window.addEventListener('scroll', checkScrollToBottom);
+
         // filter the list of questions to get the list of questions of type
         // "simultaneous-questions-v2"
         var groupQuestions = _.filter(
