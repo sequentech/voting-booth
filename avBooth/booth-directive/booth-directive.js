@@ -640,7 +640,7 @@ angular.module('avBooth')
       // shows the error string
       function showError(errorTranslation, translationData, errorCode) {
         if (scope.state === stateEnum.errorScreen) {
-          console.log("already in an error state, new error appeared: " + error);
+          console.log("already in an error state, new error appeared: " + errorTranslation);
           return;
         }
         scope.setState(
