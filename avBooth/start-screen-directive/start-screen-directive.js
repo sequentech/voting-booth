@@ -24,7 +24,7 @@ angular
   .module('avBooth')
   .directive(
     'avbStartScreen',
-    function(ConfigService, $i18next)
+    function(ConfigService)
     {
       function link(scope, element, attrs)
       {
