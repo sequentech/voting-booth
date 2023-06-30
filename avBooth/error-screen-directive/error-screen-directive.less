@@ -1,0 +1,90 @@
+/**
+ * This file is part of voting-booth.
+ * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
+
+ * voting-booth is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * voting-booth  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+[avb-error-screen] {
+    .img-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: row;
+        color: lighten(@grey-darker, 40%);
+        height: 380px;
+        position: relative;
+        margin-top: -20px;
+
+        @media(max-width: @screen-xs-max) {
+            height: 280px;
+
+            img.error-img {
+                width: 300px;
+            }
+        }
+
+        .error-code {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            h1 {
+                font-size: 300px;
+                font-weight: bold;
+            }
+
+            @media(max-width: @screen-xs-max) {
+
+                h1 {
+                    font-size: 200px;
+                }
+            }
+        }
+
+        img.error-img {
+            z-index: 10;
+        }
+    }
+
+    .block-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h3.error-code-text {
+            color: @grey-darker;
+            padding-bottom: 16px;
+            padding-top: 51px;
+            font-weight: bold;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .btn-success-action {
+            min-width: 200px;
+            height: 48px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    }
+}

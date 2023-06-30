@@ -32,6 +32,29 @@
     "showPdf": {
       "showPdfButton": "Mostrar PDF"
     },
+    "errorScreen": {
+      "400": "Solicitude errada",
+      "401": "Non autorizado",
+      "403": "Prohibido",
+      "404": "Non atopado",
+      "500": "Erro interno de servidor",
+      "502": "Portal errado",
+      "identifier": "O seguinte problema surxeu (identificador __errorId__):",
+      "help": "Se pensa que precisa contactarnos, pódese facer enviando un e-mail a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
+      "backButton": "Volver",
+      "codes": {
+        "MISSING_USER_CREDENTIALS": "Faltan credenciais de usuario",
+        "MALFORMED_USER_CREDENTIALS": "Credenciais de usuario malformadas",
+        "INVALID_USER_CREDENTIALS": "Credenciais de usuario non válidas",
+        "MALFORMED_VOTE": "Voto malformado",
+        "MAX_REVOTES_REACHED": "Número máximo de votos para usuario acadado",
+        "PK_ERROR": "Erro lendo a chave pública",
+        "ELECTION_NOT_OPEN": "O proceso electoral aínda non comezou",
+        "VALIDATION_ERROR": "Erro de validación",
+        "ELECTION_NOT_FOUND": "Elección non atopada",
+        "UNEXPECTED_ERROR": "Erro inesperado"
+      }
+    },
     "countdownTooltip": {
       "title": "A túa sesión vai expirar.",
       "contentMins": "Tes __mins__ minutos para emitir o teu voto.",

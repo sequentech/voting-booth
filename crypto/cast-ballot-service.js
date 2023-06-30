@@ -107,17 +107,9 @@ angular.module('avCrypto')
             data.success(response.data);
           },
           function(response) {
-            if (response.status === 401) {
-              data.error("couldntSendBallotUnauthorized", stringify(response.data));
-            } else if (response.status === 404 || response.status === 502) {
-              data.error("couldntSendBallotNotFound", stringify(response.data));
-            } else if (response.status === 400 && response.data.payload === 'Maximum number of revotes reached') {
-              data.error("tooManyUserUpdates", stringify(response.data));
-            } else if (response.status === 400 && response.data.payload === 'Election is not open') {
-              data.error("errorSendingBallotElectionNotOpen", stringify(response.data));
-            } else {
-              data.error("couldntSendBallot", stringify(response.data));
-            }
+            console.log("Error casting ballot: " + stringify(response.data) + " with code " + response.status);
+            var errorCode = response.data && response.data.payload && response.data.payload.error || "UNEXPECTED_ERROR";
+            data.error(errorCode, response.status);
           }
         );
     };

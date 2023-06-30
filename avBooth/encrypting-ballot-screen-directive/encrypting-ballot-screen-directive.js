@@ -217,17 +217,17 @@ angular.module('avBooth')
           // on error, try to deal with it
           error: function (status, message) {
             if (status === "errorEncrypting") {
-              scope.showError($i18next("avBooth.errorEncrypting",
-                {msg:message}));
+              scope.showError("avBooth.errorEncrypting",
+                {msg:message});
             } else if (status === "errorEncoding") {
-              scope.showError($i18next("avBooth.errorEncoding",
-                {msg:message}));
+              scope.showError("avBooth.errorEncoding",
+                {msg:message});
             } else if (status === "sanityChecksFailed") {
-              scope.showError($i18next("avBooth.sanityChecksFailed",
-                {msg:message}));
+              scope.showError("avBooth.sanityChecksFailed",
+                {msg:message});
             } else {
-              scope.showError($i18next("avBooth.errorEncryptingBallotUnknown",
-                {msg:message}));
+              scope.showError("avBooth.errorEncryptingBallotUnknown",
+                {msg:message});
             }
           },
           verify: false,

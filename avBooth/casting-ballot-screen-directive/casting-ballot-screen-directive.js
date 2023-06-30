@@ -64,28 +64,8 @@ angular.module('avBooth')
           },
 
           // on error, try to deal with it
-          error: function (status, message) {
-            if (status === "couldntSendBallot") {
-              // TODO show "try again" button somehow if it's a network problem.
-              // hopefully, without having to encrypt again the ballot
-              scope.showError($i18next("avBooth.errorSendingBallot",
-                {msg:message}));
-            } else if (status === "couldntSendBallotNotFound") {
-              scope.showError($i18next("avBooth.couldntSendBallotNotFound",
-                {msg:message}));
-            } else if (status === "couldntSendBallotUnauthorized") {
-              scope.showError($i18next("avBooth.couldntSendBallotUnauthorized",
-                {msg:message}));
-            } else if (status === "tooManyUserUpdates") {
-              scope.showError($i18next("avBooth.tooManyUserUpdates",
-                {msg:message}));
-            } else if (status === "errorSendingBallotElectionNotOpen") {
-              scope.showError($i18next("avBooth.errorSendingBallotElectionNotOpen",
-                {msg:message}));
-            } else {
-              scope.showError($i18next("avBooth.errorSendingBallotUnknown",
-                {msg:message}));
-            }
+          error: function (errorCode, httpCode) {
+            scope.showError("avBooth.errorScreen.codes." + (errorCode || "UNEXPECTED_ERROR"), undefined, httpCode);
           },
           verify: false,
         };
@@ -95,8 +75,8 @@ angular.module('avBooth')
       var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
       if (!credentialsStr && InsideIframeService()) {
         scope.setAuthorizationReceiver(castBallot, function() {
-          scope.showError($i18next("avBooth.couldntSendBallotUnauthorized",
-            {msg:"error-receiving-hmac"}));
+          scope.showError("avBooth.couldntSendBallotUnauthorized",
+            {msg:"error-receiving-hmac"});
         });
       $window.top.postMessage(
         "avRequestAuthorization:" +

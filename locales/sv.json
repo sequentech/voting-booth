@@ -36,6 +36,29 @@
       "body": "Ifall du kontrollerar din röst annulleras din tidigare röst och du måste lagra en ny. Kontrollen ger dit möjligheten att se till att din röst verkligen har registrerats i den elektroniska valurnan. Att göra detta kräver tekniskt kunnande, så undvik att göra det ifall du inte är säker på vad du gör. <br/><br/><strong>Ifall du enbart vill lagra din röst, klicka på <u>Avbryt</u> för att återgå till vyn över röstens sammandrag.</strong>",
       "confirm": "Ja, jag är säker på att jag vill ANNULLERA min tidigare röst för att kontrollera den"
     },
+    "errorScreen": {
+      "400": "Bad begäran",
+      "401": "Ogiltig",
+      "403": "Förbjuden",
+      "404": "Hittades inte",
+      "500": "Internt serverfel",
+      "502": "Dålig gateway",
+      "identifier": "Följande problem uppstod (identifierare __errorId__):",
+      "help": "Om du tror att du behöver att kontakta oss, kan du göra det genom att skicka ett e-post till <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
+      "backButton": "Gå tillbaka",
+      "codes": {
+        "MISSING_USER_CREDENTIALS": "Saknade användaruppgifter",
+        "MALFORMED_USER_CREDENTIALS": "Missformade användaruppgifter",
+        "INVALID_USER_CREDENTIALS": "Ogiltiga användaruppgifter",
+        "MALFORMED_VOTE": "Missformad röst",
+        "MAX_REVOTES_REACHED": "Maximalt antal röster för användaren nådde",
+        "PK_ERROR": "Fel vid läsning av publik nyckel",
+        "ELECTION_NOT_OPEN": "Valprocessen har inte börjat ännu",
+        "VALIDATION_ERROR": "Valideringsfel",
+        "ELECTION_NOT_FOUND": "Valet hittades inte",
+        "UNEXPECTED_ERROR": "Oväntat fel"
+      }
+    },
     "countdownTooltip": {
       "title": "Din session kommer att gå ut.",
       "contentMins": "Du har __mins__ minuter kvar att rösta.",

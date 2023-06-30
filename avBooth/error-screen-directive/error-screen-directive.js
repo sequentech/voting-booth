@@ -1,6 +1,6 @@
 /**
  * This file is part of voting-booth.
- * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
+ * Copyright (C) 2015-2023  Sequent Tech Inc <legal@sequentech.io>
 
  * voting-booth is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,13 @@ angular.module('avBooth')
       } catch(e) {
         scope.errorId = "generic";
       }
+
+      scope.errorCode = scope.stateData.errorCode || 500;
+      scope.errorCodeTranslation = "avBooth.errorScreen." + scope.errorCode;
+
+      scope.goBack = function () {
+        scope.setState(scope.stateEnum.startScreen, {});
+      };
     }
     return {
       restrict: 'AE',
