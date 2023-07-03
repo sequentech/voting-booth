@@ -30,7 +30,7 @@
           tabindex="0"
           role="checkbox"
           ng-if="!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
-          aria-label="{{answer.text}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
+          aria-label="{{answer | customI18n : 'text'}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
           ng-repeat="check in answer_cumulative_checks"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, check)"
@@ -45,7 +45,7 @@
           tabindex="0"
           role="checkbox"
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
-          aria-label="{{answer.text}} check invalid"
+          aria-label="{{answer | customI18n : 'text'}} check invalid"
           ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
           ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, 0)"
           ng-class="{
@@ -61,7 +61,7 @@
           parent
           ng-if="!!answer.urlsObject['Image URL']"
           ng-src="{{answer.urlsObject['Image URL']}}"
-          alt="{{answer.text}}" 
+          alt="{{answer | customI18n : 'text'}}" 
         />
       </div>
 
@@ -73,12 +73,12 @@
         <span 
           id="question_{{question.index}}_answer_{{answer.id}}"
           class="answer-text" 
-          ng-bind-html="answer.text"
+          ng-bind-html="answer | customI18n : 'text'"
         ></span>
         <p
-          ng-if="answer.details && answer.details.length > 1"
+          ng-if="answer.details && answer.details.length > 1 || answer.details_i18n"
           class="answer-details"
-          ng-bind-html="answer.details | addTargetBlank"
+          ng-bind-html="(answer | customI18n : 'details') | addTargetBlank"
         ></p>
       </div>
 

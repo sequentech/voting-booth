@@ -34,7 +34,7 @@
           id="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="!isBlankVoteAnswer"
           class="answer-text" 
-          ng-bind-html="answer.text"
+          ng-bind-html="answer | customI18n : 'text'"
         ></span>
         <span
           id="question_{{question.index}}_answer_blank"
@@ -43,9 +43,9 @@
           ng-i18next="avBooth.emptyAnswer"
         ></span>
         <p
-          ng-if="!isBlankVoteAnswer && answer.details && answer.details.length > 1"
+          ng-if="!isBlankVoteAnswer && ((answer.details && answer.details.length > 1) || answer.details_i18n)"
           class="answer-details"
-          ng-bind-html="answer.details | addTargetBlank"
+          ng-bind-html="(answer | customI18n : 'details') | addTargetBlank"
         ></p>
       </div>
 
@@ -96,7 +96,7 @@
           id="question_{{question.index}}_answer_blank"
           class="answer-text"
           ng-if="!!hideCheck()"
-        >{{answer.text}}</span>
+        >{{answer | customI18n : 'text'}}</span>
         <div 
           class="bytes-left help-block"
         >
@@ -121,7 +121,7 @@
           tabindex="0"
           role="checkbox"
           ng-if="!isBlankVoteAnswer && !isInvalidVoteAnswer && question.tally_type === 'cumulative'"
-          aria-label="{{answer.text}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
+          aria-label="{{answer | customI18n : 'text'}} {{isWriteIn && 'write in ' || ''}}check {{check + 1}}"
           ng-repeat="check in answer_cumulative_checks"
           aria-checked="{{isCheckSelected(answer, check) ? 'true' : 'false'}}"
           ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItemCumulative(question, answer, check)"
@@ -134,7 +134,7 @@
           tabindex="0"
           role="checkbox"
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
-          aria-label="{{answer.text}} check invalid"
+          aria-label="{{answer | customI18n : 'text'}} check invalid"
           ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
           ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, 0)"
         >
