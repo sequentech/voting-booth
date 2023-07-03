@@ -23,9 +23,9 @@ angular
   .module('avBooth')
   .filter(
     'customI18n',
-    function(data)
+    function()
     {
-      return function(key)
+      return function(data, key)
       {
         var suffix = "_i18n";
         var lang = window.i18n.lng();
