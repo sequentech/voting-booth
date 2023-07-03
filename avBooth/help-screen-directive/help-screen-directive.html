@@ -8,7 +8,7 @@
       <div class="hidden unfixed-top-height"></div>
       <h1 ng-bind-html="(election.presentation | customI18n : 'public_title') || (election | customI18n : 'title')">
       </h1>
-      <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
+      <p class="description" ng-bind-html="(election | customI18n : 'description') | addTargetBlank"></p>
     </div>
   </div>
 </div>
