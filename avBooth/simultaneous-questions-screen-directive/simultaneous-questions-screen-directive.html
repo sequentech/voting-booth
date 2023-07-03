@@ -6,7 +6,7 @@
     <div class="col-xs-12 text-center">
       <h1
         class="election-title"
-        ng-bind-html="election.presentation.extra_options.public_title || election.title"
+        ng-bind-html="(election.presentation | customI18n : 'public_title') || (election | customI18n : 'title')"
       ></h1>
       <p
         ng-if="election.description"

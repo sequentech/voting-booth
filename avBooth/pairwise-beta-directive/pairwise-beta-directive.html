@@ -26,7 +26,7 @@
         class="col-md-7 text-center center-col"
       >
         <div class="top-navbar-title">
-          {{election.presentation.extra_options.public_title || election.title}}
+          {{(election.presentation | customI18n : 'public_title') || (election | customI18n : 'title')}}
         </div>
 
         <div

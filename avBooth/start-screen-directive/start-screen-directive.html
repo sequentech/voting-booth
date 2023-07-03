@@ -14,16 +14,16 @@
         <h1
           class="election-title"
           ng-if="parentElection"
-          ng-bind-html="(parentElection.presentation.extra_options  | customI18n : 'public_title') || (parentElection | customI18n : 'title') || ''"
+          ng-bind-html="(parentElection.presentation | customI18n : 'public_title') || (parentElection | customI18n : 'title') || ''"
         ></h1>
         <h1
           class="election-title"
           ng-if="!parentElection"
-          ng-bind-html="(election.presentation.extra_options | customI18n : 'public_title') || (election | customI18n : 'title') || ''"
+          ng-bind-html="(election.presentation | customI18n : 'public_title') || (election | customI18n : 'title') || ''"
         ></h1>
         <p
           class="election-description description"
-          ng-bind-html="(parentElection  | customI18n : 'description') | addTargetBlank"
+          ng-bind-html="(parentElection | customI18n : 'description') | addTargetBlank"
           ng-if="parentElection && (!!parentElection.description || !!parentElection.description_i18n)"
         ></p>
         <p

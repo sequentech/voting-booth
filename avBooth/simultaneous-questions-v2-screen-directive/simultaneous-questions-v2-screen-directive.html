@@ -28,7 +28,7 @@
   <h1 class="election-header">
     <span
       class="election-title"
-      ng-bind-html="election.presentation.extra_options.public_title || election.title"
+      ng-bind-html="(election.presentation | customI18n : 'public_title') || (election | customI18n : 'title')"
     ></span>
     <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
   </h1>
