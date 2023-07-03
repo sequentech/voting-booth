@@ -21,26 +21,18 @@
 
 angular
   .module('avBooth')
-  .directive(
-    'i18nOverride',
-    function()
+  .filter(
+    'customI18n',
+    function(data)
     {
-      function link(scope, _element, attrs)
+      return function(key)
       {
         var suffix = "_i18n";
-        var data = attrs.i18nOverride;
-        var key = attrs.key;
         var lang = window.i18n.lng();
         scope.value = '';
         if (_.isString(key) && _.isObject(data) && _.isString(lang)) {
             scope.value = data[key + suffix] && data[key + suffix][lang] || data[key] || scope.value;
         }
-      }
- 
-      return {
-        restrict: 'AE',
-        link: link,
-        template: '{{value}}'
       };
     }
   );
