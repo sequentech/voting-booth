@@ -33,18 +33,18 @@
     <i class="pull-right fa fa-lg fa-question-circle" ng-click="showHelp()"></i>
   </h1>
   <p
-    ng-if="election.description"
+    ng-if="election.description || election.description_i18n"
     class="election-description"
-    ng-bind-html="election.description | addTargetBlank">
+    ng-bind-html="election | customI18n : 'description' | addTargetBlank">
   </p>
   <div class="notifications"></div>
   <div class="question" ng-repeat="question in groupQuestions">
-    <h2 class="question-title" aria-level="2" ng-bind-html="question.title">
+    <h2 class="question-title" aria-level="2" ng-bind-html="question | customI18n : 'title'">
     </h2>
     <p
       class="question-description"
-      ng-if="question.description"
-      ng-bind-html="question.description | addTargetBlank">
+      ng-if="question.description || question.description_i18n"
+      ng-bind-html="question | customI18n : 'description' | addTargetBlank">
     </p>
 
     <!-- QUESTION OPTIONS START -->
