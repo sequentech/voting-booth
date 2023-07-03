@@ -29,10 +29,11 @@ angular
       {
         var suffix = "_i18n";
         var lang = window.i18n.lng();
-        scope.value = '';
+        var value = '';
         if (_.isString(key) && _.isObject(data) && _.isString(lang)) {
-            scope.value = data[key + suffix] && data[key + suffix][lang] || data[key] || scope.value;
+            value = data[key + suffix] && data[key + suffix][lang] || data[key] || value;
         }
+        return value;
       };
     }
   );
