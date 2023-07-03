@@ -17,8 +17,8 @@
         ></h1>
         <p
           class="election-description description"
-          ng-bind-html="((parentElection && parentElection.description) || (!parentElection && election.description) || '') | addTargetBlank"
-          ng-if="(parentElection && !!parentElection.description) || (!parentElection && !!election.description)"
+          ng-bind-html="((parentElection && (parentElection  | customI18n : 'description')) || (!parentElection && (election | customI18n : 'description')) || '') | addTargetBlank"
+          ng-if="(parentElection && (!!parentElection.description || !!parentElection.description_i18n)) || (!parentElection && (!!election.description || !!election.description_i18n))"
         ></p>
       </div>
     </div>
