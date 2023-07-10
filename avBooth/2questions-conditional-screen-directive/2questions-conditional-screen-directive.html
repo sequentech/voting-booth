@@ -5,9 +5,9 @@
   <div class="navbar-unfixed-top text-center">
     <div class="container">
       <div class="hidden unfixed-top-height"></div>
-      <h1 ng-bind-html="election.presentation.extra_options.public_title || election.title">
+      <h1 ng-bind-html="(election.presentation | customI18n : 'public_title') || (election | customI18n : 'title')">
       </h1>
-      <p class="description" ng-bind-html="election.description | addTargetBlank"></p>
+      <p class="description" ng-bind-html="(election | customI18n : 'description') | addTargetBlank"></p>
     </div>
   </div>
 </div>
@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row options-row">
       <div class="col-xs-12">
-        <h3>{{election.questions[0].title}}</h3>
+        <h3>{{election.questions[0] | customI18n : 'title'}}</h3>
       </div>
       <div class="col-xs-6">
         <div class="opt" ng-click="toggleOption(0, 0)">
@@ -24,7 +24,7 @@
             ng-class="{'glyphicon-unchecked': election.questions[0].answers[0].selected === -1,
                        'glyphicon-check': election.questions[0].answers[0].selected === 0}">
           </span>
-          {{election.questions[0].answers[0].text}}
+          {{election.questions[0].answers[0] | customI18n : 'text'}}
         </div>
       </div>
       <div class="col-xs-6 left-border">
@@ -33,12 +33,12 @@
             ng-class="{'glyphicon-unchecked': election.questions[0].answers[1].selected === -1,
                        'glyphicon-check': election.questions[0].answers[1].selected === 0}">
           </span>
-          {{election.questions[0].answers[1].text}}
+          {{election.questions[0].answers[1] | customI18n : 'text'}}
         </div>
         <div class="container-fluid" ng-if="election.questions.length > 1">
           <div class="row">
             <div class="col-xs-12">
-              <h3>{{election.questions[1].title}}</h3>
+              <h3>{{election.questions[1] | customI18n : 'title'}}</h3>
             </div>
             <div class="col-xs-12 col-sm-{{12/election.questions[1].answers.length}}" ng-repeat="answer in election.questions[1].answers">
               <div class="opt" ng-click="toggleOption(1, $index)">
@@ -46,7 +46,7 @@
                   ng-class="{'glyphicon-unchecked': election.questions[1].answers[$index].selected === -1,
                             'glyphicon-check': election.questions[1].answers[$index].selected === 0}">
                 </span>
-                {{election.questions[1].answers[$index].text}}
+                {{election.questions[1].answers[$index] | customI18n : 'text'}}
               </div>
             </div>
           </div>
