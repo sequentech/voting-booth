@@ -30,13 +30,13 @@
     <h1
       class="question-title"
       ng-if="!showingPreset"
-      ng-bind-html="stateData.question.title"
+      ng-bind-html="stateData.question | customI18n : 'title'"
     ></h1>
   </div>
   <p
     ng-if="!showingPreset"
     class="question-description"
-    ng-bind-html="stateData.question.description | addTargetBlank">
+    ng-bind-html="(stateData.question | customI18n : 'description') | addTargetBlank">
   </p>
 
   <div class="content avb-content" ng-if="!showingPreset">
@@ -161,7 +161,7 @@
         <div class="col-xs-12">
           <span ng-if="showingPreset">
             <h3 ng-bind-html="stateData.question.extra_options.recommended_preset__title | addTargetBlank"></h3>
-            <p class="description" ng-bind-html="stateData.question.description | addTargetBlank"></p>
+            <p class="description" ng-bind-html="(stateData.question | customI18n : 'description') | addTargetBlank"></p>
           </span>
         </div>
       </div>
