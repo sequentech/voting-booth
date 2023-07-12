@@ -51,7 +51,7 @@ angular.module('avBooth')
             }
           );
 
-          if (scope.withWriteInFields) {
+          if (scope.withWriteInFields && _.isUndefined(scope.answer.writeInFields)) {
             var writeInFields = scope.question.extra_options.write_in_fields.fields.map(
               function (field) {
                 field.value = "";
