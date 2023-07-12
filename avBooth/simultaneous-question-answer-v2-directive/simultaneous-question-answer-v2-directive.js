@@ -29,7 +29,7 @@ angular.module('avBooth')
         var interpolatedText = template;
         Object.values(fields).every(function (field) {
           var regex = new RegExp(`{${field.id}}`, "g");
-          interpolatedText.replace(regex, field.value);
+          interpolatedText = interpolatedText.replace(regex, field.value);
         });
 
         return interpolatedText;
