@@ -29,16 +29,55 @@ angular.module('avBooth')
       {
         scope.isCategoryList = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isCategoryList', 'true');
         scope.isWriteIn = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isWriteIn', 'true');
+        scope.withWriteInFields = _.isObject(scope.question.extra_options) &&
+          _.isObject(scope.question.extra_options.write_in_fields);
+        
+        var writeInFields = scope.withWriteInFields &&
+          _.pluck(scope.question.extra_options.write_in_fields.fields, 'id');
 
         if (scope.isWriteIn && scope.writeInTextChange) 
         {
           scope.$watch(
             "answer.text",
-            function () 
+            function ()
             {
               scope.writeInTextChange();
             }
           );
+
+          if (scope.withWriteInFields) {
+            var writeInFields = scope.question.extra_options.write_in_fields.fields.map(
+              function (field) {
+                field.value = "";
+                return field;
+              }
+            );
+            scope.answer.writeInFields = _.object(
+              _.pluck(writeInFields, "id"),
+              writeInFields
+            );
+            var template = scope.question.extra_options.write_in_fields.template;
+
+            function interpolateWriteIn(template, fields) {
+              var interpolatedText = template;
+              fields.every(function (field) {
+                var regex = new RegExp(`{${field.id}}`, "g");
+                interpolatedText.replace(regex, field.value);
+              });
+
+              return interpolatedText;
+            }
+
+            writeInFields.every(function (field) {
+              scope.$watch(
+                `answer.writeInFields.${field.id}.value`,
+                function ()
+                {
+                  scope.answer.text = interpolateWriteIn(template, scope.answer.writeInFields);
+                }
+              );
+            });
+          }
         }
 
         scope.isCheckSelected = function(answer, check)

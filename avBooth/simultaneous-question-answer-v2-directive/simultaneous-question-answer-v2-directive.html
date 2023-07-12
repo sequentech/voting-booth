@@ -74,7 +74,7 @@
         class="vertilize-col answer-texts write-in"
         ng-class="{'has-warning': (question.writeInBytesLeft.bytesLeft >= 0 && question.writeInBytesLeft.bytesLeft < 10), 'has-error': question.writeInBytesLeft.bytesLeft < 0, 'text-left': !!hideCheck()}"
       >
-        <input 
+        <input
           type="text"
           class="form-control"
           autocomplete="off"
@@ -82,7 +82,21 @@
           ng-i18next="[placeholder]avBooth.typeWriteInPlaceholder;[aria-label]avBooth.typeWriteInPlaceholder"
           av-debounce="500"
           ng-model="answer.text"
-          ng-if="!hideCheck()"
+          ng-if="!withWriteInFields"
+          ng-click="$event.stopPropagation()"
+        />
+
+        <input
+          type="text"
+          class="form-control"
+          autocomplete="off"
+          id="question_{{question.index}}_answer_{{answer.id}}_{{field.id}}"
+          placeholder="{{field | customI18n: 'placeholder'}}"
+          aria-label="{{field | customI18n: 'placeholder'}}"
+          av-debounce="500"
+          ng-model="field.value"
+          ng-if="withWriteInFields"
+          ng-repeat="field in answer.writeInFields"
           ng-click="$event.stopPropagation()"
         />
 
