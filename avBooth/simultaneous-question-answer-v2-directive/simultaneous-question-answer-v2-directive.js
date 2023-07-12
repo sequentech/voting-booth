@@ -40,9 +40,6 @@ angular.module('avBooth')
         scope.isWriteIn = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isWriteIn', 'true');
         scope.withWriteInFields = _.isObject(scope.question.extra_options) &&
           _.isObject(scope.question.extra_options.write_in_fields);
-        
-        var writeInFields = scope.withWriteInFields &&
-          _.pluck(scope.question.extra_options.write_in_fields.fields, 'id');
 
         if (scope.isWriteIn && scope.writeInTextChange) 
         {
@@ -66,7 +63,6 @@ angular.module('avBooth')
               writeInFields
             );
             var template = scope.question.extra_options.write_in_fields.template;
-
 
             writeInFields.every(function (field) {
               scope.$watch(
