@@ -25,6 +25,15 @@ angular.module('avBooth')
       ErrorCheckerGeneratorService
     ) 
     {
+      function interpolateWriteIn(template, fields) {
+        var interpolatedText = template;
+        fields.every(function (field) {
+          var regex = new RegExp(`{${field.id}}`, "g");
+          interpolatedText.replace(regex, field.value);
+        });
+
+        return interpolatedText;
+      }
       function link(scope, _element, _attrs)
       {
         scope.isCategoryList = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isCategoryList', 'true');
@@ -58,15 +67,6 @@ angular.module('avBooth')
             );
             var template = scope.question.extra_options.write_in_fields.template;
 
-            function interpolateWriteIn(template, fields) {
-              var interpolatedText = template;
-              fields.every(function (field) {
-                var regex = new RegExp(`{${field.id}}`, "g");
-                interpolatedText.replace(regex, field.value);
-              });
-
-              return interpolatedText;
-            }
 
             writeInFields.every(function (field) {
               scope.$watch(
