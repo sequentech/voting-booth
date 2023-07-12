@@ -27,7 +27,7 @@ angular.module('avBooth')
     {
       function interpolateWriteIn(template, fields) {
         var interpolatedText = template;
-        Object.values(fields).every(function (field) {
+        Object.values(fields).map(function (field) {
           var regex = new RegExp(`{${field.id}}`, "g");
           interpolatedText = interpolatedText.replace(regex, field.value);
         });
@@ -64,7 +64,7 @@ angular.module('avBooth')
             );
             var template = scope.question.extra_options.write_in_fields.template;
 
-            writeInFields.every(function (field) {
+            writeInFields.map(function (field) {
               scope.$watch(
                 `answer.writeInFields.${field.id}.value`,
                 function ()
