@@ -51,17 +51,19 @@ angular.module('avBooth')
             }
           );
 
-          if (scope.withWriteInFields && _.isUndefined(scope.answer.writeInFields)) {
+          if (scope.withWriteInFields) {
             var writeInFields = scope.question.extra_options.write_in_fields.fields.map(
               function (field) {
                 field.value = "";
                 return field;
               }
             );
-            scope.answer.writeInFields = _.object(
-              _.pluck(writeInFields, "id"),
-              writeInFields
-            );
+            if (_.isUndefined(scope.answer.writeInFields)) {
+              scope.answer.writeInFields = _.object(
+                _.pluck(writeInFields, "id"),
+                writeInFields
+              );
+            }
             var template = scope.question.extra_options.write_in_fields.template;
 
             writeInFields.map(function (field) {
