@@ -59,6 +59,24 @@
         "UNEXPECTED_ERROR": "Odottamaton virhe"
       }
     },
+    "errors": {
+      "question-lambda-invalid": "Kysymys '__qtitle__': Virheellinen ääni.",
+      "question-lambda-blank": "Kysymys '__qtitle__': valittu nolla vaihtoehtoa. Tyhjä ääni.",
+      "question-lambda-min": "Kysymys '__qtitle__': valittu __num_selected__ vaihtoehtoa, vähemmän kuin minimi __min__. Virheellinen ääni.",
+      "question-lambda-max": "Kysymys '__qtitle__': valittu __num_selected__ vaihtoehtoa, enemmän kuin maksimi __max__. Virheellinen ääni.",
+      "question-lambda-panachage": "Kysymys '__qtitle__': valittu vaihtoehtoja useista listoista, mutta se ei ole sallittua. Virheellinen ääni.",
+      "question-lambda-repeated-writeins": "Kysymys '__qtitle__': toistuvia kirjoitettuja nimiä. Virheellinen ääni.",
+      "question-lambda-writein-length": "Kysymys '__qtitle__': kirjoitetut ylittävät __max__ merkin maksimimäärän __extra_bytes__. Vaatii korjaamista.",
+      "question-lambda-writein-field-max-length": "Kysymys '__qtitle__': kirjoita sisään kenttä __name__ ylittää enintään __max__ merkkiä. Vaatii korjaamista.",
+      "question-lambda-writein-field-min-length": "Kysymys '__qtitle__': kirjoita sisään kenttä __name__ on vähemmän kuin vähimmäis __min__ merkkiä. Vaatii korjaamista.",
+      "question-lambda-writeins-not-voted": "Kysymys '__qtitle__': kirjoitetut tiedot ilmoitettu mutta ei äänestetty: __write_ins__. Poikkeuksellista.",
+      "question-lambda-writeins-not-provided": "Kysymys '__qtitle__': valittu joitain kirjoitetuja tietoja, mutta nimiä ei ole annettu. Poikkeuksellista.",
+
+      "question-lambda-max-tag": "Et voi valita enempää __tagName__ -tyyppisiä vaihtoehtoja (enintään __max__). Jos haluat valita yhden, peruuta toinen valinta ensin.",
+      "question-lambda-max-notag": "Et voi valita enempää kuin __tagName__ -tyyppisiä vaihtoehtoja (enintään __max__). Jos haluat valita yhden, peruuta toinen valinta ensin.",
+      "question-lambda-max-reached-singular": "Muista, että voit valita vain yhden vaihtoehdon",
+      "question-lambda-max-reached": "Valittujen vaihtoehtojen enimmäismäärä saavutettu (__max__). Jos haluat valita vaihtoehdon, peruuta toinen valinta ensin."
+    },
     "planchaSelect": "valitse kaikki",
     "planchaDeselect": "poista kaikki valinnat",
     "showSelectedOptionPoints": "(__points__ points)",

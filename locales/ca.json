@@ -108,6 +108,8 @@
       "question-lambda-panachage": "Votació '__qtitle__': va seleccionar opcions a les diverses llistes, però no està permès. Vot invàlid.",
       "question-lambda-repeated-writeins": "Votació '__qtitle__': noms d'escriptura repetits. Vot invàlid.",
       "question-lambda-writein-length": "Votació '__qtitle__': noms d'escriptura superades en __extra_bytes__ el màxim de __max__ caràcters. Requereix una reparació.",
+      "question-lambda-writein-field-max-length": "Pregunta '__qtitle__': el camp d'escriptura '__name__' excedeix el màxim de __max__ caràcters. Cal corregir-ho.",
+      "question-lambda-writein-field-min-length": "Pregunta '__qtitle__': el camp d'escriptura '__name__' té menys del mínim de __min__ caràcters. Cal corregir-ho.",
       "question-lambda-writeins-not-voted": "Votació '__qtitle__': noms d'escriptura proporcionades però no votades: __write_ins__. Atípic.",
       "question-lambda-writeins-not-provided": "Votació '__qtitle__': ha seleccionat alguns noms d'escriptura però no s'ha proporcionat cap nom. Atípic.",
 

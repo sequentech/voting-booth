@@ -82,7 +82,7 @@
           ng-i18next="[placeholder]avBooth.typeWriteInPlaceholder;[aria-label]avBooth.typeWriteInPlaceholder"
           av-debounce="500"
           ng-model="answer.text"
-          ng-if="!hideCheck() && !withWriteInFields"
+          ng-if="!hideCheck() && !withWriteInConfig"
           ng-click="$event.stopPropagation()"
         />
 
@@ -96,7 +96,7 @@
             aria-label="{{field | customI18n: 'placeholder'}}"
             av-debounce="500"
             ng-model="field.value"
-            ng-if="!hideCheck() && withWriteInFields"
+            ng-if="!hideCheck() && withWriteInConfig"
             ng-repeat="(fieldId, field) in answer.writeInFields"
             ng-click="$event.stopPropagation()"
           />

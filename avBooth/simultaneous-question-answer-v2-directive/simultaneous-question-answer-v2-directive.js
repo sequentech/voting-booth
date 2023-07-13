@@ -39,8 +39,8 @@ angular.module('avBooth')
       {
         scope.isCategoryList = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isCategoryList', 'true');
         scope.isWriteIn = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isWriteIn', 'true');
-        scope.withWriteInFields = _.isObject(scope.question.extra_options) &&
-          _.isObject(scope.question.extra_options.write_in_fields);
+        scope.withWriteInConfig = _.isObject(scope.question.extra_options) &&
+          _.isObject(scope.question.extra_options.write_in_config);
 
         if (scope.isWriteIn && scope.writeInTextChange) 
         {
@@ -53,9 +53,9 @@ angular.module('avBooth')
           );
 
           // manage write-in fields
-          if (scope.withWriteInFields) {
+          if (scope.withWriteInConfig) {
             // create a copy of the fields, with empty values
-            var writeInFields = scope.question.extra_options.write_in_fields.fields.map(
+            var writeInFields = scope.question.extra_options.write_in_config.fields.map(
               function (field) {
                 var clone = _.clone(field);
                 clone.value = "";
@@ -71,7 +71,7 @@ angular.module('avBooth')
                 writeInFields
               );
             }
-            var template = scope.question.extra_options.write_in_fields.template;
+            var template = scope.question.extra_options.write_in_config.template;
 
             // watch changes for the write-in field values to update the templated text
             writeInFields.map(function (field) {
