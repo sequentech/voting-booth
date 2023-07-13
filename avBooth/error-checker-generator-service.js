@@ -18,7 +18,8 @@
 angular.module('avUi')
   .factory('ErrorCheckerGeneratorService', function(
     AnswerEncoderService,
-    BigIntService
+    BigIntService,
+    $filter
   ) {
     var service = {};
     /**
@@ -358,7 +359,7 @@ angular.module('avUi')
                   });
                 return {
                   max: foundField && foundField.max,
-                  name: foundField && foundField.id,
+                  name: foundField && ($filter('customI18n')(foundField, 'placeholder') || foundField.id),
                   question_id: question.index
                 };
               },
@@ -409,7 +410,7 @@ angular.module('avUi')
 
                 return {
                   min: foundField && foundField.min,
-                  name: foundField && foundField.id,
+                  name: foundField && ($filter('customI18n')(foundField, 'placeholder') || foundField.id),
                   question_id: question.index
                 };
               },
