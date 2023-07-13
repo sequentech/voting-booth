@@ -354,7 +354,7 @@ angular.module('avUi')
                   .flat()
                   .find(function (field) {
                     // check field max restriction against value
-                    return _.isString(field.value) && field.max >= 0 && answer.value.length > field.max;
+                    return _.isString(field.value) && field.max >= 0 && field.value.length > field.max;
                   });
                 return {
                   max: foundField && foundField.max,
@@ -381,7 +381,7 @@ angular.module('avUi')
                   .flat()
                   .find(function (field) {
                     // check field max restriction against value
-                    return _.isString(field.value) && field.max >= 0 && answer.value.length > field.max;
+                    return _.isString(field.value) && field.max >= 0 && field.value.length > field.max;
                   });
 
                 return !foundField;
@@ -404,7 +404,7 @@ angular.module('avUi')
                   .flat()
                   .find(function (field) {
                     // check field min restriction against value
-                    return _.isString(field.value) && answer.value.length < field.min;
+                    return _.isString(field.value) && field.value.length < field.min;
                   });
 
                 return {
@@ -432,7 +432,7 @@ angular.module('avUi')
                   .flat()
                   .find(function (field) {
                     // check field min restriction against value
-                    return _.isString(field.value) && answer.value.length < field.min;
+                    return _.isString(field.value) && field.value.length < field.min;
                   });
 
                   return !foundField;
