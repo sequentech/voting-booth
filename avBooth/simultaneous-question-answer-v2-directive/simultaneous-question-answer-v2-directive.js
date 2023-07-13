@@ -54,8 +54,9 @@ angular.module('avBooth')
           if (scope.withWriteInFields) {
             var writeInFields = scope.question.extra_options.write_in_fields.fields.map(
               function (field) {
-                field.value = "";
-                return field;
+                var clone = _.clone(field);
+                clone.value = "";
+                return clone;
               }
             );
             if (_.isUndefined(scope.answer.writeInFields)) {
@@ -71,7 +72,9 @@ angular.module('avBooth')
                 `answer.writeInFields.${field.id}.value`,
                 function ()
                 {
+                  console.log(`prev text: ${scope.answer.text}`);
                   scope.answer.text = interpolateWriteIn(template, scope.answer.writeInFields);
+                  console.log(`new text: ${scope.answer.text}`);
                 }
               );
             });
