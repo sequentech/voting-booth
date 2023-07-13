@@ -30,7 +30,7 @@ angular.module('avBooth')
         var interpolatedText = template;
         Object.values(fields).map(function (field) {
           var regex = new RegExp(`{${field.id}}`, "g");
-          interpolatedText = interpolatedText.replace(regex, field.value);
+          interpolatedText = interpolatedText.replace(regex, _.isString(field.value)? field.value : "");
         });
 
         return interpolatedText;
@@ -56,11 +56,7 @@ angular.module('avBooth')
           if (scope.withWriteInConfig) {
             // create a copy of the fields, with empty values
             var writeInFields = scope.question.extra_options.write_in_config.fields.map(
-              function (field) {
-                var clone = _.clone(field);
-                clone.value = "";
-                return clone;
-              }
+              _.clone
             );
             // if it doesn't exist, initialize
             // don't change it if the variable exists as this means editing after review
@@ -77,8 +73,11 @@ angular.module('avBooth')
             writeInFields.map(function (field) {
               scope.$watch(
                 `answer.writeInFields.${field.id}.value`,
-                function ()
+                function (newValue,oldValue)
                 {
+                  if (_.isUndefined(newValue)) {
+                    return;
+                  }
                   scope.answer.text = interpolateWriteIn(template, scope.answer.writeInFields);
                 }
               );
