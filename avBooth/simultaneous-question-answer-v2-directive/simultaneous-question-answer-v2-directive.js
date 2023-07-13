@@ -25,6 +25,7 @@ angular.module('avBooth')
       ErrorCheckerGeneratorService
     ) 
     {
+      // used to interpolate write-in field values into its templated string
       function interpolateWriteIn(template, fields) {
         var interpolatedText = template;
         Object.values(fields).map(function (field) {
@@ -51,7 +52,9 @@ angular.module('avBooth')
             }
           );
 
+          // manage write-in fields
           if (scope.withWriteInFields) {
+            // create a copy of the fields, with empty values
             var writeInFields = scope.question.extra_options.write_in_fields.fields.map(
               function (field) {
                 var clone = _.clone(field);
@@ -59,6 +62,9 @@ angular.module('avBooth')
                 return clone;
               }
             );
+            // if it doesn't exist, initialize
+            // don't change it if the variable exists as this means editing after review
+            // and it would wipe out current values
             if (_.isUndefined(scope.answer.writeInFields)) {
               scope.answer.writeInFields = _.object(
                 _.pluck(writeInFields, "id"),
@@ -67,14 +73,13 @@ angular.module('avBooth')
             }
             var template = scope.question.extra_options.write_in_fields.template;
 
+            // watch changes for the write-in field values to update the templated text
             writeInFields.map(function (field) {
               scope.$watch(
                 `answer.writeInFields.${field.id}.value`,
                 function ()
                 {
-                  console.log(`prev text: ${scope.answer.text}`);
                   scope.answer.text = interpolateWriteIn(template, scope.answer.writeInFields);
-                  console.log(`new text: ${scope.answer.text}`);
                 }
               );
             });
