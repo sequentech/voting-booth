@@ -109,12 +109,12 @@
               ng-model="field.value"
               ng-click="$event.stopPropagation()"
             />
-          </div>
-          <div
-            class="write-in-help"
-            ng-if="field.help || field.help_i18n"
-          >
-            {{field | customI18n: 'help'}}
+            <div
+              class="write-in-help"
+              ng-if="field.help || field.help_i18n"
+            >
+              {{field | customI18n: 'help'}}
+            </div>
           </div>
         </div>
 
