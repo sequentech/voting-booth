@@ -33,6 +33,11 @@ angular.module('avBooth')
           interpolatedText = interpolatedText.replace(regex, _.isString(field.value)? field.value : "");
         });
 
+        var allEmptyFields = Object.values(fields).every(function (field) { return !field.value; });
+        if (allEmptyFields) {
+          return "";
+        }
+
         return interpolatedText;
       }
       function link(scope, _element, _attrs)
@@ -73,7 +78,7 @@ angular.module('avBooth')
             writeInFields.map(function (field) {
               scope.$watch(
                 `answer.writeInFields.${field.id}.value`,
-                function (newValue,oldValue)
+                function (newValue,_oldValue)
                 {
                   if (_.isUndefined(newValue)) {
                     return;
