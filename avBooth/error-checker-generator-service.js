@@ -348,7 +348,9 @@ angular.module('avUi')
                 var foundField = question.answers
                   // only write-in questions
                   .filter(function (answer) {
-                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') && _.isObject(answer.writeInFields);
+                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      answer.selected > -1 &&
+                      _.isObject(answer.writeInFields);
                   })
                   // get write-in fields
                   .map(function (answer) { return Object.values(answer.writeInFields); })
@@ -375,7 +377,9 @@ angular.module('avUi')
                 var foundField = question.answers
                   // only write-in questions
                   .filter(function (answer) {
-                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') && _.isObject(answer.writeInFields);
+                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      answer.selected > -1 &&
+                      _.isObject(answer.writeInFields);
                   })
                   // get write-in fields
                   .map(function (answer) { return Object.values(answer.writeInFields); })
@@ -398,7 +402,9 @@ angular.module('avUi')
                 var foundField = question.answers
                   // only write-in questions
                   .filter(function (answer) {
-                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') && _.isObject(answer.writeInFields);
+                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      answer.selected > -1 &&
+                      _.isObject(answer.writeInFields);
                   })
                   // get write-in fields
                   .map(function (answer) { return Object.values(answer.writeInFields); })
@@ -426,7 +432,9 @@ angular.module('avUi')
                 var foundField = question.answers
                   // only write-in questions
                   .filter(function (answer) {
-                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') && _.isObject(answer.writeInFields);
+                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      answer.selected > -1 &&
+                      _.isObject(answer.writeInFields);
                   })
                   // get write-in fields
                   .map(function (answer) { return Object.values(answer.writeInFields); })
