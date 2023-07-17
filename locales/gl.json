@@ -55,6 +55,24 @@
         "UNEXPECTED_ERROR": "Erro inesperado"
       }
     },
+    "errors": {
+      "question-lambda-invalid": "Pregunta '__qtitle__': Votación inválida.",
+      "question-lambda-blank": "Pregunta '__qtitle__': seleccionou cero opcións. Votación en branco.",
+      "question-lambda-min": "Pregunta '__qtitle__': seleccionou __num_selected__ opcións, menos do mínimo __min__. Votación inválida.",
+      "question-lambda-max": "Pregunta '__qtitle__': seleccionou __num_selected__ opcións, máis do máximo __max__. Votación inválida.",
+      "question-lambda-panachage": "Pregunta '__qtitle__': seleccionou opcións de múltiples listas, pero non está permitido. Votación inválida.",
+      "question-lambda-repeated-writeins": "Pregunta '__qtitle__': nomes repetidos para escrita. Votación inválida.",
+      "question-lambda-writein-length": "Pregunta '__qtitle__': excede o límite de __max__ caracteres en escrita de __extra_bytes__. Require corrección.",
+      "question-lambda-writein-field-max-length": "Pregunta '__qtitle__': campo de escrita __name__ excede o límite de __max__ caracteres. Require corrección.",
+      "question-lambda-writein-field-min-length": "Pregunta '__qtitle__': campo de escrita __name__ ten menos do mínimo de __min__ caracteres. Require corrección.",
+      "question-lambda-writeins-not-voted": "Pregunta '__qtitle__': envío de escritas pero non votadas: __write_ins__. Atípico.",
+      "question-lambda-writeins-not-provided": "Pregunta '__qtitle__': seleccionou algunhas escritas pero non forneceu nome. Atípico.",
+    
+      "question-lambda-max-tag": "Non pode seleccionar máis opcións do tipo __tagName__ (máximo __max__). Para seleccionar unha, elimine a selección doutra primero.",
+      "question-lambda-max-notag": "Non pode seleccionar máis opcións que non sexan do tipo __tagName__ (máximo __max__). Para seleccionar unha, elimine a selección doutra primeiro.",
+      "question-lambda-max-reached-singular": "Lembre que só pode escoller unha opción",
+      "question-lambda-max-reached": "Alcanzado o número máximo de opcións seleccionadas (__max__). Para seleccionar unha opción, elimine a selección doutra primeiro."
+    },
     "countdownTooltip": {
       "title": "A túa sesión vai expirar.",
       "contentMins": "Tes __mins__ minutos para emitir o teu voto.",

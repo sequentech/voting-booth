@@ -18,7 +18,8 @@
 angular.module('avUi')
   .factory('ErrorCheckerGeneratorService', function(
     AnswerEncoderService,
-    BigIntService
+    BigIntService,
+    $filter
   ) {
     var service = {};
     /**
@@ -338,6 +339,114 @@ angular.module('avUi')
                 return numBytes.bytesLeft >= 0;
               },
               postfix: "-writein-length"
+            },
+            // raise if write-in field length is over the limit
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question) 
+              {
+                var foundField = question.answers
+                  // only write-in questions
+                  .filter(function (answer) {
+                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      answer.selected > -1 &&
+                      _.isObject(answer.writeInFields);
+                  })
+                  // get write-in fields
+                  .map(function (answer) { return Object.values(answer.writeInFields); })
+                  .flat()
+                  .find(function (field) {
+                    // check field max restriction against value
+                    return _.isString(field.value) && field.max >= 0 && field.value.length > field.max;
+                  });
+                return {
+                  max: foundField && foundField.max,
+                  name: foundField && ($filter('customI18n')(foundField, 'placeholder') || foundField.id),
+                  question_id: question.index
+                };
+              },
+              validator: function (question) 
+              {
+                if (
+                  !question.extra_options ||
+                  !question.extra_options.allow_writeins
+                ) {
+                  return true;
+                }
+
+                var foundField = question.answers
+                  // only write-in questions
+                  .filter(function (answer) {
+                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      answer.selected > -1 &&
+                      _.isObject(answer.writeInFields);
+                  })
+                  // get write-in fields
+                  .map(function (answer) { return Object.values(answer.writeInFields); })
+                  .flat()
+                  .find(function (field) {
+                    // check field max restriction against value
+                    return _.isString(field.value) && field.max >= 0 && field.value.length > field.max;
+                  });
+
+                return !foundField;
+              },
+              postfix: "-writein-field-max-length"
+            },
+            // raise if write-in field length is over the limit
+            {
+              check: "lambda",
+              appendOnErrorLambda: function (question) 
+              {
+
+                var foundField = question.answers
+                  // only write-in questions
+                  .filter(function (answer) {
+                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      answer.selected > -1 &&
+                      _.isObject(answer.writeInFields);
+                  })
+                  // get write-in fields
+                  .map(function (answer) { return Object.values(answer.writeInFields); })
+                  .flat()
+                  .find(function (field) {
+                    // check field min restriction against value
+                    return _.isString(field.value) && field.value.length < field.min;
+                  });
+
+                return {
+                  min: foundField && foundField.min,
+                  name: foundField && ($filter('customI18n')(foundField, 'placeholder') || foundField.id),
+                  question_id: question.index
+                };
+              },
+              validator: function (question) 
+              {
+                if (
+                  !question.extra_options ||
+                  !question.extra_options.allow_writeins
+                ) {
+                  return true;
+                }
+
+                var foundField = question.answers
+                  // only write-in questions
+                  .filter(function (answer) {
+                    return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
+                      answer.selected > -1 &&
+                      _.isObject(answer.writeInFields);
+                  })
+                  // get write-in fields
+                  .map(function (answer) { return Object.values(answer.writeInFields); })
+                  .flat()
+                  .find(function (field) {
+                    // check field min restriction against value
+                    return _.isString(field.value) && field.value.length < field.min;
+                  });
+
+                  return !foundField;
+              },
+              postfix: "-writein-field-min-length"
             },
             // raise warning if write-in is provided but not voted and
             // invalidVoteAnswer is not selected

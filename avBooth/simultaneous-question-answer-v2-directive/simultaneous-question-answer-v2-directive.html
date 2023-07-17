@@ -74,7 +74,7 @@
         class="vertilize-col answer-texts write-in"
         ng-class="{'has-warning': (question.writeInBytesLeft.bytesLeft >= 0 && question.writeInBytesLeft.bytesLeft < 10), 'has-error': question.writeInBytesLeft.bytesLeft < 0, 'text-left': !!hideCheck()}"
       >
-        <input 
+        <input
           type="text"
           class="form-control"
           autocomplete="off"
@@ -82,9 +82,41 @@
           ng-i18next="[placeholder]avBooth.typeWriteInPlaceholder;[aria-label]avBooth.typeWriteInPlaceholder"
           av-debounce="500"
           ng-model="answer.text"
-          ng-if="!hideCheck()"
+          ng-if="!hideCheck() && !withWriteInConfig"
           ng-click="$event.stopPropagation()"
         />
+
+        <div class="extra-field-writeins-wrapper">
+          <div
+            class="write-in-input-wrapper"
+            ng-repeat="(fieldId, field) in answer.writeInFields"
+            ng-if="!hideCheck() && withWriteInConfig"
+          >
+            <div
+              class="write-in-label"
+              ng-if="field.label || field.label_i18n"
+            >
+              {{field | customI18n: 'placeholder'}}
+            </div>
+            <input
+              type="text"
+              class="form-control write-in-extra-field-input"
+              autocomplete="off"
+              id="question_{{question.index}}_answer_{{answer.id}}_{{field.id}}"
+              placeholder="{{field | customI18n: 'placeholder'}}"
+              aria-label="{{field | customI18n: 'placeholder'}}"
+              av-debounce="500"
+              ng-model="field.value"
+              ng-click="$event.stopPropagation()"
+            />
+            <div
+              class="write-in-help"
+              ng-if="field.help || field.help_i18n"
+            >
+              {{field | customI18n: 'help'}}
+            </div>
+          </div>
+        </div>
 
         <span
           class="answer-text"
