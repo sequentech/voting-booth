@@ -286,11 +286,8 @@ angular.module('avBooth')
         scope.state = newState;
         scope.stateData = newStateData;
         scope.stateChange++;
-        if (scope.election) {
-          reloadTranslations(true);
-        } else {
-          reloadTranslations(true, 1000);
-        }
+
+        reloadTranslations(false);
       }
 
       function mapQuestion(question) {
