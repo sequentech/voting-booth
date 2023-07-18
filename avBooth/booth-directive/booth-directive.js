@@ -984,7 +984,9 @@ angular.module('avBooth')
                         };
                       }
                     }
-                  }).result.then(function () { reloadTranslations(true); });
+                  }).result.then(function () { 
+                    setTimeout(function () { reloadTranslations(true); }, 1000);
+                  });
                 }
 
                 // If it's a live preview booth and we are at this stage, ensure to
@@ -1009,7 +1011,9 @@ angular.module('avBooth')
                         };
                       }
                     }
-                  }).result.then(function () { reloadTranslations(true); });
+                  }).result.then(function () { 
+                    setTimeout(function () { reloadTranslations(true); }, 1000);
+                  });
                 }
 
                 // If there are children elections, then show the election
