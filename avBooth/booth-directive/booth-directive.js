@@ -50,6 +50,22 @@ angular.module('avBooth')
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
 
+      function reloadTranslations(force, ms) {
+        setTimeout(
+          function () {
+            // reset $window.i18nOverride
+            if (scope.election && scope.election.presentation && scope.election.presentation.i18n_override)
+            {
+              I18nOverride(
+                /* overrides = */ scope.election.presentation.i18n_override,
+                /* force = */ force
+              );
+            }
+          },
+          ms || 1000
+        );
+      }
+
       function updateWidth() {
         $timeout.cancel(timeoutWidth);
         timeoutWidth = $timeout(function() {
@@ -270,6 +286,8 @@ angular.module('avBooth')
         scope.state = newState;
         scope.stateData = newStateData;
         scope.stateChange++;
+
+        reloadTranslations(true);
       }
 
       function mapQuestion(question) {
@@ -896,13 +914,7 @@ angular.module('avBooth')
                 scope.electionState = response.data.payload.state;
 
                 // reset $window.i18nOverride
-                if (presentation && presentation.i18n_override)
-                {
-                  I18nOverride(
-                    /* overrides = */ presentation.i18n_override,
-                    /* force = */ false
-                  );
-                }
+                reloadTranslations(false);
 
                 var showPdf = "true" === window.sessionStorage.getItem("show-pdf");
 
@@ -971,6 +983,8 @@ angular.module('avBooth')
                         };
                       }
                     }
+                  }).result.then(function () { 
+                    reloadTranslations(true);
                   });
                 }
 
@@ -996,6 +1010,8 @@ angular.module('avBooth')
                         };
                       }
                     }
+                  }).result.then(function () { 
+                    reloadTranslations(true);
                   });
                 }
 
