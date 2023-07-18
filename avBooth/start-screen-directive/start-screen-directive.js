@@ -53,7 +53,7 @@ angular
           {
             I18nOverride(
               /* overrides = */ presentation.i18n_override,
-              /* force = */ false
+              /* force = */ true
             );
           }
         };
