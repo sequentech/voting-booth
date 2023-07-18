@@ -287,7 +287,7 @@ angular.module('avBooth')
         scope.stateData = newStateData;
         scope.stateChange++;
 
-        reloadTranslations(false);
+        reloadTranslations(true);
       }
 
       function mapQuestion(question) {
