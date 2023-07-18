@@ -286,7 +286,7 @@ angular.module('avBooth')
         } else {
           setTimeout(
             function () { reloadTranslations(true); },
-            0
+            1000
           );
         }
       }
