@@ -270,7 +270,7 @@ angular.module('avBooth')
         scope.state = newState;
         scope.stateData = newStateData;
         scope.stateChange++;
-        if (scope.election.presentation && scope.election.presentation.i18n_override)
+        if (scope.election && scope.election.presentation && scope.election.presentation.i18n_override)
         {
           I18nOverride(
             /* overrides = */ scope.election.presentation.i18n_override,
