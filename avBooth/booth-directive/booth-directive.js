@@ -63,7 +63,7 @@ angular.module('avBooth')
             }
           },
           ms || 0
-        )
+        );
       }
 
       function updateWidth() {
