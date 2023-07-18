@@ -193,6 +193,12 @@ angular.module('avBooth')
                 ); 
               }
             );
+
+            var hasNonEmptyCategory = _.pluck(filteredAnswers, "category").some(
+              function (category) {
+                return !!category;
+              }
+            );
             var categories = _.groupBy(filteredAnswers, "category");
             categories = _.map(
               _.pairs(categories), 
@@ -219,8 +225,9 @@ angular.module('avBooth')
                 };
               }
             );
+
             question.categories = categories;
-            question.hasCategories = (categories.length >= 1);
+            question.hasCategories = (categories.length >= 1) && hasNonEmptyCategory;
 
             // filter write-ins
             question.writeIns = _.filter(
