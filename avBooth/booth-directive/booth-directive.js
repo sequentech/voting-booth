@@ -50,15 +50,20 @@ angular.module('avBooth')
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
 
-      function reloadTranslations(force) {
-        // reset $window.i18nOverride
-        if (scope.election && scope.election.presentation && scope.election.presentation.i18n_override)
-        {
-          I18nOverride(
-            /* overrides = */ scope.election.presentation.i18n_override,
-            /* force = */ force
-          );
-        }
+      function reloadTranslations(force, ms) {
+        setTimeout(
+          function () {
+            // reset $window.i18nOverride
+            if (scope.election && scope.election.presentation && scope.election.presentation.i18n_override)
+            {
+              I18nOverride(
+                /* overrides = */ scope.election.presentation.i18n_override,
+                /* force = */ force
+              );
+            }
+          },
+          ms || 0
+        )
       }
 
       function updateWidth() {
@@ -284,10 +289,7 @@ angular.module('avBooth')
         if (scope.election) {
           reloadTranslations(true);
         } else {
-          setTimeout(
-            function () { reloadTranslations(true); },
-            1000
-          );
+          reloadTranslations(true, 1000);
         }
       }
 
@@ -985,7 +987,7 @@ angular.module('avBooth')
                       }
                     }
                   }).result.then(function () { 
-                    setTimeout(function () { reloadTranslations(true); }, 1000);
+                    reloadTranslations(true);
                   });
                 }
 
@@ -1012,7 +1014,7 @@ angular.module('avBooth')
                       }
                     }
                   }).result.then(function () { 
-                    setTimeout(function () { reloadTranslations(true); }, 1000);
+                    reloadTranslations(true);
                   });
                 }
 
