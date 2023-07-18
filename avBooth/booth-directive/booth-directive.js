@@ -270,6 +270,13 @@ angular.module('avBooth')
         scope.state = newState;
         scope.stateData = newStateData;
         scope.stateChange++;
+        if (scope.election.presentation && scope.election.presentation.i18n_override)
+        {
+          I18nOverride(
+            /* overrides = */ scope.election.presentation.i18n_override,
+            /* force = */ true
+          );
+        }
       }
 
       function mapQuestion(question) {
@@ -577,13 +584,6 @@ angular.module('avBooth')
         } else if (scope.state === stateEnum.showPdf)
         {
           scope.setState(stateEnum.startScreen, {});
-        }
-        if (scope.election.presentation && scope.election.presentation.i18n_override)
-        {
-          I18nOverride(
-            /* overrides = */ scope.election.presentation.i18n_override,
-            /* force = */ true
-          );
         }
       }
 
