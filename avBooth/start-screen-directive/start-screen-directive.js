@@ -24,7 +24,7 @@ angular
   .module('avBooth')
   .directive(
     'avbStartScreen',
-    function(ConfigService)
+    function(ConfigService, InsideIframeService)
     {
       function link(scope, element, attrs)
       {
@@ -44,6 +44,19 @@ angular
         }
 
         scope.fixToBottom = scope.checkFixToBottom();
+
+        scope.translate = function ()
+        {
+          var presentation = scope.election.presentation;
+          // reset $window.i18nOverride
+          if (presentation && presentation.i18n_override)
+          {
+            I18nOverride(
+              /* overrides = */ presentation.i18n_override,
+              /* force = */ false
+            );
+          }
+        };
       }
 
       return {
