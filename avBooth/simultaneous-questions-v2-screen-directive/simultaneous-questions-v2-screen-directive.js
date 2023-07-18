@@ -227,7 +227,7 @@ angular.module('avBooth')
             );
 
             question.categories = categories;
-            question.hasCategories = (categories.length >= 1) && hasNonEmptyCategory;
+            question.hasCategories = hasNonEmptyCategory;
 
             // filter write-ins
             question.writeIns = _.filter(
