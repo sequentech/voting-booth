@@ -62,7 +62,7 @@ angular.module('avBooth')
               );
             }
           },
-          ms || 0
+          ms || 1000
         );
       }
 
