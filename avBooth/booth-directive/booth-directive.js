@@ -984,7 +984,7 @@ angular.module('avBooth')
                         };
                       }
                     }
-                  });
+                  }).then(function () { reloadTranslations(true); });
                 }
 
                 // If it's a live preview booth and we are at this stage, ensure to
@@ -1009,7 +1009,7 @@ angular.module('avBooth')
                         };
                       }
                     }
-                  });
+                  }).then(function () { reloadTranslations(true); });
                 }
 
                 // If there are children elections, then show the election
