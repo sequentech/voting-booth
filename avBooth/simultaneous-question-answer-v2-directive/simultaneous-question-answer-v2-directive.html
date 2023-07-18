@@ -95,8 +95,8 @@
             <div
               class="write-in-label"
               ng-if="field.label || field.label_i18n"
+              ng-bind-html="field | customI18n: 'label'"
             >
-              {{field | customI18n: 'label'}}
             </div>
             <input
               type="text"
@@ -112,8 +112,8 @@
             <div
               class="write-in-help"
               ng-if="field.help || field.help_i18n"
+              ng-bind-html="field | customI18n: 'help'"
             >
-              {{field | customI18n: 'help'}}
             </div>
           </div>
         </div>
