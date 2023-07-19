@@ -77,7 +77,7 @@ angular.module('avBooth')
             // watch changes for the write-in field values to update the templated text
             writeInFields.map(function (field) {
               scope.$watch(
-                `answer.writeInFields.${field.id}.value`,
+                "answer.writeInFields." + field.id + ".value",
                 function (newValue,_oldValue)
                 {
                   if (_.isUndefined(newValue)) {
