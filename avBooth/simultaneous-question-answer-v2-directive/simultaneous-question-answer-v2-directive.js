@@ -29,7 +29,7 @@ angular.module('avBooth')
       function interpolateWriteIn(template, fields) {
         var interpolatedText = template;
         Object.values(fields).map(function (field) {
-          var regex = new RegExp(`{${field.id}}`, "g");
+          var regex = new RegExp("{" + field.id + "}", "g");
           interpolatedText = interpolatedText.replace(regex, _.isString(field.value)? field.value : "");
         });
 
