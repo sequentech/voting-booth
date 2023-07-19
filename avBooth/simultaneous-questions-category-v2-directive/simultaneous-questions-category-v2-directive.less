@@ -21,7 +21,18 @@
         box-shadow: none;
     }
 }
+[avb-simultaneous-questions-category-v2].empty-category {
+    background-color: unset;
+    box-shadow: unset;
 
+    .category-heading-container {
+        display: none;
+    }
+
+    .category-body .questions-answers {
+        gap: unset;
+    }
+}
 [avb-simultaneous-questions-category-v2] {
     background-color: @av-primary;
     padding: 0 14px 20px 16px;
