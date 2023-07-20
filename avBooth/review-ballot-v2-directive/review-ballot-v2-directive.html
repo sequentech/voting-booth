@@ -147,11 +147,11 @@
           ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
         </span>
         <span
-          ng-if="showPoints(question) && isWriteIn(answer) && showWriteInString(question)"
+          ng-if="showPoints(question) && isWriteIn(answer)"
           ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPointsWriteIn">
         </span>
         <span
-          ng-if="!showPoints(question) && isWriteIn(answer) && showWriteInString(question)"
+          ng-if="!showPoints(question) && isWriteIn(answer)"
           ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showWriteIn">
         </span>
     </li>
