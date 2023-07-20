@@ -130,7 +130,7 @@
         <span
           id="question_{{question.index}}_answer_blank"
           class="answer-text"
-          ng-if="!!hideCheck()"
+          ng-if="!!hideCheck() && (!isWriteIn || showWriteInString)"
         >{{answer | customI18n : 'text'}}</span>
         <div 
           class="bytes-left help-block"
