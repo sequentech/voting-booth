@@ -57,6 +57,13 @@ angular.module('avBooth')
         return hasUrl(answer.urls, 'isWriteIn', 'true');
       };
 
+      scope.showWriteInString = function (question)
+      {
+        return !question.extra_option ||
+          !question.extra_options.write_in_config || 
+          question.extra_options.write_in_config.review_screen_presentation === "string";
+      }
+
       scope.markedAsInvalid = function (question)
       {
         return (

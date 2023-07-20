@@ -86,11 +86,13 @@
           ng-click="$event.stopPropagation()"
         />
 
-        <div class="extra-field-writeins-wrapper">
+        <div
+          class="extra-field-writeins-wrapper"
+          ng-if="(!hideCheck() || !showWriteInString) && withWriteInConfig && "
+        >
           <div
             class="write-in-input-wrapper"
             ng-repeat="(fieldId, field) in answer.writeInFields"
-            ng-if="!hideCheck() && withWriteInConfig"
           >
             <div
               class="write-in-label"
@@ -100,6 +102,7 @@
             </div>
             <input
               type="text"
+              ng-readonly="!!hideCheck()"
               class="form-control write-in-extra-field-input"
               autocomplete="off"
               id="question_{{question.index}}_answer_{{answer.id}}_{{field.id}}"
@@ -121,7 +124,7 @@
         <span
           class="answer-text"
           ng-i18next="avBooth.showWriteIn"
-          ng-if="!!hideCheck()"
+          ng-if="!!hideCheck() && showWriteInString"
         ></span>
 
         <span
