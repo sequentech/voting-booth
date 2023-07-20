@@ -47,7 +47,7 @@ angular.module('avBooth')
         scope.withWriteInConfig = _.isObject(scope.question.extra_options) &&
           _.isObject(scope.question.extra_options.write_in_config);
 
-        scope.showWriteInString = !scope.question.extra_option ||
+        scope.showWriteInString = !scope.question.extra_options ||
           !scope.question.extra_options.write_in_config || 
           scope.question.extra_options.write_in_config.review_screen_presentation === "string";
 
