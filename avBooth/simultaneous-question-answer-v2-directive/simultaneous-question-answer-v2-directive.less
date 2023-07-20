@@ -59,8 +59,14 @@
       background-color: inherit;
     }
 
-    .write-in-extra-field-input.form-control[readonly]:focus {
-      box-shadow: none;
+    .write-in-extra-field-input.form-control[readonly] {
+      &:hover {
+        cursor: text;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
     }
 
     .write-in-help {
