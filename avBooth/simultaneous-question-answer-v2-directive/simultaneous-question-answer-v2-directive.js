@@ -29,7 +29,7 @@ angular.module('avBooth')
       function interpolateWriteIn(template, fields) {
         var interpolatedText = template;
         Object.values(fields).map(function (field) {
-          var regex = new RegExp(`{${field.id}}`, "g");
+          var regex = new RegExp("{" + field.id + "}", "g");
           interpolatedText = interpolatedText.replace(regex, _.isString(field.value)? field.value : "");
         });
 
@@ -46,6 +46,10 @@ angular.module('avBooth')
         scope.isWriteIn = ErrorCheckerGeneratorService.hasUrl(scope.answer.urls, 'isWriteIn', 'true');
         scope.withWriteInConfig = _.isObject(scope.question.extra_options) &&
           _.isObject(scope.question.extra_options.write_in_config);
+
+        scope.showWriteInString = !scope.question.extra_options ||
+          !scope.question.extra_options.write_in_config || 
+          scope.question.extra_options.write_in_config.review_screen_presentation === "string";
 
         if (scope.isWriteIn && scope.writeInTextChange) 
         {
@@ -77,7 +81,7 @@ angular.module('avBooth')
             // watch changes for the write-in field values to update the templated text
             writeInFields.map(function (field) {
               scope.$watch(
-                `answer.writeInFields.${field.id}.value`,
+                "answer.writeInFields." + field.id + ".value",
                 function (newValue,_oldValue)
                 {
                   if (_.isUndefined(newValue)) {

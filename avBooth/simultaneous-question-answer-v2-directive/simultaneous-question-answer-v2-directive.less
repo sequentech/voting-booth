@@ -56,6 +56,17 @@
       font-weight: 400;
       color: black;
       height: unset;
+      background-color: inherit;
+    }
+
+    .write-in-extra-field-input.form-control[readonly] {
+      &:hover {
+        cursor: text;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
     }
 
     .write-in-help {
