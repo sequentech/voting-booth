@@ -268,6 +268,7 @@ angular.module('avBooth')
                 question.categories = _.each( question.categories, function(category) {
                   category.answers = _.shuffle(category.answers);
                 });
+                question.answers = _.shuffle(question.answers);
               } else if (!question.extra_options.shuffle_all_options &&
                           angular.isArray(question.extra_options.shuffle_category_list) &&
                           question.extra_options.shuffle_category_list.length > 0) {
