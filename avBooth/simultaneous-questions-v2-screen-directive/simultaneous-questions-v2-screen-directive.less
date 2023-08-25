@@ -48,6 +48,19 @@
     font-size: 24px;
   }
 
+  >.election-container > .question > .category-body {
+    display: flex;
+    flex-direction: row;
+
+    > .question-answers.text-left {
+      flex-grow: 2;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+  }
+
   [av-affix-bottom] > .container-fixed {
     background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
     position: relative;
