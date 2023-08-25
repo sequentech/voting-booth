@@ -54,10 +54,17 @@ angular.module('avBooth')
             network: p.network
           };
           var message = p.social_message;
-          message = message.replace(
-            '__URL__',
-            window.location.protocol + '//' + window.location.host + '/election/' + scope.election.id + '/public/home'
-          );
+
+          scope.hidePublicHome = scope.election.presentation &&
+            scope.election.presentation.extra_options &&
+            scope.election.presentation.extra_options.disable__public_home;
+
+          if (!scope.hidePublicHome) {
+            message = message.replace(
+              '__URL__',
+              window.location.protocol + '//' + window.location.host + '/election/' + scope.election.id + '/public/home'
+            );
+          }
 
           if('Facebook' === p.network) {
             buttonInfo.link = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(message);

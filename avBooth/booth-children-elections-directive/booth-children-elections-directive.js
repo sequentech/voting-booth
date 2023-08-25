@@ -27,6 +27,10 @@ angular.module('avUi')
         scope.selectedElectionId = scope.parentElectionId;
         scope.hideParent = (attrs.hideParent === 'true');
 
+        scope.hidePublicHome = scope.election.presentation &&
+          scope.election.presentation.extra_options &&
+          scope.election.presentation.extra_options.disable__public_home;
+
         // process each election
         _.each(
           scope.childrenElectionInfo.presentation.categories,
