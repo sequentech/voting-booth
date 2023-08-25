@@ -75,8 +75,9 @@
             </div>
             <a
                 href="election/{{ election.event_id }}/public/home"
-                ng-if="!checkElectionStarted(election.electionData) && !hidePublicHome"
+                ng-if="!checkElectionStarted(election.electionData)"
                 ng-click="$event.stopPropagation();"
+                ng-class="{'space-hide': hidePublicHome}"
                 target="_blank"
             >
                 <button
