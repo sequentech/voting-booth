@@ -94,7 +94,12 @@
           ng-repeat="answer in question.answers"
           ng-if="!isInvalidAnswer(answer)"
           class="question-answer-wrapper"
-          class="col-xs-12"
+          ng-class="{
+            'flex-col-12': (question.extra_options.answer_columns_size === 12),
+            'flex-col-6': (question.extra_options.answer_columns_size === 6),
+            'flex-col-4': (question.extra_options.answer_columns_size === 4),
+            'flex-col-3': (question.extra_options.answer_columns_size === 3)
+          }"
         >
           <div 
             avb-simultaneous-question-answer-v2
