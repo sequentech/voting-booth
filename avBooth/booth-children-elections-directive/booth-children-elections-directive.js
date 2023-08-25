@@ -27,9 +27,9 @@ angular.module('avUi')
         scope.selectedElectionId = scope.parentElectionId;
         scope.hideParent = (attrs.hideParent === 'true');
 
-        scope.hidePublicHome = scope.election.presentation &&
-          scope.election.presentation.extra_options &&
-          scope.election.presentation.extra_options.disable__public_home;
+        scope.hidePublicHome = scope.parentElection.presentation &&
+          scope.parentElection.presentation.extra_options &&
+          scope.parentElection.presentation.extra_options.disable__public_home;
 
         // process each election
         _.each(
@@ -122,6 +122,7 @@ angular.module('avUi')
           mode: '@',
           callback: '&?',
           parentElectionId: '@?',
+          parentElection: '=',
           childrenElectionInfo: '=',
           canVote: '=',
           hasVoted: '=',
