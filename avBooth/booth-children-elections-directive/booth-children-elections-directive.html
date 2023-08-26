@@ -87,7 +87,8 @@
     
             <button
                 class="btn btn-lg btn-success-action btn-plain click-to-vote-btn"
-                ng-if="checkElectionStarted(election.electionData) && canVoteElection(election)"
+                ng-if="checkElectionStarted(election.electionData)"
+                ng-disabled="!canVoteElection(election)"
                 ng-click="canVoteElection(election) && click(election)"
                 ng-i18next="avBooth.electionChooserScreen.clickToVoteBtn">
             </button>
