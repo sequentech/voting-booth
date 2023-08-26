@@ -143,6 +143,8 @@
       <div class="vertilize-col answer-glyphicon" ng-if="!hideCheck()">
         <span
           tabindex="0"
+          class="plurality-checkbox"
+          role="checkbox"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="question.tally_type === 'plurality-at-large'"
           ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItem(question, answer)"
@@ -167,6 +169,7 @@
         <!-- show checkbox for invalid -->
         <span
           tabindex="0"
+          class="invalid-checkbox"
           role="checkbox"
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
           aria-label="{{answer | customI18n : 'text'}} check invalid"
