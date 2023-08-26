@@ -83,9 +83,6 @@ angular.module('avBooth')
                             );
                             var canVote = calculateCanVote(elCredentials);
                             var isVoter = calculateIsVoter(elCredentials);
-                            if (canVote) {
-                                scope.canVote = true;
-                            }
                             if (
                                 elCredentials && 
                                 elCredentials.numSuccessfulLogins > 0
