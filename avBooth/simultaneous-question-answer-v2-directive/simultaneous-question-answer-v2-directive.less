@@ -62,14 +62,14 @@
       cursor: unset;
     }
 
-    .cumulative-checkbox {
+    .cumulative-checkbox, .plurality-checkbox, .invalid-checkbox {
       margin: 6px;
     }
 
     .answer-texts {
       box-sizing: border-box;
       padding-right: 10px;
-      width: 100%;
+      flex-basis: 100%;
       margin: auto 0;
 
       &.write-in {
@@ -169,9 +169,12 @@
   
   .vertilize-col.answer-glyphicon {
     display: flex;
+    flex-basis: 100%;
+    max-width: 26%;
+    justify-content: flex-end;
     flex-wrap: wrap;
     align-items: center;
-    padding: 28px 6px 28px 14px;
+    padding: 6x 6px 6px 0;
 
     .fa-check {
       background-color: @brand-success;
