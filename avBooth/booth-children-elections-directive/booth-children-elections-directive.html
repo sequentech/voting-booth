@@ -19,7 +19,7 @@
                 <p class="election-description" ng-if="!!election.description">{{election.description}}</p>
                 <a
                     href="election/{{ election.event_id }}/public/home"
-                    ng-if="checkElectionStarted(election.electionData)"
+                    ng-if="checkElectionStarted(election.electionData) && !hidePublicHome"
                     class="election-website-link hidden-xs hidden-sm"
                     ng-click="$event.stopPropagation();"
                     target="_blank"
@@ -65,7 +65,7 @@
                 </div>
                 <a
                     href="election/{{ election.event_id }}/public/home"
-                    ng-if="checkElectionStarted(election.electionData)"
+                    ng-if="checkElectionStarted(election.electionData) && !hidePublicHome"
                     class="election-website-link visible-xs visible-sm"
                     ng-click="$event.stopPropagation();"
                     target="_blank"
@@ -77,6 +77,7 @@
                 href="election/{{ election.event_id }}/public/home"
                 ng-if="!checkElectionStarted(election.electionData)"
                 ng-click="$event.stopPropagation();"
+                ng-class="{'space-hide': hidePublicHome}"
                 target="_blank"
             >
                 <button
