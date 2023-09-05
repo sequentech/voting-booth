@@ -41,14 +41,6 @@ angular.module('avBooth')
         // records if the page has been scrolled to the bottom
         scope.scrolledToBottom = false;
 
-        // filter
-        scope.filter = {"search": ""};
-        function updateFilteredOptions() {
-          console.log("new filter: " + scope.filter.search);
-        }
-        scope.$watch("filter", updateFilteredOptions);
-        scope.isSelectedAnswer = SearchFilter.isSelectedAnswer;
-
         // record when scrolled to bottom
         function checkScrollToBottom() {
           var documentHeight = document.body.scrollHeight;
@@ -328,6 +320,19 @@ angular.module('avBooth')
         };
 
         scope.groupQuestions = groupQuestions;
+
+        function updateFilteredAnswers(question) {
+          return function() {
+            for (answer in question.answers) {
+              answer.isFilterSelected = SearchFilter.isSelectedAnswer(question.search, answer);
+            }
+          }
+        }
+        scope.groupQuestions.forEach(function (question, index) {
+          question.search = "";
+          scope.$watch("groupQuestions[" + index + "].search", updateFilteredAnswers(question));
+        });
+
         var lastGroupQuestionArrayIndex = groupQuestions[groupQuestions.length-1];
         var lastGroupQuestionIndex = lastGroupQuestionArrayIndex.num;
 
