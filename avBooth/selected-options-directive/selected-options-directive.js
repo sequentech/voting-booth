@@ -22,7 +22,6 @@
  */
 angular.module('avBooth')
   .directive('avbSelectedOptions', function($window, IsService) {
-
     var link = function(scope, element, attrs) {
 
         scope.dnd_disable = !scope.ordered || (scope.options | scope.avbSelectedOptions).length < 2;

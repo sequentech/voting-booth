@@ -22,7 +22,6 @@ angular.module('avBooth')
   .directive('avbAccordionOption', function($sce, IsService) {
 
     var link = function(scope, element, attrs) {
-
       scope.isTouchDevice = IsService.touchDevice();
       scope.urls = _.object(_.map(scope.option.urls, function(url) {
         return [url.title, url.url];
