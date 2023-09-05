@@ -42,9 +42,9 @@ angular.module('avBooth')
         scope.scrolledToBottom = false;
 
         // filter
-        scope.filter = '';
+        scope.filter = {"search": ""};
         function updateFilteredOptions() {
-          console.log("new filter: " + scope.filter);
+          console.log("new filter: " + scope.filter.search);
         }
         scope.$watch("filter", updateFilteredOptions);
         scope.isSelectedAnswer = SearchFilter.isSelectedAnswer;
