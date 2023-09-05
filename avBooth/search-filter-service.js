@@ -43,7 +43,7 @@ angular.module('avBooth')
             (answer.text || "").toLowerCase(),
             (answer.details || "").toLowerCase()
         ];
-        inputs.map(function (text) {
+        return inputs.map(function (text) {
             return isStringContained(filter, text);
         }).some(function (val) { return val; });
 
