@@ -27,16 +27,16 @@
         gap: 21px;
         color: @av-primary-contrast;
 
-        .btn {
-            flex-shrink: 0;
-        }
-
         @media(max-width: @screen-sm-max) {
             padding: 27px 18px;
             flex-direction: column;
             position: relative;
             gap: 20px;
         }
+    }
+
+    .click-to-vote-btn, .election-results-btn {
+        min-width: 230px;
     }
 
     .btn-election.btn-election-open {
@@ -135,6 +135,7 @@
     }
 
     .election-dates-wrapper {
+        min-width: 180px;
         @media(max-width: @screen-sm-max) {
             order: 1;
         }
