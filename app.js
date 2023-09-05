@@ -36,7 +36,6 @@ angular.module(
   'avBooth',
   'avTest',
   'avCrypto',
-  'is-js',
   'angularFileUpload',
   'dndLists',
   'angularLoad',

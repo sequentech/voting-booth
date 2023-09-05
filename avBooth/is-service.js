@@ -15,15 +15,17 @@
  * along with voting-booth.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-/*
- * Convenience service that returns access to is-js
- */
-
-angular.module('is-js', []);
-
-angular.module('is-js')
-  .service('IsService', function() {
+angular.module('avBooth')
+  .factory('IsService', function() {
     /* jshint ignore:start */
-    return is;
+    var service = {};
+
+    service.touchDevice = function () {
+      return (('ontouchstart' in window) ||
+         (navigator.maxTouchPoints > 0) ||
+         (navigator.msMaxTouchPoints > 0));
+    };
+
+    return service;
     /* jshint ignore:end */
   });
