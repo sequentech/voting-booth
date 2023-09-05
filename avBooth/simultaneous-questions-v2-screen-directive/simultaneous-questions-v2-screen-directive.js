@@ -30,7 +30,8 @@ angular.module('avBooth')
       $window,
       ConfigService,
       CheckerService,
-      ErrorCheckerGeneratorService
+      ErrorCheckerGeneratorService,
+      SearchFilter
     ) {
       var simultaneousQuestionsLayouts = ["simultaneous-questions-v2", "simultaneous-questions"];
 
@@ -41,11 +42,12 @@ angular.module('avBooth')
         scope.scrolledToBottom = false;
 
         // filter
-        scope.filter = undefined;
+        scope.filter = '';
         function updateFilteredOptions() {
           console.log("new filter: " + scope.filter);
         }
         scope.$watch("filter", updateFilteredOptions);
+        scope.isSelectedAnswer = SearchFilter.isSelectedAnswer;
 
         // record when scrolled to bottom
         function checkScrollToBottom() {

@@ -102,7 +102,7 @@
       <div class="question-answers text-left">
         <div 
           ng-repeat="answer in question.answers"
-          ng-if="!isInvalidAnswer(answer)"
+          ng-if="!isInvalidAnswer(answer) && isSelectedAnswer(filter.search, answer)"
           class="question-answer-wrapper"
           ng-class="{
             'flex-col-12': (question.extra_options.answer_columns_size === 12),
