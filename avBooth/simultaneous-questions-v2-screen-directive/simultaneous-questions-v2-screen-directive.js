@@ -323,10 +323,10 @@ angular.module('avBooth')
 
         function updateFilteredAnswers(question) {
           return function() {
-            for (answer in question.answers) {
+            for (var answer in question.answers) {
               answer.isFilterSelected = SearchFilter.isSelectedAnswer(question.search, answer);
             }
-          }
+          };
         }
         scope.groupQuestions.forEach(function (question, index) {
           question.search = "";
