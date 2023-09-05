@@ -42,6 +42,10 @@ angular.module('avBooth')
 
         // filter
         scope.filter = undefined;
+        function updateFilteredOptions() {
+          console.log("new filter: " + scope.filter);
+        }
+        scope.$watch("filter", updateFilteredOptions);
 
         // record when scrolled to bottom
         function checkScrollToBottom() {
