@@ -40,6 +40,9 @@ angular.module('avBooth')
         // records if the page has been scrolled to the bottom
         scope.scrolledToBottom = false;
 
+        // filter
+        scope.filter = undefined;
+
         // record when scrolled to bottom
         function checkScrollToBottom() {
           var documentHeight = document.body.scrollHeight;
