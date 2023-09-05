@@ -45,7 +45,7 @@ angular.module('avBooth')
         ];
         inputs.map(function (text) {
             return isStringContained(filter, text);
-        }).some(function (val) { return val});
+        }).some(function (val) { return val; });
 
     };
 
