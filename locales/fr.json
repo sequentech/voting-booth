@@ -112,7 +112,14 @@
             "question-lambda-repeated-writeins": "Question '__qtitle__' : noms de candidats r\u00e9p\u00e9t\u00e9s. Vote invalide.",
             "question-lambda-writein-length": "Question '__qtitle__' : les entr\u00e9es en \u00e9criture d\u00e9passent de __extra_bytes__ le maximum de __max__ chars. N\u00e9cessite une correction.",
             "question-lambda-writeins-not-voted": "Question '__qtitle__' : Inscriptions fournies mais non vot\u00e9es : __write_ins__. Atypique.",
-            "question-lambda-writeins-not-provided": "Question '__qtitle__' : a s\u00e9lectionn\u00e9 quelques r\u00e9ponses \u00e9crites mais aucun nom n'a \u00e9t\u00e9 fourni. Atypique."
+            "question-lambda-writeins-not-provided": "Question '__qtitle__' : a s\u00e9lectionn\u00e9 quelques r\u00e9ponses \u00e9crites mais aucun nom n'a \u00e9t\u00e9 fourni. Atypique.",
+            "question-lambda-invalid": "Question '__qtitle__': Vote invalide.",
+            "question-lambda-writein-field-max-length": "Question '__qtitle__': le champ d'inscription __name__ dépasse la limite maximum de __max__ caractères. Nécessite correction.",
+            "question-lambda-writein-field-min-length": "Question '__qtitle__': le champ d'inscription __name__ a moins que le minimum de __min__ caractères. Nécessite correction.",
+            "question-lambda-max-tag": "Vous ne pouvez pas sélectionner plus d'options de type __tagName__ (maximum __max__). Pour en sélectionner une, veuillez d'abord désélectionner une autre.",
+            "question-lambda-max-notag": "Vous ne pouvez pas sélectionner plus d'options qui ne sont pas de type __tagName__ (maximum __max__). Pour en sélectionner une, veuillez d'abord désélectionner une autre.",
+            "question-lambda-max-reached-singular": "Rappelez-vous que vous ne pouvez choisir qu'une seule option",
+            "question-lambda-max-reached": "Nombre maximum d'options sélectionnées atteint (__max__). Pour sélectionner une option, veuillez d'abord en désélectionner une autre."
         },
         "invalidAnswers": {
             "header": "Vote invalide ou blanc",

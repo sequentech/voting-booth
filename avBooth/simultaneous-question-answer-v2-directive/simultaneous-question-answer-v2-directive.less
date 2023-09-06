@@ -30,6 +30,47 @@
     }
   }
 
+  .write-in-input-wrapper {
+    width: 100%;
+    position: relative;
+    margin-top: 12px;
+    margin-bottom: 6px;
+
+    .write-in-label {
+      position: absolute;
+      font-size: 12px;
+      color: #64748B;
+      font-weight: 400;
+      line-height: 12px;
+      left: 12px;
+      top: -6px;
+      background: white;
+      padding: 0 4px;
+    }
+
+    .write-in-extra-field-input {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 16px;
+      border: 1px solid rgb(233, 233, 233);
+      font-weight: 400;
+      color: black;
+      height: unset;
+    }
+
+    .write-in-help {
+      padding: 14px 15px;
+      color: #64748B;
+      font-size: 12px;
+    }
+  }
+
+  .extra-field-writeins-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+
   // answer styles
   .invalid-vote-col .opt .vertilize {
     background-color: @av-primary;

@@ -126,6 +126,8 @@
       "question-lambda-panachage": "Votación '__qtitle__': seleccionó opciones de múltiples listas, pero no está permitido. Voto inválido.",
       "question-lambda-repeated-writeins": "Votación '__qtitle__': nombres de write-in repetidos. Voto inválid.",
       "question-lambda-writein-length": "Votación '__qtitle__': write-ins excedieron por __extra_bytes__ el máximo de __max__ caracteres. Requiere reparación.",
+      "question-lambda-writein-field-max-length": "Pregunta '__qtitle__': el campo de texto '__name__' excede el máximo de __max__ caracteres. Requiere corrección.",
+      "question-lambda-writein-field-min-length": "Pregunta '__qtitle__': el campo de texto '__name__' tiene menos del mínimo de __min__ caracteres. Requiere corrección.",
       "question-lambda-writeins-not-voted": "Votación '__qtitle__': write-ins provistos pero no votados: __write_ins__. Atípico.",
       "question-lambda-writeins-not-provided": "Votación '__qtitle__': seleccionados algunos write-ins pero sin nombre provisto. Atípico.",
 

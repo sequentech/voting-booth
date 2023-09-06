@@ -59,6 +59,23 @@
         "UNEXPECTED_ERROR": "Oväntat fel"
       }
     },
+    "errors": {
+      "question-lambda-invalid": "Fråga '__qtitle__': Ogiltig röstning.",
+      "question-lambda-blank": "Fråga '__qtitle__': valde noll alternativ. Blank röstning.",
+      "question-lambda-min": "Fråga '__qtitle__': valde __num_selected__ alternativ, färre än det minsta __min__. Ogiltig röstning.",
+      "question-lambda-max": "Fråga '__qtitle__': valde __num_selected__ alternativ, fler än det högsta __max__. Ogiltig röstning.",
+      "question-lambda-panachage": "Fråga '__qtitle__': valde alternativ från flera listor, men det är inte tillåtet. Ogiltig röstning.",
+      "question-lambda-repeated-writeins": "Fråga '__qtitle__': upprepade skrivna namn. Ogiltig röstning.",
+      "question-lambda-writein-length": "Fråga '__qtitle__': skriv-inn överstiger __extra_bytes__ maximit av __max__ tecken. Kräver fixering.",
+      "question-lambda-writein-field-max-length": "Fråga '__qtitle__': skriv-inn fält __name__ överskrider maximit av __max__ tecken. Kräver fixering.",
+      "question-lambda-writein-field-min-length": "Fråga '__qtitle__': skriv-inn fält __name__ har färre än minimium av __min__ tecken. Kräver fixering.",
+      "question-lambda-writeins-not-voted": "Fråga '__qtitle__': skriv-inn givna men inte röstat på: __write_ins__. Ovanligt.",
+      "question-lambda-writeins-not-provided": "Fråga '__qtitle__': valde några skriv-inn men ingen namn givits. Ovanligt.",
+      "question-lambda-max-tag": "Du kan inte välja fler alternativ av typen __tagName__ (maximit __max__). För att välja ett, avmarkera ett annat först.",
+      "question-lambda-max-notag": "Du kan inte välja fler alternativ som inte är av typen __tagName__ (maximit __max__). För att välja ett, avmarkera ett annat först.",
+      "question-lambda-max-reached-singular": "Kom ihåg att du bara kan välja ett alternativ",
+      "question-lambda-max-reached": "Maximalt antal valda alternativ uppnått (__max__). För att välja ett, avmarkera ett annat först."
+    },
     "countdownTooltip": {
       "title": "Din session kommer att gå ut.",
       "contentMins": "Du har __mins__ minuter kvar att rösta.",
