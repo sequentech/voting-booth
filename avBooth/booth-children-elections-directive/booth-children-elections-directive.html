@@ -3,7 +3,7 @@
     ng-if="!category.hidden"
     class="election-category"
 >
-    <h2 class="category-title">{{category.title}}</h2>
+    <h2 class="category-title">{{category | customI18n : 'title'}}</h2>
     <div class="category-elections-wrapper">
         <div 
             ng-repeat="election in category.events" 
@@ -15,8 +15,8 @@
             ng-click="canVoteElection(election) && click(election)"
         >
             <div class="text-container">
-                <h3 class="election-title">{{election.title}}</h3>
-                <p class="election-description" ng-if="!!election.description">{{election.description}}</p>
+                <h3 class="election-title">{{election | customI18n : 'title'}}</h3>
+                <p class="election-description" ng-if="!!election.description">{{election | customI18n : 'description'}}</p>
                 <a
                     href="election/{{ election.event_id }}/public/home"
                     ng-if="checkElectionStarted(election.electionData) && !hidePublicHome"

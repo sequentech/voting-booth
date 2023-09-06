@@ -9,7 +9,7 @@
   <div class="title-container">
     <h3 aria-level="2" class="text-brand-success question-title">
       <span>{{$index + 1}}.</span>
-      <span class="question-title title-text" ng-bind-html="question.title"></span>
+      <span class="question-title title-text" ng-bind-html="question | customI18n : 'title'"></span>
     </h3>
     <span class="edit-btn">
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -17,8 +17,8 @@
   </div>
   <p
     class="question-description"
-    ng-if="question.extra_options.review_screen__show_question_description && question.description" 
-    ng-bind-html="question.description | addTargetBlank"
+    ng-if="question.extra_options.review_screen__show_question_description && (question.description || question.description_i18n)" 
+    ng-bind-html="(question | customI18n : 'description') | addTargetBlank"
   ></p>
 
   <!-- Selected items line -->
@@ -43,7 +43,7 @@
     <li
       ng-repeat="pair in question.selection"
       class="animate-repeat selected-answer" ng-i18next>
-        [html:i18next]({one: pair[0].text, two: pair[1].text})avBooth.reviewScreen.pair
+        [html:i18next]({one: (pair[0] | customI18n : 'text'), two: (pair[1] | customI18n : 'text')})avBooth.reviewScreen.pair
     </li>
   </ul>
   <ul 
@@ -55,7 +55,7 @@
       ng-class="{'striked-text': markedAsInvalid(question)}"
       ng-if="!question.invalidVoteAnswer || answer.id !== question.invalidVoteAnswer.id"
       class="animate-repeat selected-answer">
-        <span ng-bind-html="answer.text"></span>
+        <span ng-bind-html="answer | customI18n : 'text'"></span>
         <span
           ng-if="showPoints(question) && !isWriteIn(answer)"
           ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">
@@ -89,7 +89,7 @@
       ng-if="!question.invalidVoteAnswer || answer.id !== question.invalidVoteAnswer.id"
       ng-class="{'striked-text': markedAsInvalid(question)}"
       class="animate-repeat selected-answer">
-        <span ng-bind-html="answer.text"></span>
+        <span ng-bind-html="answer | customI18n : 'text'"></span>
         <span
           ng-if="showPoints(question) && !isWriteIn(answer)"
           ng-i18next="[i18next]({points: getPoints(question, answer)})avBooth.showSelectedOptionPoints">

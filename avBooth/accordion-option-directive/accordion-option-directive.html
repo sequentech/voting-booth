@@ -45,7 +45,7 @@
         parent
         ng-if="!isYoutube(option) && !!urls['Image URL']"
         ng-src="{{urls['Image URL']}}"
-        alt="{{option.text}}" />
+        alt="{{option | customI18n : 'text'}}" />
     </div>
 
     <!-- texts -->
@@ -56,7 +56,7 @@
               {{option.selected + 1}}.
           </span>
           <span>
-              <span class="answer-text" ng-bind-html="option.text"></span>
+              <span class="answer-text" ng-bind-html="option | customI18n : 'text'"></span>
               <span
               ng-if="showPoints && option.selected > -1"
               ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
@@ -107,7 +107,7 @@
         parent
         ng-if="!isYoutube(option) && !!urls['Image URL']"
         ng-src="{{urls['Image URL']}}"
-        alt="{{option.text}}" />
+        alt="{{option | customI18n : 'text'}}" />
     </div>
 
     <!-- remove action -->
@@ -154,15 +154,15 @@
               {{option.selected + 1}}.
           </span>
           <span>
-              <span class="answer-text" ng-bind-html="option.text"></span>
+              <span class="answer-text" ng-bind-html="option | customI18n : 'text'"></span>
               <span
               ng-if="showPoints && option.selected > -1"
               ng-i18next="[i18next]({points: getPoints()})avBooth.showSelectedOptionPoints">
               </span>
           </span>
           </strong>
-          <p class="answer-description details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && option.details && option.details.length > 1" ng-bind-html="option.details">
-          <p class="answer-description details hidden-lg" ng-if="!selectedOptions && option.details && option.details.length > 1" ng-bind-html="option.details">
+          <p class="answer-description details visible-lg" ng-if="(dnd_disable || !selectedOptions || (!!selectedOptions && !isTouchDevice)) && ((option.details && option.details.length > 1) || option.details_i18n)" ng-bind-html="option | customI18n : 'details'">
+          <p class="answer-description details hidden-lg" ng-if="!selectedOptions && ((option.details && option.details.length > 1) || option.details_i18n)" ng-bind-html="option | customI18n : 'details'">
           </p>
       </div>
     </div>
