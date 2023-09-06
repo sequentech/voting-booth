@@ -16,7 +16,7 @@
 **/
 
 angular.module('avBooth')
-  .factory('SearchFilter', function() {
+  .factory('SearchFilter', function($filter) {
     var service = {};
 
     function isStringContained(searchTerm, text) {
@@ -40,8 +40,9 @@ angular.module('avBooth')
         }
 
         var inputs = [
-            (answer.text || "").toLowerCase(),
-            (answer.details || "").toLowerCase()
+            ($filter('customI18n')(answer, 'text') || "").toLowerCase(),
+            ($filter('customI18n')(answer, 'details') || "").toLowerCase(),
+            ($filter('customI18n')(answer, 'category') || "").toLowerCase()
         ];
         return inputs.map(function (text) {
             return isStringContained(filter, text);

@@ -326,6 +326,20 @@ angular.module('avBooth')
             for (var answer of question.answers) {
               answer.isFilterSelected = SearchFilter.isSelectedAnswer(question.search, answer);
             }
+
+            if (question.hasCategories && !!question.categories) {
+              for (var category of question.categories) {
+                category.categoryAnswer.isFilterSelected =
+                  SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
+                  var isAnyAnswerSelected = false
+                  for (var answer of category.answers) {
+                    answer.isFilterSelected =
+                      SearchFilter.isSelectedAnswer(question.search, answer);
+                    isAnyAnswerSelected = isAnyAnswerSelected || answer.isFilterSelected;
+                  }
+                  category.isAnyAnswerSelected = isAnyAnswerSelected;
+              }
+            }
           };
         }
         scope.groupQuestions.forEach(function (question, index) {
