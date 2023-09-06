@@ -331,7 +331,7 @@ angular.module('avBooth')
               for (var category of question.categories) {
                 category.categoryAnswer.isFilterSelected =
                   SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
-                  var isAnyAnswerSelected = false
+                  var isAnyAnswerSelected = false;
                   for (var catAnswer of category.answers) {
                     catAnswer.isFilterSelected =
                       SearchFilter.isSelectedAnswer(question.search, catAnswer);
