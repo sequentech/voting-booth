@@ -332,10 +332,10 @@ angular.module('avBooth')
                 category.categoryAnswer.isFilterSelected =
                   SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
                   var isAnyAnswerSelected = false
-                  for (var answer of category.answers) {
-                    answer.isFilterSelected =
-                      SearchFilter.isSelectedAnswer(question.search, answer);
-                    isAnyAnswerSelected = isAnyAnswerSelected || answer.isFilterSelected;
+                  for (var catAnswer of category.answers) {
+                    catAnswer.isFilterSelected =
+                      SearchFilter.isSelectedAnswer(question.search, catAnswer);
+                    isAnyAnswerSelected = isAnyAnswerSelected || catAnswer.isFilterSelected;
                   }
                   category.isAnyAnswerSelected = isAnyAnswerSelected;
               }
