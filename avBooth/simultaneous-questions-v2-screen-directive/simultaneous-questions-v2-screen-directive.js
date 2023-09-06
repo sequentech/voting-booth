@@ -323,7 +323,7 @@ angular.module('avBooth')
 
         function updateFilteredAnswers(question) {
           return function() {
-            for (var answer in question.answers) {
+            for (var answer of question.answers) {
               answer.isFilterSelected = SearchFilter.isSelectedAnswer(question.search, answer);
             }
           };
