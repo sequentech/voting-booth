@@ -330,7 +330,7 @@ angular.module('avBooth')
             if (question.hasCategories && !!question.categories) {
               for (var category of question.categories) {
                 category.isCategorySelected = 
-                  SearchFilter.isStringContained(question.search, title);
+                  SearchFilter.isStringContained(question.search, category.title);
                 if (category.categoryAnswer) {
                   category.isCategorySelected = 
                     SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
