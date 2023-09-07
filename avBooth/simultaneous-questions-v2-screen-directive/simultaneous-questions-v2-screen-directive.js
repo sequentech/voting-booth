@@ -322,11 +322,13 @@ angular.module('avBooth')
         scope.groupQuestions = groupQuestions;
 
         /////////////
-        document.getElementById('filter-input').onfocus = function() {
-          document.getElementById('search-icon').style.display = 'none';
+        var filterInput = document.getElementById('filter-input');
+        var searchIcon = document.getElementById('search-icon');
+        filterInput.onfocus = function() {
+          searchIcon.style.display = 'none';
         };
-        document.getElementById('filter-input').onblur = function() {
-          document.getElementById('search-icon').style.display = 'block';
+        filterInput.onblur = function() {
+          searchIcon.style.display = 'block';
         };
         /////////////
 
