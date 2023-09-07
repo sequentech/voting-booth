@@ -321,23 +321,24 @@ angular.module('avBooth')
 
         scope.groupQuestions = groupQuestions;
 
-        scope.loadSearchListeners = function (index) {
+        scope.loadSearchListeners = function (question, index) {
           var filterInput = document.getElementById('filter-input-' + index);
           var searchIcon = document.getElementById('search-icon-' + index);
           
           if (!filterInput || !searchIcon) {
             setTimeout(function () {
-              scope.loadSearchListeners(index);
+              scope.loadSearchListeners(question, index);
             }, 100);
             return;
           }
-          console.log("initialized FFF!");
 
           filterInput.onfocus = function() {
-            searchIcon.style.display = 'none';
+            searchIcon.classList.add("hide");
           };
           filterInput.onblur = function() {
-            searchIcon.style.display = 'block';
+            if (!question.search) {
+              searchIcon.classList.remove("hide");
+            }
           };
         };
 
