@@ -27,8 +27,29 @@ angular.module('avBooth')
         searchTerm = searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "");  
         // match and remove all accents
         text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    
-        return text.includes(searchTerm);
+
+        // split the search by '*'
+        var searchParts = text.split("*");
+        // remove empty strings from multiple * in a row or initial/end *
+        searchParts = searchParts.filter(function (part) { return part.length > 0});
+
+        // Loop through each part
+        var lastIdx = 0;
+        for (var part of searchParts) {
+            // Find the part in the text, starting from the last index found
+            var idx = text.indexOf(part, lastIdx);
+
+            // If the part is not found, or if it's found before the last part, return false
+            if (idx < 0) {
+                return false;
+            }
+
+            // Update the last index found to after the current part
+            lastIdx = idx + part.length;
+        }
+
+        // If we get through the loop without returning false, then the search term is contained in the text
+        return true;
     };
 
     service.isSelectedAnswer = function (searchText, answer) {
