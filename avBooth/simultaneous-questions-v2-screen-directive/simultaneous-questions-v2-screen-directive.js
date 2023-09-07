@@ -333,12 +333,10 @@ angular.module('avBooth')
           }
 
           filterInput.onfocus = function() {
-            searchIcon.classList.add("hide");
+            searchIcon.classList.add("hide-search");
           };
           filterInput.onblur = function() {
-            if (!question.search) {
-              searchIcon.classList.remove("hide");
-            }
+            searchIcon.classList.remove("hide-search");
           };
         };
 
