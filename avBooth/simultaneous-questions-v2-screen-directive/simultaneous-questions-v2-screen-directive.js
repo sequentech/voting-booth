@@ -338,6 +338,9 @@ angular.module('avBooth')
             console.log("onblur");
           };
         };
+        scope.searchClass = function (id) {
+          return 'search-icon-' + id;
+        };
 
         function updateFilteredAnswers(question) {
           return function() {
