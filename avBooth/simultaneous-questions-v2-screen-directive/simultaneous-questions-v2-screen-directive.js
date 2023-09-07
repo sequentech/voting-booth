@@ -372,6 +372,7 @@ angular.module('avBooth')
         }
         scope.groupQuestions.forEach(function (question, index) {
           question.search = "";
+          question.showSearch = question.extra_options && question.extra_options.show_filter_field;
           scope.$watch("groupQuestions[" + index + "].search", updateFilteredAnswers(question));
         });
 

@@ -40,7 +40,11 @@
   <div class="notifications"></div>
   <div class="question" ng-repeat="question in groupQuestions">
     <div class="question-title-container">
-      <div class="pull-left filter-input-wrapper" ng-init="loadSearchListeners(question, $index)">
+      <div
+        class="pull-left filter-input-wrapper"
+        ng-init="loadSearchListeners(question, $index)"
+        ng-if="question.showSearch"
+      >
         <input type="text"
           class="filter-input"
           ng-class="{'text': !!question.search}"
