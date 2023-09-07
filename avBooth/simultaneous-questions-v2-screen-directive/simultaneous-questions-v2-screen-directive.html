@@ -49,8 +49,11 @@
         ng-model-options="{debounce: 500}"
         ng-i18next="[placeholder]avBooth.filterOptionsPlaceholder;[aria-label]avBooth.filterOptionsPlaceholder"
         />
-      <span class="glyphicon glyphicon-search"></span>
-      <i class="fa fa-times"></i>
+      <span
+        class="glyphicon glyphicon-search"
+        ng-class="{'hide': !!question.search}"
+      ></span>
+      <i class="fa fa-times" ng-class="{'hide': !!question.search}"></i>
     </div>
     <p
       class="question-description"
