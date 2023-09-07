@@ -322,9 +322,6 @@ angular.module('avBooth')
         scope.groupQuestions = groupQuestions;
 
         scope.loadSearchListeners = function (index) {
-          if (question) {
-            console.log(question);
-          }
           var filterInput = document.getElementsByClassName('filter-input-' + index)[0];
           var searchIcon = document.getElementsByClassName('search-icon-' + index)[0];
           
@@ -334,11 +331,9 @@ angular.module('avBooth')
 
           filterInput.onfocus = function() {
             searchIcon.style.display = 'none';
-            console.log("onfocus");
           };
           filterInput.onblur = function() {
             searchIcon.style.display = 'block';
-            console.log("onblur");
           };
         };
 
