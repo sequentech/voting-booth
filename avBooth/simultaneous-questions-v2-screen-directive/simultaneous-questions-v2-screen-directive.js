@@ -326,8 +326,12 @@ angular.module('avBooth')
           var searchIcon = document.getElementById('search-icon-' + index);
           
           if (!filterInput || !searchIcon) {
+            setTimeout(function () {
+              scope.loadSearchListeners(index);
+            }, 100);
             return;
           }
+          console.log("initialized FFF!");
 
           filterInput.onfocus = function() {
             searchIcon.style.display = 'none';
