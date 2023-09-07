@@ -31,7 +31,7 @@ angular.module('avBooth')
         // split the search by '*'
         var searchParts = text.split("*");
         // remove empty strings from multiple * in a row or initial/end *
-        searchParts = searchParts.filter(function (part) { return part.length > 0});
+        searchParts = searchParts.filter(function (part) { return part.length > 0; });
 
         // Loop through each part
         var lastIdx = 0;
