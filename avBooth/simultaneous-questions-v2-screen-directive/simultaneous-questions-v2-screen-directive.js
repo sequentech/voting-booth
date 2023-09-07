@@ -321,10 +321,14 @@ angular.module('avBooth')
 
         scope.groupQuestions = groupQuestions;
 
-        /////////////
-        scope.loadIt = function () {
-          var filterInput = document.getElementById('filter-input');
-          var searchIcon = document.getElementById('search-icon');
+        scope.loadIt = function (questionId) {
+          var filterInput = document.getElementById('filter-input-' + questionId);
+          var searchIcon = document.getElementById('search-icon-' + questionId);
+          
+          if (!filterInput || !searchIcon) {
+            return;
+          }
+
           filterInput.onfocus = function() {
             searchIcon.style.display = 'none';
             console.log("onfocus");
@@ -334,7 +338,6 @@ angular.module('avBooth')
             console.log("onblur");
           };
         };
-        /////////////
 
         function updateFilteredAnswers(question) {
           return function() {
