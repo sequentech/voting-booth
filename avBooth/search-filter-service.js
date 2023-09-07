@@ -19,7 +19,7 @@ angular.module('avBooth')
   .factory('SearchFilter', function($filter) {
     var service = {};
 
-    function isStringContained(searchTerm, text) {
+    service.isStringContained = function (searchTerm, text) {
         // convert to lower case to make comparison case-insensitive
         searchTerm = searchTerm.toLocaleLowerCase('en-US');
         text = text.toLocaleLowerCase('en-US');
@@ -29,7 +29,7 @@ angular.module('avBooth')
         text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     
         return text.includes(searchTerm);
-    }
+    };
 
     service.isSelectedAnswer = function (searchText, answer) {
         var filter = searchText.trim().toLowerCase();
@@ -45,7 +45,7 @@ angular.module('avBooth')
             ($filter('customI18n')(answer, 'category') || "").toLowerCase()
         ];
         return inputs.map(function (text) {
-            return isStringContained(filter, text);
+            return service.isStringContained(filter, text);
         }).some(function (val) { return val; });
 
     };

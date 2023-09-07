@@ -83,7 +83,7 @@
           avb-simultaneous-questions-category-v2
           question="question"
           category="category"
-          ng-if="category.categoryAnswer.isFilterSelected || category.isAnyAnswerSelected"
+          ng-if="category.isCategorySelected || category.isAnyAnswerSelected"
           toggle-select-item="toggleSelectItem"
           toggle-select-item-cumulative="toggleSelectItemCumulative"
           cumulative-checks="cumulativeChecks"

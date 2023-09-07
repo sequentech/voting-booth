@@ -329,15 +329,20 @@ angular.module('avBooth')
 
             if (question.hasCategories && !!question.categories) {
               for (var category of question.categories) {
-                category.categoryAnswer.isFilterSelected =
-                  SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
-                  var isAnyAnswerSelected = false;
-                  for (var catAnswer of category.answers) {
-                    catAnswer.isFilterSelected =
-                      SearchFilter.isSelectedAnswer(question.search, catAnswer);
-                    isAnyAnswerSelected = isAnyAnswerSelected || catAnswer.isFilterSelected;
-                  }
-                  category.isAnyAnswerSelected = isAnyAnswerSelected;
+                category.isCategorySelected = 
+                  SearchFilter.isStringContained(search, title);
+                if (category.categoryAnswer) {
+                  category.isCategorySelected = 
+                    SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
+                }
+
+                var isAnyAnswerSelected = false;
+                for (var catAnswer of category.answers) {
+                  catAnswer.isFilterSelected =
+                    SearchFilter.isSelectedAnswer(question.search, catAnswer);
+                  isAnyAnswerSelected = isAnyAnswerSelected || catAnswer.isFilterSelected;
+                }
+                category.isAnyAnswerSelected = isAnyAnswerSelected;
               }
             }
           };

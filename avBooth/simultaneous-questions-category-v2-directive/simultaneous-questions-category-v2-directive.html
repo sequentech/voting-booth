@@ -24,7 +24,7 @@
         <div
             ng-if="!isReview"
             ng-repeat="answer in category.answers"
-            ng-if="category.categoryAnswer.isFilterSelected || answer.isFilterSelected"
+            ng-if="category.isCategorySelected || answer.isFilterSelected"
             class="question-answer-wrapper"
             ng-class="{
               'flex-col-12': (question.extra_options.answer_columns_size === 12),
