@@ -44,6 +44,7 @@
     <div class="pull-right filter-input-wrapper" ng-init="loadSearchListeners(question, $index)">
       <input type="text"
         class="filter-input"
+        ng-class="{'text': !!question.search}"
         ng-attr-id="filter-input-{{$index}}"
         ng-model="question.search"
         ng-model-options="{debounce: 500}"
