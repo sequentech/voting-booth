@@ -321,6 +321,15 @@ angular.module('avBooth')
 
         scope.groupQuestions = groupQuestions;
 
+        /////////////
+        document.getElementById('filter-input').onfocus = function() {
+          document.getElementById('search-icon').style.display = 'none';
+        }
+        document.getElementById('filter-input').onblur = function() {
+          document.getElementById('search-icon').style.display = 'block';
+        }
+        /////////////
+
         function updateFilteredAnswers(question) {
           return function() {
             for (var answer of question.answers) {
