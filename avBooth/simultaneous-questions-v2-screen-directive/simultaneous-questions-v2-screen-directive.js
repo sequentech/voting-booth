@@ -322,8 +322,8 @@ angular.module('avBooth')
         scope.groupQuestions = groupQuestions;
 
         scope.loadIt = function (questionId) {
-          var filterInput = document.getElementById('filter-input-' + questionId);
-          var searchIcon = document.getElementById('search-icon-' + questionId);
+          var filterInput = document.getElementsByClassName('filter-input-' + questionId)[0];
+          var searchIcon = document.getElementsByClassName('search-icon-' + questionId)[0];
           
           if (!filterInput || !searchIcon) {
             return;
