@@ -327,9 +327,11 @@ angular.module('avBooth')
           var searchIcon = document.getElementById('search-icon');
           filterInput.onfocus = function() {
             searchIcon.style.display = 'none';
+            console.log("onfocus");
           };
           filterInput.onblur = function() {
             searchIcon.style.display = 'block';
+            console.log("onblur");
           };
         };
         /////////////
