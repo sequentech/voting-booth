@@ -44,12 +44,12 @@
     <div class="pull-right filter-input-wrapper" ng-init="loadIt(question.id)">
       <input type="text"
         class="filter-input"
-        ng-attr-id="filter-input-{{question.id}}"
+        ng-attr-id="{{ 'filter-input-' + question.id }}"
         ng-model="question.search"
         ng-model-options="{debounce: 500}"
         ng-i18next="[placeholder]avBooth.filterOptionsPlaceholder;[aria-label]avBooth.filterOptionsPlaceholder"
         />
-      <span class="glyphicon glyphicon-search" ng-attr-id="search-icon-{{question.id}}"></span>
+      <span class="glyphicon glyphicon-search" ng-attr-id="{{ 'search-icon-' + question.id }}"></span>
       <i class="fa fa-times" ng-class="{'hide': !question.search}"></i>
     </div>
     <p
