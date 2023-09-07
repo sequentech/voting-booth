@@ -341,7 +341,10 @@ angular.module('avBooth')
             console.log("onblur");
           };
         };
-        scope.searchClass = function (id) {
+        scope.searchClass = function (question, id) {
+          if (question) {
+            console.log(question);
+          }
           return 'search-icon-' + id;
         };
 
