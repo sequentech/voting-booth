@@ -321,7 +321,7 @@ angular.module('avBooth')
 
         scope.groupQuestions = groupQuestions;
 
-        scope.loadIt = function (question, index) {
+        scope.loadSearchListeners = function (index) {
           if (question) {
             console.log(question);
           }
@@ -340,12 +340,6 @@ angular.module('avBooth')
             searchIcon.style.display = 'block';
             console.log("onblur");
           };
-        };
-        scope.searchClass = function (question, id) {
-          if (question) {
-            console.log(question);
-          }
-          return 'search-icon-' + id;
         };
 
         function updateFilteredAnswers(question) {
