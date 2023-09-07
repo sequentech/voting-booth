@@ -29,7 +29,7 @@ angular.module('avBooth')
         text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
         // split the search by '*'
-        var searchParts = text.split("*");
+        var searchParts = searchTerm.split("*");
         // remove empty strings from multiple * in a row or initial/end *
         searchParts = searchParts.filter(function (part) { return part.length > 0; });
 
