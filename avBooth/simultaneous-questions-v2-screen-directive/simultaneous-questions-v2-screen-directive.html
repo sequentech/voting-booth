@@ -50,7 +50,7 @@
         ng-i18next="[placeholder]avBooth.filterOptionsPlaceholder;[aria-label]avBooth.filterOptionsPlaceholder"
         />
       <span class="glyphicon glyphicon-search" id="search-icon"></span>
-      <i class="fa fa-times"></i>
+      <i class="fa fa-times" ng-class="{'hide': !question.search}"></i>
     </div>
     <p
       class="question-description"
