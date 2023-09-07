@@ -340,6 +340,10 @@ angular.module('avBooth')
           };
         };
 
+        scope.clearSearch = function (question) {
+          question.search = "";
+        };
+
         function updateFilteredAnswers(question) {
           return function() {
             for (var answer of question.answers) {

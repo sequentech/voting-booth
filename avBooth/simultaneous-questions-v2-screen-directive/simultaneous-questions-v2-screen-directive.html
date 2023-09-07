@@ -55,7 +55,11 @@
         ng-class="{'hide': !!question.search}"
         ng-attr-id="search-icon-{{$index}}"
       ></span>
-      <i class="fa fa-times" ng-class="{'hide': !question.search}"></i>
+      <i
+        class="fa fa-times"
+        ng-class="{'hide': !question.search}"
+        ng-click="clearSearch(question)"
+      ></i>
     </div>
     <p
       class="question-description"
