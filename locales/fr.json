@@ -290,7 +290,8 @@
                 "header": "Voulez-vous sauter cette ou ces questions ?",
                 "body": "Veuillez confirmer que vous voulez sauter cette (ces) question(s). Vous pouvez voter pour la ou les questions ignor\u00e9es en vous connectant \u00e0 nouveau.",
                 "confirm": "Confirmer et SAUTER cette(ces) question(s)"
-            }
+            },
+            "searchWarn": "Les candidats de la question ont été filtrés. Pour voir tous les candidats de cette question, veuillez désactiver le filtre."
         },
         "pairwiseBeta": {
             "web": "Web",

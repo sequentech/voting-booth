@@ -338,7 +338,8 @@
         "header": "Informació: Pantalla de votació",
         "body": "Aquesta pantalla mostra la votació en la quals ets elegible per votar. Pots seleccionar la teva secció activant la casella de la dreta Candidat/Resposta. Per a restablir les teves seleccions, fes clic al botó '<b>Esborrar selecció</b>', per passar al següent pas, fes clic al botó '<b>Següent</b>'.",
         "confirm": "D'acord"
-      }
+      },
+      "searchWarn": "Els candidats de la pregunta han estat filtrats. Per veure tots els candidats en aquesta pregunta, si us plau desactiva el filtre."
     },
 
     "pairwiseBeta": {

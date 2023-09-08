@@ -368,7 +368,8 @@
         "header": "Información: Pantalla de votación",
         "body": "Esta pantalla muestra la votación en la que usted es elegible para votar. Puede seleccionar su sección activando la casilla de la derecha Candidato/Respuesta. Para restablecer sus selecciones, haga clic en el botón “<b>Borrar selección</b>”, para pasar al siguiente paso, haga clic en el botón “<b>Siguiente</b>”.",
         "confirm": "OK"
-      }
+      },
+      "searchWarn": "Los candidatos de la pregunta han sido filtrados. Para ver a todos los candidatos en esta pregunta, por favor desactiva el filtro."
     },
 
     "pairwiseBeta": {
