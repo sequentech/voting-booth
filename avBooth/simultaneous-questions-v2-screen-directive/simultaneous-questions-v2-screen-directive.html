@@ -56,30 +56,32 @@
         </div>
       </div>
     </div>
-
-    <div
-      class="pull-right filter-input-wrapper"
-      ng-init="loadSearchListeners(question, $index)"
-      ng-if="question.showSearch"
-    >
-      <input type="text"
-        class="filter-input"
-        ng-class="{'text': !!question.search}"
-        ng-attr-id="filter-input-{{$index}}"
-        ng-model="question.search"
-        ng-model-options="{debounce: 500}"
-        ng-i18next="[placeholder]avBooth.filterOptionsPlaceholder;[aria-label]avBooth.filterOptionsPlaceholder"
-        />
-      <span
-        class="glyphicon glyphicon-search"
-        ng-class="{'hide': !!question.search}"
-        ng-attr-id="search-icon-{{$index}}"
-      ></span>
-      <i
-        class="fa fa-times"
-        ng-class="{'hide': !question.search}"
-        ng-click="clearSearch(question)"
-      ></i>
+    
+    <div class="question-title-container">
+      <div
+        class="pull-right filter-input-wrapper"
+        ng-init="loadSearchListeners(question, $index)"
+        ng-if="question.showSearch"
+      >
+        <input type="text"
+          class="filter-input"
+          ng-class="{'text': !!question.search}"
+          ng-attr-id="filter-input-{{$index}}"
+          ng-model="question.search"
+          ng-model-options="{debounce: 500}"
+          ng-i18next="[placeholder]avBooth.filterOptionsPlaceholder;[aria-label]avBooth.filterOptionsPlaceholder"
+          />
+        <span
+          class="glyphicon glyphicon-search"
+          ng-class="{'hide': !!question.search}"
+          ng-attr-id="search-icon-{{$index}}"
+        ></span>
+        <i
+          class="fa fa-times"
+          ng-class="{'hide': !question.search}"
+          ng-click="clearSearch(question)"
+        ></i>
+      </div>
     </div>
 
     <!-- QUESTION OPTIONS START -->
