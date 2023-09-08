@@ -114,10 +114,10 @@
           write-in-text-change="updateErrors"
           is-review="false"
           ng-class="{
-            'flex-col-12': (question.search || question.extra_options.answer_group_columns_size === 12),
-            'flex-col-6': (!question.search && question.extra_options.answer_group_columns_size === 6),
-            'flex-col-4': (!question.search && question.extra_options.answer_group_columns_size === 4),
-            'flex-col-3': (!question.search && question.extra_options.answer_group_columns_size === 3),
+            'flex-col-12': (question.isAnyCategorySelected || question.extra_options.answer_group_columns_size === 12),
+            'flex-col-6': (!question.isAnyCategorySelected && question.extra_options.answer_group_columns_size === 6),
+            'flex-col-4': (!question.isAnyCategorySelected && question.extra_options.answer_group_columns_size === 4),
+            'flex-col-3': (!question.isAnyCategorySelected && question.extra_options.answer_group_columns_size === 3),
             'empty-category': !category.title
           }"
         >
@@ -130,10 +130,10 @@
           ng-if="!isInvalidAnswer(answer) && answer.isFilterSelected"
           class="question-answer-wrapper"
           ng-class="{
-            'flex-col-12': (question.search || question.extra_options.answer_columns_size === 12),
-            'flex-col-6': (!question.search && question.extra_options.answer_columns_size === 6),
-            'flex-col-4': (!question.search && question.extra_options.answer_columns_size === 4),
-            'flex-col-3': (!question.search && question.extra_options.answer_columns_size === 3)
+            'flex-col-12': (question.isAnyCategorySelected || question.extra_options.answer_columns_size === 12),
+            'flex-col-6': (!question.isAnyCategorySelected && question.extra_options.answer_columns_size === 6),
+            'flex-col-4': (!question.isAnyCategorySelected && question.extra_options.answer_columns_size === 4),
+            'flex-col-3': (!question.isAnyCategorySelected && question.extra_options.answer_columns_size === 3)
           }"
         >
           <div 

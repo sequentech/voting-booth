@@ -331,6 +331,7 @@ angular.module('avBooth')
               answer.isFilterSelected = SearchFilter.isSelectedAnswer(question.search, answer);
             }
 
+            question.isAnyCategorySelected = false;
             if (question.hasCategories && !!question.categories) {
               for (var category of question.categories) {
                 category.isCategorySelected = 
@@ -339,6 +340,7 @@ angular.module('avBooth')
                   category.isCategorySelected = 
                     SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
                 }
+                question.isAnyCategorySelected = question.isAnyCategorySelected || category.isCategorySelected;
 
                 var isAnyAnswerSelected = false;
                 for (var catAnswer of category.answers) {
