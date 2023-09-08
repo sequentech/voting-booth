@@ -321,25 +321,6 @@ angular.module('avBooth')
 
         scope.groupQuestions = groupQuestions;
 
-        scope.loadSearchListeners = function (question, index) {
-          var filterInput = document.getElementById('filter-input-' + index);
-          var searchIcon = document.getElementById('search-icon-' + index);
-          
-          if (!filterInput || !searchIcon) {
-            setTimeout(function () {
-              scope.loadSearchListeners(question, index);
-            }, 100);
-            return;
-          }
-
-          filterInput.onfocus = function() {
-            searchIcon.classList.add("hide-search");
-          };
-          filterInput.onblur = function() {
-            searchIcon.classList.remove("hide-search");
-          };
-        };
-
         scope.clearSearch = function (question) {
           question.search = "";
         };
