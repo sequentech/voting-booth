@@ -72,12 +72,14 @@
       ng-if="question.description || question.description_i18n"
       ng-bind-html="question | customI18n : 'description' | addTargetBlank">
     </p>
-    <div class="warn-box warn-box-blue" ng-if="question.showSearch && question.search">
-      <span class="glyphicon glyphicon-warning-sign"></span>
-      <div
-        class="warn-text"
-        role="alert">
-        Ballot candidates have been filtered. To view all candidates on this ballot, please disable the filter.
+    <div class="input-warn warn-blue">
+      <div class="warn-box" ng-if="question.showSearch && question.search">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <div
+          class="warn-text"
+          role="alert">
+          Ballot candidates have been filtered. To view all candidates on this ballot, please disable the filter.
+        </div>
       </div>
     </div>
 
