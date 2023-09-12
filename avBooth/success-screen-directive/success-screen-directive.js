@@ -127,7 +127,7 @@ angular.module('avBooth')
         function addElectionId() {
           var showElectionId = scope.election.presentation &&
             scope.election.presentation.extra_options &&
-            scope.election.presentation.extra_options.success_screen__ballot_ticket__show_election_id
+            scope.election.presentation.extra_options.success_screen__ballot_ticket__show_election_id;
           return showElectionId ? [
             {
               columns: [
@@ -143,7 +143,7 @@ angular.module('avBooth')
                 }
               ]
             }
-          ] : []
+          ] : [];
         }
 
         function getTitleSubtitleColumn() 
