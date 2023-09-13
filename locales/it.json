@@ -1,0 +1,425 @@
+{
+  "app": {
+    "name": "Sequent Tech"
+  },
+  "avBooth": {
+    "accordionCategoryTitle": "Categoria:",
+    "alreadySelectedAPack": "Hai gi\u00e0 selezionato un pacchetto. Rimuovi la tua selezione per poterne selezionare un'altra",
+    "alreadySelectedDocumentType": "Non puoi selezionare due documenti dello stesso tipo: prima deselezionalo.",
+    "alreadySelectedPack": "Hai selezionato un'opzione collegata ad altri documenti. Non \u00e8 possibile selezionarli singolarmente.",
+    "auditBallotScreen": {
+      "auditWarning": "Per motivi di sicurezza, quando controlli la tua scheda elettorale, deve essere viziata. Per continuare con la procedura di voto, devi fare clic su \"<strong>Inizia a votare</strong>\" qui sotto.",
+      "downloadButton": "Scarica",
+      "downloadHelpModal": {
+        "body": "Puoi scaricare o copiare il tuo voto crittografato per controllarlo e verificare che il contenuto crittografato contenga le tue selezioni.",
+        "confirm": "OK",
+        "header": "Copia la scheda crittografata"
+      },
+      "downloadListTitle": "1. Scarica o copia le seguenti informazioni",
+      "downloadSubtitle": "Il tuo <strong>ID scheda elettorale</strong> visualizzato nella parte superiore dello schermo e la tua scheda elettorale crittografata di seguito:",
+      "startVoting": "Inizia il voto",
+      "subtitle": "Per verificare il tuo voto avrai bisogno. per seguire i seguenti passaggi:",
+      "title": "Controlla il tuo voto",
+      "titleHelpModal": {
+        "body": "Questa schermata offre una procedura dettagliata completa per controllare la tua scheda elettorale e ti consente di confermare che la scheda crittografata contiene le tue selezioni.",
+        "confirm": "OK",
+        "header": "Informazioni: Schermata di controllo"
+      },
+      "tutorialHelpModal": {
+        "body": "Per controllare il tuo voto dovrai seguire i passaggi mostrati nel tutorial, questo include il download di un'applicazione desktop utilizzata per verificare il voto crittografato indipendentemente dal sito web.",
+        "confirm": "OK",
+        "header": "Esercitazione sulle schede di controllo"
+      },
+      "tutorialListTitle": "<strong>2. Segui i passaggi di questo tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">fai clic qui</a>, si aprir\u00e0 una nuova scheda nel tuo browser)"
+    },
+    "auditBallotSubtitle": "auditBallotSubtitle",
+    "auditBallotText": "<p>L'ID di monitoraggio delle schede elettorali \u00e8: <code>__ballotHash__</code></p><p><strong>La verifica del voto richiede alcune conoscenze tecniche. Se non ce l'hai, puoi semplicemente ricominciare la procedura di voto facendo clic sul pulsante in basso.</strong></p><p>Per verificare la tua scheda elettorale devi:</p><ol><li>Copiare e salvare in un file la tua scheda elettorale (fai clic per selezionare):<br/><div class=\"code\" tabindex=\"0 \"ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Segui i passaggi in <ahref=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">questo tutorial per verificare che la scheda elettorale sia stata crittografata correttamente</a>.</li></ol><p>Per motivi di sicurezza, se controlli il voto, deve essere rovinato. Per continuare il processo di votazione, devi iniziare dall'inizio.</p>",
+    "auditBallotTitle": "Controlla il tuo voto",
+    "auditStartAgain": "Inizia a votare dall'inizio",
+    "auditTheBallot": "(Controllare il voto)",
+    "ballotTicket": {
+      "created": "Data di registrazione del voto:",
+      "h3": "Conferma del voto",
+      "h4": "Il tuo voto \u00e8 stato espresso correttamente. Questo documento ne giustifica l'emissione.",
+      "id": "ID Elezione:",
+      "isDemo": "Questa ricevuta di voto \u00e8 stata generata in una cabina elettorale dimostrativa. Il voto NON \u00e8 stato espresso.",
+      "link": "Link al monitoraggio delle schede elettorali:",
+      "linkClickHere": "clicca qui",
+      "qrCode": "\u00c8 possibile utilizzare il seguente codice QR per accedere al collegamento del monitoraggio elettorale:",
+      "title": "Titolo elettorale:",
+      "tracker": "Tracciatore delle schede elettorali:",
+      "voterId": "ID Votante:"
+    },
+    "busy": {
+      "anonymizedDescription": "in modo che il conteggio non riveli in che modo hai votato",
+      "anonymizedTitle": "anonimizzato",
+      "castDescription": "utilizzando un canale sicuro e verificando la tua identit\u00e0",
+      "castTitle": "vota",
+      "description": "La tua scheda elettorale viene crittografata in modo che nessuno possa sapere quali opzioni hai scelto",
+      "encryptedDescription": "in modo che nessuno possa sapere quali opzioni hai scelto",
+      "encryptedTitle": "crittografato",
+      "title": "Il tuo voto sar\u00e0..."
+    },
+    "candidatesTitle": "Candidati",
+    "cannotSelectAll": "Per selezionare tutte queste opzioni devi prima deselezionarne alcune",
+    "cantSelectNormalOptionPackAlreadySelected": "Per poter selezionare un'opzione, deseleziona il pacchetto che hai scelto",
+    "cantSelectPack": "Hai provato a selezionare un'opzione collegata che non pu\u00f2 essere selezionata isolatamente e hai gi\u00e0 selezionato un'altra opzione.",
+    "cantSelectPackNormalOptionAlreadySelected": "Per poter selezionare un pacchetto, deseleziona le opzioni che hai scelto",
+    "castTheBallot": "Dai il tuo voto",
+    "circleOptionExternalLink": "Visualizza dettagli",
+    "clearSelection": "Cancella selezione",
+    "clickToDeselectCell": "deseleziona x",
+    "clickToSelectCell": "fare clic per selezionare",
+    "closeWindow": "Finisci e chiudi",
+    "completePacksTitle": "Confezioni complete",
+    "confirmAuditBallot": {
+      "body": "La verifica del voto lo roviner\u00e0 e dovrai iniziare di nuovo il processo di voto se vuoi esprimere il tuo voto. Il processo di controllo delle schede consente di verificare che sia codificato correttamente. Fare questo processo richiede di avere importanti conoscenze tecniche, quindi non lo consigliamo se non sai cosa stai facendo.<br/><br/><strong> Se vuoi solo votare, clicca <u> Cancella </u> per tornare alla scheda di revisione.</strong>",
+      "confirm": "S\u00ec, voglio ELIMINARE la mia scheda elettorale per controllarla",
+      "header": "Vuoi controllare il voto?"
+    },
+    "confirmLogoutModal": {
+      "body": "Stai per chiudere questa applicazione. Questa azione non pu\u00f2 essere annullata.",
+      "cancel": "Cancella",
+      "confirm": "Disconnettersi",
+      "header": "Sei sicuro di voler uscire?"
+    },
+    "confirmNullVote": {
+      "body": "Non hai selezionato alcuna opzione in alcune domande, il che equivale a votare in bianco.",
+      "confirm": "S\u00ec, desidero votare in bianco quando non seleziono alcuna opzione",
+      "header": "Voto in bianco"
+    },
+    "continueButton": "Continua",
+    "couldntSendBallotNotFound": "La scheda elettorale non \u00e8 stata inviata. Potrebbe esserci un problema con la connessione o il server potrebbe essere temporaneamente non disponibile. Se questo fosse il caso, ti preghiamo di riprovare pi\u00f9 tardi e se il problema persiste, ti invitiamo a contattarci.",
+    "couldntSendBallotUnauthorized": "Non \u00e8 stato possibile esprimere il voto perch\u00e9 il token di autenticazione associato a questo collegamento non \u00e8 valido. Ci dispiace per l'inconvenienza. Se il problema persiste, prova a contattarci.",
+    "countdownTooltip": {
+      "contentMins": "Ti restano __mins__ minuti per esprimere il tuo voto.",
+      "contentSecs": "Ti restano __secs__ secondi per esprimere il tuo voto.",
+      "title": "La tua sessione sta per scadere."
+    },
+    "demoModeModal": {
+      "body": "Stai entrando in una cabina di voto demo. <strong> Il tuo voto NON sar\u00e0 espresso </strong> Questa cabina di voto \u00e8 solo a scopo dimostrativo.",
+      "confirm": "Accetto che il mio voto NON sar\u00e0 espresso",
+      "header": "Cabina di voto demo"
+    },
+    "downloadBallotTicket": "Scarica il PDF di conferma",
+    "draftIncludesList": "Include __includeList__",
+    "dragSelectedItem": "trascina per spostare",
+    "dragSelectedItemShort": "muovi",
+    "dropdownOptionView": "Maggiori informazioni",
+    "electionChooser": {
+      "canVote": {
+        "description": "Nota: le elezioni disabilitate significano che hai gi\u00e0 votato o non hai il permesso di votare.",
+        "title": "Scegli un'elezione per votare"
+      },
+      "cannotVote": {
+        "description": "Per qualche ragione hai effettuato correttamente l'accesso ma non ti sono state concesse le credenziali per votare. Consulta gli organizzatori delle elezioni.",
+        "title": "Nessuna credenziale"
+      },
+      "hasVoted": {
+        "description": "Hai votato in tutte le elezioni che puoi in questo processo elettorale",
+        "hasSkipped": "Hai saltato alcune elezioni e hai votato in tutte le altre. Per votare nelle elezioni saltate, accedi nuovamente e potrai votare in esse. Le elezioni saltate sono:",
+        "title": "Successo!"
+      }
+    },
+    "electionChooserScreen": {
+      "clickToVoteBtn": "Clicca per votare",
+      "closedElection": "Chiuso",
+      "closingDate": "Chiusura: <b>__date__</b>",
+      "description": "Seleziona l'elezione che vuoi votare",
+      "electionResultsBtn": "Risultati delle elezioni",
+      "electionWebsite": "Sito web elettorale",
+      "informationModal": {
+        "body": "Benvenuto nella cabina elettorale, questa schermata mostra l'elenco delle elezioni a cui puoi votare. Le elezioni visualizzate in questo elenco possono essere aperte al voto, programmate o chiuse. Potrai accedere al ballottaggio solo se il periodo di votazione \u00e8 aperto. Nel caso in cui un'elezione sia chiusa e il tuo amministratore elettorale abbia pubblicato il risultato, vedrai un pulsante \"Risultato elettorale\" che ti porter\u00e0 alla pagina pubblica dei risultati.",
+        "confirm": "OK",
+        "header": "Informazioni: lista elettorale"
+      },
+      "notVoted": "Non votato",
+      "openDate": "Aperto: <b>__date__</b>",
+      "openElection": "Aperto",
+      "scheduledElection": "Programmato",
+      "title": "Lista elettorale",
+      "voted": "Votato"
+    },
+    "emitBallotText": "Puoi trasmetterlo in modo che sia registrato correttamente. In alternativa, puoi verificare che la tua scheda elettorale sia stata crittografata correttamente.",
+    "emitBallotTextNoAudit": "Puoi trasmetterlo in modo che sia registrato correttamente.",
+    "emitBallotTitle": "3. Vota",
+    "emptyAnswer": "<blank vote>",
+    "errorCastingBallotUnknown": "Errore non catalogato durante la votazione. Per favore, riprova in un browser web diverso e pi\u00f9 aggiornato, e se il problema persiste prova a contattarci. Ci dispiace per l'inconvenienza.",
+    "errorElectionIsNotOpen": "Le elezioni non sono aperte, quindi non puoi votare. Ci dispiace per l'inconvenienza.",
+    "errorElectionUrl": "L'indirizzo introdotto ha un formato errato",
+    "errorEncoding": "<p>__msg__</p>Si \u00e8 verificato un problema durante la codifica del voto e di conseguenza il tuo voto non \u00e8 stato espresso. Ci\u00f2 \u00e8 probabilmente dovuto al fatto che utilizzi un browser web obsoleto non supportato dal nostro software. Ti preghiamo di riprovare con un browser Web diverso e pi\u00f9 aggiornato e, se il problema persiste, contattaci. Ci dispiace per l'inconvenienza.",
+    "errorEncrypting": "Si \u00e8 verificato un problema durante la cifratura delle schede elettorali e non \u00e8 stato possibile effettuare il voto. Ci\u00f2 \u00e8 probabilmente dovuto al fatto che utilizzi un browser web obsoleto non supportato dal nostro software. Ti preghiamo di riprovare con un browser Web diverso e pi\u00f9 aggiornato e, se il problema persiste, contattaci. Ci dispiace per l'inconvenienza.",
+    "errorEncryptingBallotUnknown": "Errore non catalogato durante la crittografia della scheda elettorale. Per favore, riprova in un browser web diverso e pi\u00f9 aggiornato, e se il problema persiste prova a contattarci. Ci dispiace per l'inconvenienza.",
+    "errorHtml": "<p>Si \u00e8 presentato il seguente problema (identifier __errorId__): </p><p>__error__</p><p>Se pensi di aver bisogno di contattarci, puoi farlo inviando una mail a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingElection": "Errore durante il caricamento dell'elezione. Ci\u00f2 potrebbe accadere per diversi motivi: il collegamento potrebbe non essere valido, potresti averlo digitato in modo errato o il collegamento potrebbe essere stato creato in modo errato. Per favore, prova a produrre di nuovo il link. Infine, il server potrebbe essere temporaneamente non disponibile. In tal caso, riprova pi\u00f9 tardi e se il problema persiste, contattaci.",
+    "errorLoadingElectionPubKeys": "Errore durante il caricamento delle chiavi pubbliche elettorali. Ci\u00f2 potrebbe accadere per diversi motivi: il collegamento potrebbe non essere valido, potresti averlo digitato in modo errato o il collegamento potrebbe essere stato creato in modo errato. Per favore, prova a produrre di nuovo il link. Infine, il server potrebbe essere temporaneamente non disponibile. In tal caso, riprova pi\u00f9 tardi e se il problema persiste, contattaci.",
+    "errorLoadingImages": "Errore sulla cabina elettorale. Immagini non caricate.",
+    "errorScreen": {
+      "400": "Richiesta errata",
+      "401": "Non autorizzato",
+      "403": "Vietato",
+      "404": "Non trovato",
+      "500": "Errore interno del server",
+      "502": "Gateway errato",
+      "backButton": "Torna indietro",
+      "codes": {
+        "ELECTION_NOT_FOUND": "Elezione non trovata",
+        "ELECTION_NOT_OPEN": "Il processo elettorale non \u00e8 ancora iniziato",
+        "INVALID_USER_CREDENTIALS": "Credenziali utente non valide",
+        "MALFORMED_USER_CREDENTIALS": "Credenziali utente non corrette",
+        "MALFORMED_VOTE": "Voto non conforme",
+        "MAX_REVOTES_REACHED": "Raggiunto il numero massimo di voti per l'utente",
+        "MISSING_USER_CREDENTIALS": "Credenziali utente mancanti",
+        "PK_ERROR": "Errore durante la lettura della chiave pubblica",
+        "UNEXPECTED_ERROR": "Errore inaspettato",
+        "VALIDATION_ERROR": "Errore di convalida"
+      },
+      "help": "Se ritieni di aver bisogno di contattarci, puoi farlo inviando un'e-mail a <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
+      "identifier": "Si \u00e8 verificato il seguente problema (identificatore __errorId__):"
+    },
+    "errorSendingBallot": "Errore nell'invio della scheda. Non \u00e8 stato contato correttamente. Per favore, riprova in un browser web diverso e pi\u00f9 aggiornato, e se il problema persiste prova a contattarci. Ci dispiace per l'inconvenienza.",
+    "errorSendingBallotElectionNotOpen": "Non \u00e8 stato possibile votare perch\u00e9 le elezioni non sono aperte. Ci dispiace per l'inconvenienza.",
+    "errorTitle": "Ops. \u00c8 successo qualcosa di inaspettato",
+    "errors": {
+      "question-lambda-blank": "Domanda '__qtitle__': selezionate zero opzioni. Voto in bianco",
+      "question-lambda-invalid": "Domanda '__qtitle__': Voto non valido.",
+      "question-lambda-max": "Domanda '__qtitle__': selezionate __num_selected__ opzioni, pi\u00f9 del massimo __max__. Voto non valido.",
+      "question-lambda-max-notag": "Non puoi selezionare pi\u00f9 opzioni che non siano di tipo __tagName__ (massimo __max__). Per selezionarne uno, deselezionane prima un altro.",
+      "question-lambda-max-reached": "Numero massimo di opzioni selezionate raggiunto (__max__). Per selezionare un'opzione, deselezionarne prima un'altra.",
+      "question-lambda-max-reached-singular": "Ricorda che puoi scegliere solo un'opzione",
+      "question-lambda-max-tag": "Non puoi selezionare pi\u00f9 opzioni di tipo __tagName__ (massimo __max__). Per selezionarne uno, deselezionane prima un altro.",
+      "question-lambda-min": "Domanda '__qtitle__': selezionate  __num_selected__ opzioni, inferiori al minimo __min__. Voto non valido.",
+      "question-lambda-panachage": "Domanda '__qtitle__': opzioni selezionate da pi\u00f9 elenchi, ma non \u00e8 consentito. Voto non valido.",
+      "question-lambda-repeated-writeins": "Domanda '__qtitle__': nomi scritti ripetuti. Voto non valido.",
+      "question-lambda-writein-length": "Domanda '__qtitle__': le scritture superano di __extra_bytes__ il massimo di __max__ caratteri. Richiede manutenzione.\n",
+      "question-lambda-writeins-not-provided": "Domanda '__qtitle__': selezionato alcune scritture ma nessun nome fornito. Atipico.",
+      "question-lambda-writeins-not-voted": "Domanda '__qtitle__': scritture fornite ma non votate: __write_ins__. Atipico."
+    },
+    "filterOptionsPlaceholder": "filtro..",
+    "filterOptionsPlaceholder2": "Cerca nome o candidato..",
+    "firstCandidateOfMany": "__nome__ e altri",
+    "goBack": "Torna alla cabina",
+    "goToNextElection": "Vai alle prossime elezioni",
+    "hashForVoteNotCastModal": {
+      "body": "Stai per copiare l'ID del tracciamento delle schede elettorali ma <strong> il tuo voto non \u00e8 stato ancora espresso </strong>. Se provi a tracciare la tua scheda elettorale, non la troverai.<br><br> Il motivo per cui mostriamo l'id del tracciamento delle schede elettorali in questa fase \u00e8 per consentirti di verificare la correttezza del voto crittografato prima di lanciarlo. Se \u00e8 per questo che vuoi copiare l'id del tracciatore, procedi a copiarlo e poi procedi a controllare il voto.",
+      "cancel": "Cancella",
+      "confirm": "Accetto che il mio voto NON \u00e8 stato espresso",
+      "header": "Il voto non \u00e8 stato espresso"
+    },
+    "helpText": "Testo guida",
+    "helpTextViewCell": "Fare clic in una cella per selezionarla tutta",
+    "helpTextViewSingleCandidates": "Fare clic su Visualizza per selezionare singoli candidati",
+    "helpTitle": "Aiuto",
+    "instructionsTitle": "Istruzioni",
+    "invalidAnswer": "Voto contrassegnato come non valido",
+    "invalidAnswers": {
+      "body": "Alcune delle tue risposte potrebbero rendere non valida o vuota la scheda di una o pi\u00f9 domande:",
+      "cancel": "Indietro e revisiona",
+      "continue": "Accetta e continua",
+      "header": "Voto non valido o bianco"
+    },
+    "legal": {
+      "contact": "contatto",
+      "title": "Termini legali"
+    },
+    "listOfDraftDocuments": "Documenti (clicca per aprire)",
+    "loadingElectionTitle": "Caricamento dell'elezione, attendi...",
+    "logout": "Disconnettere",
+    "logoutWarnModal": {
+      "body": "La tua sessione sta per scadere. In un minuto verrai reindirizzato se non hai finito di esprimere il tuo voto.",
+      "confirm": "Chiudi",
+      "header": "La sessione scadr\u00e0"
+    },
+    "maxSelectedLimitNoTagReached": "Non puoi selezionare pi\u00f9 opzioni che non siano di tipo __tagName__ (m\u00e1ximo __max__). Per selezionarne uno, deselezionane prima un altro.",
+    "maxSelectedLimitReached": "Numero massimo di opzioni selezionate raggiunto (__max__). Per selezionare un'opzione, deselezionarne prima un'altra.",
+    "maxSelectedLimitReached_singular": "Ricorda che puoi scegliere solo un'opzione",
+    "maxSelectedLimitTagReached": "Non puoi selezionare pi\u00f9 opzioni di tipo __tagName__ (m\u00e1ximo __max__). Per selezionarne uno, deselezionane prima un altro.",
+    "noOptionsSelected": "Nessuna opzione selezionata.",
+    "noResults": "nessun risultato trovato..",
+    "notSelectableCell": "non incluso",
+    "numCandidatesSelected": "(__selected__ of __total__ selezionati)",
+    "numOptionsLimits": "Seleziona tra __min__ e __max__ opzioni.\n",
+    "numOptionsSelected": "__count__ opzioni selezionate\n",
+    "numOptionsSelected_plural": "__count__ opzioni selezionate\n",
+    "numOptionsSelected_plural_2": "__count__ opzioni selezionate",
+    "numSelectedOptionsSmall": "__count__ selezionato",
+    "numSelectedOptionsSmall_plural": "__count__ selezionato",
+    "openOptionLink": "Apri il collegamento in una nuova scheda",
+    "optionInCategoryAlreadySelected": "Per poter selezionare un pacchetto, deseleziona qualsiasi altro elemento",
+    "packLabel": "vota tutto",
+    "pairwiseBeta": {
+      "warning": "Clicca per scegliere. __count__ di __max__ confronti eseguiti.",
+      "warning_plural": "Clicca per scegliere. __count__ di __max__ confronti effettuati.",
+      "web": "Web"
+    },
+    "planchaDeselect": "deselezionare tutto",
+    "planchaSelect": "seleziona tutto",
+    "previewModeModal": {
+      "body": "Stai entrando in una cabina elettorale in anteprima dal vivo. <strong> Il tuo voto NON sar\u00e0 espresso </strong>. Questa cabina di voto \u00e8 solo a scopo dimostrativo.",
+      "confirm": "Accetto il mio voto NON sar\u00e0 espresso",
+      "header": "Cabina elettorale in anteprima dal vivo"
+    },
+    "proposalsTitleClickToDeselect": "Opzioni (fare clic per deselezionare):",
+    "proposalsTitleClickToSelect": "Opzioni (fare clic per selezionare):",
+    "qrCodeAlt": "Codice QR",
+    "questionAvailableOptionsTitle": "Opzioni disponibili",
+    "questionNumber": "Domanda  __qnum__ di __qtotal__",
+    "questionSelectedOptionsTitle": "Opzioni selezionate (__count__)",
+    "questionSelectedOptionsTitleOrdered": "Opzioni selezionate (__count__) in ordine, trascina e rilascia per riordinarlo",
+    "questionSelectedOptionsTitleOrdered_plural": "Opzioni selezionate (__count__) in ordine, trascina e rilascia per riordinarlo",
+    "questionSelectedOptionsTitle_plural": "Opzioni selezionate (__count__) ",
+    "randomizeColumn": "Ordina in modo casuale",
+    "relatedLinksText": "Per ulteriori informazioni su questa elezione:",
+    "removeSelectedItem": "fare clic per deselezionare",
+    "removeSelectedItemShort": "deselezionare",
+    "reviewBallotHashText": "Il tuo ID dello scrutinio \u00e8: <strong>__ballotHash__</strong>",
+    "reviewOptionsText": "Una volta scelte le tue preferenze, procederemo alla loro crittografia e ti verr\u00e0 mostrato l'id del tracciatore della scheda elettorale. Ti verr\u00e0 anche mostrato un riepilogo con il contenuto della tua scheda elettorale per la revisione.",
+    "reviewOptionsTitle": "2. Rivedi la tua scheda elettorale",
+    "reviewScreen": {
+      "ballotIdMessage": "Il tuo ID scheda elettorale: __hash__",
+      "description": "Per apportare modifiche alle tue selezioni, fai clic sul pulsante \"<strong>Cambia selezione</strong>\", per confermare le tue selezioni, fai clic sul pulsante \"<b class=\"green\">Invia scrutinio</b>\" qui sotto e per verificare la tua scrutinio fare clic su \"<b class=\"red\"> Controlla il voto</b>\u201d qui sotto. Tieni presente che una volta inviata la tua scheda elettorale, hai votato e non ti verr\u00e0 rilasciata un'altra scheda per questa elezione.",
+      "descriptionNoAudit": "Per apportare modifiche alle tue selezioni, fai clic sul pulsante \"<strong>Cambia selezione</strong>\", per confermare le tue selezioni, fai clic sul pulsante \"<b class=\"green\">Invia scrutinio</b>\" qui sotto. Tieni presente che una volta inviata la tua scheda elettorale, hai votato e non ti verr\u00e0 rilasciata un'altra scheda per questa elezione.",
+      "editAction": "Modifica scheda elettorale",
+      "informationModal": {
+        "body": "Questa schermata ti consente di rivedere le tue selezioni prima di votare.",
+        "confirm": "OK",
+        "header": "Informazioni: Schermata di revisione"
+      },
+      "pair": "__one__ > __two__",
+      "title": "Controlla il tuo voto"
+    },
+    "reviewYourBallotText": "Prima di esprimere il tuo voto, controlla il contenuto della scheda",
+    "reviewYourBallotTitle": "Voto non ancora inviato: controllalo prima",
+    "sanityChecksFailed": "Si \u00e8 verificato un problema durante le verifiche di codifica automatica effettuate prima della compilazione della scheda elettorale e, di conseguenza, la tua scheda non \u00e8 stata compilata. Questo probabilmente \u00e8 dovuto all'utilizzo di un browser web obsoleto non supportato dal nostro software. Ti preghiamo di riprovare utilizzando un browser web diverso e pi\u00f9 aggiornato e, se il problema persiste, contattaci. Ci scusiamo per l'inconveniente.",
+    "scrolledToBottom": {
+      "description": "Si prega di rivedere tutti i candidati e i concorsi scorrendo fino alla fine del ballottaggio.",
+      "title": "Scorri verso il basso per abilitare questo pulsante"
+    },
+    "selectAllCategory": {
+      "body": "Ehi! Sembra che tu voglia selezionare tutte le opzioni di <strong>__category__</strong>",
+      "cancel": "No",
+      "confirm": "S\u00ec, selezionali",
+      "doNotShowAgain": "Non lo mostrare di nuovo",
+      "header": "Seleziona tutte le opzioni da <strong>__category__</strong>?"
+    },
+    "selectMoreOpts": "Seleziona almeno __min__ opzioni.",
+    "selectMoreOpts_plural": "Seleziona almeno __min__ opzioni.",
+    "selectOptionsText": "Rispondi alle domande elettorali una per una come vengono mostrate. In questo modo configurerai le tue preferenze nel tuo voto.",
+    "selectOptionsTitle": "1. Seleziona le tue opzioni",
+    "selectedDocuments": "Documenti (clicca per selezionare)",
+    "selectedOptionFollow": "L'opzione che hai scelto \u00e8:",
+    "selectedOptionsFollow": "Le __num__ opzioni che hai scelto sono:",
+    "sendingBallot": "Invio della scheda al server, attendere (__percentuale__% completato)",
+    "showPdf": {
+      "pdfTextDescription": "Per favore leggere il PDF prima di votare",
+      "showPdfButton": "Mostra PDF"
+    },
+    "showSelectedOptionPoints": "(__points__ punit)\n",
+    "showSelectedOptionPointsWriteIn": "(__points__ punti, scrivere in)",
+    "showWriteIn": "(scrivere in)",
+    "simultaneousQuestions": {
+      "informationModal": {
+        "body": "Questa schermata mostra il concorso che puoi votare. Puoi creare la tua sezione attivando la casella a destra Candidato/Risposta. Per reimpostare le selezioni, fai clic sul pulsante \"<b>Cancella selezione</b>\", per passare al passaggio successivo, fai clic sul pulsante \"<b>Avanti</b>\" qui sotto.",
+        "confirm": "OK",
+        "header": "Informazioni: Schermata elettorale"
+      },
+      "skipQuestion": "Salta domanda/e",
+      "skipQuestionModal": {
+        "body": "Conferma di voler saltare questa/e domanda/e. Puoi votare le domande saltate effettuando nuovamente l'accesso.",
+        "confirm": "Conferma e SALTA questa/e domanda/e",
+        "header": "Vuoi saltare questa/e domanda/e?"
+      }
+    },
+    "startVoting": "Inizia a votare",
+    "statusEncryptingQuestion": "Crittografia delle risposte alla domanda __questionNum__, attendere (__percentage__% completata)",
+    "statusExecutingSanityChecks": "Verifica che il browser Web sia in grado di codificare la scheda elettorale, attendere (__percentuale__% completata)",
+    "statusVerifyingQuestion": "Verifica delle risposte crittografate alla domanda __questionNum__, attendere (__percentuale__% completata)",
+    "stepAndQuestionNumber": "passo __num__ di __total__, domanda __qnum__ di __qtotal__",
+    "stepNumber": "passo  __num__ di __total__",
+    "stepsToVote": "\u00c8 necessario seguire questi passaggi per votare:",
+    "successBallotHash": "Hai votato con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. Il tracciatore della tua scheda elettorale \u00e8:<br/><br/></h3><a href=\"__ballotLocatorUrl__\"target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>Puoi utilizzare il tuo scrutinio per verificare che il tuo voto sia stato espresso correttamente <strong><a href=\"__ballotLocatorUrl__ \" target=\"__target__\">utilizzando questo indirizzo</a></strong>.",
+    "successBallotQrCode": "Puoi verificare che il tuo voto sia stato espresso correttamente utilizzando il seguente codice QR:",
+    "successDemoVoteNotCastModal": {
+      "body": "Questa \u00e8 una cabina elettorale dimostrativa.<strong> Il tuo voto non \u00e8 stato espresso</strong>. Questa cabina elettorale \u00e8 solo a scopo dimostrativo.<br><br> Pertanto, il tracciatore delle schede elettorali non funzioner\u00e0. Per esprimere un vero voto, segui l'apposita procedura di autenticazione.",
+      "cancel": "Cancella",
+      "confirm": "Accetto che il mio voto NON sia stato espresso",
+      "header": "Cabina elettorale dimostrativa"
+    },
+    "successNoBallotHash": "Congratulazioni! Hai votato con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
+    "successScreen": {
+      "ballotCastHelpModal": {
+        "body": "Questa schermata mostra che il tuo voto \u00e8 stato espresso con successo. Le informazioni fornite in questa pagina consentono di verificare che la scheda elettorale sia stata conservata nell'urna elettorale, questo processo pu\u00f2 essere eseguito in qualsiasi momento durante il periodo di votazione e dopo la chiusura delle elezioni.",
+        "confirm": "OK",
+        "header": "Informazioni: schermata di conferma"
+      },
+      "ballotId": "ID scheda elettorale",
+      "ballotIdHelpModal": {
+        "body": "Il ID della scheda elettorale \u00e8 un codice che ti permette di trovare la tua scheda elettorale nell'urna, questo ID \u00e8 univoco e non contiene informazioni sulle tue selezioni.",
+        "confirm": "OK",
+        "header": "Informazioni: ID della scheda elettorale"
+      },
+      "printBallotBtn": "Stampa",
+      "verifyBallotCastDescription": "Puoi verificare in qualsiasi momento che il tuo voto sia stato espresso correttamente utilizzando il seguente codice QR:",
+      "verifyBallotCastTitle": "Verifica che il tuo voto sia stato espresso"
+    },
+    "successSkippedCount": "Hai saltato __count__ elezioni. Puoi votare alle elezioni accedendo di nuovo.",
+    "successSubheader": "Hai espresso correttamente il tuo voto e ora \u00e8 conservato nella nostra urna elettronica.",
+    "successTitle": "Voto espresso con successo",
+    "thisisADemoNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Attenzione!</strong> Cabina elettorale dimostrativa, i voti emessi da questa cabina non verranno conteggiati.",
+    "thisisAPreviewNotification": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Attenzione!</strong> Cabina elettorale demo, i voti emessi da questa cabina non verranno conteggiati.",
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Attenzione!</strong> Questa \u00e8 un elezione di TEST",
+    "tooFewAnswers": {
+      "body": "Nelle seguenti domande non hai selezionato tante opzioni quanto il numero minimo necessario per continuare:",
+      "header": "Scegli pi\u00f9 opzioni",
+      "question": "Domanda '__title__': hai scelto __selected__ opzioni, ma devi scegliere almeno __min__ opzioni"
+    },
+    "tooManyUserUpdates": "La tua scheda elettorale non pu\u00f2 essere conteggiata perch\u00e9 hai apportato troppe modifiche in questa elezione. Di conseguenza, sar\u00e0 presa in considerazione solo l'ultima scheda correttamente compilata.",
+    "totalsQuestionColumn": "(__selected__ of __total__ selezionati)",
+    "typeWriteInPlaceholder": "Digita il candidato iscritto qui",
+    "voteInBlank": "Voto in bianco",
+    "votingSteps": {
+      "audit": "Verifica",
+      "ballot": "Voto",
+      "confirmation": "Conferma",
+      "electionList": "Lista elettorale",
+      "review": "Revisione"
+    },
+    "warnBallotParity": {
+      "body": "Non si pu\u00f2 continuare perch\u00e9 la scheda non \u00e8 paritaria e chiusa a chiave. Si prega di verificare che la selezione sia composta in modo che dietro una donna poi un uomo e cos\u00ec via.",
+      "continue": "Controllare il mio biglietto",
+      "header": "Schede non paritarie"
+    }
+  },
+  "avCommon": {
+    "cancel": "Annulla",
+    "changeLanguageMenu": "Cambia lingua",
+    "poweredBy": "Offerto da <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "shareLink": "Twitta queste elezioni!",
+    "votingSystem": "Sistema di voto",
+    "votings": {
+      "borda": "Tabellone di conteggio",
+      "borda-nauru": "Tabellone di conteggio di Borda",
+      "desborda": "Des Borda",
+      "desborda2": "Des Borda 2",
+      "desborda3": "Des Borda 3",
+      "pairwise-beta": "A coppie",
+      "plurality-at-large": "Larga maggioranza"
+    }
+  },
+  "created": "Creato",
+  "doing_tally": "conteggio in corso",
+  "done": "Fatto",
+  "eg": "es.",
+  "loading": "Caricamento...",
+  "next": "Prossimo",
+  "no": "no",
+  "nomore": "Nessun altro elemento",
+  "registered": "Registrato",
+  "results_ok": "risultati raggiunti",
+  "results_pub": "risultati pubblicati",
+  "started": "Iniziato",
+  "stopped": "fermato",
+  "tally_error": "errore di conteggio",
+  "tally_ok": "conteggio",
+  "yes": "si"
+}
