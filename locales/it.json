@@ -1,0 +1,427 @@
+{
+  "app": {
+    "name": "Sequent Tech"
+  },
+  "avBooth": {
+    "accordionCategoryTitle": "Category:",
+    "alreadySelectedAPack": "You already selected a pack. Remove your selection to be able to select another",
+    "alreadySelectedDocumentType": "You can't select two documents of the same type - deselect it first.",
+    "alreadySelectedPack": "You selected an option linked to some other documents. It's not possible to select them in isolation.",
+    "auditBallotScreen": {
+      "auditWarning": "For security reason, when you audit your ballot, it need to be spoiled. To continue with the voting process, you need to click \u2018<strong>Start Voting</strong>\u2019 bellow.",
+      "downloadButton": "Download",
+      "downloadHelpModal": {
+        "body": "You can download or copy your encrypted ballot to audit the ballot and verify the encrypted content contains your selections.",
+        "confirm": "OK",
+        "header": "Copy the Encrypted Ballot"
+      },
+      "downloadListTitle": "1. Download or copy the following information",
+      "downloadSubtitle": "Your <strong>Ballot ID</strong> that appears at the top of the screen and your encrypted ballot below:",
+      "startVoting": "Start Voting",
+      "subtitle": "To verify your ballot you will need. to follow the bellow steps:",
+      "title": "Audit your Ballot",
+      "titleHelpModal": {
+        "body": "This screen offers a comprehensive, step-by-step walkthrough for auditing your ballot and allows you to confirm the encrypted ballot contains your selections.",
+        "confirm": "OK",
+        "header": "Information: Audit Screen"
+      },
+      "tutorialHelpModal": {
+        "body": "To audit your ballot you will need to follow the steps shown in the tutorial, this includes the download of a desktop application used to verify the encrypted ballot independently from the website.",
+        "confirm": "OK",
+        "header": "Audit ballot tutorial"
+      },
+      "tutorialListTitle": "<strong>2. Follow the steps on this tutorial</strong> (<a href=\"__tutorialLink__\" target=\"_blank\">click here</a>, a new tab will open in your browser)"
+    },
+    "auditBallotSubtitle": "",
+    "auditBallotText": "<p>The Ballot Tracker ID is: <code>__ballotHash__</code></p><p><strong>The audit of the ballot requires some technical knowledge. If you don't have it, you can simply start again the voting process clicking in the button below.</strong></p><p>To verify your ballot you need to:</p><ol><li>Copy and save to a file your ballot (click to select):<br/><div class=\"code\" tabindex=\"0\" ng-click=\"selectDiv($event)\">__auditableBallot__</div></li><li>Follow the steps in <a href=\"https://github.com/sequentech/ballot-verifier/blob/master/README.md\" target=\"_blank\">this tutorial to verify that the ballot was correctly encrypted</a>.</li></ol><p>For security reasons, if you audit the ballot, it needs to be spoiled. To continue the voting process, you need to start from the begining.</p>",
+    "auditBallotTitle": "Audit your Ballot",
+    "auditStartAgain": "Start voting from the begining",
+    "auditTheBallot": "Audit ballot",
+    "ballotTicket": {
+      "created": "Ballot registration date:",
+      "h3": "Vote confirmation",
+      "h4": "Your vote has been cast correctly. This document justifies its issuance.",
+      "id": "Election Id:",
+      "isDemo": "This vote receipt was generated in a demo voting booth. The ballot was NOT cast.",
+      "link": "Ballot Tracker Link:",
+      "linkClickHere": "click here",
+      "qrCode": "You can use the following QR Code to access the Ballot Tracker Link:",
+      "title": "Election title:",
+      "tracker": "Ballot Tracker:",
+      "voterId": "Voter Id:"
+    },
+    "busy": {
+      "anonymizedDescription": "So that the tally does not reveal which way you voted",
+      "anonymizedTitle": "Anonymized",
+      "castDescription": "Using a secure channel and verifying your identity",
+      "castTitle": "Cast",
+      "description": "Your ballot is being encrypted so that nobody can know what options you chose",
+      "encryptedDescription": "So that nobody can know what options you chose",
+      "encryptedTitle": "Encrypted",
+      "title": "Your ballot will be..."
+    },
+    "candidatesTitle": "Candidates",
+    "cannotSelectAll": "To select all those options you have to desect some first",
+    "cantSelectNormalOptionPackAlreadySelected": "To be able to select an option, please deselect the pack you chose",
+    "cantSelectPack": "You tried to select option linked that cannot be selected in isolation, and you have already another option selected.",
+    "cantSelectPackNormalOptionAlreadySelected": "To be able to select a pack, pelase deselect the options you chose",
+    "castTheBallot": "Cast your ballot",
+    "circleOptionExternalLink": "View details",
+    "clearSelection": "Clear selection",
+    "clickToDeselectCell": "deselect x",
+    "clickToSelectCell": "click to select",
+    "closeWindow": "Finish",
+    "completePacksTitle": "Complete packs",
+    "confirmAuditBallot": {
+      "body": "Auditing the ballot will spoil it and you will need to start the process of voting again if you want to cast your vote. The ballot audit process allows you to verify it's correctly encoded. Doing this process requires you to have important technical knowledge, so we do not recommend it if you do not know what you are doing.<br/><br/><strong>If you just want to cast your ballot, click <u>Cancel</u> to go back to the review ballot screen.</strong>",
+      "confirm": "Yes, I want to DISCARD my ballot to audit it",
+      "header": "Do you want to audit the ballot?"
+    },
+    "confirmLogoutModal": {
+      "body": "You are about to close this application. This action can not be undone.",
+      "cancel": "Cancel",
+      "confirm": "Logout",
+      "header": "Are you sure you want to logout?"
+    },
+    "confirmNullVote": {
+      "body": "You have not selected any option in some question, which is equivalent to vote in blank.",
+      "confirm": "Yes, I want to vote in blank when not selecting any option",
+      "header": "Blank vote"
+    },
+    "continueButton": "Continue",
+    "couldntSendBallotNotFound": "The ballot could not be sent. There might be an issue with the connection,  or the server might be temporarily unavailable. If that's the case, please try again later and if the issue persists please contact us.",
+    "couldntSendBallotUnauthorized": "The ballot couldn't be cast because the authentication token associated to this link is invalid. Sorry for the inconvenience. If the problem persists, please try to contact us.",
+    "countdownTooltip": {
+      "contentMins": "You have __mins__ minutes left to cast your vote.",
+      "contentSecs": "You have __secs__ seconds left to cast your vote.",
+      "title": "Your session is going to expire."
+    },
+    "demoModeModal": {
+      "body": "You are entering a demo voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
+      "confirm": "I accept my vote will NOT be cast",
+      "header": "Demo voting booth"
+    },
+    "downloadBallotTicket": "Download confirmation PDF",
+    "draftIncludesList": "Includes __includeList__",
+    "dragSelectedItem": "drag to move",
+    "dragSelectedItemShort": "move",
+    "dropdownOptionView": "More information",
+    "electionChooser": {
+      "canVote": {
+        "description": "Note: disabled elections mean you have already voted or you don't have permission to vote.",
+        "title": "Choose an election to vote"
+      },
+      "cannotVote": {
+        "description": "For some reason you are correctly logged in but have not been granted credentials to vote. Please consult with election organizators.",
+        "title": "No credentials"
+      },
+      "hasVoted": {
+        "description": "You have voted in all the elections you can in this electoral process.",
+        "hasSkipped": "You skipped some elections and voted in all the others. To vote in skipped elections, login again and you will be able to vote in them. The skipped elections are:",
+        "title": "Success!"
+      }
+    },
+    "electionChooserScreen": {
+      "clickToVoteBtn": "Click to Vote",
+      "closedElection": "Closed",
+      "closingDate": "Close: <b>__date__</b>",
+      "description": "Select the election you want to vote",
+      "electionResultsBtn": "Election Results",
+      "electionWebsite": "Election Website",
+      "informationModal": {
+        "body": "Welcome to the Voting Booth, this screen shows the list of elections you can cast a ballot. Elections displayed in this list can be open to voting, scheduled, or closed. You will be able to access the ballot only if the voting period is open. In the case an election is closed and your election administrator has published the result you will see an \"Election Result\" button that will take you to the public result page.",
+        "confirm": "OK",
+        "header": "Information: Election List"
+      },
+      "notVoted": "Not voted",
+      "openDate": "Open: <b>__date__</b>",
+      "openElection": "Open",
+      "scheduledElection": "Scheduled",
+      "title": "Election list",
+      "voted": "Voted"
+    },
+    "emitBallotText": "You can cast it so that it's properly registered. Alternatively, you can audit that your ballot was correctly encrypted.",
+    "emitBallotTextNoAudit": "You can cast it so that it's properly registered.",
+    "emitBallotTitle": "3. Cast your ballot",
+    "emptyAnswer": "<blank vote>",
+    "errorCastingBallotUnknown": "Uncatalogued error during ballot casting. Please, try again in another and more updated web browser, and if the problem persists try to contact us. Sorry for the inconvenience.",
+    "errorElectionIsNotOpen": "The election is not open, so you cannot vote. Sorry for the inconvenience.",
+    "errorElectionUrl": "The introduced address has an erroneous format",
+    "errorEncoding": "<p>__msg__</p>There was a problem during ballot encoding and as a result your ballot was not cast. This is probably due to you being using an outdated web browser unsupported by our software. Please, try again in a different and more updated web browser, and if the problem persists please contact us. Sorry for the inconvenience.",
+    "errorEncrypting": "There was a problem while ballot encryption and it couldn't be cast. This is probably due to you being using an outdated web browser unsupported by our software. Please, try again in a different and more updated web browser, and if the problem persists please contact us. Sorry for the inconvenience.",
+    "errorEncryptingBallotUnknown": "Uncatalogued error during ballot encryption. Please, try again in another and more updated web browser, and if the problem persists try to contact us. Sorry for the inconvenience.",
+    "errorHtml": "<p>The following problem arised (identifier __errorId__): </p><p>__error__</p><p>If you think that you need to contact us, you can do so sending an email to <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.</p>",
+    "errorLoadingElection": "Error loading the election. This could be happenning for multiple reasons: the link might be invalid, you might have typed it incorrectly or the link might have been incorrectly crafted. Please, try to produce the link again. Finally, the server might be temporarily unavailable. If that's the case, try again later and if the issue persists please contact us.",
+    "errorLoadingElectionPubKeys": "Error loading the election public keys. This could be happenning for multiple reasons: the link might be invalid, you might have typed it incorrectly or the link might have been incorrectly crafted. Please, try to produce the link again. Finally, the server might be temporarily unavailable. If that's the case, try again later and if the issue persists please contact us.",
+    "errorLoadingImages": "Error on voting booth. Images not loaded.",
+    "errorScreen": {
+      "400": "Bad Request",
+      "401": "Unauthorized",
+      "403": "Forbidden",
+      "404": "Not Found",
+      "500": "Internal Server Error",
+      "502": "Bad Gateway",
+      "backButton": "Go Back",
+      "codes": {
+        "ELECTION_NOT_FOUND": "Election not found",
+        "ELECTION_NOT_OPEN": "The electoral process has not started yet",
+        "INVALID_USER_CREDENTIALS": "Invalid user credentials",
+        "MALFORMED_USER_CREDENTIALS": "Malformed user credentials",
+        "MALFORMED_VOTE": "Malformed vote",
+        "MAX_REVOTES_REACHED": "Maximum number of votes for the user reached",
+        "MISSING_USER_CREDENTIALS": "Missing user credentials",
+        "PK_ERROR": "Error reading public key",
+        "UNEXPECTED_ERROR": "Unexpected error",
+        "VALIDATION_ERROR": "Validation error"
+      },
+      "help": "If you think that you need to contact us, you can do so sending an email to <a href=\"mailto:__email__\" target=\"_blank\">__email__</a>.",
+      "identifier": "The following problem arised (identifier __errorId__):"
+    },
+    "errorSendingBallot": "Error sending the ballot. It was not correctly cast. Please, try again in another and more updated web browser, and if the problem persists try to contact us. Sorry for the inconvenience.",
+    "errorSendingBallotElectionNotOpen": "The ballot could not be cast because the election is not open. Sorry for the inconvenience.",
+    "errorTitle": "Oops. Something unexpected happened",
+    "errors": {
+      "question-lambda-blank": "Question '__qtitle__': selected zero options. Blank vote.",
+      "question-lambda-invalid": "Question '__qtitle__': Invalid vote.",
+      "question-lambda-max": "Question '__qtitle__': selected __num_selected__ options, more than the maximum __max__. Invalid vote.",
+      "question-lambda-max-notag": "You cannot select more options not of type __tagName__ (maximum __max__). To select one, please deselect another first.",
+      "question-lambda-max-reached": "Maximum number of selected options reached (__max__). To select an option, deselect another first.",
+      "question-lambda-max-reached-singular": "Remember that you can only choose one option",
+      "question-lambda-max-tag": "You cannot select more options of type __tagName__ (maximum __max__). To select one, please deselect another first.",
+      "question-lambda-min": "Question '__qtitle__': selected __num_selected__ options, less than the minimum __min__. Invalid vote.",
+      "question-lambda-panachage": "Question '__qtitle__': selected options from multiple lists, but it is not allowed. Invalid vote.",
+      "question-lambda-repeated-writeins": "Question '__qtitle__': repeated write-in names. Invalid vote.",
+      "question-lambda-writein-field-max-length": "Question '__qtitle__': write-in field __name__ exceed the maximum of __max__ chars. Requires fixing.",
+      "question-lambda-writein-field-min-length": "Question '__qtitle__': write-in field __name__ has less than the minimum of __min__ chars. Requires fixing.",
+      "question-lambda-writein-length": "Question '__qtitle__': write-ins exceed by __extra_bytes__ the maximum of __max__ chars. Requires fixing.",
+      "question-lambda-writeins-not-provided": "Question '__qtitle__': selected some write-ins but no name provided. Atypical.",
+      "question-lambda-writeins-not-voted": "Question '__qtitle__': write-ins provided but not voted: __write_ins__. Atypical."
+    },
+    "filterOptionsPlaceholder": "filter..",
+    "filterOptionsPlaceholder2": "Search name or candidate..",
+    "firstCandidateOfMany": "__name__ and others",
+    "goBack": "Go back to booth",
+    "goToNextElection": "Go to next election",
+    "hashForVoteNotCastModal": {
+      "body": "This is your Ballot Tracker ID, but <strong>your vote has not been cast yet</strong>. If you try to track the ballot, you will not find it.<br><br>The reason we show the Ballot Tracker ID at this stage is to allow you to audit the correctness of the encrypted ballot before casting it.",
+      "cancel": "Cancel",
+      "confirm": "I accept my vote has NOT been cast",
+      "header": "Vote has not been cast"
+    },
+    "helpText": "",
+    "helpTextViewCell": "Click in a cell to select it all",
+    "helpTextViewSingleCandidates": "Click in View to select single candidates",
+    "helpTitle": "Help",
+    "instructionsTitle": "Instructions",
+    "invalidAnswer": "Ballot marked as invalid",
+    "invalidAnswers": {
+      "body": "Some of your answers might render the ballot in one or more questions invalid or blank:",
+      "cancel": "Back and review",
+      "continue": "Accept and continue",
+      "header": "Invalid or blank vote"
+    },
+    "legal": {
+      "contact": "contact",
+      "title": "Legal terms"
+    },
+    "listOfDraftDocuments": "Documents (click to open)",
+    "loadingElectionTitle": "Loading election, please wait..",
+    "logout": "Log out",
+    "logoutWarnModal": {
+      "body": "Your session is about to expire. In one minute you will be redirected if you haven't finished casting your vote.",
+      "confirm": "Close",
+      "header": "Session will expire"
+    },
+    "maxSelectedLimitNoTagReached": "You cannot select more options not of type __tagName__ (m\u00e1ximo __max__). To select one, please deselect another first.",
+    "maxSelectedLimitReached": "Maximum number of selected options reached (__max__). To select an option, deselect another first.",
+    "maxSelectedLimitReached_singular": "Remember that you can only choose one option",
+    "maxSelectedLimitTagReached": "You cannot select more options of type __tagName__ (m\u00e1ximo __max__). To select one, please deselect another first.",
+    "noOptionsSelected": "No option selected.",
+    "noResults": "no results found..",
+    "notSelectableCell": "not included",
+    "numCandidatesSelected": "(__selected__ of __total__ selected)",
+    "numOptionsLimits": "Select <b>between __min__ and __max__</b> options.",
+    "numOptionsSelected": "__count__ options selected.",
+    "numOptionsSelected_plural": "__count__ options selected.",
+    "numOptionsSelected_plural_2": "__count__ options selected.",
+    "numSelectedOptionsSmall": "__count__ selected",
+    "numSelectedOptionsSmall_plural": "__count__ selected",
+    "openOptionLink": "Open link in a new tab",
+    "optionInCategoryAlreadySelected": "To be able to select a pack, please deselect any other item",
+    "packLabel": "vote all",
+    "pairwiseBeta": {
+      "warning": "Click to choose. __count__ of __max__ comparison done.",
+      "warning_plural": "Click to choose. __count__ of __max__ comparisons done.",
+      "web": "Web"
+    },
+    "planchaDeselect": "deselect all",
+    "planchaSelect": "select all",
+    "previewModeModal": {
+      "body": "You are entering a live preview voting booth. <strong>Your vote will NOT be cast</strong>. This voting booth is for demonstration purposes only.",
+      "confirm": "I accept my vote will NOT be cast",
+      "header": "Live Preview voting booth"
+    },
+    "proposalsTitleClickToDeselect": "Options (click to deselect):",
+    "proposalsTitleClickToSelect": "Options (click to select):",
+    "qrCodeAlt": "QR Code",
+    "questionAvailableOptionsTitle": "Available options",
+    "questionNumber": "Question __qnum__ of __qtotal__",
+    "questionSelectedOptionsTitle": "Selected options (__count__)",
+    "questionSelectedOptionsTitleOrdered": "Selected options (__count__) in order, drag and drop to reorder it",
+    "questionSelectedOptionsTitleOrdered_plural": "Selected options (__count__) in order, drag and drop to reorder it",
+    "questionSelectedOptionsTitle_plural": "Selected options (__count__)",
+    "randomizeColumn": "Sort randomly",
+    "relatedLinksText": "For more information about this election:",
+    "removeSelectedItem": "click to deselect",
+    "removeSelectedItemShort": "deselect",
+    "reviewBallotHashText": "Your Ballot Tracker ID is: <strong>__ballotHash__</strong>",
+    "reviewOptionsText": "Once you have chosen your preferences, we will proceed to encrypt them and you'll be shown the ballot's tracker id. You'll also be shown a summary with the content of your ballot for review.",
+    "reviewOptionsTitle": "2. Review your ballot",
+    "reviewScreen": {
+      "ballotIdMessage": "Your Ballot ID: __hash__",
+      "description": "To make changes in your selections, click \u201c<strong>Change selection</strong>\u201d button, to confirm your selections, click \u201c<b class=\"green\">Submit Ballot</b>\u201d button bellow, and to audit your ballot click the \u201c<b class=\"red\">Audit the Ballot</b>\u201d button bellow. Please note than once you submit your ballot, you have voted and you will not be issued another ballot for this election.",
+      "descriptionNoAudit": "To make changes in your selections, click \u201c<strong>Change selection</strong>\u201d button, to confirm your selections, click \u201c<b class=\"green\">Submit Ballot</b>\u201d button bellow. Please note than once you submit your ballot, you have voted and you will not be issued another ballot for this election.",
+      "editAction": "Edit ballot",
+      "informationModal": {
+        "body": "This screen allows you to review your selections before casting your ballot.",
+        "confirm": "OK",
+        "header": "Information: Review Screen"
+      },
+      "pair": "__one__ > __two__",
+      "title": "Review your ballot"
+    },
+    "reviewYourBallotText": "Before casting your vote, please review the content of your ballot",
+    "reviewYourBallotTitle": "Ballot not sent yet: review it first",
+    "sanityChecksFailed": "There was a problem during the automatic encoding verifications done before ballot casting, and as a result your ballot was not cast. This is probably due to you being using an outdated web browser unsupported by our software. Please, try again in a different and more updated web browser, and if the problem persists please contact us. Sorry for the inconvenience.",
+    "scrolledToBottom": {
+      "description": "Please review all candidates and contests by scrolling to the end of the ballot.",
+      "title": "Scroll down to enable this button"
+    },
+    "selectAllCategory": {
+      "body": "Hey! It looks like you want to select all the options of <strong>__category__</strong>",
+      "cancel": "No",
+      "confirm": "Yes, Select them",
+      "doNotShowAgain": "Do not show this again",
+      "header": "Select all options from the <strong>__category__</strong>?"
+    },
+    "selectMoreOpts": "Select at least __min__ options.",
+    "selectMoreOpts_plural": "Select at least __min__ options.",
+    "selectOptionsText": "Answer to the election questions one by one as they are shown. This way you will configure your preferences in your ballot.",
+    "selectOptionsTitle": "1. Select your options",
+    "selectedDocuments": "Documents (clic to select)",
+    "selectedOptionFollow": "The option you chose is:",
+    "selectedOptionsFollow": "The __num__ options you chose are:",
+    "sendingBallot": "Sending the ballot to the server, please wait (__percentage__% completed)",
+    "showPdf": {
+      "pdfTextDescription": "Please read the PDF before voting",
+      "showPdfButton": "Show PDF"
+    },
+    "showSelectedOptionPoints": "(__points__ points)",
+    "showSelectedOptionPointsWriteIn": "(__points__ points, write-in)",
+    "showWriteIn": "(write-in)",
+    "simultaneousQuestions": {
+      "informationModal": {
+        "body": "This screen shows the contest you are elegible to vote. You can make your section by activate the checkbox on the Candidate/Answer right. To reset your selections, click \u201c<b>Clear selection</b>\u201d button, to move to next step, click \u201c<b>Next</b>\u201d button bellow.",
+        "confirm": "OK",
+        "header": "Information: Ballot screen"
+      },
+      "skipQuestion": "Skip question(s)",
+      "skipQuestionModal": {
+        "body": "Please confirm that you want to skip this question(s). You can vote in the skipped question(s) by logging in again.",
+        "confirm": "Confirm and SKIP this question(s)",
+        "header": "Do you want to skip this question(s)?"
+      }
+    },
+    "startVoting": "Start Voting",
+    "statusEncryptingQuestion": "Encrypting answers to question __questionNum__, please wait (__percentage__% completed)",
+    "statusExecutingSanityChecks": "Verifying that the web browser is able to encode the ballot, please wait (__percentage__% completed)",
+    "statusVerifyingQuestion": "Verifying the encrypted answers to question __questionNum__, please wait (__percentage__% completed)",
+    "stepAndQuestionNumber": "step __num__ of __total__, question __qnum__ of __qtotal__",
+    "stepNumber": "step __num__ of __total__",
+    "stepsToVote": "You need to follow these steps to cast your ballot:",
+    "successBallotHash": "You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>. The Ballot Tracker of your ballot is:<br/><br/></h3><a href=\"__ballotLocatorUrl__\" target=\"__target__\"><strong>__ballotHash__</strong></a><br/><br/>You can use your Ballot Tracker to verify that your ballot has been correctly cast <strong><a href=\"__ballotLocatorUrl__\" target=\"__target__\">using this address</a></strong>.",
+    "successBallotQrCode": "You can verify your ballot has been correctly cast using the following QR Code:",
+    "successDemoVoteNotCastModal": {
+      "body": "This is a demo voting booth.<strong>Your vote has NOT been cast</strong>. This voting booth is for demonstration purposes only.<br><br>Thus, the Ballot Tracker will not work. To cast a real vote, please follow the appropiate authentication procedure.",
+      "cancel": "Cancel",
+      "confirm": "I accept my vote has NOT been cast",
+      "header": "Demo voting booth"
+    },
+    "successNoBallotHash": "Congratulations! You have cast your ballot with <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>.",
+    "successScreen": {
+      "ballotCastHelpModal": {
+        "body": "This screen shows that your vote was successfully cast. The information provided on this page allows you to verify that the ballot has been stored in ballot box , this process can be executed at any time during voting period and after the election has been closed.",
+        "confirm": "OK",
+        "header": "Information: Confirmation Screen"
+      },
+      "ballotId": "Ballot ID",
+      "ballotIdHelpModal": {
+        "body": "The Ballot ID is a code that allows you to find your ballot in the ballot box, this ID is unique and doesn't contain information about your selections.",
+        "confirm": "OK",
+        "header": "Information: Ballot ID"
+      },
+      "printBallotBtn": "Print",
+      "verifyBallotCastDescription": "You can verify your ballot has been cast correctly at any moment using the following QR code:",
+      "verifyBallotCastTitle": "Verify that your ballot has been cast"
+    },
+    "successSkippedCount": "You skipped __count__ elections. You can vote in the elections by logging in again.",
+    "successSubheader": "The confirmation code bellow verifies that <strong>your ballot has been cast successfully</strong>. You can use this code to verify that your ballot has been counted.",
+    "successTitle": "Your vote has been cast",
+    "thisisADemoNotification": "<strong>Warning!</strong> Demo voting booth, votes issued from this booth will not count.",
+    "thisisAPreviewNotification": "<strong>Warning!</strong> Preview voting booth, votes issued from this booth will not count.",
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election",
+    "tooFewAnswers": {
+      "body": "In the following questions you have not selected as many options as the minimum number needed to continue:",
+      "header": "Choose more options",
+      "question": "Question '__title__': you chose __selected__ options, but you need to choose at least __min__ options"
+    },
+    "tooManyUserUpdates": "Your ballot could not be cast because you have changed too many times in this election. As a result, your last correctly cast ballot it is the one that will count.",
+    "totalsQuestionColumn": "(__selected__ of __count__ selected)",
+    "typeWriteInPlaceholder": "Type write-in candidate here",
+    "voteInBlank": "Blank Vote",
+    "votingSteps": {
+      "audit": "Audit",
+      "ballot": "Ballot",
+      "confirmation": "Confirmation",
+      "electionList": "Election List",
+      "review": "Review"
+    },
+    "warnBallotParity": {
+      "body": "No puede continuarse porque la papeleta no es paritaria y en cremallera. Por favor, comprueba que tu selecci\u00f3n est\u00e9 compuesta de forma que detr\u00e1s de una mujer luego va un hombre y as\u00ed sucesivamente.",
+      "continue": "Revisar mi papeleta",
+      "header": "Papeleta no paritaria"
+    }
+  },
+  "avCommon": {
+    "cancel": "Cancel",
+    "changeLanguageMenu": "Change Language",
+    "poweredBy": "Powered by <a href=\"__url__\" target=\"_blank\">__name__</a>",
+    "shareLink": "\u00a1Tweet this election!",
+    "votingSystem": "Voting System",
+    "votings": {
+      "borda": "Borda Count (traditional)",
+      "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)",
+      "desborda": "DesBorda",
+      "desborda2": "DesBorda2",
+      "desborda3": "DesBorda3",
+      "pairwise-beta": "Pairwise (beta-distribution)",
+      "plurality-at-large": "Plurality at large"
+    }
+  },
+  "created": "Creato",
+  "doing_tally": "conteggio in corso",
+  "done": "Fatto",
+  "eg": "es.",
+  "loading": "Caricamento...",
+  "next": "Prossimo",
+  "no": "no",
+  "nomore": "Nessun altro elemento",
+  "registered": "Registrato",
+  "results_ok": "risultati raggiunti",
+  "results_pub": "risultati pubblicati",
+  "started": "Iniziato",
+  "stopped": "fermato",
+  "tally_error": "errore di conteggio",
+  "tally_ok": "conteggio",
+  "yes": "si"
+}
