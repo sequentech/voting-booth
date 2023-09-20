@@ -30,7 +30,8 @@ angular.module('avBooth')
       $window,
       ConfigService,
       CheckerService,
-      ErrorCheckerGeneratorService
+      ErrorCheckerGeneratorService,
+      SearchFilter
     ) {
       var simultaneousQuestionsLayouts = ["simultaneous-questions-v2", "simultaneous-questions"];
 
@@ -319,6 +320,45 @@ angular.module('avBooth')
         };
 
         scope.groupQuestions = groupQuestions;
+
+        scope.clearSearch = function (question) {
+          question.search = "";
+        };
+
+        function updateFilteredAnswers(question) {
+          return function() {
+            for (var answer of question.answers) {
+              answer.isFilterSelected = SearchFilter.isSelectedAnswer(question.search, answer);
+            }
+
+            question.isAnyCategorySelected = false;
+            if (question.hasCategories && !!question.categories) {
+              for (var category of question.categories) {
+                category.isCategorySelected = 
+                  SearchFilter.isStringContained(question.search, category.title);
+                if (category.categoryAnswer) {
+                  category.isCategorySelected = 
+                    SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
+                }
+                question.isAnyCategorySelected = question.isAnyCategorySelected || category.isCategorySelected;
+
+                var isAnyAnswerSelected = false;
+                for (var catAnswer of category.answers) {
+                  catAnswer.isFilterSelected =
+                    SearchFilter.isSelectedAnswer(question.search, catAnswer);
+                  isAnyAnswerSelected = isAnyAnswerSelected || catAnswer.isFilterSelected;
+                }
+                category.isAnyAnswerSelected = isAnyAnswerSelected;
+              }
+            }
+          };
+        }
+        scope.groupQuestions.forEach(function (question, index) {
+          question.search = "";
+          question.showSearch = question.extra_options && question.extra_options.show_filter_field;
+          scope.$watch("groupQuestions[" + index + "].search", updateFilteredAnswers(question));
+        });
+
         var lastGroupQuestionArrayIndex = groupQuestions[groupQuestions.length-1];
         var lastGroupQuestionIndex = lastGroupQuestionArrayIndex.num;
 

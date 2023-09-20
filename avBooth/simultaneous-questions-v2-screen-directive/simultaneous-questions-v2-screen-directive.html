@@ -46,13 +46,47 @@
       ng-if="question.description || question.description_i18n"
       ng-bind-html="question | customI18n : 'description' | addTargetBlank">
     </p>
+    
+    <div class="question-search-container">
+      <div
+        class="filter-input-wrapper"
+        ng-if="question.showSearch"
+      >
+        <input type="text"
+          class="filter-input"
+          ng-attr-id="filter-input-{{$index}}"
+          ng-model="question.search"
+          ng-model-options="{debounce: 500}"
+          ng-i18next="[placeholder]avBooth.simultaneousQuestions.filterOptionsPlaceholder;[aria-label]avBooth.simultaneousQuestions.filterOptionsPlaceholder"
+          />
+        <span
+          class="glyphicon glyphicon-search"
+          ng-attr-id="search-icon-{{$index}}"
+        ></span>
+        <i
+          class="fa fa-times"
+          ng-class="{'hide': !question.search}"
+          ng-click="clearSearch(question)"
+        ></i>
+      </div>
+    </div>
+    <div class="input-warn warn-blue">
+      <div class="warn-box" ng-if="question.showSearch && question.search">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <div
+          class="warn-text"
+          role="alert"
+          ng-i18next="avBooth.simultaneousQuestions.searchWarn">
+        </div>
+      </div>
+    </div>
 
     <!-- QUESTION OPTIONS START -->
 
     <div 
       class="invalid-vote-col"
       ng-class="{'extra-invalid-vote-space': question.hasCategories}"
-      ng-if="!!question.invalidVoteAnswer && 'top' === question.invalidVoteAnswer.position"
+      ng-if="!!question.invalidVoteAnswer && 'top' === question.invalidVoteAnswer.position && question.invalidVoteAnswer.isFilterSelected"
     >
       <div 
         avb-simultaneous-question-answer-v2
@@ -73,16 +107,17 @@
           avb-simultaneous-questions-category-v2
           question="question"
           category="category"
+          ng-if="category.isCategorySelected || category.isAnyAnswerSelected"
           toggle-select-item="toggleSelectItem"
           toggle-select-item-cumulative="toggleSelectItemCumulative"
           cumulative-checks="cumulativeChecks"
           write-in-text-change="updateErrors"
           is-review="false"
           ng-class="{
-            'flex-col-12': (question.extra_options.answer_group_columns_size === 12),
-            'flex-col-6': (question.extra_options.answer_group_columns_size === 6),
-            'flex-col-4': (question.extra_options.answer_group_columns_size === 4),
-            'flex-col-3': (question.extra_options.answer_group_columns_size === 3),
+            'flex-col-12': ((question.search && question.isAnyCategorySelected) || question.extra_options.answer_group_columns_size === 12),
+            'flex-col-6': ((!question.search || !question.isAnyCategorySelected) && question.extra_options.answer_group_columns_size === 6),
+            'flex-col-4': ((!question.search || !question.isAnyCategorySelected) && question.extra_options.answer_group_columns_size === 4),
+            'flex-col-3': ((!question.search || !question.isAnyCategorySelected) && question.extra_options.answer_group_columns_size === 3),
             'empty-category': !category.title
           }"
         >
@@ -92,13 +127,13 @@
       <div class="question-answers text-left">
         <div 
           ng-repeat="answer in question.answers"
-          ng-if="!isInvalidAnswer(answer)"
+          ng-if="!isInvalidAnswer(answer) && answer.isFilterSelected"
           class="question-answer-wrapper"
           ng-class="{
-            'flex-col-12': (question.extra_options.answer_columns_size === 12),
-            'flex-col-6': (question.extra_options.answer_columns_size === 6),
-            'flex-col-4': (question.extra_options.answer_columns_size === 4),
-            'flex-col-3': (question.extra_options.answer_columns_size === 3)
+            'flex-col-12': ((question.search && question.isAnyCategorySelected) || question.extra_options.answer_columns_size === 12),
+            'flex-col-6': ((!question.search || !question.isAnyCategorySelected) && question.extra_options.answer_columns_size === 6),
+            'flex-col-4': ((!question.search || !question.isAnyCategorySelected) && question.extra_options.answer_columns_size === 4),
+            'flex-col-3': ((!question.search || !question.isAnyCategorySelected) && question.extra_options.answer_columns_size === 3)
           }"
         >
           <div 
@@ -119,7 +154,7 @@
     <div 
       class="invalid-vote-col"
       ng-class="{'extra-invalid-vote-space': question.hasCategories}"
-      ng-if="!!question.invalidVoteAnswer && 'bottom' === question.invalidVoteAnswer.position"
+      ng-if="!!question.invalidVoteAnswer && 'bottom' === question.invalidVoteAnswer.position && question.invalidVoteAnswer.isFilterSelected"
     >
       <div 
         avb-simultaneous-question-answer-v2
