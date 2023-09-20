@@ -124,6 +124,28 @@ angular.module('avBooth')
             reader.readAsText(blob);
         }
 
+        function addElectionId() {
+          var showElectionId = scope.election.presentation &&
+            scope.election.presentation.extra_options &&
+            scope.election.presentation.extra_options.success_screen__ballot_ticket__show_election_id;
+          return showElectionId ? [
+            {
+              columns: [
+                {
+                  text: $i18next('avBooth.ballotTicket.id'),
+                  style: 'cell',
+                  width: '40%'
+                },
+                {
+                  text: scope.election.id,
+                  style: 'cell',
+                  width: '*'
+                }
+              ]
+            }
+          ] : [];
+        }
+
         function getTitleSubtitleColumn() 
         {
           return [
@@ -201,20 +223,7 @@ angular.module('avBooth')
                   }
                 ]
               },
-              {
-                columns: [
-                  {
-                    text: $i18next('avBooth.ballotTicket.id'),
-                    style: 'cell',
-                    width: '40%'
-                  },
-                  {
-                    text: scope.election.id,
-                    style: 'cell',
-                    width: '*'
-                  }
-                ]
-              },
+              ...addElectionId(),
               {
                 columns: [
                   {
