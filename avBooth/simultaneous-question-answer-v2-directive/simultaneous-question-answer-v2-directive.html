@@ -84,6 +84,7 @@
           ng-model="answer.text"
           ng-if="!hideCheck() && !withWriteInConfig"
           ng-click="$event.stopPropagation()"
+          ng-keydown="$event.stopPropagation()"
         />
 
         <div
@@ -111,6 +112,7 @@
               av-debounce="500"
               ng-model="field.value"
               ng-click="$event.stopPropagation()"
+              ng-keydown="$event.stopPropagation()"
             />
             <div
               class="write-in-help"
