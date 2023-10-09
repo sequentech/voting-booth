@@ -28,6 +28,9 @@ angular.module('avBooth')
         scope.errorId = "generic";
       }
 
+      // Stop warning the user about reloading/leaving the page
+      // as no vote is in the process
+      $window.onbeforeunload = null;
       scope.errorCode = scope.stateData.errorCode || 500;
       scope.errorCodeTranslation = "avBooth.errorScreen." + scope.errorCode;
       scope.showBackButton = true;
