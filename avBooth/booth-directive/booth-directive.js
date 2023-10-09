@@ -839,6 +839,9 @@ angular.module('avBooth')
       }
 
       function retrieveElectionConfig(electionId) {
+        if (scope.state === stateEnum.errorScreen) {
+          return;
+        }
         if (electionId) {
           scope.electionId = electionId;
         }
