@@ -788,7 +788,6 @@ angular.module('avBooth')
 
         }
       }
-      autoredirectToLoginAfterTimeout();
 
       function simpleGetElection(electionId) {
         if (!electionId) {
@@ -1230,6 +1229,8 @@ angular.module('avBooth')
 
       // allow receival of khmac token by parent window
       $window.addEventListener('message', avPostAuthorization, false);
+
+      autoredirectToLoginAfterTimeout();
 
       // retrieve election config
       retrieveElectionConfig();
