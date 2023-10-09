@@ -30,6 +30,7 @@ angular.module('avBooth')
 
       scope.errorCode = scope.stateData.errorCode || 500;
       scope.errorCodeTranslation = "avBooth.errorScreen." + scope.errorCode;
+      scope.showBackButton = !scope.stateData.hideBackButton || true;
 
       scope.goBack = function () {
         scope.setState(scope.stateEnum.startScreen, {});

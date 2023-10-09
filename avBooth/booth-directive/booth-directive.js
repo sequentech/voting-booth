@@ -647,7 +647,14 @@ angular.module('avBooth')
           if (InsideIframeService()) {
             return;
           } else {
-            showError("avBooth.errorLoadingVoterCredentials");
+            showError(
+              "avBooth.errorLoadingVoterCredentials",
+              {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              },
+              "400"
+            );
             return;
           }
         }
@@ -670,7 +677,13 @@ angular.module('avBooth')
             }
           );
         } catch (error) {
-          showError("avBooth.errorLoadingElection");
+          showError(
+            "avBooth.errorLoadingElection",
+              {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              }
+          );
           return;
         }
 
@@ -678,7 +691,13 @@ angular.module('avBooth')
         if (!currentElectionCredentials)
         {
           if (scope.election) {
-            showError("avBooth.errorLoadingElection");
+            showError(
+              "avBooth.errorLoadingElection",
+                {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              }
+            );
           }
           return;
         }
@@ -686,7 +705,13 @@ angular.module('avBooth')
         // token should be valid
         var hmac = HmacService.checkKhmac(currentElectionCredentials.token);
         if (!hmac) {
-          showError("avBooth.errorLoadingElection");
+          showError(
+            "avBooth.errorLoadingElection",
+              {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              }
+          );
           return;
         }
 
@@ -694,7 +719,13 @@ angular.module('avBooth')
         // "userid:vote:AuthEvent:1110:134234111"
         var splitMessage = hmac.message.split(':');
         if (splitMessage.length !== 5) {
-          showError("avBooth.errorLoadingElection");
+          showError(
+            "avBooth.errorLoadingElection",
+              {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              }
+          );
           return;
         }
         var voterId = splitMessage[0];
@@ -707,7 +738,13 @@ angular.module('avBooth')
           action !== 'vote' ||
           objectType !== 'AuthEvent'
         ) {
-          showError("avBooth.errorLoadingElection");
+          showError(
+            "avBooth.errorLoadingElection",
+              {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              }
+          );
           return;
         }
 
@@ -1027,7 +1064,13 @@ angular.module('avBooth')
 
                 if (scope.isVirtual) {
                   if (hasAuthapiError) {
-                    showError("avBooth.errorLoadingElection");
+                    showError(
+                      "avBooth.errorLoadingElection",
+                        {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              }
+                    );
                     return;
                   }
                   sequentElectionsRetrieved = true;
@@ -1114,7 +1157,13 @@ angular.module('avBooth')
               }
             );
         } catch (error) {
-          showError("avBooth.errorLoadingElection");
+          showError(
+            "avBooth.errorLoadingElection",
+              {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              }
+          );
         }
       }
 
@@ -1130,7 +1179,13 @@ angular.module('avBooth')
         var khmac = HmacService.checkKhmac(khmacStr);
         if (!khmac) {
           scope.authorizationReceiverErrorHandler();
-          showError("avBooth.errorLoadingElection");
+          showError(
+            "avBooth.errorLoadingElection",
+              {
+                "hideBackButton": true,
+                "hideErrorIdentifier": true
+              }
+          );
           return;
         }
         scope.authorizationHeader = khmacStr;
