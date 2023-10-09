@@ -647,7 +647,8 @@ angular.module('avBooth')
           if (InsideIframeService()) {
             return;
           } else {
-            redirectToLogin(/* isSuccess */ false);
+            showError("avBooth.errorLoadingVoterCredentials");
+            return;
           }
         }
         scope.credentials = [];
