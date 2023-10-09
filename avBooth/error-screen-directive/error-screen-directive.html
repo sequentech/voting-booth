@@ -16,12 +16,16 @@
   
   <div class="block-wrapper">
     <h3 class="error-code-text" ng-i18next>{{errorCodeTranslation}}</h3>
-    <p ng-i18next="[html:i18next]({errorId: errorId})avBooth.errorScreen.identifier"></p>
+    <p
+      ng-if="showErrorIdentifier"
+      ng-i18next="[html:i18next]({errorId: errorId})avBooth.errorScreen.identifier"
+    ></p>
     <p class="error-description" ng-i18next>
       {{stateData.error}}
     </p>
     <p ng-i18next="[html:i18next]({email: config.contact.email})avBooth.errorScreen.help"></p>
     <button
+      ng-if="showBackButton"
       ng-click="goBack()"
       class="btn btn-lg btn-success-action" ng-i18next>
       avBooth.errorScreen.backButton
