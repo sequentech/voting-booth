@@ -30,10 +30,31 @@ angular.module('avBooth')
 
       scope.errorCode = scope.stateData.errorCode || 500;
       scope.errorCodeTranslation = "avBooth.errorScreen." + scope.errorCode;
-      scope.showBackButton = !scope.stateData.hideBackButton || true;
+      scope.showBackButton = true;
+
+      if (
+        scope.stateData.errorData &&
+        scope.stateData.errorData.showBackButton === false
+      ) {
+        scope.showBackButton = false;
+      }
+
+      scope.showErrorIdentifier = true;
+      if (
+        scope.stateData.errorData &&
+        scope.stateData.errorData.showErrorIdentifier === false
+      ) {
+        scope.showErrorIdentifier = false;
+      }
 
       scope.goBack = function () {
-        scope.setState(scope.stateEnum.startScreen, {});
+        if (
+          scope.stateData.errorData &&
+          angular.isString(scope.stateData.errorData.backButtonUrl)
+        ) {
+          $window.location.href = scope.stateData.errorData.backButtonUrl;
+        }
+          scope.setState(scope.stateEnum.startScreen, {});
       };
     }
     return {
