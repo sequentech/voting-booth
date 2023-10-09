@@ -15,7 +15,10 @@
             ng-click="canVoteElection(election) && click(election)"
         >
             <div class="text-container">
-                <h3 class="election-title">{{election | customI18n : 'title'}}</h3>
+                <h3
+                    class="election-title"
+                    ng-bind-html="(election.presentation | customI18n : 'public_title') || (election | customI18n : 'title')"
+                ></h3>
                 <p class="election-description" ng-if="!!election.description">{{election | customI18n : 'description'}}</p>
                 <a
                     href="election/{{ election.event_id }}/public/home"
