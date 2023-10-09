@@ -650,7 +650,7 @@ angular.module('avBooth')
             showError(
               "avBooth.errorLoadingVoterCredentials",
               {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               },
               "400"
@@ -680,7 +680,7 @@ angular.module('avBooth')
           showError(
             "avBooth.errorLoadingElection",
               {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               }
           );
@@ -694,7 +694,7 @@ angular.module('avBooth')
             showError(
               "avBooth.errorLoadingElection",
                 {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               }
             );
@@ -708,7 +708,7 @@ angular.module('avBooth')
           showError(
             "avBooth.errorLoadingElection",
               {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               }
           );
@@ -722,7 +722,7 @@ angular.module('avBooth')
           showError(
             "avBooth.errorLoadingElection",
               {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               }
           );
@@ -741,7 +741,7 @@ angular.module('avBooth')
           showError(
             "avBooth.errorLoadingElection",
               {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               }
           );
@@ -1067,7 +1067,7 @@ angular.module('avBooth')
                     showError(
                       "avBooth.errorLoadingElection",
                         {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               }
                     );
@@ -1160,7 +1160,7 @@ angular.module('avBooth')
           showError(
             "avBooth.errorLoadingElection",
               {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               }
           );
@@ -1182,7 +1182,7 @@ angular.module('avBooth')
           showError(
             "avBooth.errorLoadingElection",
               {
-                "hideBackButton": true,
+                "backButtonUrl": ConfigService.defaultRoute,
                 "hideErrorIdentifier": true
               }
           );
