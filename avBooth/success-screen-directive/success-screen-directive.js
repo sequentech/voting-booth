@@ -29,6 +29,7 @@ angular.module('avBooth')
       moment,
       $interpolate, 
       $window,
+      $filter,
       $modal,
       $i18next,
       $http,
@@ -217,7 +218,7 @@ angular.module('avBooth')
                     width: '40%'
                   },
                   {
-                    text: scope.election.title,
+                    text: $filter('customI18n')(scope.election, 'title'),
                     style: 'cell',
                     width: '*'
                   }
