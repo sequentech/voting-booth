@@ -120,7 +120,7 @@ angular.module('avUi')
         {
           check: "array-key-group-chain",
           key: "questions",
-          append: {key: "qtitle", value: "$value.title"},
+          append: {key: "qtitle", value: "$filter('customI18n')($value, 'title')"},
           prefix: "avBooth.errors.question-",
           checks: [
             // raise if vote is blank if not checkerTypeFlag
