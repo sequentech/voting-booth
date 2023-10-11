@@ -1,6 +1,6 @@
 {
   "name": "voting-booth",
-  "version" : "master",
+  "version": "master",
   "license": "AGPL-3.0-only",
   "browsers": [
     "ie >= 8",
@@ -48,12 +48,12 @@
     "load-grunt-tasks": "^3.5.0",
     "moment": "2.29.4",
     "nanoscroller": "^0.8.7",
-    "postcss": "^8.2.4",
+    "postcss": "^8.4.31",
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "common-ui": "https://github.com/sequentech/common-ui.git#master",
     "angular-aria": "^1.8.2",
+    "common-ui": "https://github.com/sequentech/common-ui.git#master",
     "pdfmake": "^0.1.65",
     "qrcode-generator": "^1.4.4"
   },
