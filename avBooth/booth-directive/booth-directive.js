@@ -637,6 +637,10 @@ angular.module('avBooth')
           scope.stateData.oldState.data);
       }
 
+      function isStateCompatibleWithCountdown() {
+        return scope.state !== stateEnum.errorScreen && scope.state !== stateEnum.successScreen;
+      }
+
       // Try to read and process voting credentials
       function readVoteCredentials() {
         if (scope.isDemo || scope.isPreview) {
@@ -789,7 +793,13 @@ angular.module('avBooth')
           var logoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
 
           setTimeout(
-            function () { logoutAndRedirect( /* isSuccess */ false); },
+            function () {
+              if (scope.state === stateEnum.errorScreen) {
+                console.log("already in an error state, can't redirect");
+                return;
+              }
+              logoutAndRedirect( /* isSuccess */ false);
+            },
             Math.max(logoutTimeMs - Date.now(), 0)
           );
 
@@ -1240,6 +1250,7 @@ angular.module('avBooth')
         redirectToLogin: redirectToLogin,
         checkFixToBottom: checkFixToBottom,
         getSessionStartTime: getSessionStartTime,
+        isStateCompatibleWithCountdown: isStateCompatibleWithCountdown,
 
         // stateData stores information used by the directive being shown.
         // Its content depends on the current state.
