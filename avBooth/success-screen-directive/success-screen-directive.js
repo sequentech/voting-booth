@@ -542,8 +542,6 @@ angular.module('avBooth')
               "vote_permission_tokens", 
               JSON.stringify(mappedCredentials)
             );
-          } else {
-            //$window.sessionStorage.removeItem("vote_permission_tokens");
           }
         }
 
