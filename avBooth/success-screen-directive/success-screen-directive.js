@@ -543,7 +543,7 @@ angular.module('avBooth')
               JSON.stringify(mappedCredentials)
             );
           } else {
-            $window.sessionStorage.removeItem("vote_permission_tokens");
+            //$window.sessionStorage.removeItem("vote_permission_tokens");
           }
         }
 
