@@ -118,7 +118,7 @@ angular.module('avBooth')
         }
 
         function getChildrenElectionsData() {
-            if (!scope.childrenElectionInfo || !isChooserDisabled()) {
+            if (!scope.childrenElectionInfo || isChooserDisabled()) {
                 return;
             }
 
