@@ -55,9 +55,17 @@ angular.module('avBooth')
 
         function getElectionCredentials() {
             // need to reload in case this changed in success screen..
-            var credentials = [];
             var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
             return JSON.parse(credentialsStr);
+        }
+
+        function isChooserDisabled() {
+            return (
+                scope.parentElection &&
+                scope.parentElection.presentation &&
+                scope.parentElection.presentation.extra_options &&
+                !!scope.parentElection.presentation.extra_options.disable__election_chooser_screen
+            );
         }
 
         function generateChildrenInfo() {
@@ -110,7 +118,7 @@ angular.module('avBooth')
         }
 
         function getChildrenElectionsData() {
-            if (!scope.childrenElectionInfo) {
+            if (!scope.childrenElectionInfo || !isChooserDisabled()) {
                 return;
             }
 
@@ -120,6 +128,9 @@ angular.module('avBooth')
                     _.map(
                         category.events,
                         function (event) {
+                            if (event.hidden) {
+                                return {};
+                            }
                             return scope.simpleGetElection(event.event_id).then(
                                 function (electionData) {
                                     event.electionData = electionData;
@@ -142,18 +153,10 @@ angular.module('avBooth')
         scope.childrenElectionInfo = generateChildrenInfo();
         getChildrenElectionsData();
 
-
         function checkDisabled() {
-            var disableElectionChooser = (
-                scope.parentElection &&
-                scope.parentElection.presentation &&
-                scope.parentElection.presentation.extra_options &&
-                !!scope.parentElection.presentation.extra_options.disable__election_chooser_screen
-            );
-
             // if election chooser is disabled and can vote, then go to the first
             // election in which it can vote
-            if (disableElectionChooser) {
+            if (isChooserDisabled()) {
                 var orderedElectionIds = scope
                     .childrenElectionInfo
                     .natural_order;
