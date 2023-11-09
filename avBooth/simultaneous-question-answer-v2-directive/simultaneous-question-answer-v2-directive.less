@@ -221,8 +221,7 @@
   
   .vertilize-col.answer-glyphicon {
     display: flex;
-    flex-basis: 100%;
-    max-width: 26%;
+    flex-grow: 0;
     justify-content: flex-end;
     flex-wrap: wrap;
     align-items: center;
@@ -257,11 +256,14 @@
     display: flex;
     width: 74px;
     flex-shrink: 0;
+    @media screen and (max-width: 1200px) {
+      width: 55px;
+    }
   }
 
   .vertilize-col.vert-align-top.answer-texts.ng-scope {
     text-align: left;
-    padding: 8px 20px 8px 0;
+    padding: 8px 10px 8px 0;
   }
 
   a.btn:focus {
