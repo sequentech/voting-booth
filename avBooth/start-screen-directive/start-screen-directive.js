@@ -62,12 +62,9 @@ angular
         /**
          * @returns whether the Start Voting button should be enabled or not
          */
-        scope.startVotingEnabled = function (election)
+        scope.startVotingEnabled = function (election, checkbox)
         {
-          return (
-            !scope.isMandatoryTosEnabled(election) ||
-            scope.mandatory_tos.value
-          );
+          return (!scope.isMandatoryTosEnabled(election) || checkbox);
         };
         scope.fixToBottom = scope.checkFixToBottom();
       }
