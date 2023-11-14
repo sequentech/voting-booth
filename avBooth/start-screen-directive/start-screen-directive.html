@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      <div class="row" ng-if="isMandatoryTosEnabled(parentElection)">
+      <div class="row" ng-if="isMandatoryTosEnabled(election)">
         <div class="padded col-xs-12 mandatory-tos-block">
           <!-- Mandatory TOS -->
           <div class="form-group">
@@ -98,7 +98,7 @@
                 id="label-mandatory-tos"
               >
                 <span
-                  ng-bind-html="parentElection.presentation | customI18n : 'mandatory_acceptance_tos_html'"
+                  ng-bind-html="election.presentation | customI18n : 'mandatory_acceptance_tos_html'"
                 >
                 </span>
               </label>
@@ -111,7 +111,7 @@
         <button
           class="btn btn-block btn-lg btn-success-action btn-plain"
           ng-i18next="avBooth.startVoting"
-          ng-disabled="i!sStartVotingEnabled(parentElection)"
+          ng-disabled="!isStartVotingEnabled(election)"
           ng-click="next()">
         </button>
       </div>
