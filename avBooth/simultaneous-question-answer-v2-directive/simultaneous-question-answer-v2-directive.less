@@ -220,11 +220,13 @@
   }
   
   .vertilize-col.answer-glyphicon {
-    display: flex;
-    flex-grow: 0;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto;
+
+    &.three-multiple {
+      grid-template-columns: auto auto auto;
+
+    }
     padding: 6x 6px 6px 0;
 
     .fa-check {
