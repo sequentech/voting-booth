@@ -106,8 +106,9 @@ angular.module('avBooth')
             function (_value, index) { return index; }
           );
 
-          scope.threeMultipleCheckboxes = (
-            scope.answer_cumulative_checks.length % 3 === 0
+          scope.threeColsCheckboxes = (
+            scope.answer_cumulative_checks.length % 3 === 0 ||
+            scope.answer_cumulative_checks.length >= 5
           );
         }
       }
