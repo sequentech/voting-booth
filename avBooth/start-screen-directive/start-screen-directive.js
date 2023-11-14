@@ -42,7 +42,27 @@ angular
             scope.legal = true;
           }
         }
+        scope.mandatory_tos = {
+          enabled: (
+            scope.parentElection.presentation &&
+            !!scope.parentElection.presentation.mandatory_acceptance_tos_html
+          ),
+          value: false
+        };
 
+        /**
+         * @returns whether the Start Voting button should be disabled or not
+         */
+        scope.startVotingDisabled = function ()
+        {
+          // Start voting should not be disabled when:
+          // a) there's no mandatory tos (it's disabled)
+          // b) mandatory_tos checkbox has been checked
+          return (
+            !scope.mandatory_tos.enabled ||
+            !scope.mandatory_tos.value
+          );
+        };
         scope.fixToBottom = scope.checkFixToBottom();
       }
 

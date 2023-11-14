@@ -74,12 +74,44 @@
           <a ng-if="extra_data.contact" href="mailto:{{extra_data.contact}}"><span ng-i18next>avBooth.legal.contact</span>: {{ extra_data.contact }}</a>
           <!-- End legal terms -->
         </div>
+      </div>
 
+      <div class="row" ng-if="mandatory_tos.enabled">
+        <div class="padded col-xs-12 mandatory-tos-block">
+          <!-- Mandatory TOS -->
+          <div class="form-group">
+            <label>
+              <input
+                type="checkbox"
+                class="form-control"
+                aria-labeledby="label-mandatory-tos"
+                id="input-mandatory-tos"
+                ng-model="mandatory_tos.value"
+                tabindex="0"
+                ng-required="true"
+                name="">
+            </label>
+            <div class="bool-text-content">
+              <label
+                class="text-left"
+                for="input-mandatory-tos"
+                id="label-mandatory-tos"
+              >
+                <span
+                  ng-bind-html="parentElection.presentation | customI18n : 'mandatory_acceptance_tos_html'"
+                >
+                </span>
+              </label>
+            </div>
+          </div>
+          <!-- End Mandatory TOS -->
+        </div>
       </div>
       <div class="row" ng-if="!fixToBottom">
         <button
           class="btn btn-block btn-lg btn-success-action btn-plain"
           ng-i18next="avBooth.startVoting"
+          ng-disabled="startVotingDisabled()"
           ng-click="next()">
         </button>
       </div>
