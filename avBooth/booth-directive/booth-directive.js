@@ -54,13 +54,23 @@ angular.module('avBooth')
         setTimeout(
           function () {
             // reset $window.i18nOverride
-            if (scope.election && scope.election.presentation && scope.election.presentation.i18n_override)
-            {
-              I18nOverride(
-                /* overrides = */ scope.election.presentation.i18n_override,
-                /* force = */ force
-              );
-            }
+            var overrides = (
+              scope.election &&
+              scope.election.presentation &&
+              scope.election.presentation.i18n_override
+            ) ? scope.election.presentation.i18n_override : null;
+
+            var languagesConf = (
+              scope.election &&
+              scope.election.presentation &&
+              scope.election.presentation.i18n_languages_conf
+            ) ? scope.election.presentation.i18n_languages_conf : null;
+
+            I18nOverride(
+              /* overrides = */ scope.election.presentation.i18n_override,
+              /* force = */ force,
+              /* languagesConf = */ languagesConf
+            );
           },
           ms || 1000
         );
