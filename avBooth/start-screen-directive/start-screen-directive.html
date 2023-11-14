@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      <div class="row" ng-if="mandatory_tos.enabled">
+      <div class="row" ng-if="isMandatoryTosEnabled(parentElection)">
         <div class="padded col-xs-12 mandatory-tos-block">
           <!-- Mandatory TOS -->
           <div class="form-group">
@@ -111,7 +111,7 @@
         <button
           class="btn btn-block btn-lg btn-success-action btn-plain"
           ng-i18next="avBooth.startVoting"
-          ng-disabled="startVotingDisabled()"
+          ng-disabled="i!sStartVotingEnabled(parentElection)"
           ng-click="next()">
         </button>
       </div>
