@@ -26,17 +26,17 @@
     }
   }
 
+  :has(.btn-success-action[disabled]:active) .mandatory-tos-block {
+    animation-name: error-highlight;
+    animation-duration: 1.5s;
+  }
+
   .mandatory-tos-block {
     display: flex;
     width: 100%;
     flex-direction: row;
     align-items: flex-start;
     gap: 15px;
-
-    :has(input[disabled]:active) {
-      animation-name: error-highlight;
-      animation-duration: 1.5s;
-    }
 
     input {
       display: block;
