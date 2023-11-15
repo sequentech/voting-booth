@@ -47,6 +47,28 @@ angular.module('avBooth')
       scope.documentation = ConfigService.documentation;
       scope.hasSeenStartScreenInThisSession = false;
 
+      // possible values of the election state scope variable
+      var stateEnum = {
+        electionChooserScreen: 'electionChooserScreen',
+        receivingElection: 'receivingElection',
+        errorScreen: 'errorScreen',
+        helpScreen: 'helpScreen',
+        startScreen: 'startScreen',
+        multiQuestion: 'multiQuestion',
+        pairwiseBeta: 'pairwiseBeta',
+        draftsElectionScreen: 'draftsElectionScreen',
+        auditBallotScreen: 'auditBallotScreen',
+        "2questionsConditionalScreen": '2questionsConditionalScreen',
+        simultaneousQuestionsScreen: 'simultaneousQuestionsScreen',
+        encryptingBallotScreen: 'encryptingBallotScreen',
+        castOrCancelScreen: 'castOrCancelScreen',
+        reviewScreen: 'reviewScreen',
+        castingBallotScreen: 'castingBallotScreen',
+        successScreen: 'successScreen',
+        showPdf: 'showPdf',
+        simultaneousQuestionsV2Screen: 'simultaneousQuestionsV2Screen'
+      };
+
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
 
@@ -267,28 +289,6 @@ angular.module('avBooth')
           }
         }
       }
-
-      // possible values of the election state scope variable
-      var stateEnum = {
-        electionChooserScreen: 'electionChooserScreen',
-        receivingElection: 'receivingElection',
-        errorScreen: 'errorScreen',
-        helpScreen: 'helpScreen',
-        startScreen: 'startScreen',
-        multiQuestion: 'multiQuestion',
-        pairwiseBeta: 'pairwiseBeta',
-        draftsElectionScreen: 'draftsElectionScreen',
-        auditBallotScreen: 'auditBallotScreen',
-        "2questionsConditionalScreen": '2questionsConditionalScreen',
-        simultaneousQuestionsScreen: 'simultaneousQuestionsScreen',
-        encryptingBallotScreen: 'encryptingBallotScreen',
-        castOrCancelScreen: 'castOrCancelScreen',
-        reviewScreen: 'reviewScreen',
-        castingBallotScreen: 'castingBallotScreen',
-        successScreen: 'successScreen',
-        showPdf: 'showPdf',
-        simultaneousQuestionsV2Screen: 'simultaneousQuestionsV2Screen'
-      };
 
       // override state if in debug mode and it's provided via query param
       function setState(newState, newStateData) {
