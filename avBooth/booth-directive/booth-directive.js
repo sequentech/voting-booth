@@ -53,21 +53,25 @@ angular.module('avBooth')
       function reloadTranslations(force, ms) {
         setTimeout(
           function () {
+            var election = (
+              scope.state === stateEnum.electionChooserScreen
+            ) ? scope.parentElection : scope.election;
+
             // reset $window.i18nOverride
             var overrides = (
-              scope.election &&
-              scope.election.presentation &&
-              scope.election.presentation.i18n_override
-            ) ? scope.election.presentation.i18n_override : null;
+              election &&
+              election.presentation &&
+              election.presentation.i18n_override
+            ) ? election.presentation.i18n_override : null;
 
             var languagesConf = (
-              scope.election &&
-              scope.election.presentation &&
-              scope.election.presentation.i18n_languages_conf
-            ) ? scope.election.presentation.i18n_languages_conf : null;
+              election &&
+              election.presentation &&
+              election.presentation.i18n_languages_conf
+            ) ? election.presentation.i18n_languages_conf : null;
 
             I18nOverride(
-              /* overrides = */ scope.election.presentation.i18n_override,
+              /* overrides = */ overrides,
               /* force = */ force,
               /* languagesConf = */ languagesConf
             );
@@ -1086,10 +1090,10 @@ angular.module('avBooth')
                   if (hasAuthapiError) {
                     showError(
                       "avBooth.errorLoadingElection",
-                        {
-                "backButtonUrl": ConfigService.defaultRoute,
-                "hideErrorIdentifier": true
-              }
+                      {
+                        "backButtonUrl": ConfigService.defaultRoute,
+                        "hideErrorIdentifier": true
+                      }
                     );
                     return;
                   }
