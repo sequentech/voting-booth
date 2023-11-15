@@ -70,12 +70,13 @@ angular
 
         scope.start = function ()
         {
-          if (!isStartVotingEnabled(election, mandatory_tos.value))
-          {
+          if (!scope.isStartVotingEnabled(
+            scope.election, scope.mandatory_tos.value
+          )) {
             return;
           }
           scope.next();
-        }
+        };
       }
 
       return {
