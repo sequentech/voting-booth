@@ -16,12 +16,22 @@
 **/
 
 [avb-start-screen] {
+
+  @keyframes error-highlight {
+    from {
+      color: @av-primary;
+    }
+    to {
+      color: @error-primary-color;
+    }
+  }
+
   .mandatory-tos-block {
     display: flex;
     width: 100%;
     flex-direction: row;
     align-items: flex-start;
-    gap: 20px;
+    gap: 15px;
 
     input {
       display: block;
@@ -29,7 +39,13 @@
       min-width: 20px;
       height: initial;
       flex-basis: content;
+
+      &[disabled]:active {
+        animation-name: error-highlight;
+        animation-duration: 1.5s;
+      }
     }
+
     label {
       display: block;
       font-weight: normal;

@@ -67,6 +67,15 @@ angular
           return (!scope.isMandatoryTosEnabled(election) || checkbox);
         };
         scope.fixToBottom = scope.checkFixToBottom();
+
+        scope.start = function ()
+        {
+          if (!isStartVotingEnabled(election, mandatory_tos.value))
+          {
+            return;
+          }
+          scope.next();
+        }
       }
 
       return {
