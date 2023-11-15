@@ -33,17 +33,17 @@
     align-items: flex-start;
     gap: 15px;
 
+    :has(input[disabled]:active) {
+      animation-name: error-highlight;
+      animation-duration: 1.5s;
+    }
+
     input {
       display: block;
       min-height: 20px;
       min-width: 20px;
       height: initial;
       flex-basis: content;
-
-      &[disabled]:active {
-        animation-name: error-highlight;
-        animation-duration: 1.5s;
-      }
     }
 
     label {
