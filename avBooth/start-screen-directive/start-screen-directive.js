@@ -73,6 +73,16 @@ angular
           if (!scope.isStartVotingEnabled(
             scope.election, scope.mandatory_tos.value
           )) {
+            $('[avb-start-screen] .mandatory-tos-block label')
+              .addClass("error");
+            setTimeout(
+              function ()
+              {
+                $('[avb-start-screen] .mandatory-tos-block label')
+                  .removeClass("error");
+              },
+              400
+            );
             return;
           }
           scope.next();
