@@ -81,7 +81,7 @@ angular
                 $('[avb-start-screen] .mandatory-tos-block')
                   .removeClass("error");
               },
-              1000
+              500
             );
             return;
           }
