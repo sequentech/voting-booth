@@ -444,10 +444,10 @@ browser-resolve@^1.8.1:
   dependencies:
     resolve "1.1.7"
 
-browser-update@^3.3.28:
-  version "3.3.38"
-  resolved "https://registry.yarnpkg.com/browser-update/-/browser-update-3.3.38.tgz#ae9f999cd4931a1c24edfd56d0c50d4ddacd097e"
-  integrity sha512-2mLnlL25WLBP6pISo8dMoK7J8hKoLbgQtCQ+/g67T/SHvy+NpcvNPxqlpbwLF/mceIWTK34s24MUHmLcUrsKig==
+browser-update@^3.3.44:
+  version "3.3.44"
+  resolved "https://registry.yarnpkg.com/browser-update/-/browser-update-3.3.44.tgz#3e0517862faf5a1c0ae6756c938cce56beb97eb0"
+  integrity sha512-BBfoTbN/r+mSqXoGrypctu5bwB3asGApp7E1K9v/sOpi4irR0iFL++y0bpwZXbMEryAByGP9JpIWNBxJivurOA==
 
 browserify-optional@^1.0.0, browserify-optional@^1.0.1:
   version "1.0.1"
@@ -696,11 +696,11 @@ commander@^2.19.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
-"common-ui@https://github.com/sequentech/common-ui.git#master":
-  version "6.0.0"
-  resolved "https://github.com/sequentech/common-ui.git#9bef1b3c120e6a5f7c7d8e48082ad12c361a99cc"
+"common-ui@https://github.com/sequentech/common-ui.git#10.0.2":
+  version "10.0.2"
+  resolved "https://github.com/sequentech/common-ui.git#4db7804901ce5c86f05f2fc436ec757222566adc"
   dependencies:
-    browser-update "^3.3.28"
+    browser-update "^3.3.44"
     karma-ng-html2js-preprocessor "^1.0.0"
 
 concat-map@0.0.1:
@@ -808,10 +808,10 @@ cross-spawn@^6.0.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-crypto-js@^4.0.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
-  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
+crypto-js@4.2.0, crypto-js@^4.0.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
 
 css@*:
   version "3.0.0"
