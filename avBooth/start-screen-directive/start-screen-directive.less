@@ -28,6 +28,7 @@
       min-height: 20px;
       min-width: 20px;
       height: initial;
+      transition: all 1s ease;
       flex-basis: content;
     }
 
@@ -35,10 +36,15 @@
       display: block;
       font-weight: normal;
       margin-bottom: 20px;
-      transition: color .5s ease;
+      transition: all 1s ease;
       margin-top: 3px;
+    }
 
-      &.error {
+    &.error {
+      input {
+        outline: 5px auto @error-primary-color;
+      }
+      label {
         color: @error-primary-color;
       }
     }
