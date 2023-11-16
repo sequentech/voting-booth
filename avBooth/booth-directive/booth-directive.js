@@ -47,20 +47,56 @@ angular.module('avBooth')
       scope.documentation = ConfigService.documentation;
       scope.hasSeenStartScreenInThisSession = false;
 
+      // possible values of the election state scope variable
+      var stateEnum = {
+        electionChooserScreen: 'electionChooserScreen',
+        receivingElection: 'receivingElection',
+        errorScreen: 'errorScreen',
+        helpScreen: 'helpScreen',
+        startScreen: 'startScreen',
+        multiQuestion: 'multiQuestion',
+        pairwiseBeta: 'pairwiseBeta',
+        draftsElectionScreen: 'draftsElectionScreen',
+        auditBallotScreen: 'auditBallotScreen',
+        "2questionsConditionalScreen": '2questionsConditionalScreen',
+        simultaneousQuestionsScreen: 'simultaneousQuestionsScreen',
+        encryptingBallotScreen: 'encryptingBallotScreen',
+        castOrCancelScreen: 'castOrCancelScreen',
+        reviewScreen: 'reviewScreen',
+        castingBallotScreen: 'castingBallotScreen',
+        successScreen: 'successScreen',
+        showPdf: 'showPdf',
+        simultaneousQuestionsV2Screen: 'simultaneousQuestionsV2Screen'
+      };
+
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
 
       function reloadTranslations(force, ms) {
         setTimeout(
           function () {
+            var election = (
+              scope.state === stateEnum.electionChooserScreen
+            ) ? scope.parentElection : scope.election;
+
             // reset $window.i18nOverride
-            if (scope.election && scope.election.presentation && scope.election.presentation.i18n_override)
-            {
-              I18nOverride(
-                /* overrides = */ scope.election.presentation.i18n_override,
-                /* force = */ force
-              );
-            }
+            var overrides = (
+              election &&
+              election.presentation &&
+              election.presentation.i18n_override
+            ) ? election.presentation.i18n_override : null;
+
+            var languagesConf = (
+              election &&
+              election.presentation &&
+              election.presentation.i18n_languages_conf
+            ) ? election.presentation.i18n_languages_conf : null;
+
+            I18nOverride(
+              /* overrides = */ overrides,
+              /* force = */ force,
+              /* languagesConf = */ languagesConf
+            );
           },
           ms || 1000
         );
@@ -253,28 +289,6 @@ angular.module('avBooth')
           }
         }
       }
-
-      // possible values of the election state scope variable
-      var stateEnum = {
-        electionChooserScreen: 'electionChooserScreen',
-        receivingElection: 'receivingElection',
-        errorScreen: 'errorScreen',
-        helpScreen: 'helpScreen',
-        startScreen: 'startScreen',
-        multiQuestion: 'multiQuestion',
-        pairwiseBeta: 'pairwiseBeta',
-        draftsElectionScreen: 'draftsElectionScreen',
-        auditBallotScreen: 'auditBallotScreen',
-        "2questionsConditionalScreen": '2questionsConditionalScreen',
-        simultaneousQuestionsScreen: 'simultaneousQuestionsScreen',
-        encryptingBallotScreen: 'encryptingBallotScreen',
-        castOrCancelScreen: 'castOrCancelScreen',
-        reviewScreen: 'reviewScreen',
-        castingBallotScreen: 'castingBallotScreen',
-        successScreen: 'successScreen',
-        showPdf: 'showPdf',
-        simultaneousQuestionsV2Screen: 'simultaneousQuestionsV2Screen'
-      };
 
       // override state if in debug mode and it's provided via query param
       function setState(newState, newStateData) {
@@ -1076,10 +1090,10 @@ angular.module('avBooth')
                   if (hasAuthapiError) {
                     showError(
                       "avBooth.errorLoadingElection",
-                        {
-                "backButtonUrl": ConfigService.defaultRoute,
-                "hideErrorIdentifier": true
-              }
+                      {
+                        "backButtonUrl": ConfigService.defaultRoute,
+                        "hideErrorIdentifier": true
+                      }
                     );
                     return;
                   }
