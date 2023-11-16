@@ -28,21 +28,22 @@
       min-height: 20px;
       min-width: 20px;
       height: initial;
-      transition: all 1s ease;
+      transition: all 0.5s ease;
       flex-basis: content;
+      outline: 5px auto transparent;
     }
 
     label {
       display: block;
       font-weight: normal;
       margin-bottom: 20px;
-      transition: all 1s ease;
+      transition: all 0.5s ease;
       margin-top: 3px;
     }
 
     &.error {
       input {
-        outline: 5px auto @error-primary-color;
+        outline-color: @error-primary-color;
       }
       label {
         color: @error-primary-color;
