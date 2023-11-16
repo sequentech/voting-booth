@@ -68,7 +68,7 @@ angular
         };
         scope.fixToBottom = scope.checkFixToBottom();
 
-        scope.onStartVotingMouseUp = function ()
+        scope.startVoting = function ()
         {
           if (!scope.isStartVotingEnabled(
             scope.election, scope.mandatory_tos.value
@@ -83,7 +83,9 @@ angular
               },
               400
             );
+            return;
           }
+          scope.next();
         };
       }
 
