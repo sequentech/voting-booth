@@ -106,7 +106,7 @@
       <div class="row" ng-if="!fixToBottom">
         <button
           class="btn btn-block btn-lg btn-success-action btn-plain"
-          ng-class="{'disabled-cls': isStartVotingEnabled(election, mandatory_tos.value)}"
+          ng-class="{'disabled-cls': !isStartVotingEnabled(election, mandatory_tos.value)}"
           ng-i18next="avBooth.startVoting"
           ng-click="startVoting()">
         </button>
@@ -122,7 +122,7 @@
   <div class="row">
     <button
       class="btn btn-block btn-lg btn-success-action btn-plain"
-      ng-class="{'disabled-cls': isStartVotingEnabled(election, mandatory_tos.value)}"
+      ng-class="{'disabled-cls': !isStartVotingEnabled(election, mandatory_tos.value)}"
       ng-i18next="avBooth.startVoting"
       ng-click="startVoting()">
     </button>
