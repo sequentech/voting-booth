@@ -105,6 +105,11 @@ angular.module('avBooth')
             Array(scope.question.extra_options.cumulative_number_of_checkboxes),
             function (_value, index) { return index; }
           );
+
+          scope.threeColsCheckboxes = (
+            scope.answer_cumulative_checks.length % 3 === 0 ||
+            scope.answer_cumulative_checks.length >= 5
+          );
         }
       }
 
