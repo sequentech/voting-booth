@@ -42,8 +42,51 @@ angular
             scope.legal = true;
           }
         }
+        scope.mandatory_tos = {
+          value: false
+        };
 
+        /**
+         * @param {*} election Election to check
+         * @returns if the mandatory tos is enabled or not
+         */
+        scope.isMandatoryTosEnabled = function (election)
+        {
+          return (
+            !!election &&
+            !!election.presentation &&
+            !!election.presentation.mandatory_acceptance_tos_html
+          );
+        };
+
+        /**
+         * @returns whether the Start Voting button should be enabled or not
+         */
+        scope.isStartVotingEnabled = function (election, checkbox)
+        {
+          return (!scope.isMandatoryTosEnabled(election) || checkbox);
+        };
         scope.fixToBottom = scope.checkFixToBottom();
+
+        scope.startVoting = function ()
+        {
+          if (!scope.isStartVotingEnabled(
+            scope.election, scope.mandatory_tos.value
+          )) {
+            $('[avb-start-screen] .mandatory-tos-block')
+              .addClass("error");
+            setTimeout(
+              function ()
+              {
+                $('[avb-start-screen] .mandatory-tos-block')
+                  .removeClass("error");
+              },
+              500
+            );
+            return;
+          }
+          scope.next();
+        };
       }
 
       return {
