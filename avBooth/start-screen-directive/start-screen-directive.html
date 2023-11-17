@@ -74,13 +74,41 @@
           <a ng-if="extra_data.contact" href="mailto:{{extra_data.contact}}"><span ng-i18next>avBooth.legal.contact</span>: {{ extra_data.contact }}</a>
           <!-- End legal terms -->
         </div>
-
       </div>
+
+      <!-- Mandatory TOS -->
+      <div class="row" ng-if="isMandatoryTosEnabled(election)">
+        <div class="padded col-xs-12 mandatory-tos-block">
+          <input
+            type="checkbox"
+            class="form-control"
+            aria-labeledby="label-mandatory-tos"
+            id="input-mandatory-tos"
+            ng-model="mandatory_tos.value"
+            tabindex="0"
+            ng-required="true"
+            name="input-mandatory-tos"
+          />
+          <label
+            class="text-left"
+            for="input-mandatory-tos"
+            id="label-mandatory-tos"
+          >
+            <span
+              ng-bind-html="election.presentation | customI18n : 'mandatory_acceptance_tos_html'"
+            >
+            </span>
+          </label>
+        </div>
+      </div>
+      <!-- End Mandatory TOS -->
+
       <div class="row" ng-if="!fixToBottom">
         <button
           class="btn btn-block btn-lg btn-success-action btn-plain"
+          ng-class="{'disabled-cls': !isStartVotingEnabled(election, mandatory_tos.value)}"
           ng-i18next="avBooth.startVoting"
-          ng-click="next()">
+          ng-click="startVoting()">
         </button>
       </div>
     </div>
@@ -94,8 +122,9 @@
   <div class="row">
     <button
       class="btn btn-block btn-lg btn-success-action btn-plain"
+      ng-class="{'disabled-cls': !isStartVotingEnabled(election, mandatory_tos.value)}"
       ng-i18next="avBooth.startVoting"
-      ng-click="next()">
+      ng-click="startVoting()">
     </button>
   </div>
   <div avb-common-footer float="true"></div>
