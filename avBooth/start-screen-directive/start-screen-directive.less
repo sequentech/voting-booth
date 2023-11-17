@@ -16,6 +16,41 @@
 **/
 
 [avb-start-screen] {
+  .mandatory-tos-block {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 15px;
+
+    input {
+      display: block;
+      min-height: 20px;
+      min-width: 20px;
+      height: initial;
+      transition: all 0.5s ease;
+      flex-basis: content;
+      outline: 5px auto transparent;
+    }
+
+    label {
+      display: block;
+      font-weight: normal;
+      margin-bottom: 20px;
+      transition: all 0.5s ease;
+      margin-top: 3px;
+    }
+
+    &.error {
+      input {
+        outline-color: @error-primary-color;
+      }
+      label {
+        color: @error-primary-color;
+      }
+    }
+  }
+
   .tos-text {
     padding-bottom: 10px;
   }
