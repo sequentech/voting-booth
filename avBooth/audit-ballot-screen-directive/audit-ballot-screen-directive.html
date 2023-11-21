@@ -7,7 +7,10 @@
 <div avb-watermark></div>
 
 <div class="container audit-content">
-  <div class="sticky-top sticky-top-alt content">
+  <div
+    class="sticky-top content"
+    ng-class="{'sticky-top-alt': showAuditBtn && stateData.ballotHash}"
+  >
     <div avb-voting-step step="audit" with-election-list="!!parentAuthEvent"></div>
   </div>
   <div class="sticky-padding"></div>
