@@ -1195,7 +1195,12 @@ angular.module('avBooth')
       // this token is sent by a parent window when we are inside an iframe
       function avPostAuthorization(event, errorHandler) {
         var action = "avPostAuthorization:";
-        if (event.data.substr(0, action.length) !== action) {
+        if (
+          !event ||
+          !event.data ||
+          !angular.isString(event.data) ||
+          event.data.substr(0, action.length) !== action
+        ) {
           return;
         }
 
