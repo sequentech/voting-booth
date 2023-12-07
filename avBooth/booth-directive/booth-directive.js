@@ -92,6 +92,7 @@ angular.module('avBooth')
               election.presentation.i18n_languages_conf
             ) ? election.presentation.i18n_languages_conf : null;
 
+            $i18next.options.useLocalStorage = true;
             I18nOverride(
               /* overrides = */ overrides,
               /* force = */ force,
