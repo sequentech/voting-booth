@@ -16,6 +16,7 @@
 **/
 
 window.SequentConfigData.base = '/booth';
+window.localStorage.clear();
 
 angular.module(
   'voting-booth',

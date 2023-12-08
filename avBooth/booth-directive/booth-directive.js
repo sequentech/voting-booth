@@ -99,7 +99,7 @@ angular.module('avBooth')
               /* languagesConf = */ languagesConf
             );
           },
-          ms || 1000
+          ms || 0
         );
       }
 
