@@ -71,36 +71,58 @@ angular.module('avBooth')
 
       // This is used to enable custom css overriding
       scope.allowCustomElectionThemeCss = ConfigService.allowCustomElectionThemeCss;
+      scope.alreadyReloaded = null;
 
-      function reloadTranslations(force, ms) {
-        setTimeout(
-          function () {
-            var election = (
-              scope.state === stateEnum.electionChooserScreen
-            ) ? scope.parentElection : scope.election;
+      function reloadTranslations(force) {
+        function reloadInner() {
+          var election = (
+            scope.state === stateEnum.electionChooserScreen
+          ) ? scope.parentElection : scope.election;
 
-            // reset $window.i18nOverride
-            var overrides = (
-              election &&
-              election.presentation &&
-              election.presentation.i18n_override
-            ) ? election.presentation.i18n_override : null;
+          if (scope.alreadyReloaded === election.id) {
+            $i18next.reInit();
+            return;
+          } else {
+            scope.alreadyReloaded = election.id;
+          }
 
-            var languagesConf = (
-              election &&
-              election.presentation &&
-              election.presentation.i18n_languages_conf
-            ) ? election.presentation.i18n_languages_conf : null;
+          // reset $window.i18nOverride
+          var overrides = (
+            election &&
+            election.presentation &&
+            election.presentation.i18n_override
+          ) ? election.presentation.i18n_override : null;
 
-            $i18next.options.useLocalStorage = true;
-            I18nOverride(
-              /* overrides = */ overrides,
-              /* force = */ force,
-              /* languagesConf = */ languagesConf
-            );
-          },
-          ms || 0
-        );
+          var languagesConf = (
+            election &&
+            election.presentation &&
+            election.presentation.i18n_languages_conf
+          ) ? election.presentation.i18n_languages_conf : null;
+
+          $i18next.options.useLocalStorage = true;
+          I18nOverride(
+            /* overrides = */ overrides,
+            /* force = */ force,
+            /* languagesConf = */ languagesConf
+          );
+        }
+        function timeoutWrap() {
+          console.log("timeoutWrap");
+          var election = (
+            scope.state === stateEnum.electionChooserScreen
+          ) ? scope.parentElection : scope.election;
+
+          if (election && scope.alreadyReloaded === election.id) {
+            return;
+          }
+          if (!election) {
+            console.log("timeoutWrap: delaying..");
+            setTimeout(timeoutWrap, 200);
+          } else {
+            reloadInner();
+          }
+        }
+        timeoutWrap();
       }
 
       function updateWidth() {

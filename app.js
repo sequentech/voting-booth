@@ -61,7 +61,35 @@ angular
           cookieName: 'lang',
           detectLngQS: 'lang',
           lngWhitelist: ['en', 'es', 'gl', 'ca'],
-          resGetPath: '/booth/locales/__lng__.json',
+          ns: {namespaces: ['override', 'locales'], defaultNs: 'override'},
+          fallbackNS: 'locales',
+          resGetPath: '/booth/__ns__/__lng__.json',
+          customLoad: function (lngValue, nsValue, options, loadComplete) {
+            if (nsValue === 'locales') {
+              var url = '/booth/' + nsValue + '/' + lngValue + '.json';
+              var req = new XMLHttpRequest();
+              // Configure it: GET-request for the URL /your/api/endpoint
+              req.open('GET', url, true);
+              req.onload = function() {
+                if (req.status >= 200 && req.status < 300) {
+                    var data = JSON.parse(req.responseText);
+                    var error = null;
+                    loadComplete(/*err*/ null, data);
+                } else {
+                    loadComplete(/*err*/ "Error loading locale at url=" + url, null);
+                }
+              };
+              req.send("");
+            } else if (nsValue === 'override') {
+              if (window.i18nOverride) {
+                loadComplete(/*err*/ null, window.i18nOverride[lngValue]);
+              } else {
+                loadComplete(/*err*/ "Error loading overrides, not found", null);
+              }
+            } else {
+              console.log("unhandled customLoad case for i18next");
+            }
+          },
           defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
         },
         ConfigServiceProvider.i18nextInitOptions
