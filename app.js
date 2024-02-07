@@ -52,27 +52,30 @@ angular
       // note that we do not send the language: by default, it will try the language
       // supported by the web browser
       $("#no-js").hide();
-      $i18nextProvider.options = _.extend(
-        {
-          debug: true,
-          useCookie: true,
-          // Preload is needed because the language selector shows an item for
-          // each element in lngWhitelist, and the translation for each language
-          // is contained at each language i18n file, so we either preload it
-          // or it wouldn't work.
-          preload: ConfigServiceProvider.i18nextInitOptions.lngWhitelist || [],
-          useLocalStorage: false,
-          fallbackLng: 'en',
-          cookieName: 'lang',
-          detectLngQS: 'lang',
-          lngWhitelist: ['en', 'es'],
-          backend: {
-            loadPath: '/locales/__lng__.json',
+      window.i18next
+        .use(window.i18nextHttpBackend)
+        .init(_.extend(
+          {
+            debug: true,
+            load: 'languageOnly',
+            useCookie: true,
+            // Preload is needed because the language selector shows an item for
+            // each element in lngWhitelist, and the translation for each language
+            // is contained at each language i18n file, so we either preload it
+            // or it wouldn't work.
+            preload: ConfigServiceProvider.i18nextInitOptions.lngWhitelist || [],
+            useLocalStorage: false,
+            fallbackLng: 'en',
+            cookieName: 'lang',
+            detectLngQS: 'lang',
+            lngWhitelist: ['en', 'es'],
+            backend: {
+              loadPath: '/locales/{{lng}}.json',
+            },
+            defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
           },
-          defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
-        },
-        ConfigServiceProvider.i18nextInitOptions
-      );
+          ConfigServiceProvider.i18nextInitOptions
+        ));
 
       // Prevent site translation if configured
       if (ConfigServiceProvider.preventSiteTranslation) {
