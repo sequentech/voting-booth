@@ -74,36 +74,53 @@ angular.module('avBooth')
       scope.alreadyReloaded = null;
 
       function reloadTranslations(force) {
-        var election = (
-          scope.state === stateEnum.electionChooserScreen
-        ) ? scope.parentElection : scope.election;
+        function reloadInner() {
+          var election = (
+            scope.state === stateEnum.electionChooserScreen
+          ) ? scope.parentElection : scope.election;
 
-        if (scope.alreadyReloaded === election.id) {
-          $i18next.reInit();
-          return;
-        } else {
-          scope.alreadyReloaded = election.id;
+          if (scope.alreadyReloaded === election.id) {
+            $i18next.reInit();
+            return;
+          } else {
+            scope.alreadyReloaded = election.id;
+          }
+
+          // reset $window.i18nOverride
+          var overrides = (
+            election &&
+            election.presentation &&
+            election.presentation.i18n_override
+          ) ? election.presentation.i18n_override : null;
+
+          var languagesConf = (
+            election &&
+            election.presentation &&
+            election.presentation.i18n_languages_conf
+          ) ? election.presentation.i18n_languages_conf : null;
+
+          I18nOverride(
+            /* overrides = */ overrides,
+            /* force = */ force,
+            /* languagesConf = */ languagesConf
+          );
         }
-
-        // reset $window.i18nOverride
-        var overrides = (
-          election &&
-          election.presentation &&
-          election.presentation.i18n_override
-        ) ? election.presentation.i18n_override : null;
-
-        var languagesConf = (
-          election &&
-          election.presentation &&
-          election.presentation.i18n_languages_conf
-        ) ? election.presentation.i18n_languages_conf : null;
-
-        $i18next.options.useLocalStorage = true;
-        I18nOverride(
-          /* overrides = */ overrides,
-          /* force = */ force,
-          /* languagesConf = */ languagesConf
-        );
+        function timeoutWrap() {
+          console.log("timeoutWrap");
+          var election = (
+            scope.state === stateEnum.electionChooserScreen
+          ) ? scope.parentElection : scope.election;
+          if (election && scope.alreadyReloaded === election.id) {
+            return;
+          }
+          if (!election) {
+            console.log("timeoutWrap: delaying for election..");
+            setTimeout(timeoutWrap, 200);
+            return;
+          }
+          reloadInner();
+        }
+        timeoutWrap();
       }
 
       function updateWidth() {
