@@ -70,7 +70,7 @@ angular
             detectLngQS: 'lang',
             lngWhitelist: ['en', 'es'],
             backend: {
-              loadPath: '/locales/{{lng}}.json',
+              loadPath: '/booth/locales/{{lng}}.json',
             },
             defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
           },
