@@ -184,6 +184,7 @@ angular.module('voting-booth').run(function($http, $rootScope, ConfigService, $w
   $rootScope.$on(
     'i18nextLanguageChange',
     function () {
+      console.log("i18nextLanguageChange: lang-change, calling safeApply()");
       $rootScope.safeApply();
     }
   );

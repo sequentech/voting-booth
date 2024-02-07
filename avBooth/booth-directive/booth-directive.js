@@ -22,6 +22,7 @@ angular.module('avBooth')
     $cookies,
     $http,
     $i18next,
+    $rootScope,
     $timeout,
     $window,
     Authmethod,
@@ -80,8 +81,8 @@ angular.module('avBooth')
           ) ? scope.parentElection : scope.election;
 
           if (scope.alreadyReloaded === election.id) {
-            console.log("calling $i18next.changeLanguage($i18next.options.lng);");
-            $i18next.changeLanguage($i18next.options.lng);
+            console.log("booth-directive: broadcast i18nextLanguageChange");
+            $rootScope.$broadcast('i18nextLanguageChange', $i18next.options.lng);
             return;
           } else {
             scope.alreadyReloaded = election.id;
