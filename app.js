@@ -69,8 +69,12 @@ angular
             cookieName: 'lang',
             detectLngQS: 'lang',
             lngWhitelist: ['en', 'es'],
+            interpolation: {
+              prefix: '__',
+              suffix: '__',
+            },
             backend: {
-              loadPath: '/booth/locales/{{lng}}.json',
+              loadPath: '/booth/locales/__lng__.json',
             },
             defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
           },
@@ -177,6 +181,12 @@ angular.module('voting-booth').run(function($http, $rootScope, ConfigService, $w
       this.$apply(fn);
     }
   };
+  $rootScope.$on(
+    'i18nextLanguageChange',
+    function () {
+      $rootScope.safeApply();
+    }
+  );
 
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams) {

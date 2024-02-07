@@ -80,7 +80,8 @@ angular.module('avBooth')
           ) ? scope.parentElection : scope.election;
 
           if (scope.alreadyReloaded === election.id) {
-            $i18next.reInit();
+            console.log("calling $i18next.changeLanguage($i18next.options.lng);");
+            $i18next.changeLanguage($i18next.options.lng);
             return;
           } else {
             scope.alreadyReloaded = election.id;
