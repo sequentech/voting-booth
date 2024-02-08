@@ -49,11 +49,39 @@ angular
   .config(
     function ($i18nextProvider, ConfigServiceProvider)
     {
+      function expandObject(obj)
+      {
+        var result = {};
+        // Helper function to handle the recursion
+        function assignValue(ref, keys, value) {
+            var key = keys.shift(); // Get the current key part
+            if (keys.length === 0) {
+                // If no more keys, assign the value directly
+                ref[key] = value;
+            } else {
+                // Prepare the next level sub-object if necessary
+                if (!ref[key]) {
+                  ref[key] = {};
+                }
+                // Recurse with the next level of the key and the corresponding sub-object
+                assignValue(ref[key], keys, value);
+            }
+        }
+        // Iterate over each property in the input object
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                var keys = prop.split('.'); // Split the property by dots into parts
+                assignValue(result, keys, obj[prop]); // Use the helper to assign the value in the result object
+            }
+        }
+        return result;
+      }
+
       // note that we do not send the language: by default, it will try the language
       // supported by the web browser
       $("#no-js").hide();
       window.i18next
-        .use(window.i18nextHttpBackend)
+        .use(window.i18nextChainedBackend)
         .init(_.extend(
           {
             debug: true,
@@ -73,8 +101,42 @@ angular
               prefix: '__',
               suffix: '__',
             },
+            // Define the backends to use in the chain
             backend: {
-              loadPath: '/booth/locales/__lng__.json',
+              backends: [
+                {
+                  type: 'backend',
+                  /* use services and options */
+                  init: function(services, backendOptions, i18nextOptions) {},
+                  /* return resources */
+                  read: function(language, namespace, callback)
+                  {
+                    if (
+                      window.i18nOverride &&
+                      typeof window.i18nOverride === 'object' &&
+                      window.i18nOverride[language] &&
+                      typeof window.i18nOverride[language] === 'object'
+                    ) {
+                      var override = expandObject(window.i18nOverride[language]);
+                      callback(null, override);
+                    } else {
+                      // not found
+                      callback(true, null);
+                    }
+                  },
+                  /* save the missing translation */
+                  create: function(languages, namespace, key, fallbackValue) {}
+                },
+                window.i18nextHttpBackend, // Primary backend
+              ],
+              backendOptions: [
+                // Configuration for custom backend
+                {},
+                // Configuration for http backend
+                {
+                  loadPath: '/booth/locales/__lng__.json',
+                },
+              ]
             },
             defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
           },

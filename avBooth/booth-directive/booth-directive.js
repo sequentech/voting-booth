@@ -88,7 +88,7 @@ angular.module('avBooth')
             scope.alreadyReloaded = election.id;
           }
 
-          // reset $window.i18nOverride
+          // should we reset $window.i18nOverride?
           var overrides = (
             election &&
             election.presentation &&
