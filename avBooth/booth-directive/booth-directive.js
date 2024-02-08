@@ -121,7 +121,11 @@ angular.module('avBooth')
             return;
           }
           // call reloadInner only after i18next initialization
-          $window.i18next.on('initialized', reloadInner);
+          if ($window.i18next.isInitialized) {
+            reloadInner();
+          } else {
+            $window.i18next.on('initialized', reloadInner);
+          }
         }
         timeoutWrap();
       }
