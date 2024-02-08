@@ -120,7 +120,8 @@ angular.module('avBooth')
             setTimeout(timeoutWrap, 200);
             return;
           }
-          reloadInner();
+          // call reloadInner only after i18next initialization
+          $window.i18next.on('initialized', reloadInner);
         }
         timeoutWrap();
       }
