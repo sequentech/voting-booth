@@ -127,7 +127,7 @@ angular
                         var override = expandObject(window.i18nOverride[language]);
                         callback(null, override);
                       } else {
-                        callback(null, {});
+                        callback(null, {noop: "noop"});
                       }
                     } else {
                       // not found
