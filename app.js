@@ -117,15 +117,18 @@ angular
                   /* return resources */
                   read: function(language, namespace, callback)
                   {
-                    if (
-                      window.i18nOverride &&
-                      typeof window.i18nOverride === 'object' &&
-                      window.i18nOverride[language] &&
-                      typeof window.i18nOverride[language] === 'object' &&
-                      namespace === 'override'
-                    ) {
-                      var override = expandObject(window.i18nOverride[language]);
-                      callback(null, override);
+                    if (namespace === 'override') {
+                      if (
+                        window.i18nOverride &&
+                        typeof window.i18nOverride === 'object' &&
+                        window.i18nOverride[language] &&
+                        typeof window.i18nOverride[language] === 'object'
+                      ) {
+                        var override = expandObject(window.i18nOverride[language]);
+                        callback(null, override);
+                      } else {
+                        callback(null, {});
+                      }
                     } else {
                       // not found
                       callback(true, null);
