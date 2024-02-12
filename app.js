@@ -97,6 +97,12 @@ angular
             cookieName: 'lang',
             detectLngQS: 'lang',
             lngWhitelist: ['en', 'es'],
+            // files to load
+            ns: ['override', 'locales'],
+            // default namespace (needs no prefix on calling t)
+            defaultNS: 'override',
+            // fallback, can be a string or an array of namespaces
+            fallbackNS: 'locales',
             interpolation: {
               prefix: '__',
               suffix: '__',
@@ -115,7 +121,8 @@ angular
                       window.i18nOverride &&
                       typeof window.i18nOverride === 'object' &&
                       window.i18nOverride[language] &&
-                      typeof window.i18nOverride[language] === 'object'
+                      typeof window.i18nOverride[language] === 'object' &&
+                      namespace == 'override'
                     ) {
                       var override = expandObject(window.i18nOverride[language]);
                       callback(null, override);
@@ -134,7 +141,7 @@ angular
                 {},
                 // Configuration for http backend
                 {
-                  loadPath: '/booth/locales/__lng__.json',
+                  loadPath: '/booth/__ns__/__lng__.json',
                 },
               ]
             },
