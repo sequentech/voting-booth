@@ -122,7 +122,7 @@ angular
                       typeof window.i18nOverride === 'object' &&
                       window.i18nOverride[language] &&
                       typeof window.i18nOverride[language] === 'object' &&
-                      namespace == 'override'
+                      namespace === 'override'
                     ) {
                       var override = expandObject(window.i18nOverride[language]);
                       callback(null, override);
