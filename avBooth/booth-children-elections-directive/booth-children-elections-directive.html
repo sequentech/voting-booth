@@ -5,7 +5,7 @@
 >
     <h2 class="category-title">{{category | customI18n : 'title'}}</h2>
     <div class="category-elections-wrapper">
-        <div 
+        <section 
             ng-repeat="election in category.events" 
             class="btn-election"
             ng-disabled="election.disabled"
@@ -93,6 +93,6 @@
                 ng-click="canVoteElection(election) && click(election)"
                 ng-i18next="avBooth.electionChooserScreen.clickToVoteBtn">
             </button>
-        </div>
+        </section>
     </div>
 </section>
