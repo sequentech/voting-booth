@@ -37,7 +37,7 @@ angular.module('avBooth')
       // them to the user
       function statusUpdateFunc(status, options) {
         if (status === "sendingBallot") {
-          scope.updateTitle($i18next(
+          scope.updateTitle($i18next.t(
             "avBooth.sendingBallot",
             {percentage: options.percentageCompleted}));
           scope.stateData.ballotHash = options.ballotHash;
@@ -57,7 +57,7 @@ angular.module('avBooth')
           // on success, we first then try to submit, then once submitted we
           // show the next screen (which is the success-screen directive)
           success: function(ballotResponse) {
-            scope.updateTitle($i18next("avBooth.sendingBallot", {percentage: 100}));
+            scope.updateTitle($i18next.t("avBooth.sendingBallot", {percentage: 100}));
             scope.percentCompleted = 100;
             scope.stateData.ballotResponse = ballotResponse;
             scope.next();

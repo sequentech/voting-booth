@@ -39,7 +39,7 @@ angular.module('avBooth')
     ];
 
     scope.organization = ConfigService.organization;
-    scope.ariaDescription = $i18next("avBooth.busy.description");
+    scope.ariaDescription = $i18next.t("avBooth.busy.description");
 
     scope.stepList = [
       {

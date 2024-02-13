@@ -116,7 +116,7 @@ angular.module('avBooth')
         }[question.tally_type]();
       };
 
-      scope.editActionText = $i18next('avBooth.reviewScreen.editAction');
+      scope.editActionText = $i18next.t('avBooth.reviewScreen.editAction');
       scope.errors = {};
 
       function getErrorsChecker(checkerTypeFlag)
