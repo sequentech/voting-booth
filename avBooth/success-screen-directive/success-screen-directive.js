@@ -133,7 +133,7 @@ angular.module('avBooth')
             {
               columns: [
                 {
-                  text: $i18next('avBooth.ballotTicket.id'),
+                  text: $i18next.t('avBooth.ballotTicket.id'),
                   style: 'cell',
                   width: '40%'
                 },
@@ -171,7 +171,7 @@ angular.module('avBooth')
           {
             columns: [
               {
-                text: $i18next('avBooth.ballotTicket.tracker'),
+                text: $i18next.t('avBooth.ballotTicket.tracker'),
                 style: 'cell',
                 width: '40%'
               },
@@ -202,18 +202,18 @@ angular.module('avBooth')
                 ]
               },
               {
-                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h3 || $i18next('avBooth.ballotTicket.h3'),
+                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h3 || $i18next.t('avBooth.ballotTicket.h3'),
                 style: 'h3'
               },
               {
-                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h4 || $i18next('avBooth.ballotTicket.h4'),
+                text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__h4 || $i18next.t('avBooth.ballotTicket.h4'),
                 style: 'h4'
               },
               ballotTrackerRow,
               {
                 columns: [
                   {
-                    text: $i18next('avBooth.ballotTicket.title'),
+                    text: $i18next.t('avBooth.ballotTicket.title'),
                     style: 'cell',
                     width: '40%'
                   },
@@ -228,7 +228,7 @@ angular.module('avBooth')
               {
                 columns: [
                   {
-                    text: $i18next('avBooth.ballotTicket.voterId'),
+                    text: $i18next.t('avBooth.ballotTicket.voterId'),
                     style: 'cell',
                     width: '40%'
                   },
@@ -242,7 +242,7 @@ angular.module('avBooth')
               {
                 columns: [
                   {
-                    text: $i18next('avBooth.ballotTicket.created'),
+                    text: $i18next.t('avBooth.ballotTicket.created'),
                     style: 'cell',
                     width: '40%'
                   },
@@ -312,12 +312,12 @@ angular.module('avBooth')
               {
                 columns: [
                   {
-                    text: $i18next('avBooth.ballotTicket.link'),
+                    text: $i18next.t('avBooth.ballotTicket.link'),
                     width: '40%',
                     style: 'cell'
                   },
                   {
-                    text: $i18next('avBooth.ballotTicket.linkClickHere'),
+                    text: $i18next.t('avBooth.ballotTicket.linkClickHere'),
                     link: scope.ballotTrackerUrl,
                     width: '*',
                     style: 'link'
@@ -334,7 +334,7 @@ angular.module('avBooth')
           ) {
             docDefinition.content.push(
               {
-                text: $i18next('avBooth.ballotTicket.qrCode'),
+                text: $i18next.t('avBooth.ballotTicket.qrCode'),
                 style: 'p'
               },
               {
@@ -360,7 +360,7 @@ angular.module('avBooth')
           if (scope.isDemo) {
             docDefinition.content.push(
               {
-                text: $i18next('avBooth.ballotTicket.isDemo'),
+                text: $i18next.t('avBooth.ballotTicket.isDemo'),
                 style: 'demo'
               }
             );
@@ -426,7 +426,7 @@ angular.module('avBooth')
           var qr = QrCodeService(typeNumber, errorCorrectionLevel);
           qr.addData(scope.ballotTrackerUrl);
           qr.make();
-          scope.qrCodeImg = qr.createImgTag(6, undefined, $i18next("avBooth.qrCodeAlt"));
+          scope.qrCodeImg = qr.createImgTag(6, undefined, $i18next.t("avBooth.qrCodeAlt"));
         }
       }
 
