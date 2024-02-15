@@ -1,5 +1,6 @@
 <!-- top navbar -->
 <a href="#main-content" class="skip-link">{{ 'avBooth.skipLinks.skipToMain' | i18next }}</a>
+<a href="#action-buttons" class="skip-link">{{ 'avBooth.skipLinks.skipToActions' | i18next }}</a>
 <a href="#footer" class="skip-link">{{ 'avBooth.skipLinks.skipToFooter' | i18next }}</a>
 <div avb-common-header></div>
 <div avb-watermark></div>
@@ -177,7 +178,7 @@
   </section>
 </main>
 
-<section class="container" ng-if="!fixToBottom" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
+<section id="action-buttons" class="container" ng-if="!fixToBottom" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
   <div class="skip-question-container text-right" ng-if="showSkipQuestionButton">
     <span
       class="skip-question"
@@ -210,7 +211,7 @@
 <div avb-common-footer id="footer" ng-if="!fixToBottom"></div>
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
-  <section class="container container-fixed" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
+  <section id="action-buttons" class="container container-fixed" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
     <div class="skip-question-container text-right" ng-if="showSkipQuestionButton">
       <span
         class="skip-question"

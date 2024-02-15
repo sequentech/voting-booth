@@ -434,7 +434,8 @@
     },
     "skipLinks": {
       "skipToMain": "Saltar al contenido principal",
-      "skipToFooter": "Saltar al pie de página"
+      "skipToFooter": "Saltar al pie de página",
+      "skipToActions": "Skip to Actions"
     }
   },
   "avElection": {
