@@ -5,7 +5,7 @@
 <div avb-common-header></div>
 <div avb-watermark></div>
 
-<div class="container">
+<main class="container" id="main-content">
   <div class="sticky-top">
     <aside avb-voting-step step="confirmation" with-election-list="!!parentAuthEvent"></aside>
   </div>
@@ -98,7 +98,7 @@
   <div documentation-directive ng-if="showDocOnVoteCast">
   </div>
 
-</div>
+</main>
 
 
 <div class="container visible-xs" ng-if="!fixToBottom && showRedirectToLogin">
