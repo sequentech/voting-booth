@@ -9,12 +9,12 @@
 ></div>
 <div avb-watermark></div>
 
-<div class="container">
+<main class="container">
   <div
     class="sticky-top content"
     ng-class="{'sticky-top-alt': showAuditBtn && stateData.ballotHash}"
   >
-    <div avb-voting-step step="review" with-election-list="!!parentAuthEvent"></div>
+    <aside avb-voting-step step="review" with-election-list="!!parentAuthEvent"></aside>
   </div>
   <div class="sticky-padding"></div>
 
@@ -27,7 +27,7 @@
   </p>
 
   <div avb-review-ballot-v2></div>
-</div>
+</main>
 
 <div class="container visible-xs" ng-if="!fixToBottom && showAuditBtn">
   <div class="actions actions-extra">
