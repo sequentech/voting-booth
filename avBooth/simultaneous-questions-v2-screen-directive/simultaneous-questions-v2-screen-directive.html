@@ -40,8 +40,8 @@
     ng-bind-html="election | customI18n : 'description' | addTargetBlank">
   </p>
   <div class="notifications"></div>
-  <section class="question" ng-repeat="question in groupQuestions" aria-labelledby="question-{{ question.id }}">
-    <h2 class="question-title" id="question-{{ question.id }}" aria-level="2" ng-bind-html="question | customI18n : 'title'">
+  <section class="question" ng-repeat="question in groupQuestions" aria-labelledby="question-{{ question.index }}">
+    <h2 class="question-title" id="question-{{ question.index }}" aria-level="2" ng-bind-html="question | customI18n : 'title'">
     </h2>
     <p
       class="question-description"
