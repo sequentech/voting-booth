@@ -392,7 +392,8 @@
         "confirm": "OK"
       },
       "searchWarn": "Ballot candidates have been filtered. To view all candidates on this ballot, please disable the filter.",
-      "filterOptionsPlaceholder": "Search a Candidate"
+      "filterOptionsPlaceholder": "Search a Candidate",
+      "actionsSection": "Actions"
     },
 
     "pairwiseBeta": {

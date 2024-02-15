@@ -371,7 +371,8 @@
         "confirm": "OK"
       },
       "searchWarn": "Los candidatos de la pregunta han sido filtrados. Para ver a todos los candidatos en esta pregunta, por favor desactiva el filtro.",
-      "filterOptionsPlaceholder": "Busca un Candidato"
+      "filterOptionsPlaceholder": "Busca un Candidato",
+      "actionsSection": "Acciones"
     },
 
     "pairwiseBeta": {

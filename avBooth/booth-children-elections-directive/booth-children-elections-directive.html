@@ -1,4 +1,4 @@
-<section 
+<section
     ng-repeat="category in childrenElectionInfo.presentation.categories"
     ng-if="!category.hidden"
     class="election-category"
@@ -6,7 +6,7 @@
 >
     <h2 class="category-title">{{category | customI18n : 'title'}}</h2>
     <div class="category-elections-wrapper">
-        <section 
+        <section
             ng-repeat="election in category.events" 
             class="btn-election"
             ng-disabled="election.disabled"
