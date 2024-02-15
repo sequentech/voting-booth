@@ -1,6 +1,7 @@
-<div
+<section
   class="question-answer"
   ng-class="{'is-category-list': isCategoryList, 'read-only': readOnly()}"
+  aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
 >
   <div
     role="checkbox"
@@ -187,4 +188,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

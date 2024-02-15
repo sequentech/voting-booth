@@ -104,7 +104,7 @@
     </div>
 
     <div class="categories" ng-if="question.hasCategories">
-        <div
+        <section
           ng-repeat="category in question.categories"
           avb-simultaneous-questions-category-v2
           question="question"
@@ -115,6 +115,7 @@
           cumulative-checks="cumulativeChecks"
           write-in-text-change="updateErrors"
           is-review="false"
+          aria-label="{{ category | customI18n : 'title' }}"
           ng-class="{
             'flex-col-12': ((question.search && question.isAnyCategorySelected) || question.extra_options.answer_group_columns_size === 12),
             'flex-col-6': ((!question.search || !question.isAnyCategorySelected) && question.extra_options.answer_group_columns_size === 6),
@@ -123,7 +124,7 @@
             'empty-category': !category.title
           }"
         >
-        </div>
+        </section>
     </div>
     <div class="category-body" ng-if="!question.hasCategories">
       <div class="question-answers text-left">
