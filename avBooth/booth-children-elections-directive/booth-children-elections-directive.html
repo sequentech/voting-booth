@@ -2,7 +2,7 @@
     ng-repeat="category in childrenElectionInfo.presentation.categories"
     ng-if="!category.hidden"
     class="election-category"
-    aria-label="'avBooth.electionChooserScreen.title' | i18next"
+    aria-label="{{ 'avBooth.electionChooserScreen.title' | i18next }}"
 >
     <h2 class="category-title">{{category | customI18n : 'title'}}</h2>
     <div class="category-elections-wrapper">
