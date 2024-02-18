@@ -1,5 +1,5 @@
 <div class="category-heading-container">
-    <h3 class="category-heading">
+    <h3 class="category-heading" id="question_{{question.index}}_answer_{{category.categoryAnswer.id}}">
         {{ category | customI18n : 'title' }}
     </h3>
     <div
@@ -9,6 +9,8 @@
         <span
             class="check-title"
             tabindex="0"
+            role="checkbox"
+            aria-checked="category.categoryAnswer.selected > -1"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
             ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
         >
@@ -74,6 +76,8 @@
     >
         <span
             tabindex="0"
+            role="checkbox"
+            aria-checked="category.categoryAnswer.selected > -1"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
             ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
         >
