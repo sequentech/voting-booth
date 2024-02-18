@@ -10,7 +10,7 @@
             class="check-title"
             tabindex="0"
             role="checkbox"
-            aria-checked="category.categoryAnswer.selected > -1"
+            aria-checked="{{ category.categoryAnswer.selected > -1 }}"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
             ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
         >
@@ -77,7 +77,7 @@
         <span
             tabindex="0"
             role="checkbox"
-            aria-checked="category.categoryAnswer.selected > -1"
+            aria-checked="{{ category.categoryAnswer.selected > -1 }}"
             aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
             ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
         >
