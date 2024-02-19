@@ -1,4 +1,4 @@
-<fieldset
+<section
   class="question-answer"
   ng-class="{'is-category-list': isCategoryList, 'read-only': readOnly()}"
   aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
@@ -151,6 +151,7 @@
           tabindex="0"
           class="plurality-checkbox"
           role="checkbox"
+          aria-checked="{{answer.selected > -1 ? 'true' : 'false'}}"
           aria-labelledby="question_{{question.index}}_answer_{{answer.id}}"
           ng-if="question.tally_type === 'plurality-at-large'"
           ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItem(question, answer)"
@@ -188,4 +189,4 @@
       </div>
     </div>
   </div>
-</fieldset>
+</section>
