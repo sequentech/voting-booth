@@ -10,8 +10,9 @@
     <aside avb-voting-step step="ballot" with-election-list="!!parentAuthEvent"></aside>
   </div>
   <div class="sticky-error" ng-if="errors.length > 0">
-    <div
+    <section
       class="text-warning input-error error-list"
+      aria-label="{{ 'avBooth.simultaneousQuestions.errorsList' | i18next }}"
     >
       <div class="input-warn" ng-repeat="error in errors">
         <div class="warn-box">
@@ -25,7 +26,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 
   <h1 class="election-header">

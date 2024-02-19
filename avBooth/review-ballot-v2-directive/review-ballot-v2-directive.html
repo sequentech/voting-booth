@@ -19,9 +19,10 @@
   >
   </p>
 
-  <div
+  <section
     class="text-warning input-error error-list"
     ng-if="errors[question.index]"
+    aria-label="{{ 'avBooth.simultaneousQuestions.errorsList' | i18next }}"
   >
     <div class="input-warn" ng-repeat="error in errors[question.index]" ng-if="errors[question.index].length > 0">
       <div class="warn-box">
@@ -35,7 +36,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <div class="category-body">
     <div 
