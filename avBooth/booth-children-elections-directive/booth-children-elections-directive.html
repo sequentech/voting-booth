@@ -14,7 +14,7 @@
             ng-class="{'selected': selectedElectionId === election.event_id, 'btn-election-open': checkElectionStarted(election.electionData) && canVoteElection(election)}"
             data-election-id="{{election.event_id}}"
             ng-click="canVoteElection(election) && click(election)"
-            aria-labelledby="election-title-{{ election.event_id }}"
+            aria-label="{{ election | customI18n : 'title' }} ( {{ hasVotedElection(election) ? ('avBooth.electionChooserScreen.voted' | i18next) : ('avBooth.electionChooserScreen.notVoted' | i18next) }} )"
         >
             <div class="text-container">
                 <h3 class="election-title" id="election-title-{{ election.event_id }}">{{election | customI18n : 'title'}}</h3>
