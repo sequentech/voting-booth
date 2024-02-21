@@ -1,4 +1,6 @@
 <!-- top navbar -->
+<a href="#main-content" class="skip-link">{{ 'avBooth.skipLinks.skipToMain' | i18next }}</a>
+<a href="#footer" class="skip-link">{{ 'avBooth.skipLinks.skipToFooter' | i18next }}</a>
 <div avb-common-header></div>
 <div avb-watermark></div>
 
@@ -11,7 +13,7 @@
   </div>
 </div -->
 
-<div class="busy-gui container" ng-if="imagesPreloaded">
+<main id="main-content" class="busy-gui container" ng-if="imagesPreloaded">
   <div class="col-sm-offset-3 col-sm-6 margin-tb-15" aria-hidden="true">
     <div class="busy-img-central text-center" id="img-central">
         <div id="div-id-one">
@@ -69,6 +71,6 @@
       </div>
     </div>
   </div>
-</div>
+</main>
 
-<div avb-common-footer></div>
+<div id="footer" avb-common-footer></div>

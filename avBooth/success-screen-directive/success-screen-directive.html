@@ -1,10 +1,13 @@
 <!-- top navbar -->
+<a href="#main-content" class="skip-link">{{ 'avBooth.skipLinks.skipToMain' | i18next }}</a>
+<a href="#action-buttons" class="skip-link">{{ 'avBooth.skipLinks.skipToActions' | i18next }}</a>
+<a href="#footer" class="skip-link">{{ 'avBooth.skipLinks.skipToFooter' | i18next }}</a>
 <div avb-common-header></div>
 <div avb-watermark></div>
 
-<div class="container">
+<main class="container" id="main-content">
   <div class="sticky-top">
-    <div avb-voting-step step="confirmation" with-election-list="!!parentAuthEvent"></div>
+    <aside avb-voting-step step="confirmation" with-election-list="!!parentAuthEvent"></aside>
   </div>
 
   <div class="success-intro">
@@ -21,8 +24,8 @@
     class="ballot-tracker-container" 
     ng-if="!election.presentation.extra_options.success_screen__hide_ballot_tracker"
   >
-    <div class="ballot-id-container">
-      <h2 class="ballot-id-title hidden-xs" ng-i18next="avBooth.successScreen.ballotId"></h2>
+    <section class="ballot-id-container" aria-labelledby="ballot-id-title">
+      <h2 class="ballot-id-title hidden-xs" id="ballot-id-title" ng-i18next="avBooth.successScreen.ballotId"></h2>
       <div class="ballot-id-box">
         <i class="fa fa-check"></i>
         <a href="{{getBallotLocatorUrl()}}" target="{{getBallotLocatorTarget()}}">
@@ -31,12 +34,12 @@
         </a>
         <i class="pull-right fa fa-lg fa-question-circle" ng-click="ballotIdHelp()"></i>
       </div>
-    </div>
+    </section>
 
     
-    <div class="verify-and-links-divider">
+    <section class="verify-and-links-divider" aria-labelledby="verify-ballot-title">
       <div class="verify-container">
-        <h2 class="verify-ballot-title" ng-i18next="avBooth.successScreen.verifyBallotCastTitle"></h2>
+        <h2 class="verify-ballot-title" id="verify-ballot-title" ng-i18next="avBooth.successScreen.verifyBallotCastTitle"></h2>
         <p class="verify-ballot-description" ng-i18next="avBooth.successScreen.verifyBallotCastDescription"></p>
       </div>
       <div class="links-container">
@@ -61,7 +64,7 @@
           </span>
         </div>
       </div>
-    </div>
+    </section>
 
 
     <div 
@@ -95,7 +98,7 @@
   <div documentation-directive ng-if="showDocOnVoteCast">
   </div>
 
-</div>
+</main>
 
 
 <div class="container visible-xs" ng-if="!fixToBottom && showRedirectToLogin">
@@ -159,11 +162,11 @@
   </div>
 </div>
 
-<div avb-common-footer ng-if="!fixToBottom"></div>
+<div avb-common-footer id="footer" ng-if="!fixToBottom"></div>
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
   <div class="container container-fixed visible-xs" ng-if="showRedirectToLogin">
-    <div class="actions actions-extra">
+    <section id="action-buttons" class="actions actions-extra" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
       <button
         id="redirect-to-login-btn"
         class="btn btn-lg btn-opt-warn btn-plain col-xs-12"
@@ -175,10 +178,10 @@
           {{ election.presentation.extra_options.success_screen__redirect_to_login__text }}
         </span>
       </button>
-    </div>
+    </section>
   </div>
   <div class="container container-fixed">
-    <div class="actions">
+    <section id="action-buttons" class="actions" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
       <button
         id="print-btn"
         class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
@@ -219,7 +222,7 @@
         <span ng-i18next="avBooth.goToNextElection">
         </span>
       </button>
-    </div>
+    </section>
   </div>
-  <div avb-common-footer float="true"></div>
+  <div avb-common-footer id="footer" float="true"></div>
 </div>

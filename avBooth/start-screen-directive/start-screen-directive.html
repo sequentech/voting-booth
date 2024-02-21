@@ -1,10 +1,13 @@
 <!-- top navbar -->
+<a href="#main-content" class="skip-link">{{ 'avBooth.skipLinks.skipToMain' | i18next }}</a>
+<a href="#action-buttons" class="skip-link">{{ 'avBooth.skipLinks.skipToActions' | i18next }}</a>
+<a href="#footer" class="skip-link">{{ 'avBooth.skipLinks.skipToFooter' | i18next }}</a>
 <div avb-common-header></div>
 <div avb-watermark></div>
 
-<div class="container">
+<main class="container" id="main-content">
   <div class="sticky-top">
-    <div avb-voting-step step="ballot" with-election-list="!!parentAuthEvent"></div>
+    <aside avb-voting-step step="ballot" with-election-list="!!parentAuthEvent"></aside>
   </div>
 
   <div class="wrapper-unfixed">
@@ -103,29 +106,29 @@
       </div>
       <!-- End Mandatory TOS -->
 
-      <div class="row" ng-if="!fixToBottom">
+      <section class="row" ng-if="!fixToBottom" id="action-buttons" aria-label="{{ 'avBooth.startVoting' | i18next }}">
         <button
           class="btn btn-block btn-lg btn-success-action btn-plain"
           ng-class="{'disabled-cls': !isStartVotingEnabled(election, mandatory_tos.value)}"
           ng-i18next="avBooth.startVoting"
           ng-click="startVoting()">
         </button>
-      </div>
+      </section>
     </div>
   </div>
 
-</div>
+</main>
 
-<div avb-common-footer ng-if="!fixToBottom"></div>
+<div avb-common-footer id="footer" ng-if="!fixToBottom"></div>
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
-  <div class="row">
+  <section class="row" id="action-buttons" aria-label="{{ 'avBooth.startVoting' | i18next }}">
     <button
       class="btn btn-block btn-lg btn-success-action btn-plain"
       ng-class="{'disabled-cls': !isStartVotingEnabled(election, mandatory_tos.value)}"
       ng-i18next="avBooth.startVoting"
       ng-click="startVoting()">
     </button>
-  </div>
-  <div avb-common-footer float="true"></div>
+  </section>
+  <div avb-common-footer id="footer" float="true"></div>
 </div>
