@@ -1,11 +1,12 @@
-<div 
+<section
     ng-repeat="category in childrenElectionInfo.presentation.categories"
     ng-if="!category.hidden"
     class="election-category"
+    aria-label="{{ 'avBooth.electionChooserScreen.title' | i18next }}"
 >
     <h2 class="category-title">{{category | customI18n : 'title'}}</h2>
     <div class="category-elections-wrapper">
-        <div 
+        <section
             ng-repeat="election in category.events" 
             class="btn-election"
             ng-disabled="election.disabled"
@@ -13,9 +14,10 @@
             ng-class="{'selected': selectedElectionId === election.event_id, 'btn-election-open': checkElectionStarted(election.electionData) && canVoteElection(election)}"
             data-election-id="{{election.event_id}}"
             ng-click="canVoteElection(election) && click(election)"
+            aria-label="{{ election | customI18n : 'title' }} ( {{ hasVotedElection(election) ? ('avBooth.electionChooserScreen.voted' | i18next) : ('avBooth.electionChooserScreen.notVoted' | i18next) }} )"
         >
             <div class="text-container">
-                <h3 class="election-title">{{election | customI18n : 'title'}}</h3>
+                <h3 class="election-title" id="election-title-{{ election.event_id }}">{{election | customI18n : 'title'}}</h3>
                 <p class="election-description" ng-if="!!election.description">{{election | customI18n : 'description'}}</p>
                 <a
                     href="election/{{ election.event_id }}/public/home"
@@ -93,6 +95,6 @@
                 ng-click="canVoteElection(election) && click(election)"
                 ng-i18next="avBooth.electionChooserScreen.clickToVoteBtn">
             </button>
-        </div>
+        </section>
     </div>
-</div>
+</section>

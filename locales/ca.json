@@ -397,6 +397,10 @@
         "body": "Benvingut a la cabina de votació, aquesta pantalla mostra la llista de les eleccions en les quals pots emetre el teu vot. Les eleccions que apareixen en aquesta llista poden estar obertes a votació, programades o tancades. Només podràs accedir a la votació si el període de votació està obert. En el cas que una elecció estigui tancada i el seu administrador electoral hagi publicat el resultat, veuràs un botó \"Resultat electoral\" que et portarà a la pàgina pública de resultats.",
         "confirm": "D'acord"
       }
+    },
+    "skipLinks": {
+      "skipToMain": "Saltar al contingut principal",
+      "skipToFooter": "Saltar al peu de pàgina"
     }
   },
   "avElection": {

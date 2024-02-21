@@ -1,14 +1,18 @@
 <!-- top navbar -->
+<a href="#main-content" class="skip-link">{{ 'avBooth.skipLinks.skipToMain' | i18next }}</a>
+<a href="#action-buttons" class="skip-link">{{ 'avBooth.skipLinks.skipToActions' | i18next }}</a>
+<a href="#footer" class="skip-link">{{ 'avBooth.skipLinks.skipToFooter' | i18next }}</a>
 <div avb-common-header></div>
 <div avb-watermark></div>
 
-<div class="container election-container">
+<main class="container election-container" id="main-content">
   <div class="sticky-top">
-    <div avb-voting-step step="ballot" with-election-list="!!parentAuthEvent"></div>
+    <aside avb-voting-step step="ballot" with-election-list="!!parentAuthEvent"></aside>
   </div>
   <div class="sticky-error" ng-if="errors.length > 0">
-    <div
+    <section
       class="text-warning input-error error-list"
+      aria-label="{{ 'avBooth.simultaneousQuestions.errorsList' | i18next }}"
     >
       <div class="input-warn" ng-repeat="error in errors">
         <div class="warn-box">
@@ -22,7 +26,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 
   <h1 class="election-header">
@@ -38,8 +42,8 @@
     ng-bind-html="election | customI18n : 'description' | addTargetBlank">
   </p>
   <div class="notifications"></div>
-  <div class="question" ng-repeat="question in groupQuestions">
-    <h2 class="question-title" aria-level="2" ng-bind-html="question | customI18n : 'title'">
+  <section class="question" ng-repeat="question in groupQuestions" aria-labelledby="question-{{ question.index }}">
+    <h2 class="question-title" id="question-{{ question.index }}" aria-level="2" ng-bind-html="question | customI18n : 'title'">
     </h2>
     <p
       class="question-description"
@@ -102,7 +106,7 @@
     </div>
 
     <div class="categories" ng-if="question.hasCategories">
-        <div
+        <section
           ng-repeat="category in question.categories"
           avb-simultaneous-questions-category-v2
           question="question"
@@ -113,6 +117,7 @@
           cumulative-checks="cumulativeChecks"
           write-in-text-change="updateErrors"
           is-review="false"
+          aria-label="{{ category | customI18n : 'title' }}"
           ng-class="{
             'flex-col-12': ((question.search && question.isAnyCategorySelected) || question.extra_options.answer_group_columns_size === 12),
             'flex-col-6': ((!question.search || !question.isAnyCategorySelected) && question.extra_options.answer_group_columns_size === 6),
@@ -121,7 +126,7 @@
             'empty-category': !category.title
           }"
         >
-        </div>
+        </section>
     </div>
     <div class="category-body" ng-if="!question.hasCategories">
       <div class="question-answers text-left">
@@ -171,10 +176,10 @@
 
     <!-- QUESTION OPTIONS END -->
 
-  </div>
-</div>
+  </section>
+</main>
 
-<div class="container" ng-if="!fixToBottom">
+<section id="action-buttons" class="container" ng-if="!fixToBottom" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
   <div class="skip-question-container text-right" ng-if="showSkipQuestionButton">
     <span
       class="skip-question"
@@ -202,12 +207,12 @@
       </span>
     </button>
   </div>
-</div>
+</section>
 
-<div avb-common-footer ng-if="!fixToBottom"></div>
+<div avb-common-footer id="footer" ng-if="!fixToBottom"></div>
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
-  <div class="container container-fixed">
+  <section id="action-buttons" class="container container-fixed" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
     <div class="skip-question-container text-right" ng-if="showSkipQuestionButton">
       <span
         class="skip-question"
@@ -242,6 +247,6 @@
         <i class="fa fa-fw fa-lg fa-caret-down"></i>
       </div>
     </div>
-  </div>
-  <div avb-common-footer float="true"></div>
+  </section>
+  <div avb-common-footer id="footer" float="true"></div>
 </div>
