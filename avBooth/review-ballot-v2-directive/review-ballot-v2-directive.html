@@ -1,12 +1,12 @@
-<div
+<section
   class="question"
   ng-repeat="question in election.questions"
   ng-if="!question.disabled && question.disabled !== true"
-  aria-label="{{ editActionText }}">
+  aria-labelledby="question-{{ question.index }}">
 
   <!-- title -->
   <div class="title-container">
-    <h1 aria-level="2" class="text-brand-success question-title">
+    <h1 aria-level="2" class="text-brand-success question-title" id="question-{{ question.index }}">
       <span>{{$index + 1}}.</span>
       <span class="question-title title-text" ng-bind-html="question | customI18n : 'title'"></span>
     </h1>
@@ -19,9 +19,10 @@
   >
   </p>
 
-  <div
+  <section
     class="text-warning input-error error-list"
     ng-if="errors[question.index]"
+    aria-label="{{ 'avBooth.simultaneousQuestions.errorsList' | i18next }}"
   >
     <div class="input-warn" ng-repeat="error in errors[question.index]" ng-if="errors[question.index].length > 0">
       <div class="warn-box">
@@ -35,7 +36,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <div class="category-body">
     <div 
@@ -60,7 +61,7 @@
         </div>
       </div>
       <div class="categories" ng-if="question.hasCategories">
-          <div
+          <section
             ng-repeat="category in question.categories"
             ng-if="(category.answers | avbSelectedOptions).length > 0 || category.categoryAnswer.selected > -1"
             avb-simultaneous-questions-category-v2
@@ -70,6 +71,7 @@
             toggle-select-item-cumulative="toggleSelectItemCumulative"
             cumulative-checks="cumulativeChecks"
             is-review="true"
+            aria-label="{{ category | customI18n : 'title' }}"
             ng-class="{
               'flex-col-12': (question.extra_options.answer_group_columns_size === 12),
               'flex-col-6': (question.extra_options.answer_group_columns_size === 6),
@@ -78,7 +80,7 @@
               'empty-category': !category.title
             }"
           >
-          </div>
+          </section>
       </div>
       <div 
         ng-if="!question.hasCategories"
@@ -167,4 +169,4 @@
       ng-i18next="avBooth.emptyAnswer">
     </li>
   </ol>
-</div>
+</section>

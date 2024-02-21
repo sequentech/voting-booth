@@ -1,4 +1,7 @@
 <!-- top navbar -->
+<a href="#main-content" class="skip-link">{{ 'avBooth.skipLinks.skipToMain' | i18next }}</a>
+<a href="#action-buttons" class="skip-link">{{ 'avBooth.skipLinks.skipToActions' | i18next }}</a>
+<a href="#footer" class="skip-link">{{ 'avBooth.skipLinks.skipToFooter' | i18next }}</a>
 <div avb-common-header
   ballot-hash="{{ showAuditBtn && stateData.ballotHash }}"
   ng-class="{'hash-margin': showAuditBtn && stateData.ballotHash}"
@@ -11,10 +14,10 @@
     class="sticky-top content"
     ng-class="{'sticky-top-alt': showAuditBtn && stateData.ballotHash}"
   >
-    <div avb-voting-step step="audit" with-election-list="!!parentAuthEvent"></div>
+    <aside avb-voting-step step="audit" with-election-list="!!parentAuthEvent"></aside>
   </div>
   <div class="sticky-padding"></div>
-  <div class="content avb-content">
+  <main class="content avb-content" id="main-content">
       <div class="row">
         <div class="col-xs-12">
           <h1 class="text-left audit-title">
@@ -60,11 +63,11 @@
           </div>
         </div>
       </div>
-  </div>
+  </main>
 </div>
 
 <div class="container" ng-if="!fixToBottom">
-  <div class="actions">
+  <section id="action-buttons" class="actions" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
     <button
       id="print-btn"
       class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
@@ -82,14 +85,14 @@
         <i class="fa fa-chevron-right"></i>
       </span>
     </button>
-  </div>
+  </section>
 </div>
 
-<div avb-common-footer ng-if="!fixToBottom"></div>
+<div avb-common-footer id="footer" ng-if="!fixToBottom"></div>
 
 <div class="hidden" ng-cloak av-affix-bottom ng-if="fixToBottom">
   <div class="container container-fixed">
-    <div class="actions">
+    <section id="action-buttons" class="actions" aria-label="{{ 'avBooth.simultaneousQuestions.actionsSection' | i18next }}">
       <button
         id="print-btn"
         class="btn btn-lg btn-opt-action btn-plain col-xs-6 col-sm-4"
@@ -107,7 +110,7 @@
           <i class="fa fa-chevron-right"></i>
         </span>
       </button>
-    </div>
+    </section>
   </div>
-  <div avb-common-footer float="true"></div>
+  <div avb-common-footer id="footer" float="true"></div>
 </div>
