@@ -137,7 +137,11 @@ angular.module('avUi')
               },
               validator: function (question) 
               {
-                if (!!question.extra_options.force_allow_blank_vote)
+                if (!question.extra_options || 
+                  !!question.extra_options.force_allow_blank_vote ||
+                  (checkerTypeFlag === "show-stoppers" &&
+                  question.extra_options.invalid_vote_policy !== 'not-allowed')
+                )
                 {
                   return true;
                 }
@@ -370,8 +374,8 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins ||
-                  checkerTypeFlag === "show-stoppers" ||
-                  question.extra_options.invalid_vote_policy === 'allowed'
+                  (checkerTypeFlag === "show-stoppers" &&
+                  question.extra_options.invalid_vote_policy !== 'not-allowed')
                 ) {
                   return true;
                 }
@@ -427,8 +431,8 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins ||
-                  checkerTypeFlag === "show-stoppers" ||
-                  question.extra_options.invalid_vote_policy === 'allowed'
+                  (checkerTypeFlag === "show-stoppers" &&
+                  question.extra_options.invalid_vote_policy !== 'not-allowed')
                 ) {
                   return true;
                 }
@@ -482,7 +486,8 @@ angular.module('avUi')
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
                   ) ||
-                  checkerTypeFlag === "show-stoppers" ||
+                  (checkerTypeFlag === "show-stoppers" &&
+                  question.extra_options.invalid_vote_policy !== 'not-allowed') ||
                   !question.extra_options ||
                   !question.extra_options.allow_writeins
                 ) 
