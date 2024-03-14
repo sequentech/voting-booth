@@ -138,9 +138,8 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (!question.extra_options || 
-                  !!question.extra_options.force_allow_blank_vote ||
-                  (checkerTypeFlag === "show-stoppers" &&
-                  question.extra_options.invalid_vote_policy !== 'not-allowed')
+                  question.extra_options.invalid_vote_policy === 'allowed' ||
+                  !!question.extra_options.force_allow_blank_vote
                 )
                 {
                   return true;
@@ -201,6 +200,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' ||
                   service.numSelectedOptions(question, invalidVoteAnswer) === 0 ||
                   (
@@ -239,6 +239,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' || 
                   (
                     question.invalidVoteAnswer && 
@@ -275,6 +276,7 @@ angular.module('avUi')
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
                   ) ||
+                  !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' || 
                   (
                     (
@@ -374,6 +376,7 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins ||
+                  question.extra_options.invalid_vote_policy === 'allowed' ||
                   (checkerTypeFlag === "show-stoppers" &&
                   question.extra_options.invalid_vote_policy !== 'not-allowed')
                 ) {
@@ -431,6 +434,7 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins ||
+                  question.extra_options.invalid_vote_policy === 'allowed' ||
                   (checkerTypeFlag === "show-stoppers" &&
                   question.extra_options.invalid_vote_policy !== 'not-allowed')
                 ) {
@@ -486,6 +490,8 @@ angular.module('avUi')
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
                   ) ||
+                  !question.extra_options ||
+                  question.extra_options.invalid_vote_policy === 'allowed' ||
                   (checkerTypeFlag === "show-stoppers" &&
                   question.extra_options.invalid_vote_policy !== 'not-allowed') ||
                   !question.extra_options ||
@@ -527,9 +533,12 @@ angular.module('avUi')
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
                   ) ||
-                  checkerTypeFlag === "show-stoppers" ||
                   !question.extra_options ||
-                  !question.extra_options.allow_writeins
+                  !question.extra_options.allow_writeins ||
+                  question.extra_options.invalid_vote_policy === 'allowed' || (
+                    checkerTypeFlag === "show-stoppers" &&
+                    question.extra_options.invalid_vote_policy !== 'not-allowed'
+                  )
                 ) 
                 {
                   return true;
