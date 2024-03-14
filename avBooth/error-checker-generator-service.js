@@ -370,7 +370,8 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins ||
-                  checkerTypeFlag === "show-stoppers"
+                  checkerTypeFlag === "show-stoppers" ||
+                  question.extra_options.invalid_vote_policy === 'allowed'
                 ) {
                   return true;
                 }
@@ -426,7 +427,8 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins ||
-                  checkerTypeFlag === "show-stoppers"
+                  checkerTypeFlag === "show-stoppers" ||
+                  question.extra_options.invalid_vote_policy === 'allowed'
                 ) {
                   return true;
                 }
