@@ -499,8 +499,10 @@ angular.module('avUi')
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
                   ) ||
-                  !question.extra_options ||
-                  question.extra_options.invalid_vote_policy === 'allowed' ||
+                  !question.extra_options || (
+                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    checkerTypeFlag !== "soft"
+                  ) ||
                   (checkerTypeFlag === "show-stoppers" &&
                   question.extra_options.invalid_vote_policy !== 'not-allowed') ||
                   !question.extra_options ||
