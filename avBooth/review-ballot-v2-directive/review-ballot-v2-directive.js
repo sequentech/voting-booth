@@ -24,8 +24,7 @@ angular.module('avBooth')
   .directive('avbReviewBallotV2', function(
     CheckerService,
     ErrorCheckerGeneratorService,
-    $i18next,
-    $filter
+    $i18next
   )
   {
     var link = function(scope, element, attrs)
@@ -148,8 +147,6 @@ angular.module('avBooth')
                 );
             }
           );
-          var selectedAnswers = $filter('avbSelectedOptions')(question.answers);
-          console.log("selectedAnswers " + selectedAnswers.length);
         }
       );
       /**
