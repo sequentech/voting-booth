@@ -7,7 +7,7 @@
   <!-- title -->
   <div class="title-container">
     <h1 aria-level="2" class="text-brand-success question-title" id="question-{{ question.index }}">
-      <span>{{$index + 1}}.</span>
+      <span class="title-numeration">{{$index + 1}}.</span>
       <span class="question-title title-text" ng-bind-html="question | customI18n : 'title'"></span>
     </h1>
   </div>
