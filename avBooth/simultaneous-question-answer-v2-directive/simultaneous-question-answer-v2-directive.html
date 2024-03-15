@@ -114,6 +114,8 @@
               ng-model="field.value"
               ng-click="$event.stopPropagation()"
               ng-keydown="$event.stopPropagation()"
+              minlength={{field.min}}
+              maxlength={{field.max}}
             />
             <div
               class="write-in-help"

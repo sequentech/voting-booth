@@ -57,6 +57,10 @@
       color: black;
       height: unset;
       background-color: inherit;
+
+      &:invalid {
+        border-color: @error-primary-color;
+      }
     }
 
     .write-in-extra-field-input.form-control[readonly] {
