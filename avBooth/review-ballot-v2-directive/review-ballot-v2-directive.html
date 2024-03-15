@@ -84,7 +84,7 @@
       </div>
       <div 
         ng-if="!question.hasCategories"
-        ng-repeat="answer in question.answers | avbSelectedOptions"
+        ng-repeat="answer in (question.answers | avbSelectedOptions)"
         class="question-answer-wrapper"
         class="col-xs-12"
       >
@@ -140,7 +140,7 @@
     ng-if="!question.isPairWise && mapQuestion(question).ordered"
   >
     <li
-      ng-repeat="answer in question.answers | avbSelectedOptions"
+      ng-repeat="answer in (question.answers | avbSelectedOptions)"
       ng-if="!question.invalidVoteAnswer || answer.id !== question.invalidVoteAnswer.id"
       ng-class="{'striked-text': markedAsInvalid(question)}"
       class="animate-repeat selected-answer">
