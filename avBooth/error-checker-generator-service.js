@@ -370,7 +370,7 @@ angular.module('avUi')
                   });
                 return {
                   max: foundField && foundField.max,
-                  name: foundField && ($filter('customI18n')(foundField, 'placeholder') || foundField.id),
+                  name: foundField && ($filter('customI18n')(foundField, 'label') || $filter('customI18n')(foundField, 'placeholder') || foundField.id),
                   question_id: question.index
                 };
               },
@@ -431,7 +431,7 @@ angular.module('avUi')
 
                 return {
                   min: foundField && foundField.min,
-                  name: foundField && ($filter('customI18n')(foundField, 'placeholder') || foundField.id),
+                  name: foundField && ($filter('customI18n')(foundField, 'label') || $filter('customI18n')(foundField, 'placeholder') || foundField.id),
                   question_id: question.index
                 };
               },
