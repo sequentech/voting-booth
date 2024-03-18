@@ -106,6 +106,7 @@
               type="text"
               ng-readonly="!!hideCheck()"
               class="form-control write-in-extra-field-input"
+              ng-class="{'invalid': (field.value && field.min && field.value.length < field.min) || (field.value && field.max && field.value.length > field.max)}"
               autocomplete="off"
               id="question_{{question.index}}_answer_{{answer.id}}_{{field.id}}"
               placeholder="{{field | customI18n: 'placeholder'}}"
@@ -114,8 +115,6 @@
               ng-model="field.value"
               ng-click="$event.stopPropagation()"
               ng-keydown="$event.stopPropagation()"
-              minlength={{field.min}}
-              maxlength={{field.max}}
             />
             <div
               class="write-in-help"
