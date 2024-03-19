@@ -658,7 +658,7 @@ angular.module('avBooth')
             onError: function (errorKey, errorData) 
             {
               errorData.interpolation = {'escapeValue': false};
-              scope.errors.push({
+              errors.push({
                 data: errorData,
                 key: errorKey,
                 translation: $i18next.t(errorKey, errorData)
