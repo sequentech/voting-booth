@@ -28,6 +28,7 @@ angular.module('avBooth')
       $modal,
       $cookies,
       $window,
+      $i18next,
       ConfigService,
       CheckerService,
       ErrorCheckerGeneratorService,
@@ -118,9 +119,11 @@ angular.module('avBooth')
             data: scope.election,
             onError: function (errorKey, errorData) 
             {
+              errorData.interpolation = {'escapeValue': false};
               scope.errors.push({
                 data: errorData,
-                key: errorKey
+                key: errorKey,
+                translation: $i18next.t(errorKey, errorData)
               });
             }
           });
