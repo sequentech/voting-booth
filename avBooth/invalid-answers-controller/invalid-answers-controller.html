@@ -40,10 +40,17 @@
       <ul ng-if="data.errors.length > 0">
         <li
           class="error"
-          ng-repeat="error in data.errors"
-          data-i18n="{{error.data}}"
-          ng-i18next>
-          [html:i18next]({{error.data}}){{error.key}}
+          ng-repeat="error in data.errors">
+          <span
+            ng-if="!error.translation"
+            ng-i18next>
+            [html:i18next]({{error.data}}){{error.key}}
+          </span>
+          <span
+            ng-if="error.translation"
+            ng-bind-html="error.translation">
+          </span>
+          
         </li>
       </ul>
     </p>
