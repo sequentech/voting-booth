@@ -137,7 +137,13 @@ angular.module('avUi')
               },
               validator: function (question) 
               {
-                if (!!question.extra_options.force_allow_blank_vote)
+                if (!question.extra_options || 
+                  (
+                    checkerTypeFlag !== "soft" &&
+                    question.extra_options.invalid_vote_policy === 'allowed'
+                  ) ||
+                  !!question.extra_options.force_allow_blank_vote
+                )
                 {
                   return true;
                 }
@@ -197,6 +203,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' ||
                   service.numSelectedOptions(question, invalidVoteAnswer) === 0 ||
                   (
@@ -235,6 +242,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' || 
                   (
                     question.invalidVoteAnswer && 
@@ -271,6 +279,7 @@ angular.module('avUi')
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
                   ) ||
+                  !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' || 
                   (
                     (
@@ -361,7 +370,7 @@ angular.module('avUi')
                   });
                 return {
                   max: foundField && foundField.max,
-                  name: foundField && ($filter('customI18n')(foundField, 'placeholder') || foundField.id),
+                  name: foundField && ($filter('customI18n')(foundField, 'label') || $filter('customI18n')(foundField, 'placeholder') || foundField.id),
                   question_id: question.index
                 };
               },
@@ -369,7 +378,13 @@ angular.module('avUi')
               {
                 if (
                   !question.extra_options ||
-                  !question.extra_options.allow_writeins
+                  !question.extra_options.allow_writeins || (
+                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    checkerTypeFlag !== "soft"
+                  ) || (
+                    checkerTypeFlag === "show-stoppers" &&
+                    question.extra_options.invalid_vote_policy !== 'not-allowed'
+                  )
                 ) {
                   return true;
                 }
@@ -416,7 +431,7 @@ angular.module('avUi')
 
                 return {
                   min: foundField && foundField.min,
-                  name: foundField && ($filter('customI18n')(foundField, 'placeholder') || foundField.id),
+                  name: foundField && ($filter('customI18n')(foundField, 'label') || $filter('customI18n')(foundField, 'placeholder') || foundField.id),
                   question_id: question.index
                 };
               },
@@ -424,7 +439,13 @@ angular.module('avUi')
               {
                 if (
                   !question.extra_options ||
-                  !question.extra_options.allow_writeins
+                  !question.extra_options.allow_writeins || (
+                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    checkerTypeFlag !== "soft"
+                  ) || (
+                    checkerTypeFlag === "show-stoppers" &&
+                    question.extra_options.invalid_vote_policy !== 'not-allowed'
+                  )
                 ) {
                   return true;
                 }
@@ -478,7 +499,12 @@ angular.module('avUi')
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
                   ) ||
-                  checkerTypeFlag === "show-stoppers" ||
+                  !question.extra_options || (
+                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    checkerTypeFlag !== "soft"
+                  ) ||
+                  (checkerTypeFlag === "show-stoppers" &&
+                  question.extra_options.invalid_vote_policy !== 'not-allowed') ||
                   !question.extra_options ||
                   !question.extra_options.allow_writeins
                 ) 
@@ -518,9 +544,14 @@ angular.module('avUi')
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
                   ) ||
-                  checkerTypeFlag === "show-stoppers" ||
                   !question.extra_options ||
-                  !question.extra_options.allow_writeins
+                  !question.extra_options.allow_writeins || (
+                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    checkerTypeFlag !== "soft"
+                  ) || (
+                    checkerTypeFlag === "show-stoppers" &&
+                    question.extra_options.invalid_vote_policy !== 'not-allowed'
+                  )
                 ) 
                 {
                   return true;

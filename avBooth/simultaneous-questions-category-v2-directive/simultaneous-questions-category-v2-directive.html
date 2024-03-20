@@ -48,7 +48,7 @@
         </div>
         <div
             ng-if="isReview"
-            ng-repeat="answer in category.answers | avbSelectedOptions"
+            ng-repeat="answer in (category.answers | avbSelectedOptions)"
             class="question-answer-wrapper"
             ng-class="{
               'flex-col-12': (question.extra_options.answer_columns_size === 12),

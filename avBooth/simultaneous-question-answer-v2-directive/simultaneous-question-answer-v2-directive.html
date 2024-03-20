@@ -28,7 +28,7 @@
 
       <!-- show answer texts -->
       <div 
-        ng-if="!isWriteIn" 
+        ng-if="!isWriteIn || !!isBlankVoteAnswer" 
         class="vertilize-col vert-align-top answer-texts"
       >
         <span
@@ -71,7 +71,7 @@
 
       <!-- show write-in text input if applicable -->
       <div 
-        ng-if="isWriteIn" 
+        ng-if="isWriteIn && !isBlankVoteAnswer" 
         class="vertilize-col answer-texts write-in"
         ng-class="{'has-warning': (question.writeInBytesLeft.bytesLeft >= 0 && question.writeInBytesLeft.bytesLeft < 10), 'has-error': question.writeInBytesLeft.bytesLeft < 0, 'text-left': !!hideCheck()}"
       >
@@ -106,6 +106,7 @@
               type="text"
               ng-readonly="!!hideCheck()"
               class="form-control write-in-extra-field-input"
+              ng-class="{'invalid': (field.value && field.min && field.value.length < field.min) || (field.value && field.max && field.value.length > field.max)}"
               autocomplete="off"
               id="question_{{question.index}}_answer_{{answer.id}}_{{field.id}}"
               placeholder="{{field | customI18n: 'placeholder'}}"
