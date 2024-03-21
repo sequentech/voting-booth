@@ -40,7 +40,7 @@
         <span
           id="question_{{question.index}}_answer_blank"
           ng-if="!!isBlankVoteAnswer"
-          class="answer-text"
+          class="answer-text answer-blank"
           ng-i18next="avBooth.emptyAnswer"
         ></span>
         <p
@@ -133,7 +133,7 @@
 
         <span
           id="question_{{question.index}}_answer_blank"
-          class="answer-text"
+          class="answer-text answer-blank"
           ng-if="!!hideCheck() && (!isWriteIn || showWriteInString)"
         >{{answer | customI18n : 'text'}}</span>
         <div 
