@@ -140,7 +140,7 @@ angular.module('avUi')
                 if (!question.extra_options || 
                   (
                     checkerTypeFlag !== "soft" &&
-                    question.extra_options.invalid_vote_policy === 'allowed'
+                    ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy)
                   ) ||
                   !!question.extra_options.force_allow_blank_vote
                 )
@@ -209,7 +209,7 @@ angular.module('avUi')
               {
                 if (
                   !question.extra_options ||
-                  question.extra_options.invalid_vote_policy === 'allowed' ||
+                  ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) ||
                   service.numSelectedOptions(question, invalidVoteAnswer) === 0 ||
                   (
                     question.invalidVoteAnswer && 
@@ -248,7 +248,7 @@ angular.module('avUi')
               {
                 if (
                   !question.extra_options ||
-                  question.extra_options.invalid_vote_policy === 'allowed' || 
+                  ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) || 
                   (
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
@@ -285,7 +285,7 @@ angular.module('avUi')
                     question.invalidVoteAnswer.selected > -1
                   ) ||
                   !question.extra_options ||
-                  question.extra_options.invalid_vote_policy === 'allowed' || 
+                  ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) || 
                   (
                     (
                       question.extra_options.invalid_vote_policy === 'warn' ||
@@ -384,7 +384,7 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins || (
-                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) &&
                     checkerTypeFlag !== "soft"
                   ) || (
                     checkerTypeFlag === "show-stoppers" &&
@@ -445,7 +445,7 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins || (
-                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) &&
                     checkerTypeFlag !== "soft"
                   ) || (
                     checkerTypeFlag === "show-stoppers" &&
@@ -505,7 +505,7 @@ angular.module('avUi')
                     question.invalidVoteAnswer.selected > -1
                   ) ||
                   !question.extra_options || (
-                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) &&
                     checkerTypeFlag !== "soft"
                   ) ||
                   (checkerTypeFlag === "show-stoppers" &&
@@ -551,7 +551,7 @@ angular.module('avUi')
                   ) ||
                   !question.extra_options ||
                   !question.extra_options.allow_writeins || (
-                    question.extra_options.invalid_vote_policy === 'allowed' &&
+                    ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) &&
                     checkerTypeFlag !== "soft"
                   ) || (
                     checkerTypeFlag === "show-stoppers" &&
@@ -597,7 +597,7 @@ angular.module('avUi')
                   ) ||
                   question.extra_options.enable_panachage === undefined ||
                   question.extra_options.enable_panachage === true ||
-                  question.extra_options.invalid_vote_policy === 'allowed' || 
+                  ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) || 
                   (
                     (
                       question.extra_options.invalid_vote_policy === 'warn' ||
