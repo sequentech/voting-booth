@@ -182,7 +182,7 @@ angular.module('avUi')
                 return !(
                   ((
                     (checkerTypeFlag === "normal" || checkerTypeFlag === "soft") &&
-                    ["warn", "warn-invalid-implicit-and-explicit", "warn-explicit-not-allowed", "not-allowed"].includes(question.extra_options.invalid_vote_policy) 
+                    ["warn-invalid-implicit-and-explicit", "warn-explicit-not-allowed", "not-allowed"].includes(question.extra_options.invalid_vote_policy) 
                   ) || (
                     checkerTypeFlag === "show-stoppers" &&
                     ["warn-explicit-not-allowed", "not-allowed"].includes(question.extra_options.invalid_vote_policy)
