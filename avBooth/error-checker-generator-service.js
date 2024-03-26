@@ -180,8 +180,13 @@ angular.module('avUi')
               validator: function (question)
               {
                 return !(
-                  (checkerTypeFlag === "normal" || checkerTypeFlag === "soft") &&
-                  question.extra_options.invalid_vote_policy === "warn-invalid-implicit-and-explicit" &&
+                  ((
+                    (checkerTypeFlag === "normal" || checkerTypeFlag === "soft") &&
+                    ["warn", "warn-invalid-implicit-and-explicit", "warn-explicit-not-allowed"].includes(question.extra_options.invalid_vote_policy) 
+                  ) || (
+                    checkerTypeFlag === "show-stoppers" &&
+                    ["warn-explicit-not-allowed", "not-allowed"].includes(question.extra_options.invalid_vote_policy)
+                  )) &&
                   question.invalidVoteAnswer &&
                   question.invalidVoteAnswer.selected > -1
                 );
