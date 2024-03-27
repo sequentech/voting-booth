@@ -124,10 +124,7 @@ angular.module('avUi')
     
     service.getErrorChecker =  function (checkerTypeFlag, invalidVoteAnswer)
     {
-      if (!invalidVoteAnswer) {
-        invalidVoteAnswer = question.invalidVoteAnswer;
-      }
-
+      var originalInvalid = invalidVoteAnswer;
       return [
         {
           check: "array-key-group-chain",
@@ -141,6 +138,7 @@ angular.module('avUi')
        
               appendOnErrorLambda: function (question)
               {
+                invalidVoteAnswer = originalInvalid || question.invalidVoteAnswer;
                 return {
                   min: question.min,
                   num_selected: service.numSelectedOptions(question, invalidVoteAnswer),
@@ -149,6 +147,7 @@ angular.module('avUi')
               },
               validator: function (question) 
               {
+                invalidVoteAnswer = originalInvalid || question.invalidVoteAnswer;
                 if (!question.extra_options || 
                   (
                     checkerTypeFlag !== "soft" &&
@@ -209,6 +208,7 @@ angular.module('avUi')
               check: "lambda",
               appendOnErrorLambda: function (question) 
               {
+                invalidVoteAnswer = originalInvalid || question.invalidVoteAnswer;
                 return {
                   min: question.min,
                   num_selected: service.numSelectedOptions(question, invalidVoteAnswer),
@@ -217,6 +217,7 @@ angular.module('avUi')
               },
               validator: function (question) 
               {
+                invalidVoteAnswer = originalInvalid || question.invalidVoteAnswer;
                 if (
                   (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
@@ -249,6 +250,7 @@ angular.module('avUi')
               check: "lambda",
               appendOnErrorLambda: function (question) 
               {
+                invalidVoteAnswer = originalInvalid || question.invalidVoteAnswer;
                 return {
                   max: question.max,
                   num_selected: service.numSelectedOptions(question, invalidVoteAnswer),
@@ -257,6 +259,7 @@ angular.module('avUi')
               },
               validator: function (question) 
               {
+                invalidVoteAnswer = originalInvalid || question.invalidVoteAnswer;
                 if (
                   (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
