@@ -40,6 +40,14 @@ angular.module('avUi')
      };
 
     /**
+     * @returns true if explicit invalid option is selected
+     */
+    service.isInvalidExplicit = function (question) {
+      return question.invalidVoteAnswer && 
+      (question.invalidVoteAnswer.selected > -1 || question.invalidVoteAnswer.isSelected === true);
+    };
+
+    /**
      * @returns number of selected options in a question
      */
     service.numSelectedOptions = function (question, invalidVoteAnswer)
@@ -148,6 +156,7 @@ angular.module('avUi')
                   return true;
                 }
                 return (
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   (
                     checkerTypeFlag === "soft" && 
                     !question.deselectedAtLeastOnce
@@ -205,6 +214,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' ||
                   service.numSelectedOptions(question, invalidVoteAnswer) === 0 ||
@@ -244,6 +254,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' || 
                   (
@@ -277,6 +288,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   (
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
@@ -332,10 +344,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
-                  (
-                    question.invalidVoteAnswer && 
-                    question.invalidVoteAnswer.selected > -1
-                  ) ||
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
                   !question.extra_options.allow_writeins
                 ) {
@@ -379,6 +388,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
                   !question.extra_options.allow_writeins || (
                     question.extra_options.invalid_vote_policy === 'allowed' &&
@@ -440,6 +450,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
                   !question.extra_options.allow_writeins || (
                     question.extra_options.invalid_vote_policy === 'allowed' &&
@@ -497,6 +508,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   (
                     question.invalidVoteAnswer && 
                     question.invalidVoteAnswer.selected > -1
@@ -542,10 +554,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
-                  (
-                    question.invalidVoteAnswer && 
-                    question.invalidVoteAnswer.selected > -1
-                  ) ||
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
                   !question.extra_options.allow_writeins || (
                     question.extra_options.invalid_vote_policy === 'allowed' &&
@@ -588,10 +597,7 @@ angular.module('avUi')
               validator: function (question) 
               {
                 if (
-                  (
-                    question.invalidVoteAnswer && 
-                    question.invalidVoteAnswer.selected > -1
-                  ) ||
+                  (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   question.extra_options.enable_panachage === undefined ||
                   question.extra_options.enable_panachage === true ||
                   question.extra_options.invalid_vote_policy === 'allowed' || 
@@ -636,7 +642,8 @@ angular.module('avUi')
               },
               validator: function (question)
               {
-                return !(question.layout === "accordion" && service.numSelectedOptions(question) !== question.max &&
+                return (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
+                  !(question.layout === "accordion" && service.numSelectedOptions(question) !== question.max &&
                   service.numTaggedSelectedOptions(question) === service.getTagMax(question));
               },
               postfix: "-max-tag"
@@ -653,7 +660,8 @@ angular.module('avUi')
               },
               validator: function (question)
               {
-                return !(question.layout === "accordion" && service.numSelectedOptions(question) !== question.max &&
+                return (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) || 
+                  !(question.layout === "accordion" && service.numSelectedOptions(question) !== question.max &&
                 service.numSelectedOptions(question) - service.numTaggedSelectedOptions(question) === service.getNoTagMax(question));
               },
               postfix: "-max-notag"
@@ -668,7 +676,8 @@ angular.module('avUi')
               },
               validator: function (question)
               {
-                return !(question.layout === "accordion" && service.numSelectedOptions(question) === question.max &&
+                return (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) || 
+                  !(question.layout === "accordion" && service.numSelectedOptions(question) === question.max &&
                   question.max === 1
                 );
               },
@@ -685,7 +694,8 @@ angular.module('avUi')
               },
               validator: function (question)
               {
-                return !(question.layout === "accordion" && service.numSelectedOptions(question) === question.max &&
+                return (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) || 
+                  !(question.layout === "accordion" && service.numSelectedOptions(question) === question.max &&
                   question.max > 1
                 );
               },
