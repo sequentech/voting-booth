@@ -224,10 +224,6 @@ angular.module('avUi')
                   question.extra_options.invalid_vote_policy === 'allowed' ||
                   service.numSelectedOptions(question, invalidVoteAnswer) === 0 ||
                   (
-                    question.invalidVoteAnswer && 
-                    question.invalidVoteAnswer.selected > -1
-                  ) ||
-                  (
                     (
                       question.extra_options.invalid_vote_policy === 'warn' ||
                       question.extra_options.invalid_vote_policy === "warn-invalid-implicit-and-explicit"
@@ -263,11 +259,7 @@ angular.module('avUi')
                 if (
                   (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
                   !question.extra_options ||
-                  question.extra_options.invalid_vote_policy === 'allowed' || 
-                  (
-                    question.invalidVoteAnswer && 
-                    question.invalidVoteAnswer.selected > -1
-                  ) ||
+                  question.extra_options.invalid_vote_policy === 'allowed' ||
                   (
                     (
                       question.extra_options.invalid_vote_policy === 'warn' || 
