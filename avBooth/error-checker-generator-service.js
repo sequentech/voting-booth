@@ -196,8 +196,7 @@ angular.module('avUi')
                     (checkerTypeFlag === "normal" || checkerTypeFlag === "soft") &&
                     ["warn-invalid-implicit-and-explicit", "not-allowed"].includes(question.extra_options.invalid_vote_policy) 
                   ) &&
-                  question.invalidVoteAnswer &&
-                  question.invalidVoteAnswer.selected > -1
+                  service.isInvalidExplicit(question)
                 );
               },
               postfix: "-invalid"
@@ -288,10 +287,6 @@ angular.module('avUi')
               {
                 if (
                   (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
-                  (
-                    question.invalidVoteAnswer && 
-                    question.invalidVoteAnswer.selected > -1
-                  ) ||
                   !question.extra_options ||
                   question.extra_options.invalid_vote_policy === 'allowed' || 
                   (
@@ -508,10 +503,6 @@ angular.module('avUi')
               {
                 if (
                   (checkerTypeFlag === "show-stoppers" && service.isInvalidExplicit(question)) ||
-                  (
-                    question.invalidVoteAnswer && 
-                    question.invalidVoteAnswer.selected > -1
-                  ) ||
                   !question.extra_options || (
                     question.extra_options.invalid_vote_policy === 'allowed' &&
                     checkerTypeFlag !== "soft"
