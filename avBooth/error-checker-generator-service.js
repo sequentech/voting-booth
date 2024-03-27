@@ -442,7 +442,7 @@ angular.module('avUi')
                 if (
                   !question.extra_options ||
                   !question.extra_options.allow_writeins || (
-                    ["warn-explicit-not-allowed", "allowed"].includes(question.extra_options.invalid_vote_policy) &&
+                    question.extra_options.invalid_vote_policy === 'allowed' &&
                     checkerTypeFlag !== "soft"
                   ) || (
                     checkerTypeFlag === "show-stoppers" &&
