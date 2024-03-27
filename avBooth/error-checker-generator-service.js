@@ -74,7 +74,7 @@ angular.module('avUi')
           return _.filter(
               question.answers,
               function (element) {
-                return (element.selected > -1  || element.isSelected === true) && (!invalidVoteAnswer || answer.id !== invalidVoteAnswer.id);
+                return (element.selected > -1  || element.isSelected === true) && (!invalidVoteAnswer || element.id !== invalidVoteAnswer.id);
               }
           ).length;
         }
