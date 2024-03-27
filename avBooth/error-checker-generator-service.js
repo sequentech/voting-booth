@@ -124,6 +124,10 @@ angular.module('avUi')
     
     service.getErrorChecker =  function (checkerTypeFlag, invalidVoteAnswer)
     {
+      if (!invalidVoteAnswer) {
+        invalidVoteAnswer = question.invalidVoteAnswer;
+      }
+
       return [
         {
           check: "array-key-group-chain",
