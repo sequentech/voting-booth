@@ -606,6 +606,7 @@ angular.module('avBooth')
             var question = scope.election.questions[i];
             if (
               !question.disabled && 
+              !(question.invalidVoteAnswer && question.invalidVoteAnswer.selected > -1) &&
               (
                 question.min > numSelectedOptions(question) ||
                 numSelectedOptions(question) > question.max
