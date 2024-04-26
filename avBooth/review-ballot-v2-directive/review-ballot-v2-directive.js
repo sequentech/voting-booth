@@ -172,7 +172,8 @@ angular.module('avBooth')
             }
             scope.errors[errorData.question_id].push({
               data: errorData,
-              key: errorKey
+              key: errorKey,
+              translation: $i18next.t(errorKey, errorData)
             });
           }
         });
