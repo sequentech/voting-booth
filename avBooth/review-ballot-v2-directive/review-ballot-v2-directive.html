@@ -30,9 +30,7 @@
         <div
           class="warn-text"
           role="alert"
-          data-i18n="{{error.data}}"
-          ng-i18next>
-          [html:i18next]({{error.data}}){{error.key}}
+          ng-bind-html="error.translation">
         </div>
       </div>
     </div>
