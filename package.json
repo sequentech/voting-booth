@@ -58,7 +58,8 @@
     "qrcode-generator": "^1.4.4"
   },
   "resolutions": {
-    "**/follow-redirects": "1.15.4",
+    "**/es5-ext": "0.10.63",
+    "**/follow-redirects": "1.15.6",
     "**/crypto-js": "4.2.0",
     "**/semver": "5.7.2",
     "**/tough-cookie": "4.1.3",
