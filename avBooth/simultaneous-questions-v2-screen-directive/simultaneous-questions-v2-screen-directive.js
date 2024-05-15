@@ -447,6 +447,7 @@ angular.module('avBooth')
 
         scope.clickOnCumulative = function (question, option)
         {
+          var isInvalid = question.invalidVoteAnswer.id === option.id;
           // number of checkboxes
           var maxNum = question.extra_options.cumulative_number_of_checkboxes;
 
@@ -455,7 +456,7 @@ angular.module('avBooth')
             .filter(function (el) { return el; }).length;
 
           // all checked, next step is to uncheck
-          if (numChecks >= maxNum) {
+          if (numChecks >= maxNum || (isInvalid && numChecks > 0)) {
             scope.deselectAllCumulative(question, option);
             question.deselectedAtLeastOnce = true;
             option.selected = -1;
