@@ -447,7 +447,7 @@ angular.module('avBooth')
 
         scope.clickOnCumulative = function (question, option)
         {
-          var isInvalid = question.invalidVoteAnswer.id === option.id;
+          var isInvalid = question.invalidVoteAnswer && question.invalidVoteAnswer.id === option.id;
           // number of checkboxes
           var maxNum = question.extra_options.cumulative_number_of_checkboxes;
 
