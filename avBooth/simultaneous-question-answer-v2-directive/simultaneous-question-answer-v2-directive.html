@@ -182,7 +182,7 @@
           aria-checked="{{isCheckSelected(answer, 0) ? 'true' : 'false'}}"
           aria-label="{{answer | customI18n : 'text'}} check invalid"
           ng-if="!!isInvalidVoteAnswer && question.tally_type === 'cumulative'"
-          ng-click="!readOnly() && toggleSelectItemCumulative(question, answer, 0)"
+          ng-click="$event.stopPropagation(); !readOnly() && toggleSelectItem(question, answer)"
         >
         <i class="fa fa-lg fa-check" ng-if="isCheckSelected(answer, 0)"></i>
         <div class="unchecked" ng-if="!isCheckSelected(answer, 0)"></div>
