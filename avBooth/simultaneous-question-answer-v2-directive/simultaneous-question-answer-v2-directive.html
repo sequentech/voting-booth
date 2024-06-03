@@ -53,7 +53,7 @@
       <!-- Show URL link -->
       <div 
         class="answer-links"
-        ng-if="!!answer.urlsObject.URL && !isWriteIn"
+        ng-if="!!answer.urlsObject.URL && !isWriteIn && !isBlankVoteAnswer"
       >
         <a
           class="view-link"
