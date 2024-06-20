@@ -247,7 +247,7 @@ angular.module('avBooth')
                     width: '40%'
                   },
                   {
-                    text: moment(scope.stateData.ballotResponse.payload.created)
+                    text: moment(scope.stateData.ballotResponse.payload.created+"+00:00")
                             .format('YYYY-MM-DD HH:mm:ss'),
                     style: 'cell',
                     width: '*'
