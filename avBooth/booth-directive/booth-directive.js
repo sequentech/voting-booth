@@ -997,7 +997,7 @@ angular.module('avBooth')
                 }
                 authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
                 ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
-              }, futureResult.reject);
+              });
           }
 
           var electionPromise;
