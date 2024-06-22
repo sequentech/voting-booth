@@ -899,7 +899,7 @@ angular.module('avBooth')
               previewResult.resolve(JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId))));
             }
 
-            previewResult
+            previewResult.promise
               .then(function onSuccess(previewElection) {
                 var foundElection = previewElection.find(
                   function (element) {return element.id === parseInt(electionId);
@@ -978,7 +978,7 @@ angular.module('avBooth')
               previewResult.resolve(JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId))));
             }
 
-            previewResult
+            previewResult.promise
               .then(function onSuccess(previewElection) {
                 var foundElection;
                 if (electionId === undefined) { 
