@@ -894,7 +894,9 @@ angular.module('avBooth')
             if (scope.isUuidPreview) {
               var uuid = $location.search().uuid;
               Authmethod.getLivePreview(uuid)
-                .then(previewResult.resolve, previewResult.reject);
+                .then(function (res) {
+                    previewResult.resolve(res.data)
+                }, previewResult.reject);
             } else {
               previewResult.resolve(JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId))));
             }
@@ -973,7 +975,9 @@ angular.module('avBooth')
             if (scope.isUuidPreview) {
               var uuid = $location.search().uuid;
               Authmethod.getLivePreview(uuid)
-                .then(previewResult.resolve, previewResult.reject);
+                .then(function (res) {
+                  previewResult.resolve(res.data)
+              }, previewResult.reject);
             } else {
               previewResult.resolve(JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId))));
             }
