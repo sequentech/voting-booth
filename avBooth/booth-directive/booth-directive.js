@@ -970,7 +970,8 @@ angular.module('avBooth')
 
           var ballotBoxData;
           var authapiData;
-          var electionPromise = $q.defer();
+          var electionFuture = $q.defer();
+          var electionPromise = electionFuture.promise;
           if (!scope.isPreview) {
             electionPromise = $http.get(
               scope.baseUrl + "election/" + scope.electionId,
@@ -1006,7 +1007,7 @@ angular.module('avBooth')
                 authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
                 ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
 
-                electionPromise.resolve({
+                electionFuture.resolve({
                   data: {
                     payload: ballotBoxData
                   }
