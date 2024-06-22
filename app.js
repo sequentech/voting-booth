@@ -214,7 +214,7 @@ angular.module('voting-booth').config(
           isPreview: true
         }
       })
-      .state('election.booth-preview', {
+      .state('election.booth-uuid-preview', {
         url: '/:id/uuid-preview-vote',
         templateUrl: 'avBooth/booth.html',
         controller: "BoothController",
