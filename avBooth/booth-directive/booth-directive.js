@@ -896,7 +896,7 @@ angular.module('avBooth')
               Authmethod.getLivePreview(uuid)
                 .then(function onSuccess(response) {
                   previewResult.resolve(JSON.parse(response.data));
-                }, previewResult.reject)
+                }, previewResult.reject);
             } else {
               previewResult.resolve(JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId))));
             }
