@@ -956,7 +956,7 @@ angular.module('avBooth')
 
         function execIfAllRetrieved(callback)
         {
-          if (!sequentElectionsRetrieved || !iamRetrieved) {
+          if (!sequentElectionsRetrieved || !iamRetrieved) {
             return;
           }
           callback();
@@ -970,6 +970,7 @@ angular.module('avBooth')
 
           var ballotBoxData;
           var authapiData;
+          var authapiDataFuture = $q.defer();
           var electionFuture = $q.defer();
           var electionPromise = electionFuture.promise;
           if (!scope.isPreview) {
@@ -994,7 +995,7 @@ angular.module('avBooth')
             previewResult.promise
               .then(function onSuccess(previewElection) {
                 var foundElection;
-                if (electionId === undefined) { 
+                if (electionId === undefined) {
                   electionId = parseInt(attrs.electionId);
                 }
 
@@ -1006,6 +1007,7 @@ angular.module('avBooth')
                 }
                 authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
                 ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
+                authapiDataFuture.resolve(authapiData);
 
                 electionFuture.resolve({
                   data: {
@@ -1194,11 +1196,13 @@ angular.module('avBooth')
           } else {
             var deferredAuthEvent = $q.defer();
 
-            deferredAuthEvent.resolve({
-              data: {
-                status: "ok",
-                events: authapiData
-              }
+            authapiDataFuture.promise.then(function (data) {
+              deferredAuthEvent.resolve({
+                data: {
+                  status: "ok",
+                  events: data
+                }
+              });
             });
 
             authEventPromise = deferredAuthEvent.promise;
