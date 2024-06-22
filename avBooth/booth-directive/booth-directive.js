@@ -24,6 +24,7 @@ angular.module('avBooth')
     $rootScope,
     $timeout,
     $window,
+    $location,
     Authmethod,
     ConfigService,
     HmacService,
@@ -44,6 +45,7 @@ angular.module('avBooth')
       // demo booth
       scope.isDemo = (attrs.isDemo === "true");
       scope.isPreview = (attrs.isPreview === "true");
+      scope.isUuidPreview = (attrs.isUuidPreview === "true");
       scope.documentation = ConfigService.documentation;
       scope.hasSeenStartScreenInThisSession = false;
 
@@ -888,21 +890,34 @@ angular.module('avBooth')
         var futureResult = $q.defer();
         try {
           if (scope.isPreview) {
-            var previewElection = JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId)));
-            var foundElection = previewElection.find(
-              function (element) {return element.id === parseInt(electionId);
-            });
-
-            if (foundElection) {
-              var ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
-              futureResult.resolve({
-                data: {
-                  payload: ballotBoxData
-                }
-              });
+            var previewResult = $q.defer();
+            if (scope.isUuidPreview) {
+              var uuid = $location.search().uuid;
+              Authmethod.getLivePreview(uuid)
+                .then(function onSuccess(response) {
+                  previewResult.resolve(JSON.parse(response.data));
+                }, previewResult.reject)
             } else {
-              futureResult.reject("election not found");
+              previewResult.resolve(JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId))));
             }
+
+            futureResult
+              .then(function onSuccess(previewElection) {
+                var foundElection = previewElection.find(
+                  function (element) {return element.id === parseInt(electionId);
+                });
+    
+                if (foundElection) {
+                  var ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
+                  futureResult.resolve({
+                    data: {
+                      payload: ballotBoxData
+                    }
+                  });
+                } else {
+                  futureResult.reject("election not found");
+                }
+              }, futureResult.reject);
           } else {
             var electionPromise = $http.get(
               scope.baseUrl + "election/" + electionId,
