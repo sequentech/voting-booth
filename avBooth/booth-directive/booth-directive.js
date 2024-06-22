@@ -970,7 +970,15 @@ angular.module('avBooth')
 
           var ballotBoxData;
           var authapiData;
-          if (scope.isPreview) {
+          var electionPromise = $q.defer();
+          if (!scope.isPreview) {
+            electionPromise = $http.get(
+              scope.baseUrl + "election/" + scope.electionId,
+              {
+                headers: {'Authorization': scope.authorizationHeader || null}
+              }
+            );
+          } else {
             var previewResult = $q.defer();
             if (scope.isUuidPreview) {
               var uuid = $location.search().uuid;
@@ -997,27 +1005,13 @@ angular.module('avBooth')
                 }
                 authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
                 ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
+
+                electionPromise.resolve({
+                  data: {
+                    payload: ballotBoxData
+                  }
+                });
               });
-          }
-
-          var electionPromise;
-          if (!scope.isPreview) {
-            electionPromise = $http.get(
-              scope.baseUrl + "election/" + scope.electionId,
-              {
-                headers: {'Authorization': scope.authorizationHeader || null}
-              }
-            );
-          } else {
-            var deferredElection = $q.defer();
-
-            deferredElection.resolve({
-              data: {
-                payload: ballotBoxData
-              }
-            });
-
-            electionPromise = deferredElection.promise;
           }
 
           electionPromise
