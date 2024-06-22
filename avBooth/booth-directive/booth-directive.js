@@ -901,7 +901,7 @@ angular.module('avBooth')
               previewResult.resolve(JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId))));
             }
 
-            futureResult
+            previewResult
               .then(function onSuccess(previewElection) {
                 var foundElection = previewElection.find(
                   function (element) {return element.id === parseInt(electionId);
@@ -971,20 +971,33 @@ angular.module('avBooth')
           var ballotBoxData;
           var authapiData;
           if (scope.isPreview) {
-            var previewElection = JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId)));
-            var foundElection;
-            if (electionId === undefined) { 
-              electionId = parseInt(attrs.electionId);
+            var previewResult = $q.defer();
+            if (scope.isUuidPreview) {
+              var uuid = $location.search().uuid;
+              Authmethod.getLivePreview(uuid)
+                .then(function onSuccess(response) {
+                  previewResult.resolve(JSON.parse(response.data));
+                }, previewResult.reject);
+            } else {
+              previewResult.resolve(JSON.parse(scope.previewElection || sessionStorage.getItem(parseInt(attrs.electionId))));
             }
 
-            if (previewElection.length === 1) {
-              foundElection = previewElection[0];
-              foundElection.id = foundElection.id || (electionId && parseInt(electionId));
-            } else {
-              foundElection = previewElection.find(function (element) { return element.id === parseInt(electionId); });
-            }
-            authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
-            ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
+            previewResult
+              .then(function onSuccess(previewElection) {
+                var foundElection;
+                if (electionId === undefined) { 
+                  electionId = parseInt(attrs.electionId);
+                }
+
+                if (previewElection.length === 1) {
+                  foundElection = previewElection[0];
+                  foundElection.id = foundElection.id || (electionId && parseInt(electionId));
+                } else {
+                  foundElection = previewElection.find(function (element) { return element.id === parseInt(electionId); });
+                }
+                authapiData = ElectionCreation.generateAuthapiResponse(foundElection);
+                ballotBoxData = ElectionCreation.generateBallotBoxResponse(foundElection);
+              }, futureResult.reject);
           }
 
           var electionPromise;
