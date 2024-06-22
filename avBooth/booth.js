@@ -48,6 +48,7 @@ angular
       var previewElectionParam = ($location.search())['preview-election'];
       $scope.previewElection = previewElectionParam && decodeURIComponent(previewElectionParam);
       $scope.isPreview = $stateParams.isPreview || false;
+      $scope.isUuidPreview = $stateParams.isUuidPreview || false;
       $scope.electionId = $stateParams.id;
       $scope.baseUrl = ConfigService.baseUrl;
       $scope.config = $filter('json')(ConfigService);
