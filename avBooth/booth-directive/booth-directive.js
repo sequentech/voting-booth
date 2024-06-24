@@ -316,6 +316,13 @@ angular.module('avBooth')
           } else {
             redirectToLogin(/*isSuccess*/ false);
           }
+        } else {
+          Authmethod
+            .setAuth(
+              cookie,
+              false,
+              idToCheck
+            );
         }
       }
 
