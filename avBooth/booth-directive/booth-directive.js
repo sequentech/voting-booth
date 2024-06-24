@@ -1025,7 +1025,7 @@ angular.module('avBooth')
                 let hasGracefulPeriod = presentation &&
                     presentation.extra_options &&
                     presentation.extra_options.allow_voting_end_graceful_period;
-                sessionStorage.setItem("hasGracefulPeriod", hasGracefulPeriod? "true": "false"); 
+                window.sessionStorage.setItem("hasGracefulPeriod", hasGracefulPeriod? "true": "false"); 
 
                 if (presentation.theme && presentation.theme !== ConfigService.theme) {
                   $("#theme").attr("href", "booth/themes/" + presentation.theme + "/app.min.css");
