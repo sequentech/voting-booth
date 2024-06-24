@@ -310,13 +310,15 @@ angular.module('avBooth')
 
         var idToCheck = (!!scope.parentId) ? scope.parentId : electionId;
         var cookie = $cookies.get("authevent_" + idToCheck);
+        var authCookie = $cookies.get("auth_authevent_" + idToCheck);
         if (!cookie) {
           if (InsideIframeService()) {
             return;
           } else {
             redirectToLogin(/*isSuccess*/ false);
           }
-        } else {
+        }
+        if (!!authCookie) {
           Authmethod
             .setAuth(
               cookie,
