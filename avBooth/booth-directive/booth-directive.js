@@ -1022,6 +1022,10 @@ angular.module('avBooth')
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
                 var presentation = scope.election.presentation;
+                let hasGracefulPeriod = presentation &&
+                    presentation.extra_options &&
+                    presentation.extra_options.allow_voting_end_graceful_period;
+                sessionStorage.setItem("hasGracefulPeriod", hasGracefulPeriod? "true": "false"); 
 
                 if (presentation.theme && presentation.theme !== ConfigService.theme) {
                   $("#theme").attr("href", "booth/themes/" + presentation.theme + "/app.min.css");
