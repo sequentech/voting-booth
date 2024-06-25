@@ -321,7 +321,7 @@ angular.module('avBooth')
         if (!!authCookie) {
           Authmethod
             .setAuth(
-              cookie,
+              authCookie,
               false,
               idToCheck
             );
