@@ -845,14 +845,25 @@ angular.module('avBooth')
 
           var logoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
 
+          function tryTimeout() {
+            var newLogoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
+            if (newLogoutTimeMs < Date.now()) {
+              logoutTimeMs = newLogoutTimeMs;
+              setTimeout(
+                tryTimeout,
+                Math.max(logoutTimeMs - Date.now(), 0)
+              );
+              return;
+            }
+            if (scope.state === stateEnum.errorScreen) {
+              console.log("already in an error state, can't redirect");
+              return;
+            }
+            logoutAndRedirect( /* isSuccess */ false);
+          }
+
           setTimeout(
-            function () {
-              if (scope.state === stateEnum.errorScreen) {
-                console.log("already in an error state, can't redirect");
-                return;
-              }
-              logoutAndRedirect( /* isSuccess */ false);
-            },
+            tryTimeout,
             Math.max(logoutTimeMs - Date.now(), 0)
           );
 
