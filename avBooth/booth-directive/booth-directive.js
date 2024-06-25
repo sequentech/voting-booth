@@ -848,7 +848,7 @@ angular.module('avBooth')
           setTimeout(
             function tryTimeout() {
               var newLogoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
-              if (newLogoutTimeMs < Date.now()) {
+              if (newLogoutTimeMs > Date.now()) {
                 logoutTimeMs = newLogoutTimeMs;
                 setTimeout(
                   tryTimeout,
