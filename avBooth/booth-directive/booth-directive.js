@@ -773,9 +773,9 @@ angular.module('avBooth')
         }
 
         // verify message, which should be of the format
-        // "userid:vote:AuthEvent:1110:134234111"
+        // "userid:AuthEvent:34570195:vote:1719523403:timeout-token:1719523283"
         var splitMessage = hmac.message.split(':');
-        if (splitMessage.length !== 5) {
+        if (splitMessage.length !== 7) {
           showError(
             "avBooth.errorLoadingElection",
               {
@@ -789,6 +789,7 @@ angular.module('avBooth')
         var objectType = splitMessage[1];
         var objectId = splitMessage[2];
         var action = splitMessage[3];
+        var startTimeSecsStr = splitMessage[4];
         // timestamp has already been validated so we don't validate it again
         if (
           isNaN(parseInt(objectId, 10)) ||
@@ -810,13 +811,12 @@ angular.module('avBooth')
         scope.authorizationHeader = currentElectionCredentials.token;
         scope.currentElectionCredentials = currentElectionCredentials;
         scope.isDemo = false;
+        scope.startTimeMs = Number(startTimeSecsStr) * 1000;
       }
-
-      var startTimeMs = Date.now();
 
       function getSessionStartTime() {
         readVoteCredentials();
-        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || startTimeMs;
+        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || scope.startTimeMs;
       }
 
       // After cookies expires, redirect to login. But only if cookies do
