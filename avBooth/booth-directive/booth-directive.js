@@ -814,9 +814,9 @@ angular.module('avBooth')
         scope.startTimeMs = Number(startTimeSecsStr) * 1000;
       }
 
-      function getSessionStartTime() {
+      function getSessionEndTime() {
         readVoteCredentials();
-        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || scope.startTimeMs;
+        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || (scope.sessionEndsAtMs + ConfigService.authTokenExpirationSeconds * 1000);
       }
 
       // After cookies expires, redirect to login. But only if cookies do
@@ -843,11 +843,11 @@ angular.module('avBooth')
           )
         ) {
 
-          var logoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
+          var logoutTimeMs = getSessionEndTime();
 
           setTimeout(
             function tryTimeout() {
-              var newLogoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
+              var newLogoutTimeMs = getSessionEndTime();
               if (newLogoutTimeMs > Date.now()) {
                 logoutTimeMs = newLogoutTimeMs;
                 setTimeout(
@@ -1345,7 +1345,7 @@ angular.module('avBooth')
         next: next,
         redirectToLogin: redirectToLogin,
         checkFixToBottom: checkFixToBottom,
-        getSessionStartTime: getSessionStartTime,
+        getSessionEndTime: getSessionEndTime,
         isStateCompatibleWithCountdown: isStateCompatibleWithCountdown,
 
         // stateData stores information used by the directive being shown.
