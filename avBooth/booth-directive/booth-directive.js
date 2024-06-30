@@ -761,6 +761,7 @@ angular.module('avBooth')
 
         // token should be valid
         var hmac = HmacService.checkKhmac(currentElectionCredentials.token);
+        var decodedToken = Authmethod.decodeToken(currentElectionCredentials.token);
         if (!hmac) {
           showError(
             "avBooth.errorLoadingElection",
@@ -806,16 +807,13 @@ angular.module('avBooth')
           return;
         }
 
-        var refreshToken = $http.defaults.headers.common.Authorization;
-        var decodedRefreshToken = Authmethod.decodeToken(refreshToken);
-
         // set scope.voterId and scope.authorizationHeader
         scope.voterId = voterId;
         scope.authorizationHeader = currentElectionCredentials.token;
         scope.currentElectionCredentials = currentElectionCredentials;
         scope.isDemo = false;
         scope.startTimeMs = Number(startTimeSecsStr) * 1000;
-        scope.sessionEndsAtMs = decodedRefreshToken.expiry_timestamp * 1000;
+        scope.sessionEndsAtMs = decodedToken.expiry_timestamp * 1000;
       }
 
       function getSessionEndTime() {
