@@ -806,17 +806,21 @@ angular.module('avBooth')
           return;
         }
 
+        var refreshToken = $http.defaults.headers.common.Authorization;
+        var decodedRefreshToken = Authmethod.decodeToken(refreshToken);
+
         // set scope.voterId and scope.authorizationHeader
         scope.voterId = voterId;
         scope.authorizationHeader = currentElectionCredentials.token;
         scope.currentElectionCredentials = currentElectionCredentials;
         scope.isDemo = false;
         scope.startTimeMs = Number(startTimeSecsStr) * 1000;
+        scope.sessionEndsAtMs = decodedRefreshToken.expiry_timestamp * 1000;
       }
 
       function getSessionEndTime() {
         readVoteCredentials();
-        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || (scope.sessionEndsAtMs + ConfigService.authTokenExpirationSeconds * 1000);
+        return scope.sessionEndsAtMs || scope.currentElectionCredentials && scope.currentElectionCredentials.sessionEndsAtMs || (scope.startTimeMs + ConfigService.authTokenExpirationSeconds * 1000);
       }
 
       // After cookies expires, redirect to login. But only if cookies do
