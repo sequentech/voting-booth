@@ -821,6 +821,11 @@ angular.module('avBooth')
         return scope.sessionEndsAtMs || scope.currentElectionCredentials && scope.currentElectionCredentials.sessionEndsAtMs || (scope.startTimeMs + ConfigService.authTokenExpirationSeconds * 1000);
       }
 
+      function getSessionStartTime() {
+        readVoteCredentials();
+        return scope.startTimeMs || (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs);
+      }
+
       // After cookies expires, redirect to login. But only if cookies do
       // expire.
       function autoredirectToLoginAfterTimeout() {
@@ -1348,6 +1353,7 @@ angular.module('avBooth')
         redirectToLogin: redirectToLogin,
         checkFixToBottom: checkFixToBottom,
         getSessionEndTime: getSessionEndTime,
+        getSessionStartTime: getSessionStartTime,
         isStateCompatibleWithCountdown: isStateCompatibleWithCountdown,
 
         // stateData stores information used by the directive being shown.
