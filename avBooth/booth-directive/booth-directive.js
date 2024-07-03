@@ -68,7 +68,8 @@ angular.module('avBooth')
         castingBallotScreen: 'castingBallotScreen',
         successScreen: 'successScreen',
         showPdf: 'showPdf',
-        simultaneousQuestionsV2Screen: 'simultaneousQuestionsV2Screen'
+        simultaneousQuestionsV2Screen: 'simultaneousQuestionsV2Screen',
+        voterEligibilityScreen: 'voterEligibilityScreen'
       };
 
       // This is used to enable custom css overriding
