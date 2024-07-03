@@ -201,6 +201,9 @@ angular.module('avBooth')
 
         checkDisabled();
         scope.chooseElection = chooseElection;
+        scope.goToVoterEligibility = function () {
+            scope.setState(stateEnum.voterEligibilityScreen, {});
+        };
 
         scope.showHelp = function () {
             $modal.open({

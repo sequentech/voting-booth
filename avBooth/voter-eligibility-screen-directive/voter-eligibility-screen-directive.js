@@ -8,6 +8,6 @@ angular.module('avBooth')
       restrict: 'AE',
       scope: true,
       link: link,
-      templateUrl: 'avBooth/voter-eligibility-directive/voter-eligibility-directive.html'
+      templateUrl: 'avBooth/voter-eligibility-screen-directive/voter-eligibility-screen-directive.html'
     };
   });
