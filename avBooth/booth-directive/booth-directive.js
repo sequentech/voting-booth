@@ -822,7 +822,9 @@ angular.module('avBooth')
       }
 
       function getSessionStartTime() {
-        readVoteCredentials();
+        if (!scope.startTimeMs) {
+          readVoteCredentials();
+        }
         return scope.startTimeMs || (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs);
       }
 
