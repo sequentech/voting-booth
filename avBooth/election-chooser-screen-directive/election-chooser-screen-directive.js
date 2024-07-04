@@ -90,6 +90,9 @@ angular.module('avBooth')
                                 election.event_id, credentials
                             );
                             var canVote = calculateCanVote(elCredentials);
+                            if (canVote) {
+                                scope.canVote = true;
+                            }
                             var isVoter = calculateIsVoter(elCredentials);
                             if (
                                 elCredentials && 
