@@ -63,6 +63,7 @@ angular.module('avUi')
         {
           if (!scope.canVote) {
             console.log("user cannot vote, so ignoring click");
+            return;
           }
           if (scope.hasVoted) {
             console.log("user has already voted, so ignoring click");
