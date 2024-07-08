@@ -208,6 +208,10 @@ angular.module('avBooth')
             scope.setState(scope.stateEnum.voterEligibilityScreen, {});
         };
 
+        if (scope.isEligibility) {
+            goToVoterEligibility();
+        }
+
         scope.showHelp = function () {
             $modal.open({
               ariaLabelledBy: 'modal-title',

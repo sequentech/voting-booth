@@ -46,6 +46,7 @@ angular.module('avBooth')
       scope.isDemo = (attrs.isDemo === "true");
       scope.isPreview = (attrs.isPreview === "true");
       scope.isUuidPreview = (attrs.isUuidPreview === "true");
+      scope.isEligibility = (attrs.isEligibility === "true");
       scope.documentation = ConfigService.documentation;
       scope.hasSeenStartScreenInThisSession = false;
 
