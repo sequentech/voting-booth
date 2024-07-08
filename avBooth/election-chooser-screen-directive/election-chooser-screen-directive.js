@@ -209,7 +209,7 @@ angular.module('avBooth')
         };
 
         if (scope.isEligibility) {
-            goToVoterEligibility();
+            scope.goToVoterEligibility();
         }
 
         scope.showHelp = function () {
