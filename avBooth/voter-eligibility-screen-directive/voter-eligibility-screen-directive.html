@@ -4,6 +4,20 @@
 <div avb-common-header></div>
 <div avb-watermark></div>
 
+
+<h1 
+  class="election-header"
+  ng-if="election.presentation && election.presentation.voter_eligibility"
+  ng-bind-html="(election.presentation.voter_eligibility | customI18n : 'title')"
+>
+</h1>
+
+<div
+  class="eligibility-description"
+  ng-if="election.presentation && election.presentation.voter_eligibility"
+  ng-bind-html="(election.presentation.voter_eligibility | customI18n : 'description')">
+</div>
+
 <main class="container" id="main-content">
     <div
       av-booth-children-elections
@@ -19,5 +33,12 @@
       parent-election="parentElection"
     ></div>
 </main>
+
+
+<div
+  class="eligibility-footer"
+  ng-if="election.presentation && election.presentation.voter_eligibility"
+  ng-bind-html="(election.presentation.voter_eligibility | customI18n : 'footer')">
+</div>
 
 <div avb-common-footer id="footer"></div>
