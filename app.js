@@ -206,7 +206,7 @@ angular.module('voting-booth').config(
           isDemo: true
         }
       })
-      .state('election.booth-demo', {
+      .state('election.booth-eligibility', {
         url: '/:id/eligibility',
         templateUrl: 'avBooth/booth.html',
         controller: "BoothController",
