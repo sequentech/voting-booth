@@ -761,6 +761,7 @@ angular.module('avBooth')
 
         // token should be valid
         var hmac = HmacService.checkKhmac(currentElectionCredentials.token);
+        var decodedToken = Authmethod.decodeToken(currentElectionCredentials.token);
         if (!hmac) {
           showError(
             "avBooth.errorLoadingElection",
@@ -773,9 +774,9 @@ angular.module('avBooth')
         }
 
         // verify message, which should be of the format
-        // "userid:vote:AuthEvent:1110:134234111"
+        // "userid:AuthEvent:34570195:vote:1719523403:timeout-token:1719523283"
         var splitMessage = hmac.message.split(':');
-        if (splitMessage.length !== 5) {
+        if (splitMessage.length !== 7) {
           showError(
             "avBooth.errorLoadingElection",
               {
@@ -789,6 +790,7 @@ angular.module('avBooth')
         var objectType = splitMessage[1];
         var objectId = splitMessage[2];
         var action = splitMessage[3];
+        var startTimeSecsStr = splitMessage[4];
         // timestamp has already been validated so we don't validate it again
         if (
           isNaN(parseInt(objectId, 10)) ||
@@ -810,13 +812,20 @@ angular.module('avBooth')
         scope.authorizationHeader = currentElectionCredentials.token;
         scope.currentElectionCredentials = currentElectionCredentials;
         scope.isDemo = false;
+        scope.startTimeMs = Number(startTimeSecsStr) * 1000;
+        scope.sessionEndsAtMs = decodedToken.expiry_timestamp * 1000;
       }
 
-      var startTimeMs = Date.now();
+      function getSessionEndTime() {
+        readVoteCredentials();
+        return scope.sessionEndsAtMs || scope.currentElectionCredentials && scope.currentElectionCredentials.sessionEndsAtMs || (scope.startTimeMs + ConfigService.authTokenExpirationSeconds * 1000);
+      }
 
       function getSessionStartTime() {
-        readVoteCredentials();
-        return scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs || startTimeMs;
+        if (!scope.startTimeMs) {
+          readVoteCredentials();
+        }
+        return scope.startTimeMs || (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs);
       }
 
       // After cookies expires, redirect to login. But only if cookies do
@@ -843,11 +852,11 @@ angular.module('avBooth')
           )
         ) {
 
-          var logoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
+          var logoutTimeMs = getSessionEndTime();
 
           setTimeout(
             function tryTimeout() {
-              var newLogoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
+              var newLogoutTimeMs = getSessionEndTime();
               if (newLogoutTimeMs > Date.now()) {
                 logoutTimeMs = newLogoutTimeMs;
                 setTimeout(
@@ -1345,6 +1354,7 @@ angular.module('avBooth')
         next: next,
         redirectToLogin: redirectToLogin,
         checkFixToBottom: checkFixToBottom,
+        getSessionEndTime: getSessionEndTime,
         getSessionStartTime: getSessionStartTime,
         isStateCompatibleWithCountdown: isStateCompatibleWithCountdown,
 
