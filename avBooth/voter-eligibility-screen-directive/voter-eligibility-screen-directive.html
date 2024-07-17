@@ -1,0 +1,44 @@
+<!-- top navbar -->
+<a href="#main-content" class="skip-link">{{ 'avBooth.skipLinks.skipToMain' | i18next }}</a>
+<a href="#footer" class="skip-link">{{ 'avBooth.skipLinks.skipToFooter' | i18next }}</a>
+<div avb-common-header></div>
+<div avb-watermark></div>
+
+
+<h1 
+  class="election-header"
+  ng-if="election.presentation && election.presentation.voter_eligibility_screen"
+  ng-bind-html="(election.presentation.voter_eligibility_screen | customI18n : 'title')"
+>
+</h1>
+
+<div
+  class="eligibility-description container"
+  ng-if="election.presentation && election.presentation.voter_eligibility_screen"
+  ng-bind-html="(election.presentation.voter_eligibility_screen | customI18n : 'description')">
+</div>
+
+<main class="container" id="main-content">
+    <div
+      av-booth-children-elections
+      mode="toggle-and-callback"
+      callback="chooseElection(electionId)"
+      parent-election-id="{{parentAuthEvent.id}}"
+      hide-parent="true"
+      can-vote="false"
+      has-voted="hasVoted"
+      children-election-info="childrenElectionInfo"
+      show-skipped-elections="showSkippedElections"
+      skipped-elections="skippedElections"
+      parent-election="parentElection"
+    ></div>
+</main>
+
+
+<div
+  class="eligibility-footer container"
+  ng-if="election.presentation && election.presentation.voter_eligibility_screen"
+  ng-bind-html="(election.presentation.voter_eligibility_screen | customI18n : 'footer')">
+</div>
+
+<div avb-common-footer id="footer"></div>
