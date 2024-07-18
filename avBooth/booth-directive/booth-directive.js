@@ -695,10 +695,13 @@ angular.module('avBooth')
       function isStateCompatibleWithCountdown() {
         return scope.state !== stateEnum.errorScreen && scope.state !== stateEnum.successScreen;
       }
+      var demoStartTime = Date.now();
 
       // Try to read and process voting credentials
       function readVoteCredentials() {
         if (scope.isDemo || scope.isPreview) {
+          scope.startTimeMs = demoStartTime;
+          scope.sessionEndsAtMs = scope.startTimeMs + ConfigService.authTokenExpirationSeconds * 1000;
           return;
         }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
