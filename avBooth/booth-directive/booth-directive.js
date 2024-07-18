@@ -823,8 +823,8 @@ angular.module('avBooth')
         return scope.sessionEndsAtMs || scope.currentElectionCredentials && scope.currentElectionCredentials.sessionEndsAtMs || (scope.startTimeMs + ConfigService.authTokenExpirationSeconds * 1000);
       }
 
-      function getSessionStartTime() {
-        if (!scope.startTimeMs) {
+      function getSessionStartTime(readCredentials) {
+        if (readCredentials) {
           readVoteCredentials();
         }
         return scope.startTimeMs || (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs);
