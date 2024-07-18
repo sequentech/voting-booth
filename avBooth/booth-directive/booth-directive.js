@@ -795,7 +795,6 @@ angular.module('avBooth')
         var objectType = splitMessage[1];
         var objectId = splitMessage[2];
         var action = splitMessage[3];
-        var startTimeSecsStr = splitMessage[4];
         // timestamp has already been validated so we don't validate it again
         if (
           isNaN(parseInt(objectId, 10)) ||
@@ -817,7 +816,7 @@ angular.module('avBooth')
         scope.authorizationHeader = currentElectionCredentials.token;
         scope.currentElectionCredentials = currentElectionCredentials;
         scope.isDemo = false;
-        scope.startTimeMs = Number(startTimeSecsStr) * 1000;
+        scope.startTimeMs = decodedToken.create_timestamp * 1000;
         scope.sessionEndsAtMs = decodedToken.expiry_timestamp * 1000;
       }
 
