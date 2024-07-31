@@ -732,7 +732,8 @@ angular.module('avBooth')
             scope.credentials,
             function (electionCredential) {
               return (
-                electionCredential.electionId.toString() === scope.electionId
+                electionCredential.electionId.toString() === scope.electionId ||
+                (electionCredential.electionId - 1).toString() === scope.electionId
               );
             }
           );
