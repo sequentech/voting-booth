@@ -706,7 +706,7 @@ angular.module('avBooth')
         }
         var credentialsStr = $window.sessionStorage.getItem("vote_permission_tokens");
         if (!credentialsStr) {
-          if (scope.state === stateEnum.successScreen || InsideIframeService()) {
+          if (scope.state === stateEnum.successScreen || scope.state === stateEnum.electionChooserScreen || InsideIframeService()) {
             return;
           } else {
             showError(
