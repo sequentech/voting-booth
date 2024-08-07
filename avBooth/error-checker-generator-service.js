@@ -457,7 +457,7 @@ angular.module('avUi')
                   return true;
                 }
 
-                var foundField = question.answers
+                var foundFields = question.answers
                   // only write-in questions
                   .filter(function (answer) {
                     return service.hasUrl(answer.urls, 'isWriteIn', 'true') &&
@@ -465,14 +465,15 @@ angular.module('avUi')
                       _.isObject(answer.writeInFields);
                   })
                   // get write-in fields
-                  .map(function (answer) { return Object.values(answer.writeInFields); })
-                  .flat()
-                  .find(function (field) {
-                    // check field min restriction against value
-                    return _.isString(field.value) && field.value.length < field.min;
-                  });
-
-                  return !foundField;
+                  .map(function (answer) { 
+                    answer.writeInFields
+                    .find(function (field) {
+                      // check field min restriction against value
+                      return (_.isString(field.value) && field.value.length < field.min) || (answer.text && field.min);
+                    })
+                   })
+                   .filter(value => value);
+                  return 0 === foundFields.length;
               },
               postfix: "-writein-field-min-length"
             },
