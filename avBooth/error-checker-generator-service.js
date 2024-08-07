@@ -466,11 +466,11 @@ angular.module('avUi')
                   })
                   // get write-in fields
                   .map(function (answer) { 
-                    answer.writeInFields
+                    return answer.writeInFields
                     .find(function (field) {
                       // check field min restriction against value
                       return (_.isString(field.value) && field.value.length < field.min) || (answer.text && field.min);
-                    })
+                    });
                    })
                    .filter(value => value);
                   return 0 === foundFields.length;
