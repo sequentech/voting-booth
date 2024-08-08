@@ -90,6 +90,9 @@ angular.module('avBooth')
                                 election.event_id, credentials
                             );
                             var canVote = calculateCanVote(elCredentials);
+                            if (canVote) {
+                                scope.canVote = true;
+                            }
                             var isVoter = calculateIsVoter(elCredentials);
                             if (
                                 elCredentials && 
@@ -201,6 +204,13 @@ angular.module('avBooth')
 
         checkDisabled();
         scope.chooseElection = chooseElection;
+        scope.goToVoterEligibility = function () {
+            scope.setState(scope.stateEnum.voterEligibilityScreen, {});
+        };
+
+        if (scope.isEligibility) {
+            scope.goToVoterEligibility();
+        }
 
         scope.showHelp = function () {
             $modal.open({
