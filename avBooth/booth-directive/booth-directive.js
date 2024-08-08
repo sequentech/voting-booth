@@ -310,12 +310,21 @@ angular.module('avBooth')
 
         var idToCheck = (!!scope.parentId) ? scope.parentId : electionId;
         var cookie = $cookies.get("authevent_" + idToCheck);
+        var authCookie = $cookies.get("auth_authevent_" + idToCheck);
         if (!cookie) {
           if (InsideIframeService()) {
             return;
           } else {
             redirectToLogin(/*isSuccess*/ false);
           }
+        }
+        if (!!authCookie) {
+          Authmethod
+            .setAuth(
+              authCookie,
+              false,
+              idToCheck
+            );
         }
       }
 
@@ -837,7 +846,16 @@ angular.module('avBooth')
           var logoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
 
           setTimeout(
-            function () {
+            function tryTimeout() {
+              var newLogoutTimeMs = getSessionStartTime() + ConfigService.authTokenExpirationSeconds * 1000;
+              if (newLogoutTimeMs > Date.now()) {
+                logoutTimeMs = newLogoutTimeMs;
+                setTimeout(
+                  tryTimeout,
+                  Math.max(logoutTimeMs - Date.now(), 0)
+                );
+                return;
+              }
               if (scope.state === stateEnum.errorScreen) {
                 console.log("already in an error state, can't redirect");
                 return;
@@ -1022,6 +1040,10 @@ angular.module('avBooth')
               function onSuccess(response) {
                 scope.election = angular.fromJson(response.data.payload.configuration);
                 var presentation = scope.election.presentation;
+                let hasGracefulPeriod = presentation &&
+                    presentation.extra_options &&
+                    presentation.extra_options.allow_voting_end_graceful_period;
+                window.sessionStorage.setItem("hasGracefulPeriod", hasGracefulPeriod? "true": "false"); 
 
                 if (presentation.theme && presentation.theme !== ConfigService.theme) {
                   $("#theme").attr("href", "booth/themes/" + presentation.theme + "/app.min.css");
