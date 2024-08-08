@@ -106,7 +106,7 @@
               type="text"
               ng-readonly="!!hideCheck()"
               class="form-control write-in-extra-field-input"
-              ng-class="{'invalid': (field.value && field.min && field.value.length < field.min) || (field.value && field.max && field.value.length > field.max)}"
+              ng-class="{'invalid': (answer.text && !field.value && field.min) ||  (field.value && field.min && field.value.length < field.min) || (field.value && field.max && field.value.length > field.max)}"
               autocomplete="off"
               id="question_{{question.index}}_answer_{{answer.id}}_{{field.id}}"
               placeholder="{{field | customI18n: 'placeholder'}}"
