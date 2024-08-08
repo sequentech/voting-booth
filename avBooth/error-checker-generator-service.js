@@ -469,7 +469,7 @@ angular.module('avUi')
                     return Object.values(answer.writeInFields)
                     .find(function (field) {
                       // check field min restriction against value
-                      return (_.isString(field.value) && field.value.length < field.min) || (answer.text && field.min);
+                      return (_.isString(field.value) && field.value.length < field.min) || (answer.text && field.min && !field.value);
                     });
                    })
                    .filter(value => value);
