@@ -733,10 +733,7 @@ angular.module('avBooth')
           currentElectionCredentials = _.find(
             scope.credentials,
             function (electionCredential) {
-              return (
-                electionCredential.electionId.toString() === scope.electionId ||
-                (electionCredential.electionId - 1).toString() === scope.electionId
-              );
+              return !!electionCredential.token;
             }
           );
         } catch (error) {
