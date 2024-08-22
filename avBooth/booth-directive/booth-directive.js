@@ -696,6 +696,7 @@ angular.module('avBooth')
         return scope.state !== stateEnum.errorScreen && scope.state !== stateEnum.successScreen;
       }
       var demoStartTime = Date.now();
+      scope.startTimeMs = demoStartTime;
 
       // Try to read and process voting credentials
       function readVoteCredentials() {
