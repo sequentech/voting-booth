@@ -696,6 +696,7 @@ angular.module('avBooth')
         return scope.state !== stateEnum.errorScreen && scope.state !== stateEnum.successScreen;
       }
       var demoStartTime = Date.now();
+      scope.startTimeMs = demoStartTime;
 
       // Try to read and process voting credentials
       function readVoteCredentials() {
@@ -733,10 +734,7 @@ angular.module('avBooth')
           currentElectionCredentials = _.find(
             scope.credentials,
             function (electionCredential) {
-              return (
-                electionCredential.electionId.toString() === scope.electionId ||
-                (electionCredential.electionId - 1).toString() === scope.electionId
-              );
+              return electionCredential.electionId.toString() === scope.electionId && !!electionCredential.token;
             }
           );
         } catch (error) {
