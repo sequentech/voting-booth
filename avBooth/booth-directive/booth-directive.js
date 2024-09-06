@@ -832,9 +832,9 @@ angular.module('avBooth')
         if (readCredentials) {
           currentElectionCredentials = readVoteCredentials();
         }
-        return scope.startTimeMs ||
-          (currentElectionCredentials && currentElectionCredentials.sessionStartedAtMs) ||
-          (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs);
+        return (currentElectionCredentials && currentElectionCredentials.sessionStartedAtMs) ||
+          (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs) ||
+          scope.startTimeMs;
       }
 
       // After cookies expires, redirect to login. But only if cookies do
