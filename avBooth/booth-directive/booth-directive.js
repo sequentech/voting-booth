@@ -727,10 +727,6 @@ angular.module('avBooth')
         try {
           scope.credentials = JSON.parse(credentialsStr);
 
-          // if it's virtual, there's no current election credentials
-          if (scope.isVirtual) {
-            return;
-          }
           currentElectionCredentials = _.find(
             scope.credentials,
             function (electionCredential) {
@@ -746,6 +742,10 @@ angular.module('avBooth')
               }
           );
           return;
+        }
+        // if it's virtual, there's no current election credentials
+        if (scope.isVirtual) {
+          return currentElectionCredentials;
         }
 
         // credentials for current election should have been found
@@ -820,15 +820,21 @@ angular.module('avBooth')
       }
 
       function getSessionEndTime() {
-        readVoteCredentials();
-        return scope.sessionEndsAtMs || scope.currentElectionCredentials && scope.currentElectionCredentials.sessionEndsAtMs || (scope.startTimeMs + ConfigService.authTokenExpirationSeconds * 1000);
+        let currentElectionCredentials = readVoteCredentials();
+        return scope.sessionEndsAtMs || 
+          (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionEndsAtMs) || 
+          (currentElectionCredentials && currentElectionCredentials.sessionEndsAtMs) || 
+          (scope.startTimeMs + ConfigService.authTokenExpirationSeconds * 1000);
       }
 
       function getSessionStartTime(readCredentials) {
+        let currentElectionCredentials;
         if (readCredentials) {
-          readVoteCredentials();
+          currentElectionCredentials = readVoteCredentials();
         }
-        return scope.startTimeMs || (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs);
+        return scope.startTimeMs ||
+          (currentElectionCredentials && currentElectionCredentials.sessionStartedAtMs) ||
+          (scope.currentElectionCredentials && scope.currentElectionCredentials.sessionStartedAtMs);
       }
 
       // After cookies expires, redirect to login. But only if cookies do
