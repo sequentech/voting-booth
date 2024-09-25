@@ -167,4 +167,10 @@
       ng-i18next="avBooth.emptyAnswer">
     </li>
   </ol>
+  <div
+    ng-class="question-footer-html"
+    ng-if="question.extra_options && question.extra_options.footer_html"
+    ng-bind-html="question.extra_options.footer_html"
+  >
+  </div>
 </section>
