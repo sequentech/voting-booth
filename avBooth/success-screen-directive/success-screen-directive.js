@@ -574,9 +574,6 @@ angular.module('avBooth')
       // redirects to next election
       scope.goToNextElection = function () {
         scope.setState(scope.stateEnum.electionChooserScreen, {});
-        /*if (scope.parentElection && scope.parentElection.logo_url) {
-          scope.election.logo_url = scope.parentElection.logo_url;
-        }*/
         scope.setParentElection();
       };
 
