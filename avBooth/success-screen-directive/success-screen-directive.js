@@ -574,6 +574,7 @@ angular.module('avBooth')
       // redirects to next election
       scope.goToNextElection = function () {
         scope.setState(scope.stateEnum.electionChooserScreen, {});
+        scope.setParentElection();
       };
 
       scope.skippedCount = skippedCount();
