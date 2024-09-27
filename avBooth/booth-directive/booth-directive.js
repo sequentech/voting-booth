@@ -978,6 +978,13 @@ angular.module('avBooth')
         return futureResult.promise;
       }
 
+      function setParentElection() {
+        if (!scope.parentElection) {
+          return;
+        }
+        scope.election = scope.parentElection;
+      }
+
       function retrieveElectionConfig(electionId) {
         if (scope.state === stateEnum.errorScreen) {
           return;
@@ -1366,6 +1373,7 @@ angular.module('avBooth')
         getSessionEndTime: getSessionEndTime,
         getSessionStartTime: getSessionStartTime,
         isStateCompatibleWithCountdown: isStateCompatibleWithCountdown,
+        setParentElection: setParentElection,
 
         // stateData stores information used by the directive being shown.
         // Its content depends on the current state.
