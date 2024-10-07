@@ -19,7 +19,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var SEQUENT_CONFIG_VERSION = '10.5.1';
+var SEQUENT_CONFIG_VERSION = '10.5.2';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -229,13 +229,13 @@ module.exports = function (grunt) {
             {selector:'head',html:'<link class="favicon" rel="icon" href="/booth/img/cropped-FAV-6-192x192.png" sizes="192x192" />'},
             {selector:'head',html:'<link class="favicon" rel="apple-touch-icon" href="/booth/img/cropped-FAV-6-180x180.png" />'},
             {selector:'body',html:'<%= variables.booth_html_body_include %>'},
-            {selector:'body',html:'<script src="/booth/libnocompat-v10.5.1.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/libnocompat-v10.5.2.min.js"></script>'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/sequentech/voting-booth/blob/master/README.md -->'},
-            {selector:'body',html:'<script src="/booth/lib-v10.5.1.min.js"></script>'},
-            {selector:'body',html:'<script src="/booth/SequentConfig-v10.5.1.js"></script>'},
-            {selector:'body',html:'<script src="/booth/SequentThemes-v10.5.1.js"></script>'},
-            {selector:'body',html:'<script src="/booth/app-v10.5.1.min.js"></script>'},
-            {selector:'body',html:'<script src="/booth/SequentPlugins-v10.5.1.js"></script>'},
+            {selector:'body',html:'<script src="/booth/lib-v10.5.2.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/SequentConfig-v10.5.2.js"></script>'},
+            {selector:'body',html:'<script src="/booth/SequentThemes-v10.5.2.js"></script>'},
+            {selector:'body',html:'<script src="/booth/app-v10.5.2.min.js"></script>'},
+            {selector:'body',html:'<script src="/booth/SequentPlugins-v10.5.2.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/booth/" href="/booth/themes/default/app.min.css">'}
           ]
         },
@@ -264,9 +264,9 @@ module.exports = function (grunt) {
           ],
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>'],
-          'dist/SequentConfig-v10.5.1.js': ['SequentConfig.js'],
-          'dist/SequentThemes-v10.5.1.js': ['node_modules/common-ui/dist/SequentThemes-v10.5.1.js'],
-          'dist/SequentPlugins-v10.5.1.js': ['plugins/**/*.js']
+          'dist/SequentConfig-v10.5.2.js': ['SequentConfig.js'],
+          'dist/SequentThemes-v10.5.2.js': ['node_modules/common-ui/dist/SequentThemes-v10.5.2.js'],
+          'dist/SequentPlugins-v10.5.2.js': ['plugins/**/*.js']
         }
       }
     },
@@ -337,9 +337,9 @@ module.exports = function (grunt) {
           beautify: true
         },
         files: {
-          'dist/app-v10.5.1.min.js': 'temp/app.js',
-          'dist/lib-v10.5.1.min.js': 'temp/lib.js',
-          'dist/libnocompat-v10.5.1.min.js': 'temp/libnocompat.js',
+          'dist/app-v10.5.2.min.js': 'temp/app.js',
+          'dist/lib-v10.5.2.min.js': 'temp/lib.js',
+          'dist/libnocompat-v10.5.2.min.js': 'temp/libnocompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
           "dist/locales/moment/en.js": "node_modules/moment/locale/en-gb.js",
