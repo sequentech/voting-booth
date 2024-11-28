@@ -216,7 +216,7 @@ angular.module('avBooth')
                   function (answer)
                   {
                     return (
-                      answer.text === title &&
+                      (answer.text === title || answer.category === title) &&
                       ErrorCheckerGeneratorService.hasUrl(answer.urls, 'isCategoryList', 'true')
                     );
                   }
