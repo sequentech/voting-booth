@@ -1,23 +1,24 @@
 <div class="category-heading-container">
     <h3 class="category-heading" id="question_{{question.index}}_answer_{{category.categoryAnswer.id}}">
-        {{ category | customI18n : 'title' }}
-    </h3>
-    <div
-        class="vertilize-col answer-glyphicon"    
-        ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size < 12"
-    >
-        <span
-            class="check-title"
-            tabindex="0"
-            role="checkbox"
-            aria-checked="{{ category.categoryAnswer.selected > -1 }}"
-            aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
-            ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
-        >
-            <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
-            <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
+        <span class="category-title-span">
+            {{ category | customI18n : 'title' }}
         </span>
-    </div>
+        <div
+            class="vertilize-col answer-glyphicon"
+            ng-if="question.are_lists_checkable && category.categoryAnswer"
+        >
+            <span
+                tabindex="0"
+                role="checkbox"
+                aria-checked="{{ category.categoryAnswer.selected > -1 }}"
+                aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
+                ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
+            >
+                <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
+                <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
+            </span>
+        </div>
+    </h3>
 </div>
 <div class="category-body" ng-class="{'empty-category': isEmptyCategory}">
     <div 
@@ -68,21 +69,5 @@
                 hide-check="!question.are_lists_checkable && question.tally_type !== 'cumulative'"
             ></div>
         </div>
-    </div>
-
-    <div
-        class="vertilize-col answer-glyphicon"
-        ng-if="question.are_lists_checkable && category.categoryAnswer && question.extra_options.answer_group_columns_size === 12"
-    >
-        <span
-            tabindex="0"
-            role="checkbox"
-            aria-checked="{{ category.categoryAnswer.selected > -1 }}"
-            aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
-            ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
-        >
-            <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
-            <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
-        </span>
     </div>
 </div>
