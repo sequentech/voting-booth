@@ -210,10 +210,15 @@ angular.module('avBooth')
           scope.parentElection :
           scope.election
         );
+        var authEvent = (
+          (!!scope.parentAuthEvent) ?
+          scope.parentAuthEvent :
+          scope.authEvent
+        );
         scope.redirectingToUri = true;
 
         if (
-          election.auth_method !== 'openid-connect' || 
+          !authEvent || authEvent.auth_method !== 'openid-connect' ||
           !getLogoutUri()
         ) {
           simpleRedirectToLogin(isSuccess);
