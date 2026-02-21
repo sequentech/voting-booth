@@ -153,8 +153,8 @@ angular.module('avBooth')
           scope.authEvent
         );
         if (
-          authEvent.oidc_providers.length === 0 || 
-          !authEvent.oidc_providers[0].logout_uri
+          authEvent.oidc_providers.length === 0 ||
+          !authEvent.oidc_providers[0].public_info.logout_uri
         ) {
           return false;
         }
@@ -165,7 +165,7 @@ angular.module('avBooth')
           scope.election
         );
 
-        var uri = authEvent.oidc_providers[0].logout_uri;
+        var uri = authEvent.oidc_providers[0].public_info.logout_uri;
         uri = uri.replace("__EVENT_ID__", "" + election.id);
 
         var postfix = "_authevent_" + election.id;
