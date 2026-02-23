@@ -147,9 +147,14 @@ angular.module('avBooth')
       // basically supports only one provider
       function getLogoutUri()
       {
+        var authEvent = (
+          (!!scope.parentAuthEvent) ?
+          scope.parentAuthEvent :
+          scope.authEvent
+        );
         if (
-          ConfigService.openIDConnectProviders.length === 0 || 
-          !ConfigService.openIDConnectProviders[0].logout_uri
+          authEvent.oidc_providers.length === 0 ||
+          !authEvent.oidc_providers[0].public_info.logout_uri
         ) {
           return false;
         }
@@ -160,7 +165,7 @@ angular.module('avBooth')
           scope.election
         );
 
-        var uri = ConfigService.openIDConnectProviders[0].logout_uri;
+        var uri = authEvent.oidc_providers[0].public_info.logout_uri;
         uri = uri.replace("__EVENT_ID__", "" + election.id);
 
         var postfix = "_authevent_" + election.id;
@@ -210,10 +215,15 @@ angular.module('avBooth')
           scope.parentElection :
           scope.election
         );
+        var authEvent = (
+          (!!scope.parentAuthEvent) ?
+          scope.parentAuthEvent :
+          scope.authEvent
+        );
         scope.redirectingToUri = true;
 
         if (
-          election.auth_method !== 'openid-connect' || 
+          !authEvent || authEvent.auth_method !== 'openid-connect' ||
           !getLogoutUri()
         ) {
           simpleRedirectToLogin(isSuccess);
