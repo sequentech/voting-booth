@@ -58,6 +58,25 @@
         flex-grow: 2;
         text-align: center;
         display: flex;
+        cursor: pointer;
+        user-select: none;
+
+        &:hover, &:focus {
+            opacity: 0.85;
+            outline: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid @av-primary-contrast;
+            border-radius: 3px;
+        }
+    }
+
+    .category-collapse-chevron {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        margin-right: 8px;
     }
 
     .category-title-span {
