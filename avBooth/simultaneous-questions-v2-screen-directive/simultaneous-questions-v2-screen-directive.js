@@ -329,6 +329,15 @@ angular.module('avBooth')
           question.search = "";
         };
 
+        scope.areAllCategoriesCollapsed = function(question) {
+          return !question.categories || question.categories.every(function(c) { return c.isCollapsed; });
+        };
+
+        scope.toggleAllCategories = function(question) {
+          var collapseAll = !scope.areAllCategoriesCollapsed(question);
+          question.categories.forEach(function(c) { c.isCollapsed = collapseAll; });
+        };
+
         function updateFilteredAnswers(question) {
           return function() {
             for (var answer of question.answers) {

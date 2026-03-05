@@ -328,7 +328,9 @@
         "body": "Conferma di voler saltare questa/e domanda/e. Puoi votare le domande saltate effettuando nuovamente l'accesso.",
         "confirm": "Conferma e SALTA questa/e domanda/e",
         "header": "Vuoi saltare questa/e domanda/e?"
-      }
+      },
+      "collapseAll": "Comprimi tutto",
+      "expandAll": "Espandi tutto"
     },
     "startVoting": "Inizia a votare",
     "statusEncryptingQuestion": "Crittografia delle risposte alla domanda __questionNum__, attendere (__percentage__% completata)",

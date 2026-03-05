@@ -393,6 +393,8 @@
       },
       "searchWarn": "Ballot candidates have been filtered. To view all candidates on this ballot, please disable the filter.",
       "filterOptionsPlaceholder": "Search a Candidate",
+      "collapseAll": "Collapse All",
+      "expandAll": "Expand All",
       "actionsSection": "Actions",
       "errorsList": "Your selection presents the following errors, are you sure you want to cast your ballot?"
     },

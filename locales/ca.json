@@ -340,7 +340,9 @@
         "confirm": "D'acord"
       },
       "searchWarn": "Els candidats de la pregunta han estat filtrats. Per veure tots els candidats en aquesta pregunta, si us plau desactiva el filtre.",
-      "filterOptionsPlaceholder": "Cerca un Candidat"
+      "filterOptionsPlaceholder": "Cerca un Candidat",
+      "collapseAll": "Col·lapsa-ho tot",
+      "expandAll": "Expandeix-ho tot"
     },
 
     "pairwiseBeta": {

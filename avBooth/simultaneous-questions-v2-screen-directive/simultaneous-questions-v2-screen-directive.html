@@ -50,6 +50,19 @@
     </p>
     
     <div class="question-search-container">
+      <button
+        class="btn btn-link btn-collapse-all"
+        ng-if="question.hasCategories"
+        ng-click="toggleAllCategories(question)"
+        aria-label="{{ areAllCategoriesCollapsed(question) ? ('avBooth.simultaneousQuestions.expandAll' | i18next) : ('avBooth.simultaneousQuestions.collapseAll' | i18next) }}"
+      >
+        <span class="glyphicon" ng-class="{
+          'glyphicon-chevron-down': areAllCategoriesCollapsed(question),
+          'glyphicon-chevron-up': !areAllCategoriesCollapsed(question)
+        }"></span>
+        <span ng-if="areAllCategoriesCollapsed(question)" ng-i18next="avBooth.simultaneousQuestions.expandAll"></span>
+        <span ng-if="!areAllCategoriesCollapsed(question)" ng-i18next="avBooth.simultaneousQuestions.collapseAll"></span>
+      </button>
       <div
         class="filter-input-wrapper"
         ng-if="question.showSearch"
