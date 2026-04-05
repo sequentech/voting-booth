@@ -1,5 +1,22 @@
 <div class="category-heading-container">
-    <h3 class="category-heading" id="question_{{question.index}}_answer_{{category.categoryAnswer.id}}">
+    <h3
+        class="category-heading"
+        id="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
+        ng-click="!isReview && (category.isCollapsed = !category.isCollapsed)"
+        ng-attr-tabindex="{{ !isReview ? '0' : undefined }}"
+        ng-attr-role="{{ !isReview ? 'button' : undefined }}"
+        ng-attr-aria-expanded="{{ !isReview ? !category.isCollapsed : undefined }}"
+        ng-keydown="($event.key === 'Enter' || $event.key === ' ') && toggleCollapse() && $event.preventDefault()"
+    >
+        <span class="category-collapse-chevron" ng-if="!isReview" aria-hidden="true">
+            <span
+                class="glyphicon"
+                ng-class="{
+                    'glyphicon-chevron-right': category.isCollapsed,
+                    'glyphicon-chevron-down': !category.isCollapsed
+                }"
+            ></span>
+        </span>
         <span class="category-title-span">
             {{ category | customI18n : 'title' }}
         </span>
@@ -12,7 +29,7 @@
                 role="checkbox"
                 aria-checked="{{ category.categoryAnswer.selected > -1 }}"
                 aria-labelledby="question_{{question.index}}_answer_{{category.categoryAnswer.id}}"
-                ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer)"
+                ng-click="!isReview && toggleSelectItem(question, category.categoryAnswer); $event.stopPropagation()"
             >
                 <i class="fa fa-lg fa-check" ng-if="category.categoryAnswer.selected > -1"></i>
                 <div class="unchecked" ng-if="category.categoryAnswer.selected === -1"></div>
@@ -20,7 +37,7 @@
         </div>
     </h3>
 </div>
-<div class="category-body" ng-class="{'empty-category': isEmptyCategory}">
+<div class="category-body" ng-class="{'empty-category': isEmptyCategory}" ng-show="isReview || !category.isCollapsed">
     <div 
     class="question-answers text-left"
     >

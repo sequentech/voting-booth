@@ -292,7 +292,9 @@
                 "confirm": "Confirmer et SAUTER cette(ces) question(s)"
             },
             "searchWarn": "Les candidats de la question ont été filtrés. Pour voir tous les candidats de cette question, veuillez désactiver le filtre.",
-            "filterOptionsPlaceholder": "Cherchez un Candidat"
+            "filterOptionsPlaceholder": "Cherchez un Candidat",
+            "collapseAll": "Tout réduire",
+            "expandAll": "Tout développer"
         },
         "pairwiseBeta": {
             "web": "Web",

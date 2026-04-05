@@ -25,6 +25,11 @@ angular.module('avBooth')
     {
       function link(scope, _element, _attrs)
       {
+        scope.toggleCollapse = function () {
+          if (!scope.isReview) {
+            scope.category.isCollapsed = !scope.category.isCollapsed;
+          }
+        };
       }
 
       return {

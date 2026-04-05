@@ -225,7 +225,8 @@ angular.module('avBooth')
                 return {
                   title: title,
                   answers: answers,
-                  categoryAnswer: categoryAnswer
+                  categoryAnswer: categoryAnswer,
+                  isCollapsed: true
                 };
               }
             );
@@ -328,6 +329,15 @@ angular.module('avBooth')
           question.search = "";
         };
 
+        scope.areAllCategoriesCollapsed = function(question) {
+          return !question.categories || question.categories.every(function(c) { return c.isCollapsed; });
+        };
+
+        scope.toggleAllCategories = function(question) {
+          var collapseAll = !scope.areAllCategoriesCollapsed(question);
+          question.categories.forEach(function(c) { c.isCollapsed = collapseAll; });
+        };
+
         function updateFilteredAnswers(question) {
           return function() {
             for (var answer of question.answers) {
@@ -336,11 +346,12 @@ angular.module('avBooth')
 
             question.isAnyCategorySelected = false;
             if (question.hasCategories && !!question.categories) {
+              var searchIsActive = question.search && question.search.trim().length > 0;
               for (var category of question.categories) {
-                category.isCategorySelected = 
+                category.isCategorySelected =
                   SearchFilter.isStringContained(question.search, category.title);
                 if (category.categoryAnswer) {
-                  category.isCategorySelected = 
+                  category.isCategorySelected =
                     SearchFilter.isSelectedAnswer(question.search, category.categoryAnswer);
                 }
                 question.isAnyCategorySelected = question.isAnyCategorySelected || category.isCategorySelected;
@@ -352,6 +363,14 @@ angular.module('avBooth')
                   isAnyAnswerSelected = isAnyAnswerSelected || catAnswer.isFilterSelected;
                 }
                 category.isAnyAnswerSelected = isAnyAnswerSelected;
+
+                if (searchIsActive) {
+                  if (category.isCategorySelected || category.isAnyAnswerSelected) {
+                    category.isCollapsed = false;
+                  }
+                } else {
+                  category.isCollapsed = true;
+                }
               }
             }
           };
