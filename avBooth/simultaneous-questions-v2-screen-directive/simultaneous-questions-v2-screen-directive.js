@@ -226,7 +226,7 @@ angular.module('avBooth')
                   title: title,
                   answers: answers,
                   categoryAnswer: categoryAnswer,
-                  isCollapsed: true
+                  isCollapsed: !!(question.extra_options && question.extra_options.categories_collapsed_by_default)
                 };
               }
             );
@@ -369,7 +369,7 @@ angular.module('avBooth')
                     category.isCollapsed = false;
                   }
                 } else {
-                  category.isCollapsed = true;
+                  category.isCollapsed = !!(question.extra_options && question.extra_options.categories_collapsed_by_default);
                 }
               }
             }
